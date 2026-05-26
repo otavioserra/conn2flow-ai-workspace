@@ -2,19 +2,55 @@
 set -euo pipefail
 
 if [[ $# -lt 1 ]]; then
-    echo "Usage: install-spec-driven-copilot-kit.sh <target-repo-path> [--force]" >&2
+    echo "Usage: install-spec-driven-copilot-kit.sh <target-repo-path> [--force] [--agent-prefix <prefix>] [--language <pt-br|en>]" >&2
     exit 1
 fi
 
 target_root="$1"
+shift
 force="false"
+agent_prefix=""
+language="pt-br"
 
-if [[ ${2:-} == "--force" ]]; then
-    force="true"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --force)
+            force="true"
+            ;;
+        --agent-prefix)
+            if [[ $# -lt 2 ]]; then
+                echo "Missing value for --agent-prefix" >&2
+                exit 1
+            fi
+            agent_prefix="$2"
+            shift
+            ;;
+        --language)
+            if [[ $# -lt 2 ]]; then
+                echo "Missing value for --language" >&2
+                exit 1
+            fi
+            language="$2"
+            shift
+            ;;
+        *)
+            echo "Unknown argument: $1" >&2
+            exit 1
+            ;;
+    esac
+
+    shift
+done
+
+if [[ "$language" != "pt-br" && "$language" != "en" ]]; then
+    echo "Invalid language: $language. Use pt-br or en." >&2
+    exit 1
 fi
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
-template_root="$(cd "$script_dir/../templates/spec-driven-project-copilot-kit" && pwd)"
+language_root="$(cd "$script_dir/../$language" && pwd)"
+template_root="$(cd "$language_root/templates/spec-driven-project-copilot-kit" && pwd)"
+boilerplate_root="$(cd "$language_root/sdd-boilerplate/sdd" && pwd)"
 
 mkdir -p "$target_root"
 target_root="$(cd "$target_root" && pwd)"
@@ -26,11 +62,19 @@ specialized_markers=(
 )
 
 prompt_agent_bindings=(
-    ".github/prompts/start-sdd-slice.prompt.md:sdd-coordinator"
-    ".github/prompts/continue-sdd-batch.prompt.md:sdd-coordinator"
-    ".github/prompts/raise-spec-change.prompt.md:sdd-coordinator"
-    ".github/prompts/review-current-batch.prompt.md:sdd-reviewer"
+    ".github/prompts/start-sdd-slice.prompt.md:agent"
+    ".github/prompts/continue-sdd-batch.prompt.md:agent"
+    ".github/prompts/raise-spec-change.prompt.md:agent"
+    ".github/prompts/review-current-batch.prompt.md:agent"
 )
+
+coordinator_agent="sdd-coordinator"
+reviewer_agent="sdd-reviewer"
+
+if [[ -n "$agent_prefix" ]]; then
+    coordinator_agent="$agent_prefix-sdd-coordinator"
+    reviewer_agent="$agent_prefix-sdd-reviewer"
+fi
 
 prompt_existed_file="$(mktemp)"
 trap 'rm -f "$prompt_existed_file"' EXIT
@@ -78,35 +122,100 @@ copy_path() {
     done < <(find "$source_path" -mindepth 1 -print0)
 }
 
+install_sdd_boilerplate() {
+    local source_root="$1"
+    local repo_root="$2"
+    local target_sdd="$repo_root/sdd"
+
+    if [[ -d "$target_sdd" ]]; then
+        echo "Preserving existing SDD directory: $target_sdd"
+        return 0
+    fi
+
+    copy_path_from_root "$source_root" "$target_sdd"
+}
+
+copy_path_from_root() {
+    local source_root="$1"
+    local destination_root="$2"
+
+    mkdir -p "$destination_root"
+
+    while IFS= read -r -d '' entry; do
+        local relative_path="${entry#$source_root/}"
+        local target_path="$destination_root/$relative_path"
+
+        if [[ -d "$entry" ]]; then
+            mkdir -p "$target_path"
+            continue
+        fi
+
+        mkdir -p "$(dirname "$target_path")"
+
+        if [[ -e "$target_path" && "$force" != "true" ]]; then
+            echo "Skipping existing file: $target_path"
+            continue
+        fi
+
+        cp "$entry" "$target_path"
+        echo "Installed: $target_path"
+    done < <(find "$source_root" -mindepth 1 -print0)
+}
+
+rebind_agent_prefix() {
+    local repo_root="$1"
+    local prefix="$2"
+
+    if [[ -z "$prefix" ]]; then
+        return 0
+    fi
+
+    local old_agents=(
+        "sdd-coordinator"
+        "sdd-implementer"
+        "sdd-reviewer"
+    )
+    local new_agents=(
+        "$prefix-sdd-coordinator"
+        "$prefix-sdd-implementer"
+        "$prefix-sdd-reviewer"
+    )
+
+    local agents_dir="$repo_root/.github/agents"
+
+    for index in "${!old_agents[@]}"; do
+        local old_name="${old_agents[$index]}"
+        local new_name="${new_agents[$index]}"
+
+        if [[ -f "$agents_dir/$old_name.agent.md" ]]; then
+            mv "$agents_dir/$old_name.agent.md" "$agents_dir/$new_name.agent.md"
+            echo "Renamed agent: $agents_dir/$old_name.agent.md -> $agents_dir/$new_name.agent.md"
+        fi
+    done
+
+    if [[ -d "$repo_root/.github" ]]; then
+        while IFS= read -r -d '' file; do
+            for index in "${!old_agents[@]}"; do
+                sed -i.bak "s/${old_agents[$index]}/${new_agents[$index]}/g" "$file"
+                rm -f "$file.bak"
+            done
+        done < <(find "$repo_root/.github" -type f -print0)
+    fi
+}
+
 copy_path ".github" ".github"
+install_sdd_boilerplate "$boilerplate_root" "$target_root"
 copy_path "sdd/scripts/hooks" "sdd/scripts/hooks"
-
-human_requests_dir="$target_root/sdd/human-requests"
-human_requests_readme="$human_requests_dir/README.md"
-human_requests_content=$(cat <<'EOF'
-# Human Requests
-
-This folder stores human-authored intake files for the SDD workflow.
-
-Rules:
-
-- This folder is not the normative source of truth.
-- Approved requirement changes must move to `sdd/change-requests/` before updating numbered sdd.
-- Implementation-only feedback must move to `sdd/reviews/`, `sdd/implementation/`, `sdd/validation/` or `sdd/decisions/`.
-- When a workflow receives only the folder path, use `CURRENT.md`, then `README.md`, then the most recent `.md` file.
-EOF
-)
-
-mkdir -p "$human_requests_dir"
-
-if [[ ! -e "$human_requests_readme" || "$force" == "true" ]]; then
-    printf '%s\n' "$human_requests_content" > "$human_requests_readme"
-    echo "Installed: $human_requests_readme"
-fi
+rebind_agent_prefix "$target_root" "$agent_prefix"
 
 for binding in "${prompt_agent_bindings[@]}"; do
     prompt_rel="${binding%%:*}"
-    agent_name="${binding##*:}"
+    agent_name="$coordinator_agent"
+
+    if [[ "$prompt_rel" == ".github/prompts/review-current-batch.prompt.md" ]]; then
+        agent_name="$reviewer_agent"
+    fi
+
     prompt_path="$target_root/$prompt_rel"
 
     if [[ "$force" != "true" ]] && grep -Fxq "$prompt_rel" "$prompt_existed_file"; then

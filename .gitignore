@@ -1,0 +1,14 @@
+# Temporary folders
+temp/
+
+# Editor / System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environments and caches
+.venv/
+node_modules/
+.env*
+!README-PT-BR.md

@@ -1,0 +1,13 @@
+{
+    "hooks": {
+        "SessionStart": [
+            {
+                "type": "command",
+                "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/hooks/private-project-session-start.ps1",
+                "linux": "bash ./scripts/hooks/private-project-session-start.sh",
+                "osx": "bash ./scripts/hooks/private-project-session-start.sh",
+                "timeout": 5
+            }
+        ]
+    }
+}

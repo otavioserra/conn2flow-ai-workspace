@@ -4,11 +4,18 @@ param(
 
     [switch]$Force,
 
-    [string]$AgentPrefix = ""
+    [string]$AgentPrefix = "",
+
+    [ValidateSet('pt-br', 'en')]
+    [string]$Language = 'pt-br'
 )
 
+$ErrorActionPreference = 'Stop'
+
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$templateRoot = (Resolve-Path (Join-Path $scriptDir "..\templates\private-project-claude-kit")).Path
+$languageRoot = (Resolve-Path (Join-Path $scriptDir "..\$Language")).Path
+$templateRoot = (Resolve-Path (Join-Path $languageRoot "templates\private-project-claude-kit")).Path
+$boilerplateRoot = (Resolve-Path (Join-Path $languageRoot "sdd-boilerplate\sdd")).Path
 
 New-Item -ItemType Directory -Force -Path $TargetRepoPath | Out-Null
 $targetRoot = (Resolve-Path $TargetRepoPath).Path
@@ -69,9 +76,58 @@ function Copy-File {
     Write-Host "Installed: $destinationPath"
 }
 
+function Copy-MergedTree {
+    param(
+        [string]$SourceRoot,
+        [string]$DestinationRoot,
+        [bool]$Overwrite
+    )
+
+    if (-not (Test-Path $DestinationRoot)) {
+        New-Item -ItemType Directory -Force -Path $DestinationRoot | Out-Null
+    }
+
+    Get-ChildItem -LiteralPath $SourceRoot -Recurse -Force | ForEach-Object {
+        $relativePath = $_.FullName.Substring($SourceRoot.Length).TrimStart([char[]]@('\', '/'))
+        $targetPath = Join-Path $DestinationRoot $relativePath
+
+        if ($_.PSIsContainer) {
+            New-Item -ItemType Directory -Force -Path $targetPath | Out-Null
+            return
+        }
+
+        $targetDir = Split-Path -Parent $targetPath
+        New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
+
+        if ((Test-Path $targetPath) -and -not $Overwrite) {
+            Write-Host "Skipping existing file: $targetPath"
+            return
+        }
+
+        Copy-Item $_.FullName $targetPath -Force
+        Write-Host "Installed: $targetPath"
+    }
+}
+
+function Install-SddBoilerplate {
+    param(
+        [string]$SourceRoot,
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (Test-Path $targetSdd) {
+        Write-Host "Preserving existing SDD directory: $targetSdd"
+        return
+    }
+
+    Copy-MergedTree -SourceRoot $SourceRoot -DestinationRoot $targetSdd -Overwrite $true
+}
+
 Copy-File "CLAUDE.md" "CLAUDE.md"
 Copy-Dir ".claude" ".claude"
 Copy-Dir "docs" "docs"
+Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 
 function Rebind-AgentPrefix {
     param(

@@ -4,13 +4,18 @@ param(
 
     [switch]$Force,
 
-    [string]$AgentPrefix
+    [string]$AgentPrefix,
+
+    [ValidateSet('pt-br', 'en')]
+    [string]$Language = 'pt-br'
 )
 
 $ErrorActionPreference = 'Stop'
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$templateRoot = (Resolve-Path (Join-Path $scriptDir '..\templates\private-project-copilot-kit')).Path
+$languageRoot = (Resolve-Path (Join-Path $scriptDir "..\$Language")).Path
+$templateRoot = (Resolve-Path (Join-Path $languageRoot 'templates\private-project-copilot-kit')).Path
+$boilerplateRoot = (Resolve-Path (Join-Path $languageRoot 'sdd-boilerplate\sdd')).Path
 
 if (-not (Test-Path $TargetRepoPath)) {
     New-Item -ItemType Directory -Path $TargetRepoPath -Force | Out-Null
@@ -61,12 +66,29 @@ function Copy-MergedTree {
     }
 }
 
+function Install-SddBoilerplate {
+    param(
+        [string]$SourceRoot,
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (Test-Path $targetSdd) {
+        Write-Host "Preserving existing SDD directory: $targetSdd"
+        return
+    }
+
+    Copy-MergedTree -SourceRoot $SourceRoot -DestinationRoot $targetSdd -Overwrite $true
+}
+
 foreach ($item in $copyItems) {
     $sourcePath = Join-Path $templateRoot $item.Source
     $destinationPath = Join-Path $targetRoot $item.Destination
 
     Copy-MergedTree -SourceRoot $sourcePath -DestinationRoot $destinationPath -Overwrite ([bool]$Force)
 }
+
+Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 
 function Bind-PromptAgents {
     param(

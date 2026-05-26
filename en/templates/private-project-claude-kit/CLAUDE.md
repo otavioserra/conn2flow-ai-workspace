@@ -1,0 +1,36 @@
+# Conn2Flow Private Project
+
+- Treat this private repository as the project layer that overlays the open core in `conn2flow`.
+- Before changing anything in the system, first check whether the change can live only in the private repository.
+- When a file exists in both private and core layers, prioritize reading and editing the private file.
+- If a file does not yet exist in the private layer and the feature is project-specific, create it in the private repository instead of editing the core.
+- Edit `conn2flow` only when the fix or feature is generic, reusable, and useful to other projects.
+- When touching `gestor` code, preserve Conn2Flow patterns and avoid broad refactors without need.
+- When using examples or snippets from `gestor`, `db`, `javascript/ajax`, or `models`, confirm syntax and field correspondence; avoid copying a structural snippet mistake into the final code.
+- If the request is anchored in `project/<workstream>/` and that workstream has `00-START-HERE.md`, `01-WORKFLOW.md`, batches, and a validation checklist, treat it as local SDD.
+- Treat `project/<workstream>/human-requests/` only as non-normative human intake; read that material first and then classify the request into the correct SDD artifact.
+
+## Main skills
+
+- Use `/private-project-kickoff` for a new request or when the split between private and core is still unclear.
+- Use `/continue-private-work` when the task is already in progress and there is new operational delta.
+- Use `/review-private-work` for findings-first review.
+
+## Automatic skills
+
+- `private-project-context`: decide between the private repository, `conn2flow`, or a split.
+- `project-sdd-context`: operate local workstreams inside `project/` that already use SDD.
+- `gestor-module-integration`: avoid structurally incomplete gestor modules.
+- `local-validation`: use when the task requires Docker, logs, JWT, Phinx, DB, or environment work.
+- `local-tests`: use when the task requires local tests in the Conn2Flow ecosystem after implementing modules, pages, or features.
+
+## Human docs
+
+- `docs/claude-workflow-projeto-privado.md`
+- `docs/claude-casos-de-uso-operacionais.md`
+- `docs/claude-continuidade-e-interrupcoes.md`
+- `docs/claude-hooks-e-skills.md`
+
+## Final rule
+
+- Use `CLAUDE.md` for always-on rules, `.claude/rules/` for path-based rules, `.claude/skills/` for workflows and on-demand runbooks, `.claude/agents/` for specialized subagents, and `.claude/settings.json` for language, permissions, and small hooks.
