@@ -1,0 +1,12 @@
+# Spec-Driven Project Guidelines
+
+- Este repositório deve tratar `sdd/README.md` e os sdd numerados como fonte normativa.
+- Antes de editar código ou sdd, leia `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, o batch atual, `sdd/validation/VALIDATION-CHECKLIST.md` e `sdd/decisions/DECISION-LOG.md`.
+- Use `sdd/human-requests/` apenas como intake humano não normativo. Se a demanda vier como caminho de arquivo Markdown ou como a própria pasta, leia esse material primeiro e depois classifique a demanda no artefato SDD correto.
+- Classifique a demanda cedo: change request, implementação de batch, review ou validação.
+- Não reescreva os sdd numerados para comentários pequenos de review.
+- Edite sdd numerados apenas quando requisito, contrato, critério de aceite ou decisão aprovada realmente mudar.
+- Mantenha o trabalho em batches pequenos com alvo de validação explícito.
+- Para decidir o artefato correto dentro do fluxo SDD, use a skill [sdd-workflow](./skills/sdd-workflow/SKILL.md).
+- Para validação local do projeto, ajuste e use a skill [project-validation](./skills/project-validation/SKILL.md).
+- O hook [sdd-session-start.json](./hooks/sdd-session-start.json) injeta um lembrete curto de SDD no início da sessão; mantenha esse hook pequeno e previsível.

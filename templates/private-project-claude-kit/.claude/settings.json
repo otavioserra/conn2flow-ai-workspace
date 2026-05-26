@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "language": "portuguese",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./secrets/**)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Reminder: private repo first, core only when the change is generic; treat human-requests as non-normative intake; if project/<frente> already uses local SDD, reload the local spec, batch index and validation checklist before editing.'"
+          }
+        ]
+      }
+    ]
+  }
+}
