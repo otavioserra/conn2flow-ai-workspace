@@ -1,26 +1,28 @@
 # 00 Baseline Architecture
 
 ## 1. Objetivo
-Este arquivo registra o estado atual do repositório `conn2flow-ai-workspace` antes das mudanças estruturais bilingues do BATCH-001. Ele descreve o legado técnico do projeto para garantir estabilidade operacional.
+Este arquivo registra o estado estável aprovado do repositório `conn2flow-ai-workspace` após a consolidação do BATCH-001 (reestruturação bilingue e melhorias nos instaladores). Ele serve como referência para quaisquer novos lotes ou propostas de mudança normativa.
 
 ---
 
-## 2. Estrutura de Arquivos do Legado
-Antes do BATCH-001, a estrutura do projeto é a seguinte:
-- **`templates/`**: Pasta raiz dos templates. Contém os subdiretórios `private-project-copilot-kit`, `private-project-claude-kit`, `spec-driven-project-copilot-kit` e `spec-driven-project-claude-kit`. Todos em Português por padrão.
-- **`scripts/`**: Pasta contendo scripts em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os quatro kits acima em repositórios alvo.
-- **`README.md` & `README-PT-BR.md`**: Documentação raiz bilingue (recém-criada).
+## 2. Estrutura de Arquivos do Workspace
+O repositório está organizado de forma bilingue na raiz:
+- **`pt-br/`**: Diretório contendo os recursos localizados em Português do Brasil:
+  - `templates/`: Os quatro kits de IA (`spec-driven` e `private-project` para Claude e Copilot).
+  - `sdd-boilerplate/`: Esqueleto inicial limpo da pasta de governança `sdd/`.
+- **`en/`**: Diretório contendo os recursos traduzidos e adaptados em Inglês:
+  - `templates/`: Os quatro kits de IA correspondentes.
+  - `sdd-boilerplate/`: Esqueleto inicial limpo da pasta de governança `sdd/`.
+- **`scripts/`**: Pasta contendo os utilitários do workspace:
+  - `install-*.ps1` e `install-*.sh`: Scripts de instalação dos kits de IA.
+  - `sync-back-template.ps1` e `sync-back-template.sh`: Scripts utilitários de sincronização reversa.
 - **`sdd/`**: O diretório de governança local (este diretório).
+- **`README.md` & `README-PT-BR.md`**: Documentação de entrada bilingue.
 
 ---
 
-## 3. Comportamento dos Scripts de Instalação do Legado
-Os instaladores funcionam copiando a estrutura correspondente do diretório `templates/` do workspace para a pasta de destino (informada via argumento `-TargetRepoPath` no Windows ou `$1` no Bash).
-- **Kits de Projeto Privado**: Suportam a flag de prefixação (`-AgentPrefix` / `--agent-prefix`) para rebatizar os agentes e atualizar as referências internas de arquivos textuais.
-- **Kits SDD**: Apenas copiam os arquivos de IA, criam a pasta `sdd/human-requests/README.md` no destino e amarram os agentes padrão (`sdd-coordinator`, `sdd-implementer`, `sdd-reviewer`) aos prompts, sem suporte a prefixo de agente.
-
----
-
-## 4. Preservação do Legado e Segurança
-*   Os scripts utilitários em `scripts/` são considerados operacionais e funcionais. Qualquer modificação nos scripts deve preservar a compatibilidade (ex: aceitar os parâmetros antigos como obrigatórios e garantir comportamento retrocompatível quando nenhuma flag opcional for fornecida).
-*   Os arquivos nos templates (`.claude/` ou `.github/` e regras associadas) são considerados de alta qualidade e testados. Qualquer alteração estrutural nas regras deve ser documentada via Change Request.
+## 3. Comportamento dos Instaladores e Sincronizadores
+*   **Seleção de Idioma**: Os instaladores aceitam a flag `-Language` (PowerShell) ou `--language` (Bash) e leem os templates correspondentes de `pt-br/` ou `en/`. O padrão é `pt-br`.
+*   **Instalação Condicional do Boilerplate**: Se a pasta `sdd/` estiver ausente no destino, o esqueleto de `sdd-boilerplate/sdd` é copiado integralmente. Se já existir, é preservado e apenas hooks de suporte são instalados.
+*   **Prefixo de Agente**: O parâmetro `-AgentPrefix` (ou `--agent-prefix`) renomeia os agentes e substitui recursivamente os bindings internos nos kits privados e SDD.
+*   **Sync-Back**: Os utilitários de sincronização reversa em `scripts/` puxam alterações locais de prompts e regras em repositórios de clientes de volta para a pasta de templates correspondente no workspace, limpando e normalizando o prefixo de agente.
