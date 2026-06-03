@@ -43,3 +43,22 @@ Criar utilitários na pasta `scripts/`:
 ### Comportamento:
 *   Aceita como parâmetro o caminho do repositório real do cliente.
 *   Puxa modificações de prompts, agentes e skills testados de volta para o diretório de templates correspondente no workspace (em `pt-br/templates/` ou `en/templates/`), facilitando a manutenção e a melhoria contínua dos moldes.
+
+---
+
+## 4. Memórias de Engenharia (Chefia e Execução)
+Para evitar perda de contexto e necessidade de repetições lógicas entre sessões, a governança SDD conta com dois diários de bordo opcionais:
+
+### Estrutura de Arquivos nos Boilerplates:
+*   **Em Português (`pt-br/sdd-boilerplate/sdd/`)**:
+    - `MEMORIA-ENGENHARIA-CHEFIA.md`: Documenta orientações de estilo, convenções de código, restrições e notas de negócio ditadas pelo Engenheiro Chefe Humano. (Apenas leitura para os executores).
+    - `MEMORIA-ENGENHARIA-EXECUCAO.md`: Documenta notas de dependências locais, aprendizados do compilador, hacks locais de banco de dados e bugs resolvidos. (Leitura e escrita para os executores).
+*   **Em Inglês (`en/sdd-boilerplate/sdd/`)**:
+    - `ENGINEERING-MEMORY-CHIEF.md`: Correspondente à memória de Chefia em Inglês.
+    - `ENGINEERING-MEMORY-EXECUTION.md`: Correspondente à memória de Execução em Inglês.
+
+### Integração nas Instruções do Agente:
+As regras nos templates de kits de IA (`CLAUDE.md`, `.claude/rules/sdd.md`, `.github/copilot-instructions.md` etc.) devem instruir explicitamente os agentes a:
+1.  **Carregar Memórias**: Ler ambos os arquivos de memória no início de cada sessão para alinhar contexto.
+2.  **Manter Memórias**: Exigir que o Executor IA atualize a memória de `Execução` correspondente ao término de cada tarefa, registrando bugs corrigidos, particularidades do ambiente local e lições de código aprendidas, garantindo a persistência do histórico.
+3.  **Preservação**: Impedir que o Executor modifique a memória de `Chefia` sem instruções explícitas do usuário humano.
