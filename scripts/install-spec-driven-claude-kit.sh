@@ -195,7 +195,91 @@ rebind_agent_prefix() {
     fi
 }
 
+migrate_legacy_sdd() {
+    local repo_root="$1"
+    local target_sdd="$repo_root/sdd"
+    local project_dir="$repo_root/project"
+
+    if [[ ! -d "$project_dir" ]]; then
+        return 0
+    fi
+    if [[ -d "$target_sdd" ]]; then
+        echo "SDD directory already exists at $target_sdd - skipping legacy migration."
+        return 0
+    fi
+
+    local legacy_front=""
+    local legacy_name=""
+    for sub_dir in "$project_dir"/*/; do
+        [[ ! -d "$sub_dir" ]] && continue
+        for marker in "00-START-HERE.md" "README.md" "SPEC.md"; do
+            if [[ -f "$sub_dir$marker" ]]; then
+                legacy_front="$sub_dir"
+                legacy_name="$(basename "$sub_dir")"
+                break 2
+            fi
+        done
+    done
+
+    if [[ -z "$legacy_front" ]]; then
+        return 0
+    fi
+
+    local legacy_relative="project/$legacy_name"
+    echo "Legacy SDD structure detected: $legacy_front"
+    mv "$legacy_front" "$target_sdd"
+    echo "Migrated: $legacy_front -> $target_sdd"
+
+    if [[ -z "$(ls -A "$project_dir" 2>/dev/null)" ]]; then
+        rmdir "$project_dir"
+        echo "Removed empty legacy directory: $project_dir"
+    fi
+
+    for config_dir in ".github" ".claude"; do
+        local config_path="$repo_root/$config_dir"
+        [[ ! -d "$config_path" ]] && continue
+        while IFS= read -r -d '' file; do
+            if grep -q "$legacy_relative" "$file" 2>/dev/null; then
+                sed -i.bak "s|$legacy_relative|sdd|g" "$file"
+                rm -f "$file.bak"
+                echo "Updated reference in: $file"
+            fi
+        done < <(find "$config_path" -type f -print0)
+    done
+
+    local claude_path="$repo_root/CLAUDE.md"
+    if [[ -f "$claude_path" ]] && grep -q "$legacy_relative" "$claude_path" 2>/dev/null; then
+        sed -i.bak "s|$legacy_relative|sdd|g" "$claude_path"
+        rm -f "$claude_path.bak"
+        echo "Updated reference in: $claude_path"
+    fi
+}
+
+install_engineering_memories() {
+    local boilerplate_root="$1"
+    local repo_root="$2"
+    local target_sdd="$repo_root/sdd"
+
+    if [[ ! -d "$target_sdd" ]]; then
+        return 0
+    fi
+
+    for memory_file in "$boilerplate_root"/MEMORIA-ENGENHARIA-*.md "$boilerplate_root"/ENGINEERING-MEMORY-*.md; do
+        [[ ! -f "$memory_file" ]] && continue
+        local filename="$(basename "$memory_file")"
+        local target_path="$target_sdd/$filename"
+        if [[ -e "$target_path" ]]; then
+            echo "Preserving existing memory file: $target_path"
+            continue
+        fi
+        cp "$memory_file" "$target_path"
+        echo "Installed memory: $target_path"
+    done
+}
+
+migrate_legacy_sdd "$target_root"
 install_sdd_boilerplate "$boilerplate_root" "$target_root"
+install_engineering_memories "$boilerplate_root" "$target_root"
 rebind_agent_prefix "$target_root" "$agent_prefix"
 
 echo "Spec-Driven Claude Kit installation finished."

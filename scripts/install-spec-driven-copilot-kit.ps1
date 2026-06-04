@@ -159,6 +159,100 @@ function Rebind-AgentPrefix {
     }
 }
 
+function Migrate-LegacySdd {
+    param(
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    $projectDir = Join-Path $RepoRoot 'project'
+
+    if (-not (Test-Path $projectDir)) {
+        return
+    }
+    if (Test-Path $targetSdd) {
+        Write-Host "SDD directory already exists at $targetSdd - skipping legacy migration."
+        return
+    }
+
+    $legacyFront = $null
+    foreach ($subDir in Get-ChildItem -LiteralPath $projectDir -Directory) {
+        $markers = @('00-START-HERE.md', 'README.md', 'SPEC.md')
+        foreach ($marker in $markers) {
+            if (Test-Path (Join-Path $subDir.FullName $marker)) {
+                $legacyFront = $subDir
+                break
+            }
+        }
+        if ($legacyFront) { break }
+    }
+
+    if (-not $legacyFront) {
+        return
+    }
+
+    $legacyRelative = "project/$($legacyFront.Name)"
+    Write-Host "Legacy SDD structure detected: $($legacyFront.FullName)"
+    Move-Item -LiteralPath $legacyFront.FullName -Destination $targetSdd -Force
+    Write-Host "Migrated: $($legacyFront.FullName) -> $targetSdd"
+
+    $remainingItems = Get-ChildItem -LiteralPath $projectDir -Force -ErrorAction SilentlyContinue
+    if (-not $remainingItems) {
+        Remove-Item -LiteralPath $projectDir -Force
+        Write-Host "Removed empty legacy directory: $projectDir"
+    }
+
+    $configDirs = @('.github', '.claude')
+    foreach ($configDir in $configDirs) {
+        $configPath = Join-Path $RepoRoot $configDir
+        if (-not (Test-Path $configPath)) { continue }
+        foreach ($file in Get-ChildItem -Path $configPath -Recurse -File) {
+            $content = Get-Content -LiteralPath $file.FullName -Raw
+            if ($content -match [regex]::Escape($legacyRelative)) {
+                $updated = $content.Replace($legacyRelative, 'sdd')
+                Set-Content -LiteralPath $file.FullName -Value $updated -NoNewline -Encoding utf8
+                Write-Host "Updated reference in: $($file.FullName)"
+            }
+        }
+    }
+
+    $claudePath = Join-Path $RepoRoot 'CLAUDE.md'
+    if (Test-Path $claudePath) {
+        $content = Get-Content -LiteralPath $claudePath -Raw
+        if ($content -match [regex]::Escape($legacyRelative)) {
+            $updated = $content.Replace($legacyRelative, 'sdd')
+            Set-Content -LiteralPath $claudePath -Value $updated -NoNewline -Encoding utf8
+            Write-Host "Updated reference in: $claudePath"
+        }
+    }
+}
+
+function Install-EngineeringMemories {
+    param(
+        [string]$BoilerplateRoot,
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (-not (Test-Path $targetSdd)) {
+        return
+    }
+
+    $memoryFiles = Get-ChildItem -LiteralPath $BoilerplateRoot -File | Where-Object {
+        $_.Name -match 'MEMORIA-ENGENHARIA|ENGINEERING-MEMORY'
+    }
+
+    foreach ($file in $memoryFiles) {
+        $targetPath = Join-Path $targetSdd $file.Name
+        if (Test-Path $targetPath) {
+            Write-Host "Preserving existing memory file: $targetPath"
+            continue
+        }
+        Copy-Item $file.FullName $targetPath -Force
+        Write-Host "Installed memory: $targetPath"
+    }
+}
+
 foreach ($item in $copyItems) {
     $sourcePath = Join-Path $templateRoot $item.Source
     $destinationPath = Join-Path $targetRoot $item.Destination
@@ -166,7 +260,9 @@ foreach ($item in $copyItems) {
     Copy-MergedTree -SourceRoot $sourcePath -DestinationRoot $destinationPath -Overwrite ([bool]$Force)
 }
 
+Migrate-LegacySdd -RepoRoot $targetRoot
 Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
+Install-EngineeringMemories -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
 Copy-MergedTree -SourceRoot (Join-Path $templateRoot 'sdd\scripts\hooks') -DestinationRoot (Join-Path $targetRoot 'sdd\scripts\hooks') -Overwrite ([bool]$Force)
 Rebind-AgentPrefix -RepoRoot $targetRoot -Prefix $AgentPrefix
 

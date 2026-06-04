@@ -67,3 +67,24 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 *   **Comando Executado**: remocao da pasta legada `templates/` apos migracao e validacao dos instaladores.
 *   **Resultado Esperado**: Workspace passando a depender apenas de `pt-br/templates/` e `en/templates/`.
 *   **Evidência**: Os instaladores e o sync-back operam exclusivamente sobre `../<language>/templates/<kit>`, e a pasta legada da raiz foi removida ao final do batch.
+
+---
+
+## BATCH-002: Memórias de Engenharia & Migrador de Legado nos Instaladores
+
+### 1. Checklist de Aceite Técnico
+- [ ] Criação do template `MEMORIA-ENGENHARIA-CHEFIA.md` sob `pt-br/sdd-boilerplate/sdd/` contendo diretrizes do Engenheiro Chefe Humano.
+- [ ] Criação do template `MEMORIA-ENGENHARIA-EXECUCAO.md` sob `pt-br/sdd-boilerplate/sdd/` contendo o diário de bordo do executor IA.
+- [ ] Criação do template `ENGINEERING-MEMORY-CHIEF.md` sob `en/sdd-boilerplate/sdd/`.
+- [ ] Criação do template `ENGINEERING-MEMORY-EXECUTION.md` sob `en/sdd-boilerplate/sdd/`.
+- [ ] Atualização de arquivos de regras/instruções nos kits (`CLAUDE.md`, `.claude/rules/sdd.md`, `.github/copilot-instructions.md`, `.github/instructions/sdd.instructions.md`) em `pt-br` e `en` para incluir a regra de leitura obrigatória das memórias e de escrita compulsória na memória de execução pelo executor IA.
+- [ ] Atualização dos scripts instaladores (`install-spec-driven-*.ps1` e `install-spec-driven-*.sh` em `scripts/`) para:
+  - Detecção automática de estrutura de governança SDD legada (`project/<frente>/`).
+  - Movimentação/migração física da pasta legada para `sdd/` na raiz do destino.
+  - Limpeza e remoção do diretório `project/` caso este fique vazio após a movimentação.
+  - Substituição textual automatizada nos arquivos de configuração do destino, trocando referências de `project/<frente>/` ou similar por `sdd/`.
+  - Cópia dos arquivos de memória correspondentes ao idioma sem sobrescrever caso já existam no destino.
+
+### 2. Logs de Testes de Validação
+*(Preenchido pelo Executor IA após a realização dos testes)*
+
