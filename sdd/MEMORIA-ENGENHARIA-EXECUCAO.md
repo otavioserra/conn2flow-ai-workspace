@@ -1,8 +1,15 @@
 # Memória de Engenharia — Execução
 
-> **Propósito**: Este diário de bordo é reservado aos **Agentes Executores IA**. Registre aqui aprendizados sobre o ambiente local, particularidades do compilador/build, hacks temporários, bugs resolvidos e lições aprendidas durante a execução de tarefas.
+> **Propósito**: Este diário de bordo é reservado aos **Agentes Executores IA**.
+> **Lote Ativo Atual:** [BATCH-004: Monitor Híbrido & Relatório Automático](implementation/batch-004-hybrid-monitor-and-reporting.md)
+> **Foco:** Automatização de governança SDD via script.
 >
 > **Permissão**: Leitura e escrita para agentes executores IA. Atualize este arquivo **compulsoriamente** ao término de cada tarefa, registrando novos aprendizados para garantir a persistência do contexto entre sessões.
+
+### Atividades Recentes
+- **2026-06-04:** Saneamento do Legado no Conn2flow-site (BATCH-003) concluído. Todos os arquivos de projeto em `project/` foram migrados para `sdd/`, criadas pastas históricas de requests e batches para os módulos `host-manager`, `arquivos` e `multiusuarios`, e a pasta legada foi removida. O histórico de governança está íntegro no site.
+- **2026-05-26:** Reorganização Bilíngue (BATCH-001) e Memórias de Engenharia (BATCH-002) aplicadas. Instaladores reescritos para aceitar UTF-8 corretamente.
+- **2026-05-24:** Criação da infraestrutura base SDD (Specs, Decisões, Lotes).
 
 ---
 
