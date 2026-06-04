@@ -70,41 +70,8 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 
 ---
 
-## BATCH-002: Memórias de Engenharia & Migrador de Legado nos Instaladores
+## BATCH-004: Monitor Híbrido & Geração de Relatório de Chat Automático
 
-### 1. Checklist de Aceite Técnico
-- [ ] Criação do template `MEMORIA-ENGENHARIA-CHEFIA.md` sob `pt-br/sdd-boilerplate/sdd/` contendo diretrizes do Engenheiro Chefe Humano.
-- [ ] Criação do template `MEMORIA-ENGENHARIA-EXECUCAO.md` sob `pt-br/sdd-boilerplate/sdd/` contendo o diário de bordo do executor IA.
-- [ ] Criação do template `ENGINEERING-MEMORY-CHIEF.md` sob `en/sdd-boilerplate/sdd/`.
-- [ ] Criação do template `ENGINEERING-MEMORY-EXECUTION.md` sob `en/sdd-boilerplate/sdd/`.
-- [ ] Atualização de arquivos de regras/instruções nos kits (`CLAUDE.md`, `.claude/rules/sdd.md`, `.github/copilot-instructions.md`, `.github/instructions/sdd.instructions.md`) em `pt-br` e `en` para incluir a regra de leitura obrigatória das memórias e de escrita compulsória na memória de execução pelo executor IA.
-- [ ] Atualização dos scripts instaladores (`install-spec-driven-*.ps1` e `install-spec-driven-*.sh` em `scripts/`) para:
-  - Detecção automática de estrutura de governança SDD legada (`project/<frente>/`).
-  - Movimentação/migração física da pasta legada para `sdd/` na raiz do destino.
-  - Limpeza e remoção do diretório `project/` caso este fique vazio após a movimentação.
-  - Substituição textual automatizada nos arquivos de configuração do destino, trocando referências de `project/<frente>/` ou similar por `sdd/`.
-  - Cópia dos arquivos de memória correspondentes ao idioma sem sobrescrever caso já existam no destino.
-
-### 2. Logs de Testes de Validação
-*(Preenchido pelo Executor IA após a realização dos testes)*
-
----
-
-## BATCH-003: Migração Histórica e Saneamento de Legado no Conn2flow-site
-
-### 1. Checklist de Aceite Técnico
-- [ ] Execução do script instalador do Copilot Kit com sucesso no destino `conn2flow-site`.
-- [ ] Criação dos diretórios modulares sob `conn2flow-site/sdd/` para `host-manager`, `arquivos` e `multiusuarios`.
-- [ ] Migração física e cisão dos 17 arquivos legados de `project/host-manager/` para `/sdd/human-requests/host-manager/` e `/sdd/implementation/host-manager/` como concluídos.
-- [ ] Migração física e cisão dos 2 arquivos de `project/arquivos/` para `/sdd/human-requests/arquivos/` e `/sdd/implementation/arquivos/` como concluídos.
-- [ ] Migração física e cisão dos 4 arquivos de `project/multiusuarios/` para `/sdd/human-requests/multiusuarios/` e `/sdd/implementation/multiusuarios/` como concluídos.
-- [ ] Consolidação do arquivo `sdd/host-manager.specs.md` com a especificação consolidada e atualizada.
-- [ ] Movimentação dos arquivos do PayPal da pasta legada para `ai-workspace/pt-br/docs/`.
-- [ ] Movimentação do arquivo de diário de agente para `ai-workspace/pt-br/agents-history/`.
-- [ ] Remoção da pasta obsoleta `project/presentation/`.
-- [ ] Remoção completa da pasta `project/` após a limpeza de todas as frentes de trabalho.
-
-### 2. Logs de Testes de Validação
-*(Preenchido pelo Executor IA após a realização dos testes)*
+*(Em breve)*
 
 

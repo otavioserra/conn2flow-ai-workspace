@@ -12,3 +12,7 @@ Thumbs.db
 node_modules/
 .env*
 !README-PT-BR.md
+
+# Local-only SDD governance files (custom local tasks)
+sdd/**/local-*
+sdd/**/local/
