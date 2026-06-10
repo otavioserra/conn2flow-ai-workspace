@@ -12,3 +12,11 @@
 - To decide the correct artifact inside the SDD workflow, use the skill [sdd-workflow](./skills/sdd-workflow/SKILL.md).
 - For project-local validation, adapt and use the skill [project-validation](./skills/project-validation/SKILL.md).
 - The hook [sdd-session-start.json](./hooks/sdd-session-start.json) injects a short SDD reminder at session start; keep that hook short and predictable.
+
+## Context Optimization and Archive Governance
+
+- Keep `sdd/decisions/DECISION-LOG.md`, `sdd/implementation/BATCH-INDEX.md`, and `sdd/validation/VALIDATION-CHECKLIST.md` limited to at most 10 current or active items.
+- Keep `sdd/human-requests/` lean as well, preserving at most 10 current or recent requests outside `archive/`.
+- Move older history into the matching `archive/` subfolder: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/`, or `sdd/validation/archive/`.
+- In the main files, replace archived history with concise Markdown summary tables containing 1 row per item and a direct link to the file in `archive/`.
+- When loading initial context, prioritize the main files and open items in `archive/` only when the active batch, active request, or a traceability link requires it.

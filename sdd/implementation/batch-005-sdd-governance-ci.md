@@ -1,4 +1,4 @@
-# BATCH-002 - Validador de Governança SDD (GitHub Actions CI/CD)
+# BATCH-005 - Validador de Governança SDD (GitHub Actions CI/CD)
 
 ## Escopo do Lote
 Este lote foca na criação de uma barreira de CI/CD via GitHub Actions para validar commits e Pull Requests que tocam em arquivos do SDD. Ele garante que qualquer alteração em arquivos de especificação normativa (como `sdd/SPEC.md` ou `sdd/0X-*.md`) seja validada contra a presença de uma Change Request (`CR-XXX.md`) aprovada e correspondente, protegendo o baseline arquitetural.

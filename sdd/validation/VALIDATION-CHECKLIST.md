@@ -60,7 +60,7 @@ Este documento concentra os checklists de aceitação e os registros de testes e
   - `scripts/sync-back-template.ps1 -TargetRepoPath "temp/test-en-private-claude" -Language "en"`
   - `bash scripts/sync-back-template.sh temp/test-en-claude --language en`
   - `bash scripts/sync-back-template.sh temp/test-en-private-copilot --language en`
-*   **Resultado Esperado**: Detecao automatica do kit correto, inferencia do prefixo `demo`, sincronizacao dos arquivos de IA de volta para `en/templates/...` e reescrita dos nomes de agentes para o padrao generico do template.
+*   **Resultado Esperado**: Detecao automatica do kit correto, inferencia do prefixo `demo`, sincronizacao dos arquivos de IA de volta para `en/templates/**` e reescrita dos nomes de agentes para o padrao generico do template.
 *   **Evidência**: As quatro execucoes registraram `Detected kit: ...` e `Detected agent prefix: demo`, sincronizaram arquivos de agentes prefixados para destinos genericos como `sdd-coordinator.agent.md` e `private-project-coordinator.md`, e a busca por `demo-sdd-`, `demo-coordinator`, `demo-implementer` e `demo-reviewer` em `en/templates/**` retornou zero ocorrencias.
 
 #### Teste 8: Fechamento da Reorganizacao Fisica
@@ -70,8 +70,47 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 
 ---
 
-## BATCH-004: Monitor Híbrido & Geração de Relatório de Chat Automático
+## BATCH-002: Otimização de Contexto e Governança de Arquivamento
+
+### 1. Checklist de Aceite Técnico
+- [x] `archive/README.md` criado em `pt-br/sdd-boilerplate/sdd/decisions/`, `human-requests/`, `implementation/` e `validation/`.
+- [x] `archive/README.md` criado em `en/sdd-boilerplate/sdd/decisions/`, `human-requests/`, `implementation/` e `validation/`.
+- [x] `archive/README.md` criado no SDD local em `sdd/decisions/`, `sdd/human-requests/`, `sdd/implementation/` e `sdd/validation/`.
+- [x] Regras de limite de 10 itens e arquivamento adicionadas aos templates Claude SDD em PT-BR e EN.
+- [x] Regras de limite de 10 itens e arquivamento adicionadas aos templates Copilot SDD em PT-BR e EN.
+- [x] `sdd/implementation/BATCH-INDEX.md` renumerado para sequência pública `BATCH-000` a `BATCH-005`, com este lote como `BATCH-002`.
+
+### 2. Logs de Testes de Validação
+
+#### Teste 1: Estrutura de archive nos boilerplates e SDD local
+*   **Comando Executado**: `Get-ChildItem -Recurse -Filter README.md | Where-Object { $_.FullName -match '\\archive\\README.md$' }`
+*   **Resultado Esperado**: 12 arquivos `archive/README.md` cobrindo boilerplate PT-BR, boilerplate EN e SDD local.
+*   **Evidência**: Validação local confirmou 12 ocorrências esperadas.
+
+#### Teste 2: Regras de otimização nos templates
+*   **Comando Executado**: `rg -n "Otimização de Contexto|Context Optimization|10 itens|10 current" pt-br/templates en/templates`
+*   **Resultado Esperado**: Seções de arquivamento presentes nos 8 arquivos de instruções SDD Claude/Copilot.
+*   **Evidência**: Validação local confirmou as seções nos 8 arquivos-alvo.
+
+#### Teste 3: Sequência pública de batches
+*   **Comando Executado**: leitura de `sdd/implementation/BATCH-INDEX.md` e `sdd/implementation/batch-002-context-optimization.md`.
+*   **Resultado Esperado**: Índice público sequencial com `BATCH-002` em `in-progress` para este lote e CI renumerado para `BATCH-005`.
+*   **Evidência**: Índice atualizado com sequência `BATCH-000`, `BATCH-001`, `BATCH-002`, `BATCH-003`, `BATCH-004`, `BATCH-005`.
+
+---
+
+## BATCH-003: Monitor Híbrido & Geração de Relatório de Chat Automático
 
 *(Em breve)*
 
+---
 
+## BATCH-004: Integração e Protocolo MCP para Agentes Locais
+
+*(Em breve)*
+
+---
+
+## BATCH-005: Validador de Governança SDD (GitHub Actions CI/CD)
+
+*(Em breve)*

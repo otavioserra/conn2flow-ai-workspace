@@ -11,3 +11,11 @@ paths:
 - Do not rewrite numbered SDD files for review comments that do not change the requirement.
 - At the start of every session, read `sdd/ENGINEERING-MEMORY-CHIEF.md` and `sdd/ENGINEERING-MEMORY-EXECUTION.md` to align context.
 - At the end of every task, update `sdd/ENGINEERING-MEMORY-EXECUTION.md` with learnings, resolved bugs, and environment quirks. Never modify `sdd/ENGINEERING-MEMORY-CHIEF.md` without explicit instruction from the human user.
+
+## Context Optimization and Archive Governance
+
+- Keep `sdd/decisions/DECISION-LOG.md`, `sdd/implementation/BATCH-INDEX.md`, and `sdd/validation/VALIDATION-CHECKLIST.md` limited to at most 10 current or active items.
+- Keep `sdd/human-requests/` lean as well, preserving at most 10 current or recent requests outside `archive/`.
+- Move older history into the matching `archive/` subfolder: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/`, or `sdd/validation/archive/`.
+- In the main files, replace archived history with concise Markdown summary tables containing 1 row per item and a direct link to the file in `archive/`.
+- When loading initial context, prioritize the main files and open items in `archive/` only when the active batch, active request, or a traceability link requires it.

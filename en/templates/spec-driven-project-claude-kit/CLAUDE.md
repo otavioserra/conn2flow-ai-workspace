@@ -21,3 +21,11 @@
 
 - `sdd-workflow`: choose the correct artifact and keep the batch aligned with the workflow.
 - `project-validation`: choose the smallest executable validation for the current slice.
+
+## Context Optimization and Archive Governance
+
+- Keep `sdd/decisions/DECISION-LOG.md`, `sdd/implementation/BATCH-INDEX.md`, and `sdd/validation/VALIDATION-CHECKLIST.md` limited to at most 10 current or active items.
+- Keep `sdd/human-requests/` lean as well, preserving at most 10 current or recent requests outside `archive/`.
+- Move older history into the matching `archive/` subfolder: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/`, or `sdd/validation/archive/`.
+- In the main files, replace archived history with concise Markdown summary tables containing 1 row per item and a direct link to the file in `archive/`.
+- When loading initial context, prioritize the main files and open items in `archive/` only when the active batch, active request, or a traceability link requires it.
