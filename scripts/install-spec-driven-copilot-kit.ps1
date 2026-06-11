@@ -253,6 +253,32 @@ function Install-EngineeringMemories {
     }
 }
 
+function Install-SddArchiveGovernance {
+    param(
+        [string]$BoilerplateRoot,
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (-not (Test-Path $targetSdd)) {
+        return
+    }
+
+    $archiveSections = @('decisions', 'human-requests', 'implementation', 'validation')
+    foreach ($section in $archiveSections) {
+        $sourceReadme = Join-Path $BoilerplateRoot "$section\archive\README.md"
+        $targetArchive = Join-Path $targetSdd "$section\archive"
+        $targetReadme = Join-Path $targetArchive 'README.md'
+
+        New-Item -ItemType Directory -Force -Path $targetArchive | Out-Null
+
+        if ((Test-Path $sourceReadme) -and -not (Test-Path $targetReadme)) {
+            Copy-Item $sourceReadme $targetReadme -Force
+            Write-Host "Installed archive README: $targetReadme"
+        }
+    }
+}
+
 foreach ($item in $copyItems) {
     $sourcePath = Join-Path $templateRoot $item.Source
     $destinationPath = Join-Path $targetRoot $item.Destination
@@ -263,6 +289,7 @@ foreach ($item in $copyItems) {
 Migrate-LegacySdd -RepoRoot $targetRoot
 Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 Install-EngineeringMemories -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
+Install-SddArchiveGovernance -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
 Copy-MergedTree -SourceRoot (Join-Path $templateRoot 'sdd\scripts\hooks') -DestinationRoot (Join-Path $targetRoot 'sdd\scripts\hooks') -Overwrite ([bool]$Force)
 Rebind-AgentPrefix -RepoRoot $targetRoot -Prefix $AgentPrefix
 

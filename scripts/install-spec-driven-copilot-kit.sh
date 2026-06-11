@@ -285,10 +285,39 @@ install_engineering_memories() {
     done
 }
 
+install_sdd_archive_governance() {
+    local boilerplate_root="$1"
+    local repo_root="$2"
+    local target_sdd="$repo_root/sdd"
+
+    [[ ! -d "$target_sdd" ]] && return 0
+
+    local archive_sections=(
+        "decisions"
+        "human-requests"
+        "implementation"
+        "validation"
+    )
+
+    for section in "${archive_sections[@]}"; do
+        local source_readme="$boilerplate_root/$section/archive/README.md"
+        local target_archive="$target_sdd/$section/archive"
+        local target_readme="$target_archive/README.md"
+
+        mkdir -p "$target_archive"
+
+        if [[ -f "$source_readme" && ! -e "$target_readme" ]]; then
+            cp "$source_readme" "$target_readme"
+            echo "Installed archive README: $target_readme"
+        fi
+    done
+}
+
 copy_path ".github" ".github"
 migrate_legacy_sdd "$target_root"
 install_sdd_boilerplate "$boilerplate_root" "$target_root"
 install_engineering_memories "$boilerplate_root" "$target_root"
+install_sdd_archive_governance "$boilerplate_root" "$target_root"
 copy_path "sdd/scripts/hooks" "sdd/scripts/hooks"
 rebind_agent_prefix "$target_root" "$agent_prefix"
 

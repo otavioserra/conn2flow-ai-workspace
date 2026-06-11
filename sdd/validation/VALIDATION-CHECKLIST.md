@@ -99,9 +99,43 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 
 ---
 
-## BATCH-003: Monitor Híbrido & Geração de Relatório de Chat Automático
+## BATCH-003: Otimização de Contexto nos Projetos Alvo
 
-*(Em breve)*
+### 1. Checklist de Aceite Técnico
+- [x] Scripts Claude SDD (`.ps1` e `.sh`) atualizados para criar `archive/README.md` em SDD preexistente.
+- [x] Scripts Copilot SDD (`.ps1` e `.sh`) atualizados para criar `archive/README.md` em SDD preexistente.
+- [x] Conn2Flow Core atualizado via Claude Kit com `-Force` e `-Language pt-br`.
+- [x] Conn2Flow Nexus atualizado via Claude Kit com `-Force` e `-Language pt-br`.
+- [x] Lumix atualizado via Claude Kit com `-Force` e `-Language pt-br`.
+- [x] Conn2Flow Site atualizado via Copilot Kit com `-Force` e `-Language pt-br`.
+- [x] Os quatro projetos possuem `archive/README.md` em `decisions/`, `human-requests/`, `implementation/` e `validation/`.
+- [x] Arquivos de regras dos quatro projetos incluem a política de otimização de contexto.
+
+### 2. Logs de Testes de Validação
+
+#### Teste 1: Rollout com instaladores atualizados
+*   **Comandos Executados**:
+    - `install-spec-driven-claude-kit.ps1 -TargetRepoPath "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow" -Force -Language pt-br`
+    - `install-spec-driven-claude-kit.ps1 -TargetRepoPath "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-nexus" -Force -Language pt-br`
+    - `install-spec-driven-claude-kit.ps1 -TargetRepoPath "C:\Users\otavi\OneDrive\Documentos\GIT\lumix" -Force -Language pt-br`
+    - `install-spec-driven-copilot-kit.ps1 -TargetRepoPath "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-site" -Force -Language pt-br`
+*   **Resultado Esperado**: Atualização dos arquivos de regras e criação dos archives faltantes nos quatro projetos.
+*   **Evidência**: Os quatro comandos concluíram com sucesso e registraram instalação dos quatro `archive/README.md` por projeto.
+
+#### Teste 2: Estrutura de archive nos projetos alvo
+*   **Comando Executado**: verificação PowerShell de `sdd/decisions/archive/README.md`, `sdd/human-requests/archive/README.md`, `sdd/implementation/archive/README.md` e `sdd/validation/archive/README.md` em Core, Nexus, Lumix e Site.
+*   **Resultado Esperado**: 16 caminhos existentes.
+*   **Evidência**: Validação retornou `True` para os 16 caminhos esperados.
+
+#### Teste 3: Regras de otimização nos projetos alvo
+*   **Comando Executado**: busca PowerShell por `Otimização de Contexto` / `10 itens` nos arquivos de regras dos quatro projetos.
+*   **Resultado Esperado**: Política encontrada em `CLAUDE.md` e `.claude/rules/sdd.md` nos projetos Claude; e em `.github/copilot-instructions.md` e `.github/instructions/sdd.instructions.md` no projeto Copilot.
+*   **Evidência**: Validação retornou `HasContextPolicy = True` para os 8 arquivos verificados.
+
+#### Teste 4: Sintaxe dos scripts Bash alterados
+*   **Comando Executado**: `C:\Program Files\Git\bin\bash.exe -n` nos scripts `install-spec-driven-claude-kit.sh` e `install-spec-driven-copilot-kit.sh`.
+*   **Resultado Esperado**: Nenhum erro de sintaxe.
+*   **Evidência**: Ambos os comandos retornaram sem saída e com exit code 0.
 
 ---
 

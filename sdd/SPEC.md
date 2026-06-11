@@ -62,3 +62,23 @@ As regras nos templates de kits de IA (`CLAUDE.md`, `.claude/rules/sdd.md`, `.gi
 1.  **Carregar Memórias**: Ler ambos os arquivos de memória no início de cada sessão para alinhar contexto.
 2.  **Manter Memórias**: Exigir que o Executor IA atualize a memória de `Execução` correspondente ao término de cada tarefa, registrando bugs corrigidos, particularidades do ambiente local e lições de código aprendidas, garantindo a persistência do histórico.
 3.  **Preservação**: Impedir que o Executor modifique a memória de `Chefia` sem instruções explícitas do usuário humano.
+
+---
+
+## 5. Otimização de Contexto e Governança de Arquivamento (SDD Archive)
+Para evitar a degradação de atenção do agente devido à saturação do contexto de prompt (bloating) e para otimizar o uso de tokens, o framework adota um limite de itens nos arquivos de histórico ativos.
+
+### Regra do Limite de 10 Itens:
+*   Os arquivos principais de acompanhamento histórico e logs (`DECISION-LOG.md`, `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e similares) devem manter no máximo **10 itens ativos/correntes**.
+*   Itens antigos que excederem o limite de 10 registros devem ser movidos para subpastas `archive/` criadas dentro de seus respectivos diretórios:
+    - `sdd/decisions/archive/`
+    - `sdd/human-requests/archive/`
+    - `sdd/implementation/archive/`
+    - `sdd/validation/archive/`
+
+### Estrutura de Arquivamento nos Boilerplates:
+*   Cada subpasta `archive/` possui um arquivo explicativo `README.md` (no idioma correspondente) detalhando como os registros arquivados devem ser referenciados e nomeados.
+*   Os arquivos de histórico ativo devem manter um link ou sumário resumido direcionando para os logs arquivados.
+
+### Atualização via Instaladores:
+*   Caso o instalador detecte que o diretório `sdd/` já existe no repositório de destino, ele deve forçar a criação das quatro subpastas `archive/` e injetar os respectivos `README.md` ausentes, garantindo que repositórios herdados recebam a governança de otimização de forma automática e não destrutiva.

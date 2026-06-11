@@ -236,11 +236,38 @@ function Install-EngineeringMemories {
     }
 }
 
+function Install-SddArchiveGovernance {
+    param(
+        [string]$BoilerplateRoot,
+        [string]$RepoRoot
+    )
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (-not (Test-Path $targetSdd)) {
+        return
+    }
+
+    $archiveSections = @('decisions', 'human-requests', 'implementation', 'validation')
+    foreach ($section in $archiveSections) {
+        $sourceReadme = Join-Path $BoilerplateRoot "$section\archive\README.md"
+        $targetArchive = Join-Path $targetSdd "$section\archive"
+        $targetReadme = Join-Path $targetArchive 'README.md'
+
+        New-Item -ItemType Directory -Force -Path $targetArchive | Out-Null
+
+        if ((Test-Path $sourceReadme) -and -not (Test-Path $targetReadme)) {
+            Copy-Item $sourceReadme $targetReadme -Force
+            Write-Host "Installed archive README: $targetReadme"
+        }
+    }
+}
+
 Copy-File "CLAUDE.md" "CLAUDE.md"
 Copy-MergedTree -SourceRoot (Join-Path $templateRoot '.claude') -DestinationRoot (Join-Path $targetRoot '.claude') -Overwrite ([bool]$Force)
 Migrate-LegacySdd -RepoRoot $targetRoot
 Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 Install-EngineeringMemories -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
+Install-SddArchiveGovernance -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
 Rebind-AgentPrefix -RepoRoot $targetRoot -Prefix $AgentPrefix
 
 Write-Host "Spec-Driven Claude Kit installation finished."

@@ -97,6 +97,28 @@ To prevent the executor from rewriting specs or making unauthorized design decis
 
 ---
 
+## 🧠 Engineering Memories (Chefia & Execução)
+
+To prevent context loss and eliminate the need for repetitive guidance across AI agent sessions, the Double Agent SDD Framework introduces two optional engineering diaries:
+*   **Chief Engineer Memory (`MEMORIA-ENGENHARIA-CHEFIA.md` / `ENGINEERING-MEMORY-CHIEF.md`)**: Read-only for the AI Executor. Contains style guidelines, coding conventions, architectural boundaries, and business constraints dictated by the Human Chief Engineer.
+*   **Execution Memory (`MEMORIA-ENGENHARIA-EXECUCAO.md` / `ENGINEERING-MEMORY-EXECUTION.md`)**: Read-write for the AI Executor. The Executor records local dependency notes, compiler quirks, database workarounds, and resolved bugs here at the end of each session.
+
+AI instructions in the kits automatically prompt the agent to:
+1.  **Read memories** at the start of a session to align context.
+2.  **Append lessons learned** and environment details to the Execution Memory when closing a task.
+3.  **Respect the boundary** of the Chief Engineer Memory, never altering it without direct human command.
+
+---
+
+## 🧹 Context Optimization & SDD Archiving
+
+To prevent agent attention degradation due to prompt bloat and keep token usage highly cost-efficient, the framework implements an active size limit:
+*   **10-Item Cap**: Core tracking files like `DECISION-LOG.md`, `BATCH-INDEX.md`, and `VALIDATION-CHECKLIST.md` are limited to the **10 most recent active items**.
+*   **Archive Folder Structure**: Older entries are relocated to an `/archive/` subfolder in their respective directories (e.g., `sdd/decisions/archive/`, `sdd/implementation/archive/`, etc.).
+*   **Automatic Upgrades**: The installer scripts (`scripts/install-spec-driven-*.ps1` / `.sh`) detect pre-existing `sdd/` folders and safely provision these archive directories with standard `README.md` explanation sheets, upgrading legacy projects automatically without altering existing configurations.
+
+---
+
 ## ⚖️ License
 
 This project is released under the MIT License. Feel free to use, modify, and distribute it inside your company or community.
