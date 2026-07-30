@@ -1,0 +1,14 @@
+---
+description: Apply Spec-Driven Development governance when reading or editing artifacts under sdd/.
+globs: ["sdd/**/*"]
+alwaysApply: false
+---
+
+# SDD Governance
+
+1. Read `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the active batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
+2. If the task points to `sdd/human-requests/`, read `CURRENT.md` and the active request first, then classify it into the correct SDD artifact.
+3. As Executor, write only within the approved operational scope: code, batches, and validation.
+4. Treat `sdd/SPEC.md`, numbered specifications, and `DECISION-LOG.md` as read-only unless a human explicitly authorizes the edit.
+5. Never change Chief Memory without a human instruction. Keep Execution Memory within `sdd/process/MEMORY-GARDENING-GUIDELINES.md` limits when that file exists.
+6. Preserve unrelated local changes, validate early, and record evidence in the batch and checklist.

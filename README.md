@@ -52,6 +52,8 @@ This repository organizes AI kits in both English (`en`) and Portuguese (`pt-br`
   - `sdd-boilerplate/`: The clean skeleton of the `sdd/` directory governing your project.
   - `templates/spec-driven-project-claude-kit`: Rules, subagents, and on-demand commands to run **Claude Code** in SDD projects.
   - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents to run **GitHub Copilot** in SDD projects.
+  - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and on-demand skills (`.cursor/skills/`) for **Cursor IDE** in SDD projects.
+  - `templates/spec-driven-project-gemini-kit`: System instructions (`GEMINI.md`, `.gemini/`, `.aiexclude`) to run **Antigravity / Gemini Pro** in SDD projects.
   - `templates/private-project-claude-kit`: Claude Code setup for private repositories extending a core repo.
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
 * **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install the kits into any target repository on your computer, with language selection support.
@@ -84,6 +86,28 @@ To inject Copilot system instructions, agent chats, and prompt templates:
   scripts/install-spec-driven-copilot-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
   ```
 
+### 3. Cursor IDE
+To inject the primary MDC rule (`.cursor/rules/sdd.mdc`), on-demand skills (`.cursor/skills/`), and the legacy-compatible `.cursorrules` file:
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-cursor-kit.ps1 -TargetRepoPath "C:/path/to/your-repo" -AgentPrefix "yourproject" -Language "en"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-cursor-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
+  ```
+
+### 4. Antigravity / Gemini Pro
+To inject Gemini system instructions (`GEMINI.md`, `.gemini/config.yaml`, `.gemini/styleguide.md`, `.aiexclude`):
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/path/to/your-repo" -AgentPrefix "yourproject" -Language "en"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-gemini-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
+  ```
+
 *Note: The `-AgentPrefix` parameter is optional and renames the default subagents (e.g. `yourproject-sdd-coordinator`). The `-Language` (or `--language`) parameter switches between `en` (English) and `pt-br` (Portuguese, default).*
 
 ---
@@ -107,6 +131,17 @@ AI instructions in the kits automatically prompt the agent to:
 1.  **Read memories** at the start of a session to align context.
 2.  **Append lessons learned** and environment details to the Execution Memory when closing a task.
 3.  **Respect the boundary** of the Chief Engineer Memory, never altering it without direct human command.
+
+---
+
+## 🌾 Memory Gardening & Skill Harvesting
+
+As projects evolve, execution memories can grow large (~100 KB+), consuming unnecessary prompt tokens upon session start. The framework implements **Memory Gardening**:
+*   **Pruning Threshold**: When an execution memory exceeds ~15 KB or ~50 lines, recurring lessons are extracted and pruned.
+*   **Skill Harvesting**: Extracted patterns are distilled into reusable, on-demand **Skills**:
+    - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
+    - **Project Skills**: Kept in `.claude/skills/` and `.cursor/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
+*   **Token Efficiency**: Pruning reduces active memory files to ~5 KB (keeping only 3–5 recent tasks), saving up to 90% of initial prompt context tokens while retaining deep knowledge on demand.
 
 ---
 

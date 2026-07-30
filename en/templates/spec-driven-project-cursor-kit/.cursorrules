@@ -1,0 +1,11 @@
+# SDD Executor — {{AGENT_NAME}}
+
+Act as the project's Micro-Operator. Before changing files, read `sdd/README.md`, the intake process, active batch, validation checklist, and available engineering memories.
+
+- Treat `sdd/human-requests/` as human intake, never as an isolated normative source.
+- You may edit code, `sdd/implementation/`, and `sdd/validation/` within the approved batch.
+- Do not edit `sdd/SPEC.md`, numbered specifications, or `sdd/decisions/DECISION-LOG.md` without explicit human authorization.
+- Preserve Chief Memory. Keep Execution Memory concise and run Memory Gardening when it reaches the normative thresholds.
+- Run the smallest validation capable of falsifying the change and provide verifiable evidence.
+
+The modular files in `.cursor/rules/` are authoritative; this file remains for legacy Cursor compatibility.

@@ -52,6 +52,8 @@ Este repositório organiza os kits de IA prontos para uso em dois idiomas (`pt-b
   - `sdd-boilerplate/`: O esqueleto inicial limpo da pasta `sdd/` que governa seu projeto.
   - `templates/spec-driven-project-claude-kit`: Regras, subagentes e comandos sob demanda para rodar o **Claude Code** em projetos SDD.
   - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para rodar o **GitHub Copilot** em projetos SDD.
+  - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para rodar o **Cursor IDE** em projetos SDD.
+  - `templates/spec-driven-project-gemini-kit`: Instruções do sistema (`GEMINI.md`, `.gemini/`, `.aiexclude`) para rodar o **Antigravity / Gemini Pro** em projetos SDD.
   - `templates/private-project-claude-kit`: Configuração do Claude Code para cenários de repositórios privados.
   - `templates/private-project-copilot-kit`: Configuração do GitHub Copilot para cenários de repositórios privados.
 * **`scripts/`**: Scripts de automação em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os kits instantaneamente em qualquer repositório alvo do seu computador, com suporte à seleção de idioma.
@@ -84,6 +86,28 @@ Para injetar as instruções de sistema, agentes de chat e prompts no GitHub Cop
   scripts/install-spec-driven-copilot-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
   ```
 
+### 3. Cursor IDE
+Para injetar a regra MDC principal (`.cursor/rules/sdd.mdc`), as skills sob demanda (`.cursor/skills/`) e o arquivo legado compatível `.cursorrules`:
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-cursor-kit.ps1 -TargetRepoPath "C:/caminho/do/seu-repositorio" -AgentPrefix "seuprojeto" -Language "pt-br"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-cursor-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
+  ```
+
+### 4. Antigravity / Gemini Pro
+Para injetar as instruções do Gemini (`GEMINI.md`, `.gemini/config.yaml`, `.gemini/styleguide.md`, `.aiexclude`):
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/caminho/do/seu-repositorio" -AgentPrefix "seuprojeto" -Language "pt-br"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-gemini-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
+  ```
+
 *Nota: O parâmetro `-AgentPrefix` é opcional e serve para renomear os subagentes padrão (ex: `seuprojeto-sdd-coordinator`). O parâmetro `-Language` (ou `--language`) permite alternar entre `en` (inglês) e `pt-br` (português).*
 
 ---
@@ -107,6 +131,17 @@ As instruções de sistema nos kits orientam automaticamente o agente a:
 1.  **Ler as memórias** no início da sessão para alinhar o contexto.
 2.  **Registrar aprendizados** e detalhes do ambiente local na Memória de Execução ao finalizar uma tarefa.
 3.  **Respeitar o limite** da Memória da Chefia, nunca a alterando sem ordem direta do usuário humano.
+
+---
+
+## 🌾 Memory Gardening e Colheita de Skills
+
+Conforme os projetos evoluem, as memórias de execução podem crescer em excesso (~100 KB+), consumindo tokens valiosos de prompt no início de cada sessão. O framework implementa o protocolo **Memory Gardening**:
+*   **Gatilho de Poda**: Quando uma memória de execução ultrapassa ~15 KB ou ~50 linhas, os aprendizados recorrentes são extraídos e podados.
+*   **Colheita de Skills**: Os padrões extraídos são destilados em **Skills** reutilizáveis acionadas sob demanda:
+    - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
+    - **Skills de Projeto**: Armazenadas em `.claude/skills/` e `.cursor/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
+*   **Eficiência de Tokens**: A poda reduz o arquivo de memória ativa para ~5 KB (mantendo apenas as 3–5 tarefas mais recentes), economizando até 90% dos tokens de inicialização do contexto enquanto retém o conhecimento profundo sob demanda.
 
 ---
 

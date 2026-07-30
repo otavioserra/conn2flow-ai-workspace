@@ -13,6 +13,7 @@ Cada pasta de idioma deve ter a seguinte subestrutura interna:
 *   `templates/`:
     - `spec-driven-project-claude-kit`: Configurações de IA do Claude Code para projetos SDD.
     - `spec-driven-project-copilot-kit`: Configurações de IA do GitHub Copilot para projetos SDD.
+    - `spec-driven-project-cursor-kit`: Regras de projeto e skills do Cursor IDE para projetos SDD.
     - `private-project-claude-kit`: Configurações de IA do Claude Code para repositórios privados sobrepostos a um core.
     - `private-project-copilot-kit`: Configurações de IA do GitHub Copilot para repositórios privados sobrepostos a um core.
 *   `sdd-boilerplate/`:
@@ -82,3 +83,41 @@ Para evitar a degradação de atenção do agente devido à saturação do conte
 
 ### Atualização via Instaladores:
 *   Caso o instalador detecte que o diretório `sdd/` já existe no repositório de destino, ele deve forçar a criação das quatro subpastas `archive/` e injetar os respectivos `README.md` ausentes, garantindo que repositórios herdados recebam a governança de otimização de forma automática e não destrutiva.
+
+---
+
+## 6. Memory Gardening e Destilação em Skills
+
+As memórias de execução são contexto operacional curto, não um arquivo histórico ilimitado.
+
+### Limites e ciclo de poda
+
+*   A memória de execução entra em atenção preventiva ao atingir 10 KB ou 40 linhas e deve ser podada obrigatoriamente antes de exceder 15 KB ou 50 linhas.
+*   Após a poda, deve permanecer abaixo de 10 KB, mirando aproximadamente 5 KB e preservando somente as 3 a 5 tarefas mais recentes e pendências ainda ativas.
+*   A memória de Chefia permanece somente leitura para executores e não pode ser podada sem instrução humana explícita.
+*   O histórico removido continua recuperável pelo Git; não deve ser copiado para outro arquivo carregado automaticamente.
+
+### Destilação e distribuição
+
+*   Regras recorrentes, estáveis e acionáveis devem ser convertidas em skills com diretório em kebab-case e `SKILL.md` contendo `name` e `description`.
+*   Contratos reutilizáveis do Conn2Flow pertencem à camada Core/Global do workspace; regras exclusivas de cliente pertencem ao repositório do projeto.
+*   Projetos usados por Claude e Cursor devem disponibilizar a mesma skill em `.claude/skills/<nome>/SKILL.md` e `.cursor/skills/<nome>/SKILL.md`.
+*   O procedimento completo é normatizado por `sdd/process/MEMORY-GARDENING-GUIDELINES.md` e pela skill `sdd-memory-gardening`.
+
+---
+
+## 7. Cursor Kit para Projetos SDD
+
+Cada idioma deve fornecer `templates/spec-driven-project-cursor-kit/` com:
+
+*   `.cursor/rules/sdd.mdc`: regra de projeto principal, com frontmatter MDC, `globs: ["sdd/**/*"]` e `alwaysApply: false`, anexada automaticamente ao contexto SDD.
+*   `.cursor/skills/sdd-memory-gardening/SKILL.md`: procedimento carregado sob demanda.
+*   `.cursorrules`: camada de compatibilidade para versões/ambientes legados do Cursor; a regra MDC é a fonte principal.
+
+Os instaladores `install-spec-driven-cursor-kit.ps1` e `.sh` devem:
+
+1. aceitar caminho alvo, `Force`, prefixo de agente e idioma `pt-br|en`;
+2. preservar arquivos existentes quando `Force` não for informado;
+3. resolver `{{AGENT_NAME}}` como `sdd-executor` ou `<prefixo>-sdd-executor` somente nos arquivos instalados;
+4. criar o boilerplate SDD apenas quando `sdd/` estiver ausente;
+5. preservar memórias existentes e criar os quatro diretórios `archive/`/README ausentes de forma não destrutiva.
