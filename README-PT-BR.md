@@ -12,7 +12,7 @@ Trabalhar com IA gerando código de forma isolada geralmente leva a refatoraçõ
 
 ```mermaid
 graph TD
-    User([Usuário / Engenheiro Chefe]) -->|Briefing Informal / Voz| Architect[Antigravity / Gemini 3.5 Flash <br/><b>Agente Arquiteto</b>]
+    User([Usuário / Engenheiro Chefe]) -->|Briefing Informal / Voz| Architect[Antigravity / Gemini 3.6 Flash <br/><b>Agente Arquiteto</b>]
     
     subgraph Alta Abstração - Pasta sdd/
         Architect -->|Cria / Edita Requisitos| Specs[sdd/SPEC.md & sdd/01-*.md]
@@ -21,7 +21,7 @@ graph TD
         Architect -->|Registra Decisões Técnicas| Decisions[sdd/decisions/DECISION-LOG.md]
     end
 
-    Brief -->|Consumido por| Executor[Claude Code / Copilot <br/><b>Agentes Executor</b>]
+    Brief -->|Consumido por| Executor[Claude Code / Copilot / Cursor <br/><b>Agentes Executores</b>]
 
     subgraph Baixa Abstração - Código e Testes
         Executor -->|Modifica Código Fonte| SrcCode[Código: PHP, JS, Py, Go]
@@ -32,11 +32,11 @@ graph TD
     Validation -->|Revisado por| Architect
 ```
 
-1. **O Arquiteto (Macro-Orquestrador - Antigravity / Gemini)**:
+1. **O Arquiteto (Macro-Orquestrador - Antigravity / Gemini 3.6 Flash)**:
    - Foca em alto nível. Recebe as necessidades humanas (áudios transcritos, conversas informais) e as traduz em requisitos técnicos padronizados.
    - Gerencia a especificação do sistema (`sdd/SPEC.md`), registra decisões de design no histórico e escreve o briefing operacional de execução em `sdd/human-requests/`.
    - **Regra de Ouro**: Nunca realiza commits ou envia código direto. Suas modificações ficam em aberto para revisão visual de diffs pelo usuário humano.
-2. **O Executor (Micro-Operador - Claude Code / Copilot)**:
+2. **O Executor (Micro-Operador - Claude Code / Copilot / Cursor)**:
    - Foca em baixo nível. Lê o briefing e a especificação gerada pelo Arquiteto.
    - Implementa o código, roda lints, executa testes locais e preenche os logs de validação.
 3. **O Humano-no-Loop (Você)**:
