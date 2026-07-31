@@ -53,7 +53,7 @@ Este repositório organiza os kits de IA prontos para uso em dois idiomas (`pt-b
   - `templates/spec-driven-project-claude-kit`: Regras, subagentes e comandos sob demanda para rodar o **Claude Code** em projetos SDD.
   - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para rodar o **GitHub Copilot** em projetos SDD.
   - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para rodar o **Cursor IDE** em projetos SDD.
-  - `templates/spec-driven-project-gemini-kit`: Instruções do sistema (`GEMINI.md`, `.gemini/`, `.aiexclude`) para rodar o **Antigravity / Gemini Pro** em projetos SDD.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração oficial do Gemini CLI (`.gemini/settings.json`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
   - `templates/private-project-claude-kit`: Configuração do Claude Code para cenários de repositórios privados.
   - `templates/private-project-copilot-kit`: Configuração do GitHub Copilot para cenários de repositórios privados.
 * **`scripts/`**: Scripts de automação em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os kits instantaneamente em qualquer repositório alvo do seu computador, com suporte à seleção de idioma.
@@ -98,7 +98,7 @@ Para injetar a regra MDC principal (`.cursor/rules/sdd.mdc`), as skills sob dema
   ```
 
 ### 4. Antigravity / Gemini Pro
-Para injetar as instruções do Gemini (`GEMINI.md`, `.gemini/config.yaml`, `.gemini/styleguide.md`, `.aiexclude`):
+Para injetar as instruções do Gemini (`GEMINI.md`), configuração (`.gemini/settings.json`), guia de estilo, `.geminiignore` e compatibilidade `.aiexclude`:
 - **Windows (PowerShell)**:
   ```powershell
   scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/caminho/do/seu-repositorio" -AgentPrefix "seuprojeto" -Language "pt-br"
@@ -151,6 +151,14 @@ Para evitar a degradação da atenção do agente devido ao excesso de informaç
 *   **Limite de 10 Itens**: Arquivos de controle centrais como `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` mantêm apenas os **10 itens ativos mais recentes**.
 *   **Estrutura de Arquivos Archive**: Registros históricos antigos que ultrapassam o limite são movidos para a subpasta `/archive/` correspondente a cada diretório (ex: `sdd/decisions/archive/`, `sdd/implementation/archive/`, etc.).
 *   **Instalação Automatizada**: Os scripts de instalação (`scripts/install-spec-driven-*.ps1` / `.sh`) detectam pastas `sdd/` preexistentes e provisionam de forma segura essas subpastas de arquivos junto com seus `README.md` explicativos padrão, atualizando repositórios antigos de forma automática e não destrutiva.
+
+---
+
+## 🧊 Backlog de Ideias e Intake Gate
+
+O módulo opcional `sdd/backlog/` incuba Features, Epics, Spikes/Pesquisas e propostas de Arquitetura nos estados `ICEBOX`, `IN-DISCUSSION` e `READY`.
+
+Itens do backlog nunca são executáveis por si só. Executores podem lê-los como contexto, mas a implementação é proibida até promoção explícita do Usuário para `sdd/human-requests/`, atualização de `CURRENT.md` e associação a um batch executável. Os instaladores provisionam essa estrutura de forma não destrutiva em projetos SDD existentes.
 
 ---
 

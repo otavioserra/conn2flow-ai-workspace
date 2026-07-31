@@ -12,3 +12,4 @@ alwaysApply: false
 4. Treat `sdd/SPEC.md`, numbered specifications, and `DECISION-LOG.md` as read-only unless a human explicitly authorizes the edit.
 5. Never change Chief Memory without a human instruction. Keep Execution Memory within `sdd/process/MEMORY-GARDENING-GUIDELINES.md` limits when that file exists.
 6. Preserve unrelated local changes, validate early, and record evidence in the batch and checklist.
+7. Treat `sdd/backlog/` as a read-only User/Architect incubator. Never implement an item from it; require human promotion into `sdd/human-requests/`, `CURRENT.md`, and an executable batch.

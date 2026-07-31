@@ -1,0 +1,9 @@
+# Dependencies, builds, and large local data
+node_modules/
+vendor/
+dist/
+build/
+temp/
+tmp/
+logs/
+*.log

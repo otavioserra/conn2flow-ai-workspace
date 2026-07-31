@@ -53,7 +53,7 @@ This repository organizes AI kits in both English (`en`) and Portuguese (`pt-br`
   - `templates/spec-driven-project-claude-kit`: Rules, subagents, and on-demand commands to run **Claude Code** in SDD projects.
   - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents to run **GitHub Copilot** in SDD projects.
   - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and on-demand skills (`.cursor/skills/`) for **Cursor IDE** in SDD projects.
-  - `templates/spec-driven-project-gemini-kit`: System instructions (`GEMINI.md`, `.gemini/`, `.aiexclude`) to run **Antigravity / Gemini Pro** in SDD projects.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, official Gemini CLI project settings (`.gemini/settings.json`), `.geminiignore`, and Code Assist compatibility via `.aiexclude`.
   - `templates/private-project-claude-kit`: Claude Code setup for private repositories extending a core repo.
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
 * **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install the kits into any target repository on your computer, with language selection support.
@@ -98,7 +98,7 @@ To inject the primary MDC rule (`.cursor/rules/sdd.mdc`), on-demand skills (`.cu
   ```
 
 ### 4. Antigravity / Gemini Pro
-To inject Gemini system instructions (`GEMINI.md`, `.gemini/config.yaml`, `.gemini/styleguide.md`, `.aiexclude`):
+To inject Gemini system instructions (`GEMINI.md`), project settings (`.gemini/settings.json`), style guide, `.geminiignore`, and `.aiexclude` compatibility:
 - **Windows (PowerShell)**:
   ```powershell
   scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/path/to/your-repo" -AgentPrefix "yourproject" -Language "en"
@@ -151,6 +151,14 @@ To prevent agent attention degradation due to prompt bloat and keep token usage 
 *   **10-Item Cap**: Core tracking files like `DECISION-LOG.md`, `BATCH-INDEX.md`, and `VALIDATION-CHECKLIST.md` are limited to the **10 most recent active items**.
 *   **Archive Folder Structure**: Older entries are relocated to an `/archive/` subfolder in their respective directories (e.g., `sdd/decisions/archive/`, `sdd/implementation/archive/`, etc.).
 *   **Automatic Upgrades**: The installer scripts (`scripts/install-spec-driven-*.ps1` / `.sh`) detect pre-existing `sdd/` folders and safely provision these archive directories with standard `README.md` explanation sheets, upgrading legacy projects automatically without altering existing configurations.
+
+---
+
+## 🧊 Idea Backlog & Intake Gate
+
+The optional `sdd/backlog/` module incubates long-term Features, Epics, Spikes/Research, and Architecture proposals under three states: `ICEBOX`, `IN-DISCUSSION`, and `READY`.
+
+Backlog items are never executable by themselves. Executors may read them for context, but implementation is prohibited until the User explicitly promotes an item into `sdd/human-requests/`, updates `CURRENT.md`, and assigns an executable batch. Installers provision this structure non-destructively in existing SDD projects.
 
 ---
 

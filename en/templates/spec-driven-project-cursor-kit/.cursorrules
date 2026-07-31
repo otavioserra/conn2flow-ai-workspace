@@ -9,3 +9,9 @@ Act as the project's Micro-Operator. Before changing files, read `sdd/README.md`
 - Run the smallest validation capable of falsifying the change and provide verifiable evidence.
 
 The modular files in `.cursor/rules/` are authoritative; this file remains for legacy Cursor compatibility.
+
+## Backlog Intake Gate
+
+- `sdd/backlog/` is a draft incubator owned by the User and AI Architect.
+- Executors may read items, but must never implement them or create a batch/code directly from them.
+- Even a `READY` item requires human promotion to `sdd/human-requests/`, an updated `CURRENT.md`, and an assigned batch.

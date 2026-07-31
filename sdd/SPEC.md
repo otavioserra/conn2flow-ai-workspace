@@ -14,6 +14,7 @@ Cada pasta de idioma deve ter a seguinte subestrutura interna:
     - `spec-driven-project-claude-kit`: Configurações de IA do Claude Code para projetos SDD.
     - `spec-driven-project-copilot-kit`: Configurações de IA do GitHub Copilot para projetos SDD.
     - `spec-driven-project-cursor-kit`: Regras de projeto e skills do Cursor IDE para projetos SDD.
+    - `spec-driven-project-gemini-kit`: Contexto hierárquico e configurações do Gemini CLI/Code Assist para projetos SDD.
     - `private-project-claude-kit`: Configurações de IA do Claude Code para repositórios privados sobrepostos a um core.
     - `private-project-copilot-kit`: Configurações de IA do GitHub Copilot para repositórios privados sobrepostos a um core.
 *   `sdd-boilerplate/`:
@@ -33,6 +34,7 @@ Os scripts instaladores devem ser disponibilizados em PowerShell (`.ps1`) para a
 ### Comportamento de Cópia da Pasta `sdd/`:
 *   Se o diretório `sdd/` **não existir** no caminho alvo, o instalador deve copiar recursivamente todo o diretório `sdd/` contido em `..\<Language>\sdd-boilerplate\sdd` para o destino.
 *   Se o diretório `sdd/` **já existir** no destino, o instalador **não deve** copiar o boilerplate. Ele deve apenas copiar os recursos de suporte operacional (ex: hooks de início de sessão em `sdd/scripts/hooks/`), preservando totalmente todas as especificações e históricos do SDD do usuário.
+*   Em SDD preexistente, os instaladores Claude, Copilot, Cursor e Gemini devem criar de forma não destrutiva os arquivos ausentes de `sdd/backlog/`: `README.md`, `BACKLOG-INDEX.md` e `archive/README.md`.
 
 ---
 
@@ -121,3 +123,31 @@ Os instaladores `install-spec-driven-cursor-kit.ps1` e `.sh` devem:
 3. resolver `{{AGENT_NAME}}` como `sdd-executor` ou `<prefixo>-sdd-executor` somente nos arquivos instalados;
 4. criar o boilerplate SDD apenas quando `sdd/` estiver ausente;
 5. preservar memórias existentes e criar os quatro diretórios `archive/`/README ausentes de forma não destrutiva.
+
+---
+
+## 8. Backlog de Ideias e Intake Gate
+
+Cada boilerplate deve disponibilizar `sdd/backlog/` como incubadora de ideias do Arquiteto e do usuário humano, com:
+
+*   `README.md`: categorias `Feature`, `Epic`, `Spike` e `Architecture`; estados `ICEBOX`, `IN-DISCUSSION` e `READY`; e regras de promoção.
+*   `BACKLOG-INDEX.md`: índice ativo dos itens incubados.
+*   `archive/README.md`: convenção de arquivamento dos itens removidos do índice ativo.
+
+O backlog é deliberadamente não executável. O Executor IA é estritamente proibido de implementar diretamente um item de `sdd/backlog/`, inclusive quando seu estado for `READY`. A implementação só pode começar após promoção humana explícita para uma requisição em `sdd/human-requests/`, atualização de `CURRENT.md` e associação a um batch operacional.
+
+Esta proteção deve constar em todos os arquivos de instruções principais dos kits Claude, Copilot, Cursor e Gemini, em PT-BR e EN.
+
+---
+
+## 9. Gemini Kit para Projetos SDD
+
+Cada idioma deve fornecer `templates/spec-driven-project-gemini-kit/` com:
+
+*   `GEMINI.md`: contexto hierárquico principal, identidade resolvida de `sdd-executor` e Intake Gate.
+*   `.gemini/settings.json`: configuração de projeto do Gemini CLI, com `GEMINI.md` como arquivo de contexto e respeito a `.gitignore`/`.geminiignore`.
+*   `.gemini/styleguide.md`: convenções operacionais complementares.
+*   `.geminiignore`: exclusões de contexto do Gemini CLI.
+*   `.aiexclude`: compatibilidade de exclusões com Gemini Code Assist.
+
+Os instaladores `install-spec-driven-gemini-kit.ps1` e `.sh` devem aceitar target, `Force`, prefixo de agente e idioma `pt-br|en`, preservar arquivos existentes sem `Force`, resolver `{{AGENT_NAME}}`, criar o boilerplate somente quando `sdd/` estiver ausente e provisionar backlog/archives ausentes de forma não destrutiva.

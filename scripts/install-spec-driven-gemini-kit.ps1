@@ -14,22 +14,17 @@ $ErrorActionPreference = 'Stop'
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $languageRoot = (Resolve-Path (Join-Path $scriptDir "..\$Language")).Path
-$templateRoot = (Resolve-Path (Join-Path $languageRoot 'templates\spec-driven-project-cursor-kit')).Path
+$templateRoot = (Resolve-Path (Join-Path $languageRoot 'templates\spec-driven-project-gemini-kit')).Path
 $boilerplateRoot = (Resolve-Path (Join-Path $languageRoot 'sdd-boilerplate\sdd')).Path
 
 New-Item -ItemType Directory -Force -Path $TargetRepoPath | Out-Null
 $targetRoot = (Resolve-Path $TargetRepoPath).Path
 $installedFiles = [System.Collections.Generic.List[string]]::new()
 
-function Copy-CursorFile {
-    param(
-        [string]$SourcePath,
-        [string]$DestinationPath
-    )
+function Copy-GeminiFile {
+    param([string]$SourcePath, [string]$DestinationPath)
 
-    $targetDir = Split-Path -Parent $DestinationPath
-    New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
-
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $DestinationPath) | Out-Null
     if ((Test-Path -LiteralPath $DestinationPath) -and -not $Force) {
         Write-Host "Skipping existing file: $DestinationPath"
         return
@@ -40,23 +35,18 @@ function Copy-CursorFile {
     Write-Host "Installed: $DestinationPath"
 }
 
-function Copy-CursorTree {
-    param(
-        [string]$SourceRoot,
-        [string]$DestinationRoot
-    )
+function Copy-GeminiTree {
+    param([string]$SourceRoot, [string]$DestinationRoot)
 
     New-Item -ItemType Directory -Force -Path $DestinationRoot | Out-Null
     Get-ChildItem -LiteralPath $SourceRoot -Recurse -Force | ForEach-Object {
         $relativePath = $_.FullName.Substring($SourceRoot.Length).TrimStart([char[]]@('\', '/'))
         $targetPath = Join-Path $DestinationRoot $relativePath
-
         if ($_.PSIsContainer) {
             New-Item -ItemType Directory -Force -Path $targetPath | Out-Null
-            return
+        } else {
+            Copy-GeminiFile -SourcePath $_.FullName -DestinationPath $targetPath
         }
-
-        Copy-CursorFile -SourcePath $_.FullName -DestinationPath $targetPath
     }
 }
 
@@ -66,15 +56,12 @@ function Install-SddBoilerplate {
         Write-Host "Preserving existing SDD directory: $targetSdd"
         return
     }
-
-    Copy-CursorTree -SourceRoot $boilerplateRoot -DestinationRoot $targetSdd
+    Copy-GeminiTree -SourceRoot $boilerplateRoot -DestinationRoot $targetSdd
 }
 
 function Install-EngineeringMemories {
     $targetSdd = Join-Path $targetRoot 'sdd'
-    if (-not (Test-Path -LiteralPath $targetSdd)) {
-        return
-    }
+    if (-not (Test-Path -LiteralPath $targetSdd)) { return }
 
     Get-ChildItem -LiteralPath $boilerplateRoot -File | Where-Object {
         $_.Name -match 'MEMORIA-ENGENHARIA|ENGINEERING-MEMORY'
@@ -82,26 +69,21 @@ function Install-EngineeringMemories {
         $targetPath = Join-Path $targetSdd $_.Name
         if (Test-Path -LiteralPath $targetPath) {
             Write-Host "Preserving existing memory file: $targetPath"
-            return
+        } else {
+            Copy-GeminiFile -SourcePath $_.FullName -DestinationPath $targetPath
         }
-        Copy-CursorFile -SourcePath $_.FullName -DestinationPath $targetPath
     }
 }
 
 function Install-SddArchiveGovernance {
     $targetSdd = Join-Path $targetRoot 'sdd'
-    if (-not (Test-Path -LiteralPath $targetSdd)) {
-        return
-    }
+    if (-not (Test-Path -LiteralPath $targetSdd)) { return }
 
     foreach ($section in @('decisions', 'human-requests', 'implementation', 'validation')) {
         $sourceReadme = Join-Path $boilerplateRoot "$section\archive\README.md"
-        $targetArchive = Join-Path $targetSdd "$section\archive"
-        $targetReadme = Join-Path $targetArchive 'README.md'
-        New-Item -ItemType Directory -Force -Path $targetArchive | Out-Null
-
+        $targetReadme = Join-Path $targetSdd "$section\archive\README.md"
         if ((Test-Path -LiteralPath $sourceReadme) -and -not (Test-Path -LiteralPath $targetReadme)) {
-            Copy-CursorFile -SourcePath $sourceReadme -DestinationPath $targetReadme
+            Copy-GeminiFile -SourcePath $sourceReadme -DestinationPath $targetReadme
         }
     }
 }
@@ -114,36 +96,29 @@ function Install-SddBacklogGovernance {
         $sourcePath = Join-Path $boilerplateRoot "backlog\$relativePath"
         $targetPath = Join-Path $targetSdd "backlog\$relativePath"
         if ((Test-Path -LiteralPath $sourcePath) -and -not (Test-Path -LiteralPath $targetPath)) {
-            Copy-CursorFile -SourcePath $sourcePath -DestinationPath $targetPath
+            Copy-GeminiFile -SourcePath $sourcePath -DestinationPath $targetPath
         }
     }
 }
 
 function Set-AgentIdentity {
-    $agentName = if ([string]::IsNullOrWhiteSpace($AgentPrefix)) {
-        'sdd-executor'
-    } else {
-        "$AgentPrefix-sdd-executor"
-    }
-
+    $agentName = if ([string]::IsNullOrWhiteSpace($AgentPrefix)) { 'sdd-executor' } else { "$AgentPrefix-sdd-executor" }
     foreach ($file in $installedFiles) {
-        if (-not (Test-Path -LiteralPath $file)) {
-            continue
-        }
         $content = Get-Content -LiteralPath $file -Raw -Encoding UTF8
         if ($content.Contains('{{AGENT_NAME}}')) {
-            $content.Replace('{{AGENT_NAME}}', $agentName) |
-                Set-Content -LiteralPath $file -NoNewline -Encoding UTF8
+            $content.Replace('{{AGENT_NAME}}', $agentName) | Set-Content -LiteralPath $file -NoNewline -Encoding UTF8
         }
     }
 }
 
-Copy-CursorFile -SourcePath (Join-Path $templateRoot '.cursorrules') -DestinationPath (Join-Path $targetRoot '.cursorrules')
-Copy-CursorTree -SourceRoot (Join-Path $templateRoot '.cursor') -DestinationRoot (Join-Path $targetRoot '.cursor')
+foreach ($filename in @('GEMINI.md', '.geminiignore', '.aiexclude')) {
+    Copy-GeminiFile -SourcePath (Join-Path $templateRoot $filename) -DestinationPath (Join-Path $targetRoot $filename)
+}
+Copy-GeminiTree -SourceRoot (Join-Path $templateRoot '.gemini') -DestinationRoot (Join-Path $targetRoot '.gemini')
 Install-SddBoilerplate
 Install-EngineeringMemories
 Install-SddArchiveGovernance
 Install-SddBacklogGovernance
 Set-AgentIdentity
 
-Write-Host 'Spec-Driven Cursor Kit installation finished.'
+Write-Host 'Spec-Driven Gemini Kit installation finished.'

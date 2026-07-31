@@ -23,3 +23,4 @@ Este arquivo gerencia os lotes operacionais (batches) do desenvolvimento deste w
 | **BATCH-004** | ready-for-intake | Integração e Protocolo MCP para Agentes Locais | `sdd/mcp-integration.md` | Especificar e prototipar um servidor MCP local para expor a governança e o contexto SDD para ferramentas CLI. |
 | **BATCH-005** | ready-for-intake | Validador de Governança SDD (GitHub Actions CI/CD) | `.github/workflows/sdd-governance.yml` | Validar commits normativos contra a existência de change-requests ativos. |
 | **BATCH-006** | complete | Memory Gardening, destilação de skills e Cursor Kit bilíngue | sdd/validation/VALIDATION-CHECKLIST.md#batch-006 | Concluído em 2026-07-30 com rollout em Core, Lumix, Transforma MP e Site. |
+| **BATCH-007** | complete | Backlog de ideias, Intake Gate e Gemini Kit bilíngue | sdd/validation/VALIDATION-CHECKLIST.md#batch-007 | Concluído em 2026-07-30 com rollout não destrutivo em Core, Lumix, Transforma MP e Site. |

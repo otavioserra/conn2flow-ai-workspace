@@ -193,3 +193,43 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 
 *   **Comando**: `git diff --check` e `git diff --cached --check` nos cinco repositórios.
 *   **Evidência**: nenhum erro de whitespace ou patch inválido. As exceções de `.gitignore` no Core/Lumix expõem somente as novas skills deste lote.
+
+---
+
+## BATCH-007: Backlog de Ideias, Intake Gate e Gemini Kit
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Boilerplates PT-BR/EN contêm `sdd/backlog/README.md`, `BACKLOG-INDEX.md` e `archive/README.md`.
+- [x] Os tipos, estados e o fluxo obrigatório de promoção humana estão documentados nos dois idiomas.
+- [x] Os 14 arquivos principais de instruções Claude, Copilot, Cursor e Gemini contêm o Intake Gate.
+- [x] Os oito instaladores spec-driven provisionam o backlog ausente de forma não destrutiva.
+- [x] Gemini Kit PT-BR/EN usa `GEMINI.md`, `.gemini/settings.json`, `.geminiignore` e `.aiexclude`.
+- [x] Backlog e Gemini Kit foram aplicados em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: sintaxe e formatos
+
+*   **Comandos**: parser PowerShell nos quatro instaladores `.ps1`; `bash -n` nos quatro instaladores `.sh`; `ConvertFrom-Json` nos templates e rollouts `.gemini/settings.json`.
+*   **Evidência**: os oito scripts passaram sem erro de sintaxe e os seis arquivos JSON foram aceitos pelo parser.
+
+#### Teste 2: instalação não destrutiva
+
+*   **Procedimento**: executar cada instalador PowerShell (Claude, Copilot, Cursor e Gemini) contra um SDD temporário preexistente contendo um arquivo sentinel.
+*   **Evidência**: os três arquivos de backlog foram criados em todos os testes e o sentinel permaneceu intacto; os diretórios temporários foram removidos.
+
+#### Teste 3: proteção das instruções
+
+*   **Procedimento**: verificar os arquivos principais de instruções PT-BR/EN em todos os kits, buscando backlog, proibição de implementação direta e promoção para `sdd/human-requests/`.
+*   **Evidência**: os 14 arquivos esperados passaram nas três verificações do Intake Gate.
+
+#### Teste 4: rollout nos projetos
+
+*   **Procedimento**: validar `GEMINI.md`, `.gemini/settings.json`, `.geminiignore`, `.aiexclude` e os três arquivos de `sdd/backlog/` em cada repositório; confirmar identidade `<prefixo>-sdd-executor` e ausência de placeholders.
+*   **Evidência**: os oito caminhos esperados e a identidade resolvida foram encontrados em Core, Lumix, Transforma MP e Site, sem alteração destrutiva do SDD existente.
+
+#### Teste 5: integridade dos diffs
+
+*   **Comando**: `git diff --check` e `git diff --cached --check` nos cinco repositórios.
+*   **Evidência**: nenhum erro de whitespace ou patch inválido.

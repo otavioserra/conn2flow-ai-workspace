@@ -279,6 +279,23 @@ function Install-SddArchiveGovernance {
     }
 }
 
+function Install-SddBacklogGovernance {
+    param([string]$BoilerplateRoot, [string]$RepoRoot)
+
+    $targetSdd = Join-Path $RepoRoot 'sdd'
+    if (-not (Test-Path -LiteralPath $targetSdd)) { return }
+
+    foreach ($relativePath in @('README.md', 'BACKLOG-INDEX.md', 'archive\README.md')) {
+        $sourcePath = Join-Path $BoilerplateRoot "backlog\$relativePath"
+        $targetPath = Join-Path $targetSdd "backlog\$relativePath"
+        if ((Test-Path -LiteralPath $sourcePath) -and -not (Test-Path -LiteralPath $targetPath)) {
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $targetPath) | Out-Null
+            Copy-Item -LiteralPath $sourcePath -Destination $targetPath -Force
+            Write-Host "Installed backlog governance: $targetPath"
+        }
+    }
+}
+
 foreach ($item in $copyItems) {
     $sourcePath = Join-Path $templateRoot $item.Source
     $destinationPath = Join-Path $targetRoot $item.Destination
@@ -290,6 +307,7 @@ Migrate-LegacySdd -RepoRoot $targetRoot
 Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 Install-EngineeringMemories -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
 Install-SddArchiveGovernance -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
+Install-SddBacklogGovernance -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot
 Copy-MergedTree -SourceRoot (Join-Path $templateRoot 'sdd\scripts\hooks') -DestinationRoot (Join-Path $targetRoot 'sdd\scripts\hooks') -Overwrite ([bool]$Force)
 Rebind-AgentPrefix -RepoRoot $targetRoot -Prefix $AgentPrefix
 

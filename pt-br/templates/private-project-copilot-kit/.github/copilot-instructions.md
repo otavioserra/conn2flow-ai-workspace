@@ -15,3 +15,9 @@
 - Para decidir corretamente entre o repositório privado e `conn2flow`, use a skill [private-project-context](./skills/private-project-context/SKILL.md).
 - Consulte também [workflow-completo.md](../docs/workflow-completo.md), [copilot-casos-de-uso-operacionais.md](../docs/copilot-casos-de-uso-operacionais.md), [continuidade-e-interrupcoes.md](../docs/continuidade-e-interrupcoes.md) e [gestor-modulos-integracao-pratica.md](../docs/gestor-modulos-integracao-pratica.md).
 - O hook [private-project-session-start.json](./hooks/private-project-session-start.json) injeta um lembrete curto de escopo no início da sessão; mantenha esse hook pequeno e audível.
+
+## Intake Gate do backlog
+
+- `sdd/backlog/` é uma incubadora de leitura exclusiva do Usuário e do Arquiteto IA.
+- O Executor pode consultar itens, mas não pode implementá-los, abrir batch executável ou alterar código diretamente a partir deles.
+- Mesmo `READY`, o item exige promoção humana para `sdd/human-requests/`, atualização de `CURRENT.md` e batch associado.

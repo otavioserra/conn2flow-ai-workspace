@@ -305,10 +305,28 @@ install_sdd_archive_governance() {
     done
 }
 
+install_sdd_backlog_governance() {
+    local boilerplate_root="$1"
+    local repo_root="$2"
+    local target_sdd="$repo_root/sdd"
+    [[ -d "$target_sdd" ]] || return 0
+
+    for relative_path in README.md BACKLOG-INDEX.md archive/README.md; do
+        local source_path="$boilerplate_root/backlog/$relative_path"
+        local target_path="$target_sdd/backlog/$relative_path"
+        if [[ -f "$source_path" && ! -e "$target_path" ]]; then
+            mkdir -p "$(dirname "$target_path")"
+            cp "$source_path" "$target_path"
+            echo "Installed backlog governance: $target_path"
+        fi
+    done
+}
+
 migrate_legacy_sdd "$target_root"
 install_sdd_boilerplate "$boilerplate_root" "$target_root"
 install_engineering_memories "$boilerplate_root" "$target_root"
 install_sdd_archive_governance "$boilerplate_root" "$target_root"
+install_sdd_backlog_governance "$boilerplate_root" "$target_root"
 rebind_agent_prefix "$target_root" "$agent_prefix"
 
 echo "Spec-Driven Claude Kit installation finished."

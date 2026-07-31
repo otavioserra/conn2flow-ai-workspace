@@ -34,3 +34,9 @@
 ## Final rule
 
 - Use `CLAUDE.md` for always-on rules, `.claude/rules/` for path-based rules, `.claude/skills/` for workflows and on-demand runbooks, `.claude/agents/` for specialized subagents, and `.claude/settings.json` for language, permissions, and small hooks.
+
+## Backlog Intake Gate
+
+- `sdd/backlog/` is a draft incubator managed by the User and AI Architect.
+- Executors may read items for context, but must never implement them, open an execution batch, or change code directly from them.
+- An item, including `READY`, becomes executable only after explicit human promotion to `sdd/human-requests/req-XXX.md`, a `CURRENT.md` update, and batch assignment.

@@ -29,3 +29,9 @@
 - Move older history into the matching `archive/` subfolder: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/`, or `sdd/validation/archive/`.
 - In the main files, replace archived history with concise Markdown summary tables containing 1 row per item and a direct link to the file in `archive/`.
 - When loading initial context, prioritize the main files and open items in `archive/` only when the active batch, active request, or a traceability link requires it.
+
+## Backlog Intake Gate
+
+- `sdd/backlog/` is a draft incubator managed by the User and AI Architect.
+- Executors may read items for context, but must never implement them, open an execution batch, or change code directly from them.
+- An item, including `READY`, becomes executable only after explicit human promotion to `sdd/human-requests/req-XXX.md`, a `CURRENT.md` update, and batch assignment.
