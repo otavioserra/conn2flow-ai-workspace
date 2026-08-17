@@ -53,7 +53,7 @@ This repository organizes AI kits in both English (`en`) and Portuguese (`pt-br`
   - `templates/spec-driven-project-claude-kit`: Rules, subagents, and on-demand commands to run **Claude Code** in SDD projects.
   - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents to run **GitHub Copilot** in SDD projects.
   - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and on-demand skills (`.cursor/skills/`) for **Cursor IDE** in SDD projects.
-  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, official Gemini CLI project settings (`.gemini/settings.json`), `.geminiignore`, and Code Assist compatibility via `.aiexclude`.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, official Gemini CLI project settings (`.gemini/settings.json`), native skills (`.gemini/skills/`), `.geminiignore`, and Code Assist compatibility via `.aiexclude`.
   - `templates/private-project-claude-kit`: Claude Code setup for private repositories extending a core repo.
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
 * **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install the kits into any target repository on your computer, with language selection support.
@@ -97,8 +97,8 @@ To inject the primary MDC rule (`.cursor/rules/sdd.mdc`), on-demand skills (`.cu
   scripts/install-spec-driven-cursor-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
   ```
 
-### 4. Antigravity / Gemini Pro
-To inject Gemini system instructions (`GEMINI.md`), project settings (`.gemini/settings.json`), style guide, `.geminiignore`, and `.aiexclude` compatibility:
+### 4. Antigravity / Gemini 3.7 Flash
+To inject Gemini system instructions (`GEMINI.md`), project settings (`.gemini/settings.json`), native on-demand skills (`.gemini/skills/`), style guide, `.geminiignore`, and `.aiexclude` compatibility:
 - **Windows (PowerShell)**:
   ```powershell
   scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/path/to/your-repo" -AgentPrefix "yourproject" -Language "en"
@@ -140,14 +140,14 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 *   **Pruning Threshold**: When an execution memory exceeds ~15 KB or ~50 lines, recurring lessons are extracted and pruned.
 *   **Skill Harvesting**: Extracted patterns are distilled into reusable, on-demand **Skills**:
     - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
-    - **Project Skills**: Kept in `.claude/skills/` and `.cursor/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
+    - **Project Skills**: Kept in `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
 *   **Token Efficiency**: Pruning reduces active memory files to ~5 KB (keeping only 3–5 recent tasks), saving up to 90% of initial prompt context tokens while retaining deep knowledge on demand.
 
 ---
 
 ## 🛠️ Conn2Flow Core Skills Catalog (22 Engineering Skills)
 
-The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c2f-*`), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, and `.github/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c2f-*`), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
 
 1. **Resources & Frontend**:
    - `c2f-resources-system`: Source compilation architecture (`resources/`) to `*Data.json` and DB Upsert.

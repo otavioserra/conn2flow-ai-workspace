@@ -53,7 +53,7 @@ Este repositório organiza os kits de IA prontos para uso em dois idiomas (`pt-b
   - `templates/spec-driven-project-claude-kit`: Regras, subagentes e comandos sob demanda para rodar o **Claude Code** em projetos SDD.
   - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para rodar o **GitHub Copilot** em projetos SDD.
   - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para rodar o **Cursor IDE** em projetos SDD.
-  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração oficial do Gemini CLI (`.gemini/settings.json`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração oficial do Gemini CLI (`.gemini/settings.json`), skills nativas (`.gemini/skills/`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
   - `templates/private-project-claude-kit`: Configuração do Claude Code para cenários de repositórios privados.
   - `templates/private-project-copilot-kit`: Configuração do GitHub Copilot para cenários de repositórios privados.
 * **`scripts/`**: Scripts de automação em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os kits instantaneamente em qualquer repositório alvo do seu computador, com suporte à seleção de idioma.
@@ -97,8 +97,8 @@ Para injetar a regra MDC principal (`.cursor/rules/sdd.mdc`), as skills sob dema
   scripts/install-spec-driven-cursor-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
   ```
 
-### 4. Antigravity / Gemini Pro
-Para injetar as instruções do Gemini (`GEMINI.md`), configuração (`.gemini/settings.json`), guia de estilo, `.geminiignore` e compatibilidade `.aiexclude`:
+### 4. Antigravity / Gemini 3.7 Flash
+Para injetar as instruções do Gemini (`GEMINI.md`), configuração (`.gemini/settings.json`), skills nativas sob demanda (`.gemini/skills/`), guia de estilo, `.geminiignore` e compatibilidade `.aiexclude`:
 - **Windows (PowerShell)**:
   ```powershell
   scripts/install-spec-driven-gemini-kit.ps1 -TargetRepoPath "C:/caminho/do/seu-repositorio" -AgentPrefix "seuprojeto" -Language "pt-br"
@@ -140,14 +140,14 @@ Conforme os projetos evoluem, as memórias de execução podem crescer em excess
 *   **Gatilho de Poda**: Quando uma memória de execução ultrapassa ~15 KB ou ~50 linhas, os aprendizados recorrentes são extraídos e podados.
 *   **Colheita de Skills**: Os padrões extraídos são destilados em **Skills** reutilizáveis acionadas sob demanda:
     - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
-    - **Skills de Projeto**: Armazenadas em `.claude/skills/` e `.cursor/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
+    - **Skills de Projeto**: Armazenadas em `.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
 *   **Eficiência de Tokens**: A poda reduz o arquivo de memória ativa para ~5 KB (mantendo apenas as 3–5 tarefas mais recentes), economizando até 90% dos tokens de inicialização do contexto enquanto retém o conhecimento profundo sob demanda.
 
 ---
 
 ## 🛠️ Acervo de Core Skills do Conn2Flow (22 Skills de Engenharia)
 
-O workspace centraliza um catálogo completo de **22 Skills Core do Conn2Flow** (`c2f-*`), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/` e `.github/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
+O workspace centraliza um catálogo completo de **22 Skills Core do Conn2Flow** (`c2f-*`), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
 
 1. **Recursos & Frontend**:
    - `c2f-resources-system`: Arquitetura de compilação de fontes física (`resources/`) para `*Data.json` e Upsert no Banco.
