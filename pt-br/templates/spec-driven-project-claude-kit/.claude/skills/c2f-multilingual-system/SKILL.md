@@ -14,7 +14,7 @@ Consulte e aplique as seguintes convenções ao desenvolver para suporte a múlt
 * **Código de Idioma Ativo**: Acessível via `$_GESTOR['linguagem-codigo']`.
 * **Estrutura FÍSICA de Pastas**:
   - Recursos globais: `gestor/resources/<idioma>/` (ex: `pt-br/pages/`, `en/pages/`).
-  - Recursos de módulo: `modulos/<modulo>/resources/resources/<idioma>/`.
+  - Recursos de módulo: `modulos/<modulo>/resources/<idioma>/`.
 
 ---
 

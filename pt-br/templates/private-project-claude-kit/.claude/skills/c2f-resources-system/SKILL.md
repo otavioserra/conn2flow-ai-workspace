@@ -20,7 +20,7 @@ Consulte e aplique as seguintes convenções ao manipular o Sistema de Recursos 
 ## 2. Estrutura de Pastas e Tipos
 
 * **Recursos Globais**: `gestor/resources/<lang>/pages|layouts|components/` + JSONs raízes (`pages.json`, etc.).
-* **Recursos de Módulo**: `modulos/<modulo-id>/resources/resources/<lang>/pages|layouts|components/` + `<modulo-id>.json`.
+* **Recursos de Módulo**: `modulos/<modulo-id>/resources/<lang>/pages|layouts|components/` + `<modulo-id>.json`.
 * **Entidades Principais**:
   - **Páginas (`paginas`)**: Elementos com URL; vinculados a um layout via `id_layouts`.
   - **Layouts (`layouts`)**: Estrutura externa (header/footer) contendo o slot de inserção da página.
