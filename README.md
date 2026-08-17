@@ -145,6 +145,39 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 
 ---
 
+## 🛠️ Conn2Flow Core Skills Catalog (22 Engineering Skills)
+
+The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c2f-*`), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, and `.github/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+
+1. **Resources & Frontend**:
+   - `c2f-resources-system`: Source compilation architecture (`resources/`) to `*Data.json` and DB Upsert.
+   - `c2f-html-css-pages-and-components`: Mandatory rule prohibiting loose static `.html`, `.css`, and `.md` files outside `resources/`.
+   - `c2f-modelo-templates`: HTML template parsing and repeating cells (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
+   - `c2f-javascript-ajax`: Frontend AJAX pattern with `ajaxDefault`, `gestor.*` globals, 401 handling, and Semantic UI.
+   - `c2f-multilingual-system`: Hybrid i18n system (`pt-br`, `en`, `es`), `language` natural key, and physical directories.
+   - `c2f-preview-modals-system`: Dynamic component and layout preview modals in the manager.
+   - `c2f-widget-development`: Widget development pattern and system injection.
+
+2. **Backend & Database**:
+   - `c2f-gestor-functions`: Core functions of `gestor.php` (`gestor_componente`, `gestor_variaveis`, `gestor_redirecionar`, layouts, and sessions).
+   - `c2f-global-variables`: Map of the `$_GESTOR` superglobal variable (routing, paths, session, and AJAX responses).
+   - `c2f-database-operations`: CRUD via `banco.php` (`banco_select_name`, `banco_update`) and Phinx Migration structure.
+   - `c2f-database-testing`: Automated database testing and SQLite test harness.
+   - `c2f-hooks-system`: Actions (`hook_do_action`) vs. Filters (`hook_apply_filters`), JSON registration, and controllers.
+   - `c2f-interface-v2-architecture`: V2 Administrative CRUD screen builder using `interface.php`.
+   - `c2f-json-resources-sync` & `c2f-mysql-utf8-emoji-encoding`: UTF-8mb4 encoding and JSON metadata synchronization.
+
+3. **Projects, Plugins & Automation**:
+   - `c2f-projects-system`: Private project deployment pipeline via OAuth API (`/api/project/update`), ZIP, and inline execution.
+   - `c2f-plugin-architecture`: Manifest `plugin.json`, scoping, and lifecycle (`_install`/`_uninstall`) for public and private plugins.
+   - `c2f-system-tasks`: System automation tasks hub (`.vscode/tasks.json`) for Docker, builds, and deploys.
+   - `c2f-dev-scripts`: Conventions for creating and using CLI/Bash/PHP scripts in `ai-workspace/scripts/`.
+   - `c2f-docker-environment`: Log inspection `/var/log/php_errors.log` and CLI execution in the `conn2flow-app` container.
+   - `c2f-gd-image-safety`: Safe image manipulation using GD library.
+
+4. **Documentation Governance**:
+   - `c2f-documentation-governance`: Establishes the **Principle of Source Code Authority** over documentation, instructing agents to audit live `.php`/`.js` source files and prevent doc drift.
+
 ## 🧹 Context Optimization & SDD Archiving
 
 To prevent agent attention degradation due to prompt bloat and keep token usage highly cost-efficient, the framework implements an active size limit:
