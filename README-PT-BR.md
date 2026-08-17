@@ -12,7 +12,7 @@ Trabalhar com IA gerando código de forma isolada geralmente leva a refatoraçõ
 
 ```mermaid
 graph TD
-    User([Usuário / Engenheiro Chefe]) -->|Briefing Informal / Voz| Architect[Antigravity / Gemini 3.6 Flash <br/><b>Agente Arquiteto</b>]
+    User([Usuário / Engenheiro Chefe]) -->|Briefing Informal / Voz| Architect[Antigravity / Gemini 3.7 Flash <br/><b>Agente Arquiteto</b>]
     
     subgraph Alta Abstração - Pasta sdd/
         Architect -->|Cria / Edita Requisitos| Specs[sdd/SPEC.md & sdd/01-*.md]
@@ -32,7 +32,7 @@ graph TD
     Validation -->|Revisado por| Architect
 ```
 
-1. **O Arquiteto (Macro-Orquestrador - Antigravity / Gemini 3.6 Flash)**:
+1. **O Arquiteto (Macro-Orquestrador - Antigravity / Gemini 3.7 Flash)**:
    - Foca em alto nível. Recebe as necessidades humanas (áudios transcritos, conversas informais) e as traduz em requisitos técnicos padronizados.
    - Gerencia a especificação do sistema (`sdd/SPEC.md`), registra decisões de design no histórico e escreve o briefing operacional de execução em `sdd/human-requests/`.
    - **Regra de Ouro**: Nunca realiza commits ou envia código direto. Suas modificações ficam em aberto para revisão visual de diffs pelo usuário humano.

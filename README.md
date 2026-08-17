@@ -12,7 +12,7 @@ Letting an AI write code in isolation often leads to unnecessary refactoring, si
 
 ```mermaid
 graph TD
-    User([User / Chief Engineer]) -->|Voice / Text Instructions| Architect[Antigravity / Gemini 3.6 Flash <br/><b>Architect Agent</b>]
+    User([User / Chief Engineer]) -->|Voice / Text Instructions| Architect[Antigravity / Gemini 3.7 Flash <br/><b>Architect Agent</b>]
     
     subgraph High Abstraction - sdd/ Folder
         Architect -->|Creates / Edits Requirements| Specs[sdd/SPEC.md & sdd/01-*.md]
@@ -32,7 +32,7 @@ graph TD
     Validation -->|Reviewed by| Architect
 ```
 
-1. **The Architect (Macro-Orchestrator - Antigravity / Gemini 3.6 Flash)**:
+1. **The Architect (Macro-Orchestrator - Antigravity / Gemini 3.7 Flash)**:
    - Focuses on the high level. Translates informal human requests (transcribed voice notes, loose messages) into structured technical requirements.
    - Manages the system specifications (`sdd/SPEC.md`), logs architectural decisions, and writes the execution briefs in `sdd/human-requests/`.
    - **Gold Rule**: Never commits or pushes changes directly. Modifications remain unstaged/working tree for easy visual diff review by the human engineer.
