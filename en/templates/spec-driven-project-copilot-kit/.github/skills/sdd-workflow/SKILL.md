@@ -1,44 +1,42 @@
 ---
 name: sdd-workflow
-description: Use when the repository follows Spec-Driven Development and the task touches numbered SDD files, batches, reviews, validation, decisions, or change requests.
+description: Use quando o repositório seguir Spec-Driven Development e a tarefa tocar sdd numerados, batches, reviews, validation, decisions ou change requests.
 user-invocable: false
 ---
 
 # SDD workflow
 
-Use this skill when the project is driven by versioned SDD artifacts.
+Use esta skill quando o projeto for guiado por sdd versionados.
 
-## Minimum initial reading
+## Leitura mínima inicial
 
-Start with `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the current batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
+Comece por `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, o batch atual, `sdd/validation/VALIDATION-CHECKLIST.md` e `sdd/decisions/DECISION-LOG.md`.
 
-If the task points to `sdd/human-requests/*.md` or to the `sdd/human-requests/` folder, read that human intake first. When only the folder is provided, use this deterministic order:
+Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-requests/`, leia primeiro esse intake humano. Quando vier apenas a pasta, use a seguinte ordem determinística:
 
 1. `CURRENT.md`
 2. `README.md`
-3. the most recent `.md` file
+3. o arquivo `.md` mais recente
 
-Then read only the numbered SDD files and code files that control the current slice.
+## Classificação da demanda
 
-## Request classification
+1. Mudança de requisito ou contrato:
+   - registre em `sdd/change-requests/`
+   - avalie impacto nos sdd numerados, decisions, batches e validation
+2. Feedback de review sem mudança normativa:
+   - registre em `sdd/reviews/`
+   - mantenha os sdd numerados estáveis
+3. Implementação incremental:
+   - confira o batch atual em `sdd/implementation/`
+   - implemente o menor slice aprovado
+   - valide e atualize `sdd/validation/` quando necessário
+4. Validação ou spec drift check:
+   - comece pela menor checagem automatizada
+   - registre evidência e pendências nos artefatos certos
 
-1. Requirement or contract change:
-   - register it in `sdd/change-requests/`
-   - assess impact on numbered SDD files, decisions, batches, and validation
-2. Review feedback without normative change:
-   - register it in `sdd/reviews/`
-   - keep numbered SDD files stable
-3. Incremental implementation:
-   - check the current batch in `sdd/implementation/`
-   - implement the smallest approved slice
-   - validate and update `sdd/validation/` when needed
-4. Validation or spec drift check:
-   - start with the smallest automated check
-   - register evidence and pending items in the correct artifacts
+## Regras de ouro
 
-## Golden rules
-
-- Numbered SDD files are the normative source of truth.
-- `sdd/human-requests/` is never normative; it only feeds change requests, reviews, batches, decisions, or validation.
-- Do not rewrite numbered SDD files for small review comments.
-- Do not open the next batch before the current one is stable and reviewable.
+- Os sdd numerados são a fonte normativa.
+- `sdd/human-requests/` nunca é fonte normativa; ele só alimenta change requests, reviews, batches, decisions ou validação.
+- Não reescreva os sdd numerados para comentários pequenos de review.
+- Não abra o próximo batch antes de o atual estar estável e revisável.

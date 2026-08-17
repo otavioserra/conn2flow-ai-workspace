@@ -1,14 +1,15 @@
 ---
 name: sdd-memory-gardening
-description: Use when execution memory exceeds 10 KB or 40 lines, or recurring lessons should become on-demand skills.
+description: Use quando a memória de execução ultrapassar 10 KB ou 40 linhas, ou quando lições recorrentes precisarem virar skills sob demanda.
 user-invocable: false
 ---
 
-# SDD Memory Gardening
+# Memory Gardening SDD
 
-1. Measure bytes and lines, then read the complete execution memory.
-2. Keep only the 3 to 5 most recent tasks and active follow-ups.
-3. Distill recurring rules into Core or project-specific skills.
-4. Never change Chief Memory without an explicit human instruction.
-5. Rewrite execution memory toward 5 KB and always below 10 KB.
-6. Validate frontmatter, skill discovery, and a recoverable Git diff.
+1. Meça bytes e linhas e leia a memória de execução completa.
+2. Preserve somente as 3 a 5 tarefas mais recentes e pendências ativas.
+3. Destile regras recorrentes para skills Core ou específicas do projeto.
+4. Nunca altere a memória de Chefia sem instrução humana explícita.
+5. Reescreva a memória visando cerca de 5 KB e obrigatoriamente menos de 10 KB.
+6. Valide frontmatter, descoberta das skills e o diff Git recuperável.
+7. Registre tamanhos e evidências no checklist do batch.

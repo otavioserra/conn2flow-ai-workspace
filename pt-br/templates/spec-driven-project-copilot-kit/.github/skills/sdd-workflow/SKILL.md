@@ -18,8 +18,6 @@ Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-re
 2. `README.md`
 3. o arquivo `.md` mais recente
 
-Depois leia apenas os sdd numerados e arquivos de código que controlam o slice atual.
-
 ## Classificação da demanda
 
 1. Mudança de requisito ou contrato:
