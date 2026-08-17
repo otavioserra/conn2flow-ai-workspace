@@ -8,6 +8,11 @@ user-invocable: false
 
 Consulte e aplique as seguintes convenções ao manipular o Sistema de Recursos e a arquitetura de compilação de dados do Conn2Flow:
 
+> [!WARNING]
+> **REGRA MANDATÓRIA DE ARQUIVOS HTML, CSS E MARKDOWN**:
+> NUNCA crie arquivos `.html`, `.css` ou `.md` soltos na raiz do projeto, em pastas públicas estáticas ou na raiz de módulos PHP!
+> TODO e QUALQUER conteúdo HTML, CSS ou Markdown para páginas, layouts, componentes, templates ou prompts no Conn2Flow DEVE OBRIGATORIAMENTE ser criado dentro da estrutura do **Sistema de Recursos** (`resources/`), para que possa ser compilado em `*Data.json` e sincronizado no Banco de Dados SQL pelo runtime.
+
 ## 1. Arquitetura de Recursos (Edição Física ➔ Compilação ➔ Banco)
 
 * **Fonte (Source)**: Desenvolvedores criam/editam arquivos físicos em `resources/<idioma>/<tipo>/<id>/<id>.<ext>`.
