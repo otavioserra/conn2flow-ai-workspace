@@ -18,13 +18,15 @@ flowchart TD
 ```
 
 ### 🧠 A. O Macro-Arquiteto (Antigravity / Gemini 3.7 Flash)
-* **Escopo**: Alto nível de abstração, planejamento de negócio, design de sistema e governança de dados.
-* **Entradas**: Áudios, anotações soltas, ideias de novas funcionalidades e regras de negócio do usuário.
-* **Saídas**: Artefatos formais no SDD:
+* **Escopo**: Alto nível de abstração, planejamento de negócio, design de sistema, governança de dados e **documentação viva**.
+* **Entradas**: Áudios, anotações soltas, ideias de novas funcionalidades, regras de negócio do usuário e relatórios de encerramento de lote dos executores.
+* **Saídas**: Artefatos formais no SDD e Documentação Externa:
   - `sdd/SPEC.md`: Especificação técnica viva do projeto.
   - `sdd/decisions/DECISION-LOG.md`: Registro de decisões arquiteturais.
   - `sdd/human-requests/req-XXX.md`: Requisições atômicas e prontas para execução.
-* **Regra de Ouro**: O Arquiteto **nunca edita arquivos de código-fonte diretamente**. Ele preserva o contexto mental limpo para tomada de decisão estratégica.
+  - `README.md` & `README-PT-BR.md`: Documentação viva do workspace sincronizada a cada lote.
+  - `docs/`: Manuais aprofundados de arquitetura, catálogo de skills e visão futura.
+* **Regra de Ouro**: O Arquiteto **nunca edita arquivos de código-fonte diretamente**. Ao auditar o trabalho do Executor, ele faz uma **inspeção de diff em alto nível** (resumo de arquivos tocados, componentes e testes), sem se afogar em código miúdo, mantendo seu foco puramente estratégico.
 
 ### ⚡ B. Os Micro-Executores (Claude Code / Cursor / Copilot)
 * **Escopo**: Baixo nível de abstração, implementação tática, edição de arquivos, execução de comandos e testes unitários.
@@ -37,6 +39,8 @@ flowchart TD
 ## 🛡️ 2. Pilares de Sustentação da Metodologia
 
 1. **Fronteira de Escrita (Ping-Pong Boundary)**: O Arquiteto e o Executor possuem permissões rígidas sobre quais pastas do repositório podem modificar.
-2. **Colheita de Habilidades (Skill Harvesting)**: Quando um executor comete um erro ou descobre uma convenção de framework, a regra é extraída e transformada em uma Skill atômica sob demanda (`.claude/skills/`, etc.), em vez de inflar os prompts de sistema.
-3. **Poda de Memória (Memory Gardening)**: Memórias operacionais são mantidas abaixo de 10 KB, podando o histórico para ~5 KB e arquivando logs antigos em subpastas `/archive/`.
-4. **Intake Gate no Backlog (`sdd/backlog/`)**: Ideias em incubação (`ICEBOX` e `IN-DISCUSSION`) são blindadas contra leitura precipitada de agentes executores até promoção humana explícita.
+2. **O Arquiteto como Guardião da Documentação**: A documentação viva (`READMEs` e `docs/`) é redigida e atualizada pelo Arquiteto ao fechar cada lote, garantindo visão sistêmica e eliminando documentações desatualizadas.
+3. **Colheita de Habilidades (Skill Harvesting)**: Quando um executor comete um erro ou descobre uma convenção de framework, a regra é extraída e transformada em uma Skill atômica sob demanda (`.claude/skills/`, etc.), em vez de inflar os prompts de sistema.
+4. **Poda de Memória Idempotente (Memory Gardening)**: Memórias operacionais são mantidas abaixo de 10 KB, podando o histórico para ~5 KB em rodadas de manutenção dedicadas e idempotentes.
+5. **Intake Gate no Backlog (`sdd/backlog/`)**: Ideias em incubação (`ICEBOX` e `IN-DISCUSSION`) são blindadas contra leitura precipitada de agentes executores até promoção humana explícita.
+

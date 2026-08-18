@@ -8,9 +8,9 @@
 
 ## 🏛️ Diretrizes Fundamentais de Arquitetura e Governança
 
-1. **Documentação Viva e Sincronizada (Mandatório)**:
-   - Toda e qualquer mudança de infraestrutura, novas skills, novos kits ou atualizações metodológicas DEVE ser refletida imediatamente nos arquivos `README.md` (Inglês) e `README-PT-BR.md` (Português) do workspace.
-   - Manter a pasta `docs/` alimentada com documentações aprofundadas sobre arquitetura, catálogo de skills e visão de futuro.
+1. **O Arquiteto como Guardião da Documentação Viva (Mandatório)**:
+   - O Arquiteto assume a responsabilidade de manter a documentação de alto nível (`README.md`, `README-PT-BR.md` e a pasta `docs/`) sempre atualizada ao encerrar cada lote de implementação.
+   - **Inspeção de Diff em Alto Nível**: Ao auditar o trabalho do Executor, o Arquiteto realiza uma checagem em nível executivo (resumo de arquivos alterados, novos componentes, migrações e evidências de teste), sem se afogar em detalhes de linhas de código individuais, preservando seu foco estratégico e agilidade.
 
 2. **Modelo de Agente Duplo (SDD)**:
    - **Arquiteto (Antigravity / Gemini 3.7 Flash)**: Focado no macro, especificações (`sdd/SPEC.md`), decisões (`DECISION-LOG.md`) e requisições atômicas (`req-XXX.md`). Nunca edita código diretamente.
