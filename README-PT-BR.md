@@ -145,12 +145,13 @@ Conforme os projetos evoluem, as memórias de execução podem crescer em excess
 
 ---
 
-## 🛠️ Acervo de Core Skills do Conn2Flow (22 Skills de Engenharia)
+## 🛠️ Acervo de Core Skills do Conn2Flow (25 Skills de Engenharia)
 
-O workspace centraliza um catálogo completo de **22 Skills Core do Conn2Flow** (`c2f-*`), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
+O workspace centraliza um catálogo completo de **25 Skills Core do Conn2Flow** (`c2f-*`) + **7 SDD Workflow Skills** (totalizando **32 Skills**), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
 
-1. **Recursos & Frontend**:
-   - `c2f-resources-system`: Arquitetura de compilação de fontes física (`resources/`) para `*Data.json` e Upsert no Banco.
+1. **Recursos, Variáveis & Frontend**:
+   - `c2f-resources-system`: Arquitetura de compilação de 11 tipos de recursos (`resources/`) para `*Data.json` e sincronização SQL declarativa.
+   - `c2f-variables-system`: **[NOVO]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded em PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Regra mandatória que proíbe arquivos `.html`, `.css` e `.md` estáticos soltos fora de `resources/`.
    - `c2f-modelo-templates`: Processamento de templates HTML e células repetitivas (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
    - `c2f-javascript-ajax`: Padrão de requisições AJAX com `ajaxDefault`, variáveis `gestor.*`, callbacks 401 e Semantic UI.
@@ -158,9 +159,11 @@ O workspace centraliza um catálogo completo de **22 Skills Core do Conn2Flow** 
    - `c2f-preview-modals-system`: Modais dinâmicos de pré-visualização de componentes e layouts no gestor.
    - `c2f-widget-development`: Padrão de desenvolvimento e injeção de widgets no sistema.
 
-2. **Backend & Banco de Dados**:
+2. **Módulos, Backend & Banco de Dados**:
+   - `c2f-module-crud-scaffolding`: **[NOVO]** Scaffold canônico para criação de novos módulos CRUD baseado na arquitetura viva de `modulos-grupos`.
+   - `c2f-environment-configuration`: **[NOVO]** Governança de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`.
    - `c2f-gestor-functions`: Funções da biblioteca `gestor.php` (`gestor_componente`, `gestor_variaveis`, `gestor_redirecionar`, layouts e sessões).
-   - `c2f-global-variables`: Mapa da variável superglobal `$_GESTOR` (roteamento, caminhos, sessão e respostas AJAX).
+   - `c2f-global-variables`: Mapa de superglobais `$_GESTOR` (runtime), `$_CONFIG` (sistema), `$_BANCO` (conexão) e `$_ENV` (infra).
    - `c2f-database-operations`: CRUD via `banco.php` (`banco_select_name`, `banco_update`) e estrutura de Migrações Phinx.
    - `c2f-database-testing`: Testes automatizados e harness SQLite para banco de dados.
    - `c2f-hooks-system`: Sistema de Actions (`hook_do_action`) vs Filters (`hook_apply_filters`), registro em JSON e controladores.
@@ -177,6 +180,15 @@ O workspace centraliza um catálogo completo de **22 Skills Core do Conn2Flow** 
 
 4. **Governança de Documentação**:
    - `c2f-documentation-governance`: Estabelece o **Princípio da Autoridade do Código-Fonte** sobre documentações, instruindo agentes a auditar arquivos `.php`/`.js` reais e evitar divergências de código.
+
+---
+
+## 📚 Central de Documentação Técnica (`docs/`)
+
+Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/`:
+* 🏛️ [Arquitetura de Agente Duplo](docs/ARQUITETURA-AGENTE-DUPLO.md) — Separação de papéis, fronteiras e governança.
+* 🧩 [Catálogo Completo de Skills](docs/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 32 skills.
+* 🚀 [Roteiro de Evolução Futura](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — Servidores MCP, CI/CD de auto-cura e estratégia educacional.
 
 ---
 
@@ -200,3 +212,4 @@ Itens do backlog nunca são executáveis por si só. Executores podem lê-los co
 ## ⚖️ Licença
 
 Este projeto é disponibilizado sob a licença MIT. Sinta-se livre para usar, modificar e distribuir na sua empresa ou comunidade.
+

@@ -147,10 +147,13 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 
 ## 🛠️ Conn2Flow Core Skills Catalog (22 Engineering Skills)
 
-The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c2f-*`), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **22 Conn2Flow Core ## 🛠️ Conn2Flow Core Skills Catalog (25 Engineering Skills)
 
-1. **Resources & Frontend**:
-   - `c2f-resources-system`: Source compilation architecture (`resources/`) to `*Data.json` and DB Upsert.
+The workspace centralizes a complete catalog of **25 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**32 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+
+1. **Resources, Variables & Frontend**:
+   - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json` and declarative SQL sync.
+   - `c2f-variables-system`: **[NEW]** Multi-language i18n, system alerts/warnings, and UI labels governance via `variables.json`. Prohibits hardcoded strings in PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Mandatory rule prohibiting loose static `.html`, `.css`, and `.md` files outside `resources/`.
    - `c2f-modelo-templates`: HTML template parsing and repeating cells (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
    - `c2f-javascript-ajax`: Frontend AJAX pattern with `ajaxDefault`, `gestor.*` globals, 401 handling, and Semantic UI.
@@ -158,9 +161,11 @@ The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c
    - `c2f-preview-modals-system`: Dynamic component and layout preview modals in the manager.
    - `c2f-widget-development`: Widget development pattern and system injection.
 
-2. **Backend & Database**:
+2. **Modules, Backend & Database**:
+   - `c2f-module-crud-scaffolding`: **[NEW]** Canonical CRUD module scaffolding pattern based on the live architecture of `modulos-grupos`.
+   - `c2f-environment-configuration`: **[NEW]** Governance for sensitive credentials and `.env` templates via `config.php` and `$_CONFIG`.
    - `c2f-gestor-functions`: Core functions of `gestor.php` (`gestor_componente`, `gestor_variaveis`, `gestor_redirecionar`, layouts, and sessions).
-   - `c2f-global-variables`: Map of the `$_GESTOR` superglobal variable (routing, paths, session, and AJAX responses).
+   - `c2f-global-variables`: Map of superglobals `$_GESTOR` (runtime), `$_CONFIG` (system), `$_BANCO` (connection), and `$_ENV` (infra).
    - `c2f-database-operations`: CRUD via `banco.php` (`banco_select_name`, `banco_update`) and Phinx Migration structure.
    - `c2f-database-testing`: Automated database testing and SQLite test harness.
    - `c2f-hooks-system`: Actions (`hook_do_action`) vs. Filters (`hook_apply_filters`), JSON registration, and controllers.
@@ -177,6 +182,17 @@ The workspace centralizes a complete catalog of **22 Conn2Flow Core Skills** (`c
 
 4. **Documentation Governance**:
    - `c2f-documentation-governance`: Establishes the **Principle of Source Code Authority** over documentation, instructing agents to audit live `.php`/`.js` source files and prevent doc drift.
+
+---
+
+## 📚 Technical Documentation Hub (`docs/`)
+
+For in-depth technical guides, explore the dedicated documentation in `docs/`:
+* 🏛️ [Double Agent Architecture](docs/ARQUITETURA-AGENTE-DUPLO.md) — Role separation, writing boundaries, and governance.
+* 🧩 [Complete Skills Catalog](docs/CATALOGO-DE-SKILLS.md) — Exhaustive guide for all 32 skills.
+* 🚀 [Future Evolution Roadmap](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — MCP Servers, self-healing CI/CD, and educational framework.
+
+---
 
 ## 🧹 Context Optimization & SDD Archiving
 
