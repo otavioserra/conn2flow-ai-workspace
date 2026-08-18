@@ -1,5 +1,6 @@
 # Temporary folders
 temp/
+temp-images/
 
 # Editor / System files
 .vscode/
