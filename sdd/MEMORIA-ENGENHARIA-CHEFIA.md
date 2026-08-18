@@ -19,7 +19,13 @@
 3. **Padrão Canônico de Módulos CRUD**:
    - Todo novo módulo deve seguir a arquitetura viva e consolidada de `gestor/modulos/modulos-grupos/` (via skill `c2f-module-crud-scaffolding`), com separação clara entre controller (`.php`), schema (`.json`), frontend (`.js`) e recursos (`resources/<lang>/pages|variables/`).
 
-4. **Proibição de Código Solto e Strings Hardcoded**:
+4. **Monitoramento Proativo de SDD Archiving & Memory Gardening (Mandatório)**:
+   - Ao formular ou revisar qualquer requisição (`req-XXX.md`), o Arquiteto DEVE auditar proativamente o tamanho dos arquivos em todas as subpastas do `sdd/` do repositório alvo.
+   - **Teto Ativo de 10 Itens**: `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` mantêm apenas os **10 itens ativos mais recentes**. Itens antigos devem ser movidos para suas respectivas subpastas `/archive/` (ex: `sdd/decisions/archive/`, `sdd/validation/archive/`).
+   - **Teto de Memória de Execução**: `MEMORIA-ENGENHARIA-EXECUCAO.md` com teto de 15 KB / 50 linhas deve ser podada para ~4 KB a 5 KB (mantendo apenas 3–5 tarefas recentes).
+   - Se qualquer arquivo exceder os limites, o Arquiteto inclui automaticamente a tarefa de arquivamento/poda na requisição do executor.
+
+5. **Proibição de Código Solto e Strings Hardcoded**:
    - **HTML/CSS/MD**: Obrigatório o uso do Sistema de Recursos (`resources/`) compilado em `*Data.json`. Proibido HTML solto em controllers.
    - **Textos, Alertas e Erros**: Obrigatório o uso do Sistema de Variáveis (`resources/<lang>/variables.json` ou `<modulo>.json`) e consumo via `gestor_variaveis()`.
    - **Credenciais e Ambiente**: Obrigatório o cadastro prévio em `gestor/autenticacoes.exemplo/dominio/.env`, mapeamento em `gestor/config.php` e consumo via `$_CONFIG`.
