@@ -222,6 +222,28 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: 16 execuções de instaladores spec-driven com `-Force`.
 *   **Evidência**: 14 skills `sdd-memory-gardening`, 14 skills `sdd-workflow` e 15 arquivos de instruções atualizados nos 4 repositórios.
 
+---
+
+## BATCH-019: Espectro de 3 Níveis de Autonomia de IA & Trava de Deploy em Teste Local
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Formalização dos 3 Níveis de Autonomia (`SUPERVISIONADO`, `AUTÔNOMO MONITORADO`, `AUTÔNOMO HEADLESS`) em `sdd/SPEC.md`.
+- [x] Atualização de todas as 14 skills `sdd-workflow` (master e templates) com a matriz dos 3 níveis.
+- [x] Atualização de todos os 15 arquivos de instruções de kits de IA (`CLAUDE.md`, `CURSOR.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMINI.md`, `.github/copilot-instructions.md` em `pt-br` e `en`).
+- [x] Trava estrita de segurança de deploy restrito a testes locais (proibição absoluta em produção) formalizada em todos os kits.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação dos Níveis de Autonomia
+*   **Evidência**: Matriz dos 3 níveis e exigência de Live Todo List (`[ ]` ➔ `[x]`) em tempo real no Modo 2 implementados e sincronizados em 100% dos kits.
+
+#### Teste 2: Propagação nos Repositórios
+*   **Comandos**: 16 execuções de instaladores spec-driven com `-Force`.
+*   **Evidência**: Sincronização limpa confirmada em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 

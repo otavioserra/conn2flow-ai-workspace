@@ -22,13 +22,24 @@ alwaysApply: false
 - After each relevant step or command finishes, update and re-display the list marking `[x]` on completed steps and highlighting the current step (`⏳ [IN PROGRESS]`).
 - Never execute long sequences of actions without updating visual progress for the user.
 
-## 🛡️ AI Autonomy Modes & Deploy Guardrail
+## 🛡️ 3-Tier AI Autonomy Spectrum
 
-- **SUPERVISED Mode (Mandatory Default)**:
-  * The agent implements code and runs tests, but **DOES NOT commit or deploy automatically**.
-  * The human developer reviews and approves diffs in the chat/IDE.
+1. **Tier 1: SUPERVISED (Mandatory Default / Human-in-the-Loop)**:
+   - The agent implements code and runs tests, but **DOES NOT commit, push, or deploy automatically**.
+   - The human developer reviews and approves diffs in the chat/IDE before merging.
 
-- **AUTONOMOUS Mode (Only when explicitly requested)**:
-  * Allowed only when the request specifies `mode: autonomous` or the user explicitly authorizes it.
-  * The agent may: create branch/worktree (`feat/req-XXX`), code, compile (`c2f resources:sync`), run tests (`c2f db:test`), commit, and execute **DEPLOY EXCLUSIVELY TO LOCAL TEST ENVIRONMENT** (`c2f manager:update-all` or local Docker).
-  * ⛔ **STRICT SAFETY RULE: NEVER PERFORM AUTOMATED DEPLOYS TO PRODUCTION OR REMOTE SERVERS.**
+2. **Tier 2: MONITORED AUTONOMOUS (Live Autopilot / Glass-Box in Chat)**:
+   - Activated when the request specifies `mode: monitored_autonomous` (or `autonomo_monitorado`) or the user explicitly authorizes live execution.
+   - The agent executes the entire pipeline with a **Live Todo List (`[ ]` ➔ `[x]`) visible and updated in real time**:
+     * Branch or worktree isolation (`feat/req-XXX`).
+     * Code implementation and resource compilation (`c2f resources:sync`).
+     * Automated unit test suite execution (`c2f db:test`).
+     * **DEPLOY EXCLUSIVELY TO LOCAL TEST ENVIRONMENT** (`c2f manager:update-all` or local Docker).
+     * ⛔ **STRICT SAFETY RULE: NEVER PERFORM AUTOMATED DEPLOYS TO PRODUCTION OR REMOTE SERVERS.**
+     * Semantic commit and push to the working branch.
+     * Final executive report with validation evidence.
+
+3. **Tier 3: HEADLESS AUTONOMOUS (Silent Background / Black-Box)**:
+   - Activated when the request specifies `mode: headless_autonomous` (or `autonomo_headless`).
+   - The agent executes the entire pipeline in isolated background processes via MCP Hub / Git Worktrees, delivering a completion notification and final report upon completion.
+
