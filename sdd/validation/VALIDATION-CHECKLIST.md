@@ -151,4 +151,31 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comandos**: `Get-Help .\scripts\git\create-agent-worktree.ps1`.
 *   **Evidência**: Script PowerShell funcional com suporte a isolamento de branches para agentes paralelos.
 
+---
+
+## BATCH-016: Catálogo Completo tasks.json no CLI c2f & Live Todo List Protocol
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Catálogo completo de 34 comandos implementado em `conn2flow/cli/src/Commands/`.
+- [x] Wrappers multiplataforma criados e blindados: `./c2f` (Bash), `c2f.bat` (CMD), `c2f.cmd` (CMD) e `c2f.ps1` (PowerShell).
+- [x] Protocolo de Checklist Vivo (Live Todo List) integrado em `sdd-workflow` e instruções dos 4 kits de IA (`CLAUDE.md`, `CURSOR.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMINI.md`, `.github/copilot-instructions.md`).
+- [x] Propagação universal com `-Force` em todos os repositórios (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`, `conn2flow-ai-workspace`).
+- [x] Execução de `./c2f help` e `c2f.ps1 ai:prune-memories` validada com sucesso.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Catálogo c2f Help
+*   **Comandos**: `c2f.ps1 help` e `cmd /c "c2f.bat help"`.
+*   **Evidência**: 34 comandos listados em tabela ANSI formatada cobrindo 100% de `tasks.json`.
+
+#### Teste 2: Memory Gardening c2f
+*   **Comandos**: `c2f.ps1 ai:prune-memories`.
+*   **Evidência**: Memória podada para 1.917 bytes (32 linhas) respeitando o teto de 5KB / 50 linhas.
+
+#### Teste 3: Propagação dos Kits
+*   **Comandos**: 16 execuções de instaladores spec-driven com `-Force`.
+*   **Evidência**: 14 templates de skills e 15 arquivos de instrução de kit sincronizados em todos os repositórios.
+
+
 
