@@ -61,8 +61,8 @@ export class McpServer {
           },
           mode: {
             type: 'string',
-            enum: ['supervised', 'headless'],
-            description: 'Supervised (opens in IDE chat) or Headless (executes in background)'
+            enum: ['supervised', 'live_autonomous', 'headless_autonomous'],
+            description: 'supervised (human review gate), live_autonomous (live visible autopilot in chat), or headless_autonomous (silent background worktree execution)'
           }
         },
         required: ['repo', 'req_id', 'prompt']

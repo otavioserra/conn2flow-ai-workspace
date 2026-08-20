@@ -79,9 +79,11 @@ Em vez de editar arquivos JSON manualmente, execute o instalador automatizado:
 
 *O instalador detecta automaticamente o **Claude Desktop**, **Cursor IDE**, **VS Code** e **Google Antigravity**, injetando o conector `conn2flow-hub` de forma segura e não destrutiva.*
 
-#### 🎮 Modos de Operação do MCP:
-1. **Modo 1 (Supervisionado no Chat do VS Code — Padrão)**: O usuário vê o chat abrindo, o agente digitando código e rodando testes ao vivo.
-2. **Modo 2 (Headless em Background)**: O agente processa a tarefa silenciosamente em segundo plano e notifica ao concluir.
+#### 🎮 Modos de Operação do MCP (Espectro de 3 Níveis):
+1. **Modo 1 (`supervised` — Supervisionado)**: Sessão interativa com revisão de diffs e parada pré-commit.
+2. **Modo 2 (`live_autonomous` — Autônomo Monitorado)**: Sessão visual no chat executando a esteira completa (código, compilação, testes, deploy em testes locais e commit) com **Live Todo List** em tempo real na tela.
+3. **Modo 3 (`headless_autonomous` — Autônomo Headless)**: Execução 100% silenciosa em segundo plano via Git Worktree/Docker com entrega de relatório final.
+
 
 
 ---

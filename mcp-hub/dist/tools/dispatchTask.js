@@ -37,7 +37,7 @@ exports.dispatchTask = dispatchTask;
 const fs = __importStar(require("node:fs"));
 const path = __importStar(require("node:path"));
 /**
- * Dispatch a new task to the orchestration queue.
+ * Dispatch a new task to the orchestration queue with 3-tier autonomy support.
  */
 async function dispatchTask(args) {
     const mode = args.mode || 'supervised';

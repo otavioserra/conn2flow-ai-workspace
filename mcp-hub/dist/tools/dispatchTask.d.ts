@@ -2,14 +2,14 @@ export interface DispatchTaskArgs {
     repo: string;
     req_id: string;
     prompt: string;
-    mode?: 'supervised' | 'headless';
+    mode?: 'supervised' | 'live_autonomous' | 'headless_autonomous';
     priority?: 'normal' | 'high';
 }
 export interface TaskRecord {
     taskId: string;
     reqId: string;
     repo: string;
-    mode: 'supervised' | 'headless';
+    mode: 'supervised' | 'live_autonomous' | 'headless_autonomous';
     priority: 'normal' | 'high';
     prompt: string;
     createdAt: string;
@@ -17,6 +17,6 @@ export interface TaskRecord {
     executionToken: string;
 }
 /**
- * Dispatch a new task to the orchestration queue.
+ * Dispatch a new task to the orchestration queue with 3-tier autonomy support.
  */
 export declare function dispatchTask(args: DispatchTaskArgs): Promise<TaskRecord>;

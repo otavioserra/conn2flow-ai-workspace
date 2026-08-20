@@ -154,21 +154,27 @@ Os instaladores `install-spec-driven-gemini-kit.ps1` e `.sh` devem aceitar targe
 
 ---
 
-## 10. Modos de Autonomia de IA e Trava de Segurança de Deploy
+## 10. Espectro de 3 Níveis de Autonomia de IA e Trava de Deploy
 
-Para equilibrar velocidade e segurança operacional, o framework formaliza dois modos de operação dos agentes de IA:
+Para equilibrar controle, velocidade e segurança operacional, o framework formaliza três níveis operacionais de autonomia:
 
-### Modo 1: SUPERVISIONADO (Padrão Mandatório)
-* O agente implementa alterações no código e valida testes sob supervisão no chat.
-* O agente **não realiza commits automáticos nem deploys**. O desenvolvedor humano revisa os diffs antes de consolidar.
+### Nível 1: SUPERVISIONADO (Padrão Mandatório / Human-in-the-Loop)
+* O agente implementa alterações e roda testes sob supervisão direta no chat.
+* O agente **não realiza commits automáticos nem deploys**. O desenvolvedor humano revisa os diffs no VS Code antes de consolidar.
 
-### Modo 2: AUTÔNOMO (Ativado Apenas Quando Explicitamente Solicitado)
-* Quando a requisição contiver `modo: autonomo` ou o usuário autorizar expressamente:
+### Nível 2: AUTÔNOMO MONITORADO (Live Autopilot / Glass-Box no Chat)
+* Ativado sob solicitação explícita (`modo: autonomo_monitorado` ou equivalente).
+* O agente executa a esteira completa com **Live Todo List (`[ ]` ➔ `[x]`) visível na tela em tempo real**:
   1. Criação de branch ou worktree isolada (`feat/req-XXX`).
-  2. Implementação do código e compilação de recursos (`c2f resources:sync`).
-  3. Execução de testes automatizados (`c2f db:test`).
-  4. **DEPLOY EXCLUSIVAMENTE EM AMBIENTE DE TESTE LOCAL** (`c2f manager:update-all`, `c2f manager:sync-files` ou Docker local).
-  5. ⛔ **REGRA INVIOLÁVEL DE SEGURANÇA: NUNCA REALIZAR DEPLOY AUTOMÁTICO NO AMBIENTE DE PRODUÇÃO OU SERVIDORES REMOTOS.**
-  6. Commit semântico e push na branch de trabalho.
-  7. Apresentação de relatório com logs de validação.
+  2. Implementação de arquivos e compilação de recursos (`c2f resources:sync`).
+  3. Execução da suíte de testes unitários (`c2f db:test`).
+  4. **DEPLOY EXCLUSIVAMENTE EM AMBIENTE DE TESTE LOCAL** (`c2f manager:update-all` ou Docker local).
+  5. ⛔ **REGRA INVIOLÁVEL DE SEGURANÇA: NUNCA REALIZAR DEPLOY AUTOMÁTICO NO AMBIENTE DE PRODUÇÃO.**
+  6. Commit semântico e push na branch da fatia.
+  7. Apresentação do relatório executivo final na tela.
+
+### Nível 3: AUTÔNOMO HEADLESS (Background Silencioso / Black-Box)
+* Ativado sob solicitação explícita (`modo: autonomo_headless`).
+* O agente executa toda a esteira em segundo plano isolado via MCP Hub / Git Worktree sem exibir janelas interativas, emitindo notificação de conclusão ao Arquiteto apenas ao finalizar com sucesso.
+
 

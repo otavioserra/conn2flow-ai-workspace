@@ -47,8 +47,11 @@ flowchart TD
    - **`c2f` (Core CLI)**: Ponto de entrada nativo em PHP 8.2+ OOP no core para execução de recursos, banco, Docker e IA.
    - **`conn2flow-mcp-hub` (Docker)**: Servidor MCP local para mensageria assíncrona entre o Arquiteto e os Executores nos modos Supervisionado e Headless.
    - **`Git Worktrees`**: Provisionamento automático de branches e diretórios isolados permitindo que múltiplos agentes trabalhem concorrentemente sem conflitos de working tree.
-7. **Governança dos Modos de Autonomia**:
-   - **Modo 1 (`SUPERVISIONADO` — Padrão)**: O agente não comita nem faz deploy; o desenvolvedor revisa os diffs no VS Code.
-   - **Modo 2 (`AUTONOMO` — Quando Solicitado)**: O agente cria branch/worktree, implementa, roda compilação (`c2f resources:sync`), suíte de testes (`c2f db:test`), **faz deploy exclusivamente no ambiente de testes local** (nunca em produção) e realiza commit/push na branch da fatia.
+7. **Espectro de 3 Níveis de Autonomia de IA**:
+   - **Nível 1 (`SUPERVISIONADO` — Padrão Mandatório)**: O agente não realiza commits nem deploys automáticos; o desenvolvedor inspeciona os diffs no chat do VS Code antes de consolidar.
+   - **Nível 2 (`AUTÔNOMO MONITORADO` — Live Autopilot / Glass-Box)**: O agente executa toda a esteira de código, testes (`c2f db:test`), **deploy exclusivamente no ambiente de testes local** e commit/push na branch, exibindo a **Live Todo List (`[ ]` ➔ `[x]`)** e o progresso em tempo real na tela para acompanhamento do desenvolvedor.
+   - **Nível 3 (`AUTÔNOMO HEADLESS` — Background Silencioso / Black-Box)**: O agente roda em segundo plano isolado via MCP Hub em uma Git Worktree dedicada sem abrir janelas, emitindo notificação de conclusão apenas ao finalizar com sucesso.
+   - ⛔ **Regra Inviolável de Segurança**: Em qualquer nível autônomo, **é estritamente proibido realizar deploy automático em ambiente de produção**.
+
 
 
