@@ -185,12 +185,36 @@ The workspace centralizes a complete catalog of **25 Conn2Flow Core Skills** (`c
 
 ---
 
+## ⚡ Quickstart Guide: Core CLI (`c2f`), MCP Hub & Worktrees
+
+The framework provides a cross-platform automation suite out of the box:
+
+### 1. Core CLI (`c2f`) in the Terminal:
+* **Git Bash / Linux / macOS**: `./c2f <command>` (e.g. `./c2f resources:sync`, `./c2f ai:sync`, `./c2f module:create <id>`)
+* **Windows PowerShell**: `.\c2f.ps1 <command>`
+* **Windows CMD**: `c2f <command>`
+
+### 2. Dual-Mode MCP Hub Server (Docker with Auto-Start):
+```bash
+cd mcp-hub
+docker compose up -d --build
+```
+*Enables Antigravity, Claude Code, and Cursor to communicate and execute tasks in Supervised (Chat UI) or Headless (Background) modes.*
+
+### 3. Git Worktrees for Parallel Agents:
+```powershell
+.\scripts\git\create-agent-worktree.ps1 -RepoPath "C:\path\to\conn2flow" -BranchName "feat-new-module"
+```
+
+---
+
 ## 📚 Technical Documentation Hub (`docs/`)
 
 For in-depth technical guides, explore the dedicated documentation in `docs/`:
+* 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/GUIA-RAPIDO-CLI-E-MCP.md) — Complete tutorial and command reference.
 * 🏛️ [Double Agent Architecture](docs/ARQUITETURA-AGENTE-DUPLO.md) — Role separation, writing boundaries, and governance.
-* 🧩 [Complete Skills Catalog](docs/CATALOGO-DE-SKILLS.md) — Exhaustive guide for all 32 skills.
-* 🚀 [Future Evolution Roadmap](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — MCP Servers, self-healing CI/CD, and educational framework.
+* 🧩 [Complete Skills Catalog](docs/CATALOGO-DE-SKILLS.md) — Exhaustive guide for all 32 skills with contracts.
+* 🔮 [Future Evolution Roadmap](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — MCP Servers, self-healing CI/CD, and educational framework.
 
 ---
 

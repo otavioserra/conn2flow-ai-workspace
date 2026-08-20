@@ -18,3 +18,9 @@ Bem-vindo à documentação aprofundada da infraestrutura, governança e metodol
    - Centralização de Skills via Servidor MCP (*Model Context Protocol*).
    - Esteira de CI/CD com loop de auto-cura (*Self-Healing Tests*).
    - Diretrizes para o Curso de IA (do Leigo ao Avançado).
+
+4. **[Guia Rápido do Core CLI, MCP Hub & Worktrees](GUIA-RAPIDO-CLI-E-MCP.md)**:
+   - Comandos multiplataforma do CLI `c2f` (Git Bash, PowerShell, CMD).
+   - Como subir o Servidor MCP Hub no Docker com auto-start.
+   - Como criar Git Worktrees para execução de múltiplos agentes concorrentes.
+
