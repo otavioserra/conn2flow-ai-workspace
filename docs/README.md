@@ -24,3 +24,9 @@ Bem-vindo à documentação aprofundada da infraestrutura, governança e metodol
    - Como subir o Servidor MCP Hub no Docker com auto-start.
    - Como criar Git Worktrees para execução de múltiplos agentes concorrentes.
 
+5. **[Playbook de Orquestração Multi-Agentes & Alternância entre IDEs](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md)**:
+   - Como alternar dinamicamente entre Claude Code, Cursor, Copilot e Antigravity sem perder contexto.
+   - Como executar diretamente com subagentes locais no Antigravity.
+   - O espectro dos 3 níveis de autonomia na prática.
+
+

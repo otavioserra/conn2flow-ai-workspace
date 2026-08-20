@@ -210,6 +210,7 @@ docker compose up -d --build
 
 Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/`:
 * 🚀 [Guia Rápido do Core CLI, MCP Hub & Worktrees](docs/GUIA-RAPIDO-CLI-E-MCP.md) — Tutorial passo a passo completo.
+* 🧭 [Playbook de Orquestração Multi-Agentes & IDEs](docs/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Como alternar entre Claude, Cursor, Copilot e Antigravity.
 * 🏛️ [Arquitetura de Agente Duplo](docs/ARQUITETURA-AGENTE-DUPLO.md) — Separação de papéis, fronteiras e governança.
 * 🧩 [Catálogo Completo de Skills](docs/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 32 skills com contratos.
 * 🔮 [Roteiro de Evolução Futura](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — Servidores MCP, CI/CD de auto-cura e estratégia educacional.
