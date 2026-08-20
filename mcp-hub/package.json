@@ -1,0 +1,30 @@
+{
+  "name": "@conn2flow/mcp-hub",
+  "version": "1.0.0",
+  "description": "Conn2Flow Dual-Mode MCP Server for Multi-Agent Orchestration",
+  "main": "dist/index.js",
+  "bin": {
+    "conn2flow-mcp-hub": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "conn2flow",
+    "orchestration",
+    "agentic-ai",
+    "dual-mode"
+  ],
+  "author": "Conn2Flow Core Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.7.0"
+  }
+}

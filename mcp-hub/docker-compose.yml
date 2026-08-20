@@ -1,0 +1,23 @@
+services:
+  conn2flow-mcp-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: conn2flow-mcp-hub
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../../conn2flow:/workspace/conn2flow
+      - ../:/workspace/conn2flow-ai-workspace
+      - ./tasks:/app/tasks
+      - ./completions:/app/completions
+    networks:
+      - conn2flow-network
+
+networks:
+  conn2flow-network:
+    name: conn2flow-network
+    driver: bridge

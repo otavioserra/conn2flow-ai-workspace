@@ -18,3 +18,8 @@ node_modules/
 # Local-only SDD governance files (custom local tasks)
 sdd/**/local-*
 sdd/**/local/
+
+# MCP Hub runtime state
+mcp-hub/tasks/
+mcp-hub/completions/
+
