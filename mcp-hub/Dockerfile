@@ -11,7 +11,7 @@ RUN npm run build
 FROM node:20-alpine AS runner
 
 # Install PHP, Bash and Git for local c2f CLI execution support
-RUN apk add --no-cache bash php82 php82-json php82-phar php82-mbstring php82-openssl git
+RUN apk add --no-cache bash php php-phar php-mbstring php-openssl php-curl git
 
 WORKDIR /app
 

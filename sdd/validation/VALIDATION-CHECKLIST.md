@@ -177,5 +177,28 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comandos**: 16 execuções de instaladores spec-driven com `-Force`.
 *   **Evidência**: 14 templates de skills e 15 arquivos de instrução de kit sincronizados em todos os repositórios.
 
+---
+
+## BATCH-017: Alpine Docker Build Fix & 1-Click MCP Setup Tooling
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Correção de pacotes Alpine Linux no `mcp-hub/Dockerfile` (`php`, `php-phar`, `php-mbstring`, `php-openssl`, `php-curl`).
+- [x] Docker image `mcp-hub-conn2flow-mcp-hub:latest` construída com sucesso.
+- [x] Scripts de 1-Click Setup criados: `scripts/setup-mcp-connectors.ps1`, `scripts/setup-mcp-connectors.sh` e helper `scripts/inject-mcp-connector.cjs`.
+- [x] Comando `c2f ai:mcp-setup` criado em `conn2flow/cli/src/Commands/AiMcpSetupCommand.php` e registrado no `Application.php`.
+- [x] Execução do setup validada em Claude Desktop, Cursor e VS Code.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Docker Build do MCP Hub
+*   **Comando**: `docker compose build` na pasta `mcp-hub`.
+*   **Evidência**: Build concluído com sucesso sem erros de repositório de pacotes Alpine.
+
+#### Teste 2: Injeção de Conectores 1-Click
+*   **Comando**: `.\scripts\setup-mcp-connectors.ps1` e `.\c2f.ps1 ai:mcp-setup`.
+*   **Evidência**: Configurações atualizadas de forma não destrutiva em `%APPDATA%\Claude\claude_desktop_config.json`, `.cursor\mcp.json` e `.vscode\mcp.json`.
+
+
 
 
