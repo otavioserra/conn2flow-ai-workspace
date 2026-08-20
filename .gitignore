@@ -3,7 +3,8 @@ temp/
 temp-images/
 
 # Editor / System files
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 .idea/
 .DS_Store
 Thumbs.db
