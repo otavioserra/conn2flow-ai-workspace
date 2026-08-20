@@ -10,14 +10,24 @@
 - Edite sdd numerados apenas quando requisito, contrato, critério de aceite ou decisão aprovada realmente mudar.
 - Mantenha o trabalho em batches pequenos com alvo de validação explícito.
 
-## Skills principais
+## Skills OBRIGATÓRIAS por Marco de Fluxo
 
-- Use `/start-sdd-slice` para nova demanda ou entrada em `sdd/human-requests/`.
-- Use `/continue-sdd-batch` para retomar um batch em andamento.
-- Use `/review-current-batch` para review findings-first do batch atual.
-- Use `/raise-spec-change` para rodada de mudança normativa.
+Invoque explicitamente a skill correspondente ANTES de editar código ou fechar lotes:
+- **Início de Tarefa**: `/start-sdd-slice` (nova demanda), `/continue-sdd-batch` (retomar batch), `sdd-workflow` (alinhar fluxo).
+- **Durante a Edição**: invoque as Core Skills (`c2f-*`) relevantes para a stack tocada (banco, variáveis, recursos, layout, etc.).
+- **Fechamento e Validação**: `project-validation` (estratégia de testes), `/review-current-batch` (review findings-first), `sdd-memory-gardening` (podar memórias).
+- **Mudança Normativa**: `/raise-spec-change` (se houver alteração de contrato/requisito).
 
-## Skills automáticas
+## Otimização de Contexto e Arquivamento
 
-- `sdd-workflow`: decidir o artefato certo e manter o batch alinhado ao fluxo.
-- `project-validation`: escolher a menor validação executável para o slice atual.
+- Mantenha `sdd/decisions/DECISION-LOG.md`, `sdd/implementation/BATCH-INDEX.md` e `sdd/validation/VALIDATION-CHECKLIST.md` com no máximo 10 itens correntes ou ativos.
+- Mantenha também `sdd/human-requests/` enxuto, preservando no máximo 10 requisições correntes ou recentes fora de `archive/`.
+- Mova históricos antigos para a subpasta `archive/` correspondente: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/` ou `sdd/validation/archive/`.
+- Nos arquivos principais, substitua o histórico arquivado por tabelas Markdown resumidas com 1 linha por item e link direto para o arquivo em `archive/`.
+- Ao carregar contexto inicial, priorize os arquivos principais e abra itens em `archive/` apenas quando o batch, a requisição ativa ou um link de rastreabilidade exigir.
+
+## Intake Gate do backlog
+
+- `sdd/backlog/` é uma incubadora de rascunhos administrada pelo Usuário e pelo Arquiteto IA.
+- O Executor pode ler itens para contexto, mas é estritamente proibido de implementá-los, abrir batch de execução ou alterar código diretamente a partir deles.
+- Um item, inclusive `READY`, só se torna executável após promoção humana explícita para `sdd/human-requests/req-XXX.md`, atualização de `CURRENT.md` e associação a um batch.

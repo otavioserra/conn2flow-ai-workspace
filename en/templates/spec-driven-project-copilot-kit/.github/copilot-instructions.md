@@ -1,28 +1,18 @@
-# Spec-Driven Project Guidelines
+# Copilot Instructions — Spec-Driven Development
 
-- This repository should treat `sdd/README.md` and the numbered SDD files as the normative source of truth.
-- Before editing code or SDD artifacts, read `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the current batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
-- Use `sdd/human-requests/` only as non-normative human intake. If the request comes as a Markdown file path or as the folder itself, read that material first and then classify it into the correct SDD artifact.
-- **Engineering Memories**: At the start of every session, you must read `sdd/ENGINEERING-MEMORY-CHIEF.md` and `sdd/ENGINEERING-MEMORY-EXECUTION.md` to align context before making any changes.
-- **Execution Memory Maintenance**: At the end of every task, update `sdd/ENGINEERING-MEMORY-EXECUTION.md` with new learnings, resolved bugs, and environment quirks. Never modify `sdd/ENGINEERING-MEMORY-CHIEF.md` without explicit instruction from the human user.
-- Classify the request early: change request, batch implementation, review, or validation.
-- Do not rewrite numbered SDD files for small review comments.
-- Edit numbered SDD files only when a requirement, contract, acceptance criterion, or approved decision really changes.
-- Keep the work in small batches with an explicit validation target.
-- To decide the correct artifact inside the SDD workflow, use the skill [sdd-workflow](./skills/sdd-workflow/SKILL.md).
-- For project-local validation, adapt and use the skill [project-validation](./skills/project-validation/SKILL.md).
-- The hook [sdd-session-start.json](./hooks/sdd-session-start.json) injects a short SDD reminder at session start; keep that hook short and predictable.
+- Treat `sdd/README.md` and numbered specifications as normative sources of truth.
+- Read `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the active batch, and `sdd/validation/VALIDATION-CHECKLIST.md` before editing code.
+- Engineering Memories: read `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` and `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` at session start.
 
-## Context Optimization and Archive Governance
+## MANDATORY Skills by Workflow Milestone
 
-- Keep `sdd/decisions/DECISION-LOG.md`, `sdd/implementation/BATCH-INDEX.md`, and `sdd/validation/VALIDATION-CHECKLIST.md` limited to at most 10 current or active items.
-- Keep `sdd/human-requests/` lean as well, preserving at most 10 current or recent requests outside `archive/`.
-- Move older history into the matching `archive/` subfolder: `sdd/decisions/archive/`, `sdd/human-requests/archive/`, `sdd/implementation/archive/`, or `sdd/validation/archive/`.
-- In the main files, replace archived history with concise Markdown summary tables containing 1 row per item and a direct link to the file in `archive/`.
-- When loading initial context, prioritize the main files and open items in `archive/` only when the active batch, active request, or a traceability link requires it.
+Explicitly invoke the corresponding skill BEFORE editing code or closing batches:
+- **Task Start**: `start-sdd-slice`, `continue-sdd-batch`, `sdd-workflow`.
+- **During Implementation**: invoke relevant Core Skills (`c2f-*`) for the stack being touched.
+- **Closing & Validation**: `project-validation`, `review-current-batch`, `sdd-memory-gardening`.
+- **Normative Changes**: `raise-spec-change`.
 
 ## Backlog Intake Gate
 
-- `sdd/backlog/` is a read-only draft incubator managed by the User and AI Architect.
-- Executors may inspect items, but cannot implement them, open an executable batch, or change code directly from them.
-- Even a `READY` item requires human promotion to `sdd/human-requests/`, an updated `CURRENT.md`, and an assigned batch.
+- `sdd/backlog/` is an incubator draft space. Implementing items directly from it is strictly prohibited.
+- An item becomes executable only after human promotion to `sdd/human-requests/req-XXX.md` and batch association.

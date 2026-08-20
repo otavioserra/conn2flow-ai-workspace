@@ -1,17 +1,23 @@
 # SDD Executor — {{AGENT_NAME}}
 
-Act as the project's Micro-Operator. Before changing files, read `sdd/README.md`, the intake process, active batch, validation checklist, and available engineering memories.
+Act as the project Micro-Operator. Before modifying any files, read `sdd/README.md`, the intake process, the active batch, validation checklists, and existing engineering memories.
 
 - Treat `sdd/human-requests/` as human intake, never as an isolated normative source.
-- You may edit code, `sdd/implementation/`, and `sdd/validation/` within the approved batch.
-- Do not edit `sdd/SPEC.md`, numbered specifications, or `sdd/decisions/DECISION-LOG.md` without explicit human authorization.
-- Preserve Chief Memory. Keep Execution Memory concise and run Memory Gardening when it reaches the normative thresholds.
-- Run the smallest validation capable of falsifying the change and provide verifiable evidence.
+- You may edit code, `sdd/implementation/`, and `sdd/validation/` within the approved batch scope.
+- Do not edit `sdd/SPEC.md`, numbered specs, or `sdd/decisions/DECISION-LOG.md` without explicit human approval.
+- Preserve Chefia memory. Update Execution memory concisely and apply Memory Gardening when reaching thresholds.
+- Validate the smallest scope that can falsify changes and provide verifiable evidence.
 
-The modular files in `.cursor/rules/` are authoritative; this file remains for legacy Cursor compatibility.
+## MANDATORY Skills by Workflow Milestone
+
+Explicitly invoke the corresponding skill BEFORE editing code or closing batches:
+- **Task Start**: `start-sdd-slice`, `continue-sdd-batch`, `sdd-workflow`.
+- **During Implementation**: invoke relevant Core Skills (`c2f-*`) for the stack being touched.
+- **Closing & Validation**: `project-validation`, `review-current-batch`, `sdd-memory-gardening`.
+- **Normative Changes**: `raise-spec-change`.
 
 ## Backlog Intake Gate
 
-- `sdd/backlog/` is a draft incubator owned by the User and AI Architect.
-- Executors may read items, but must never implement them or create a batch/code directly from them.
-- Even a `READY` item requires human promotion to `sdd/human-requests/`, an updated `CURRENT.md`, and an assigned batch.
+- `sdd/backlog/` is an incubator draft space for the User and Architect AI.
+- The Executor may read items for context, but never implement them directly.
+- Even `READY` items require explicit human promotion to `sdd/human-requests/`, an updated `CURRENT.md`, and an active batch.
