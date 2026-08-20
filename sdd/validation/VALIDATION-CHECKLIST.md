@@ -1,4 +1,4 @@
-﻿# Validation Checklist
+# Validation Checklist
 
 Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de testes empÃ­ricos de validaÃ§Ã£o para os lotes funcionais ativos.
 
@@ -101,3 +101,26 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 *   **Comando**: `git diff --check` e `git diff --cached --check` nos cinco repositórios.
 *   **Evidência**: nenhum erro de whitespace ou patch inválido.
+
+---
+
+## BATCH-014: Refatoração de Gatilhos e Contratos das 32 Skills
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Frontmatters das 32 Skills refatorados com Gatilhos de Ação + Consequência do Erro.
+- [x] Bloco formal `# ⚡ Gatilho Obrigatório` (`TRIGGER`, `SKIP APENAS SE`, `CONSEQUÊNCIA DE IGNORAR`) inserido no topo de cada `SKILL.md`.
+- [x] Instruções de kits (`CLAUDE.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMINI.md`, `.github/copilot-instructions.md`) atualizadas sem o termo "automáticas".
+- [x] 16 instaladores executados com `-Force` nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+- [x] Todos os 5 repositórios commitados e sincronizados no GitHub.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Estrutura dos Contratos
+*   **Procedimento**: Verificar presença de `TRIGGER`, `SKIP APENAS SE` e `CONSEQUÊNCIA DE IGNORAR` em todas as 32 skills em todos os templates e repositórios.
+*   **Evidência**: 448 arquivos de skills no workspace e 128 arquivos por repositório alvo validados com os contratos obrigatórios.
+
+#### Teste 2: Sincronização e Working Tree Clean
+*   **Procedimento**: Executar `git status` em todos os repositórios.
+*   **Evidência**: Árvores limpas com commits `dde926a` (workspace), `e97a9584` (conn2flow), `06d602c` (lumix), `456e0fa` (transformamp), `8753680` (conn2flow-site).
+
