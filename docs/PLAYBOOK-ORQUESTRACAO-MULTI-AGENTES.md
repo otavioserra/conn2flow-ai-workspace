@@ -1,6 +1,6 @@
 # 🧭 Playbook de Orquestração Multi-Agentes & Alternância entre IDEs
 
-Este playbook prático ensina como operar o **Conn2Flow AI Framework** com múltiplos modelos e ferramentas de IA (**Google Antigravity**, **Claude Code**, **Cursor IDE**, **VS Code GitHub Copilot**), garantindo **portabilidade total (Zero Vendor Lock-in)** e continuidade ininterrupta do trabalho mesmo quando os créditos de uma plataforma acabarem.
+Este playbook prático ensina como operar o **Conn2Flow AI Framework** com múltiplos modelos e ferramentas de IA (**Google Antigravity**, **Claude Code**, **Cursor IDE**, **VS Code GitHub Copilot**), garantindo **portabilidade total (Zero Vendor Lock-in)** e automação contínua via **MCP Hub**.
 
 ---
 
@@ -11,32 +11,55 @@ No Conn2Flow, a inteligência do projeto **não fica presa no histórico de um c
 ```mermaid
 flowchart TD
     Architect["🏛️ Antigravity (Macro-Arquiteto)"] -->|Grava Especificação & Lote Ativo| SingleTruth[("📁 sdd/human-requests/CURRENT.md")]
-    SingleTruth -->|Opção 1: Créditos Claude| Claude["⚡ Claude Code (lê CLAUDE.md)"]
-    SingleTruth -->|Opção 2: Créditos Cursor| Cursor["⚡ Cursor IDE (lê .cursorrules)"]
-    SingleTruth -->|Opção 3: Créditos Copilot| Copilot["⚡ VS Code Copilot (lê copilot-instructions)"]
-    SingleTruth -->|Opção 4: Créditos Antigravity| Subagents["⚡ Subagentes Nativos do Antigravity"]
+    SingleTruth -->|Opção 1: Despacho Automático MCP| MCP["⚡ conn2flow-mcp-hub (Docker)"]
+    MCP -->|Desperta Sessão| Claude["🤖 Claude Code / VS Code"]
+    MCP -->|Desperta Sessão| Cursor["🤖 Cursor IDE"]
+    SingleTruth -->|Opção 2: Subagentes Nativos| Subagents["🤖 Subagentes no Antigravity"]
 ```
 
 ---
 
-## 🚀 2. Como Executar Direto no Google Antigravity (Sem Sair do Chat)
+## ⚡ 2. O Fluxo de Despacho Automático via MCP Hub (Sem Copiar e Colar)
 
-Quando você estiver conversando com o **Arquiteto (Antigravity)** e quiser que a tarefa seja executada imediatamente aqui dentro (sem abrir o VS Code nem copiar/colar prompts):
+Com o servidor MCP Hub ativo, você **não precisa copiar e colar prompts** entre as telas:
 
-### Como orientar o Arquiteto:
-Basta dizer no chat:
-> *"Antigravity, execute a requisição atual aqui mesmo usando um subagente com o modelo `pro` (ou `flash`) no modo autônomo monitorado."*
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Voce as 👨‍💻 Você (Humano)
+    participant Arquiteto as 🏛️ Antigravity (Arquiteto)
+    participant MCP as ⚡ MCP Hub (conn2flow-mcp-hub)
+    participant Claude as 🤖 Claude Code / VS Code
 
-### O que acontece automaticamente:
-1. O Arquiteto invoca a ferramenta nativa `invoke_subagent`.
-2. O subagente assume o papel de **Engenheiro Executor**, cria a branch/worktree, implementa o código, compila recursos (`c2f resources:sync`) e roda testes (`c2f db:test`).
-3. Ao concluir, ele emite o relatório de encerramento na mesma tela.
+    Voce->>Arquiteto: "Execute a REQ-XXX no Claude no modo autônomo monitorado"
+    Arquiteto->>MCP: dispatch_task(repo: "conn2flow", req_id: "REQ-XXX", mode: "live_autonomous")
+    MCP->>Claude: Desperta o Claude no VS Code com o contexto
+    Note over Claude: Claude abre na tela do VS Code,<br/>mostra a Live Todo List e roda o c2f
+    Claude->>MCP: report_completion(status: "success", logs: "...")
+    MCP->>Arquiteto: Notificação de encerramento
+    Arquiteto->>Voce: "Otávio, o lote foi concluído com sucesso! Aqui estão os testes."
+```
 
 ---
 
-## 🔄 3. Como Alternar entre Ferramentas quando os Créditos Acabarem
+## 🚀 3. Execução Direta no Google Antigravity (Com Subagentes Visíveis)
 
-Como os kits de IA (`CLAUDE.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMINI.md`, `.github/copilot-instructions.md`) e as 32 Skills já estão instalados em todos os repositórios, **a transição entre ferramentas leva menos de 5 segundos**:
+Quando você quiser que a execução aconteça diretamente dentro do Antigravity:
+
+### Como orientar o Arquiteto:
+> *"Antigravity, execute a requisição atual aqui mesmo usando um subagente com o modelo `pro` (ou `flash`) no modo autônomo monitorado."*
+
+### O que acontece:
+1. O Arquiteto invoca `invoke_subagent`.
+2. Uma **aba/janela dedicada do subagente** abre na interface lateral do Antigravity.
+3. Você pode clicar no subagente e **ver ao vivo os comandos sendo digitados, arquivos alterados e testes passando**.
+4. Ao concluir, o subagente devolve o relatório na conversa principal.
+
+---
+
+## 🔄 4. Como Alternar entre Ferramentas quando os Créditos Acabarem
+
+Caso você queira abrir manualmente as ferramentas no terminal ou IDE:
 
 ---
 
@@ -46,7 +69,7 @@ Como os kits de IA (`CLAUDE.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMIN
    ```bash
    claude
    ```
-3. Cole o prompt gerado pelo Arquiteto ou digite apenas:
+3. Digite apenas:
    > *"Execute a requisição ativa em sdd/human-requests/CURRENT.md no modo autônomo monitorado."*
 4. O Claude lê o `CLAUDE.md` e o `CURRENT.md` e inicia a esteira completa.
 
@@ -57,7 +80,7 @@ Como os kits de IA (`CLAUDE.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMIN
 2. Abra o **Composer** (`Ctrl + I`) ou o Chat (`Ctrl + L`).
 3. Digite:
    > *"Execute a requisição ativa em sdd/human-requests/CURRENT.md no modo autônomo monitorado."*
-4. O Cursor lê automaticamente o `.cursorrules` e `.cursor/rules/sdd.mdc` e executa a tarefa com o modelo configurado no Cursor (ex: GPT-4o, Sonnet, etc.).
+4. O Cursor lê automaticamente o `.cursorrules` e `.cursor/rules/sdd.mdc` e executa com o modelo selecionado no Cursor (ex: GPT-4o, Sonnet, etc.).
 
 ---
 
@@ -71,14 +94,12 @@ Como os kits de IA (`CLAUDE.md`, `.cursorrules`, `.cursor/rules/sdd.mdc`, `GEMIN
 
 ### 🟡 Cenário D: Acabou tudo fora ➔ Voltar para o Antigravity
 1. Abra o chat do Antigravity e diga:
-   > *"Acabaram os créditos das IDEs externas. Execute a requisição aqui no Antigravity com subagente."*
-2. O Arquiteto despacha a tarefa internamente sem interrupções.
+   > *"Execute a requisição aqui no Antigravity com subagente."*
+2. O Arquiteto assume a execução internamente.
 
 ---
 
-## 🎚️ 4. Relembrando o Espectro dos 3 Níveis de Autonomia
-
-Ao disparar qualquer executor, você pode escolher o nível de supervisão:
+## 🎚️ 5. Espectro dos 3 Níveis de Autonomia
 
 | Nível | Identificador | Comportamento |
 | :--- | :--- | :--- |
