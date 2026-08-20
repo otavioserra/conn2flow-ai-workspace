@@ -73,7 +73,7 @@ fi
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 workspace_root="$(cd "$script_dir/.." && pwd)"
-language_root="$(cd "$workspace_root/$language" && pwd)"
+language_root="$(cd "$workspace_root/templates/$language" && pwd)"
 target_root="$(cd "$target_root" && pwd)"
 
 is_text_file() {

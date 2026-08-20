@@ -40,7 +40,7 @@ if [[ -n "$agent_prefix" && ! "$agent_prefix" =~ ^[A-Za-z0-9._-]+$ ]]; then
 fi
 
 script_dir="$(cd "$(dirname "$0")" && pwd)"
-language_root="$(cd "$script_dir/../$language" && pwd)"
+language_root="$(cd "$script_dir/../templates/$language" && pwd)"
 template_root="$(cd "$language_root/templates/spec-driven-project-gemini-kit" && pwd)"
 boilerplate_root="$(cd "$language_root/sdd-boilerplate/sdd" && pwd)"
 mkdir -p "$target_root"

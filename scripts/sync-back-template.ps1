@@ -15,7 +15,7 @@ $ErrorActionPreference = 'Stop'
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $workspaceRoot = (Resolve-Path (Join-Path $scriptDir '..')).Path
-$languageRoot = (Resolve-Path (Join-Path $workspaceRoot $Language)).Path
+$languageRoot = (Resolve-Path (Join-Path (Join-Path $workspaceRoot 'templates') $Language)).Path
 
 if (-not (Test-Path $TargetRepoPath)) {
     throw "Target repo path does not exist: $TargetRepoPath"

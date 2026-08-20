@@ -13,7 +13,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$languageRoot = (Resolve-Path (Join-Path $scriptDir "..\$Language")).Path
+$languageRoot = (Resolve-Path (Join-Path $scriptDir "..\templates\$Language")).Path
 $templateRoot = (Resolve-Path (Join-Path $languageRoot 'templates\private-project-copilot-kit')).Path
 $boilerplateRoot = (Resolve-Path (Join-Path $languageRoot 'sdd-boilerplate\sdd')).Path
 

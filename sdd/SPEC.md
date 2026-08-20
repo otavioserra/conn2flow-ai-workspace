@@ -4,12 +4,15 @@ Este documento reúne a especificação técnica e de arquitetura dos templates 
 
 ---
 
-## 1. Organização dos Idiomas na Raiz
-A raiz do repositório deve conter duas pastas de idiomas independentes, contendo as versões localizadas dos arquivos de templates e boilerplates:
-*   `pt-br/`: Contém os recursos em Português do Brasil.
-*   `en/`: Contém os recursos em Inglês americano.
+## 1. Organização Semântica dos Idiomas em `templates/` e `docs/`
 
-Cada pasta de idioma deve ter a seguinte subestrutura interna:
+O repositório adota a convenção de **Pastas Semânticas de Domínio** contendo as subpastas de idiomas (`pt-br/` e `en/`):
+
+### A. Diretório `templates/` (Moldes de Kits e Boilerplates):
+*   `templates/pt-br/`: Contém os moldes e boilerplates em Português do Brasil.
+*   `templates/en/`: Contém os moldes e boilerplates em Inglês americano.
+
+Cada pasta de idioma possui a seguinte subestrutura interna:
 *   `templates/`:
     - `spec-driven-project-claude-kit`: Configurações de IA do Claude Code para projetos SDD.
     - `spec-driven-project-copilot-kit`: Configurações de IA do GitHub Copilot para projetos SDD.
@@ -18,7 +21,13 @@ Cada pasta de idioma deve ter a seguinte subestrutura interna:
     - `private-project-claude-kit`: Configurações de IA do Claude Code para repositórios privados sobrepostos a um core.
     - `private-project-copilot-kit`: Configurações de IA do GitHub Copilot para repositórios privados sobrepostos a um core.
 *   `sdd-boilerplate/`:
-    - `sdd/`: A estrutura de pasta e arquivos markdown inicial padrão do SDD para novos projetos, completamente traduzidos no respectivo idioma da pasta raiz.
+    - `sdd/`: A estrutura de pastas e arquivos markdown inicial padrão do SDD para novos projetos, completamente traduzidos no respectivo idioma.
+
+### B. Diretório `docs/` (Manuais Técnicos e Guias):
+*   `docs/pt-br/`: Documentação técnica completa em Português.
+*   `docs/en/`: Documentação técnica completa em Inglês.
+*   `docs/README.md`: Router e índice central bilíngue.
+
 
 ---
 

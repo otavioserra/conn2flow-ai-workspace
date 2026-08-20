@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    Sincroniza instantaneamente todas as 32 skills e kits de IA para todos os repositórios alvo.
+    Sincroniza instantaneamente todas as 32 skills e kits de IA para todos os repositorios alvo.
 .DESCRIPTION
-    Atualiza com -Force os templates nos repositórios:
+    Atualiza com -Force os templates nos repositorios:
     - conn2flow
     - lumix
     - transformamp
@@ -17,7 +17,7 @@ param(
 $ErrorActionPreference = "Stop"
 $WorkspaceRoot = Split-Path -Parent $PSScriptRoot
 
-Write-Host "🚀 Iniciando sincronização 1-Click de Skills do Workspace..." -ForegroundColor Cyan
+Write-Host "Iniciando sincronizacao 1-Click de Skills do Workspace..." -ForegroundColor Cyan
 
 $Targets = @(
     "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow",
@@ -36,7 +36,7 @@ $Installers = @(
 foreach ($target in $Targets) {
     if (Test-Path $target) {
         $repoName = Split-Path -Leaf $target
-        Write-Host "`n📦 Sincronizando repositório: $repoName" -ForegroundColor Yellow
+        Write-Host "`nSincronizando repositorio: $repoName" -ForegroundColor Yellow
 
         foreach ($installer in $Installers) {
             $scriptPath = Join-Path $WorkspaceRoot "scripts\$installer"
@@ -44,7 +44,7 @@ foreach ($target in $Targets) {
                 & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" -Force | Out-Null
             }
         }
-        Write-Host "   ✅ 32 Skills atualizadas nos 4 kits de $repoName" -ForegroundColor Green
+        Write-Host "   32 Skills atualizadas nos 4 kits de $repoName" -ForegroundColor Green
 
         if ($CommitAndPush) {
             Push-Location $target
@@ -54,17 +54,17 @@ foreach ($target in $Targets) {
                     git add .
                     git commit -m "chore(skills): 1-click sync 32 skills from ai-workspace"
                     git push origin (git branch --show-current)
-                    Write-Host "   🚀 Commit e push realizados em $repoName" -ForegroundColor Cyan
+                    Write-Host "   Commit e push realizados em $repoName" -ForegroundColor Cyan
                 } else {
-                    Write-Host "   ✨ Nenhuma alteração pendente em $repoName" -ForegroundColor Gray
+                    Write-Host "   Nenhuma alteracao pendente em $repoName" -ForegroundColor Gray
                 }
             } finally {
                 Pop-Location
             }
         }
     } else {
-        Write-Host "⚠️ Repositório não encontrado: $target" -ForegroundColor Red
+        Write-Host "Repositorio nao encontrado: $target" -ForegroundColor Red
     }
 }
 
-Write-Host "`n🎉 Sincronização 1-Click concluída com sucesso em todos os repositórios!" -ForegroundColor Green
+Write-Host "`nSincronizacao 1-Click concluida com sucesso em todos os repositorios!" -ForegroundColor Green
