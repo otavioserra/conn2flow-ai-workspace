@@ -212,6 +212,7 @@ docker compose up -d --build
 
 For in-depth technical guides, explore the dedicated documentation in `docs/`:
 * 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/GUIA-RAPIDO-CLI-E-MCP.md) — Complete tutorial and command reference.
+* 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
 * 🏛️ [Double Agent Architecture](docs/ARQUITETURA-AGENTE-DUPLO.md) — Role separation, writing boundaries, and governance.
 * 🧩 [Complete Skills Catalog](docs/CATALOGO-DE-SKILLS.md) — Exhaustive guide for all 32 skills with contracts.
 * 🔮 [Future Evolution Roadmap](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — MCP Servers, self-healing CI/CD, and educational framework.
