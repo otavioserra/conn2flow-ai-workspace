@@ -1,6 +1,6 @@
 # CURRENT ACTIVE REQUEST
 
-*   **Ponteiro Ativo**: [req-014.md](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/sdd/human-requests/req-014.md)
-*   **Status**: `COMPLETED`
-*   **Lote Relacionado**: `BATCH-017`
+*   **Ponteiro Ativo**: [req-015.md](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/sdd/human-requests/req-015.md)
+*   **Status**: `READY-FOR-IMPLEMENTATION`
+*   **Lote Relacionado**: `BATCH-018`
 *   **Data de Entrada**: 2026-08-20
