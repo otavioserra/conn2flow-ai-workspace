@@ -65,26 +65,24 @@ docker compose up -d --build
 
 ---
 
-### ⚙️ Conectando as IDEs ao Servidor MCP
+### ⚙️ Conectando as IDEs ao Servidor MCP (1 Clique Automatizado)
 
-Adicione a configuração no arquivo de MCP da sua ferramenta (ex: `claude_desktop_config.json`, `.cursor/mcp.json` ou Antigravity):
+Em vez de editar arquivos JSON manualmente, execute o instalador automatizado:
 
-```json
-{
-  "mcpServers": {
-    "conn2flow-hub": {
-      "command": "node",
-      "args": [
-        "C:/caminho/para/conn2flow-ai-workspace/mcp-hub/dist/index.js"
-      ]
-    }
-  }
-}
+```powershell
+# No PowerShell ou terminal do workspace:
+.\scripts\setup-mcp-connectors.ps1
+
+# Ou diretamente pelo Core CLI:
+.\c2f.ps1 ai:mcp-setup
 ```
+
+*O instalador detecta automaticamente o **Claude Desktop**, **Cursor IDE**, **VS Code** e **Google Antigravity**, injetando o conector `conn2flow-hub` de forma segura e não destrutiva.*
 
 #### 🎮 Modos de Operação do MCP:
 1. **Modo 1 (Supervisionado no Chat do VS Code — Padrão)**: O usuário vê o chat abrindo, o agente digitando código e rodando testes ao vivo.
 2. **Modo 2 (Headless em Background)**: O agente processa a tarefa silenciosamente em segundo plano e notifica ao concluir.
+
 
 ---
 
