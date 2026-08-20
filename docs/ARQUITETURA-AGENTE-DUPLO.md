@@ -43,4 +43,9 @@ flowchart TD
 3. **Colheita de Habilidades (Skill Harvesting)**: Quando um executor comete um erro ou descobre uma convenção de framework, a regra é extraída e transformada em uma Skill atômica sob demanda (`.claude/skills/`, etc.), em vez de inflar os prompts de sistema.
 4. **Poda de Memória Idempotente (Memory Gardening)**: Memórias operacionais são mantidas abaixo de 10 KB, podando o histórico para ~5 KB em rodadas de manutenção dedicadas e idempotentes.
 5. **Intake Gate no Backlog (`sdd/backlog/`)**: Ideias em incubação (`ICEBOX` e `IN-DISCUSSION`) são blindadas contra leitura precipitada de agentes executores até promoção humana explícita.
+6. **A Tríade da Orquestração Moderna**:
+   - **`c2f` (Core CLI)**: Ponto de entrada nativo em PHP 8.2+ OOP no core para execução de recursos, banco, Docker e IA.
+   - **`conn2flow-mcp-hub` (Docker)**: Servidor MCP local para mensageria assíncrona entre o Arquiteto e os Executores nos modos Supervisionado e Headless.
+   - **`Git Worktrees`**: Provisionamento automático de branches e diretórios isolados permitindo que múltiplos agentes trabalhem concorrentemente sem conflitos de working tree.
+
 

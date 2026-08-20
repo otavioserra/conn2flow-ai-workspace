@@ -6,25 +6,20 @@ Este documento compila a visão estratégica de longo prazo do **Conn2Flow AI Wo
 
 ## 🔮 1. Iniciativas de Arquitetura no Backlog
 
-### A. Centralização de Skills & Ponte Inter-Agentes via Servidor MCP (`ARCH-002`)
-* **Problema**: Manter 32 skills copiadas fisicamente e ter que copiar/colar prompts manualmente entre o Arquiteto (Antigravity) e o Executor (VS Code).
-* **Solução**: Desenvolver um **Servidor MCP Local do Conn2Flow** com dois módulos:
-  1. *Skills Engine*: Serve as 32 skills e documentações sob demanda via JSON-RPC.
-  2. *Inter-Agent Bridge*: Fila de mensagens assíncrona. O Arquiteto despacha a requisição via MCP Tool, o Executor no VS Code recebe o evento, processa e emite uma notificação de encerramento de volta para o Arquiteto.
+### A. Centralização de Skills & Ponte Inter-Agentes via Servidor MCP (`ARCH-002`) — ✅ ENTREGUE (BATCH-015)
+* **Implementado**: Servidor MCP Node.js/TypeScript em `mcp-hub/` com container Docker (`conn2flow-mcp-hub`), suporte Dual-Mode (Supervisionado/Headless) e endpoints `c2f_run_command`, `dispatch_task`, `report_completion`.
 
-### B. CLI Nativo em PHP no Core do Conn2Flow (`FEAT-003`)
-* **Problema**: Depender de scripts PowerShell avulsos para sincronizações locais no dia a dia.
-* **Solução**: Implementar no Core (`gestor/`) um ponto de entrada CLI unificado `php gestor/cli.php ai:sync` com wrapper `./c2f ai:sync`, integrando sincronização de skills, compilação de recursos e testes.
+### B. CLI Nativo em PHP 8.2+ OOP no Core do Conn2Flow (`FEAT-003`) — ✅ ENTREGUE (BATCH-015)
+* **Implementado**: Subsistema `/cli` no core `conn2flow` com executáveis de raiz `./c2f` e `./c2f.ps1`, integrando comandos `resources:sync`, `ai:sync`, `module:create`, `docker:*` e `db:*`.
 
-### C. Esteira CI/CD com Loop de Auto-Cura (`FEAT-002`)
+### C. Modos de Autonomia de Git & Worktrees Concorrentes (`ARCH-003`) — ✅ ENTREGUE (BATCH-015)
+* **Implementado**: Utilitários `scripts/git/create-agent-worktree.ps1` e `.sh` para provisionamento isolado de worktrees concorrentes sob `worktrees/feat-req-XXX`.
+
+### D. Esteira CI/CD com Loop de Auto-Cura (`FEAT-002`) — 🧊 ICEBOX
 * **Problema**: Erros em PRs precisam de intervenção manual do desenvolvedor para rodar testes e corrigir falhas de compilação de dados de recursos.
 * **Solução**: Um GitHub Action que executa as migrações, a compilação (`atualizacao-dados-recursos.php`) e a suíte de testes. Em caso de falha, um subagente é invocado automaticamente com os logs para corrigir o código e reaplicar o commit antes da revisão humana.
 
-### D. Modos de Autonomia de Git & Worktrees Concorrentes (`ARCH-003`)
-* **Problema**: Agentes trabalhando em fila única para não colidir branches ou travas rígidas de commit.
-* **Solução**: Suporte a dois modos: *Supervisionado* (revisão humana de diffs) e *Transparente / Autônomo* (criação automática de `git worktrees` e branches de feature com validação por testes unitários e PRs automáticos).
-
-### E. Refatoração Semântica de Templates (`ARCH-001`)
+### E. Refatoração Semântica de Templates (`ARCH-001`) — 🧊 ICEBOX
 * Renomear a pasta física `gestor/autenticacoes.exemplo/` para `gestor/autenticacoes.template/`, alinhando a nomenclatura de autenticações ao padrão conceitual de templates do sistema.
 
 ---
