@@ -1,22 +1,22 @@
 ---
 name: sdd-memory-gardening
-description: "LEIA ANTES de finalizar a sessão ou quando a memória de execução ultrapassar os limites (50 linhas / 5 KB). Se não ler: prompt bloat degrada a atenção dos modelos de IA e desperdiça tokens."
+description: "READ BEFORE ending a session or whenever execution memory exceeds thresholds (50 KB / 150 lines). If ignored: prompt bloat degrades AI model attention and wastes tokens."
 user-invocable: false
 ---
 
-# Memory Gardening SDD
+# SDD Memory Gardening
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Finalizar uma sessão de trabalho, concluir um batch ou quando `MEMORIA-ENGENHARIA-EXECUCAO.md` exceder ~5 KB ou 50 linhas.
-- **SKIP APENAS SE**: Sessão de consulta simples sem alteração de contexto ou aprendizado operacional relevante.
-- **CONSEQUÊNCIA DE IGNORAR**: Degradação cognitiva do agente por excesso de contexto (prompt bloat), aumento de custos de inferência e esquecimento de diretrizes críticas.
+# ⚡ Mandatory Trigger
+- **TRIGGER**: Ending a work session, completing a batch, or whenever `ENGINEERING-MEMORY-EXECUTION.md` or `MEMORIA-ENGENHARIA-EXECUCAO.md` exceeds 50 KB or 150 lines (preventive alert at 35 KB / 100 lines).
+- **SKIP ONLY IF**: Simple read-only query session with no context change or operational learnings.
+- **CONSEQUENCE OF IGNORING**: Agent cognitive degradation from context bloat, increased inference costs, and loss of critical guidelines.
 
 ---
 
-1. Meça bytes e linhas e leia a memória de execução completa.
-2. Preserve somente as 3 a 5 tarefas mais recentes e pendências ativas.
-3. Destile regras recorrentes para skills Core ou específicas do projeto.
-4. Nunca altere a memória de Chefia sem instrução humana explícita.
-5. Reescreva a memória visando cerca de 5 KB e obrigatoriamente menos de 10 KB.
-6. Valide frontmatter, descoberta das skills e o diff Git recuperável.
-7. Registre tamanhos e evidências no checklist do batch.
+1. Measure bytes and line count and read the full execution memory (or run `c2f ai:prune-memories`).
+2. Preserve 12 to 15 recent tasks and active pending items.
+3. Distill recurrent rules into Core or project-specific skills.
+4. Never modify Leadership Memory without explicit human instruction.
+5. Rewrite memory targeting ~15 KB (preventive alert at 35 KB and strict maximum ceiling of 50 KB).
+6. Validate frontmatter, skill discovery, and recoverable Git history.
+7. Record final metrics and validation evidence in the batch checklist.

@@ -199,6 +199,30 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `.\scripts\setup-mcp-connectors.ps1` e `.\c2f.ps1 ai:mcp-setup`.
 *   **Evidência**: Configurações atualizadas de forma não destrutiva em `%APPDATA%\Claude\claude_desktop_config.json`, `.cursor\mcp.json` e `.vscode\mcp.json`.
 
+---
+
+## BATCH-018: Recalibração de Tetos SDD (35KB-50KB) & Modos de Autonomia de IA
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Tetos de Memory Gardening recalibrados para 35 KB (alerta) ~ 50 KB (teto) e ~15 KB (12 a 15 tarefas) pós-poda.
+- [x] Limite de itens ativos nos índices SDD expandido para 25 itens ativos.
+- [x] Documentos normativos atualizados (`sdd-memory-gardening`, `sdd/process/MEMORY-GARDENING-GUIDELINES.md`, `sdd/SPEC.md`).
+- [x] Comando `c2f ai:prune-memories` atualizado com os novos limites de 35KB e 50KB.
+- [x] Governança dos Modos de Autonomia (`SUPERVISIONADO` padrão vs. `AUTONOMO` com trava de deploy exclusivo em teste local) incorporada em todos os kits de IA.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+### 2. Evidências de Validação
+
+#### Teste 1: Execução do Memory Gardening no CLI
+*   **Comando**: `c2f.ps1 ai:prune-memories`.
+*   **Evidência**: Executou e validou a memória de execução dentro dos limites de 35KB-50KB.
+
+#### Teste 2: Propagação dos Kits de IA
+*   **Comando**: 16 execuções de instaladores spec-driven com `-Force`.
+*   **Evidência**: 14 skills `sdd-memory-gardening`, 14 skills `sdd-workflow` e 15 arquivos de instruções atualizados nos 4 repositórios.
+
+
 
 
 

@@ -71,9 +71,9 @@ As regras nos templates de kits de IA (`CLAUDE.md`, `.claude/rules/sdd.md`, `.gi
 ## 5. Otimização de Contexto e Governança de Arquivamento (SDD Archive)
 Para evitar a degradação de atenção do agente devido à saturação do contexto de prompt (bloating) e para otimizar o uso de tokens, o framework adota um limite de itens nos arquivos de histórico ativos.
 
-### Regra do Limite de 10 Itens:
-*   Os arquivos principais de acompanhamento histórico e logs (`DECISION-LOG.md`, `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e similares) devem manter no máximo **10 itens ativos/correntes**.
-*   Itens antigos que excederem o limite de 10 registros devem ser movidos para subpastas `archive/` criadas dentro de seus respectivos diretórios:
+### Regra do Limite de 25 Itens:
+*   Os arquivos principais de acompanhamento histórico e logs (`DECISION-LOG.md`, `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e similares) devem manter no máximo **25 itens ativos/correntes**.
+*   Itens antigos que excederem o limite de 25 registros devem ser movidos para subpastas `archive/` criadas dentro de seus respectivos diretórios:
     - `sdd/decisions/archive/`
     - `sdd/human-requests/archive/`
     - `sdd/implementation/archive/`
@@ -94,8 +94,8 @@ As memórias de execução são contexto operacional curto, não um arquivo hist
 
 ### Limites e ciclo de poda
 
-*   A memória de execução entra em atenção preventiva ao atingir 10 KB ou 40 linhas e deve ser podada obrigatoriamente antes de exceder 15 KB ou 50 linhas.
-*   Após a poda, deve permanecer abaixo de 10 KB, mirando aproximadamente 5 KB e preservando somente as 3 a 5 tarefas mais recentes e pendências ainda ativas.
+*   A memória de execução entra em atenção preventiva ao atingir **35 KB ou 100 linhas** e deve ser podada obrigatoriamente antes de exceder **50 KB ou 150 linhas**.
+*   Após a poda, deve permanecer abaixo de 35 KB, mirando aproximadamente **15 KB** e preservando as **12 a 15 tarefas mais recentes** e pendências ainda ativas.
 *   A memória de Chefia permanece somente leitura para executores e não pode ser podada sem instrução humana explícita.
 *   O histórico removido continua recuperável pelo Git; não deve ser copiado para outro arquivo carregado automaticamente.
 
@@ -151,3 +151,24 @@ Cada idioma deve fornecer `templates/spec-driven-project-gemini-kit/` com:
 *   `.aiexclude`: compatibilidade de exclusões com Gemini Code Assist.
 
 Os instaladores `install-spec-driven-gemini-kit.ps1` e `.sh` devem aceitar target, `Force`, prefixo de agente e idioma `pt-br|en`, preservar arquivos existentes sem `Force`, resolver `{{AGENT_NAME}}`, criar o boilerplate somente quando `sdd/` estiver ausente e provisionar backlog/archives ausentes de forma não destrutiva.
+
+---
+
+## 10. Modos de Autonomia de IA e Trava de Segurança de Deploy
+
+Para equilibrar velocidade e segurança operacional, o framework formaliza dois modos de operação dos agentes de IA:
+
+### Modo 1: SUPERVISIONADO (Padrão Mandatório)
+* O agente implementa alterações no código e valida testes sob supervisão no chat.
+* O agente **não realiza commits automáticos nem deploys**. O desenvolvedor humano revisa os diffs antes de consolidar.
+
+### Modo 2: AUTÔNOMO (Ativado Apenas Quando Explicitamente Solicitado)
+* Quando a requisição contiver `modo: autonomo` ou o usuário autorizar expressamente:
+  1. Criação de branch ou worktree isolada (`feat/req-XXX`).
+  2. Implementação do código e compilação de recursos (`c2f resources:sync`).
+  3. Execução de testes automatizados (`c2f db:test`).
+  4. **DEPLOY EXCLUSIVAMENTE EM AMBIENTE DE TESTE LOCAL** (`c2f manager:update-all`, `c2f manager:sync-files` ou Docker local).
+  5. ⛔ **REGRA INVIOLÁVEL DE SEGURANÇA: NUNCA REALIZAR DEPLOY AUTOMÁTICO NO AMBIENTE DE PRODUÇÃO OU SERVIDORES REMOTOS.**
+  6. Commit semântico e push na branch de trabalho.
+  7. Apresentação de relatório com logs de validação.
+
