@@ -38,12 +38,32 @@ Este catálogo lista as **32 Skills** (25 Core Skills do Framework + 7 SDD Workf
 
 ## 🚦 2. SDD Workflow Skills (`sdd-*`) — 7 Skills
 
-| Skill | Propósito no Fluxo de Desenvolvimento |
-| :--- | :--- |
-| **`sdd-classify-intent`** | Classifica a intenção da requisição humana antes de qualquer edição. |
-| **`sdd-update-spec`** | Atualiza a especificação viva (`sdd/SPEC.md`) com rastreabilidade. |
-| **`sdd-record-decision`** | Registra decisões arquiteturais formais em `sdd/decisions/DECISION-LOG.md`. |
-| **`sdd-plan-batch`** | Divide requisitos complexos em lotes atômicos e executáveis. |
-| **`sdd-log-implementation`** | Registra o diário de implementação e evidências em `sdd/implementation/batch-YYY.md`. |
-| **`sdd-validate-acceptance`** | Valida critérios de aceite e executa testes de conformidade. |
-| **`sdd-process-change-request`** | Processa solicitações de mudança arquitetural (`CR-XXX.md`). |
+| Skill | Propósito no Fluxo de Desenvolvimento | Marco de Ativação |
+| :--- | :--- | :--- |
+| **`start-sdd-slice`** / **`sdd-classify-intent`** | Classifica a intenção e inicializa o contexto operacional da fatia. | 🟢 **Início de Tarefa** |
+| **`sdd-workflow`** | Guia passo a passo de desenvolvimento guiado por especificações. | 🟢 **Início de Tarefa** |
+| **`sdd-update-spec`** | Atualiza a especificação viva (`sdd/SPEC.md`) com rastreabilidade. | ⚙️ **Durante a Edição** |
+| **`sdd-record-decision`** | Registra decisões arquiteturais formais em `sdd/decisions/DECISION-LOG.md`. | ⚙️ **Durante a Edição** |
+| **`sdd-plan-batch`** | Divide requisitos complexos em lotes atômicos e executáveis. | ⚙️ **Durante a Edição** |
+| **`project-validation`** / **`sdd-validate-acceptance`** | Valida critérios de aceite, executa testes e audita requisitos. | 🏁 **Fechamento & Validação** |
+| **`review-current-batch`** / **`sdd-log-implementation`** | Registra o diário de implementação e evidências em `batch-YYY.md`. | 🏁 **Fechamento & Validação** |
+| **`sdd-memory-gardening`** | Poda e arquivamento idempotente de memórias de execução. | 🏁 **Fechamento & Validação** |
+| **`raise-spec-change`** / **`sdd-process-change-request`** | Processa solicitações formais de mudança de escopo (`CR-XXX.md`). | ⚠️ **Mudança Normativa** |
+
+---
+
+## ⚡ 3. O Padrão de Contrato de Execução (`TRIGGER` & `SKIP`)
+
+Todas as 32 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
+
+```markdown
+# ⚡ Gatilho Obrigatório
+- **TRIGGER**: Ação operacional exata que obriga a leitura prévia da skill.
+- **SKIP APENAS SE**: Condição estrita de isenção de leitura (ex: investigação sem edição).
+- **CONSEQUÊNCIA DE IGNORAR**: Risco técnico de falha silenciosa, regressão ou rejeição de commit.
+```
+
+### Frontmatter com Gatilho de Ação:
+As descrições no cabeçalho YAML seguem o padrão operacional direto:
+`"LEIA ANTES de [Ação Observável]. Se não ler: [Consequência invisível/Erro em produção]."`
+
