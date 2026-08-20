@@ -1,8 +1,13 @@
+<p align="right">
+  <a href="README.md">English</a> • <strong>Português (Brasil)</strong>
+</p>
+
 # Conn2Flow AI Workspace: Double Agent SDD Framework 🚀
 
 Seja bem-vindo ao **Conn2Flow AI Workspace**! Este repositório centraliza templates, configurações e documentação de ponta para implementar a metodologia **Spec-Driven Development (SDD)** através de um ecossistema de **Agente Duplo + Humano-no-Loop**.
 
 Este framework é open-source, modular e foi projetado para ser injetado em **qualquer repositório de software** (independente de linguagem ou stack) para otimizar drasticamente a velocidade de engenharia com inteligência artificial, mantendo o controle arquitetural absoluto.
+
 
 ---
 
@@ -208,12 +213,15 @@ docker compose up -d --build
 
 ## 📚 Central de Documentação Técnica (`docs/`)
 
-Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/`:
-* 🚀 [Guia Rápido do Core CLI, MCP Hub & Worktrees](docs/GUIA-RAPIDO-CLI-E-MCP.md) — Tutorial passo a passo completo.
-* 🧭 [Playbook de Orquestração Multi-Agentes & IDEs](docs/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Como alternar entre Claude, Cursor, Copilot e Antigravity.
-* 🏛️ [Arquitetura de Agente Duplo](docs/ARQUITETURA-AGENTE-DUPLO.md) — Separação de papéis, fronteiras e governança.
-* 🧩 [Catálogo Completo de Skills](docs/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 32 skills com contratos.
-* 🔮 [Roteiro de Evolução Futura](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — Servidores MCP, CI/CD de auto-cura e estratégia educacional.
+Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/pt-br/`:
+* 🚀 [Guia Rápido do Core CLI, MCP Hub & Worktrees](docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md) — Tutorial passo a passo completo.
+* 🧭 [Playbook de Orquestração Multi-Agentes & IDEs](docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Como alternar entre Claude, Cursor, Copilot e Antigravity.
+* 🏛️ [Arquitetura de Agente Duplo](docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md) — Separação de papéis, fronteiras e governança.
+* 🧩 [Catálogo Completo de Skills](docs/pt-br/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 32 skills com contratos.
+* 🔮 [Roteiro de Evolução Futura](docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md) — Servidores MCP, CI/CD de auto-cura e estratégia educacional.
+
+👉 *Procurando a documentação em Inglês? Acesse a [Central de Documentação em Inglês](docs/en/README.md).*
+
 
 ---
 

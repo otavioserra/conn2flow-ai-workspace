@@ -52,6 +52,3 @@ flowchart TD
    - **Nível 2 (`AUTÔNOMO MONITORADO` — Live Autopilot / Glass-Box)**: O agente executa toda a esteira de código, testes (`c2f db:test`), **deploy exclusivamente no ambiente de testes local** e commit/push na branch, exibindo a **Live Todo List (`[ ]` ➔ `[x]`)** e o progresso em tempo real na tela para acompanhamento do desenvolvedor.
    - **Nível 3 (`AUTÔNOMO HEADLESS` — Background Silencioso / Black-Box)**: O agente roda em segundo plano isolado via MCP Hub em uma Git Worktree dedicada sem abrir janelas, emitindo notificação de conclusão apenas ao finalizar com sucesso.
    - ⛔ **Regra Inviolável de Segurança**: Em qualquer nível autônomo, **é estritamente proibido realizar deploy automático em ambiente de produção**.
-
-
-

@@ -1,8 +1,13 @@
+<p align="right">
+  <strong>English</strong> • <a href="README-PT-BR.md">Português (Brasil)</a>
+</p>
+
 # Conn2Flow AI Workspace: Double Agent SDD Framework 🚀
 
 Welcome to the **Conn2Flow AI Workspace**! This repository centralizes cutting-edge templates, configurations, and documentation to implement the **Spec-Driven Development (SDD)** methodology using a **Double Agent + Human-in-the-Loop** ecosystem.
 
 This framework is open-source, modular, and designed to be injected into **any software repository** (regardless of language or stack) to drastically accelerate engineering velocity using AI while keeping absolute architectural control.
+
 
 ---
 
@@ -210,12 +215,15 @@ docker compose up -d --build
 
 ## 📚 Technical Documentation Hub (`docs/`)
 
-For in-depth technical guides, explore the dedicated documentation in `docs/`:
-* 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/GUIA-RAPIDO-CLI-E-MCP.md) — Complete tutorial and command reference.
-* 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
-* 🏛️ [Double Agent Architecture](docs/ARQUITETURA-AGENTE-DUPLO.md) — Role separation, writing boundaries, and governance.
-* 🧩 [Complete Skills Catalog](docs/CATALOGO-DE-SKILLS.md) — Exhaustive guide for all 32 skills with contracts.
-* 🔮 [Future Evolution Roadmap](docs/ROTEIRO-EVOLUCAO-FUTURA.md) — MCP Servers, self-healing CI/CD, and educational framework.
+For in-depth technical guides, explore the dedicated documentation in `docs/en/`:
+* 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/en/QUICKSTART-CLI-AND-MCP.md) — Complete tutorial and command reference.
+* 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
+* 🏛️ [Double Agent Architecture](docs/en/DOUBLE-AGENT-ARCHITECTURE.md) — Role separation, writing boundaries, and governance.
+* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 32 skills with contracts.
+* 🔮 [Future Evolution Roadmap](docs/en/FUTURE-EVOLUTION-ROADMAP.md) — MCP Servers, self-healing CI/CD, and educational framework.
+
+👉 *Looking for Brazilian Portuguese documentation? Check the [Portuguese Documentation Hub](docs/pt-br/README.md).*
+
 
 ---
 

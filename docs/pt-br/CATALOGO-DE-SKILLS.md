@@ -66,4 +66,3 @@ Todas as 32 skills implementam uma cláusula contratual no topo do arquivo para 
 ### Frontmatter com Gatilho de Ação:
 As descrições no cabeçalho YAML seguem o padrão operacional direto:
 `"LEIA ANTES de [Ação Observável]. Se não ler: [Consequência invisível/Erro em produção]."`
-

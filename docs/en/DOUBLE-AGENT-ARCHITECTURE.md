@@ -1,0 +1,54 @@
+# 🏛️ Double Agent Architecture (Double Agent SDD Framework)
+
+AI-assisted software engineering in enterprise codebases often fails when a single model attempts to act simultaneously as a high-level strategic planner and a low-level code executor.
+
+The **Double Agent Model with Spec-Driven Development (SDD)** solves this problem by dividing intelligence into two complementary roles anchored on a single source of truth in Git (`sdd/`).
+
+---
+
+## 👥 1. The Two Core Roles
+
+```mermaid
+flowchart TD
+    Human["👨‍💻 Human Chief Engineer"] -->|Vision, Decisions & Prompts| Architect["🏛️ Macro-Architect (Antigravity / Gemini 3.7 Flash)"]
+    Architect -->|Specifications & Batches (sdd/)| SingleTruth[("📁 Local Git Repository (SDD)")]
+    SingleTruth -->|Consumes Atomic Tasks| Executor["⚡ Micro-Executors (Claude Code / Cursor / Copilot)"]
+    Executor -->|Clean Code, Tests & Execution Logs| Codebase[("💻 Source Code & Test Suite")]
+    Codebase -->|Evidence & Verification| Human
+```
+
+### 🧠 A. The Macro-Architect (Antigravity / Gemini 3.7 Flash)
+* **Scope**: High-level abstraction, business domain planning, system design, data governance, and **living documentation**.
+* **Inputs**: Voice memos, rough architectural notes, feature requests, business rules, and batch completion receipts from executors.
+* **Outputs**: Formal SDD artifacts and Living Public Documentation:
+  - `sdd/SPEC.md`: Living technical specification of the project.
+  - `sdd/decisions/DECISION-LOG.md`: Formal architectural decision records.
+  - `sdd/human-requests/req-XXX.md`: Atomic, execution-ready requirement packages.
+  - `README.md` & `README-PT-BR.md`: Living documentation of the workspace synced after every batch.
+  - `docs/`: Comprehensive technical manuals, skills catalogs, and future roadmaps.
+* **Golden Rule**: The Architect **never edits source code files directly**. When auditing executor output, the Architect performs a **high-level diff review** (touched files, components, test pass rates), avoiding micro-level rabbit holes and maintaining strategic focus.
+
+### ⚡ B. The Micro-Executors (Claude Code / Cursor / Copilot)
+* **Scope**: Low-level implementation, tactical file editing, CLI commands, migrations, and automated unit testing.
+* **Inputs**: Atomic requirements (`req-XXX.md`), framework governance skills (`c2f-*`), and execution memories.
+* **Outputs**: Code modifications, compiled resource data (`*Data.json`), Phinx migrations, and batch completion reports (`sdd/implementation/batch-YYY.md`).
+* **Golden Rule**: The Executor **never modifies architectural specifications or decisions**. Any architectural discrepancy discovered during implementation must trigger a formal Change Request (`CR-XXX.md`).
+
+---
+
+## 🛡️ 2. Methodological Pillars
+
+1. **Ping-Pong Writing Boundary**: The Architect and the Executor enforce strict write permissions across repository folders.
+2. **The Architect as Documentation Guardian**: Living documentation (`READMEs` and `docs/`) is authored and maintained by the Architect upon closing each batch, eliminating stale documentation.
+3. **Skill Harvesting**: When an executor encounters an error or discovers a framework idiom, the rule is harvested into an atomic on-demand Skill (`.claude/skills/`, etc.) rather than bloating system prompts.
+4. **Idempotent Memory Gardening**: Operational memories are proactively maintained below 35 KB (~100 lines), with a mandatory 50 KB ceiling, pruning history down to ~15 KB (12 to 15 recent tasks) in dedicated maintenance passes or via `./c2f ai:prune-memories`.
+5. **Backlog Intake Gate (`sdd/backlog/`)**: Incubation items (`ICEBOX` and `IN-DISCUSSION`) are shielded from premature agent execution until explicit human promotion.
+6. **The AI Orchestration Triad**:
+   - **`c2f` (Core CLI)**: Native PHP 8.2+ OOP CLI in the core repository for resources, database, Docker, and AI.
+   - **`conn2flow-mcp-hub` (Docker)**: Local MCP Server for asynchronous messaging between Architect and Executors across Supervised and Headless modes.
+   - **`Git Worktrees`**: Automated provisioning of isolated branches and working trees allowing concurrent agent execution without workspace collisions.
+7. **3-Tier AI Autonomy Spectrum**:
+   - **Level 1 (`SUPERVISIONADO` / Supervised — Mandatory Default)**: The agent does not commit or deploy; the human developer reviews diffs in the chat before consolidation.
+   - **Level 2 (`AUTONOMO_MONITORADO` / Live Monitored Autopilot)**: The agent runs the full pipeline (code, tests, local test deploy, and branch commit/push) with a **Live Todo List (`[ ]` ➔ `[x]`)** visible in real-time on screen.
+   - **Level 3 (`AUTONOMO_HEADLESS` / Silent Headless Autopilot)**: The agent executes in the background via MCP Hub in a dedicated Git Worktree without interactive popups, emitting a final completion report.
+   - ⛔ **Inviolable Security Rule**: In any autonomous mode, **automatic deployment to production environments is strictly prohibited**.
