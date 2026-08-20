@@ -20,7 +20,11 @@ Este documento compila a visão estratégica de longo prazo do **Conn2Flow AI Wo
 * **Problema**: Erros em PRs precisam de intervenção manual do desenvolvedor para rodar testes e corrigir falhas de compilação de dados de recursos.
 * **Solução**: Um GitHub Action que executa as migrações, a compilação (`atualizacao-dados-recursos.php`) e a suíte de testes. Em caso de falha, um subagente é invocado automaticamente com os logs para corrigir o código e reaplicar o commit antes da revisão humana.
 
-### D. Refatoração Semântica de Templates (`ARCH-001`)
+### D. Modos de Autonomia de Git & Worktrees Concorrentes (`ARCH-003`)
+* **Problema**: Agentes trabalhando em fila única para não colidir branches ou travas rígidas de commit.
+* **Solução**: Suporte a dois modos: *Supervisionado* (revisão humana de diffs) e *Transparente / Autônomo* (criação automática de `git worktrees` e branches de feature com validação por testes unitários e PRs automáticos).
+
+### E. Refatoração Semântica de Templates (`ARCH-001`)
 * Renomear a pasta física `gestor/autenticacoes.exemplo/` para `gestor/autenticacoes.template/`, alinhando a nomenclatura de autenticações ao padrão conceitual de templates do sistema.
 
 ---
