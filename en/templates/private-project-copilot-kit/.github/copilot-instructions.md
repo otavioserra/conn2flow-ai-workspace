@@ -21,3 +21,10 @@
 - `sdd/backlog/` is a read-only draft incubator managed by the User and AI Architect.
 - Executors may inspect items, but cannot implement them, open an executable batch, or change code directly from them.
 - Even a `READY` item requires human promotion to `sdd/human-requests/`, an updated `CURRENT.md`, and an assigned batch.
+
+
+## 📋 Transparency Protocol & Live Todo List
+
+- Upon starting any request or batch, immediately render the full task list (`Todo List`) with checkboxes `[ ]`.
+- After each relevant step or command finishes, update and re-display the list marking `[x]` on completed steps and highlighting the current step (`⏳ [IN PROGRESS]`).
+- Never execute long sequences of actions without updating visual progress for the user.

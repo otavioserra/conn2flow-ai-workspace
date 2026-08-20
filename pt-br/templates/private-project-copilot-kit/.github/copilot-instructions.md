@@ -21,3 +21,10 @@
 - `sdd/backlog/` é uma incubadora de leitura exclusiva do Usuário e do Arquiteto IA.
 - O Executor pode consultar itens, mas não pode implementá-los, abrir batch executável ou alterar código diretamente a partir deles.
 - Mesmo `READY`, o item exige promoção humana para `sdd/human-requests/`, atualização de `CURRENT.md` e batch associado.
+
+
+## 📋 Protocolo de Transparência & Checklist Vivo (Live Todo List)
+
+- Ao iniciar qualquer requisição ou lote, renderize imediatamente a lista completa de tarefas (`Todo List`) com caixas de seleção `[ ]`.
+- A cada término de etapa/comando relevante, atualize e re-exiba a lista marcando `[x]` nas etapas concluídas e destacando a etapa atual (`⏳ [EM ANDAMENTO]`).
+- Nunca execute sequências longas de comandos sem atualizar o status visual para o usuário.

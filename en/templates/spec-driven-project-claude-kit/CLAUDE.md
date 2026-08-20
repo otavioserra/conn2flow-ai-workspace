@@ -31,3 +31,10 @@ Explicitly invoke the corresponding skill BEFORE editing code or closing batches
 - `sdd/backlog/` is an incubator draft space managed by the User and the Architect AI.
 - The Executor may read items for context, but is strictly prohibited from implementing them or editing code directly from backlog files.
 - An item becomes executable only after explicit human promotion to `sdd/human-requests/req-XXX.md`, updating `CURRENT.md`, and associating it with an active batch.
+
+
+## 📋 Transparency Protocol & Live Todo List
+
+- Upon starting any request or batch, immediately render the full task list (`Todo List`) with checkboxes `[ ]`.
+- After each relevant step or command finishes, update and re-display the list marking `[x]` on completed steps and highlighting the current step (`⏳ [IN PROGRESS]`).
+- Never execute long sequences of actions without updating visual progress for the user.

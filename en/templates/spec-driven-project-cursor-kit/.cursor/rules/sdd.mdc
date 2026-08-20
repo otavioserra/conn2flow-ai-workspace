@@ -14,3 +14,10 @@ alwaysApply: false
 6. Never alter Chefia memory without human instruction. Keep Execution memory below `sdd/process/MEMORY-GARDENING-GUIDELINES.md` limits.
 7. Preserve existing local changes, validate early, and record evidence in batch and checklist files.
 8. Treat `sdd/backlog/` as an incubator exclusively managed by the User/Architect. Never implement items directly from it.
+
+
+## 📋 Transparency Protocol & Live Todo List
+
+- Upon starting any request or batch, immediately render the full task list (`Todo List`) with checkboxes `[ ]`.
+- After each relevant step or command finishes, update and re-display the list marking `[x]` on completed steps and highlighting the current step (`⏳ [IN PROGRESS]`).
+- Never execute long sequences of actions without updating visual progress for the user.
