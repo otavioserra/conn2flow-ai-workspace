@@ -26,11 +26,21 @@ try {
     }
   }
 
+  // 1. Format for Claude Desktop & Cursor (mcpServers)
   if (!data.mcpServers || typeof data.mcpServers !== 'object') {
     data.mcpServers = {};
   }
-
   data.mcpServers['conn2flow-hub'] = {
+    command: 'node',
+    args: [entryPoint]
+  };
+
+  // 2. Format for VS Code Native MCP & Copilot (servers)
+  if (!data.servers || typeof data.servers !== 'object') {
+    data.servers = {};
+  }
+  data.servers['conn2flow-hub'] = {
+    type: 'stdio',
     command: 'node',
     args: [entryPoint]
   };
