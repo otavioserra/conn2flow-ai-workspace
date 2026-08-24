@@ -22,7 +22,7 @@ Welcome to the English technical documentation for Conn2Flow's AI infrastructure
    - Write boundaries, memory governance, and the SDD lifecycle.
 
 4. **[Complete Skills Catalog](SKILLS-CATALOG.md)**:
-   - Detailed guide for all 25 Core Framework Skills (`c2f-*`) and 7 SDD Workflow Skills.
+   - Detailed guide for all 26 Core Framework Skills (`c2f-*`) and 7 SDD Workflow Skills.
    - Deterministic triggers, contract clauses, and coding conventions.
 
 5. **[Future Evolution Roadmap & AI Backlog](FUTURE-EVOLUTION-ROADMAP.md)**:

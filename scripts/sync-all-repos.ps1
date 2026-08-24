@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Sincroniza instantaneamente todas as 32 skills e kits de IA para todos os repositorios alvo.
+    Sincroniza instantaneamente todas as 33 skills e kits de IA para todos os repositorios alvo.
 .DESCRIPTION
     Atualiza com -Force os templates nos repositorios:
     - conn2flow
@@ -11,6 +11,7 @@
 
 [CmdletBinding()]
 param(
+    [switch]$Force = $false,
     [switch]$CommitAndPush = $false
 )
 
@@ -41,22 +42,46 @@ foreach ($target in $Targets) {
         foreach ($installer in $Installers) {
             $scriptPath = Join-Path $WorkspaceRoot "scripts\$installer"
             if (Test-Path $scriptPath) {
-                & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" -Force | Out-Null
+                if ($Force) {
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" -Force | Out-Null
+                } else {
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" | Out-Null
+                }
+                if ($LASTEXITCODE -ne 0) {
+                    throw "Installer $installer failed for $repoName with exit code $LASTEXITCODE."
+                }
             }
         }
-        Write-Host "   32 Skills atualizadas nos 4 kits de $repoName" -ForegroundColor Green
+        Write-Host "   33 Skills atualizadas nos 4 kits de $repoName" -ForegroundColor Green
 
         if ($CommitAndPush) {
             Push-Location $target
             try {
-                $status = git status --porcelain
-                if ($status) {
-                    git add .
-                    git commit -m "chore(skills): 1-click sync 32 skills from ai-workspace"
+                $syncPaths = @(".claude", ".cursor", ".github", ".gemini")
+                if ($repoName -eq "conn2flow") {
+                    $syncPaths += "cli/src/Commands/AiSyncCommand.php"
+                }
+                git add -- $syncPaths
+                $tailwindSkillPaths = @(
+                    ".claude/skills/c2f-tailwind-css-architecture/SKILL.md",
+                    ".cursor/skills/c2f-tailwind-css-architecture/SKILL.md",
+                    ".github/skills/c2f-tailwind-css-architecture/SKILL.md",
+                    ".gemini/skills/c2f-tailwind-css-architecture/SKILL.md"
+                )
+                git add -f -- $tailwindSkillPaths
+                git diff --cached --quiet
+                if ($LASTEXITCODE -ne 0) {
+                    git commit -m "feat(skills): implement c2f-tailwind-css-architecture skill and sync across all repositories"
+                    if ($LASTEXITCODE -ne 0) {
+                        throw "Commit failed in $repoName with exit code $LASTEXITCODE."
+                    }
                     git push origin (git branch --show-current)
+                    if ($LASTEXITCODE -ne 0) {
+                        throw "Push failed in $repoName with exit code $LASTEXITCODE."
+                    }
                     Write-Host "   Commit e push realizados em $repoName" -ForegroundColor Cyan
                 } else {
-                    Write-Host "   Nenhuma alteracao pendente em $repoName" -ForegroundColor Gray
+                    Write-Host "   Nenhuma alteracao de skills pendente em $repoName" -ForegroundColor Gray
                 }
             } finally {
                 Pop-Location

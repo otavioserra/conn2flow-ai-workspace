@@ -1,10 +1,10 @@
 # 🧩 Skills Catalog — Conn2Flow AI Workspace
 
-This catalog lists the **32 Skills** (25 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, and **Gemini Antigravity (`.gemini/skills/`)**.
+This catalog lists the **33 Skills** (26 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, and **Gemini Antigravity (`.gemini/skills/`)**.
 
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 25 Skills
+## 🛠️ 1. Core Framework Skills (`c2f-*`) — 26 Skills
 
 | Skill | Trigger & Core Purpose |
 | :--- | :--- |
@@ -54,7 +54,7 @@ This catalog lists the **32 Skills** (25 Core Framework Skills + 7 SDD Workflow 
 
 ## ⚡ 3. The Execution Contract Pattern (`TRIGGER` & `SKIP`)
 
-All 32 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
+All 33 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
 
 ```markdown
 # ⚡ Mandatory Trigger

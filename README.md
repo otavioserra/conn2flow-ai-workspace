@@ -150,16 +150,15 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 
 ---
 
-## 🛠️ Conn2Flow Core Skills Catalog (22 Engineering Skills)
+## 🛠️ Conn2Flow Core Skills Catalog (26 Engineering Skills)
 
-The workspace centralizes a complete catalog of **22 Conn2Flow Core ## 🛠️ Conn2Flow Core Skills Catalog (25 Engineering Skills)
-
-The workspace centralizes a complete catalog of **25 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**32 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **26 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**33 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
 
 1. **Resources, Variables & Frontend**:
    - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json` and declarative SQL sync.
    - `c2f-variables-system`: **[NEW]** Multi-language i18n, system alerts/warnings, and UI labels governance via `variables.json`. Prohibits hardcoded strings in PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Mandatory rule prohibiting loose static `.html`, `.css`, and `.md` files outside `resources/`.
+   - `c2f-tailwind-css-architecture`: Tailwind CSS v4 governance for responsive cascade, `css_compiled`, dynamic templates, and builds through `c2f resources:sync`.
    - `c2f-modelo-templates`: HTML template parsing and repeating cells (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
    - `c2f-javascript-ajax`: Frontend AJAX pattern with `ajaxDefault`, `gestor.*` globals, 401 handling, and Semantic UI.
    - `c2f-multilingual-system`: Hybrid i18n system (`pt-br`, `en`, `es`), `language` natural key, and physical directories.
@@ -219,7 +218,7 @@ For in-depth technical guides, explore the dedicated documentation in `docs/en/`
 * 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/en/QUICKSTART-CLI-AND-MCP.md) — Complete tutorial and command reference.
 * 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
 * 🏛️ [Double Agent Architecture](docs/en/DOUBLE-AGENT-ARCHITECTURE.md) — Role separation, writing boundaries, and governance.
-* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 32 skills with contracts.
+* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 33 skills with contracts.
 * 🔮 [Future Evolution Roadmap](docs/en/FUTURE-EVOLUTION-ROADMAP.md) — MCP Servers, self-healing CI/CD, and educational framework.
 
 👉 *Looking for Brazilian Portuguese documentation? Check the [Portuguese Documentation Hub](docs/pt-br/README.md).*

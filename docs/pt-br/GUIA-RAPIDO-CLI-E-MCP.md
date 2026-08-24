@@ -35,7 +35,7 @@ O `c2f` é o ponto de entrada unificado para todas as operações do repositóri
 | `resources:sync` | Sincroniza e compila os 11 tipos de recursos no banco de dados. |
 | `db:test` | Executa a suíte de testes de integração e banco. |
 | `module:create <nome>` | Cria o scaffold canônico de um novo módulo CRUD. |
-| `ai:sync` | Sincroniza todas as 32 skills e instruções nos repositórios. |
+| `ai:sync` | Sincroniza todas as 33 skills e instruções nos repositórios. |
 | `ai:mcp-setup` | Injeta os conectores do MCP Hub no Claude, Cursor e VS Code. |
 | `ai:prune-memories` | Executa a rotina de poda idempotente de memórias do SDD. |
 | `docker:status` | Exibe o status de saúde dos containers da stack. |

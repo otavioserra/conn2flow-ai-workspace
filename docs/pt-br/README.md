@@ -22,7 +22,7 @@ Bem-vindo à documentação técnica em Português do Brasil da infraestrutura, 
    - Regras de fronteira de escrita (Ping-Pong Boundary), memória de engenharia e ciclo de vida do SDD.
 
 4. **[Catálogo Completo de Skills](CATALOGO-DE-SKILLS.md)**:
-   - Detalhamento das 25 Core Skills do Framework (`c2f-*`) e das 7 SDD Workflow Skills.
+   - Detalhamento das 26 Core Skills do Framework (`c2f-*`) e das 7 SDD Workflow Skills.
    - Gatilhos de ativação, regras mandatórias e convenções de código.
 
 5. **[Roteiro de Evolução Futura & Backlog Estratégico](ROTEIRO-EVOLUCAO-FUTURA.md)**:

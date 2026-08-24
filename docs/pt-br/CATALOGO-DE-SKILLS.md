@@ -1,10 +1,10 @@
 # 🧩 Catálogo de Skills — Conn2Flow AI Workspace
 
-Este catálogo lista as **32 Skills** (25 Core Skills do Framework + 7 SDD Workflow Skills) padronizadas e sincronizadas universalmente entre **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)** e **Gemini Antigravity (`.gemini/skills/`)**.
+Este catálogo lista as **33 Skills** (26 Core Skills do Framework + 7 SDD Workflow Skills) padronizadas e sincronizadas universalmente entre **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)** e **Gemini Antigravity (`.gemini/skills/`)**.
 
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 25 Skills
+## 🛠️ 1. Core Framework Skills (`c2f-*`) — 26 Skills
 
 | Skill | Gatilho & Propósito Principal |
 | :--- | :--- |
@@ -54,7 +54,7 @@ Este catálogo lista as **32 Skills** (25 Core Skills do Framework + 7 SDD Workf
 
 ## ⚡ 3. O Padrão de Contrato de Execução (`TRIGGER` & `SKIP`)
 
-Todas as 32 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
+Todas as 33 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
 
 ```markdown
 # ⚡ Gatilho Obrigatório

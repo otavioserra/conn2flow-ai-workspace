@@ -35,7 +35,7 @@ This practical tutorial covers how to operate the three components of the **Conn
 | `resources:sync` | Compiles and synchronizes 11 resource types into the database. |
 | `db:test` | Runs the automated integration and database test suite. |
 | `module:create <name>` | Scaffolds a new canonical CRUD module based on `modulos-grupos`. |
-| `ai:sync` | Synchronizes all 32 skills and instructions across target repositories. |
+| `ai:sync` | Synchronizes all 33 skills and instructions across target repositories. |
 | `ai:mcp-setup` | Registers MCP Hub connectors in Claude Desktop, Cursor, and VS Code. |
 | `ai:prune-memories` | Runs idempotent memory gardening on SDD tracking files. |
 | `docker:status` | Displays health and container status for the stack. |

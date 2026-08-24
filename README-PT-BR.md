@@ -150,14 +150,15 @@ Conforme os projetos evoluem, as memórias de execução podem crescer em excess
 
 ---
 
-## 🛠️ Acervo de Core Skills do Conn2Flow (25 Skills de Engenharia)
+## 🛠️ Acervo de Core Skills do Conn2Flow (26 Skills de Engenharia)
 
-O workspace centraliza um catálogo completo de **25 Skills Core do Conn2Flow** (`c2f-*`) + **7 SDD Workflow Skills** (totalizando **32 Skills**), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
+O workspace centraliza um catálogo completo de **26 Skills Core do Conn2Flow** (`c2f-*`) + **7 SDD Workflow Skills** (totalizando **33 Skills**), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
 
 1. **Recursos, Variáveis & Frontend**:
    - `c2f-resources-system`: Arquitetura de compilação de 11 tipos de recursos (`resources/`) para `*Data.json` e sincronização SQL declarativa.
    - `c2f-variables-system`: **[NOVO]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded em PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Regra mandatória que proíbe arquivos `.html`, `.css` e `.md` estáticos soltos fora de `resources/`.
+   - `c2f-tailwind-css-architecture`: Governança do Tailwind CSS v4 para cascata responsiva, `css_compiled`, templates dinâmicos e builds via `c2f resources:sync`.
    - `c2f-modelo-templates`: Processamento de templates HTML e células repetitivas (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
    - `c2f-javascript-ajax`: Padrão de requisições AJAX com `ajaxDefault`, variáveis `gestor.*`, callbacks 401 e Semantic UI.
    - `c2f-multilingual-system`: Sistema híbrido de i18n (`pt-br`, `en`, `es`), chave natural `language` e diretórios físicos.
@@ -217,7 +218,7 @@ Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/pt-br
 * 🚀 [Guia Rápido do Core CLI, MCP Hub & Worktrees](docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md) — Tutorial passo a passo completo.
 * 🧭 [Playbook de Orquestração Multi-Agentes & IDEs](docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) — Como alternar entre Claude, Cursor, Copilot e Antigravity.
 * 🏛️ [Arquitetura de Agente Duplo](docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md) — Separação de papéis, fronteiras e governança.
-* 🧩 [Catálogo Completo de Skills](docs/pt-br/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 32 skills com contratos.
+* 🧩 [Catálogo Completo de Skills](docs/pt-br/CATALOGO-DE-SKILLS.md) — Guia detalhado de todas as 33 skills com contratos.
 * 🔮 [Roteiro de Evolução Futura](docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md) — Servidores MCP, CI/CD de auto-cura e estratégia educacional.
 
 👉 *Procurando a documentação em Inglês? Acesse a [Central de Documentação em Inglês](docs/en/README.md).*
@@ -246,4 +247,3 @@ Itens do backlog nunca são executáveis por si só. Executores podem lê-los co
 ## ⚖️ Licença
 
 Este projeto é disponibilizado sob a licença MIT. Sinta-se livre para usar, modificar e distribuir na sua empresa ou comunidade.
-

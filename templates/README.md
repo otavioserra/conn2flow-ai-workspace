@@ -11,7 +11,7 @@ templates/
 ├── pt-br/                                      <-- 🇧🇷 Moldes e Boilerplates em Português
 │   ├── sdd-boilerplate/sdd/                    <-- Estrutura inicial do SDD para novos projetos
 │   └── templates/
-│       ├── spec-driven-project-claude-kit/     <-- Kit Claude Code (CLAUDE.md, 32 Skills, regras)
+│       ├── spec-driven-project-claude-kit/     <-- Kit Claude Code (CLAUDE.md, 33 Skills, regras)
 │       ├── spec-driven-project-cursor-kit/     <-- Kit Cursor IDE (.cursorrules, .cursor/rules, skills)
 │       ├── spec-driven-project-copilot-kit/    <-- Kit GitHub Copilot (copilot-instructions, skills)
 │       ├── spec-driven-project-gemini-kit/     <-- Kit Gemini Antigravity (GEMINI.md, skills)
