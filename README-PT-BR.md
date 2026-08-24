@@ -49,19 +49,22 @@ graph TD
 
 ---
 
-## 📂 Estrutura do Workspace
+## 📂 Estrutura Semântica do Workspace
 
-Este repositório organiza os kits de IA prontos para uso em dois idiomas (`pt-br` e `en`):
+Este repositório é organizado em diretórios semânticos com suporte bilíngue (`pt-br` e `en`):
 
-* **`pt-br/`** & **`en/`**:
-  - `sdd-boilerplate/`: O esqueleto inicial limpo da pasta `sdd/` que governa seu projeto.
-  - `templates/spec-driven-project-claude-kit`: Regras, subagentes e comandos sob demanda para rodar o **Claude Code** em projetos SDD.
-  - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para rodar o **GitHub Copilot** em projetos SDD.
-  - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para rodar o **Cursor IDE** em projetos SDD.
-  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração oficial do Gemini CLI (`.gemini/settings.json`), skills nativas (`.gemini/skills/`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
-  - `templates/private-project-claude-kit`: Configuração do Claude Code para cenários de repositórios privados.
-  - `templates/private-project-copilot-kit`: Configuração do GitHub Copilot para cenários de repositórios privados.
-* **`scripts/`**: Scripts de automação em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os kits instantaneamente em qualquer repositório alvo do seu computador, com suporte à seleção de idioma.
+* **`templates/`** (`pt-br/` e `en/`):
+  - `sdd-boilerplate/`: O esqueleto inicial canônico da pasta `sdd/` para novos projetos.
+  - `templates/spec-driven-project-claude-kit`: Regras, subagentes e comandos sob demanda para o **Claude Code** em projetos SDD.
+  - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para o **GitHub Copilot** em projetos SDD.
+  - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para o **Cursor IDE**.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração do Gemini CLI (`.gemini/settings.json`), skills nativas (`.gemini/skills/`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
+  - `templates/private-project-claude-kit`: Configurações de IA do Claude para repositórios privados sobrepostos ao core.
+  - `templates/private-project-copilot-kit`: Configurações de IA do Copilot para repositórios privados sobrepostos ao core.
+* **`docs/`** (`pt-br/` e `en/`): Manuais técnicos completos, catálogo de skills, playbook de orquestração e guia CLI/MCP.
+* **`scripts/`**: Scripts de automação em PowerShell (`.ps1`) e Bash (`.sh`) para instalar os kits instantaneamente em qualquer repositório.
+* **`mcp-hub/`**: Servidor MCP dockerizado para conexão inteligente e despacho de tarefas entre IDEs e modelos.
+* **`sdd/`**: Governança Spec-Driven Development viva que rege este próprio workspace.
 
 ---
 
@@ -142,11 +145,14 @@ As instruções de sistema nos kits orientam automaticamente o agente a:
 ## 🌾 Memory Gardening e Colheita de Skills
 
 Conforme os projetos evoluem, as memórias de execução podem crescer em excesso (~100 KB+), consumindo tokens valiosos de prompt no início de cada sessão. O framework implementa o protocolo **Memory Gardening**:
-*   **Gatilho de Poda**: Quando uma memória de execução ultrapassa ~15 KB ou ~50 linhas, os aprendizados recorrentes são extraídos e podados.
+*   **Limites de Poda Idempotente**:
+    - **Alerta Preventivo**: Acionado a partir de **35 KB / ~100 linhas**.
+    - **Teto Mandatório de Poda**: Execução obrigatória ao atingir **50 KB / ~150 linhas**.
+    - **Alvo Pós-Poda**: Reduz o arquivo para **~15 KB** (preservando as **12 a 15 tarefas mais recentes**).
 *   **Colheita de Skills**: Os padrões extraídos são destilados em **Skills** reutilizáveis acionadas sob demanda:
-    - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
+    - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
     - **Skills de Projeto**: Armazenadas em `.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
-*   **Eficiência de Tokens**: A poda reduz o arquivo de memória ativa para ~5 KB (mantendo apenas as 3–5 tarefas mais recentes), economizando até 90% dos tokens de inicialização do contexto enquanto retém o conhecimento profundo sob demanda.
+*   **Eficiência de Tokens**: Mantém o contexto de prompt rápido e econômico, salvando até 80% dos tokens de bootstrap enquanto retém o histórico relevante.
 
 ---
 

@@ -49,19 +49,22 @@ graph TD
 
 ---
 
-## 📂 Workspace Directory Structure
+## 📂 Semantic Workspace Structure
 
-This repository organizes AI kits in both English (`en`) and Portuguese (`pt-br`):
+This repository is organized into clean domain-specific folders with full bilingual support (`en` and `pt-br`):
 
-* **`en/`** & **`pt-br/`**:
-  - `sdd-boilerplate/`: The clean skeleton of the `sdd/` directory governing your project.
-  - `templates/spec-driven-project-claude-kit`: Rules, subagents, and on-demand commands to run **Claude Code** in SDD projects.
-  - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents to run **GitHub Copilot** in SDD projects.
-  - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and on-demand skills (`.cursor/skills/`) for **Cursor IDE** in SDD projects.
-  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, official Gemini CLI project settings (`.gemini/settings.json`), native skills (`.gemini/skills/`), `.geminiignore`, and Code Assist compatibility via `.aiexclude`.
+* **`templates/`** (`en/` and `pt-br/`):
+  - `sdd-boilerplate/`: Canonical initial skeleton of the `sdd/` directory for new projects.
+  - `templates/spec-driven-project-claude-kit`: Rules, subagents, and on-demand commands for **Claude Code** in SDD projects.
+  - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents for **GitHub Copilot** in SDD projects.
+  - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and skills for **Cursor IDE**.
+  - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, Gemini CLI configuration (`.gemini/settings.json`), native skills (`.gemini/skills/`), `.geminiignore`, and `.aiexclude` compatibility.
   - `templates/private-project-claude-kit`: Claude Code setup for private repositories extending a core repo.
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
-* **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install the kits into any target repository on your computer, with language selection support.
+* **`docs/`** (`en/` and `pt-br/`): Comprehensive technical manuals, skills catalog, multi-agent playbook, and CLI/MCP guide.
+* **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install kits into any target repository.
+* **`mcp-hub/`**: Dockerized MCP Server enabling intelligent inter-agent communication and task dispatch across IDEs and models.
+* **`sdd/`**: Living Spec-Driven Development governance that manages this AI Workspace repository itself.
 
 ---
 
@@ -142,11 +145,14 @@ AI instructions in the kits automatically prompt the agent to:
 ## 🌾 Memory Gardening & Skill Harvesting
 
 As projects evolve, execution memories can grow large (~100 KB+), consuming unnecessary prompt tokens upon session start. The framework implements **Memory Gardening**:
-*   **Pruning Threshold**: When an execution memory exceeds ~15 KB or ~50 lines, recurring lessons are extracted and pruned.
+*   **Idempotent Pruning Thresholds**:
+    - **Preventive Attention Trigger**: Fired at **35 KB / ~100 lines**.
+    - **Mandatory Pruning Ceiling**: Strictly required when reaching **50 KB / ~150 lines**.
+    - **Post-Pruning Target**: Reduces active memory file to **~15 KB** (retaining the **12 to 15 most recent tasks**).
 *   **Skill Harvesting**: Extracted patterns are distilled into reusable, on-demand **Skills**:
-    - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-mysql-utf8-emoji-encoding`).
+    - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
     - **Project Skills**: Kept in `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
-*   **Token Efficiency**: Pruning reduces active memory files to ~5 KB (keeping only 3–5 recent tasks), saving up to 90% of initial prompt context tokens while retaining deep knowledge on demand.
+*   **Token Efficiency**: Keeps prompt context fast and cost-effective, saving up to 80% of bootstrap tokens while preserving essential recent history.
 
 ---
 
