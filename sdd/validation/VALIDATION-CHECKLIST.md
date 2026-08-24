@@ -243,6 +243,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comandos**: 16 execuções de instaladores spec-driven com `-Force`.
 *   **Evidência**: Sincronização limpa confirmada em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-020: Implementação da Skill c2f-tailwind-css-architecture & Governança de Tailwind v4
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação da skill `c2f-tailwind-css-architecture` em todos os 6 templates PT-BR e 6 templates EN.
+- [x] Estabelecimento das 6 regras mandatórias (cascata sem `.hidden` conflitante com `lg:flex`, limpeza de `paginas.css_compiled` em banco, templates dinâmicos via `tailwind_dependencies`, compilação exclusiva via `c2f resources:sync`).
+- [x] Atualização de `conn2flow/cli/src/Commands/AiSyncCommand.php` para validar nominalmente as 33 skills.
+- [x] Atualização de `docs/pt-br/CATALOGO-DE-SKILLS.md` e `docs/en/SKILLS-CATALOG.md`.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação do Core CLI (ai:sync)
+*   **Comando**: `c2f ai:sync`.
+*   **Evidência**: 33/33 skills e blocos de contrato `# ⚡ Gatilho Obrigatório` verificados com sucesso nos 4 kits.
+
+#### Teste 2: Matriz de Propagação
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1`.
+*   **Evidência**: 16/16 destinos rastreados com 33/33 skills sincronizadas com hashes idênticos.
+
+
 
 
 
