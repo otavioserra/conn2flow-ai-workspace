@@ -27,7 +27,7 @@ Este catálogo lista as **32 Skills** (25 Core Skills do Framework + 7 SDD Workf
 | **`c2f-ajax-handling`** | Tratamento de requisições AJAX assíncronas no frontend e backend. |
 | **`c2f-crawlers-and-bots`** | Detecção de robôs, scrapers e crawlers de redes sociais (OpenGraph). |
 | **`c2f-cookie-management`** | Manipulação de cookies com hashing e conformidade com LGPD/GDPR. |
-| **`c2f-tailwind-css`** | Pipeline de pré-compilação e sidecars do Tailwind CSS. |
+| **`c2f-tailwind-css-architecture`** | **[NOVA/ATUALIZADA]** Governança do Tailwind CSS v4, prevenção de conflitos de cascata, limpeza de `css_compiled` em banco, templates dinâmicos (`tailwind_dependencies`) e compilação via `c2f resources:sync`. |
 | **`c2f-library-system`** | Inclusão dinâmica e versionamento de bibliotecas do gestor (`gestor_incluir_biblioteca`). |
 | **`c2f-url-routing`** | Resolução de URLs canônicas, rotas dinâmicas e reescrita de caminhos. |
 | **`c2f-i18n-translations`** | Tradução e internacionalização de interfaces e dicionários (`__t()`). |

@@ -27,7 +27,7 @@ This catalog lists the **32 Skills** (25 Core Framework Skills + 7 SDD Workflow 
 | **`c2f-ajax-handling`** | Handling asynchronous AJAX requests on frontend and backend. |
 | **`c2f-crawlers-and-bots`** | Detecting search bots, scrapers, and social media crawlers (OpenGraph). |
 | **`c2f-cookie-management`** | Cookie manipulation with hashing and LGPD/GDPR compliance. |
-| **`c2f-tailwind-css`** | Pre-compilation pipeline and Tailwind CSS sidecars. |
+| **`c2f-tailwind-css-architecture`** | **[NEW/UPDATED]** Tailwind CSS v4 governance, cascade collision avoidance, database `css_compiled` clearing, dynamic templates (`tailwind_dependencies`), and `c2f resources:sync` compilation. |
 | **`c2f-library-system`** | Dynamic inclusion and versioning of system libraries (`gestor_incluir_biblioteca`). |
 | **`c2f-url-routing`** | Canonical URL resolution, dynamic routing, and URL rewrites. |
 | **`c2f-i18n-translations`** | Translation and internationalization of interfaces and dictionaries (`__t()`). |
