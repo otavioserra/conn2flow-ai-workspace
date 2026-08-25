@@ -265,6 +265,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1`.
 *   **Evidência**: 16/16 destinos rastreados com 33/33 skills sincronizadas com hashes idênticos.
 
+---
+
+## BATCH-021: Modernização Canônica da Skill c2f-javascript-ajax (Vanilla Fetch, CSRF 403 & PHP Lifecycle)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Skill `c2f-javascript-ajax` modernizada com diagnóstico de 403 Forbidden, padrão canônico Vanilla JS (`gestorAjax`/`gestorUpload`) e lifecycle PHP (`interface_ajax_iniciar`/`interface_ajax_finalizar`).
+- [x] 8 instâncias PT-BR atualizadas (2 master `.claude`/`.gemini` + 6 templates).
+- [x] 6 instâncias EN atualizadas com tradução canônica completa.
+- [x] Catálogos de skills (`CATALOGO-DE-SKILLS.md` e `SKILLS-CATALOG.md`) já continham entrada `[UPDATED]`.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Propagação nos Templates
+*   **Comando**: `node scripts/update-ajax-skill-req018.js`.
+*   **Evidência**: 14/14 arquivos `c2f-javascript-ajax/SKILL.md` atualizados (8 PT-BR + 6 EN).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 33 skills atualizadas nos 4 kits de cada repositório (conn2flow, lumix, transformamp, conn2flow-site).
+
+
 
 
 
