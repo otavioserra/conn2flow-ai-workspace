@@ -24,7 +24,7 @@ Este catálogo lista as **33 Skills** (26 Core Skills do Framework + 7 SDD Workf
 | **`c2f-access-control`** | Perfis de usuário, permissões modulares e controle de acesso hierárquico. |
 | **`c2f-form-processing`** | Processamento de formulários, validação CSRF e sanitização de dados. |
 | **`c2f-api-endpoints`** | Construção de endpoints REST, respostas JSON e contratos de API. |
-| **`c2f-ajax-handling`** | Tratamento de requisições AJAX assíncronas no frontend e backend. |
+| **`c2f-javascript-ajax`** | **[ATUALIZADA]** Contrato canônico de integração AJAX no Gestor (Vanilla Fetch, `URLSearchParams`, `FormData`), prevenção de erro 403 Forbidden por CSRF (`ajax: 'sim'`) e lifecycle PHP (`interface_ajax_iniciar`/`interface_ajax_finalizar`). |
 | **`c2f-crawlers-and-bots`** | Detecção de robôs, scrapers e crawlers de redes sociais (OpenGraph). |
 | **`c2f-cookie-management`** | Manipulação de cookies com hashing e conformidade com LGPD/GDPR. |
 | **`c2f-tailwind-css-architecture`** | **[NOVA/ATUALIZADA]** Governança do Tailwind CSS v4, prevenção de conflitos de cascata, limpeza de `css_compiled` em banco, templates dinâmicos (`tailwind_dependencies`) e compilação via `c2f resources:sync`. |
