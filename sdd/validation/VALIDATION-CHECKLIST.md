@@ -287,6 +287,31 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 33 skills atualizadas nos 4 kits de cada repositório (conn2flow, lumix, transformamp, conn2flow-site).
 
+---
+
+## BATCH-022: Implementação do 5º Kit Canônico de IA (spec-driven-project-codex-kit / OpenAI Codex)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação do template `templates/pt-br/templates/spec-driven-project-codex-kit/` com `CODEX.md`, `AGENTS.md`, `.codex/settings.json`, `README.md` e 33 skills.
+- [x] Criação do template `templates/en/templates/spec-driven-project-codex-kit/` com versão em inglês de todos os arquivos.
+- [x] Criação dos instaladores `scripts/install-spec-driven-codex-kit.ps1` e `scripts/install-spec-driven-codex-kit.sh`.
+- [x] Atualização de `scripts/sync-all-repos.ps1` para incluir o 5º instalador Codex.
+- [x] Atualização de `conn2flow/cli/src/Commands/AiSyncCommand.php` para validar `.codex/skills`.
+- [x] Atualização de `docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md` e `docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md` com o "Cenário E: OpenAI Codex / GPT no VS Code".
+- [x] Atualização de `README.md`, `README-PT-BR.md` e `sdd/SPEC.md` (Seção 11).
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação dos Templates e Skills
+*   **Evidência**: 33 skills copiadas e validadas em `spec-driven-project-codex-kit` (PT-BR e EN).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 33 skills e 5 kits instalados em todos os 4 repositórios alvo.
+
+
 
 
 

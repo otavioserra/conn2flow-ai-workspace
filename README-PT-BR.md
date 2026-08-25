@@ -59,6 +59,7 @@ Este repositório é organizado em diretórios semânticos com suporte bilíngue
   - `templates/spec-driven-project-copilot-kit`: Prompts, instruções do sistema e agentes para o **GitHub Copilot** em projetos SDD.
   - `templates/spec-driven-project-cursor-kit`: Regras de projeto (`.cursor/rules/sdd.mdc`), compatibilidade legada (`.cursorrules`) e skills sob demanda (`.cursor/skills/`) para o **Cursor IDE**.
   - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, configuração do Gemini CLI (`.gemini/settings.json`), skills nativas (`.gemini/skills/`), `.geminiignore` e compatibilidade com Code Assist via `.aiexclude`.
+  - `templates/spec-driven-project-codex-kit`: `CODEX.md`, `AGENTS.md`, configuração do OpenAI Codex/GPT (`.codex/settings.json`) e skills nativas (`.codex/skills/`).
   - `templates/private-project-claude-kit`: Configurações de IA do Claude para repositórios privados sobrepostos ao core.
   - `templates/private-project-copilot-kit`: Configurações de IA do Copilot para repositórios privados sobrepostos ao core.
 * **`docs/`** (`pt-br/` e `en/`): Manuais técnicos completos, catálogo de skills, playbook de orquestração e guia CLI/MCP.
@@ -116,6 +117,17 @@ Para injetar as instruções do Gemini (`GEMINI.md`), configuração (`.gemini/s
   scripts/install-spec-driven-gemini-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
   ```
 
+### 5. OpenAI Codex / GPT (VS Code)
+Para injetar as instruções do OpenAI Codex (`CODEX.md`, `AGENTS.md`), configuração (`.codex/settings.json`) e skills nativas sob demanda (`.codex/skills/`):
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-codex-kit.ps1 -TargetRepoPath "C:/caminho/do/seu-repositorio" -AgentPrefix "seuprojeto" -Language "pt-br"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-codex-kit.sh /caminho/do/seu-repositorio --agent-prefix seuprojeto --language pt-br
+  ```
+
 *Nota: O parâmetro `-AgentPrefix` é opcional e serve para renomear os subagentes padrão (ex: `seuprojeto-sdd-coordinator`). O parâmetro `-Language` (ou `--language`) permite alternar entre `en` (inglês) e `pt-br` (português).*
 
 ---
@@ -151,14 +163,14 @@ Conforme os projetos evoluem, as memórias de execução podem crescer em excess
     - **Alvo Pós-Poda**: Reduz o arquivo para **~15 KB** (preservando as **12 a 15 tarefas mais recentes**).
 *   **Colheita de Skills**: Os padrões extraídos são destilados em **Skills** reutilizáveis acionadas sob demanda:
     - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
-    - **Skills de Projeto**: Armazenadas em `.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
+    - **Skills de Projeto**: Armazenadas em `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/` e `.codex/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
 *   **Eficiência de Tokens**: Mantém o contexto de prompt rápido e econômico, salvando até 80% dos tokens de bootstrap enquanto retém o histórico relevante.
 
 ---
 
 ## 🛠️ Acervo de Core Skills do Conn2Flow (26 Skills de Engenharia)
 
-O workspace centraliza um catálogo completo de **26 Skills Core do Conn2Flow** (`c2f-*`) + **7 SDD Workflow Skills** (totalizando **33 Skills**), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/` e `.gemini/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
+O workspace centraliza um catálogo completo de **26 Skills Core do Conn2Flow** (`c2f-*`) + **7 SDD Workflow Skills** (totalizando **33 Skills**), injetadas automaticamente em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/` e `.codex/skills/`) para equipar qualquer agente de IA com inteligência técnica nativa sobre o ecossistema:
 
 1. **Recursos, Variáveis & Frontend**:
    - `c2f-resources-system`: Arquitetura de compilação de 11 tipos de recursos (`resources/`) para `*Data.json` e sincronização SQL declarativa.

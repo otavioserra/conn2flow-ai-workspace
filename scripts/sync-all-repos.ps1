@@ -31,7 +31,8 @@ $Installers = @(
     "install-spec-driven-claude-kit.ps1",
     "install-spec-driven-cursor-kit.ps1",
     "install-spec-driven-copilot-kit.ps1",
-    "install-spec-driven-gemini-kit.ps1"
+    "install-spec-driven-gemini-kit.ps1",
+    "install-spec-driven-codex-kit.ps1"
 )
 
 foreach ($target in $Targets) {
@@ -52,12 +53,12 @@ foreach ($target in $Targets) {
                 }
             }
         }
-        Write-Host "   33 Skills atualizadas nos 4 kits de $repoName" -ForegroundColor Green
+        Write-Host "   33 Skills atualizadas nos 5 kits de $repoName" -ForegroundColor Green
 
         if ($CommitAndPush) {
             Push-Location $target
             try {
-                $syncPaths = @(".claude", ".cursor", ".github", ".gemini")
+                $syncPaths = @(".claude", ".cursor", ".github", ".gemini", ".codex")
                 if ($repoName -eq "conn2flow") {
                     $syncPaths += "cli/src/Commands/AiSyncCommand.php"
                 }

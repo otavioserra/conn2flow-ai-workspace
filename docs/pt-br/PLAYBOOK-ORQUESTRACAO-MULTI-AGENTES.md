@@ -1,6 +1,6 @@
 # 🧭 Playbook de Orquestração Multi-Agentes & Alternância entre IDEs
 
-Este playbook prático ensina como operar o **Conn2Flow AI Framework** com múltiplos modelos e ferramentas de IA (**Google Antigravity**, **Claude Code**, **Cursor IDE**, **VS Code GitHub Copilot**), garantindo **portabilidade total (Zero Vendor Lock-in)** e automação contínua via **MCP Hub**.
+Este playbook prático ensina como operar o **Conn2Flow AI Framework** com múltiplos modelos e ferramentas de IA (**Google Antigravity**, **Claude Code**, **Cursor IDE**, **VS Code GitHub Copilot**, **OpenAI Codex / GPT**), garantindo **portabilidade total (Zero Vendor Lock-in)** e automação contínua via **MCP Hub**.
 
 ---
 
@@ -96,6 +96,14 @@ Caso você queira abrir manualmente as ferramentas no terminal ou IDE:
 1. Abra o chat do Antigravity e diga:
    > *"Execute a requisição aqui no Antigravity com subagente."*
 2. O Arquiteto assume a execução internamente.
+
+---
+
+### 🟠 Cenário E: OpenAI Codex / GPT no VS Code
+1. No VS Code com a extensão oficial OpenAI Codex / ChatGPT ativa, abra o painel de chat.
+2. Digite:
+   > *"Execute a requisição ativa em sdd/human-requests/CURRENT.md no modo autônomo monitorado."*
+3. O Codex lê automaticamente as instruções de `CODEX.md`, `AGENTS.md` e consulta as 33 skills em `.codex/skills/`.
 
 ---
 

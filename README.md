@@ -59,6 +59,7 @@ This repository is organized into clean domain-specific folders with full biling
   - `templates/spec-driven-project-copilot-kit`: Prompts, system instructions, and agents for **GitHub Copilot** in SDD projects.
   - `templates/spec-driven-project-cursor-kit`: Project rules (`.cursor/rules/sdd.mdc`), legacy compatibility (`.cursorrules`), and skills for **Cursor IDE**.
   - `templates/spec-driven-project-gemini-kit`: `GEMINI.md`, Gemini CLI configuration (`.gemini/settings.json`), native skills (`.gemini/skills/`), `.geminiignore`, and `.aiexclude` compatibility.
+  - `templates/spec-driven-project-codex-kit`: `CODEX.md`, `AGENTS.md`, OpenAI Codex/GPT configuration (`.codex/settings.json`), and native skills (`.codex/skills/`).
   - `templates/private-project-claude-kit`: Claude Code setup for private repositories extending a core repo.
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
 * **`docs/`** (`en/` and `pt-br/`): Comprehensive technical manuals, skills catalog, multi-agent playbook, and CLI/MCP guide.
@@ -116,6 +117,17 @@ To inject Gemini system instructions (`GEMINI.md`), project settings (`.gemini/s
   scripts/install-spec-driven-gemini-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
   ```
 
+### 5. OpenAI Codex / GPT (VS Code)
+To inject OpenAI Codex instructions (`CODEX.md`, `AGENTS.md`), project settings (`.codex/settings.json`), and native on-demand skills (`.codex/skills/`):
+- **Windows (PowerShell)**:
+  ```powershell
+  scripts/install-spec-driven-codex-kit.ps1 -TargetRepoPath "C:/path/to/your-repo" -AgentPrefix "yourproject" -Language "en"
+  ```
+- **Linux / macOS (Bash)**:
+  ```bash
+  scripts/install-spec-driven-codex-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
+  ```
+
 *Note: The `-AgentPrefix` parameter is optional and renames the default subagents (e.g. `yourproject-sdd-coordinator`). The `-Language` (or `--language`) parameter switches between `en` (English) and `pt-br` (Portuguese, default).*
 
 ---
@@ -151,14 +163,14 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
     - **Post-Pruning Target**: Reduces active memory file to **~15 KB** (retaining the **12 to 15 most recent tasks**).
 *   **Skill Harvesting**: Extracted patterns are distilled into reusable, on-demand **Skills**:
     - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
-    - **Project Skills**: Kept in `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
+    - **Project Skills**: Kept in `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
 *   **Token Efficiency**: Keeps prompt context fast and cost-effective, saving up to 80% of bootstrap tokens while preserving essential recent history.
 
 ---
 
 ## 🛠️ Conn2Flow Core Skills Catalog (26 Engineering Skills)
 
-The workspace centralizes a complete catalog of **26 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**33 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, and `.gemini/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **26 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**33 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
 
 1. **Resources, Variables & Frontend**:
    - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json` and declarative SQL sync.

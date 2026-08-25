@@ -18,6 +18,7 @@ Cada pasta de idioma possui a seguinte subestrutura interna:
     - `spec-driven-project-copilot-kit`: Configurações de IA do GitHub Copilot para projetos SDD.
     - `spec-driven-project-cursor-kit`: Regras de projeto e skills do Cursor IDE para projetos SDD.
     - `spec-driven-project-gemini-kit`: Contexto hierárquico e configurações do Gemini CLI/Code Assist para projetos SDD.
+    - `spec-driven-project-codex-kit`: Instruções, agentes e 33 skills do OpenAI Codex / GPT para projetos SDD no VS Code.
     - `private-project-claude-kit`: Configurações de IA do Claude Code para repositórios privados sobrepostos a um core.
     - `private-project-copilot-kit`: Configurações de IA do GitHub Copilot para repositórios privados sobrepostos a um core.
 *   `sdd-boilerplate/`:
@@ -186,4 +187,15 @@ Para equilibrar controle, velocidade e segurança operacional, o framework forma
 * Ativado sob solicitação explícita (`modo: autonomo_headless`).
 * O agente executa toda a esteira em segundo plano isolado via MCP Hub / Git Worktree sem exibir janelas interativas, emitindo notificação de conclusão ao Arquiteto apenas ao finalizar com sucesso.
 
+---
 
+## 11. Codex Kit para Projetos SDD (OpenAI Codex / GPT no VS Code)
+
+Cada idioma deve fornecer `templates/spec-driven-project-codex-kit/` com:
+
+*   `CODEX.md`: Instruções de projeto principais com governança SDD, skills obrigatórias por marco de fluxo, Intake Gate e 3 níveis de autonomia.
+*   `AGENTS.md`: Configuração multi-agente OpenAI com papéis de Arquiteto, Executor e Humano-no-Loop.
+*   `.codex/settings.json`: Configuração de contexto do Codex apontando para `CODEX.md`, `AGENTS.md` e `.codex/skills/`.
+*   `.codex/skills/`: Todas as 33 skills com blocos de contrato `# ⚡ Gatilho Obrigatório` / `# ⚡ Mandatory Trigger`.
+
+Os instaladores `install-spec-driven-codex-kit.ps1` e `.sh` devem aceitar target, `Force`, prefixo de agente e idioma `pt-br|en`, preservar arquivos existentes sem `Force`, resolver `{{AGENT_NAME}}`, criar o boilerplate somente quando `sdd/` estiver ausente e provisionar backlog/archives ausentes de forma não destrutiva.
