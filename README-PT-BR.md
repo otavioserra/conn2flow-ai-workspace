@@ -166,7 +166,7 @@ O workspace centraliza um catálogo completo de **26 Skills Core do Conn2Flow** 
    - `c2f-html-css-pages-and-components`: Regra mandatória que proíbe arquivos `.html`, `.css` e `.md` estáticos soltos fora de `resources/`.
    - `c2f-tailwind-css-architecture`: Governança do Tailwind CSS v4 para cascata responsiva, `css_compiled`, templates dinâmicos e builds via `c2f resources:sync`.
    - `c2f-modelo-templates`: Processamento de templates HTML e células repetitivas (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
-   - `c2f-javascript-ajax`: Padrão de requisições AJAX com `ajaxDefault`, variáveis `gestor.*`, callbacks 401 e Semantic UI.
+   - `c2f-javascript-ajax`: Contrato canônico de integração AJAX (Vanilla Fetch, `URLSearchParams`, `FormData`), prevenção de erro 403 CSRF (`ajax: 'sim'`) e lifecycle PHP (`interface_ajax_iniciar`/`interface_ajax_finalizar`).
    - `c2f-multilingual-system`: Sistema híbrido de i18n (`pt-br`, `en`, `es`), chave natural `language` e diretórios físicos.
    - `c2f-preview-modals-system`: Modais dinâmicos de pré-visualização de componentes e layouts no gestor.
    - `c2f-widget-development`: Padrão de desenvolvimento e injeção de widgets no sistema.
