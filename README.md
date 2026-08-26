@@ -168,17 +168,17 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 
 ---
 
-## 🛠️ Conn2Flow Core Skills Catalog (26 Engineering Skills)
+## 🛠️ Conn2Flow Core Skills Catalog (27 Engineering Skills)
 
-The workspace centralizes a complete catalog of **26 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**33 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **27 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**34 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
 
 1. **Resources, Variables & Frontend**:
-   - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json` and declarative SQL sync.
+   - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json`, declarative SQL sync, and mandatory Version Bump rule.
    - `c2f-variables-system`: **[NEW]** Multi-language i18n, system alerts/warnings, and UI labels governance via `variables.json`. Prohibits hardcoded strings in PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Mandatory rule prohibiting loose static `.html`, `.css`, and `.md` files outside `resources/`.
    - `c2f-tailwind-css-architecture`: Tailwind CSS v4 governance for responsive cascade, `css_compiled`, dynamic templates, and builds through `c2f resources:sync`.
    - `c2f-modelo-templates`: HTML template parsing and repeating cells (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
-   - `c2f-javascript-ajax`: Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 prevention (`ajax: 'sim'`), and PHP lifecycle (`interface_ajax_iniciar`/`interface_ajax_finalizar`).
+   - `c2f-javascript-ajax`: Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 prevention (`ajax: 'sim'`), PHP lifecycle, and Version Bump rule.
    - `c2f-multilingual-system`: Hybrid i18n system (`pt-br`, `en`, `es`), `language` natural key, and physical directories.
    - `c2f-preview-modals-system`: Dynamic component and layout preview modals in the manager.
    - `c2f-widget-development`: Widget development pattern and system injection.
@@ -195,6 +195,7 @@ The workspace centralizes a complete catalog of **26 Conn2Flow Core Skills** (`c
    - `c2f-json-resources-sync` & `c2f-mysql-utf8-emoji-encoding`: UTF-8mb4 encoding and JSON metadata synchronization.
 
 3. **Projects, Plugins & Automation**:
+   - `c2f-agent-visual-inspection`: **[NEW]** Autonomous visual and runtime inspection in local Docker environment (`c2f page:inspect`, `c2f auth:cookie`).
    - `c2f-projects-system`: Private project deployment pipeline via OAuth API (`/api/project/update`), ZIP, and inline execution.
    - `c2f-plugin-architecture`: Manifest `plugin.json`, scoping, and lifecycle (`_install`/`_uninstall`) for public and private plugins.
    - `c2f-system-tasks`: System automation tasks hub (`.vscode/tasks.json`) for Docker, builds, and deploys.
@@ -236,7 +237,7 @@ For in-depth technical guides, explore the dedicated documentation in `docs/en/`
 * 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/en/QUICKSTART-CLI-AND-MCP.md) — Complete tutorial and command reference.
 * 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
 * 🏛️ [Double Agent Architecture](docs/en/DOUBLE-AGENT-ARCHITECTURE.md) — Role separation, writing boundaries, and governance.
-* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 33 skills with contracts.
+* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 34 skills with contracts.
 * 🔮 [Future Evolution Roadmap](docs/en/FUTURE-EVOLUTION-ROADMAP.md) — MCP Servers, self-healing CI/CD, and educational framework.
 
 👉 *Looking for Brazilian Portuguese documentation? Check the [Portuguese Documentation Hub](docs/pt-br/README.md).*

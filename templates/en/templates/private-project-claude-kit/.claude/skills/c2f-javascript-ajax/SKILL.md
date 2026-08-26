@@ -238,3 +238,4 @@ $.ajax(ajax);
 2. **ALWAYS send `opcao` and `ajaxOpcao`**: They identify the page context and the action to be routed in `switch ($_GESTOR['ajax-opcao'])`.
 3. **Backend MUST use `interface_ajax_iniciar()` and `interface_ajax_finalizar()`**: Ensures correct JSON headers, buffer cleanup and standardized envelope.
 4. **Handle 401 (Unauthorized) errors**: Immediately redirect to `signin/` on expired session.
+5. **Mandatory Version Bump**: When modifying any JavaScript file in `resources/`, increment the version (`versao: "X.Y.Z"`) in `<id>.json` or in the module manifest before running `c2f resources:sync` to bust browser cache.

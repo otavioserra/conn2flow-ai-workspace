@@ -1,17 +1,18 @@
 # 🧩 Skills Catalog — Conn2Flow AI Workspace
 
-This catalog lists the **33 Skills** (26 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, and **Gemini Antigravity (`.gemini/skills/`)**.
+This catalog lists the **34 Skills** (27 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)**, and **OpenAI Codex (`.codex/skills/`)**.
 
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 26 Skills
+## 🛠️ 1. Core Framework Skills (`c2f-*`) — 27 Skills
 
 | Skill | Trigger & Core Purpose |
 | :--- | :--- |
+| **`c2f-agent-visual-inspection`** | **[NEW]** Autonomous visual and runtime inspection in local test environment (`c2f page:inspect`, `c2f auth:cookie`). Eliminates human intervention for visual testing and console checks. |
 | **`c2f-module-crud-scaffolding`** | **[NEW]** Canonical guide and scaffolding for new CRUD modules based on the `modulos-grupos` pattern. |
 | **`c2f-variables-system`** | **[NEW]** Governance for interface copy, error messages, alerts, and i18n via `variables.json`. Prohibits hardcoded strings. |
 | **`c2f-environment-configuration`** | **[NEW]** Management of sensitive credentials and `.env` templates via `config.php` and `$_CONFIG`. Prohibits exposed secrets. |
-| **`c2f-resources-system`** | Declarative compilation of 11 resource types (`layouts`, `pages`, `components`, `templates`, etc.) and dynamic tables. |
+| **`c2f-resources-system`** | Declarative compilation of 11 resource types (`layouts`, `pages`, `components`, `templates`, etc.), dynamic tables, and mandatory Version Bump rule. |
 | **`c2f-global-variables`** | Guide to superglobals `$_GESTOR` (runtime), `$_CONFIG` (system), `$_BANCO` (database), and `$_ENV` (infra). |
 | **`c2f-database-operations`** | Safe database operations via helper libraries (`banco_select`, `banco_insert_name`, `banco_update`, `banco_escape_field`). |
 | **`c2f-database-migrations`** | Deterministic database migrations using Phinx (`db/migrations/`). |
@@ -24,7 +25,7 @@ This catalog lists the **33 Skills** (26 Core Framework Skills + 7 SDD Workflow 
 | **`c2f-access-control`** | User profiles, modular permissions, and hierarchical role-based access control. |
 | **`c2f-form-processing`** | Form handling, CSRF token validation, and input sanitization. |
 | **`c2f-api-endpoints`** | Building REST endpoints, JSON responses, and API contracts. |
-| **`c2f-javascript-ajax`** | **[UPDATED]** Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 Forbidden prevention (`ajax: 'sim'`), and PHP lifecycle (`interface_ajax_iniciar`/`interface_ajax_finalizar`). |
+| **`c2f-javascript-ajax`** | **[UPDATED]** Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 Forbidden prevention (`ajax: 'sim'`), PHP lifecycle, and Version Bump rule. |
 | **`c2f-crawlers-and-bots`** | Detecting search bots, scrapers, and social media crawlers (OpenGraph). |
 | **`c2f-cookie-management`** | Cookie manipulation with hashing and LGPD/GDPR compliance. |
 | **`c2f-tailwind-css-architecture`** | **[NEW/UPDATED]** Tailwind CSS v4 governance, cascade collision avoidance, database `css_compiled` clearing, dynamic templates (`tailwind_dependencies`), and `c2f resources:sync` compilation. |
@@ -54,7 +55,7 @@ This catalog lists the **33 Skills** (26 Core Framework Skills + 7 SDD Workflow 
 
 ## ⚡ 3. The Execution Contract Pattern (`TRIGGER` & `SKIP`)
 
-All 33 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
+All 34 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
 
 ```markdown
 # ⚡ Mandatory Trigger

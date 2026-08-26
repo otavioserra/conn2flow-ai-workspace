@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Sincroniza instantaneamente todas as 33 skills e kits de IA para todos os repositorios alvo.
+    Sincroniza instantaneamente todas as 34 skills e kits de IA para todos os repositorios alvo.
 .DESCRIPTION
     Atualiza com -Force os templates nos repositorios:
     - conn2flow
@@ -53,7 +53,7 @@ foreach ($target in $Targets) {
                 }
             }
         }
-        Write-Host "   33 Skills atualizadas nos 5 kits de $repoName" -ForegroundColor Green
+        Write-Host "   34 Skills atualizadas nos 5 kits de $repoName" -ForegroundColor Green
 
         if ($CommitAndPush) {
             Push-Location $target

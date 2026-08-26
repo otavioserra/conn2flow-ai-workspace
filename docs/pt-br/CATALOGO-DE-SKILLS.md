@@ -1,17 +1,18 @@
 # 🧩 Catálogo de Skills — Conn2Flow AI Workspace
 
-Este catálogo lista as **33 Skills** (26 Core Skills do Framework + 7 SDD Workflow Skills) padronizadas e sincronizadas universalmente entre **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)** e **Gemini Antigravity (`.gemini/skills/`)**.
+Este catálogo lista as **34 Skills** (27 Core Skills do Framework + 7 SDD Workflow Skills) padronizadas e sincronizadas universalmente entre **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)** e **OpenAI Codex (`.codex/skills/`)**.
 
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 26 Skills
+## 🛠️ 1. Core Framework Skills (`c2f-*`) — 27 Skills
 
 | Skill | Gatilho & Propósito Principal |
 | :--- | :--- |
+| **`c2f-agent-visual-inspection`** | **[NOVA]** Validação visual e de runtime no ambiente local (`c2f page:inspect`, `c2f auth:cookie`). Elimina necessidade de intervenção humana em testes visuais e erros de console. |
 | **`c2f-module-crud-scaffolding`** | **[NOVA]** Guia e scaffold canônico para criação de novos módulos CRUD baseado no padrão `modulos-grupos`. |
 | **`c2f-variables-system`** | **[NOVA]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded. |
 | **`c2f-environment-configuration`** | **[NOVA]** Gestão de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`. Proíbe credenciais soltas. |
-| **`c2f-resources-system`** | Compilação declarativa de 11 tipos de recursos (`layouts`, `pages`, `components`, `templates`, etc.) e tabelas dinâmicas. |
+| **`c2f-resources-system`** | Compilação declarativa de 11 tipos de recursos (`layouts`, `pages`, `components`, `templates`, etc.), tabelas dinâmicas e regra mandatória de Version Bump. |
 | **`c2f-global-variables`** | Guia de superglobais `$_GESTOR` (runtime), `$_CONFIG` (sistema), `$_BANCO` (conexão) e `$_ENV` (infra). |
 | **`c2f-database-operations`** | Operações seguras com a biblioteca de banco (`banco_select`, `banco_insert_name`, `banco_update`, `banco_escape_field`). |
 | **`c2f-database-migrations`** | Criação e execução de migrações determinísticas com Phinx (`db/migrations/`). |
@@ -24,7 +25,7 @@ Este catálogo lista as **33 Skills** (26 Core Skills do Framework + 7 SDD Workf
 | **`c2f-access-control`** | Perfis de usuário, permissões modulares e controle de acesso hierárquico. |
 | **`c2f-form-processing`** | Processamento de formulários, validação CSRF e sanitização de dados. |
 | **`c2f-api-endpoints`** | Construção de endpoints REST, respostas JSON e contratos de API. |
-| **`c2f-javascript-ajax`** | **[ATUALIZADA]** Contrato canônico de integração AJAX no Gestor (Vanilla Fetch, `URLSearchParams`, `FormData`), prevenção de erro 403 Forbidden por CSRF (`ajax: 'sim'`) e lifecycle PHP (`interface_ajax_iniciar`/`interface_ajax_finalizar`). |
+| **`c2f-javascript-ajax`** | **[ATUALIZADA]** Contrato canônico de integração AJAX no Gestor (Vanilla Fetch, `URLSearchParams`, `FormData`), prevenção de erro 403 Forbidden por CSRF (`ajax: 'sim'`), lifecycle PHP e regra de Version Bump. |
 | **`c2f-crawlers-and-bots`** | Detecção de robôs, scrapers e crawlers de redes sociais (OpenGraph). |
 | **`c2f-cookie-management`** | Manipulação de cookies com hashing e conformidade com LGPD/GDPR. |
 | **`c2f-tailwind-css-architecture`** | **[NOVA/ATUALIZADA]** Governança do Tailwind CSS v4, prevenção de conflitos de cascata, limpeza de `css_compiled` em banco, templates dinâmicos (`tailwind_dependencies`) e compilação via `c2f resources:sync`. |
@@ -54,7 +55,7 @@ Este catálogo lista as **33 Skills** (26 Core Skills do Framework + 7 SDD Workf
 
 ## ⚡ 3. O Padrão de Contrato de Execução (`TRIGGER` & `SKIP`)
 
-Todas as 33 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
+Todas as 34 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
 
 ```markdown
 # ⚡ Gatilho Obrigatório

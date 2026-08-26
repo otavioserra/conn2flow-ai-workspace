@@ -1,58 +1,58 @@
 ---
 name: sdd-workflow
-description: "LEIA ANTES de criar ou alterar qualquer arquivo na pasta sdd/ (process, implementation, validation, decisions). Se não ler: o fluxo de Agente Duplo é quebrado e os artefatos de controle perdem a governança."
+description: "MANDATORY READ before creating or modifying any file in the sdd/ directory (process, implementation, validation, decisions). Prevents breaking the Double Agent pattern and governance decay."
 user-invocable: false
 ---
 
-# SDD workflow
+# SDD Workflow
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Iniciar qualquer tarefa do framework SDD, interpretar requisições humanas ou classificar artefatos nas pastas de controle.
-- **SKIP APENAS SE**: Tarefas completamente alheias ao ciclo de governança SDD (ex: git commits diretos de infraestrutura).
-- **CONSEQUÊNCIA DE IGNORAR**: Desalinhamento entre Arquiteto e Executor, criação de arquivos em locais errados e colapso da metodologia de Agente Duplo.
+# ⚡ Mandatory Trigger
+- **TRIGGER**: Starting any SDD framework task, interpreting human intake, or classifying artifacts in control directories.
+- **SKIP ONLY IF**: Tasks completely outside the SDD lifecycle (e.g. direct infrastructure git commits).
+- **CONSEQUENCE OF IGNORING**: Disalignment between Architect and Executor, mislocated artifacts, and collapse of Double Agent governance.
 
 ---
 
-Use esta skill quando o projeto for guiado por sdd versionados.
+Use this skill when developing against versioned SDD specifications.
 
-## Leitura mínima inicial
+## Minimum Initial Context Reading
 
-Comece por `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, o batch atual, `sdd/validation/VALIDATION-CHECKLIST.md` e `sdd/decisions/DECISION-LOG.md`.
+Start with `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the active batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
 
-Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-requests/`, leia primeiro esse intake humano. Quando vier apenas a pasta, use a seguinte ordem determinística:
+If assigned to `sdd/human-requests/*.md` or the `sdd/human-requests/` folder, read this intake first in deterministic order:
 
 1. `CURRENT.md`
 2. `README.md`
-3. o arquivo `.md` mais recente
+3. the most recent `.md` file
 
-## Classificação da demanda
+## Request Classification
 
-1. Mudança de requisito ou contrato:
-   - registre em `sdd/change-requests/`
-   - avalie impacto nos sdd numerados, decisions, batches e validation
-2. Feedback de review sem mudança normativa:
-   - registre em `sdd/reviews/`
-   - mantenha os sdd numerados estáveis
-3. Implementação incremental:
-   - confira o batch atual em `sdd/implementation/`
-   - implemente o menor slice aprovado
-   - valide e atualize `sdd/validation/` quando necessário
-4. Validação ou spec drift check:
-   - comece pela menor checagem automatizada
-   - registre evidência e pendências nos artefatos certos
+1. Requirement or contract change:
+   - log in `sdd/change-requests/`
+   - evaluate impact on numbered SDDs, decisions, batches, and validation
+2. Review feedback without normative change:
+   - log in `sdd/reviews/`
+   - keep numbered SDDs stable
+3. Incremental implementation:
+   - check active batch in `sdd/implementation/`
+   - implement smallest approved slice
+   - validate and update `sdd/validation/`
+4. Validation or spec drift check:
+   - start with smallest automated check
+   - log evidence and gaps in proper artifacts
 
-## Regras de ouro
+## Golden Rules
 
-- Os sdd numerados são a fonte normativa.
-- `sdd/human-requests/` nunca é fonte normativa; ele só alimenta change requests, reviews, batches, decisions ou validação.
-- Não reescreva os sdd numerados para comentários pequenos de review.
-- Não abra o próximo batch antes de o atual estar estável e revisável.
+- Numbered SDD files are the normative truth.
+- `sdd/human-requests/` is never normative; it feeds change requests, reviews, batches, decisions, or validation.
+- Never rewrite numbered SDDs for minor review feedback.
+- Never start the next batch before the current one is stable and reviewable.
 
 
 ## 📋 Transparency Protocol & Live Todo List
 
-- Upon starting any request or batch, immediately render the full task list (`Todo List`) with checkboxes `[ ]`.
-- After each relevant step or command finishes, update and re-display the list marking `[x]` on completed steps and highlighting the current step (`⏳ [IN PROGRESS]`).
+- Upon starting any request or batch, immediately render the full task list (Todo List) with checkboxes [ ].
+- After each relevant step or command finishes, update and re-display the list marking [x] on completed steps and highlighting the current step (⏳ [IN PROGRESS]).
 - Never execute long sequences of actions without updating visual progress for the user.
 
 ## 🛡️ 3-Tier AI Autonomy Spectrum
@@ -76,3 +76,9 @@ Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-re
    - Activated when the request specifies `mode: headless_autonomous` (or `autonomo_headless`).
    - The agent executes the entire pipeline in isolated background processes via MCP Hub / Git Worktrees, delivering a completion notification and final report upon completion.
 
+## 🔒 Mandatory Multi-Agent Concurrency Rules
+
+1. **Strict Prohibition of `git add -A` and `git commit -a`**:
+   - The agent MUST execute `git add <path-1> <path-2>` strictly listing the files touched in its approved batch, preventing commits from capturing concurrent code or uncommitted changes from other agents.
+2. **Atomic Numbering Check for `req-XXX.md`**:
+   - The agent must re-read `sdd/human-requests/` immediately before creating request files to prevent number collision and accidental overwrites.

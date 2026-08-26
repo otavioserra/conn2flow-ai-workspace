@@ -311,6 +311,32 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 33 skills e 5 kits instalados em todos os 4 repositórios alvo.
 
+---
+
+## BATCH-023: Implementação da 34ª Skill (c2f-agent-visual-inspection), Governança de Version Bump e Concorrência Multi-Agente
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação da 34ª skill `c2f-agent-visual-inspection/SKILL.md` nos 5 diretórios master e em todos os 14 templates de kits em PT-BR e EN.
+- [x] Atualização de `c2f-resources-system/SKILL.md` e `c2f-javascript-ajax/SKILL.md` com a regra mandatória de Version Bump / Cache-Busting.
+- [x] Desbloqueio e flexibilização de leitura de arquivos `.env` em todos os kits e templates (`.claude/settings.json`).
+- [x] Blindagem contra concorrência multi-agente (`git add` estrito sem `-A` e releitura atômica de `req-XXX.md`) incorporada em `sdd-workflow/SKILL.md`, `sdd/SPEC.md` e todos os arquivos de instruções de IA.
+- [x] Atualização de `conn2flow/cli/src/Commands/AiSyncCommand.php` para validar as **34 Skills**.
+- [x] Atualização de `docs/pt-br/CATALOGO-DE-SKILLS.md` e `docs/en/SKILLS-CATALOG.md` (27 Core + 7 SDD = 34 skills).
+- [x] Atualização de `README.md`, `README-PT-BR.md` e `scripts/sync-all-repos.ps1` (34 skills).
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 34 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 

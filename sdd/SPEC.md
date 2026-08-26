@@ -196,6 +196,29 @@ Cada idioma deve fornecer `templates/spec-driven-project-codex-kit/` com:
 *   `CODEX.md`: Instruções de projeto principais com governança SDD, skills obrigatórias por marco de fluxo, Intake Gate e 3 níveis de autonomia.
 *   `AGENTS.md`: Configuração multi-agente OpenAI com papéis de Arquiteto, Executor e Humano-no-Loop.
 *   `.codex/settings.json`: Configuração de contexto do Codex apontando para `CODEX.md`, `AGENTS.md` e `.codex/skills/`.
-*   `.codex/skills/`: Todas as 33 skills com blocos de contrato `# ⚡ Gatilho Obrigatório` / `# ⚡ Mandatory Trigger`.
+*   `.codex/skills/`: Todas as 34 skills com blocos de contrato `# ⚡ Gatilho Obrigatório` / `# ⚡ Mandatory Trigger`.
 
 Os instaladores `install-spec-driven-codex-kit.ps1` e `.sh` devem aceitar target, `Force`, prefixo de agente e idioma `pt-br|en`, preservar arquivos existentes sem `Force`, resolver `{{AGENT_NAME}}`, criar o boilerplate somente quando `sdd/` estiver ausente e provisionar backlog/archives ausentes de forma não destrutiva.
+
+---
+
+## 12. Skill de Inspeção Visual e Runtime Autônomo (`c2f-agent-visual-inspection`)
+
+Para eliminar a necessidade de intervenção humana em validações visuais e de runtime:
+* No ambiente local de desenvolvimento (`$_GESTOR['development-env'] === true`), a autenticação de sessão é viabilizada via `c2f auth:cookie` e relaxamento condicional da flag `Secure` de cookies.
+* A inspeção headless via Chrome DevTools Protocol / Playwright é realizada via comando CLI `c2f page:inspect <url> --selector="..." --computed="..." --screenshot`, retornando status HTTP, erros de console, estilos computados e screenshots.
+* As evidências de inspeção devem ser registradas diretamente em `sdd/validation/VALIDATION-CHECKLIST.md`.
+
+---
+
+## 13. Governança de Version Bump e Concorrência Multi-Agente
+
+### A. Regra Mandatória de Version Bump (Cache-Busting):
+* Ao alterar qualquer script JavaScript (`<id>.js`) ou CSS (`<id>.css`) no diretório `resources/`, o agente DEVE OBRIGATORIAMENTE incrementar a versão (`versao: "X.Y.Z"`) no arquivo `<id>.json` ou no manifest do módulo (`<modulo>.json`).
+* Isso assegura a invalidação imediata de cache no navegador após `c2f resources:sync`.
+
+### B. Regras Mandatórias de Concorrência Multi-Agente:
+1. **Proibição Absoluta de `git add -A` e `git commit -a`**:
+   - O agente deve executar `git add <caminho-1> <caminho-2>` listando estritamente os arquivos tocados no seu lote aprovado.
+2. **Reserva e Releitura Atômica de `req-XXX.md`**:
+   - O agente deve reler `sdd/human-requests/` imediatamente antes de criar arquivos para evitar colisão e sobrescrita de números de requisição.
