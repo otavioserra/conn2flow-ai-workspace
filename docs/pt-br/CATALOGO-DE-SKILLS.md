@@ -8,7 +8,7 @@ Este catálogo lista as **34 Skills** (27 Core Skills do Framework + 7 SDD Workf
 
 | Skill | Gatilho & Propósito Principal |
 | :--- | :--- |
-| **`c2f-agent-visual-inspection`** | **[NOVA]** Validação visual e de runtime no ambiente local (`c2f page:inspect`, `c2f auth:cookie`). Elimina necessidade de intervenção humana em testes visuais e erros de console. |
+| **`c2f-agent-visual-inspection`** | **[NOVA]** Ciclo de vida de 5 etapas para inspeção visual e runtime autônomo no Docker (`project:sync-core`, `env:set development`, `auth:cookie`, `page:inspect` e tear down com `env:set production`). Elimina dependência de validação manual do operador. |
 | **`c2f-module-crud-scaffolding`** | **[NOVA]** Guia e scaffold canônico para criação de novos módulos CRUD baseado no padrão `modulos-grupos`. |
 | **`c2f-variables-system`** | **[NOVA]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded. |
 | **`c2f-environment-configuration`** | **[NOVA]** Gestão de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`. Proíbe credenciais soltas. |

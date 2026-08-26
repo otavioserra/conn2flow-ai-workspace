@@ -8,7 +8,7 @@ This catalog lists the **34 Skills** (27 Core Framework Skills + 7 SDD Workflow 
 
 | Skill | Trigger & Core Purpose |
 | :--- | :--- |
-| **`c2f-agent-visual-inspection`** | **[NEW]** Autonomous visual and runtime inspection in local test environment (`c2f page:inspect`, `c2f auth:cookie`). Eliminates human intervention for visual testing and console checks. |
+| **`c2f-agent-visual-inspection`** | **[NEW]** 5-stage lifecycle for autonomous visual and runtime inspection in Docker (`project:sync-core`, `env:set development`, `auth:cookie`, `page:inspect`, and tear down via `env:set production`). Eliminates reliance on manual operator checks. |
 | **`c2f-module-crud-scaffolding`** | **[NEW]** Canonical guide and scaffolding for new CRUD modules based on the `modulos-grupos` pattern. |
 | **`c2f-variables-system`** | **[NEW]** Governance for interface copy, error messages, alerts, and i18n via `variables.json`. Prohibits hardcoded strings. |
 | **`c2f-environment-configuration`** | **[NEW]** Management of sensitive credentials and `.env` templates via `config.php` and `$_CONFIG`. Prohibits exposed secrets. |

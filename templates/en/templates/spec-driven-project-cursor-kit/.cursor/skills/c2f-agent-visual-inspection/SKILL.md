@@ -13,34 +13,62 @@ user-invocable: false
 
 ---
 
-## 🔍 1. How the Autonomous Inspection Pipeline Works
+## 🔄 Canonical 5-Stage Lifecycle
 
-In the local development environment (`$_GESTOR['development-env'] === true`), the framework provides tools for the agent to inspect runtime completely autonomously:
-
-### Step 1: Server-Side Session Authentication (`auth:cookie`)
-For authenticated Gestor routes (e.g. `/admin/`, `/dashboard/`, `/chat-intelligence/`):
-```bash
-./c2f auth:cookie --user=admin --project=my-project
+```mermaid
+graph LR
+    S1["1. Sync Mirror<br/>c2f project:sync-core"] --> S2["2. Enable Dev Mode<br/>c2f env:set development"]
+    S2 --> S3["3. Generate Session<br/>c2f auth:cookie --project"]
+    S3 --> S4["4. Inspect Screen<br/>c2f page:inspect"]
+    S4 --> S5["5. Restore Env<br/>c2f env:set production"]
 ```
-* **What it does**: Generates server-side session JWT token and writes cookie jar to `temp/agent-cookies.txt`.
 
-### Step 2: Headless Inspection via CLI (`page:inspect`)
-Execute the native inspection command:
+### Step-by-Step Protocol:
+
+#### Step 1: Mirror Synchronization (If Core was modified)
 ```bash
-./c2f page:inspect "http://localhost/module-route/" --selector=".my-element" --computed="display,opacity,transform" --screenshot
+./c2f project:sync-core <projectID>
 ```
-* **What it returns**: Structured JSON containing:
-  - `status`: HTTP status code (e.g. 200, 302, 403).
-  - `console_errors`: Array of errors captured in the browser console.
-  - `computed_style`: Computed styles resolved by the browser in real runtime.
-  - `animations`: State of active CSS animations (`getAnimations()`).
-  - `screenshot`: Path to the generated PNG screenshot in `temp/`.
+*Ensures the local test mirror (`dev-environment/data/sites/localhost/<site>/`) has the latest functions and libraries from Core.*
+
+#### Step 2: Enable Development Mode
+```bash
+./c2f env:set development --project=<projectID>
+```
+*Enables direct reading of physical disk resources (`resources/`) and secure cookie relaxation over local HTTP.*
+
+#### Step 3: Server-Side Cookie Jar Generation
+```bash
+./c2f auth:cookie --project=<projectID>
+```
+*Generates `temp/agent-cookies.txt` with signed session credentials from the runtime inside the Docker container.*
+
+#### Step 4: Visual Inspection & Evidence Collection
+```bash
+./c2f page:inspect "http://localhost/<site>/<route>" --selector="<selector>" --computed="display,opacity,transform" --screenshot
+```
+*Executes Chrome Headless via Playwright, injects session cookies, and returns structured JSON with HTTP status, JS console errors, computed styles, and PNG screenshot.*
+
+#### Step 5: Environment Restoration (Mandatory Tear Down)
+```bash
+./c2f env:set production --project=<projectID>
+```
+*Restores production mode in project `.env` and safely concludes the test cycle.*
+
+---
+
+## 🛠️ Troubleshooting Guide
+
+1. **`DB_HOST=mysql` & Database Connectivity**:
+   - Commands accessing the database (`auth:cookie`, `db:test`) require the `conn2flow-app` / `mysql` Docker containers to be running.
+2. **`503 .env not found`**:
+   - If the project cannot find `.env`, ensure you pass `--project=<projectID>` and check that `path_tests` is correctly configured in `dev-environment/data/environment.json`.
+3. **False Negatives from Outdated Core**:
+   - If a new core function is missing during page execution on the mirror, immediately run **Step 1** (`./c2f project:sync-core <projectID>`).
 
 ---
 
 ## ⛔ Inviolable Inspection Rules:
-1. **EXCLUSIVE TO LOCAL TEST ENVIRONMENT**: NEVER run automated inspection or scraping against production URLs.
-2. **SDD Registration**: Inspection evidence (JSON from `page:inspect` and screenshots) MUST be logged directly into the repository's `VALIDATION-CHECKLIST.md` rather than marking "pending operator".
-3. **Environment Switching (`c2f env:set`)**:
-   - `c2f env:set development`: Forces reading physical files in `resources/`.
-   - `c2f env:set production`: Forces reading compiled records in the database.
+1. **EXCLUSIVE TO LOCAL TEST ENVIRONMENT**: NEVER execute automated inspection, auth, or scraping against production URLs.
+2. **SDD Registration**: Inspection evidence (JSON from `page:inspect` and screenshots) MUST be logged directly into `VALIDATION-CHECKLIST.md` rather than marking "pending operator".
+3. **Mandatory Tear Down**: ALWAYS finalize by restoring the environment via `c2f env:set production --project=<projectID>`.
