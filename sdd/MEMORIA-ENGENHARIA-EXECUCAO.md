@@ -4,7 +4,7 @@
 >
 > **Lote concluído:** [BATCH-007 — Backlog de Ideias, Intake Gate e Gemini Kit](implementation/batch-007-backlog-governance.md)
 >
-> **Política**: manter 3 a 5 tarefas recentes, abaixo de 10 KB/50 linhas. A memória de Chefia é somente leitura.
+> **Política**: manter 12 a 15 tarefas recentes, alerta preventivo em 35 KB (~100 linhas), teto mandatório de poda em 50 KB (~150 linhas) e alvo pós-poda em ~15 KB. A memória de Chefia é somente leitura.
 
 ## Atividades recentes
 
