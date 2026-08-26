@@ -1,36 +1,62 @@
 ---
 name: c2f-html-css-pages-and-components
-description: "LEIA ANTES de criar ou alterar telas, páginas, layouts ou componentes HTML/CSS. Se não ler: arquivos estáticos soltos fora de resources/ não entram no build, não sincronizam para o banco e quebram no site publicado."
+description: "MANDATORY READ before creating or modifying HTML/CSS screens, pages, layouts or components. Loose static files outside resources/ are excluded from builds, skipped in database sync, and result in 404s."
 user-invocable: false
 ---
 
-# Governança de Arquivos HTML, CSS e Markdown no Conn2Flow
+# HTML, CSS and Markdown File Governance in Conn2Flow
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Escrever, editar ou migrar marcações HTML, estilos CSS ou layouts do sistema.
-- **SKIP APENAS SE**: Manipulação de lógica puramente de backend em PHP ou APIs sem renderização visual.
-- **CONSEQUÊNCIA DE IGNORAR**: Criação de arquivos estáticos soltos que são ignorados pelo pipeline de sincronização, não chegam ao banco de dados e geram páginas 404 em produção.
+# ⚡ Mandatory Trigger
+- **TRIGGER**: Writing, editing, or migrating HTML markup, CSS stylesheets, or system layouts.
+- **SKIP ONLY IF**: Purely backend PHP logic or API development without visual screen rendering.
+- **CONSEQUENCE OF IGNORING**: Creating loose static files that are ignored by the compilation pipeline, never sync to the database, and generate 404 errors in production.
 
 ---
 
 > [!WARNING]
-> **ATENÇÃO AGENTE: PROIBIDO CRIAR ARQUIVOS ESTÁTICOS SOLTOS**
-> NUNCA crie arquivos `.html`, `.css` ou `.md` soltos na raiz do projeto, em diretórios públicos estáticos (ex: `public/`, `assets/`) ou na raiz de módulos PHP!
+> **AGENT WARNING: PROHIBITED TO CREATE LOOSE STATIC FILES**
+> NEVER create loose `.html`, `.css`, or `.md` files in the project root, in public static folders (e.g. `public/`, `assets/`), or in PHP module roots!
 
-## Obrigatoriedade do Sistema de Recursos (`c2f-resources-system`)
+## 1. Resource System Mandate (`c2f-resources-system`)
 
-No Conn2Flow, **todo conteúdo visual ou instrução textual** (páginas, layouts, componentes, templates, variáveis e prompts de IA) DEVE residir no **Sistema de Recursos** (`resources/`).
+In Conn2Flow, **all visual markup and textual content** (pages, layouts, components, templates, variables, and AI prompts) MUST reside within the **Resource System** (`resources/`).
 
-### Onde os arquivos DEVEM ser criados:
+### Where files MUST be placed:
 
-1. **Recursos Globais**:
-   - Páginas: `gestor/resources/<idioma>/pages/<id>/<id>.html`
-   - Layouts: `gestor/resources/<idioma>/layouts/<id>/<id>.html`
-   - Componentes: `gestor/resources/<idioma>/components/<id>/<id>.html`
+1. **Global Resources**:
+   - Pages: `gestor/resources/<language>/pages/<id>/<id>.html`
+   - Layouts: `gestor/resources/<language>/layouts/<id>/<id>.html`
+   - Components: `gestor/resources/<language>/components/<id>/<id>.html`
 
-2. **Recursos de Módulo**:
-   - Páginas: `modulos/<modulo-id>/resources/<idioma>/pages/<id>/<id>.html`
-   - Componentes: `modulos/<modulo-id>/resources/<idioma>/components/<id>/<id>.html`
+2. **Module Resources**:
+   - Pages: `modulos/<module-id>/resources/<language>/pages/<id>/<id>.html`
+   - Components: `modulos/<module-id>/resources/<language>/components/<id>/<id>.html`
 
-### Próximo Passo Obrigatório:
-Consulte e aplique a skill principal **`c2f-resources-system`** para compilação (`atualizacao-dados-recursos.php`), metadados em arquivos JSON e atribuição de seções (`data-id` e `data-title`).
+---
+
+## 2. The 2-Tier Architectural Rule for `HTML_SANITIZE`
+
+Conn2Flow implements bifurcated, intelligent HTML delivery controlled by the `HTML_SANITIZE` environment variable in `.env`:
+
+```mermaid
+flowchart TD
+    Req["HTML Page Request"] --> Check{"gestor_dashboard_toolbar_ativo()?"}
+    Check -- "NO (Public Visitor)" --> Sanitize["HTML_SANITIZE Active (100%)<br/>Removes HTML/CSS/JS comments & minifies"]
+    Sanitize --> OutputPublic["Minified & Clean HTML<br/>Maximum performance and privacy"]
+    Check -- "YES (Admin / Live Editor / AI Session)" --> Bypass["HTML_SANITIZE Bypassed (100%)<br/>Preserves comments, indentation & <!-- widgets# --> markers"]
+    Bypass --> OutputAdmin["Verbatim Intact HTML<br/>Live Editor & AI Agents operate with precision"]
+```
+
+### A. Public / Anonymous Visitor (`gestor_dashboard_toolbar_ativo() === false`):
+* `gestor_html_higienizar()` runs **100%**, stripping all comments (`<!-- ... -->`, `/* ... */`, `// ...`) and collapsing whitespace.
+* **Result**: Maximum security, privacy, and performance for general visitors (zero leakage of internal notes or structural comments).
+
+### B. Authenticated Administrator / Live Editor / AI Session (`gestor_dashboard_toolbar_ativo() === true`):
+* `gestor_pagina_higienizar_ativo()` returns **`false` unconditionally**.
+* The HTML sanitizer is **100% BYPASSED / DISABLED**.
+* **Result**: HTML is delivered **exactly verbatim** — preserving all architectural comments, section attributes (`data-id`, `data-title`), and Live Editor widget boundaries (`<!-- widgets#... -->` and `<!-- /widgets#... -->`) required for `dashboard.toolbar.js` and automated AI inspection tools.
+
+---
+
+### Mandatory Next Step:
+Consult and apply the core skill **`c2f-resources-system`** for compilation (`c2f resources:sync`), JSON metadata, and section structuring (`data-id` and `data-title`).

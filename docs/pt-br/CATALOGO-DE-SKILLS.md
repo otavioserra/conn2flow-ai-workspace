@@ -8,10 +8,10 @@ Este catálogo lista as **34 Skills** (27 Core Skills do Framework + 7 SDD Workf
 
 | Skill | Gatilho & Propósito Principal |
 | :--- | :--- |
-| **`c2f-agent-visual-inspection`** | **[NOVA]** Ciclo de vida de 5 etapas para inspeção visual e runtime autônomo no Docker (`project:sync-core`, `env:set development`, `auth:cookie`, `page:inspect` e tear down com `env:set production`). Elimina dependência de validação manual do operador. |
+| **`c2f-agent-visual-inspection`** | **[NOVA]** Ciclo de vida de 5 etapas para inspeção visual e runtime autônomo no Docker (`project:sync-core`, `env:set development`, `auth:cookie` com bypass de sanitização HTML, `page:inspect` e tear down com `env:set production`). Elimina dependência de validação manual do operador. |
 | **`c2f-module-crud-scaffolding`** | **[NOVA]** Guia e scaffold canônico para criação de novos módulos CRUD baseado no padrão `modulos-grupos`. |
 | **`c2f-variables-system`** | **[NOVA]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded. |
-| **`c2f-environment-configuration`** | **[NOVA]** Gestão de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`. Proíbe credenciais soltas. |
+| **`c2f-environment-configuration`** | **[NOVA]** Gestão de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`, e governança da flag `HTML_SANITIZE`. |
 | **`c2f-resources-system`** | Compilação declarativa de 11 tipos de recursos (`layouts`, `pages`, `components`, `templates`, etc.), tabelas dinâmicas e regra mandatória de Version Bump. |
 | **`c2f-global-variables`** | Guia de superglobais `$_GESTOR` (runtime), `$_CONFIG` (sistema), `$_BANCO` (conexão) e `$_ENV` (infra). |
 | **`c2f-database-operations`** | Operações seguras com a biblioteca de banco (`banco_select`, `banco_insert_name`, `banco_update`, `banco_escape_field`). |
@@ -19,7 +19,7 @@ Este catálogo lista as **34 Skills** (27 Core Skills do Framework + 7 SDD Workf
 | **`c2f-database-schema`** | Metadados de schema e sincronização declarativa via `schema-metadata.json`. |
 | **`c2f-module-structure`** | Anatomia e ciclo de vida de módulos no diretório `gestor/modulos/`. |
 | **`c2f-module-configuration`** | Telas e tabelas de configuração interna de módulos. |
-| **`c2f-html-css-pages-and-components`** | Padrões de renderização HTML/CSS, slots de layout e marcação de seções (`data-id`, `data-title`). |
+| **`c2f-html-css-pages-and-components`** | Proibição de arquivos estáticos soltos fora de `resources/`, regra de 2 níveis do `HTML_SANITIZE` (público vs admin/Live Editor) e marcação de seções (`data-id`, `data-title`). |
 | **`c2f-system-tasks`** | Execução de rotinas do sistema, scripts bash e automações de infraestrutura. |
 | **`c2f-auth-system`** | Autenticação, 2FA, sessões seguras e tokens JWT. |
 | **`c2f-access-control`** | Perfis de usuário, permissões modulares e controle de acesso hierárquico. |

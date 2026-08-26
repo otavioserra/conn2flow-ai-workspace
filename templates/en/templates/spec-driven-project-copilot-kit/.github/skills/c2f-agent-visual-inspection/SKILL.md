@@ -41,13 +41,15 @@ graph LR
 ```bash
 ./c2f auth:cookie --project=<projectID>
 ```
-*Generates `temp/agent-cookies.txt` with signed session credentials from the runtime inside the Docker container.*
+*Generates `temp/agent-cookies.txt` with authenticated session credentials from the runtime inside the Docker container.*
 
-#### Step 4: Visual Inspection & Evidence Collection
+#### Step 4: Visual Inspection & Evidence Collection (Verbatim HTML with Sanitization Bypass)
 ```bash
 ./c2f page:inspect "http://localhost/<site>/<route>" --selector="<selector>" --computed="display,opacity,transform" --screenshot
 ```
 *Executes Chrome Headless via Playwright, injects session cookies, and returns structured JSON with HTTP status, JS console errors, computed styles, and PNG screenshot.*
+> [!NOTE]
+> Because the agent session uses administrative authentication (`auth:cookie`), the HTML sanitizer is **automatically bypassed** (`gestor_dashboard_toolbar_ativo() === true`). The agent receives verbatim HTML with architectural comments, section attributes (`data-id`, `data-title`), and widget markers (`<!-- widgets#... -->`) intact.
 
 #### Step 5: Environment Restoration (Mandatory Tear Down)
 ```bash

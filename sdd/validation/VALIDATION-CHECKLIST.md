@@ -380,6 +380,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-026: Governança do HTML_SANITIZE (Bypass em Live Editor e Agentes IA)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Atualização de `c2f-html-css-pages-and-components/SKILL.md` em todos os templates e masters com a regra de 2 níveis do `HTML_SANITIZE` e preservação de marcadores de widgets.
+- [x] Atualização de `c2f-agent-visual-inspection/SKILL.md` documentando que inspeções autenticadas (`c2f auth:cookie`) recebem o HTML com comentários e marcadores intactos.
+- [x] Atualização de `c2f-environment-configuration/SKILL.md` com a governança da flag `HTML_SANITIZE`.
+- [x] Atualização de `docs/pt-br/CATALOGO-DE-SKILLS.md` e `docs/en/SKILLS-CATALOG.md`.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 34 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 
