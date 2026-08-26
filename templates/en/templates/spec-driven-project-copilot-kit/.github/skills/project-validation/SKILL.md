@@ -1,23 +1,31 @@
 ---
 name: project-validation
-description: "LEIA ANTES de validar qualquer alteração de código ou fechar um lote SDD. Se não ler: testes incompletos deixam passar regressões graves e o lote é concluído sem evidências verificáveis."
+description: "MANDATORY READ before validating code changes or closing an SDD batch. Prevents incomplete tests, regressions in production, and closing batches without verifiable evidence."
 user-invocable: false
 ---
 
-# Validação do projeto
+# Project Validation
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Concluir implementações de código e preparar as evidências de testes técnicos, automatizados ou visuais para registrar em `VALIDATION-CHECKLIST.md`.
-- **SKIP APENAS SE**: Tarefas de pura especificação/planejamento documental onde nenhum arquivo de código foi alterado.
-- **CONSEQUÊNCIA DE IGNORAR**: Falso positivo de conclusão de lote, código com regressões em produção e falta de rastreabilidade de evidências.
+# ⚡ Mandatory Trigger
+- **TRIGGER**: Completing code implementations and preparing technical, automated, or visual test evidence to record in `VALIDATION-CHECKLIST.md`.
+- **SKIP ONLY IF**: Purely specification or documentation tasks where no code files were modified.
+- **CONSEQUENCE OF IGNORING**: False-positive batch completion, regressions reaching production, and absence of verifiable evidence.
 
 ---
 
-Use esta skill quando a tarefa exigir validação do batch atual.
+Use this skill when a task requires validating the current batch.
 
-## Procedimento
+## Validation Procedure
 
-1. Comece pela menor checagem capaz de falsificar o slice atual.
-2. Prefira validação alinhada ao batch e ao checklist de validation antes de rodar suites maiores.
-3. Registre evidência e pendências no artefato certo.
-4. Se o repositório tiver comandos específicos de teste, lint, build ou Docker, ajuste esta skill para o projeto real.
+1. Start with the smallest check capable of falsifying the current slice.
+2. Prioritize validation aligned with the batch and the validation checklist before running full test suites.
+3. Log evidence and pending items in `sdd/validation/VALIDATION-CHECKLIST.md`.
+4. If the repository provides specific test, lint, build, or Docker commands, use them to collect objective evidence.
+
+---
+
+## 🚫 Anti-Habit Rule: Never Default to "Pending Operator"
+
+- The agent **MUST** execute autonomous inspection tools (`c2f page:inspect`, `c2f auth:cookie`), unit tests (`c2f db:test`), or test suites before considering an item validated.
+- Marking checklist items as "awaiting operator visual check" out of convenience is **strictly prohibited**.
+- The only acceptable exception is when a feature strictly requires external production infrastructure inaccessible locally (e.g. external payment gateway without sandbox/mock). In these rare cases, the agent must document the exact technical blocker and the partial local tests conducted in `VALIDATION-CHECKLIST.md`.

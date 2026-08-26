@@ -217,8 +217,29 @@ Para eliminar a necessidade de intervenção humana em validações visuais e de
 * Ao alterar qualquer script JavaScript (`<id>.js`) ou CSS (`<id>.css`) no diretório `resources/`, o agente DEVE OBRIGATORIAMENTE incrementar a versão (`versao: "X.Y.Z"`) no arquivo `<id>.json` ou no manifest do módulo (`<modulo>.json`).
 * Isso assegura a invalidação imediata de cache no navegador após `c2f resources:sync`.
 
-### B. Regras Mandatórias de Concorrência Multi-Agente:
+### B. Regras Mandatórias de Concorrência & Reserva Atômica de Requisições:
 1. **Proibição Absoluta de `git add -A` e `git commit -a`**:
-   - O agente deve executar `git add <caminho-1> <caminho-2>` listando estritamente os arquivos tocados no seu lote aprovado.
-2. **Reserva e Releitura Atômica de `req-XXX.md`**:
-   - O agente deve reler `sdd/human-requests/` imediatamente antes de criar arquivos para evitar colisão e sobrescrita de números de requisição.
+   - O agente deve executar `git add <caminho-1> <caminho-2>` listando estritamente os arquivos tocados no seu lote aprovado, prevenindo que commits arrastem código concorrente de outros agentes.
+2. **Protocolo de Reserva Atômica para Criação de `req-XXX.md`**:
+   - Qualquer agente (Arquiteto ou Executor) está formalmente autorizado a criar novos arquivos `req-XXX.md` quando instruído pelo operador humano ou ao levantar uma necessidade técnica:
+     1. Executar `git pull origin <branch>` para sincronizar o estado mais recente do repositório.
+     2. Reler atomicamente `sdd/human-requests/` para identificar o próximo número sequencial vago.
+     3. Criar `req-XXX.md`, atualizar `sdd/human-requests/CURRENT.md` e commitar/pushar imediatamente para o Git para travar a numeração contra agentes concorrentes.
+
+---
+
+## 14. Governança de Memórias, Validação e Autoridade Técnica
+
+### A. Divisão Canônica de Camadas de Memória:
+* **Memória do Repositório (`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` — Git Compartilhado)**:
+  - Fatos técnicos objetivos do software: bugs resolvidos no core, hacks de build/banco, nuances de CSS/compilação, comandos CLI e lições aprendidas. Visível a todos os agentes e desenvolvedores.
+* **Memória Privada da Ferramenta de IA (Local)**:
+  - Preferências subjetivas de interação do operador (estilo de resposta, atalhos de prompt, idioma preferido).
+
+### B. Princípio da Autoridade do Código e da SPEC sobre Memórias:
+* Toda anotação de restrição em memória deve conter sua data (`YYYY-MM-DD`).
+* O código-fonte real, as configurações vigentes (`settings.json`, `.env`), schemas e especificações normativas (`sdd/SPEC.md`, `sdd/0X-*.md`) possuem **autoridade absoluta** sobre memórias de engenharia passadas. Se uma restrição mudar no projeto, a anotação antiga em memória deve ser invalidada imediatamente.
+
+### C. Regra Anti-Hábito de "Pendente do Operador":
+* O agente deve obrigatoriamente executar as ferramentas autônomas de inspeção (`c2f page:inspect`, `c2f auth:cookie`), testes unitários (`c2f db:test`) ou suites de teste antes de considerar um item validado.
+* É proibido marcar itens como "pendente de validação visual do operador" por comodidade; impedimentos técnicos reais devem ser registrados com a justificativa exata em `VALIDATION-CHECKLIST.md`.

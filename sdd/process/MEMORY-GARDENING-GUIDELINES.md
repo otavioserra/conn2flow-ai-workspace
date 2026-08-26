@@ -32,7 +32,7 @@ Destile para uma skill quando o aprendizado for recorrente, estável, acionável
 6. evitar histórico do incidente, nomes pessoais, segredos e detalhes transitórios;
 7. ser colocada na camada mais estreita que ainda permita reutilização: core/global para contratos Conn2Flow, projeto para regras exclusivas do cliente.
 
-Mantenha a mesma skill espelhada em `.claude/skills/`, `.cursor/skills/`, `.gemini/skills/` e `.github/skills/`.
+Mantenha a mesma skill espelhada em `.claude/skills/`, `.cursor/skills/`, `.gemini/skills/`, `.github/skills/` e `.codex/skills/`.
 
 ## 4. Procedimento padronizado
 

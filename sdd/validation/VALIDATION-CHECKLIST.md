@@ -336,6 +336,30 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-024: Resolução das 5 Ambiguidades Operacionais da Esteira SDD
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Atualização da linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e nos boilerplates/templates fixando 35 KB (alerta) / 50 KB (teto) / ~15 KB (alvo pós-poda).
+- [x] Atualização de `sdd-workflow/SKILL.md` em todos os templates e masters com o **Protocolo de Reserva Atômica** de `req-XXX.md` e a separação das camadas de memória (Git vs Agente).
+- [x] Atualização de `project-validation/SKILL.md` com a regra anti-hábito de "Pendente do Operador" (obrigatoriedade de validação via `c2f page:inspect` / `c2f auth:cookie`).
+- [x] Atualização de `sdd/SPEC.md` incorporando a governança de reserva atômica de requisições, divisão de memórias e autoridade do código/SPEC sobre memórias passadas.
+- [x] Atualização de `README.md` e `README-PT-BR.md` com a flexibilidade de criação de requisições sob reserva atômica.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 34 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 

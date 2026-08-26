@@ -137,6 +137,7 @@ Para injetar as instruções do OpenAI Codex (`CODEX.md`, `AGENTS.md`), configur
 Para evitar que o agente executor reescreva especificações técnicas ou tome decisões estruturais sem autorização, as regras de IA inclusas nos kits delimitam uma fronteira clara:
 
 * 🟢 **Área Operacional (Executor Grava)**: O Executor está livre para atualizar a trilha de progresso das tarefas em `sdd/implementation/` e preencher os logs de validação/testes em `sdd/validation/`.
+* 🟡 **Área de Requisições (Compartilhada sob Reserva Atômica)**: Qualquer agente (Arquiteto ou Executor) está autorizado a criar novos arquivos `sdd/human-requests/req-XXX.md` quando instruído pelo operador humano ou ao levantar uma necessidade técnica, desde que siga estritamente o **Protocolo de Reserva Atômica** (`git pull`, checagem sequencial atômica, commit/push imediato de `req-XXX.md` e `CURRENT.md`).
 * 🔴 **Área Normativa (Executor Apenas Lê)**: O Executor é estritamente proibido de editar especificações numeradas (`sdd/SPEC.md`, `sdd/0X-*.md`) ou o log de decisões (`sdd/decisions/DECISION-LOG.md`). Se o executor identificar um erro de especificação, ele deve relatar ao usuário para que o Arquiteto IA abra uma proposta de Change Request (`CR-XXX.md`).
 
 ---

@@ -3,6 +3,8 @@
 > **Purpose**: This logbook is reserved for **AI Execution Agents**. Record learnings about the local environment, compiler/build quirks, temporary hacks, resolved bugs, and lessons learned during task execution.
 >
 > **Permission**: Read and write for AI execution agents. You **must** update this file at the end of every task, recording new learnings to ensure context persistence across sessions.
+>
+> **Policy**: retain 12 to 15 recent tasks, preventive alert at 35 KB (~100 lines), mandatory pruning ceiling at 50 KB (~150 lines), and post-pruning target at ~15 KB. Chief Memory is read-only.
 
 ---
 

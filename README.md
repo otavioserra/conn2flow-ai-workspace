@@ -137,6 +137,7 @@ To inject OpenAI Codex instructions (`CODEX.md`, `AGENTS.md`), project settings 
 To prevent the executor from rewriting specs or making unauthorized design decisions, the system instructions inside the kits define a strict boundary:
 
 * 🟢 **Operational Area (Executor Writable)**: The Executor is free to update implementation lists in `sdd/implementation/` and validation/test logs in `sdd/validation/`.
+* 🟡 **Request Intake Area (Shared Writable with Atomic Reservation)**: Any agent (Architect or Executor) is authorized to create new `sdd/human-requests/req-XXX.md` files upon human instruction or technical discovery, strictly adhering to the **Atomic Reservation Protocol** (`git pull`, atomic sequential number check, immediate commit/push of `req-XXX.md` and `CURRENT.md`).
 * 🔴 **Normative Area (Executor Read-Only)**: The Executor is strictly forbidden from editing numbered specifications (`sdd/SPEC.md`, `sdd/0X-*.md`) or decisions (`sdd/decisions/DECISION-LOG.md`). If the executor finds a spec discrepancy, it must flag it to the user so the Architect IA can draft a Change Request (`CR-XXX.md`).
 
 ---

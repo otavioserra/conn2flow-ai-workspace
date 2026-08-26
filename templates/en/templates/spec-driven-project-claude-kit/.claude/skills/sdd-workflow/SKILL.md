@@ -76,9 +76,29 @@ If assigned to `sdd/human-requests/*.md` or the `sdd/human-requests/` folder, re
    - Activated when the request specifies `mode: headless_autonomous` (or `autonomo_headless`).
    - The agent executes the entire pipeline in isolated background processes via MCP Hub / Git Worktrees, delivering a completion notification and final report upon completion.
 
-## 🔒 Mandatory Multi-Agent Concurrency Rules
+## 🔒 Concurrency Rules & Atomic Request Reservation Protocol (`req-XXX.md`)
 
 1. **Strict Prohibition of `git add -A` and `git commit -a`**:
    - The agent MUST execute `git add <path-1> <path-2>` strictly listing the files touched in its approved batch, preventing commits from capturing concurrent code or uncommitted changes from other agents.
-2. **Atomic Numbering Check for `req-XXX.md`**:
-   - The agent must re-read `sdd/human-requests/` immediately before creating request files to prevent number collision and accidental overwrites.
+2. **Atomic Request Reservation Protocol for `req-XXX.md`**:
+   - Any agent (Architect or Executor) is authorized to create new `req-XXX.md` request files when instructed by the human operator in chat or when uncovering an essential technical requirement, strictly following:
+     1. Run `git pull origin <branch>` to fetch the latest state.
+     2. Scan `sdd/human-requests/` to identify the next available sequential number.
+     3. Create `req-XXX.md`, update `sdd/human-requests/CURRENT.md`, and commit/push immediately:
+        ```bash
+        git add sdd/human-requests/req-XXX.md sdd/human-requests/CURRENT.md
+        git commit -m "docs(sdd): reserve REQ-XXX for <title>"
+        git push origin <branch>
+        ```
+
+## 🧠 Canonical Memory Layers
+
+1. **Repository Memory (`sdd/ENGINEERING-MEMORY-EXECUTION.md` — Shared Git)**:
+   - Objective technical facts about the software: core bugs fixed, build/database hacks, CSS/Tailwind compilation nuances, discovered CLI commands, and lessons learned. Visible to all agents and developers.
+2. **Private AI Tool Memory (Local)**:
+   - Subjective operator preferences (chat style, prompt shortcuts, preferred language).
+
+## ⚖️ Principle of Source Code and SPEC Authority over Memories
+
+- Every technical constraint noted in memory must include its timestamp (`YYYY-MM-DD`).
+- The live source code, active configurations (`settings.json`, `.env`), schemas, and normative documents (`sdd/SPEC.md`, `sdd/0X-*.md`) hold **absolute authority** over historical memory notes. When a project configuration changes, conflicting legacy notes in memory must be immediately invalidated and updated.
