@@ -108,7 +108,11 @@ function activate(context) {
                     if (viewMode === 'preview') {
                         if (mpe) {
                             try {
-                                await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
+                                await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
+                                // Pequena pausa para o MPE inicializar o webview antes de fechar o código
+                                await new Promise(resolve => setTimeout(resolve, 250));
+                                await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+                                await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
                                 return;
                             }
                             catch {
@@ -116,6 +120,7 @@ function activate(context) {
                             }
                         }
                         try {
+                            await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
                             await vscode.commands.executeCommand('markdown.showPreview', uri);
                             return;
                         }

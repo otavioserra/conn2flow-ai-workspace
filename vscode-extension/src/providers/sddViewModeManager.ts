@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export type SddViewMode = 'both' | 'preview' | 'code';
 
 export class SddViewModeManager {
-  private static _mode: SddViewMode = 'both';
+  private static _mode: SddViewMode = 'preview';
 
   public static get mode(): SddViewMode {
     return this._mode;

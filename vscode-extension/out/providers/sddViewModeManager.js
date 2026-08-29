@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SddViewModeManager = void 0;
 const vscode = require("vscode");
 class SddViewModeManager {
-    static _mode = 'both';
+    static _mode = 'preview';
     static get mode() {
         return this._mode;
     }
