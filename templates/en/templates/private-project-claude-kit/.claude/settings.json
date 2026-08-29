@@ -8,7 +8,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Reminder: private repo first, core only when the change is generic; treat human-requests as non-normative intake; if project/<workstream> already uses local SDD, reload the local spec, batch index, and validation checklist before editing.'"
+            "command": "echo 'Reminder: keep batches small and validation explicit.'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-tool-guard.ps1"
           }
         ]
       }

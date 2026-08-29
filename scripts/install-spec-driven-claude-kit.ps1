@@ -284,6 +284,16 @@ if (Test-Path (Join-Path $templateRoot ".worktreeinclude")) {
     Copy-File ".worktreeinclude" ".worktreeinclude"
 }
 Copy-MergedTree -SourceRoot (Join-Path $templateRoot '.claude') -DestinationRoot (Join-Path $targetRoot '.claude') -Overwrite ([bool]$Force)
+
+foreach ($nf in @('gestor\modulos\CLAUDE.md', 'resources\CLAUDE.md', 'cli\CLAUDE.md')) {
+    $srcNf = Join-Path $templateRoot $nf
+    if (Test-Path $srcNf) {
+        $destParent = Join-Path $targetRoot (Split-Path -Parent $nf)
+        if (Test-Path $destParent) {
+            Copy-File $nf $nf
+        }
+    }
+}
 Migrate-LegacySdd -RepoRoot $targetRoot
 Install-SddBoilerplate -SourceRoot $boilerplateRoot -RepoRoot $targetRoot
 Install-EngineeringMemories -BoilerplateRoot $boilerplateRoot -RepoRoot $targetRoot

@@ -475,6 +475,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: `.worktreeinclude` e `.claude/launch.json` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
 
+---
+
+## BATCH-030: Sistema de Hooks PreToolUse e CLAUDE.md Aninhados
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação de `.claude/hooks/pre-tool-guard.ps1` e `.claude/hooks/pre-tool-guard.sh` com bloqueio para cópia manual para ambientes de teste e `git add -A` / `git add .`.
+- [x] Configuração do hook `PreToolUse` em `.claude/settings.json` nos masters e nos 4 templates do Claude Kit.
+- [x] Criação de `gestor/modulos/CLAUDE.md`, `resources/CLAUDE.md` e `cli/CLAUDE.md` com diretrizes modulares focadas.
+- [x] Atualização de `scripts/install-spec-driven-claude-kit.ps1` e `.sh` para instalação de hooks e `CLAUDE.md` aninhados.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: Hooks e `CLAUDE.md` modulares sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+
 
 
 

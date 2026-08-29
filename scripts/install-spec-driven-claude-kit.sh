@@ -134,6 +134,12 @@ if [[ -f "$template_root/.worktreeinclude" ]]; then
 fi
 copy_merged_tree "$template_root/.claude" "$target_root/.claude"
 
+for nf in "gestor/modulos/CLAUDE.md" "resources/CLAUDE.md" "cli/CLAUDE.md"; do
+    if [[ -f "$template_root/$nf" && -d "$target_root/$(dirname "$nf")" ]]; then
+        copy_file "$nf" "$nf"
+    fi
+done
+
 install_sdd_boilerplate() {
     local source_root="$1"
     local repo_root="$2"
