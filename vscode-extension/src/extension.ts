@@ -117,15 +117,6 @@ export function activate(context: vscode.ExtensionContext) {
         try {
           const viewMode = SddViewModeManager.mode;
 
-          // 1. SEMPRE abre o documento no editor primeiro para que activeTextEditor exista
-          const doc = await vscode.workspace.openTextDocument(uri);
-          await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-
-          // Se o usuário quer apenas código-fonte
-          if (viewMode === 'code') {
-            return;
-          }
-
           // Garante que o MPE esteja ativo se instalado
           const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
           if (mpe && !mpe.isActive) {
@@ -136,22 +127,17 @@ export function activate(context: vscode.ExtensionContext) {
             }
           }
 
-          // 2. Modo Apenas Renderizado (Preview)
+          // 1. Modo Apenas Renderizado (Preview DIRETO via Custom Editor MPE)
           if (viewMode === 'preview') {
             if (mpe) {
               try {
-                await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
-                // Pequena pausa para o MPE inicializar o webview antes de fechar o código
-                await new Promise(resolve => setTimeout(resolve, 250));
-                await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-                await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+                await vscode.commands.executeCommand('vscode.openWith', uri, 'markdown-preview-enhanced');
                 return;
               } catch {
-                // fallback
+                // fallback para preview nativo
               }
             }
             try {
-              await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
               await vscode.commands.executeCommand('markdown.showPreview', uri);
               return;
             } catch {
@@ -160,7 +146,17 @@ export function activate(context: vscode.ExtensionContext) {
             return;
           }
 
-          // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview na direita)
+          // 2. Modo Apenas Código-Fonte (Editor normal)
+          if (viewMode === 'code') {
+            const doc = await vscode.workspace.openTextDocument(uri);
+            await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+            return;
+          }
+
+          // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview MPE na direita)
+          const doc = await vscode.workspace.openTextDocument(uri);
+          await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+
           if (mpe) {
             try {
               await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
@@ -392,6 +388,14 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
       const target = ProjectsManager.getTargetProject();
       runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${target}`));
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.syncCoreTarget', () => {
+      const target = ProjectsManager.getTargetProject();
+      runInTerminal(ShellHelper.formatC2fCommand(`project:sync-core ${target}`));
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.syncFilesTarget', () => {
+      const target = ProjectsManager.getTargetProject();
+      runInTerminal(ShellHelper.formatC2fCommand(`project:sync-files ${target}`));
     }),
     vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
       const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');

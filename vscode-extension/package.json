@@ -278,6 +278,18 @@
         "icon": "$(rocket)"
       },
       {
+        "command": "conn2flow.projects.syncCoreTarget",
+        "title": "Sync Core -> Projeto Alvo",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(arrow-right)"
+      },
+      {
+        "command": "conn2flow.projects.syncFilesTarget",
+        "title": "Sync Arquivos -> Ambiente de Testes",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(cloud-upload)"
+      },
+      {
         "command": "conn2flow.projects.deployWithSelect",
         "title": "Deploy Escolhendo Projeto...",
         "category": "Conn2Flow Projetos",

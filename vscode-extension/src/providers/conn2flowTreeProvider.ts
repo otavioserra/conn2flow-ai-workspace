@@ -334,8 +334,10 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         'tools',
         'Comandos de compilação e pipeline do Core Framework',
         [
-          new Conn2FlowTreeItem('Update All (Sistema)', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.updateAll', 'sync', 'Executa ./c2f manager:update-all'),
-          new Conn2FlowTreeItem('Sync Resources', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.syncResources', 'file-submodule', 'Executa ./c2f resources:sync'),
+          new Conn2FlowTreeItem('Update All (Sistema Core)', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.updateAll', 'sync', 'Executa ./c2f manager:update-all (Atualiza recursos, arquivos e banco do sistema principal)'),
+          new Conn2FlowTreeItem(`Sync Core -> Projeto [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.syncCoreTarget', 'arrow-right', `Sincroniza os arquivos atualizados do Core para a pasta do projeto ${targetProject}`),
+          new Conn2FlowTreeItem(`Update All -> Projeto [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllTarget', 'refresh', `Executa o ciclo completo de 7 etapas (Core -> DB -> Recursos -> Testes -> CSS) para ${targetProject}`),
+          new Conn2FlowTreeItem('Sync Resources (Local)', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.syncResources', 'file-submodule', 'Executa ./c2f resources:sync'),
           new Conn2FlowTreeItem(`CSS Rebuild [${targetProject || 'projeto'}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.cssRebuild', 'zap', 'Regenera o Tailwind CSS a partir do HTML do banco para o projeto ativo'),
           new Conn2FlowTreeItem(`CSS Audit [${targetProject || 'projeto'}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.cssAudit', 'search', 'Audita procedência de CSS e classes órfãs para o projeto ativo')
         ],
@@ -357,7 +359,11 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
             'target',
             'Clique para alterar o projeto alvo padrão no environment.json'
           ),
-          new Conn2FlowTreeItem('Deploy Projeto Alvo', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployTarget', 'rocket', `Executa deploy local para ${targetProject}`),
+          new Conn2FlowTreeItem(`Update All Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllTarget', 'refresh', `Executa a sincronização completa de 7 etapas para ${targetProject}`),
+          new Conn2FlowTreeItem(`Deploy Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployTarget', 'rocket', `Executa deploy local ou remoto para ${targetProject}`),
+          new Conn2FlowTreeItem(`Sync Core -> Projeto [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.syncCoreTarget', 'arrow-right', `Sincroniza os arquivos alterados no Core para o projeto ${targetProject}`),
+          new Conn2FlowTreeItem(`Sync Arquivos -> Test Environment [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.syncFilesTarget', 'cloud-upload', `Sincroniza os arquivos de ${targetProject} diretamente para a pasta de testes sites/localhost/${targetProject}/`),
+          new Conn2FlowTreeItem('Update All Escolhendo Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllWithSelect', 'list-ordered', 'Escolha qualquer projeto do environment.json para rodar Update All'),
           new Conn2FlowTreeItem('Deploy de Outro Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployOther', 'send', 'Escolha um projeto cadastrado no environment.json para deploy'),
           new Conn2FlowTreeItem('Novo Projeto Satélite (Wizard)', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.scaffoldNew', 'new-folder', 'Cria e registra novo projeto satélite com estrutura canônica'),
           new Conn2FlowTreeItem('Cadastrar Projeto Existente', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.registerExisting', 'plus', 'Cadastra um projeto existente no devProjects do environment.json'),
