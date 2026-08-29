@@ -83,6 +83,7 @@ function activate(context) {
             for (const folder of workspaceFolders) {
                 candidates.push(path.join(folder.uri.fsPath, relativePath));
                 candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
+                candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow-ai-workspace', relativePath));
                 candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
                 candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
             }
@@ -381,18 +382,43 @@ function activate(context) {
         openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
     }), vscode.commands.registerCommand('conn2flow.ai.openCatalog', () => {
         openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+    }), vscode.commands.registerCommand('conn2flow.ai.openAgents', () => {
+        openMarkdownFile('AGENTS.md');
+    }), vscode.commands.registerCommand('conn2flow.ai.openGemini', () => {
+        openMarkdownFile('GEMINI.md');
     }), 
     // Documentation & Guides Commands
-    vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
-        openMarkdownFile('pt-br/docs/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
+    vscode.commands.registerCommand('conn2flow.docs.openDevToolsGuide', () => {
+        openMarkdownFile('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
+        openMarkdownFile('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
     }), vscode.commands.registerCommand('conn2flow.docs.openMarketplaceGuide', () => {
         openMarkdownFile('docs/pt-br/GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openDevGuide', () => {
+        openMarkdownFile('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openSddGuide', () => {
+        openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openTailwindGuide', () => {
+        openMarkdownFile('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md');
     }), vscode.commands.registerCommand('conn2flow.docs.openArchitectureGuide', () => {
         openMarkdownFile('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md');
     }), vscode.commands.registerCommand('conn2flow.docs.openDockerGuide', () => {
-        openMarkdownFile('pt-br/docs/CONN2FLOW-AMBIENTE-DOCKER.md');
+        openMarkdownFile('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md');
     }), vscode.commands.registerCommand('conn2flow.docs.openResourcesGuide', () => {
-        openMarkdownFile('pt-br/docs/CONN2FLOW-SISTEMA-RECURSOS.md');
+        openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+    }), 
+    // Aliases para Projetos
+    vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
+        const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
+        if (projectId) {
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`));
+        }
+    }), vscode.commands.registerCommand('conn2flow.projects.scaffoldNew', async () => {
+        await projectsManager_1.ProjectsManager.scaffoldNewSatelliteProject(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.registerExisting', async () => {
+        await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.cloneMissing', async () => {
+        await projectsManager_1.ProjectsManager.cloneMissingRepository(runInTerminal, refreshAll);
     }));
 }
 async function openFileGeneral(relativePath) {

@@ -314,6 +314,30 @@
         "icon": "$(cloud-download)"
       },
       {
+        "command": "conn2flow.projects.deployOther",
+        "title": "Deploy de Outro Projeto...",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(send)"
+      },
+      {
+        "command": "conn2flow.projects.scaffoldNew",
+        "title": "Novo Projeto Satélite (Wizard)",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "conn2flow.projects.registerExisting",
+        "title": "Cadastrar Projeto Existente",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "conn2flow.projects.cloneMissing",
+        "title": "Clonar Repositórios Faltantes",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(repo-clone)"
+      },
+      {
         "command": "conn2flow.projects.checkRepositories",
         "title": "Verificar Repositórios Clonados",
         "category": "Conn2Flow Projetos",
@@ -374,8 +398,44 @@
         "icon": "$(list-unordered)"
       },
       {
-        "command": "conn2flow.docs.openPanelGuide",
+        "command": "conn2flow.ai.openAgents",
+        "title": "Abrir AGENTS.md",
+        "category": "Conn2Flow AI",
+        "icon": "$(person)"
+      },
+      {
+        "command": "conn2flow.ai.openGemini",
+        "title": "Abrir GEMINI.md",
+        "category": "Conn2Flow AI",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "conn2flow.docs.openDevToolsGuide",
         "title": "Manual do Painel Dev Tools",
+        "category": "Conn2Flow Docs",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "conn2flow.docs.openDevGuide",
+        "title": "Guia do Desenvolvedor Conn2Flow",
+        "category": "Conn2Flow Docs",
+        "icon": "$(mortar-board)"
+      },
+      {
+        "command": "conn2flow.docs.openSddGuide",
+        "title": "Guia de Governança SDD",
+        "category": "Conn2Flow Docs",
+        "icon": "$(law)"
+      },
+      {
+        "command": "conn2flow.docs.openTailwindGuide",
+        "title": "Arquitetura Tailwind CSS (3 Camadas)",
+        "category": "Conn2Flow Docs",
+        "icon": "$(symbol-color)"
+      },
+      {
+        "command": "conn2flow.docs.openPanelGuide",
+        "title": "Manual do Painel Dev Tools (Legado)",
         "category": "Conn2Flow Docs",
         "icon": "$(file-text)"
       },
