@@ -14,6 +14,7 @@ const agentBridgeManager_1 = require("./providers/agentBridgeManager");
 const terminalModeManager_1 = require("./providers/terminalModeManager");
 const sddViewModeManager_1 = require("./providers/sddViewModeManager");
 const sddBrowserManager_1 = require("./providers/sddBrowserManager");
+const sddScopeManager_1 = require("./providers/sddScopeManager");
 const shellHelper_1 = require("./providers/shellHelper");
 let terminal;
 let dockerStatusBarItem;
@@ -75,85 +76,93 @@ function activate(context) {
             vscode.window.showWarningMessage('Nenhum workspace aberto no VS Code.');
             return;
         }
-        const candidates = [];
-        for (const folder of workspaceFolders) {
-            candidates.push(path.join(folder.uri.fsPath, relativePath));
-            candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
-            candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
-            candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
-        }
-        for (const fullPath of candidates) {
-            if (fs.existsSync(fullPath)) {
-                const uri = vscode.Uri.file(fullPath);
-                try {
-                    const viewMode = sddViewModeManager_1.SddViewModeManager.mode;
-                    // 1. SEMPRE abre o documento no editor primeiro para que activeTextEditor exista
-                    const doc = await vscode.workspace.openTextDocument(uri);
-                    await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-                    // Se o usuário quer apenas código-fonte
-                    if (viewMode === 'code') {
-                        return;
-                    }
-                    // Garante que o MPE esteja ativo se instalado
-                    const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
-                    if (mpe && !mpe.isActive) {
-                        try {
-                            await mpe.activate();
-                        }
-                        catch {
-                            // continua
-                        }
-                    }
-                    // 2. Modo Apenas Renderizado (Preview)
-                    if (viewMode === 'preview') {
-                        if (mpe) {
-                            try {
-                                await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
-                                // Pequena pausa para o MPE inicializar o webview antes de fechar o código
-                                await new Promise(resolve => setTimeout(resolve, 250));
-                                await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-                                await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-                                return;
-                            }
-                            catch {
-                                // fallback
-                            }
-                        }
-                        try {
-                            await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-                            await vscode.commands.executeCommand('markdown.showPreview', uri);
-                            return;
-                        }
-                        catch {
-                            // fallback
-                        }
-                        return;
-                    }
-                    // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview na direita)
-                    if (mpe) {
-                        try {
-                            await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
-                            return;
-                        }
-                        catch {
-                            // fallback para nativo
-                        }
-                    }
-                    try {
-                        await vscode.commands.executeCommand('markdown.showPreviewToSide');
-                    }
-                    catch {
-                        // documento já aberto na tela
-                    }
-                    return;
-                }
-                catch (err) {
-                    vscode.window.showErrorMessage(`Falha ao abrir documento: ${err.message}`);
-                    return;
+        let resolvedFullPath = sddScopeManager_1.SddScopeManager.resolveSddFile(relativePath);
+        if (!resolvedFullPath) {
+            const candidates = [];
+            for (const folder of workspaceFolders) {
+                candidates.push(path.join(folder.uri.fsPath, relativePath));
+                candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
+                candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
+                candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
+            }
+            for (const fullPath of candidates) {
+                if (fs.existsSync(fullPath)) {
+                    resolvedFullPath = fullPath;
+                    break;
                 }
             }
         }
-        vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath}`);
+        if (!resolvedFullPath || !fs.existsSync(resolvedFullPath)) {
+            vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath} (${sddScopeManager_1.SddScopeManager.getScopeLabel()})`);
+            return;
+        }
+        const uri = vscode.Uri.file(resolvedFullPath);
+        try {
+            const viewMode = sddViewModeManager_1.SddViewModeManager.mode;
+            // 1. SEMPRE abre o documento no editor primeiro para que activeTextEditor exista
+            const doc = await vscode.workspace.openTextDocument(uri);
+            await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+            // Se o usuário quer apenas código-fonte
+            if (viewMode === 'code') {
+                return;
+            }
+            // Garante que o MPE esteja ativo se instalado
+            const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+            if (mpe && !mpe.isActive) {
+                try {
+                    await mpe.activate();
+                }
+                catch {
+                    // continua
+                }
+            }
+            // 2. Modo Apenas Renderizado (Preview)
+            if (viewMode === 'preview') {
+                if (mpe) {
+                    try {
+                        await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
+                        // Pequena pausa para o MPE inicializar o webview antes de fechar o código
+                        await new Promise(resolve => setTimeout(resolve, 250));
+                        await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+                        await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+                        return;
+                    }
+                    catch {
+                        // fallback
+                    }
+                }
+                try {
+                    await vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+                    await vscode.commands.executeCommand('markdown.showPreview', uri);
+                    return;
+                }
+                catch {
+                    // fallback
+                }
+                return;
+            }
+            // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview na direita)
+            if (mpe) {
+                try {
+                    await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
+                    return;
+                }
+                catch {
+                    // fallback para nativo
+                }
+            }
+            try {
+                await vscode.commands.executeCommand('markdown.showPreviewToSide');
+            }
+            catch {
+                // documento já aberto na tela
+            }
+            return;
+        }
+        catch (err) {
+            vscode.window.showErrorMessage(`Falha ao abrir documento: ${err.message}`);
+            return;
+        }
     };
     // Helper para seleção de projeto do environment.json
     const selectProjectFromEnvironment = async (placeHolder) => {
@@ -248,7 +257,9 @@ function activate(context) {
         }
     }), 
     // SDD Commands & Interactive Browsers
-    vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
+    vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
+        await sddScopeManager_1.SddScopeManager.selectScope(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
         sddViewModeManager_1.SddViewModeManager.toggle(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
         openMarkdownFile('sdd/human-requests/CURRENT.md');

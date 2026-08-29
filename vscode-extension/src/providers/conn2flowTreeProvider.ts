@@ -6,6 +6,7 @@ import { LogFollowManager } from './logFollowManager';
 import { AgentBridgeManager } from './agentBridgeManager';
 import { TerminalModeManager } from './terminalModeManager';
 import { SddViewModeManager } from './sddViewModeManager';
+import { SddScopeManager } from './sddScopeManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -234,6 +235,13 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         'shield',
         'Controle de especificações, navegador de intakes, lotes e relatórios SDD',
         [
+          new Conn2FlowTreeItem(
+            `🎯 Escopo: ${SddScopeManager.getScopeLabel()}`,
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.sdd.selectScope',
+            'target',
+            'Alterna o escopo de trabalho do SDD entre: Core do Sistema (conn2flow) e Projetos Satélites (transformamp, lumix, etc.)'
+          ),
           new Conn2FlowTreeItem(
             `📄 Exibição: ${SddViewModeManager.label}`,
             vscode.TreeItemCollapsibleState.None,

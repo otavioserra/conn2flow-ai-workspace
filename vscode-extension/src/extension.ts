@@ -10,6 +10,7 @@ import { AgentBridgeManager } from './providers/agentBridgeManager';
 import { TerminalModeManager } from './providers/terminalModeManager';
 import { SddViewModeManager } from './providers/sddViewModeManager';
 import { SddBrowserManager } from './providers/sddBrowserManager';
+import { SddScopeManager } from './providers/sddScopeManager';
 import { ShellHelper } from './providers/shellHelper';
 
 let terminal: vscode.Terminal | undefined;
@@ -85,17 +86,31 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const candidates: string[] = [];
-    for (const folder of workspaceFolders) {
-      candidates.push(path.join(folder.uri.fsPath, relativePath));
-      candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
-      candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
-      candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
+    let resolvedFullPath = SddScopeManager.resolveSddFile(relativePath);
+
+    if (!resolvedFullPath) {
+      const candidates: string[] = [];
+      for (const folder of workspaceFolders) {
+        candidates.push(path.join(folder.uri.fsPath, relativePath));
+        candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
+        candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
+        candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
+      }
+
+      for (const fullPath of candidates) {
+        if (fs.existsSync(fullPath)) {
+          resolvedFullPath = fullPath;
+          break;
+        }
+      }
     }
 
-    for (const fullPath of candidates) {
-      if (fs.existsSync(fullPath)) {
-        const uri = vscode.Uri.file(fullPath);
+    if (!resolvedFullPath || !fs.existsSync(resolvedFullPath)) {
+      vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath} (${SddScopeManager.getScopeLabel()})`);
+      return;
+    }
+
+    const uri = vscode.Uri.file(resolvedFullPath);
 
         try {
           const viewMode = SddViewModeManager.mode;
@@ -163,10 +178,6 @@ export function activate(context: vscode.ExtensionContext) {
           vscode.window.showErrorMessage(`Falha ao abrir documento: ${err.message}`);
           return;
         }
-      }
-    }
-
-    vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath}`);
   };
 
   // Helper para seleção de projeto do environment.json
@@ -280,6 +291,9 @@ export function activate(context: vscode.ExtensionContext) {
     }),
 
     // SDD Commands & Interactive Browsers
+    vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
+      await SddScopeManager.selectScope(refreshAll);
+    }),
     vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
       SddViewModeManager.toggle(refreshAll);
     }),

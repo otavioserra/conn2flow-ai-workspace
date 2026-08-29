@@ -122,6 +122,12 @@
         "icon": "$(robot)"
       },
       {
+        "command": "conn2flow.sdd.selectScope",
+        "title": "Selecionar Escopo SDD (Core ou Projeto)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(target)"
+      },
+      {
         "command": "conn2flow.sdd.toggleViewMode",
         "title": "Alternar Modo de Exibição SDD (Preview/Código/Ambos)",
         "category": "Conn2Flow SDD",

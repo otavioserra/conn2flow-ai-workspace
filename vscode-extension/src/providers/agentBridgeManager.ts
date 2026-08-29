@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
+import { SddScopeManager } from './sddScopeManager';
+
 export class AgentBridgeManager {
   private static getWorkspaceRoot(): string | undefined {
     const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -10,18 +12,21 @@ export class AgentBridgeManager {
   }
 
   public static getActiveRequestFile(): { pointer: string; fullPath: string; content: string } | undefined {
-    const root = this.getWorkspaceRoot();
-    if (!root) return undefined;
+    let currentPath = SddScopeManager.resolveSddFile('sdd/human-requests/CURRENT.md');
 
-    const currentPath = path.join(root, 'sdd', 'human-requests', 'CURRENT.md');
-    if (!fs.existsSync(currentPath)) return undefined;
+    if (!currentPath || !fs.existsSync(currentPath)) {
+      const root = this.getWorkspaceRoot();
+      if (!root) return undefined;
+      currentPath = path.join(root, 'sdd', 'human-requests', 'CURRENT.md');
+      if (!fs.existsSync(currentPath)) return undefined;
+    }
 
     const currentContent = fs.readFileSync(currentPath, 'utf8');
     const pointerMatch = currentContent.match(/\[(req-[0-9a-zA-Z_-]+\.md)\]/);
-    const pointer = pointerMatch ? pointerMatch[1] : 'req-034.md';
-    const reqPath = path.join(root, 'sdd', 'human-requests', pointer);
+    const pointer = pointerMatch ? pointerMatch[1] : 'CURRENT.md';
+    const reqPath = path.join(path.dirname(currentPath), pointer);
 
-    const reqContent = fs.existsSync(reqPath) ? fs.readFileSync(reqPath, 'utf8') : '';
+    const reqContent = fs.existsSync(reqPath) ? fs.readFileSync(reqPath, 'utf8') : currentContent;
 
     return {
       pointer,

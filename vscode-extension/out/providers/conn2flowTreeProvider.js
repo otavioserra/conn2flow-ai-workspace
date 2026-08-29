@@ -8,6 +8,7 @@ const customActionsManager_1 = require("./customActionsManager");
 const logFollowManager_1 = require("./logFollowManager");
 const terminalModeManager_1 = require("./terminalModeManager");
 const sddViewModeManager_1 = require("./sddViewModeManager");
+const sddScopeManager_1 = require("./sddScopeManager");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     label;
     collapsibleState;
@@ -117,6 +118,7 @@ class Conn2FlowTreeProvider {
             categories.push(new Conn2FlowTreeItem(`⭐ ${customManifest.title || 'Ações do Projeto'}`, this.defaultCollapsibleState, undefined, 'star', 'Ações e automações customizadas definidas no .c2f/actions.json deste projeto', customItems, undefined, undefined, `cat-custom-${this.defaultCollapsibleState}-${ver}`));
         }
         categories.push(new Conn2FlowTreeItem('🏛️ SDD & Governança Viva', this.defaultCollapsibleState, undefined, 'shield', 'Controle de especificações, navegador de intakes, lotes e relatórios SDD', [
+            new Conn2FlowTreeItem(`🎯 Escopo: ${sddScopeManager_1.SddScopeManager.getScopeLabel()}`, vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.selectScope', 'target', 'Alterna o escopo de trabalho do SDD entre: Core do Sistema (conn2flow) e Projetos Satélites (transformamp, lumix, etc.)'),
             new Conn2FlowTreeItem(`📄 Exibição: ${sddViewModeManager_1.SddViewModeManager.label}`, vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.toggleViewMode', 'split-horizontal', 'Alterna modo de visualização entre: Ambos Lado a Lado, Apenas Renderizado (Preview), e Apenas Código-Fonte (Editor)'),
             new Conn2FlowTreeItem('Abrir CURRENT.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openCurrent', 'file-text', 'Abre a requisição SDD ativa no modo configurado'),
             new Conn2FlowTreeItem('Abrir SPEC.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openSpec', 'file-code', 'Abre a especificação normativa geral no modo configurado'),
