@@ -206,6 +206,24 @@
         "icon": "$(repo)"
       },
       {
+        "command": "conn2flow.projects.syncTemplate",
+        "title": "Sincronizar com Template do Core",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "conn2flow.projects.openTemplate",
+        "title": "Abrir Template do Environment",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(file-submodule)"
+      },
+      {
+        "command": "conn2flow.projects.openActive",
+        "title": "Abrir environment.json (Ativo)",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(file-text)"
+      },
+      {
         "command": "conn2flow.ai.syncSkills",
         "title": "Sincronizar Skills (1-Click)",
         "category": "Conn2Flow AI",

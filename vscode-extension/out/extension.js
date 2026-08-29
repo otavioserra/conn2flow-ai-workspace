@@ -233,6 +233,12 @@ function activate(context) {
             const names = missing.map(m => m.name).join(', ');
             vscode.window.showWarningMessage(`Atenção: Os seguintes repositórios não foram encontrados: ${names}. Para trabalhar com eles, certifique-se de cloná-los na mesma pasta pai.`);
         }
+    }), vscode.commands.registerCommand('conn2flow.projects.syncTemplate', async () => {
+        await projectsManager_1.ProjectsManager.syncWithTemplate(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.openTemplate', async () => {
+        await projectsManager_1.ProjectsManager.openTemplateEnvironment();
+    }), vscode.commands.registerCommand('conn2flow.projects.openActive', async () => {
+        await projectsManager_1.ProjectsManager.openActiveEnvironment();
     }), 
     // AI Workspace Hub Commands
     vscode.commands.registerCommand('conn2flow.ai.syncSkills', () => {

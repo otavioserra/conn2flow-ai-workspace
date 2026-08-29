@@ -10,12 +10,29 @@ class ProjectsManager {
         if (!workspaceFolders || workspaceFolders.length === 0) {
             return undefined;
         }
-        // Procura no workspace ou em ../conn2flow/dev-environment/data/environment.json
         for (const folder of workspaceFolders) {
             const candidates = [
                 path.join(folder.uri.fsPath, 'dev-environment', 'data', 'environment.json'),
                 path.join(folder.uri.fsPath, '..', 'conn2flow', 'dev-environment', 'data', 'environment.json'),
                 path.join(folder.uri.fsPath, 'environment.json')
+            ];
+            for (const cand of candidates) {
+                if (fs.existsSync(cand)) {
+                    return cand;
+                }
+            }
+        }
+        return undefined;
+    }
+    static getEnvironmentTemplatePath() {
+        const workspaceFolders = vscode.workspace.workspaceFolders;
+        if (!workspaceFolders || workspaceFolders.length === 0) {
+            return undefined;
+        }
+        for (const folder of workspaceFolders) {
+            const candidates = [
+                path.join(folder.uri.fsPath, '..', 'conn2flow', 'dev-environment', 'templates', 'environment', 'environment.json'),
+                path.join(folder.uri.fsPath, 'dev-environment', 'templates', 'environment', 'environment.json')
             ];
             for (const cand of candidates) {
                 if (fs.existsSync(cand)) {
@@ -137,6 +154,68 @@ class ProjectsManager {
         }
         catch (err) {
             vscode.window.showErrorMessage(`Falha ao adicionar projeto: ${err.message}`);
+        }
+    }
+    static async syncWithTemplate(onUpdated) {
+        const templatePath = this.getEnvironmentTemplatePath();
+        const envPath = this.getEnvironmentFilePath();
+        if (!templatePath || !fs.existsSync(templatePath)) {
+            vscode.window.showErrorMessage('Template de environment.json não encontrado em dev-environment/templates/environment/.');
+            return;
+        }
+        if (!envPath) {
+            vscode.window.showErrorMessage('Arquivo ativo environment.json não encontrado.');
+            return;
+        }
+        try {
+            const templateRaw = fs.readFileSync(templatePath, 'utf8');
+            const template = JSON.parse(templateRaw);
+            let targetData = {};
+            if (fs.existsSync(envPath)) {
+                targetData = JSON.parse(fs.readFileSync(envPath, 'utf8'));
+            }
+            // Função de deep merge preservando dados existentes
+            const mergeMissing = (tmpl, target) => {
+                for (const key of Object.keys(tmpl)) {
+                    if (key === 'devProjects')
+                        continue; // Projetos reais não são sobrescritos
+                    if (target[key] === undefined) {
+                        target[key] = tmpl[key];
+                    }
+                    else if (typeof tmpl[key] === 'object' && tmpl[key] !== null && !Array.isArray(tmpl[key])) {
+                        mergeMissing(tmpl[key], target[key]);
+                    }
+                }
+            };
+            mergeMissing(template, targetData);
+            fs.writeFileSync(envPath, JSON.stringify(targetData, null, 2), 'utf8');
+            vscode.window.showInformationMessage('Estrutura de environment.json sincronizada com o template canônico do Core com sucesso!');
+            if (onUpdated) {
+                onUpdated();
+            }
+        }
+        catch (err) {
+            vscode.window.showErrorMessage(`Falha ao sincronizar com template: ${err.message}`);
+        }
+    }
+    static async openActiveEnvironment() {
+        const envPath = this.getEnvironmentFilePath();
+        if (envPath && fs.existsSync(envPath)) {
+            const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(envPath));
+            await vscode.window.showTextDocument(doc);
+        }
+        else {
+            vscode.window.showErrorMessage('environment.json ativo não encontrado.');
+        }
+    }
+    static async openTemplateEnvironment() {
+        const tmplPath = this.getEnvironmentTemplatePath();
+        if (tmplPath && fs.existsSync(tmplPath)) {
+            const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(tmplPath));
+            await vscode.window.showTextDocument(doc);
+        }
+        else {
+            vscode.window.showErrorMessage('Template de environment.json não encontrado.');
         }
     }
     static checkAdjacentRepositories() {

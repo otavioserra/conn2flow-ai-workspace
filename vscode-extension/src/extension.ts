@@ -277,6 +277,15 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showWarningMessage(`Atenção: Os seguintes repositórios não foram encontrados: ${names}. Para trabalhar com eles, certifique-se de cloná-los na mesma pasta pai.`);
       }
     }),
+    vscode.commands.registerCommand('conn2flow.projects.syncTemplate', async () => {
+      await ProjectsManager.syncWithTemplate(refreshAll);
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.openTemplate', async () => {
+      await ProjectsManager.openTemplateEnvironment();
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.openActive', async () => {
+      await ProjectsManager.openActiveEnvironment();
+    }),
 
     // AI Workspace Hub Commands
     vscode.commands.registerCommand('conn2flow.ai.syncSkills', () => {
