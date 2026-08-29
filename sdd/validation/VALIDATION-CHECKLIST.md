@@ -586,6 +586,35 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: `.gemini/rules/`, `.gemini/agents/` e `GEMINI.md` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
 
+---
+
+## BATCH-035: Extensão VS Code: Clonagem de Repositórios e Scaffold Automático de Projetos Satélites
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Implementação de `cloneMissingRepository` em `ProjectsManager` com detecção de repositórios oficiais faltantes.
+- [x] Implementação de `scaffoldNewSatelliteProject` em `ProjectsManager` com criação da estrutura `gestor/`, assets e README.
+- [x] Registro automático no `devProjects` do `dev-environment/data/environment.json` ativo aderente ao template canônico do Core.
+- [x] Integração dos comandos `conn2flow.projects.cloneRepository` e `conn2flow.projects.scaffoldProject` na árvore visual do VS Code.
+- [x] Compilação TypeScript (`npm run compile`) com 100% de sucesso e zero erros.
+- [x] Empacotamento do pacote `.vsix` (`conn2flow-tools-1.0.0.vsix`) e reinstalação no VS Code via `code --install-extension --force`.
+- [x] Validação rigorosa dos contratos das 36 skills via `php cli/c2f.php ai:sync`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Compilação TypeScript
+*   **Comando**: `npm run compile` em `vscode-extension/`.
+*   **Evidência**: `tsc -p ./` finalizado com código de saída 0 sem warnings ou erros.
+
+#### Teste 2: Empacotamento VSIX
+*   **Comando**: `cmd.exe /c npx --yes @vscode/vsce package` em `vscode-extension/`.
+*   **Evidência**: `conn2flow-tools-1.0.0.vsix` gerado com sucesso (19 arquivos, 79.64 KB).
+
+#### Teste 3: Validação de Skills
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36/36 skills e contratos validados com sucesso em todos os toolkits ativos (.claude, .cursor, .gemini, .github, .codex).
+
+
 
 
 

@@ -226,6 +226,10 @@ function activate(context) {
         }
     }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.scaffoldProject', async () => {
+        await projectsManager_1.ProjectsManager.scaffoldNewSatelliteProject(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.cloneRepository', async () => {
+        await projectsManager_1.ProjectsManager.cloneMissingRepository(runInTerminal, refreshAll);
     }), vscode.commands.registerCommand('conn2flow.projects.checkRepositories', () => {
         const status = projectsManager_1.ProjectsManager.checkAdjacentRepositories();
         const missing = status.filter(s => !s.exists);

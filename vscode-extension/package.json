@@ -206,6 +206,18 @@
         "icon": "$(add)"
       },
       {
+        "command": "conn2flow.projects.scaffoldProject",
+        "title": "Provisionar Novo Projeto Satélite",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(repo-create)"
+      },
+      {
+        "command": "conn2flow.projects.cloneRepository",
+        "title": "Clonar Repositórios Oficiais",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(cloud-download)"
+      },
+      {
         "command": "conn2flow.projects.checkRepositories",
         "title": "Verificar Repositórios Clonados",
         "category": "Conn2Flow Projetos",

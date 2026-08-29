@@ -270,6 +270,12 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
       await ProjectsManager.addNewProject(refreshAll);
     }),
+    vscode.commands.registerCommand('conn2flow.projects.scaffoldProject', async () => {
+      await ProjectsManager.scaffoldNewSatelliteProject(refreshAll);
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.cloneRepository', async () => {
+      await ProjectsManager.cloneMissingRepository(runInTerminal, refreshAll);
+    }),
     vscode.commands.registerCommand('conn2flow.projects.checkRepositories', () => {
       const status = ProjectsManager.checkAdjacentRepositories();
       const missing = status.filter(s => !s.exists);
