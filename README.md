@@ -64,6 +64,7 @@ This repository is organized into clean domain-specific folders with full biling
   - `templates/private-project-copilot-kit`: GitHub Copilot setup for private repositories extending a core repo.
 * **`docs/`** (`en/` and `pt-br/`): Comprehensive technical manuals, skills catalog, multi-agent playbook, and CLI/MCP guide.
 * **`scripts/`**: Automation scripts in PowerShell (`.ps1`) and Bash (`.sh`) to instantly install kits into any target repository.
+* **`vscode-extension/`**: Official VS Code Extension (**Conn2Flow Dev Tools**) featuring a dedicated sidebar panel (SDD, Docker, Manager, Projects, AI Hub) and live status bar.
 * **`mcp-hub/`**: Dockerized MCP Server enabling intelligent inter-agent communication and task dispatch across IDEs and models.
 * **`sdd/`**: Living Spec-Driven Development governance that manages this AI Workspace repository itself.
 
@@ -126,6 +127,15 @@ To inject OpenAI Codex instructions (`CODEX.md`, `AGENTS.md`), project settings 
 - **Linux / macOS (Bash)**:
   ```bash
   scripts/install-spec-driven-codex-kit.sh /path/to/your-repo --agent-prefix yourproject --language en
+  ```
+
+### 6. Official VS Code Extension (Conn2Flow Dev Tools)
+For developers using VS Code or Cursor, the workspace includes an official extension providing a dedicated sidebar with 1-Click interactive buttons:
+- **Sidebar with 5 Accordions**: SDD & Living Governance, Docker & Real-time Logs, Manager & Core (System), Projects, and AI Workspace Hub.
+- **Dynamic Status Bar**: Real-time visibility of Docker environment and active SDD requirement (`REQ-XXX`).
+- **Direct VSIX Package Installation**:
+  ```bash
+  code --install-extension vscode-extension/conn2flow-tools-1.0.0.vsix
   ```
 
 *Note: The `-AgentPrefix` parameter is optional and renames the default subagents (e.g. `yourproject-sdd-coordinator`). The `-Language` (or `--language`) parameter switches between `en` (English) and `pt-br` (Portuguese, default).*

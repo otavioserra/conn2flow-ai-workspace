@@ -1,0 +1,224 @@
+{
+  "name": "conn2flow-tools",
+  "displayName": "Conn2Flow Dev Tools",
+  "description": "Painel oficial de desenvolvedor para o ecossistema Conn2Flow: controle visual de SDD, Modos de Agentes (Duplo/Tríade), Níveis de Autonomia, Docker, Core CLI, Projetos e AI Workspace Hub.",
+  "version": "1.0.0",
+  "publisher": "conn2flow",
+  "icon": "resources/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "conn2flow",
+    "sdd",
+    "docker",
+    "tailwind",
+    "ai"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "conn2flow-view-container",
+          "title": "Conn2Flow",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "conn2flow-view-container": [
+        {
+          "id": "conn2flow-explorer",
+          "name": "Conn2Flow Dev Tools"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "conn2flow.refreshTree",
+        "title": "Atualizar Painel",
+        "category": "Conn2Flow",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "conn2flow.modes.selectMode",
+        "title": "Selecionar Topologia ou Autonomia",
+        "category": "Conn2Flow Modos",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "conn2flow.modes.setDoubleAgent",
+        "title": "Ativar Duplo Agente",
+        "category": "Conn2Flow Modos",
+        "icon": "$(person)"
+      },
+      {
+        "command": "conn2flow.modes.setTriAgent",
+        "title": "Ativar Tríade de Agentes",
+        "category": "Conn2Flow Modos",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "conn2flow.modes.setSupervised",
+        "title": "Ativar Modo Supervisionado (Nível 1)",
+        "category": "Conn2Flow Autonomia",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "conn2flow.modes.setMonitored",
+        "title": "Ativar Modo Autônomo Monitorado (Nível 2)",
+        "category": "Conn2Flow Autonomia",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "conn2flow.modes.setHeadless",
+        "title": "Ativar Modo Autônomo Headless (Nível 3)",
+        "category": "Conn2Flow Autonomia",
+        "icon": "$(robot)"
+      },
+      {
+        "command": "conn2flow.sdd.openCurrent",
+        "title": "Abrir CURRENT.md",
+        "category": "Conn2Flow SDD",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "conn2flow.sdd.openSpec",
+        "title": "Abrir SPEC.md",
+        "category": "Conn2Flow SDD",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "conn2flow.sdd.openChecklist",
+        "title": "Abrir Checklist de Validação",
+        "category": "Conn2Flow SDD",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "conn2flow.sdd.setTopology",
+        "title": "Mudar Topologia de Agentes",
+        "category": "Conn2Flow SDD",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "conn2flow.sdd.setAutonomy",
+        "title": "Mudar Nível de Autonomia",
+        "category": "Conn2Flow SDD",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "conn2flow.docker.status",
+        "title": "Status dos Containers",
+        "category": "Conn2Flow Docker",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "conn2flow.docker.logsApache",
+        "title": "Logs Apache (Follow)",
+        "category": "Conn2Flow Docker",
+        "icon": "$(output)"
+      },
+      {
+        "command": "conn2flow.docker.logsPhp",
+        "title": "Logs PHP (Follow)",
+        "category": "Conn2Flow Docker",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "conn2flow.docker.truncatePhpLog",
+        "title": "Limpar Logs PHP",
+        "category": "Conn2Flow Docker",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "conn2flow.manager.updateAll",
+        "title": "Update All (Sistema)",
+        "category": "Conn2Flow Manager",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "conn2flow.manager.syncResources",
+        "title": "Sincronizar Recursos",
+        "category": "Conn2Flow Manager",
+        "icon": "$(paintcan)"
+      },
+      {
+        "command": "conn2flow.manager.cssRebuild",
+        "title": "CSS Rebuild",
+        "category": "Conn2Flow Manager",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "conn2flow.manager.cssAudit",
+        "title": "CSS Audit",
+        "category": "Conn2Flow Manager",
+        "icon": "$(search)"
+      },
+      {
+        "command": "conn2flow.projects.updateAll",
+        "title": "Update All (Projeto)",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "conn2flow.projects.deploy",
+        "title": "Deploy Projeto",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "conn2flow.ai.syncSkills",
+        "title": "Sincronizar Skills (1-Click)",
+        "category": "Conn2Flow AI",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "conn2flow.ai.validateSkills",
+        "title": "Validar 36 Skills (ai:sync)",
+        "category": "Conn2Flow AI",
+        "icon": "$(pass)"
+      },
+      {
+        "command": "conn2flow.ai.openPlaybook",
+        "title": "Abrir Playbook Multi-Agentes",
+        "category": "Conn2Flow AI",
+        "icon": "$(book)"
+      },
+      {
+        "command": "conn2flow.ai.openCatalog",
+        "title": "Abrir Catálogo de Skills",
+        "category": "Conn2Flow AI",
+        "icon": "$(list-unordered)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "conn2flow.refreshTree",
+          "when": "view == conn2flow-explorer",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -541,6 +541,30 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: `AGENTS.md`, `.codex/hooks.json`, `.codex/config.toml` e `.gemini/hooks.json` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
 
+---
+
+## BATCH-033: Extensão Oficial do VS Code (Conn2Flow Dev Tools)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Scaffold da extensão em `vscode-extension/` (`package.json`, `tsconfig.json`, `README.md`, `.vscodeignore`, ícones).
+- [x] Implementação de `src/providers/conn2flowTreeProvider.ts` com os 5 acordeões e ícones Codicons oficiais.
+- [x] Implementação de `src/extension.ts` registrando os 18 comandos e 2 Status Bar Items dinâmicos.
+- [x] Compilação do código TypeScript (`npm run compile`) concluída com 100% de sucesso e zero erros.
+- [x] Empacotamento do arquivo instalável `.vsix` (`conn2flow-tools-1.0.0.vsix`) via `@vscode/vsce package`.
+- [x] Atualização de `README.md` e `README-PT-BR.md` com documentação da extensão e comandos de instalação.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Compilação TypeScript
+*   **Comando**: `npm run compile` em `vscode-extension/`.
+*   **Evidência**: `tsc -p ./` executado sem erros, gerando `out/extension.js` e `out/providers/conn2flowTreeProvider.js`.
+
+#### Teste 2: Empacotamento de Pacote VSIX
+*   **Comando**: `npx @vscode/vsce package --allow-missing-repository` em `vscode-extension/`.
+*   **Evidência**: Pacote gerado com sucesso: `conn2flow-tools-1.0.0.vsix` (10 arquivos, 13.64 KB).
+
+
 
 
 
