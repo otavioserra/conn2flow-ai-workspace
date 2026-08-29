@@ -11,18 +11,28 @@ const projectsManager_1 = require("./providers/projectsManager");
 const customActionsManager_1 = require("./providers/customActionsManager");
 const logFollowManager_1 = require("./providers/logFollowManager");
 const agentBridgeManager_1 = require("./providers/agentBridgeManager");
-const terminalModeManager_1 = require("./providers/terminalModeManager");
 const sddViewModeManager_1 = require("./providers/sddViewModeManager");
 const sddBrowserManager_1 = require("./providers/sddBrowserManager");
 const sddScopeManager_1 = require("./providers/sddScopeManager");
 const gardeningManager_1 = require("./providers/gardeningManager");
 const shellHelper_1 = require("./providers/shellHelper");
-let terminal;
+const localizationManager_1 = require("./providers/localizationManager");
+const commandRunner_1 = require("./providers/commandRunner");
+const workspaceLocator_1 = require("./providers/workspaceLocator");
+const backlogManager_1 = require("./providers/backlogManager");
+const releaseManager_1 = require("./providers/releaseManager");
+const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 let dockerStatusBarItem;
 let sddStatusBarItem;
 let modesStatusBarItem;
 function activate(context) {
-    const treeProvider = new conn2flowTreeProvider_1.Conn2FlowTreeProvider();
+    sddScopeManager_1.SddScopeManager.initialize(context);
+    sddViewModeManager_1.SddViewModeManager.initialize(context);
+    gardeningManager_1.GardeningManager.initialize(context);
+    let refreshAll = () => undefined;
+    localizationManager_1.LocalizationManager.initialize(context, () => refreshAll());
+    const treeProvider = new conn2flowTreeProvider_1.Conn2FlowTreeProvider(context);
+    const commandRunner = new commandRunner_1.CommandRunner();
     vscode.window.registerTreeDataProvider('conn2flow-explorer', treeProvider);
     // Status Bar Items
     dockerStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -34,11 +44,54 @@ function activate(context) {
     modesStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 98);
     modesStatusBarItem.command = 'conn2flow.modes.selectMode';
     context.subscriptions.push(modesStatusBarItem);
-    const refreshAll = () => {
+    refreshAll = () => {
         treeProvider.refresh();
         updateStatusBar();
+        gardeningManager_1.GardeningManager.checkAndNotify();
     };
     refreshAll();
+    const managedPreviewStateKey = 'conn2flow.sdd.managedMpePreviewPath';
+    let managedMpePreviewPath = context.workspaceState.get(managedPreviewStateKey);
+    const describeTab = (tab) => {
+        if (tab.input instanceof vscode.TabInputText) {
+            return { kind: 'text', uriPath: tab.input.uri.fsPath };
+        }
+        if (tab.input instanceof vscode.TabInputCustom) {
+            return {
+                kind: 'custom',
+                uriPath: tab.input.uri.fsPath,
+                viewType: tab.input.viewType
+            };
+        }
+        return { kind: 'other' };
+    };
+    const closeTabsForPreview = async (targetUri, reasons) => {
+        const tabsToClose = [];
+        for (const group of vscode.window.tabGroups.all) {
+            for (const tab of group.tabs) {
+                const reason = (0, markdownPreviewPolicy_1.getPreviewCloseReason)(describeTab(tab), targetUri.fsPath, managedMpePreviewPath);
+                if (reason && reasons.has(reason)) {
+                    tabsToClose.push(tab);
+                }
+            }
+        }
+        if (tabsToClose.length > 0) {
+            await vscode.window.tabGroups.close(tabsToClose, true);
+        }
+    };
+    const waitForMpePreview = async (targetUri) => {
+        const target = (0, markdownPreviewPolicy_1.normalizePreviewPath)(targetUri.fsPath);
+        for (let attempt = 0; attempt < 10; attempt++) {
+            const found = vscode.window.tabGroups.all.some(group => group.tabs.some(tab => tab.input instanceof vscode.TabInputCustom &&
+                tab.input.viewType === markdownPreviewPolicy_1.MPE_VIEW_TYPE &&
+                (0, markdownPreviewPolicy_1.normalizePreviewPath)(tab.input.uri.fsPath) === target));
+            if (found) {
+                return true;
+            }
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        return false;
+    };
     // Watcher para .c2f/actions.json (Hot Reload Plug & Play!)
     const actionsWatcher = customActionsManager_1.CustomActionsManager.setupWatcher(refreshAll);
     context.subscriptions.push(actionsWatcher);
@@ -46,39 +99,22 @@ function activate(context) {
     context.subscriptions.push(vscode.window.onDidCloseTerminal(t => logFollowManager_1.LogFollowManager.handleTerminalClosed(t, refreshAll)));
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
-    // Terminal Runner Helper com suporte inteligente a Reutilizar vs Criar Novo
-    const runInTerminal = (command, name = 'Conn2Flow Dev Terminal') => {
-        if (terminalModeManager_1.TerminalModeManager.isReuse) {
-            if (terminal && terminal.exitStatus === undefined) {
-                terminal.show();
-                terminal.sendText(command);
-                return;
-            }
-            const active = vscode.window.activeTerminal;
-            if (active && active.exitStatus === undefined) {
-                active.show();
-                active.sendText(command);
-                return;
-            }
-            terminal = vscode.window.createTerminal({ name: 'Conn2Flow Dev Terminal' });
-            terminal.show();
-            terminal.sendText(command);
-        }
-        else {
-            const newTerm = vscode.window.createTerminal({ name });
-            newTerm.show();
-            newTerm.sendText(command);
-        }
+    const runInTerminal = (command, name = 'Conn2Flow', impact = 'mutating', target, exclusive = false, confirmationSatisfied = false) => {
+        const cwd = workspaceLocator_1.WorkspaceLocator.getCoreRoot() || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+        if (!cwd)
+            return;
+        void commandRunner.run({ command, cwd, label: name, impact, target, exclusive, confirmationSatisfied });
     };
     // Markdown Opener com suporte a Modos: Código, Preview ou Ambos Lado a Lado
     const openMarkdownFile = async (relativePath) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
-            vscode.window.showWarningMessage('Nenhum workspace aberto no VS Code.');
+            vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('common.noWorkspace'));
             return;
         }
         let resolvedFullPath = sddScopeManager_1.SddScopeManager.resolveSddFile(relativePath);
-        if (!resolvedFullPath) {
+        const isScopedSddPath = /^sdd[/\\]/i.test(relativePath);
+        if (!resolvedFullPath && !isScopedSddPath) {
             const candidates = [];
             for (const folder of workspaceFolders) {
                 candidates.push(path.join(folder.uri.fsPath, relativePath));
@@ -95,7 +131,7 @@ function activate(context) {
             }
         }
         if (!resolvedFullPath || !fs.existsSync(resolvedFullPath)) {
-            vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath} (${sddScopeManager_1.SddScopeManager.getScopeLabel()})`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('sdd.fileMissing', { path: relativePath, scope: sddScopeManager_1.SddScopeManager.getScopeLabel() }));
             return;
         }
         const uri = vscode.Uri.file(resolvedFullPath);
@@ -111,23 +147,21 @@ function activate(context) {
                     // continua
                 }
             }
-            // 1. Modo Apenas Renderizado (Preview DIRETO via Custom Editor MPE)
+            // 1. Modo Apenas Renderizado (Preview direto via Custom Editor MPE)
             if (viewMode === 'preview') {
                 if (mpe) {
                     try {
-                        await vscode.commands.executeCommand('vscode.openWith', uri, 'markdown-preview-enhanced');
-                        // Aguarda o VS Code instanciar o Custom Editor e fecha qualquer aba de texto que tenha sido aberta em paralelo
-                        await new Promise(resolve => setTimeout(resolve, 200));
-                        for (const group of vscode.window.tabGroups.all) {
-                            for (const tab of group.tabs) {
-                                if (tab.input instanceof vscode.TabInputText) {
-                                    const p = tab.input.uri.fsPath.toLowerCase();
-                                    if (p === uri.fsPath.toLowerCase() || p.includes('sdd') || p.includes('docs') || p.endsWith('.md')) {
-                                        await vscode.window.tabGroups.close(tab);
-                                    }
-                                }
-                            }
-                        }
+                        // Fecha somente o preview que uma chamada anterior desta extensão registrou.
+                        // Previews MPE abertos manualmente nunca são adotados implicitamente.
+                        await closeTabsForPreview(uri, new Set(['managed-preview']));
+                        await vscode.commands.executeCommand('vscode.openWith', uri, markdownPreviewPolicy_1.MPE_VIEW_TYPE);
+                        await waitForMpePreview(uri);
+                        // Remove somente a fonte do documento solicitado, preservando o foco.
+                        await closeTabsForPreview(uri, new Set(['target-source']));
+                        // Revela explicitamente o Custom Editor depois da limpeza para garantir foco.
+                        await vscode.commands.executeCommand('vscode.openWith', uri, markdownPreviewPolicy_1.MPE_VIEW_TYPE);
+                        managedMpePreviewPath = uri.fsPath;
+                        await context.workspaceState.update(managedPreviewStateKey, managedMpePreviewPath);
                         return;
                     }
                     catch {
@@ -136,17 +170,9 @@ function activate(context) {
                 }
                 try {
                     await vscode.commands.executeCommand('markdown.showPreview', uri);
-                    await new Promise(resolve => setTimeout(resolve, 150));
-                    for (const group of vscode.window.tabGroups.all) {
-                        for (const tab of group.tabs) {
-                            if (tab.input instanceof vscode.TabInputText) {
-                                const p = tab.input.uri.fsPath.toLowerCase();
-                                if (p === uri.fsPath.toLowerCase() || p.includes('sdd') || p.includes('docs') || p.endsWith('.md')) {
-                                    await vscode.window.tabGroups.close(tab);
-                                }
-                            }
-                        }
-                    }
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    await closeTabsForPreview(uri, new Set(['target-source']));
+                    await vscode.commands.executeCommand('markdown.showPreview', uri);
                     return;
                 }
                 catch {
@@ -181,7 +207,7 @@ function activate(context) {
             return;
         }
         catch (err) {
-            vscode.window.showErrorMessage(`Falha ao abrir documento: ${err.message}`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
             return;
         }
     };
@@ -217,11 +243,10 @@ function activate(context) {
             placeHolder: 'ex: transformamp-local, conn2flow-site, etc.'
         });
     };
+    const localizedDoc = (ptBr, english) => localizationManager_1.LocalizationManager.currentLocale === 'en' && english ? english : ptBr;
     // Register Commands
     context.subscriptions.push(vscode.commands.registerCommand('conn2flow.refreshTree', () => {
         refreshAll();
-    }), vscode.commands.registerCommand('conn2flow.terminal.toggleMode', () => {
-        terminalModeManager_1.TerminalModeManager.toggle(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.expandAll', () => {
         treeProvider.expandAll();
     }), vscode.commands.registerCommand('conn2flow.collapseAll', () => {
@@ -230,7 +255,11 @@ function activate(context) {
     // Custom Actions Commands (Plug & Play!)
     vscode.commands.registerCommand('conn2flow.custom.runTerminal', (cmd) => {
         if (cmd) {
-            runInTerminal(cmd);
+            if (!vscode.workspace.isTrusted) {
+                vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('custom.trustRequired'));
+                return;
+            }
+            runInTerminal(cmd, 'Conn2Flow Custom Action', 'destructive', customActionsManager_1.CustomActionsManager.getManifestPath());
         }
     }), vscode.commands.registerCommand('conn2flow.custom.openFile', (filePath) => {
         if (filePath) {
@@ -266,13 +295,13 @@ function activate(context) {
         await modesManager_1.ModesManager.setAutonomy('autonomo_headless', refreshAll);
     }), vscode.commands.registerCommand('conn2flow.modes.selectMode', async () => {
         const items = [
-            { label: '🏛️ Tríade de Agentes', description: 'Arquiteto + Executor + Revisor Técnico (Rigor Máximo)', action: () => modesManager_1.ModesManager.setTopology('triade', refreshAll) },
-            { label: '👥 Duplo Agente', description: 'Arquiteto + Executor (Ágil / Aprendizado)', action: () => modesManager_1.ModesManager.setTopology('duplo', refreshAll) },
-            { label: '🛡️ Nível 1: Supervisionado', description: 'Sem commit/deploy automático sem OK humano', action: () => modesManager_1.ModesManager.setAutonomy('supervisionado', refreshAll) },
-            { label: '👁️ Nível 2: Autônomo Monitorado', description: 'Live Todo List na tela e deploy exclusivo de teste', action: () => modesManager_1.ModesManager.setAutonomy('autonomo_monitorado', refreshAll) },
-            { label: '🤖 Nível 3: Autônomo Headless', description: 'Segundo plano isolado via Worktree e MCP Hub', action: () => modesManager_1.ModesManager.setAutonomy('autonomo_headless', refreshAll) }
+            { label: localizationManager_1.LocalizationManager.t('mode.triad'), action: () => modesManager_1.ModesManager.setTopology('triade', refreshAll) },
+            { label: localizationManager_1.LocalizationManager.t('mode.dual'), action: () => modesManager_1.ModesManager.setTopology('duplo', refreshAll) },
+            { label: localizationManager_1.LocalizationManager.t('mode.supervised'), action: () => modesManager_1.ModesManager.setAutonomy('supervisionado', refreshAll) },
+            { label: localizationManager_1.LocalizationManager.t('mode.monitored'), action: () => modesManager_1.ModesManager.setAutonomy('autonomo_monitorado', refreshAll) },
+            { label: localizationManager_1.LocalizationManager.t('mode.headless'), action: () => modesManager_1.ModesManager.setAutonomy('autonomo_headless', refreshAll) }
         ];
-        const sel = await vscode.window.showQuickPick(items, { placeHolder: 'Selecione a Topologia ou Nível de Autonomia:' });
+        const sel = await vscode.window.showQuickPick(items, { placeHolder: localizationManager_1.LocalizationManager.t('agents.selectMode') });
         if (sel) {
             await sel.action();
         }
@@ -295,13 +324,15 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.sdd.openChecklist', () => {
         openMarkdownFile('sdd/validation/VALIDATION-CHECKLIST.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.browseRequests', async () => {
-        await sddBrowserManager_1.SddBrowserManager.browseDirectory('human-requests', 'Requisições Humanas', openMarkdownFile);
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('human-requests', localizationManager_1.LocalizationManager.t('sdd.browseRequests'), openMarkdownFile);
     }), vscode.commands.registerCommand('conn2flow.sdd.browseBatches', async () => {
-        await sddBrowserManager_1.SddBrowserManager.browseDirectory('implementation', 'Registros de Lotes', openMarkdownFile);
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('implementation', localizationManager_1.LocalizationManager.t('sdd.browseBatches'), openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.sdd.browseBacklog', async () => {
+        await backlogManager_1.BacklogManager.browse(openMarkdownFile);
     }), vscode.commands.registerCommand('conn2flow.sdd.browseDecisions', async () => {
-        await sddBrowserManager_1.SddBrowserManager.browseDirectory('decisions', 'Decisões Arquiteturais (ADRs)', openMarkdownFile);
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('decisions', localizationManager_1.LocalizationManager.t('sdd.browseDecisions'), openMarkdownFile);
     }), vscode.commands.registerCommand('conn2flow.sdd.browseHandoffs', async () => {
-        await sddBrowserManager_1.SddBrowserManager.browseDirectory('handoffs', 'Handoffs de Agentes', openMarkdownFile);
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('handoffs', localizationManager_1.LocalizationManager.t('sdd.browseHandoffs'), openMarkdownFile);
     }), 
     // Triad Bridge Commands (Agent Handoff & Goal Mode)
     vscode.commands.registerCommand('conn2flow.bridge.launchClaudeGoal', async () => {
@@ -310,8 +341,8 @@ function activate(context) {
         await agentBridgeManager_1.AgentBridgeManager.copyExecutorPrompt();
     }), vscode.commands.registerCommand('conn2flow.bridge.recordHandoff', async () => {
         await agentBridgeManager_1.AgentBridgeManager.recordTerminalHandoff(openMarkdownFile);
-    }), vscode.commands.registerCommand('conn2flow.bridge.notifyArchitect', () => {
-        agentBridgeManager_1.AgentBridgeManager.notifyArchitect(runInTerminal);
+    }), vscode.commands.registerCommand('conn2flow.bridge.notifyArchitect', async () => {
+        await agentBridgeManager_1.AgentBridgeManager.notifyArchitect(openMarkdownFile);
     }), 
     // Docker Commands
     vscode.commands.registerCommand('conn2flow.docker.status', () => {
@@ -321,20 +352,23 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.docker.logsPhp', () => {
         logFollowManager_1.LogFollowManager.togglePhpLogs(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.docker.truncatePhpLog', () => {
-        runInTerminal('docker exec conn2flow-app bash -c "truncate -s 0 /var/log/php_errors.log"');
-        vscode.window.showInformationMessage('Log de erros PHP truncado com sucesso.');
+        runInTerminal('docker exec conn2flow-app bash -c "truncate -s 0 /var/log/php_errors.log"', localizationManager_1.LocalizationManager.t('diagnostics.truncatePhp'), 'destructive', 'conn2flow-app:/var/log/php_errors.log');
     }), 
     // Manager & Core Commands
     vscode.commands.registerCommand('conn2flow.manager.updateAll', () => {
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('manager:update-all'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('manager:update-all'), localizationManager_1.LocalizationManager.t('core.updateAll'), 'mutating', 'Core', true);
     }), vscode.commands.registerCommand('conn2flow.manager.syncResources', () => {
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('resources:sync'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('resources:sync'), localizationManager_1.LocalizationManager.t('core.syncResources'), 'mutating', 'Core', true);
     }), vscode.commands.registerCommand('conn2flow.manager.cssRebuild', () => {
-        const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`));
+        const target = projectsManager_1.ProjectsManager.getTargetProject();
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`), localizationManager_1.LocalizationManager.t('core.cssRebuild', { target }), 'mutating', target, true);
     }), vscode.commands.registerCommand('conn2flow.manager.cssAudit', () => {
-        const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:audit --project=${target}`));
+        const target = projectsManager_1.ProjectsManager.getTargetProject();
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:audit --project=${target}`), localizationManager_1.LocalizationManager.t('core.cssAudit', { target }), 'read-only', target);
     }), 
     // Projects Commands
     vscode.commands.registerCommand('conn2flow.projects.setTarget', async () => {
@@ -344,31 +378,39 @@ function activate(context) {
             description: `[${p.id}]`,
             id: p.id
         }));
-        const sel = await vscode.window.showQuickPick(items, { placeHolder: 'Selecione qual projeto será o Projeto Alvo padrão:' });
+        const sel = await vscode.window.showQuickPick(items, { placeHolder: localizationManager_1.LocalizationManager.t('projects.targetPrompt') });
         if (sel) {
             await projectsManager_1.ProjectsManager.setTargetProject(sel.id, refreshAll);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${target}`));
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${target}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target }), 'remote', target, true);
     }), vscode.commands.registerCommand('conn2flow.projects.syncCoreTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-core ${target}`));
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-core ${target}`), localizationManager_1.LocalizationManager.t('projects.syncCore', { target }), 'mutating', target, true);
     }), vscode.commands.registerCommand('conn2flow.projects.syncFilesTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-files ${target}`));
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-files ${target}`), localizationManager_1.LocalizationManager.t('projects.syncFiles', { target }), 'mutating', target, true);
     }), vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`));
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`));
+        if (!target)
+            return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true);
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`));
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
@@ -380,11 +422,11 @@ function activate(context) {
         const status = projectsManager_1.ProjectsManager.checkAdjacentRepositories();
         const missing = status.filter(s => !s.exists);
         if (missing.length === 0) {
-            vscode.window.showInformationMessage('✔ Todos os repositórios oficiais estão clonados e presentes ao lado do workspace!');
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('projects.allPresent'));
         }
         else {
             const names = missing.map(m => m.name).join(', ');
-            vscode.window.showWarningMessage(`Atenção: Os seguintes repositórios não foram encontrados: ${names}. Para trabalhar com eles, certifique-se de cloná-los na mesma pasta pai.`);
+            vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.missingRepositories', { names }));
         }
     }), vscode.commands.registerCommand('conn2flow.projects.syncTemplate', async () => {
         await projectsManager_1.ProjectsManager.syncWithTemplate(refreshAll);
@@ -399,14 +441,15 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.ai.syncSkills', () => {
         runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:sync'));
     }), vscode.commands.registerCommand('conn2flow.ai.syncAllRepos', () => {
-        const cmd = shellHelper_1.ShellHelper.formatPowerShellScript('scripts/sync-all-repos.ps1', '-Force');
+        const language = localizationManager_1.LocalizationManager.currentLocale === 'pt-BR' ? 'pt-br' : 'en';
+        const cmd = shellHelper_1.ShellHelper.formatPowerShellScript('scripts/sync-all-repos.ps1', `-Force -Language ${language}`);
         runInTerminal(cmd);
     }), vscode.commands.registerCommand('conn2flow.ai.validateSkills', () => {
         runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:sync'));
     }), vscode.commands.registerCommand('conn2flow.ai.openPlaybook', () => {
-        openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md', 'docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md'));
     }), vscode.commands.registerCommand('conn2flow.ai.openCatalog', () => {
-        openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/CATALOGO-DE-SKILLS.md', 'docs/en/SKILLS-CATALOG.md'));
     }), vscode.commands.registerCommand('conn2flow.ai.openAgents', () => {
         openMarkdownFile('AGENTS.md');
     }), vscode.commands.registerCommand('conn2flow.ai.openGemini', () => {
@@ -414,29 +457,29 @@ function activate(context) {
     }), 
     // Documentation & Guides Commands
     vscode.commands.registerCommand('conn2flow.docs.openDevToolsGuide', () => {
-        openMarkdownFile('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
-        openMarkdownFile('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openMarketplaceGuide', () => {
         openMarkdownFile('docs/pt-br/GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md');
     }), vscode.commands.registerCommand('conn2flow.docs.openDevGuide', () => {
-        openMarkdownFile('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md', 'docs/en/QUICKSTART-CLI-AND-MCP.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openSddGuide', () => {
-        openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md', 'docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openTailwindGuide', () => {
-        openMarkdownFile('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md', 'docs/en/DOUBLE-AGENT-ARCHITECTURE.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openArchitectureGuide', () => {
-        openMarkdownFile('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md', 'docs/en/DOUBLE-AGENT-ARCHITECTURE.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openDockerGuide', () => {
-        openMarkdownFile('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md', 'docs/en/QUICKSTART-CLI-AND-MCP.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openResourcesGuide', () => {
-        openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+        openMarkdownFile(localizedDoc('docs/pt-br/CATALOGO-DE-SKILLS.md', 'docs/en/SKILLS-CATALOG.md'));
     }), 
     // Aliases para Projetos
     vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`));
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.scaffoldNew', async () => {
         await projectsManager_1.ProjectsManager.scaffoldNewSatelliteProject(refreshAll);
@@ -444,6 +487,17 @@ function activate(context) {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.projects.cloneMissing', async () => {
         await projectsManager_1.ProjectsManager.cloneMissingRepository(runInTerminal, refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.settings.selectLanguage', async () => {
+        await localizationManager_1.LocalizationManager.selectLanguage();
+        refreshAll();
+    }), vscode.commands.registerCommand('conn2flow.release.verifyPermission', async () => {
+        await releaseManager_1.ReleaseManager.verifyPermission(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.release.manager', async () => {
+        await releaseManager_1.ReleaseManager.create('manager', commandRunner, refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.release.installer', async () => {
+        await releaseManager_1.ReleaseManager.create('installer', commandRunner, refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.release.openActions', async () => {
+        await releaseManager_1.ReleaseManager.openActions();
     }));
 }
 async function openFileGeneral(relativePath) {
@@ -468,20 +522,20 @@ function updateStatusBar() {
         return;
     }
     const modes = modesManager_1.ModesManager.getCurrentModes();
-    const topLabel = modes.topology === 'triade' ? 'Tríade' : 'Duplo';
+    const topLabel = localizationManager_1.LocalizationManager.t(modes.topology === 'triade' ? 'mode.triad' : 'mode.dual');
     const autoMap = {
-        supervisionado: 'Supervisionado',
-        autonomo_monitorado: 'Monitorado',
-        autonomo_headless: 'Headless'
+        supervisionado: localizationManager_1.LocalizationManager.t('mode.supervised'),
+        autonomo_monitorado: localizationManager_1.LocalizationManager.t('mode.monitored'),
+        autonomo_headless: localizationManager_1.LocalizationManager.t('mode.headless')
     };
-    const autoLabel = autoMap[modes.autonomy] || 'Supervisionado';
+    const autoLabel = autoMap[modes.autonomy] || localizationManager_1.LocalizationManager.t('mode.supervised');
     modesStatusBarItem.text = `$(organization) ${topLabel} | ${autoLabel}`;
-    modesStatusBarItem.tooltip = 'Clique para alterar a Topologia de Agentes ou Nível de Autonomia';
+    modesStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.modesTooltip');
     modesStatusBarItem.show();
     let activeReq = 'Ativo';
     for (const folder of workspaceFolders) {
-        const currentPath = path.join(folder.uri.fsPath, 'sdd', 'human-requests', 'CURRENT.md');
-        if (fs.existsSync(currentPath)) {
+        const currentPath = sddScopeManager_1.SddScopeManager.resolveSddFile('sdd/human-requests/CURRENT.md');
+        if (currentPath && fs.existsSync(currentPath)) {
             try {
                 const content = fs.readFileSync(currentPath, 'utf8');
                 const match = content.match(/req-(\d+)\.md/i);
@@ -496,15 +550,11 @@ function updateStatusBar() {
         }
     }
     sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
-    sddStatusBarItem.tooltip = 'Clique para abrir a requisição SDD ativa no Preview';
+    sddStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.sddTooltip');
     sddStatusBarItem.show();
     dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
-    dockerStatusBarItem.tooltip = 'Clique para inspecionar containers Docker ativos';
+    dockerStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.dockerTooltip');
     dockerStatusBarItem.show();
 }
-function deactivate() {
-    if (terminal) {
-        terminal.dispose();
-    }
-}
+function deactivate() { }
 //# sourceMappingURL=extension.js.map

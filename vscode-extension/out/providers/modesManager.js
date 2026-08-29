@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModesManager = void 0;
 const vscode = require("vscode");
-const path = require("path");
 const fs = require("fs");
+const sddScopeManager_1 = require("./sddScopeManager");
 class ModesManager {
     static cachedModes = {
         topology: 'triade',
@@ -94,23 +94,7 @@ class ModesManager {
         }
     }
     static getCurrentFilePath() {
-        const workspaceFolders = vscode.workspace.workspaceFolders;
-        if (!workspaceFolders || workspaceFolders.length === 0) {
-            return undefined;
-        }
-        for (const folder of workspaceFolders) {
-            const candidates = [
-                path.join(folder.uri.fsPath, 'sdd', 'human-requests', 'CURRENT.md'),
-                path.join(folder.uri.fsPath, '..', 'conn2flow', 'sdd', 'human-requests', 'CURRENT.md'),
-                path.join(folder.uri.fsPath, '..', 'conn2flow-ai-workspace', 'sdd', 'human-requests', 'CURRENT.md')
-            ];
-            for (const p of candidates) {
-                if (fs.existsSync(p)) {
-                    return p;
-                }
-            }
-        }
-        return undefined;
+        return sddScopeManager_1.SddScopeManager.resolveSddFile('sdd/human-requests/CURRENT.md');
     }
 }
 exports.ModesManager = ModesManager;

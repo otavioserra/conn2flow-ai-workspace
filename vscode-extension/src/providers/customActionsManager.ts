@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { LocalizationManager } from './localizationManager';
 
 export interface CustomActionItem {
   label: string;
@@ -91,7 +92,7 @@ export class CustomActionsManager {
   public static async initSampleManifest(onCreated?: () => void): Promise<void> {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders || workspaceFolders.length === 0) {
-      vscode.window.showErrorMessage('Nenhum workspace aberto para criar manifesto.');
+      vscode.window.showErrorMessage(LocalizationManager.t('common.noWorkspace'));
       return;
     }
 
@@ -140,7 +141,7 @@ export class CustomActionsManager {
     const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(targetFile));
     await vscode.window.showTextDocument(doc);
 
-    vscode.window.showInformationMessage('Manifesto .c2f/actions.json criado com sucesso! Adicione seus comandos e eles aparecerão automaticamente no painel.');
+    vscode.window.showInformationMessage(LocalizationManager.t('custom.created'));
 
     if (onCreated) {
       onCreated();

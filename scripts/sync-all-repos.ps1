@@ -12,19 +12,22 @@
 [CmdletBinding()]
 param(
     [switch]$Force = $false,
-    [switch]$CommitAndPush = $false
+    [switch]$CommitAndPush = $false,
+    [ValidateSet('pt-br', 'en')]
+    [string]$Language = 'pt-br'
 )
 
 $ErrorActionPreference = "Stop"
 $WorkspaceRoot = Split-Path -Parent $PSScriptRoot
+$RepositoriesRoot = Split-Path -Parent $WorkspaceRoot
 
 Write-Host "Iniciando sincronizacao 1-Click de Skills do Workspace..." -ForegroundColor Cyan
 
 $Targets = @(
-    "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow",
-    "C:\Users\otavi\OneDrive\Documentos\GIT\lumix",
-    "C:\Users\otavi\OneDrive\Documentos\GIT\transformamp",
-    "C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-site"
+    (Join-Path $RepositoriesRoot 'conn2flow'),
+    (Join-Path $RepositoriesRoot 'lumix'),
+    (Join-Path $RepositoriesRoot 'transformamp'),
+    (Join-Path $RepositoriesRoot 'conn2flow-site')
 )
 
 $Installers = @(
@@ -44,9 +47,9 @@ foreach ($target in $Targets) {
             $scriptPath = Join-Path $WorkspaceRoot "scripts\$installer"
             if (Test-Path $scriptPath) {
                 if ($Force) {
-                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" -Force | Out-Null
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language $Language -Force | Out-Null
                 } else {
-                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language "pt-br" | Out-Null
+                    & powershell -NoProfile -ExecutionPolicy Bypass -File $scriptPath -TargetRepoPath $target -Language $Language | Out-Null
                 }
                 if ($LASTEXITCODE -ne 0) {
                     throw "Installer $installer failed for $repoName with exit code $LASTEXITCODE."

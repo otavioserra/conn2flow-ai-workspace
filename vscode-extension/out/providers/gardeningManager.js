@@ -7,11 +7,19 @@ const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
 class GardeningManager {
     static _autoGardening = true;
+    static storage;
+    static storageKey = 'conn2flow.sdd.autoGardening';
+    static lastNotificationStatus;
+    static initialize(context) {
+        this.storage = context.workspaceState;
+        this._autoGardening = this.storage.get(this.storageKey, true);
+    }
     static isAutoGardeningEnabled() {
         return this._autoGardening;
     }
     static toggleAutoGardening(onChanged) {
         this._autoGardening = !this._autoGardening;
+        void this.storage?.update(this.storageKey, this._autoGardening);
         const statusText = this._autoGardening ? 'ATIVADO' : 'DESATIVADO';
         vscode.window.setStatusBarMessage(`Auto-Gardening SDD: ${statusText}`, 2500);
         if (onChanged) {
@@ -62,6 +70,24 @@ class GardeningManager {
         }
         catch {
             return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: 'Erro ao ler memória' };
+        }
+    }
+    static checkAndNotify() {
+        if (!this._autoGardening)
+            return;
+        const health = this.getMemoryHealth();
+        if (health.status === 'healthy' || health.status === 'notFound') {
+            this.lastNotificationStatus = health.status;
+            return;
+        }
+        if (this.lastNotificationStatus === health.status)
+            return;
+        this.lastNotificationStatus = health.status;
+        if (health.status === 'critical') {
+            vscode.window.showErrorMessage(health.label);
+        }
+        else {
+            vscode.window.showWarningMessage(health.label);
         }
     }
     static async createGardeningRequest(openFile, refreshAll) {

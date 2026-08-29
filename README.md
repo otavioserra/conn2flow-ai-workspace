@@ -131,7 +131,11 @@ To inject OpenAI Codex instructions (`CODEX.md`, `AGENTS.md`), project settings 
 
 ### 6. Official VS Code Extension (Conn2Flow Dev Tools)
 For developers using VS Code or Cursor, the workspace includes an official extension providing a dedicated sidebar with 1-Click interactive buttons:
-- **Sidebar with 5 Accordions**: SDD & Living Governance, Docker & Real-time Logs, Manager & Core (System), Projects, and AI Workspace Hub.
+- **Progressive six-section sidebar**: Overview, SDD & Planning, Core & Releases, Projects & Test Environment, Environment & Diagnostics, and Agents/Docs/Settings.
+- **Bilingual UI**: follows the VS Code language automatically, with explicit `pt-BR` and `en` overrides.
+- **Governed Backlog Browser**: status filters and index/file drift warnings without bypassing the Intake Gate.
+- **Guided Core Releases**: separate Gestor and Gestor Installer forms, permission checks and safe preflights.
+- **Safe Command Runner**: dedicated tasks, explicit working directories, impact confirmation and exit-code verification.
 - **Dynamic Status Bar**: Real-time visibility of Docker environment and active SDD requirement (`REQ-XXX`).
 - **Direct VSIX Package Installation**:
   ```bash

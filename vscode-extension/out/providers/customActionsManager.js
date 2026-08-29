@@ -4,6 +4,7 @@ exports.CustomActionsManager = void 0;
 const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
+const localizationManager_1 = require("./localizationManager");
 class CustomActionsManager {
     static watcher;
     static getManifestPath() {
@@ -65,7 +66,7 @@ class CustomActionsManager {
     static async initSampleManifest(onCreated) {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
-            vscode.window.showErrorMessage('Nenhum workspace aberto para criar manifesto.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.noWorkspace'));
             return;
         }
         const targetDir = path.join(workspaceFolders[0].uri.fsPath, '.c2f');
@@ -107,7 +108,7 @@ class CustomActionsManager {
         // Abre o arquivo para o usuário editar
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(targetFile));
         await vscode.window.showTextDocument(doc);
-        vscode.window.showInformationMessage('Manifesto .c2f/actions.json criado com sucesso! Adicione seus comandos e eles aparecerão automaticamente no painel.');
+        vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('custom.created'));
         if (onCreated) {
             onCreated();
         }

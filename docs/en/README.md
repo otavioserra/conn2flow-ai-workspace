@@ -6,6 +6,9 @@ Welcome to the English technical documentation for Conn2Flow's AI infrastructure
 
 ## 🧭 Documentation Index
 
+0. **[VS Code Dev Tools Panel](VSCODE-DEV-TOOLS-PANEL-GUIDE.md)**:
+   - Safe command execution, bilingual UI, SDD scopes, backlog and guided releases.
+
 1. **[Core CLI, MCP Hub & Worktrees Quickstart](QUICKSTART-CLI-AND-MCP.md)**:
    - Cross-platform `c2f` CLI commands (Git Bash, PowerShell, Windows CMD).
    - Starting the Dockerized MCP Hub with auto-restart.

@@ -2,26 +2,31 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Lote concluído:** [BATCH-007 — Backlog de Ideias, Intake Gate e Gemini Kit](implementation/batch-007-backlog-governance.md)
+> **Último lote concluído:** [BATCH-037 — Recuperação SDD e estabilização do preview MPE](implementation/batch-037.md)
 >
-> **Política**: manter 12 a 15 tarefas recentes, alerta preventivo em 35 KB (~100 linhas), teto mandatório de poda em 50 KB (~150 linhas) e alvo pós-poda em ~15 KB. A memória de Chefia é somente leitura.
+> **Lote atual:** [BATCH-038 — Reestruturação segura, multilanguage, backlog e releases](implementation/batch-038.md), pronto para revisão humana.
+>
+> **Política**: manter somente fatos recentes e acionáveis; detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
 
 ## Atividades recentes
 
-- **2026-07-30 — BATCH-007:** criados backlog bilíngue e Intake Gate; itens de `sdd/backlog/` são não executáveis até promoção humana para `human-requests`, atualização de `CURRENT.md` e associação a batch.
-- **2026-07-30 — Gemini Kit:** adicionados `GEMINI.md`, `.gemini/settings.json`, `.geminiignore` e `.aiexclude`, com instaladores PowerShell/Bash e provisionamento não destrutivo do backlog.
-- **2026-07-30 — Rollout:** Core, Lumix, Transforma MP e Site receberam Gemini Kit e backlog sem sobrescrita do SDD existente.
-- **2026-07-30 — BATCH-006:** criado o protocolo de Memory Gardening, com gatilho preventivo em 10 KB/40 linhas, teto de 15 KB/50 linhas e poda para aproximadamente 5 KB.
-- **2026-07-30 — Cursor Kit:** templates e instaladores PT-BR/EN validados com preservação, `Force`, prefixo, boilerplate e injeção não destrutiva dos archives. `.cursor/rules/sdd.mdc` é a regra principal; `.cursorrules` é compatibilidade legada.
-- **2026-07-30 — Poda:** memórias finais ficaram entre 2,3 KB e 4,5 KB, preservando 4–5 tarefas recentes; detalhes antigos permanecem recuperáveis pelo Git.
+- **2026-08-29 — Recuperação:** auditado o estado posterior ao BATCH-036; 14 commits e 44 arquivos de evolução da extensão não possuíam registro operacional correspondente.
+- **2026-08-29 — BATCH-037:** removido o fechamento global de abas Markdown e introduzida política restrita ao fonte alvo e ao preview MPE gerenciado.
+- **2026-08-29 — Validação:** `npm test` aprovou 5/5 testes; TypeScript compilou; VSIX foi empacotado; hashes da instalação local ficaram idênticos aos artefatos compilados.
+- **2026-08-29 — Aceite humano:** após `Developer: Reload Window`, o preview encadeado passou a focar o documento correto sem acumular fontes Markdown.
+- **2026-08-29 — REQ-036:** criada proposta de reorganização da interface, navegação de backlog, segurança operacional, interface `pt-BR`/`en` e releases separados do Gestor e do Gestor Instalador.
+- **2026-08-29 — BATCH-038:** REQ-036 aprovada; diagnóstico confirmou que `findRepoSdd()` retornava o SDD do workspace atual sem verificar o repositório solicitado, afetando especificamente o escopo `ai-workspace`.
+- **2026-08-29 — Entrega BATCH-038:** escopo corrigido; árvore progressiva, executor seguro, backlog, `pt-BR`/`en`, formulários compostos e releases Gestor/Instalador implementados; 27 testes e VSIX aprovados.
 
-## Aprendizados operacionais
+## Decisões operacionais vigentes
 
-- Git Bash sob o sandbox não conseguiu escrever em caminhos `/c/...`; a validação EN foi executada fora do sandbox, exclusivamente em `temp/batch-006-cursor-en`, e o diretório foi removido.
-- Gemini CLI usa `.gemini/settings.json` para configuração de projeto e `.geminiignore` para filtrar contexto; `.aiexclude` foi mantido para compatibilidade com Gemini Code Assist.
-- Ao designorar skills locais, reabra somente os diretórios novos necessários; `!.claude/skills/**` expõe configurações antigas que deveriam continuar locais.
-- README/CURRENT/REQ-003/REQ-004 já continham alterações staged do usuário; as edições do executor foram mantidas no worktree sem alterar o staging existente.
+- O Intake Gate continua obrigatório: itens de `sdd/backlog/` não são executáveis até promoção humana para uma requisição e associação a um batch.
+- A REQ-036 está `APPROVED` e o BATCH-038 está `READY_FOR_REVIEW` em modo supervisionado.
+- Releases devem usar `c2f manager:release` e `c2f installer:release`, integrados respectivamente aos workflows `release-gestor.yml` e `release-instalador.yml`.
+- Os scripts de release precisam remover `git add .` antes de serem expostos pela interface.
+- Permissão de release deve ser comprovada; ausência ou indeterminação de permissão oferece somente diagnóstico seguro.
+- Modo supervisionado: commit e push foram autorizados explicitamente ao final para preservar a árvore; deploy e release permanecem não autorizados.
 
-## Pendências
+## Pendência imediata
 
-- O aceite visual do acionamento automático da regra no Cursor deve ser confirmado pelo humano ao abrir um arquivo em `sdd/`; a estrutura e o frontmatter foram validados localmente.
+- Aguardar Reload Window e aceite visual humano do BATCH-038; nenhum release, deploy, commit ou push foi executado.

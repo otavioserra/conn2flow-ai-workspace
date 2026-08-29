@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { SddScopeManager } from './sddScopeManager';
+import { LocalizationManager } from './localizationManager';
 
 export class SddBrowserManager {
   public static async browseDirectory(
@@ -13,7 +14,7 @@ export class SddBrowserManager {
     const scopeLabel = SddScopeManager.getScopeLabel();
 
     if (!sddRoot || !fs.existsSync(sddRoot)) {
-      vscode.window.showInformationMessage(`Pasta SDD não encontrada para o escopo ${scopeLabel}.`);
+      vscode.window.showInformationMessage(LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
       return;
     }
 
@@ -34,7 +35,7 @@ export class SddBrowserManager {
     }
 
     if (foundFiles.size === 0) {
-      vscode.window.showInformationMessage(`Nenhum arquivo encontrado em ${subDir}/ para ${scopeLabel}.`);
+      vscode.window.showInformationMessage(LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }));
       return;
     }
 
@@ -52,13 +53,13 @@ export class SddBrowserManager {
       const isCurrent = name.toLowerCase() === 'current.md';
       return {
         label: `${isCurrent ? '⭐ ' : '📄 '}${name}`,
-        description: isCurrent ? `(Requisição Ativa - ${scopeLabel})` : `[${scopeLabel}] sdd/${subDir}/${name}`,
+        description: isCurrent ? `(${LocalizationManager.t('sdd.currentFile')} - ${scopeLabel})` : `[${scopeLabel}] sdd/${subDir}/${name}`,
         detail: foundFiles.get(name)
       };
     });
 
     const selected = await vscode.window.showQuickPick(items, {
-      placeHolder: `[${scopeLabel}] Selecione um arquivo de ${title}:`
+      placeHolder: LocalizationManager.t('sdd.selectFile', { scope: scopeLabel, title })
     });
 
     if (selected && selected.detail) {

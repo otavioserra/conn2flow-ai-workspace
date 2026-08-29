@@ -6,6 +6,9 @@ Bem-vindo à documentação técnica em Português do Brasil da infraestrutura, 
 
 ## 🧭 Índice de Manuais
 
+0. **[Painel Conn2Flow Dev Tools](GUIA-PAINEL-DEV-TOOLS-VSCODE.md)**:
+   - Execução segura, interface bilíngue, escopos SDD, backlog e releases guiados.
+
 1. **[Guia Rápido do Core CLI, MCP Hub & Worktrees](GUIA-RAPIDO-CLI-E-MCP.md)**:
    - Comandos multiplataforma do CLI `c2f` (Git Bash, PowerShell, CMD).
    - Como subir o Servidor MCP Hub no Docker com auto-start.

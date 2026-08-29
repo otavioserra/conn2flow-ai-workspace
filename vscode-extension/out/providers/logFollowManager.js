@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogFollowManager = void 0;
 const vscode = require("vscode");
+const localizationManager_1 = require("./localizationManager");
 class LogFollowManager {
     static isApacheFollowing = false;
     static isPhpFollowing = false;
@@ -14,7 +15,7 @@ class LogFollowManager {
                 this.apacheTerminal.sendText('\u0003', false);
             }
             this.isApacheFollowing = false;
-            vscode.window.setStatusBarMessage('⏹️ Logs Apache parados. Terminal liberado.', 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('logs.apacheStopped'), 2000);
         }
         else {
             // Iniciar o follow em terminal dedicado
@@ -24,7 +25,7 @@ class LogFollowManager {
             this.apacheTerminal.show();
             this.apacheTerminal.sendText('docker logs conn2flow-app --tail 50 --follow');
             this.isApacheFollowing = true;
-            vscode.window.setStatusBarMessage('🟢 Monitorando Logs Apache ao vivo.', 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('logs.apacheStarted'), 2000);
         }
         if (onUpdated) {
             onUpdated();
@@ -37,7 +38,7 @@ class LogFollowManager {
                 this.phpTerminal.sendText('\u0003', false);
             }
             this.isPhpFollowing = false;
-            vscode.window.setStatusBarMessage('⏹️ Logs PHP parados. Terminal liberado.', 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('logs.phpStopped'), 2000);
         }
         else {
             // Iniciar o follow em terminal dedicado
@@ -47,7 +48,7 @@ class LogFollowManager {
             this.phpTerminal.show();
             this.phpTerminal.sendText('docker exec conn2flow-app bash -c "tail -f /var/log/php_errors.log"');
             this.isPhpFollowing = true;
-            vscode.window.setStatusBarMessage('🟢 Monitorando Logs PHP ao vivo.', 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('logs.phpStarted'), 2000);
         }
         if (onUpdated) {
             onUpdated();

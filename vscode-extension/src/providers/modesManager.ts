@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { SddScopeManager } from './sddScopeManager';
 
 export type TopologyMode = 'duplo' | 'triade';
 export type AutonomyLevel = 'supervisionado' | 'autonomo_monitorado' | 'autonomo_headless';
@@ -106,24 +107,6 @@ export class ModesManager {
   }
 
   private static getCurrentFilePath(): string | undefined {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
-    if (!workspaceFolders || workspaceFolders.length === 0) {
-      return undefined;
-    }
-
-    for (const folder of workspaceFolders) {
-      const candidates = [
-        path.join(folder.uri.fsPath, 'sdd', 'human-requests', 'CURRENT.md'),
-        path.join(folder.uri.fsPath, '..', 'conn2flow', 'sdd', 'human-requests', 'CURRENT.md'),
-        path.join(folder.uri.fsPath, '..', 'conn2flow-ai-workspace', 'sdd', 'human-requests', 'CURRENT.md')
-      ];
-      for (const p of candidates) {
-        if (fs.existsSync(p)) {
-          return p;
-        }
-      }
-    }
-
-    return undefined;
+    return SddScopeManager.resolveSddFile('sdd/human-requests/CURRENT.md');
   }
 }

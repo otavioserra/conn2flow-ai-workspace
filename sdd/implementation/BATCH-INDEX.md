@@ -1,26 +1,33 @@
 # Batch Index
 
-Este arquivo gerencia os lotes operacionais (batches) do desenvolvimento deste workspace.
-
----
+Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-workspace`.
 
 ## Status
-*   `complete`: lote validado e integrado.
-*   `in-progress`: tarefas ativas sendo executadas pelo Executor.
-*   `ready-for-intake`: reservado, aguardando briefing de requisição humana.
-*   `blocked`: dependendo de decisões adicionais.
 
----
+- `complete`: lote validado e integrado.
+- `in-progress`: tarefas ativas sendo executadas pelo Executor.
+- `ready-for-review`: implementação e validação técnica concluídas, aguardando aceite humano.
+- `ready-for-intake`: reservado, aguardando briefing humano.
+- `blocked`: depende de decisão adicional.
 
-## Lotes de Trabalho
+## Histórico consolidado
 
-| Batch | Status | Escopo | Alvo de Validação | Observações |
+- **BATCH-000 a BATCH-003**: onboarding, reorganização bilíngue e otimizações iniciais; detalhes nos arquivos do lote e em `validation/archive/validation-001-003.md`.
+- **BATCH-006 a BATCH-032**: lotes concluídos; detalhes preservados nos arquivos individuais `batch-006*` a `batch-032.md` e no histórico Git.
+
+## Lotes ativos e recentes
+
+| Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-000** | complete | Onboarding e setup do SDD local no workspace | Criação dos arquivos base da pasta `sdd/` | Concluído em 2026-05-26 |
-| **BATCH-001** | complete | Reorganização Bilingue & Melhoria dos Instaladores | sdd/validation/VALIDATION-CHECKLIST.md#batch-001 | Concluído em 2026-05-26 com reorganização bilingue, instaladores validados em pt-br/en e sync-back. |
-| **BATCH-002** | complete | Otimização de Contexto e Governança de Arquivamento | sdd/validation/VALIDATION-CHECKLIST.md#batch-002 | Concluído em 2026-06-11 com a criação da estrutura archive/ e novas regras de contexto nos templates. |
-| **BATCH-003** | complete | Otimização de Contexto nos Projetos Alvo | sdd/validation/VALIDATION-CHECKLIST.md#batch-003 | Concluído em 2026-06-11 com rollout nos projetos Core, Nexus, Lumix e Site. |
-| **BATCH-004** | ready-for-intake | Integração e Protocolo MCP para Agentes Locais | `sdd/mcp-integration.md` | Especificar e prototipar um servidor MCP local para expor a governança e o contexto SDD para ferramentas CLI. |
-| **BATCH-005** | ready-for-intake | Validador de Governança SDD (GitHub Actions CI/CD) | `.github/workflows/sdd-governance.yml` | Validar commits normativos contra a existência de change-requests ativos. |
-| **BATCH-006** | complete | Memory Gardening, destilação de skills e Cursor Kit bilíngue | sdd/validation/VALIDATION-CHECKLIST.md#batch-006 | Concluído em 2026-07-30 com rollout em Core, Lumix, Transforma MP e Site. |
-| **BATCH-007** | complete | Backlog de ideias, Intake Gate e Gemini Kit bilíngue | sdd/validation/VALIDATION-CHECKLIST.md#batch-007 | Concluído em 2026-07-30 com rollout não destrutivo em Core, Lumix, Transforma MP e Site. |
+| **BATCH-004** | ready-for-intake | Integração e protocolo MCP para agentes locais | `batch-004-mcp-integration.md` | Reservado; ainda sem intake ativo. |
+| **BATCH-005** | ready-for-intake | Validador de governança SDD em CI/CD | `batch-005-sdd-governance-ci.md` | Reservado; ainda sem intake ativo. |
+| **BATCH-033** | complete | Extensão oficial Conn2Flow Dev Tools para VS Code | `VALIDATION-CHECKLIST.md#batch-033` | Scaffold, árvore, comandos, compilação e VSIX. |
+| **BATCH-034** | complete | Infraestrutura Antigravity, regras e subagentes | `VALIDATION-CHECKLIST.md#batch-034` | Regras e agentes nativos sincronizados. |
+| **BATCH-035** | complete | Clonagem e scaffold de projetos satélites | `VALIDATION-CHECKLIST.md#batch-035` | Gerenciamento de projetos incorporado à extensão. |
+| **BATCH-036** | complete | Ponte da tríade e controles da árvore | `VALIDATION-CHECKLIST.md#batch-036` | Concluído no commit `50845f7`. |
+| **BATCH-037** | complete | Recuperação pós-BATCH-036 e estabilização do preview MPE | `VALIDATION-CHECKLIST.md#batch-037` | REQ-035; validação humana concluída. |
+| **BATCH-038** | ready-for-review | Reestruturação segura, multilanguage, backlog e releases | `VALIDATION-CHECKLIST.md#batch-038` | 27 testes, VSIX e hashes aprovados; aguarda Reload Window e aceite humano. |
+
+## Próxima requisição
+
+`REQ-036` implementada em 2026-08-29. O `BATCH-038` aguarda revisão visual e aceite humano, sem commit/push/release.

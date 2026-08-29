@@ -131,7 +131,11 @@ Para injetar as instruções do OpenAI Codex (`CODEX.md`, `AGENTS.md`), configur
 
 ### 6. Extensão Oficial do VS Code (Conn2Flow Dev Tools)
 Para desenvolvedores que utilizam o VS Code ou Cursor, o workspace oferece uma extensão integrada com barra lateral dedicada e botões 1-Click:
-- **Painel Lateral com 5 Acordeões**: SDD & Governança Viva, Docker & Logs em Tempo Real, Manager & Core (Sistema), Projetos e AI Workspace Hub.
+- **Painel progressivo em seis seções**: Visão Geral, SDD & Planejamento, Core & Releases, Projetos & Ambiente de Testes, Ambiente & Diagnóstico e Agentes/Docs/Configurações.
+- **Interface bilíngue**: acompanha o idioma do VS Code, com sobrescritas `pt-BR` e `en`.
+- **Navegador de Backlog governado**: filtros por status e alerta de divergência sem burlar o Intake Gate.
+- **Releases guiados do Core**: formulários separados para Gestor e Gestor Instalador, permissão e preflight seguro.
+- **Executor seguro**: tarefas dedicadas, diretório explícito, confirmação por impacto e verificação do código de saída.
 - **Status Bar Dinâmico**: Visualização em tempo real do status do Docker e da requisição SDD ativa (`REQ-XXX`).
 - **Instalação Direta via Pacote**:
   ```bash

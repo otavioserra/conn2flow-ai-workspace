@@ -5,8 +5,17 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const projectsManager_1 = require("./projectsManager");
+const repositoryLocator_1 = require("../repositoryLocator");
+const localizationManager_1 = require("./localizationManager");
 class SddScopeManager {
     static _currentScopeId = 'core';
+    static storage;
+    static storageKey = 'conn2flow.sdd.scopeId';
+    static initialize(context) {
+        this.storage = context.workspaceState;
+        const workspacePaths = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
+        this._currentScopeId = this.storage.get(this.storageKey) || (0, repositoryLocator_1.inferScopeIdFromWorkspace)(workspacePaths);
+    }
     static getCurrentScopeId() {
         return this._currentScopeId;
     }
@@ -100,12 +109,13 @@ class SddScopeManager {
             };
         });
         const sel = await vscode.window.showQuickPick(items, {
-            placeHolder: 'Selecione o Escopo SDD (Core do Sistema ou Projeto Satélite):'
+            placeHolder: localizationManager_1.LocalizationManager.t('sdd.scopePrompt')
         });
         if (sel && sel.detail) {
             this._currentScopeId = sel.detail;
+            await this.storage?.update(this.storageKey, this._currentScopeId);
             const chosen = scopes.find(s => s.id === sel.detail);
-            vscode.window.setStatusBarMessage(`Escopo SDD: ${chosen?.label || sel.detail}`, 2500);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('sdd.scopeChanged', { scope: chosen?.label || sel.detail }), 2500);
             if (onChanged) {
                 onChanged();
             }
@@ -115,16 +125,10 @@ class SddScopeManager {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders)
             return undefined;
-        for (const f of workspaceFolders) {
-            const candidates = [
-                path.join(f.uri.fsPath, 'sdd'),
-                path.join(f.uri.fsPath, '..', repoName, 'sdd'),
-                path.join(f.uri.fsPath, repoName, 'sdd')
-            ];
-            for (const c of candidates) {
-                if (fs.existsSync(c)) {
-                    return c;
-                }
+        const candidates = (0, repositoryLocator_1.buildRepositorySddCandidates)(workspaceFolders.map(folder => folder.uri.fsPath), repoName);
+        for (const candidate of candidates) {
+            if (fs.existsSync(candidate)) {
+                return candidate;
             }
         }
         return undefined;

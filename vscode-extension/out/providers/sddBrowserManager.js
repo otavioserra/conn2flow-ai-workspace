@@ -5,12 +5,13 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
+const localizationManager_1 = require("./localizationManager");
 class SddBrowserManager {
     static async browseDirectory(subDir, title, openFile) {
         const sddRoot = sddScopeManager_1.SddScopeManager.getActiveSddRoot();
         const scopeLabel = sddScopeManager_1.SddScopeManager.getScopeLabel();
         if (!sddRoot || !fs.existsSync(sddRoot)) {
-            vscode.window.showInformationMessage(`Pasta SDD não encontrada para o escopo ${scopeLabel}.`);
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
             return;
         }
         const targetDir = path.join(sddRoot, subDir);
@@ -29,7 +30,7 @@ class SddBrowserManager {
             }
         }
         if (foundFiles.size === 0) {
-            vscode.window.showInformationMessage(`Nenhum arquivo encontrado em ${subDir}/ para ${scopeLabel}.`);
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }));
             return;
         }
         // Ordena os arquivos em ordem decrescente (ex: req-145 antes de req-144)
@@ -45,12 +46,12 @@ class SddBrowserManager {
             const isCurrent = name.toLowerCase() === 'current.md';
             return {
                 label: `${isCurrent ? '⭐ ' : '📄 '}${name}`,
-                description: isCurrent ? `(Requisição Ativa - ${scopeLabel})` : `[${scopeLabel}] sdd/${subDir}/${name}`,
+                description: isCurrent ? `(${localizationManager_1.LocalizationManager.t('sdd.currentFile')} - ${scopeLabel})` : `[${scopeLabel}] sdd/${subDir}/${name}`,
                 detail: foundFiles.get(name)
             };
         });
         const selected = await vscode.window.showQuickPick(items, {
-            placeHolder: `[${scopeLabel}] Selecione um arquivo de ${title}:`
+            placeHolder: localizationManager_1.LocalizationManager.t('sdd.selectFile', { scope: scopeLabel, title })
         });
         if (selected && selected.detail) {
             await openFile(selected.detail);

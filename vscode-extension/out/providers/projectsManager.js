@@ -4,7 +4,30 @@ exports.ProjectsManager = void 0;
 const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
+const localizationManager_1 = require("./localizationManager");
 class ProjectsManager {
+    static toGitPath(value) {
+        return value.replace(/^([A-Za-z]):[\\/]/, (_, drive) => `/${drive.toLowerCase()}/`).replace(/\\/g, '/');
+    }
+    static getCoreRoot() {
+        const envPath = this.getEnvironmentFilePath();
+        return envPath ? path.resolve(path.dirname(envPath), '..', '..') : undefined;
+    }
+    static getRepositoryParent() {
+        const root = this.getCoreRoot() || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+        return root ? path.dirname(root) : undefined;
+    }
+    static getGithubOwner() {
+        const configured = vscode.workspace.getConfiguration('conn2flow').get('githubOwner', '').trim();
+        if (configured)
+            return configured;
+        const root = this.getCoreRoot();
+        const configPath = root ? path.join(root, '.git', 'config') : undefined;
+        if (!configPath || !fs.existsSync(configPath))
+            return undefined;
+        const config = fs.readFileSync(configPath, 'utf8');
+        return config.match(/github\.com[/:]([^/\s]+)\//i)?.[1];
+    }
     static getEnvironmentFilePath() {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -57,10 +80,14 @@ class ProjectsManager {
     }
     static getTargetProject() {
         const data = this.getEnvironmentData();
-        if (data && data.devEnvironment && data.devEnvironment.projectTarget) {
-            return data.devEnvironment.projectTarget;
+        const target = data?.devEnvironment?.projectTarget;
+        if (typeof target === 'string' && data?.devProjects?.[target]) {
+            return target;
         }
-        return 'conn2flow-site';
+        return undefined;
+    }
+    static getProject(projectId) {
+        return projectId ? this.getProjectsList().find(project => project.id === projectId) : undefined;
     }
     static getProjectsList() {
         const data = this.getEnvironmentData();
@@ -82,7 +109,7 @@ class ProjectsManager {
     static async setTargetProject(projectId, onUpdated) {
         const envPath = this.getEnvironmentFilePath();
         if (!envPath || !fs.existsSync(envPath)) {
-            vscode.window.showErrorMessage('environment.json não encontrado para atualizar projeto alvo.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.environmentMissing'));
             return;
         }
         try {
@@ -94,41 +121,41 @@ class ProjectsManager {
             }
             data.devEnvironment.projectTarget = projectId;
             fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
-            vscode.window.setStatusBarMessage(`Projeto alvo: ${projectId}`, 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('projects.targetChanged', { target: projectId }), 2000);
             if (onUpdated) {
                 onUpdated();
             }
         }
         catch (err) {
-            vscode.window.showErrorMessage(`Erro ao salvar environment.json: ${err.message}`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
         }
     }
     static async addNewProject(onUpdated) {
         const envPath = this.getEnvironmentFilePath();
         if (!envPath || !fs.existsSync(envPath)) {
-            vscode.window.showErrorMessage('environment.json não encontrado.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.environmentMissing'));
             return;
         }
         const id = await vscode.window.showInputBox({
-            prompt: 'Identificador único do projeto (slug em minúsculas):',
+            prompt: localizationManager_1.LocalizationManager.t('projects.idPrompt'),
             placeHolder: 'ex: meu-novo-projeto'
         });
         if (!id)
             return;
         const name = await vscode.window.showInputBox({
-            prompt: 'Nome de exibição do projeto:',
+            prompt: localizationManager_1.LocalizationManager.t('projects.namePrompt'),
             placeHolder: 'ex: Meu Novo Projeto'
         });
         if (!name)
             return;
         const url = await vscode.window.showInputBox({
-            prompt: 'URL base do projeto (local ou remota):',
+            prompt: localizationManager_1.LocalizationManager.t('projects.urlPrompt'),
             placeHolder: 'ex: http://localhost/meu-novo-projeto/ ou https://meusite.com/'
         });
-        const isLocalChoice = await vscode.window.showQuickPick(['Sim (Ambiente de Testes Local)', 'Não (Produção Remota)'], {
-            placeHolder: 'O projeto roda no ambiente local Docker?'
+        const isLocalChoice = await vscode.window.showQuickPick([localizationManager_1.LocalizationManager.t('common.yesLocal'), localizationManager_1.LocalizationManager.t('common.noRemote')], {
+            placeHolder: localizationManager_1.LocalizationManager.t('projects.localPrompt')
         });
-        const isLocal = isLocalChoice ? isLocalChoice.startsWith('Sim') : true;
+        const isLocal = isLocalChoice ? isLocalChoice === localizationManager_1.LocalizationManager.t('common.yesLocal') : true;
         try {
             const data = this.getEnvironmentData();
             if (!data)
@@ -136,10 +163,14 @@ class ProjectsManager {
             if (!data.devProjects) {
                 data.devProjects = {};
             }
+            const coreRoot = this.getCoreRoot();
+            const parent = this.getRepositoryParent();
+            if (!coreRoot || !parent)
+                throw new Error('Raiz dos repositórios não encontrada.');
             data.devProjects[id] = {
                 name,
-                path: `/c/Users/otavi/OneDrive/Documentos/GIT/${id}/gestor`,
-                path_tests: isLocal ? `/c/Users/otavi/OneDrive/Documentos/GIT/conn2flow/dev-environment/data/sites/localhost/${id}/` : '',
+                path: this.toGitPath(path.join(parent, id, 'gestor')),
+                path_tests: isLocal ? this.toGitPath(path.join(coreRoot, 'dev-environment', 'data', 'sites', 'localhost', id)) + '/' : '',
                 local: isLocal,
                 gitDeploy: false,
                 gitDeployBaseRef: 'HEAD',
@@ -147,24 +178,24 @@ class ProjectsManager {
                 api: {}
             };
             fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
-            vscode.window.showInformationMessage(`Projeto '${name}' (${id}) cadastrado com sucesso no environment.json!`);
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('projects.saved', { name, id }));
             if (onUpdated) {
                 onUpdated();
             }
         }
         catch (err) {
-            vscode.window.showErrorMessage(`Falha ao adicionar projeto: ${err.message}`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
         }
     }
     static async syncWithTemplate(onUpdated) {
         const templatePath = this.getEnvironmentTemplatePath();
         const envPath = this.getEnvironmentFilePath();
         if (!templatePath || !fs.existsSync(templatePath)) {
-            vscode.window.showErrorMessage('Template de environment.json não encontrado em dev-environment/templates/environment/.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.templateMissing'));
             return;
         }
         if (!envPath) {
-            vscode.window.showErrorMessage('Arquivo ativo environment.json não encontrado.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.environmentMissing'));
             return;
         }
         try {
@@ -189,13 +220,13 @@ class ProjectsManager {
             };
             mergeMissing(template, targetData);
             fs.writeFileSync(envPath, JSON.stringify(targetData, null, 2), 'utf8');
-            vscode.window.setStatusBarMessage('Environment sincronizado com template com sucesso.', 2000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('projects.syncSucceeded'), 2000);
             if (onUpdated) {
                 onUpdated();
             }
         }
         catch (err) {
-            vscode.window.showErrorMessage(`Falha ao sincronizar com template: ${err.message}`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
         }
     }
     static async openActiveEnvironment() {
@@ -205,7 +236,7 @@ class ProjectsManager {
             await vscode.window.showTextDocument(doc);
         }
         else {
-            vscode.window.showErrorMessage('environment.json ativo não encontrado.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.environmentMissing'));
         }
     }
     static async openTemplateEnvironment() {
@@ -215,14 +246,14 @@ class ProjectsManager {
             await vscode.window.showTextDocument(doc);
         }
         else {
-            vscode.window.showErrorMessage('Template de environment.json não encontrado.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('projects.templateMissing'));
         }
     }
     static checkAdjacentRepositories() {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0)
             return [];
-        const rootParent = path.join(workspaceFolders[0].uri.fsPath, '..');
+        const rootParent = this.getRepositoryParent() || path.join(workspaceFolders[0].uri.fsPath, '..');
         const repos = ['conn2flow', 'lumix', 'transformamp', 'conn2flow-site'];
         return repos.map(repo => {
             const full = path.join(rootParent, repo);
@@ -237,12 +268,18 @@ class ProjectsManager {
         const repos = this.checkAdjacentRepositories();
         const missing = repos.filter(r => !r.exists);
         if (missing.length === 0) {
-            vscode.window.showInformationMessage('✔ Todos os repositórios oficiais já estão clonados ao lado do workspace!');
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('projects.allPresent'));
             return;
         }
+        let owner = this.getGithubOwner();
+        if (!owner) {
+            owner = await vscode.window.showInputBox({ prompt: localizationManager_1.LocalizationManager.t('projects.githubOwnerPrompt') });
+        }
+        if (!owner || !/^[A-Za-z0-9_.-]+$/.test(owner))
+            return;
         const items = missing.map(m => ({
             label: `📥 Clonar ${m.name}`,
-            description: `https://github.com/otavioserra/${m.name}.git`,
+            description: `https://github.com/${owner}/${m.name}.git`,
             repo: m.name
         }));
         if (missing.length > 1) {
@@ -253,54 +290,50 @@ class ProjectsManager {
             });
         }
         const sel = await vscode.window.showQuickPick(items, {
-            placeHolder: 'Selecione qual repositório oficial deseja clonar:'
+            placeHolder: localizationManager_1.LocalizationManager.t('projects.clonePrompt')
         });
         if (!sel)
             return;
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0)
             return;
-        const parentPath = path.join(workspaceFolders[0].uri.fsPath, '..');
+        const parentPath = this.getRepositoryParent() || path.join(workspaceFolders[0].uri.fsPath, '..');
+        const clone = (repo) => `git -C '${parentPath.replace(/'/g, "''")}' clone 'https://github.com/${owner}/${repo}.git'; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }`;
         if (sel.repo === '__all__') {
-            const commands = missing
-                .map(m => `git clone https://github.com/otavioserra/${m.name}.git`)
-                .join('; ');
-            runInTerminal(`powershell -NoProfile -Command "Set-Location '${parentPath}'; ${commands}; Write-Host '✔ Todos os repositórios foram clonados!' -ForegroundColor Green"`);
+            const commands = missing.map(m => clone(m.name)).join('; ');
+            runInTerminal(`powershell -NoProfile -Command "$ErrorActionPreference = 'Stop'; ${commands}"`);
         }
         else {
-            runInTerminal(`powershell -NoProfile -Command "Set-Location '${parentPath}'; git clone https://github.com/otavioserra/${sel.repo}.git; Write-Host '✔ Repositório ${sel.repo} clonado com sucesso!' -ForegroundColor Green"`);
+            runInTerminal(`powershell -NoProfile -Command "$ErrorActionPreference = 'Stop'; ${clone(sel.repo)}"`);
         }
-        vscode.window.showInformationMessage(`Comando de clonagem disparado no terminal para: ${sel.label}`);
-        if (onUpdated) {
-            setTimeout(() => onUpdated(), 5000);
-        }
+        onUpdated?.();
     }
     static async scaffoldNewSatelliteProject(onUpdated) {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
-            vscode.window.showErrorMessage('Nenhum workspace aberto.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.noWorkspace'));
             return;
         }
         const id = await vscode.window.showInputBox({
-            prompt: 'Identificador do novo projeto (slug em minúsculas):',
+            prompt: localizationManager_1.LocalizationManager.t('projects.idPrompt'),
             placeHolder: 'ex: meu-satelite'
         });
         if (!id)
             return;
         const name = await vscode.window.showInputBox({
-            prompt: 'Nome de exibição do projeto:',
+            prompt: localizationManager_1.LocalizationManager.t('projects.namePrompt'),
             placeHolder: 'ex: Meu Projeto Satélite'
         });
         if (!name)
             return;
         const url = await vscode.window.showInputBox({
-            prompt: 'URL do site (local ou remota):',
+            prompt: localizationManager_1.LocalizationManager.t('projects.urlPrompt'),
             placeHolder: `ex: http://localhost/${id}/`
         });
-        const isLocalChoice = await vscode.window.showQuickPick(['Sim (Ambiente de Testes Local)', 'Não (Produção Remota)'], {
-            placeHolder: 'O projeto roda no ambiente local Docker?'
+        const isLocalChoice = await vscode.window.showQuickPick([localizationManager_1.LocalizationManager.t('common.yesLocal'), localizationManager_1.LocalizationManager.t('common.noRemote')], {
+            placeHolder: localizationManager_1.LocalizationManager.t('projects.localPrompt')
         });
-        const isLocal = isLocalChoice ? isLocalChoice.startsWith('Sim') : true;
+        const isLocal = isLocalChoice ? isLocalChoice === localizationManager_1.LocalizationManager.t('common.yesLocal') : true;
         try {
             const parentDir = path.join(workspaceFolders[0].uri.fsPath, '..');
             const projectDir = path.join(parentDir, id);
@@ -328,10 +361,13 @@ class ProjectsManager {
                 const data = JSON.parse(fs.readFileSync(envPath, 'utf8'));
                 if (!data.devProjects)
                     data.devProjects = {};
+                const coreRoot = this.getCoreRoot();
+                if (!coreRoot)
+                    throw new Error('Raiz do Core não encontrada.');
                 data.devProjects[id] = {
                     name,
-                    path: `/c/Users/otavi/OneDrive/Documentos/GIT/${id}/gestor`,
-                    path_tests: isLocal ? `/c/Users/otavi/OneDrive/Documentos/GIT/conn2flow/dev-environment/data/sites/localhost/${id}/` : '',
+                    path: this.toGitPath(path.join(projectDir, 'gestor')),
+                    path_tests: isLocal ? this.toGitPath(path.join(coreRoot, 'dev-environment', 'data', 'sites', 'localhost', id)) + '/' : '',
                     local: isLocal,
                     gitDeploy: false,
                     gitDeployBaseRef: 'HEAD',
@@ -346,13 +382,13 @@ class ProjectsManager {
                 };
                 fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
             }
-            vscode.window.showInformationMessage(`✨ Projeto Satélite '${name}' (${id}) provisionado com sucesso em ../${id}!`);
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('projects.scaffolded', { name, id }));
             if (onUpdated) {
                 onUpdated();
             }
         }
         catch (err) {
-            vscode.window.showErrorMessage(`Falha ao criar scaffold do projeto: ${err.message}`);
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
         }
     }
 }

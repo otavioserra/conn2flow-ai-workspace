@@ -1,7 +1,7 @@
 {
   "name": "conn2flow-tools",
-  "displayName": "Conn2Flow Dev Tools",
-  "description": "Painel oficial de desenvolvedor para o ecossistema Conn2Flow: controle visual de SDD, Modos de Agentes (Duplo/Tríade), Níveis de Autonomia, Docker, Core CLI, Projetos, Ações Customizadas (.c2f/actions.json) e AI Workspace Hub.",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
   "version": "1.0.0",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
@@ -27,15 +27,24 @@
     "ai"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onView:conn2flow-explorer"
   ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Browsing and documentation remain available; command execution requires Workspace Trust.",
+      "restrictedConfigurations": [
+        "conn2flow.githubOwner"
+      ]
+    }
+  },
   "main": "./out/extension.js",
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
           "id": "conn2flow-view-container",
-          "title": "Conn2Flow Dev Tools",
+          "title": "%view.title%",
           "icon": "resources/icon.svg"
         }
       ]
@@ -44,438 +53,490 @@
       "conn2flow-view-container": [
         {
           "id": "conn2flow-explorer",
-          "name": "Conn2Flow Dev Tools"
+          "name": "%view.title%"
         }
       ]
     },
     "commands": [
       {
         "command": "conn2flow.refreshTree",
-        "title": "Atualizar Painel",
+        "title": "%command.conn2flow.refreshTree%",
         "category": "Conn2Flow",
         "icon": "$(refresh)"
       },
       {
         "command": "conn2flow.expandAll",
-        "title": "Expandir Todas as Seções",
+        "title": "%command.conn2flow.expandAll%",
         "category": "Conn2Flow",
         "icon": "$(expand-all)"
       },
       {
         "command": "conn2flow.collapseAll",
-        "title": "Colapsar Todas as Seções",
+        "title": "%command.conn2flow.collapseAll%",
         "category": "Conn2Flow",
         "icon": "$(collapse-all)"
       },
       {
-        "command": "conn2flow.terminal.toggleMode",
-        "title": "Alternar Modo de Terminal (Reutilizar vs Novo)",
-        "category": "Conn2Flow",
-        "icon": "$(terminal)"
-      },
-      {
         "command": "conn2flow.custom.initManifest",
-        "title": "Criar Ações Customizadas (.c2f/actions.json)",
+        "title": "%command.conn2flow.custom.initManifest%",
         "category": "Conn2Flow Custom",
         "icon": "$(sparkle)"
       },
       {
         "command": "conn2flow.custom.editManifest",
-        "title": "Editar Ações do Projeto (.c2f/actions.json)",
+        "title": "%command.conn2flow.custom.editManifest%",
         "category": "Conn2Flow Custom",
         "icon": "$(edit)"
       },
       {
         "command": "conn2flow.modes.selectMode",
-        "title": "Selecionar Topologia ou Autonomia",
+        "title": "%command.conn2flow.modes.selectMode%",
         "category": "Conn2Flow Modos",
         "icon": "$(settings-gear)"
       },
       {
         "command": "conn2flow.modes.setDoubleAgent",
-        "title": "Ativar Duplo Agente",
+        "title": "%command.conn2flow.modes.setDoubleAgent%",
         "category": "Conn2Flow Modos",
         "icon": "$(person)"
       },
       {
         "command": "conn2flow.modes.setTriAgent",
-        "title": "Ativar Tríade de Agentes",
+        "title": "%command.conn2flow.modes.setTriAgent%",
         "category": "Conn2Flow Modos",
         "icon": "$(organization)"
       },
       {
         "command": "conn2flow.modes.setSupervised",
-        "title": "Ativar Modo Supervisionado (Nível 1)",
+        "title": "%command.conn2flow.modes.setSupervised%",
         "category": "Conn2Flow Autonomia",
         "icon": "$(shield)"
       },
       {
         "command": "conn2flow.modes.setMonitored",
-        "title": "Ativar Modo Autônomo Monitorado (Nível 2)",
+        "title": "%command.conn2flow.modes.setMonitored%",
         "category": "Conn2Flow Autonomia",
         "icon": "$(eye)"
       },
       {
         "command": "conn2flow.modes.setHeadless",
-        "title": "Ativar Modo Autônomo Headless (Nível 3)",
+        "title": "%command.conn2flow.modes.setHeadless%",
         "category": "Conn2Flow Autonomia",
         "icon": "$(robot)"
       },
       {
         "command": "conn2flow.sdd.selectScope",
-        "title": "Selecionar Escopo SDD (Core ou Projeto)",
+        "title": "%command.conn2flow.sdd.selectScope%",
         "category": "Conn2Flow SDD",
         "icon": "$(target)"
       },
       {
         "command": "conn2flow.sdd.toggleViewMode",
-        "title": "Alternar Modo de Exibição SDD (Preview/Código/Ambos)",
+        "title": "%command.conn2flow.sdd.toggleViewMode%",
         "category": "Conn2Flow SDD",
         "icon": "$(split-horizontal)"
       },
       {
         "command": "conn2flow.sdd.toggleAutoGardening",
-        "title": "Alternar Auto-Gardening SDD",
+        "title": "%command.conn2flow.sdd.toggleAutoGardening%",
         "category": "Conn2Flow SDD",
         "icon": "$(sync)"
       },
       {
         "command": "conn2flow.sdd.runGardening",
-        "title": "Executar Memory Gardening (c2f ai:prune-memories)",
+        "title": "%command.conn2flow.sdd.runGardening%",
         "category": "Conn2Flow SDD",
         "icon": "$(trash)"
       },
       {
         "command": "conn2flow.sdd.createGardeningRequest",
-        "title": "Criar Requisição de Gardening (req-XXX)",
+        "title": "%command.conn2flow.sdd.createGardeningRequest%",
         "category": "Conn2Flow SDD",
         "icon": "$(diff-added)"
       },
       {
         "command": "conn2flow.sdd.openCurrent",
-        "title": "Abrir CURRENT.md",
+        "title": "%command.conn2flow.sdd.openCurrent%",
         "category": "Conn2Flow SDD",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.sdd.openSpec",
-        "title": "Abrir SPEC.md",
+        "title": "%command.conn2flow.sdd.openSpec%",
         "category": "Conn2Flow SDD",
         "icon": "$(file-code)"
       },
       {
         "command": "conn2flow.sdd.openChecklist",
-        "title": "Abrir Checklist de Validação",
+        "title": "%command.conn2flow.sdd.openChecklist%",
         "category": "Conn2Flow SDD",
         "icon": "$(checklist)"
       },
       {
         "command": "conn2flow.sdd.browseRequests",
-        "title": "Navegar Requisições Humanas (sdd/human-requests/)",
+        "title": "%command.conn2flow.sdd.browseRequests%",
         "category": "Conn2Flow SDD",
         "icon": "$(folder-opened)"
       },
       {
         "command": "conn2flow.sdd.browseBatches",
-        "title": "Navegar Registros de Lotes (sdd/implementation/)",
+        "title": "%command.conn2flow.sdd.browseBatches%",
         "category": "Conn2Flow SDD",
         "icon": "$(history)"
       },
       {
         "command": "conn2flow.sdd.browseDecisions",
-        "title": "Navegar Decisões Arquiteturais (sdd/decisions/)",
+        "title": "%command.conn2flow.sdd.browseDecisions%",
         "category": "Conn2Flow SDD",
         "icon": "$(repo)"
       },
       {
         "command": "conn2flow.sdd.browseHandoffs",
-        "title": "Navegar Handoffs de Agentes (sdd/handoffs/)",
+        "title": "%command.conn2flow.sdd.browseHandoffs%",
         "category": "Conn2Flow SDD",
         "icon": "$(repo-pull)"
       },
       {
         "command": "conn2flow.bridge.launchClaudeGoal",
-        "title": "Iniciar Claude Code (/goal)",
+        "title": "%command.conn2flow.bridge.launchClaudeGoal%",
         "category": "Conn2Flow Triad",
         "icon": "$(play-circle)"
       },
       {
         "command": "conn2flow.bridge.copyPrompt",
-        "title": "Copiar Prompt do Executor",
+        "title": "%command.conn2flow.bridge.copyPrompt%",
         "category": "Conn2Flow Triad",
         "icon": "$(clippy)"
       },
       {
         "command": "conn2flow.bridge.recordHandoff",
-        "title": "Registrar Log do Terminal (Handoff)",
+        "title": "%command.conn2flow.bridge.recordHandoff%",
         "category": "Conn2Flow Triad",
         "icon": "$(repo-pull)"
       },
       {
         "command": "conn2flow.bridge.notifyArchitect",
-        "title": "Sincronizar e Notificar Arquiteto",
+        "title": "%command.conn2flow.bridge.notifyArchitect%",
         "category": "Conn2Flow Triad",
         "icon": "$(cloud-upload)"
       },
       {
         "command": "conn2flow.docker.status",
-        "title": "Status dos Containers",
+        "title": "%command.conn2flow.docker.status%",
         "category": "Conn2Flow Docker",
         "icon": "$(pulse)"
       },
       {
         "command": "conn2flow.docker.logsApache",
-        "title": "Logs Apache (Follow)",
+        "title": "%command.conn2flow.docker.logsApache%",
         "category": "Conn2Flow Docker",
         "icon": "$(output)"
       },
       {
         "command": "conn2flow.docker.logsPhp",
-        "title": "Logs PHP (Follow)",
+        "title": "%command.conn2flow.docker.logsPhp%",
         "category": "Conn2Flow Docker",
         "icon": "$(terminal)"
       },
       {
         "command": "conn2flow.docker.truncatePhpLog",
-        "title": "Limpar Logs PHP",
+        "title": "%command.conn2flow.docker.truncatePhpLog%",
         "category": "Conn2Flow Docker",
         "icon": "$(trash)"
       },
       {
         "command": "conn2flow.manager.updateAll",
-        "title": "Update All (Sistema)",
+        "title": "%command.conn2flow.manager.updateAll%",
         "category": "Conn2Flow Manager",
         "icon": "$(sync)"
       },
       {
         "command": "conn2flow.manager.syncResources",
-        "title": "Sincronizar Recursos",
+        "title": "%command.conn2flow.manager.syncResources%",
         "category": "Conn2Flow Manager",
         "icon": "$(paintcan)"
       },
       {
         "command": "conn2flow.manager.cssRebuild",
-        "title": "CSS Rebuild",
+        "title": "%command.conn2flow.manager.cssRebuild%",
         "category": "Conn2Flow Manager",
         "icon": "$(zap)"
       },
       {
         "command": "conn2flow.manager.cssAudit",
-        "title": "CSS Audit",
+        "title": "%command.conn2flow.manager.cssAudit%",
         "category": "Conn2Flow Manager",
         "icon": "$(search)"
       },
       {
         "command": "conn2flow.projects.setTarget",
-        "title": "Definir Projeto Alvo Padrão",
+        "title": "%command.conn2flow.projects.setTarget%",
         "category": "Conn2Flow Projetos",
         "icon": "$(target)"
       },
       {
         "command": "conn2flow.projects.deployTarget",
-        "title": "Deploy Projeto Alvo",
+        "title": "%command.conn2flow.projects.deployTarget%",
         "category": "Conn2Flow Projetos",
         "icon": "$(rocket)"
       },
       {
         "command": "conn2flow.projects.syncCoreTarget",
-        "title": "Sync Core -> Projeto Alvo",
+        "title": "%command.conn2flow.projects.syncCoreTarget%",
         "category": "Conn2Flow Projetos",
         "icon": "$(arrow-right)"
       },
       {
         "command": "conn2flow.projects.syncFilesTarget",
-        "title": "Sync Arquivos -> Ambiente de Testes",
+        "title": "%command.conn2flow.projects.syncFilesTarget%",
         "category": "Conn2Flow Projetos",
         "icon": "$(cloud-upload)"
       },
       {
         "command": "conn2flow.projects.deployWithSelect",
-        "title": "Deploy Escolhendo Projeto...",
+        "title": "%command.conn2flow.projects.deployWithSelect%",
         "category": "Conn2Flow Projetos",
         "icon": "$(list-selection)"
       },
       {
         "command": "conn2flow.projects.updateAllTarget",
-        "title": "Update All Projeto Alvo",
+        "title": "%command.conn2flow.projects.updateAllTarget%",
         "category": "Conn2Flow Projetos",
         "icon": "$(refresh)"
       },
       {
         "command": "conn2flow.projects.updateAllWithSelect",
-        "title": "Update All Escolhendo Projeto...",
+        "title": "%command.conn2flow.projects.updateAllWithSelect%",
         "category": "Conn2Flow Projetos",
         "icon": "$(list-ordered)"
       },
       {
         "command": "conn2flow.projects.addNew",
-        "title": "Cadastrar Novo Projeto no Environment",
+        "title": "%command.conn2flow.projects.addNew%",
         "category": "Conn2Flow Projetos",
         "icon": "$(add)"
       },
       {
         "command": "conn2flow.projects.scaffoldProject",
-        "title": "Provisionar Novo Projeto Satélite",
+        "title": "%command.conn2flow.projects.scaffoldProject%",
         "category": "Conn2Flow Projetos",
         "icon": "$(repo-create)"
       },
       {
         "command": "conn2flow.projects.cloneRepository",
-        "title": "Clonar Repositórios Oficiais",
+        "title": "%command.conn2flow.projects.cloneRepository%",
         "category": "Conn2Flow Projetos",
         "icon": "$(cloud-download)"
       },
       {
         "command": "conn2flow.projects.deployOther",
-        "title": "Deploy de Outro Projeto...",
+        "title": "%command.conn2flow.projects.deployOther%",
         "category": "Conn2Flow Projetos",
         "icon": "$(send)"
       },
       {
         "command": "conn2flow.projects.scaffoldNew",
-        "title": "Novo Projeto Satélite (Wizard)",
+        "title": "%command.conn2flow.projects.scaffoldNew%",
         "category": "Conn2Flow Projetos",
         "icon": "$(new-folder)"
       },
       {
         "command": "conn2flow.projects.registerExisting",
-        "title": "Cadastrar Projeto Existente",
+        "title": "%command.conn2flow.projects.registerExisting%",
         "category": "Conn2Flow Projetos",
         "icon": "$(plus)"
       },
       {
         "command": "conn2flow.projects.cloneMissing",
-        "title": "Clonar Repositórios Faltantes",
+        "title": "%command.conn2flow.projects.cloneMissing%",
         "category": "Conn2Flow Projetos",
         "icon": "$(repo-clone)"
       },
       {
         "command": "conn2flow.projects.checkRepositories",
-        "title": "Verificar Repositórios Clonados",
+        "title": "%command.conn2flow.projects.checkRepositories%",
         "category": "Conn2Flow Projetos",
         "icon": "$(repo)"
       },
       {
         "command": "conn2flow.projects.syncTemplate",
-        "title": "Sincronizar com Template do Core",
+        "title": "%command.conn2flow.projects.syncTemplate%",
         "category": "Conn2Flow Projetos",
         "icon": "$(sync)"
       },
       {
         "command": "conn2flow.projects.openTemplate",
-        "title": "Abrir Template do Environment",
+        "title": "%command.conn2flow.projects.openTemplate%",
         "category": "Conn2Flow Projetos",
         "icon": "$(file-submodule)"
       },
       {
         "command": "conn2flow.projects.openActive",
-        "title": "Abrir environment.json (Ativo)",
+        "title": "%command.conn2flow.projects.openActive%",
         "category": "Conn2Flow Projetos",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.ai.sync",
-        "title": "Sincronizar Skills (ai:sync)",
+        "title": "%command.conn2flow.ai.sync%",
         "category": "Conn2Flow AI",
         "icon": "$(extensions)"
       },
       {
         "command": "conn2flow.ai.syncAllRepos",
-        "title": "Distribuir Skills p/ Todos os Repos (sync-all-repos)",
+        "title": "%command.conn2flow.ai.syncAllRepos%",
         "category": "Conn2Flow AI",
         "icon": "$(repo-clone)"
       },
       {
         "command": "conn2flow.ai.syncSkills",
-        "title": "Sincronizar Skills (1-Click)",
+        "title": "%command.conn2flow.ai.syncSkills%",
         "category": "Conn2Flow AI",
         "icon": "$(cloud-download)"
       },
       {
         "command": "conn2flow.ai.validateSkills",
-        "title": "Validar 36 Skills (ai:sync)",
+        "title": "%command.conn2flow.ai.validateSkills%",
         "category": "Conn2Flow AI",
         "icon": "$(pass)"
       },
       {
         "command": "conn2flow.ai.openPlaybook",
-        "title": "Abrir Playbook Multi-Agentes",
+        "title": "%command.conn2flow.ai.openPlaybook%",
         "category": "Conn2Flow AI",
         "icon": "$(book)"
       },
       {
         "command": "conn2flow.ai.openCatalog",
-        "title": "Abrir Catálogo de Skills",
+        "title": "%command.conn2flow.ai.openCatalog%",
         "category": "Conn2Flow AI",
         "icon": "$(list-unordered)"
       },
       {
         "command": "conn2flow.ai.openAgents",
-        "title": "Abrir AGENTS.md",
+        "title": "%command.conn2flow.ai.openAgents%",
         "category": "Conn2Flow AI",
         "icon": "$(person)"
       },
       {
         "command": "conn2flow.ai.openGemini",
-        "title": "Abrir GEMINI.md",
+        "title": "%command.conn2flow.ai.openGemini%",
         "category": "Conn2Flow AI",
         "icon": "$(sparkle)"
       },
       {
         "command": "conn2flow.docs.openDevToolsGuide",
-        "title": "Manual do Painel Dev Tools",
+        "title": "%command.conn2flow.docs.openDevToolsGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(dashboard)"
       },
       {
         "command": "conn2flow.docs.openDevGuide",
-        "title": "Guia do Desenvolvedor Conn2Flow",
+        "title": "%command.conn2flow.docs.openDevGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(mortar-board)"
       },
       {
         "command": "conn2flow.docs.openSddGuide",
-        "title": "Guia de Governança SDD",
+        "title": "%command.conn2flow.docs.openSddGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(law)"
       },
       {
         "command": "conn2flow.docs.openTailwindGuide",
-        "title": "Arquitetura Tailwind CSS (3 Camadas)",
+        "title": "%command.conn2flow.docs.openTailwindGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(symbol-color)"
       },
       {
         "command": "conn2flow.docs.openPanelGuide",
-        "title": "Manual do Painel Dev Tools (Legado)",
+        "title": "%command.conn2flow.docs.openPanelGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.docs.openMarketplaceGuide",
-        "title": "Guia de Publicação Marketplace",
+        "title": "%command.conn2flow.docs.openMarketplaceGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(cloud-upload)"
       },
       {
         "command": "conn2flow.docs.openArchitectureGuide",
-        "title": "Arquitetura Agente Duplo e Tríade",
+        "title": "%command.conn2flow.docs.openArchitectureGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(organization)"
       },
       {
         "command": "conn2flow.docs.openDockerGuide",
-        "title": "Guia de Ambiente Docker",
+        "title": "%command.conn2flow.docs.openDockerGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(server)"
       },
       {
         "command": "conn2flow.docs.openResourcesGuide",
-        "title": "Sistema de Recursos e Runtime SQL",
+        "title": "%command.conn2flow.docs.openResourcesGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(paintcan)"
+      },
+      {
+        "command": "conn2flow.sdd.browseBacklog",
+        "title": "%command.conn2flow.sdd.browseBacklog%",
+        "category": "Conn2Flow SDD",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "conn2flow.settings.selectLanguage",
+        "title": "%command.conn2flow.settings.selectLanguage%",
+        "category": "Conn2Flow",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "conn2flow.release.verifyPermission",
+        "title": "%command.conn2flow.release.verifyPermission%",
+        "category": "Conn2Flow Release",
+        "icon": "$(verified)"
+      },
+      {
+        "command": "conn2flow.release.manager",
+        "title": "%command.conn2flow.release.manager%",
+        "category": "Conn2Flow Release",
+        "icon": "$(package)"
+      },
+      {
+        "command": "conn2flow.release.installer",
+        "title": "%command.conn2flow.release.installer%",
+        "category": "Conn2Flow Release",
+        "icon": "$(package)"
+      },
+      {
+        "command": "conn2flow.release.openActions",
+        "title": "%command.conn2flow.release.openActions%",
+        "category": "Conn2Flow Release",
+        "icon": "$(github-action)"
       }
     ],
+    "configuration": {
+      "title": "Conn2Flow Dev Tools",
+      "properties": {
+        "conn2flow.language": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "pt-BR",
+            "en"
+          ],
+          "default": "auto",
+          "scope": "window",
+          "description": "%config.language.description%"
+        },
+        "conn2flow.githubOwner": {
+          "type": "string",
+          "default": "",
+          "scope": "window",
+          "description": "%config.githubOwner.description%"
+        }
+      }
+    },
     "menus": {
       "view/title": [
         {
@@ -499,6 +560,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
+    "test": "npm run compile && node --test test/**/*.test.cjs",
     "watch": "tsc -watch -p ./",
     "package": "vsce package"
   },

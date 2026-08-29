@@ -14,6 +14,14 @@ export interface MemoryHealth {
 
 export class GardeningManager {
   private static _autoGardening: boolean = true;
+  private static storage: vscode.Memento | undefined;
+  private static readonly storageKey = 'conn2flow.sdd.autoGardening';
+  private static lastNotificationStatus: MemoryHealth['status'] | undefined;
+
+  public static initialize(context: vscode.ExtensionContext): void {
+    this.storage = context.workspaceState;
+    this._autoGardening = this.storage.get<boolean>(this.storageKey, true);
+  }
 
   public static isAutoGardeningEnabled(): boolean {
     return this._autoGardening;
@@ -21,6 +29,7 @@ export class GardeningManager {
 
   public static toggleAutoGardening(onChanged?: () => void): boolean {
     this._autoGardening = !this._autoGardening;
+    void this.storage?.update(this.storageKey, this._autoGardening);
     const statusText = this._autoGardening ? 'ATIVADO' : 'DESATIVADO';
     vscode.window.setStatusBarMessage(`Auto-Gardening SDD: ${statusText}`, 2500);
     if (onChanged) {
@@ -76,6 +85,22 @@ export class GardeningManager {
       };
     } catch {
       return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: 'Erro ao ler memória' };
+    }
+  }
+
+  public static checkAndNotify(): void {
+    if (!this._autoGardening) return;
+    const health = this.getMemoryHealth();
+    if (health.status === 'healthy' || health.status === 'notFound') {
+      this.lastNotificationStatus = health.status;
+      return;
+    }
+    if (this.lastNotificationStatus === health.status) return;
+    this.lastNotificationStatus = health.status;
+    if (health.status === 'critical') {
+      vscode.window.showErrorMessage(health.label);
+    } else {
+      vscode.window.showWarningMessage(health.label);
     }
   }
 

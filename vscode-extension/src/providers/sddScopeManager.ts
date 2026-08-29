@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ProjectsManager } from './projectsManager';
+import { buildRepositorySddCandidates, inferScopeIdFromWorkspace } from '../repositoryLocator';
+import { LocalizationManager } from './localizationManager';
 
 export interface SddScope {
   id: string; // 'core' | 'ai-workspace' | 'project:<id>'
@@ -12,6 +14,14 @@ export interface SddScope {
 
 export class SddScopeManager {
   private static _currentScopeId: string = 'core';
+  private static storage: vscode.Memento | undefined;
+  private static readonly storageKey = 'conn2flow.sdd.scopeId';
+
+  public static initialize(context: vscode.ExtensionContext): void {
+    this.storage = context.workspaceState;
+    const workspacePaths = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
+    this._currentScopeId = this.storage.get<string>(this.storageKey) || inferScopeIdFromWorkspace(workspacePaths);
+  }
 
   public static getCurrentScopeId(): string {
     return this._currentScopeId;
@@ -117,13 +127,14 @@ export class SddScopeManager {
     });
 
     const sel = await vscode.window.showQuickPick(items, {
-      placeHolder: 'Selecione o Escopo SDD (Core do Sistema ou Projeto Satélite):'
+      placeHolder: LocalizationManager.t('sdd.scopePrompt')
     });
 
     if (sel && sel.detail) {
       this._currentScopeId = sel.detail;
+      await this.storage?.update(this.storageKey, this._currentScopeId);
       const chosen = scopes.find(s => s.id === sel.detail);
-      vscode.window.setStatusBarMessage(`Escopo SDD: ${chosen?.label || sel.detail}`, 2500);
+      vscode.window.setStatusBarMessage(LocalizationManager.t('sdd.scopeChanged', { scope: chosen?.label || sel.detail }), 2500);
       if (onChanged) {
         onChanged();
       }
@@ -134,16 +145,13 @@ export class SddScopeManager {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders) return undefined;
 
-    for (const f of workspaceFolders) {
-      const candidates = [
-        path.join(f.uri.fsPath, 'sdd'),
-        path.join(f.uri.fsPath, '..', repoName, 'sdd'),
-        path.join(f.uri.fsPath, repoName, 'sdd')
-      ];
-      for (const c of candidates) {
-        if (fs.existsSync(c)) {
-          return c;
-        }
+    const candidates = buildRepositorySddCandidates(
+      workspaceFolders.map(folder => folder.uri.fsPath),
+      repoName
+    );
+    for (const candidate of candidates) {
+      if (fs.existsSync(candidate)) {
+        return candidate;
       }
     }
     return undefined;

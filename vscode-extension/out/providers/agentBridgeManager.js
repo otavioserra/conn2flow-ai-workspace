@@ -5,6 +5,7 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
+const localizationManager_1 = require("./localizationManager");
 class AgentBridgeManager {
     static getWorkspaceRoot() {
         const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -36,76 +37,61 @@ class AgentBridgeManager {
     static async launchClaudeGoal(runInTerminal) {
         const active = this.getActiveRequestFile();
         const reqName = active ? active.pointer : 'CURRENT.md';
-        const goalPrompt = `claude "/goal Leia o briefing ativo em sdd/human-requests/CURRENT.md (${reqName}), execute todas as etapas da Live Todo List com rigor SDD, valide com c2f ai:sync, preencha sdd/validation/VALIDATION-CHECKLIST.md, registre as notas em sdd/handoffs/CURRENT-HANDOFF.md e sincronize no Git com commit semântico."`;
-        const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "/goal Leia o briefing ativo em sdd/human-requests/CURRENT.md (${reqName}), execute todas as etapas da Live Todo List com rigor SDD, valide com c2f ai:sync, preencha sdd/validation/VALIDATION-CHECKLIST.md, registre as notas em sdd/handoffs/CURRENT-HANDOFF.md e sincronize no Git com commit semântico."`;
+        const instruction = localizationManager_1.LocalizationManager.t('agents.goalInstruction', { request: reqName }).replace(/"/g, '\\"');
+        const goalPrompt = `claude "${instruction}"`;
+        const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "${instruction}"`;
         const items = [
             {
-                label: '📋 Copiar Prompt para a Extensão do Claude (Recomendado no VS Code)',
-                description: 'Copia o prompt completo formatado para você apenas dar Ctrl+V na janela de chat do Claude'
+                label: localizationManager_1.LocalizationManager.t('agents.copyOption'), action: 'copy'
             },
             {
-                label: '💻 Executar Claude CLI no Terminal',
-                description: 'Dispara comando direto no terminal: claude "/goal ..."'
+                label: localizationManager_1.LocalizationManager.t('agents.cliOption'), action: 'cli'
             },
             {
-                label: '⚡ Executar via NPX no Terminal (Sem Instalação Prévia)',
-                description: 'Dispara comando sob demanda via npx @anthropic-ai/claude-code'
+                label: localizationManager_1.LocalizationManager.t('agents.npxOption'), action: 'npx'
             },
             {
-                label: '📦 Instalar Claude CLI Globalmente',
-                description: 'Instala o comando globalmente no sistema: npm install -g @anthropic-ai/claude-code'
+                label: localizationManager_1.LocalizationManager.t('agents.installOption'), action: 'install'
             }
         ];
         const sel = await vscode.window.showQuickPick(items, {
-            placeHolder: 'Como você deseja disparar a execução do Claude Code?'
+            placeHolder: localizationManager_1.LocalizationManager.t('agents.launchPrompt')
         });
         if (!sel)
             return;
-        if (sel.label.includes('Copiar Prompt')) {
+        if (sel.action === 'copy') {
             await this.copyExecutorPrompt();
-            vscode.window.showInformationMessage('📋 Prompt copiado com sucesso! Abra o chat da extensão do Claude no VS Code e pressione Ctrl+V.');
         }
-        else if (sel.label.includes('Executar Claude CLI')) {
+        else if (sel.action === 'cli') {
             runInTerminal(goalPrompt, 'Conn2Flow: Claude Code');
-            vscode.window.setStatusBarMessage(`🤖 Claude Code disparado no terminal (${reqName})`, 2500);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('agents.started', { request: reqName }), 2500);
         }
-        else if (sel.label.includes('Executar via NPX')) {
+        else if (sel.action === 'npx') {
             runInTerminal(npxGoalPrompt, 'Conn2Flow: Claude Code');
-            vscode.window.setStatusBarMessage(`🤖 Claude Code via NPX disparado no terminal (${reqName})`, 2500);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('agents.started', { request: reqName }), 2500);
         }
-        else if (sel.label.includes('Instalar Claude CLI')) {
+        else if (sel.action === 'install') {
             runInTerminal('npm install -g @anthropic-ai/claude-code', 'Conn2Flow: Instalação Claude');
         }
     }
     static async copyExecutorPrompt() {
         const active = this.getActiveRequestFile();
         if (!active || !active.content) {
-            vscode.window.showErrorMessage('Requisição ativa não encontrada em sdd/human-requests/CURRENT.md.');
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('agents.activeMissing'));
             return;
         }
-        const fullPrompt = `Você é o Micro-Executor do ecossistema Conn2Flow operando sob a metodologia Spec-Driven Development (SDD).
-
-SUA MISSAO: Implementar a requisição normativa ativa [${active.pointer}].
-
-==================== REGRAS INVIOLAVEIS DE GOVERNANCA ====================
-1. NUNCA utilize 'git add -A' ou 'git add .'. Sempre liste os caminhos específicos ('git add <caminhos>').
-2. NUNCA copie arquivos manualmente para pastas de teste (dev-environment/data/sites/).
-3. Mantenha e atualize ativamente a Live Todo List ([ ] ➔ [x]) a cada etapa.
-4. Compile os recursos correspondentes (ex: 'npm run compile' ou './c2f resources:sync').
-5. Ao concluir, atualize o 'sdd/validation/VALIDATION-CHECKLIST.md' e registre as evidências técnicas.
-6. Registre um breve resumo do log de execução em 'sdd/handoffs/CURRENT-HANDOFF.md'.
-
-==================== ESPECIFICACAO NORMATIVA (${active.pointer}) ====================
-${active.content}
-`;
+        const fullPrompt = localizationManager_1.LocalizationManager.t('agents.executorPrompt', {
+            request: active.pointer,
+            content: active.content
+        });
         await vscode.env.clipboard.writeText(fullPrompt);
-        vscode.window.showInformationMessage(`📋 Prompt completo da requisição [${active.pointer}] copiado para o Clipboard! Pronto para colar no Claude Code, Codex ou ChatGPT.`);
+        vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('agents.promptCopied'));
     }
     static async recordTerminalHandoff(openMarkdownFile) {
-        const root = this.getWorkspaceRoot();
-        if (!root)
+        const sddRoot = sddScopeManager_1.SddScopeManager.getActiveSddRoot();
+        if (!sddRoot)
             return;
-        const handoffPath = path.join(root, 'sdd', 'handoffs', 'CURRENT-HANDOFF.md');
+        const handoffPath = path.join(sddRoot, 'handoffs', 'CURRENT-HANDOFF.md');
         if (!fs.existsSync(path.dirname(handoffPath))) {
             fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
         }
@@ -115,14 +101,12 @@ ${active.content}
             fs.writeFileSync(handoffPath, initial, 'utf8');
         }
         await openMarkdownFile('sdd/handoffs/CURRENT-HANDOFF.md');
-        vscode.window.setStatusBarMessage('📄 Handoff aberto para edição.', 2000);
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('agents.handoffOpened'), 2000);
     }
-    static notifyArchitect(runInTerminal) {
-        const active = this.getActiveRequestFile();
-        const reqName = active ? active.pointer : 'Lote Atual';
-        const cmd = `git add sdd/human-requests/ sdd/implementation/ sdd/validation/ sdd/handoffs/; git commit -m "chore(handoff): deliver ${reqName} execution evidence for architect review"; git push origin main`;
-        runInTerminal(cmd, 'Conn2Flow Dev Terminal');
-        vscode.window.setStatusBarMessage(`📡 Evidências enviadas no Git para auditoria [${reqName}].`, 2500);
+    static async notifyArchitect(openMarkdownFile) {
+        await openMarkdownFile('sdd/handoffs/CURRENT-HANDOFF.md');
+        await vscode.commands.executeCommand('workbench.view.scm');
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('agents.reviewReady'), 2500);
     }
 }
 exports.AgentBridgeManager = AgentBridgeManager;
