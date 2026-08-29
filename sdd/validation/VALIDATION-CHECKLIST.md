@@ -564,6 +564,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `npx @vscode/vsce package --allow-missing-repository` em `vscode-extension/`.
 *   **Evidência**: Pacote gerado com sucesso: `conn2flow-tools-1.0.0.vsix` (10 arquivos, 13.64 KB).
 
+---
+
+## BATCH-034: Infraestrutura Nativa Antigravity IDE, Regras Modulares e Subagentes
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação de `.gemini/rules/01-sdd-governance.md`, `02-core-crud-v2.md` e `03-resources-tailwind.md` no workspace e templates do Gemini Kit.
+- [x] Criação dos subagentes nativos `c2f_executor.json` e `c2f_reviewer.json` em `.gemini/agents/` no workspace e templates.
+- [x] Atualização canônica de `GEMINI.md` no workspace e templates com as 3 personas e matriz multi-modelo.
+- [x] Atualização de `docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md` e `docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md` com a Seção 8.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: `.gemini/rules/`, `.gemini/agents/` e `GEMINI.md` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+
 
 
 
