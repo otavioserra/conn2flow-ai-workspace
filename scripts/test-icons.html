@@ -1,0 +1,152 @@
+const fs = require('fs');
+
+// HTML test viewer for the stroke icons
+const html = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Conn2Flow Activity Bar Stroke Icons</title>
+<style>
+  body {
+    background: #181818;
+    color: #cccccc;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+  .grid {
+    display: flex;
+    gap: 40px;
+  }
+  .card {
+    background: #252526;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 180px;
+  }
+  .sidebar-preview {
+    background: #333333;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .sidebar-preview.active {
+    border-left: 2px solid #ffffff;
+    color: #ffffff;
+  }
+  .sidebar-preview.inactive {
+    color: #858585;
+  }
+  .zoom-preview {
+    background: #1e1e1e;
+    padding: 16px;
+    border-radius: 6px;
+  }
+  h3 { margin: 0; font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+  <h2>Conn2Flow Activity Bar - Opções de Traçado (24x24 Grid)</h2>
+  <div class="grid">
+    <!-- Opcao 1: Diamond Interlock (Nó de Conexão e Fluxo) -->
+    <div class="card">
+      <h3>1. Diamond Interlock</h3>
+      <div class="sidebar-preview active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.5 L19.5 10 C21 11.5 21.5 14 20 16 L16 20 C14 21.5 11.5 21 10 19.5 L2.5 12" />
+          <path d="M4.5 4.5 C2.5 6.5 2 9.5 4 12 L12 20" />
+          <path d="M8 8 C10.5 5.5 14 6 16 8 C18 10 17.5 13.5 15 16 C12.5 18.5 9 18 7 16" />
+        </svg>
+      </div>
+      <div class="zoom-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#1babc6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.5 L19.5 10 C21 11.5 21.5 14 20 16 L16 20 C14 21.5 11.5 21 10 19.5 L2.5 12" />
+          <path d="M4.5 4.5 C2.5 6.5 2 9.5 4 12 L12 20" />
+          <path d="M8 8 C10.5 5.5 14 6 16 8 C18 10 17.5 13.5 15 16 C12.5 18.5 9 18 7 16" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Opcao 2: Dual Flow Infinity (Dois laços contínuos entrelaçados) -->
+    <div class="card">
+      <h3>2. Infinity Flow</h3>
+      <div class="sidebar-preview active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17 C4 17 2 15 2 12 C2 9 4 7 7 7 C10.5 7 13.5 17 17 17 C20 17 22 15 22 12 C22 9 20 7 17 7 C13.5 7 10.5 17 7 17 Z" />
+          <circle cx="7" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="17" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="zoom-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#1babc6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17 C4 17 2 15 2 12 C2 9 4 7 7 7 C10.5 7 13.5 17 17 17 C20 17 22 15 22 12 C22 9 20 7 17 7 C13.5 7 10.5 17 7 17 Z" />
+          <circle cx="7" cy="12" r="1.5" fill="#1babc6" />
+          <circle cx="17" cy="12" r="1.5" fill="#1babc6" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Opcao 3: Official Symbol Exact Stroke (O símbolo exato da Logomarca em traço puro) -->
+    <div class="card">
+      <h3>3. Logomarca Stroke</h3>
+      <div class="sidebar-preview active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Top-Left hook -->
+          <path d="M10.5 12 L7.5 9 C6 7.5 6 5 8 3.5 C10 2 12 2.5 13.5 4 L15 5.5 C14 6 12 7.5 10.5 12 Z" />
+          <!-- Right Leaf -->
+          <path d="M18 19 L13 14 C12 12.5 12 11 13 9.5 C14.5 7.5 17 7.5 19 9 L20.5 10.5 C22 12.5 22 15 20.5 17 L18 19 Z" />
+          <!-- Bottom-Left loop -->
+          <path d="M10.5 19.5 C8 19.5 5 17 3.5 14.5 C2 12 3 9 5 8 L6.5 9.5 C5.5 11 6.5 13 8 14.5 L9.5 16 C11 17.5 12 18.5 12 19.5 Z" />
+          <!-- Bottom hook -->
+          <path d="M13.5 22 C11.5 22 9.5 20.5 8.5 19 L9.5 18 C11 17 13 16 14.5 14.5 L16 16 C17 17.5 16.5 20 15 21.5 Z" />
+        </svg>
+      </div>
+      <div class="zoom-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#1babc6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 12 L7.5 9 C6 7.5 6 5 8 3.5 C10 2 12 2.5 13.5 4 L15 5.5 C14 6 12 7.5 10.5 12 Z" />
+          <path d="M18 19 L13 14 C12 12.5 12 11 13 9.5 C14.5 7.5 17 7.5 19 9 L20.5 10.5 C22 12.5 22 15 20.5 17 L18 19 Z" />
+          <path d="M10.5 19.5 C8 19.5 5 17 3.5 14.5 C2 12 3 9 5 8 L6.5 9.5 C5.5 11 6.5 13 8 14.5 L9.5 16 C11 17.5 12 18.5 12 19.5 Z" />
+          <path d="M13.5 22 C11.5 22 9.5 20.5 8.5 19 L9.5 18 C11 17 13 16 14.5 14.5 L16 16 C17 17.5 16.5 20 15 21.5 Z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Opcao 4: Flow Circuit Nodes (Conn2Flow clássico minimalista moderno) -->
+    <div class="card">
+      <h3>4. Conn2Flow Circuit</h3>
+      <div class="sidebar-preview active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Diamond boundary flow -->
+          <path d="M12 3 L20 11 L13 18 L11 20 L4 13 L12 3 Z" />
+          <!-- Flow connection line through center -->
+          <path d="M7 10 L12 15 L17 10" />
+          <!-- Center pulse node -->
+          <circle cx="12" cy="11" r="1.75" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="zoom-preview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#1babc6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 L20 11 L13 18 L11 20 L4 13 L12 3 Z" />
+          <path d="M7 10 L12 15 L17 10" />
+          <circle cx="12" cy="11" r="1.75" fill="#1babc6" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join(__dirname, 'test-icons.html'), html, 'utf8');
+console.log('test-icons.html generated');
