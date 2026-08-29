@@ -5,6 +5,12 @@
   "version": "1.0.0",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otavioserra/conn2flow-ai-workspace"
+  },
+  "homepage": "https://conn2flow.com",
   "engines": {
     "vscode": "^1.85.0"
   },
