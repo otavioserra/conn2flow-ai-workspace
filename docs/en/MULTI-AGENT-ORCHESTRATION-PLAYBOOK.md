@@ -188,3 +188,26 @@ The Conn2Flow AI infrastructure supports official Claude Code plugin distributio
 * Bundles all **36 normative skills** and deterministic hooks (`PreToolUse`);
 * Enables 1-Click installation into any new repository or project without needing to copy configuration directories manually.
 
+---
+
+## ⚡ 8. Google Antigravity & Antigravity IDE: Native Execution and Review Ecosystem
+
+Google Antigravity extends beyond its role as Macro-Architect to provide native execution and technical auditing capabilities across Antigravity 2.0 Desktop, Antigravity IDE, and the Antigravity CLI (`agy`).
+
+### 8.1. Native Specialized Subagents
+The workspace formally defines subagents that can be dispatched by Antigravity:
+* **`c2f_executor`**: Focused on implementation with write tools (`write_to_file`, `replace_file_content`, `run_command`). Reads `CURRENT.md`, maintains the Live Todo List (`[ ]` ➔ `[x]`), runs official pipelines (`c2f manager:update-all` or `c2f project:update-all`), and executes tests.
+* **`c2f_reviewer`**: Focused on technical auditing and homologation. Inspects git diffs, verifies compliance with rules in `.gemini/rules/`, runs `c2f ai:sync` and `c2f css:audit`, and issues validation receipts in `sdd/validation/review-YYY.md`.
+
+### 8.2. Modular Context Rules (`.gemini/rules/`)
+Antigravity IDE automatically discovers and loads contextual guidelines from `.gemini/rules/`:
+* `01-sdd-governance.md`: Living SDD governance guardrails, absolute prohibition of `git add -A`, and lock against manual file copies to test mirrors.
+* `02-core-crud-v2.md`: CRUD V2 scaffold standards, mandatory `variables.json`, and CSRF protection in AJAX.
+* `03-resources-tailwind.md`: 11-resource taxonomy, mandatory Version Bump, and Tailwind CSS v4 integrity.
+
+### 8.3. Multi-Model Orchestration and Stop Hook
+* **Gemini 3.7 Flash**: Primary engine for `c2f_executor` for ultra-low latency code generation and terminal test execution.
+* **Gemini 4 / Pro**: Tailored for `c2f_reviewer` and Macro-Architect deep reasoning and extensive refactoring.
+* **`Stop` Hook**: Configured in `.gemini/hooks.json` to intercept session termination and verify that all `VALIDATION-CHECKLIST.md` items are fully satisfied before ending the turn.
+
+

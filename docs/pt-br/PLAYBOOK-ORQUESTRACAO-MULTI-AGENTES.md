@@ -188,3 +188,26 @@ A infraestrutura de IA do Conn2Flow suporta empacotamento como plugin oficial do
 * Contém as **36 skills normativas** e hooks determinísticos (`PreToolUse`);
 * Permite instalação 1-Click em qualquer novo repositório ou projeto Conn2Flow sem necessidade de copiar manualmente dezenas de arquivos de configuração.
 
+---
+
+## ⚡ 8. Google Antigravity & Antigravity IDE: Ecossistema Nativo de Execução e Revisão
+
+O Google Antigravity não atua apenas como Macro-Arquiteto, mas agora oferece capacidade nativa de execução e auditoria técnica diretamente no Antigravity 2.0 Desktop, Antigravity IDE e Antigravity CLI (`agy`).
+
+### 8.1. Subagentes Especializados Nativos
+O workspace define formalmente subagentes que podem ser invocados diretamente pelo Antigravity:
+* **`c2f_executor`**: Focado em implementação com ferramentas de escrita (`write_to_file`, `replace_file_content`, `run_command`). Lê `CURRENT.md`, mantém a Live Todo List (`[ ]` ➔ `[x]`), roda o pipeline oficial (`c2f manager:update-all` ou `c2f project:update-all`) e executa testes.
+* **`c2f_reviewer`**: Focado em auditoria técnica e homologação. Inspeciona diffs do Git, valida conformidade com as regras em `.gemini/rules/`, roda `c2f ai:sync` e `c2f css:audit`, e emite o parecer em `sdd/validation/review-YYY.md`.
+
+### 8.2. Regras Modulares de Contexto (`.gemini/rules/`)
+O Antigravity IDE carrega automaticamente diretrizes contextuais do diretório `.gemini/rules/`:
+* `01-sdd-governance.md`: Travas de governança viva, proibição de `git add -A` e bloqueio de cópia manual para ambientes de teste.
+* `02-core-crud-v2.md`: Scaffold de CRUD V2, obrigatoriedade de `variables.json` e CSRF em AJAX.
+* `03-resources-tailwind.md`: Taxonomia dos 11 recursos, Version Bump e integridade do Tailwind CSS v4.
+
+### 8.3. Orquestração Multi-Modelo e Hook Stop
+* **Gemini 3.7 Flash**: Recomendado como motor primário do `c2f_executor` para execuções ultrarrápidas de código e testes.
+* **Gemini 4 / Pro**: Indicado para o `c2f_reviewer` e para o Macro-Arquiteto em refatorações profundas.
+* **Hook `Stop`**: Configurado em `.gemini/hooks.json` para interceptar a finalização e validar se todas as exigências do `VALIDATION-CHECKLIST.md` foram cumpridas antes do encerramento da sessão.
+
+
