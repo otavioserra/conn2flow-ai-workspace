@@ -34,8 +34,8 @@ This catalog lists the **36 Skills** (29 Core Framework Skills + 7 SDD Workflow 
 | **`c2f-i18n-translations`** | Translation and internationalization of interfaces and dictionaries (`__t()`). |
 | **`c2f-file-system-operations`** | Secure uploads, file system operations, and absolute path resolution. |
 | **`c2f-log-system`** | Unified disk logging (`log_disco()`) and runtime debugging. |
-| **`c2f-shell-and-windows-traps`** | **[NEW]** Protection against the 5 Windows/Git Bash/Docker traps: MSYS path conversion, `curl` with `<`, Python heredocs with control bytes, silent asserts, and `multipart/form-data` forms with hidden triggers. |
-| **`c2f-project-pipeline-and-tasks`** | **[NEW]** Mandatory Pipeline ≠ File Copy rule (`c2f manager:update-all` and `c2f project:update-all`), `devProjects.<id>.local` declarative authority in `environment.json`, runtime source of truth (database vs disk), and VS Code Tasks ↔ CLI `c2f` equivalence table. |
+| **`c2f-shell-and-windows-traps`** | **[NEW]** Protection against the 6 Windows/Git Bash/Docker traps: MSYS path conversion, `curl` with `<`, Python heredocs with control bytes, silent asserts, `multipart/form-data` forms with hidden triggers, and concurrent batch parallelism swallowing PHP warnings. |
+| **`c2f-project-pipeline-and-tasks`** | **[NEW]** Mandatory Pipeline ≠ File Copy rule (6 stages for projects and 4 for system with mandatory closing `css:rebuild` against hybrid state), `devProjects.<id>.local` declarative authority in `environment.json`, runtime source of truth, and sequential execution rule. |
 
 ---
 

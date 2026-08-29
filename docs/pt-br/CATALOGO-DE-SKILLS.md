@@ -34,8 +34,8 @@ Este catálogo lista as **36 Skills** (29 Core Skills do Framework + 7 SDD Workf
 | **`c2f-i18n-translations`** | Tradução e internacionalização de interfaces e dicionários (`__t()`). |
 | **`c2f-file-system-operations`** | Uploads seguros, manipulação de arquivos e caminhos absolutos do sistema. |
 | **`c2f-log-system`** | Gravação de logs unificados em disco (`log_disco()`) e depuração. |
-| **`c2f-shell-and-windows-traps`** | **[NOVA]** Blindagem contra as 5 armadilhas de Windows/Git Bash/Docker: conversão de caminhos MSYS, `curl` com `<`, heredocs Python com bytes de controle, asserts silenciosos e formulários `multipart/form-data` com gatilhos ocultos. |
-| **`c2f-project-pipeline-and-tasks`** | **[NOVA]** Regra mandatória Pipeline ≠ Cópia de Arquivo (`c2f manager:update-all` e `c2f project:update-all`), autoridade declarativa de `devProjects.<id>.local` em `environment.json`, fonte da verdade em runtime (banco vs disco) e tabela de equivalência VS Code Tasks ↔ CLI `c2f`. |
+| **`c2f-shell-and-windows-traps`** | **[NOVA]** Blindagem contra as 6 armadilhas de Windows/Git Bash/Docker: conversão de caminhos MSYS, `curl` com `<`, heredocs Python com bytes de controle, asserts silenciosos, formulários `multipart/form-data` com gatilhos ocultos e paralelismo concorrente em comandos de compilação em lote. |
+| **`c2f-project-pipeline-and-tasks`** | **[NOVA]** Regra mandatória Pipeline ≠ Cópia de Arquivo (6 etapas para projetos e 4 para o sistema finalizando com `css:rebuild` contra o estado híbrido), autoridade de `devProjects.<id>.local` em `environment.json`, fonte da verdade em runtime e regra de execução sequencial exclusiva em lote. |
 
 ---
 

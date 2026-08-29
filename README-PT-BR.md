@@ -196,8 +196,8 @@ O workspace centraliza um catálogo completo de **29 Skills Core do Conn2Flow** 
    - `c2f-json-resources-sync` & `c2f-mysql-utf8-emoji-encoding`: Codificação UTF-8mb4 e sincronização de metadados JSON.
 
 3. **Projetos, Plugins & Automação**:
-   - `c2f-project-pipeline-and-tasks`: **[NOVO]** Regra mandatória Pipeline ≠ Cópia de Arquivo (`c2f manager:update-all` e `c2f project:update-all`), autoridade declarativa de `devProjects.<id>.local` em `environment.json` e tabela de equivalência VS Code Tasks ↔ CLI `c2f`.
-   - `c2f-shell-and-windows-traps`: **[NOVO]** Blindagem contra as 5 armadilhas de Windows, Git Bash e Docker (conversão de caminhos MSYS, curl com `<`, heredocs Python, asserts silenciosos e formulários multipart).
+   - `c2f-project-pipeline-and-tasks`: **[NOVO]** Regra mandatória Pipeline ≠ Cópia de Arquivo (pipelines de 6 etapas para projetos e 4 para o sistema finalizando com `css:rebuild`), autoridade de `devProjects.<id>.local` em `environment.json` e regra de execução sequencial exclusiva em lote.
+   - `c2f-shell-and-windows-traps`: **[NOVO]** Blindagem contra as 6 armadilhas de Windows, Git Bash e Docker (conversão de caminhos MSYS, curl com `<`, heredocs Python, asserts silenciosos, formulários multipart e paralelismo concorrente em lote).
    - `c2f-agent-visual-inspection`: **[NOVO]** Validação visual e de runtime autônoma no ambiente local Docker (`c2f page:inspect`, `c2f auth:cookie`, `c2f css:audit --url=<rota>`).
    - `c2f-projects-system`: Pipeline de deploy de projetos privados via OAuth API (`/api/project/update`), ZIP e execução inline.
    - `c2f-plugin-architecture`: Manifesto `plugin.json`, escopamento e ciclo de vida (`_install`/`_uninstall`) de plugins públicos e privados.

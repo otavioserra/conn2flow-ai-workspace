@@ -429,6 +429,31 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 36 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-028: Refinamento de Pipelines (6/4 Etapas com css:rebuild) e Execução Sequencial Exclusiva
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Atualização de `c2f-project-pipeline-and-tasks/SKILL.md` nos 5 masters e 14 templates (19 localizações) com 6 etapas de projeto e 4 de sistema com `css:rebuild` mandatório no encerramento.
+- [x] Documentação da justificativa técnica de prevenção do estado híbrido pós-deploy.
+- [x] Inclusão da Regra #5 (Execução Sequencial Exclusiva & Proibição de Paralelismo em Lote) contra supressão de warnings PHP.
+- [x] Atualização de `c2f-shell-and-windows-traps/SKILL.md` nos 5 masters e 14 templates adicionando a 6ª Armadilha Crítica (Paralelismo Concorrente em Comandos de Compilação).
+- [x] Atualização de `docs/pt-br/CATALOGO-DE-SKILLS.md` e `docs/en/SKILLS-CATALOG.md`.
+- [x] Atualização de `README.md` e `README-PT-BR.md`.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 36 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 

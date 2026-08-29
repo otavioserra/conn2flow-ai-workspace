@@ -196,8 +196,8 @@ The workspace centralizes a complete catalog of **29 Conn2Flow Core Skills** (`c
    - `c2f-json-resources-sync` & `c2f-mysql-utf8-emoji-encoding`: UTF-8mb4 encoding and JSON metadata synchronization.
 
 3. **Projects, Plugins & Automation**:
-   - `c2f-project-pipeline-and-tasks`: **[NEW]** Mandatory Pipeline ≠ File Copy rule (`c2f manager:update-all` and `c2f project:update-all`), `devProjects.<id>.local` declarative authority in `environment.json`, and VS Code Tasks ↔ CLI `c2f` equivalence table.
-   - `c2f-shell-and-windows-traps`: **[NEW]** Protection against the 5 Windows, Git Bash, and Docker traps (MSYS path conversion, curl with `<`, Python heredocs, silent asserts, and multipart forms).
+   - `c2f-project-pipeline-and-tasks`: **[NEW]** Mandatory Pipeline ≠ File Copy rule (6-stage project and 4-stage system pipelines with closing `css:rebuild`), `devProjects.<id>.local` declarative authority in `environment.json`, and sequential execution rule.
+   - `c2f-shell-and-windows-traps`: **[NEW]** Protection against the 6 Windows, Git Bash, and Docker traps (MSYS path conversion, curl with `<`, Python heredocs, silent asserts, multipart forms, and concurrent batch parallelism).
    - `c2f-agent-visual-inspection`: **[NEW]** Autonomous visual and runtime inspection in local Docker environment (`c2f page:inspect`, `c2f auth:cookie`, `c2f css:audit --url=<route>`).
    - `c2f-projects-system`: Private project deployment pipeline via OAuth API (`/api/project/update`), ZIP, and inline execution.
    - `c2f-plugin-architecture`: Manifest `plugin.json`, scoping, and lifecycle (`_install`/`_uninstall`) for public and private plugins.
