@@ -11,6 +11,7 @@ import { TerminalModeManager } from './providers/terminalModeManager';
 import { SddViewModeManager } from './providers/sddViewModeManager';
 import { SddBrowserManager } from './providers/sddBrowserManager';
 import { SddScopeManager } from './providers/sddScopeManager';
+import { GardeningManager } from './providers/gardeningManager';
 import { ShellHelper } from './providers/shellHelper';
 
 let terminal: vscode.Terminal | undefined;
@@ -296,6 +297,15 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
       SddViewModeManager.toggle(refreshAll);
+    }),
+    vscode.commands.registerCommand('conn2flow.sdd.toggleAutoGardening', () => {
+      GardeningManager.toggleAutoGardening(refreshAll);
+    }),
+    vscode.commands.registerCommand('conn2flow.sdd.runGardening', () => {
+      runInTerminal(ShellHelper.formatC2fCommand('ai:prune-memories'));
+    }),
+    vscode.commands.registerCommand('conn2flow.sdd.createGardeningRequest', async () => {
+      await GardeningManager.createGardeningRequest(openMarkdownFile, refreshAll);
     }),
     vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
       openMarkdownFile('sdd/human-requests/CURRENT.md');

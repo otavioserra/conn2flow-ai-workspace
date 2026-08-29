@@ -15,6 +15,7 @@ const terminalModeManager_1 = require("./providers/terminalModeManager");
 const sddViewModeManager_1 = require("./providers/sddViewModeManager");
 const sddBrowserManager_1 = require("./providers/sddBrowserManager");
 const sddScopeManager_1 = require("./providers/sddScopeManager");
+const gardeningManager_1 = require("./providers/gardeningManager");
 const shellHelper_1 = require("./providers/shellHelper");
 let terminal;
 let dockerStatusBarItem;
@@ -261,6 +262,12 @@ function activate(context) {
         await sddScopeManager_1.SddScopeManager.selectScope(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
         sddViewModeManager_1.SddViewModeManager.toggle(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.sdd.toggleAutoGardening', () => {
+        gardeningManager_1.GardeningManager.toggleAutoGardening(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.sdd.runGardening', () => {
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:prune-memories'));
+    }), vscode.commands.registerCommand('conn2flow.sdd.createGardeningRequest', async () => {
+        await gardeningManager_1.GardeningManager.createGardeningRequest(openMarkdownFile, refreshAll);
     }), vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
         openMarkdownFile('sdd/human-requests/CURRENT.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openSpec', () => {

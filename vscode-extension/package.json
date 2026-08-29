@@ -134,6 +134,24 @@
         "icon": "$(split-horizontal)"
       },
       {
+        "command": "conn2flow.sdd.toggleAutoGardening",
+        "title": "Alternar Auto-Gardening SDD",
+        "category": "Conn2Flow SDD",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "conn2flow.sdd.runGardening",
+        "title": "Executar Memory Gardening (c2f ai:prune-memories)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "conn2flow.sdd.createGardeningRequest",
+        "title": "Criar Requisição de Gardening (req-XXX)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(diff-added)"
+      },
+      {
         "command": "conn2flow.sdd.openCurrent",
         "title": "Abrir CURRENT.md",
         "category": "Conn2Flow SDD",

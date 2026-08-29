@@ -7,6 +7,7 @@ import { AgentBridgeManager } from './agentBridgeManager';
 import { TerminalModeManager } from './terminalModeManager';
 import { SddViewModeManager } from './sddViewModeManager';
 import { SddScopeManager } from './sddScopeManager';
+import { GardeningManager } from './gardeningManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -248,6 +249,27 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
             'conn2flow.sdd.toggleViewMode',
             'split-horizontal',
             'Alterna modo de visualização entre: Ambos Lado a Lado, Apenas Renderizado (Preview), e Apenas Código-Fonte (Editor)'
+          ),
+          new Conn2FlowTreeItem(
+            `🌿 Auto-Gardening: ${GardeningManager.isAutoGardeningEnabled() ? '🟢 ATIVO' : '⚪ Desativado'}`,
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.sdd.toggleAutoGardening',
+            'sync',
+            'Alterna o monitoramento automático de Memory Gardening para alertar quando a memória passar de 35KB / 100 linhas'
+          ),
+          new Conn2FlowTreeItem(
+            `🧹 Executar Gardening (${GardeningManager.getMemoryHealth().label})`,
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.sdd.runGardening',
+            'trash',
+            'Executa c2f ai:prune-memories no terminal para verificar a conformidade da memória'
+          ),
+          new Conn2FlowTreeItem(
+            '📝 Criar Requisição de Gardening (req-XXX)',
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.sdd.createGardeningRequest',
+            'diff-added',
+            'Gera automaticamente a próxima requisição normativa de Memory Gardening com template oficial e opção de ativar no CURRENT.md'
           ),
           new Conn2FlowTreeItem('Abrir CURRENT.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openCurrent', 'file-text', 'Abre a requisição SDD ativa no modo configurado'),
           new Conn2FlowTreeItem('Abrir SPEC.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openSpec', 'file-code', 'Abre a especificação normativa geral no modo configurado'),
