@@ -61,8 +61,8 @@ export class ModesManager {
       }
 
       fs.writeFileSync(currentPath, content, 'utf8');
-      const label = mode === 'triade' ? '🏛️ Tríade de Agentes (Arquiteto + Executor + Revisor)' : '👥 Duplo Agente (Arquiteto + Executor)';
-      vscode.window.showInformationMessage(`Topologia SDD alterada para: ${label}`);
+      const label = mode === 'triade' ? '🏛️ Tríade de Agentes' : '👥 Duplo Agente';
+      vscode.window.setStatusBarMessage(`Topologia: ${label}`, 2000);
       if (onUpdated) {
         onUpdated();
       }
@@ -89,11 +89,11 @@ export class ModesManager {
 
       fs.writeFileSync(currentPath, content, 'utf8');
       const labels: Record<AutonomyLevel, string> = {
-        supervisionado: '🛡️ Nível 1: Supervisionado (Apenas edição e testes; sem commit/deploy sem OK)',
-        autonomo_monitorado: '👁️ Nível 2: Autônomo Monitorado (Live Todo List e deploy local de teste)',
-        autonomo_headless: '🤖 Nível 3: Autônomo Headless (Background silencioso)'
+        supervisionado: '🛡️ Nível 1: Supervisionado',
+        autonomo_monitorado: '👁️ Nível 2: Autônomo Monitorado',
+        autonomo_headless: '🤖 Nível 3: Autônomo Headless'
       };
-      vscode.window.showInformationMessage(`Autonomia SDD alterada para: ${labels[level]}`);
+      vscode.window.setStatusBarMessage(`Autonomia: ${labels[level]}`, 2000);
       if (onUpdated) {
         onUpdated();
       }

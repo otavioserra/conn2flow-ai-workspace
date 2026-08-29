@@ -6,6 +6,7 @@ const modesManager_1 = require("./modesManager");
 const projectsManager_1 = require("./projectsManager");
 const customActionsManager_1 = require("./customActionsManager");
 const logFollowManager_1 = require("./logFollowManager");
+const terminalModeManager_1 = require("./terminalModeManager");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     label;
     collapsibleState;
@@ -76,7 +77,8 @@ class Conn2FlowTreeProvider {
                 new Conn2FlowTreeItem(`${!isTriade ? '✔ ' : ''}👥 Duplo Agente (Arquiteto + Executor)`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setDoubleAgent', !isTriade ? 'check' : 'person', 'Modo Didático: Fluxo ágil ideal para aprendizado e tarefas rápidas'),
                 new Conn2FlowTreeItem(`${auto === 'supervisionado' ? '✔ ' : ''}🛡️ Nível 1: Supervisionado`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setSupervised', auto === 'supervisionado' ? 'check' : 'shield', 'Apenas edição e testes locais; sem commit ou deploy automático sem aval humano'),
                 new Conn2FlowTreeItem(`${auto === 'autonomo_monitorado' ? '✔ ' : ''}👁️ Nível 2: Autônomo Monitorado`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setMonitored', auto === 'autonomo_monitorado' ? 'check' : 'eye', 'Executa esteira com Live Todo List na tela e deploy exclusivo no ambiente de teste'),
-                new Conn2FlowTreeItem(`${auto === 'autonomo_headless' ? '✔ ' : ''}🤖 Nível 3: Autônomo Headless`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setHeadless', auto === 'autonomo_headless' ? 'check' : 'robot', 'Execução silenciosa em background via Git Worktrees e MCP Hub')
+                new Conn2FlowTreeItem(`${auto === 'autonomo_headless' ? '✔ ' : ''}🤖 Nível 3: Autônomo Headless`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setHeadless', auto === 'autonomo_headless' ? 'check' : 'robot', 'Execução silenciosa em background via Git Worktrees e MCP Hub'),
+                new Conn2FlowTreeItem(terminalModeManager_1.TerminalModeManager.isReuse ? '🔄 Terminal: Reutilizar Ativo (Clique p/ Novo)' : '➕ Terminal: Criar Novo (Clique p/ Reutilizar)', vscode.TreeItemCollapsibleState.None, 'conn2flow.terminal.toggleMode', terminalModeManager_1.TerminalModeManager.isReuse ? 'sync' : 'new-folder', terminalModeManager_1.TerminalModeManager.isReuse ? 'Reutiliza o mesmo terminal ativo para não poluir o painel. Clique para alternar.' : 'Abre um novo terminal separado para cada comando. Clique para alternar.')
             ])
         ];
         // Se o projeto tiver ações customizadas locais (.c2f/actions.json), insere o acordeão Plug & Play!

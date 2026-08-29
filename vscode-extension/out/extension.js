@@ -11,6 +11,7 @@ const projectsManager_1 = require("./providers/projectsManager");
 const customActionsManager_1 = require("./providers/customActionsManager");
 const logFollowManager_1 = require("./providers/logFollowManager");
 const agentBridgeManager_1 = require("./providers/agentBridgeManager");
+const terminalModeManager_1 = require("./providers/terminalModeManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -22,12 +23,12 @@ function activate(context) {
     dockerStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
     dockerStatusBarItem.command = 'conn2flow.docker.status';
     context.subscriptions.push(dockerStatusBarItem);
-    modesStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 99);
-    modesStatusBarItem.command = 'conn2flow.modes.selectMode';
-    context.subscriptions.push(modesStatusBarItem);
-    sddStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 98);
+    sddStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 99);
     sddStatusBarItem.command = 'conn2flow.sdd.openCurrent';
     context.subscriptions.push(sddStatusBarItem);
+    modesStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 98);
+    modesStatusBarItem.command = 'conn2flow.modes.selectMode';
+    context.subscriptions.push(modesStatusBarItem);
     const refreshAll = () => {
         treeProvider.refresh();
         updateStatusBar();
@@ -40,15 +41,28 @@ function activate(context) {
     context.subscriptions.push(vscode.window.onDidCloseTerminal(t => logFollowManager_1.LogFollowManager.handleTerminalClosed(t, refreshAll)));
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
-    // Terminal Runner Helper
+    // Terminal Runner Helper com suporte inteligente a Reutilizar vs Criar Novo
     const runInTerminal = (command, name = 'Conn2Flow Dev Terminal') => {
-        if (!terminal || terminal.exitStatus !== undefined) {
-            terminal = vscode.window.createTerminal({ name });
+        if (terminalModeManager_1.TerminalModeManager.isReuse) {
+            const active = vscode.window.activeTerminal;
+            if (active && active.exitStatus === undefined) {
+                active.show();
+                active.sendText(command);
+                return;
+            }
+            if (!terminal || terminal.exitStatus !== undefined) {
+                terminal = vscode.window.createTerminal({ name: 'Conn2Flow Dev Terminal' });
+            }
+            terminal.show();
+            terminal.sendText(command);
         }
-        terminal.show();
-        terminal.sendText(command);
+        else {
+            const newTerm = vscode.window.createTerminal({ name });
+            newTerm.show();
+            newTerm.sendText(command);
+        }
     };
-    // Markdown Opener with Multi-Repo Path Resolution & MPE / Preview Detection
+    // Markdown Opener with Immediate TextDocument Show & Multi-Repo Preview Resolution
     const openMarkdownFile = async (relativePath) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -65,24 +79,34 @@ function activate(context) {
         for (const fullPath of candidates) {
             if (fs.existsSync(fullPath)) {
                 const uri = vscode.Uri.file(fullPath);
-                const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
-                if (mpe) {
+                try {
+                    // 1. SEMPRE abre o documento de texto no editor primeiro
+                    const doc = await vscode.workspace.openTextDocument(uri);
+                    await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+                    // 2. Se MPE estiver instalado, abre o preview enhanced
+                    const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+                    if (mpe) {
+                        try {
+                            await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
+                            return;
+                        }
+                        catch {
+                            // fallback para preview nativo
+                        }
+                    }
+                    // 3. Abre o preview nativo ao lado (já com o documento ativo!)
                     try {
-                        await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
-                        return;
+                        await vscode.commands.executeCommand('markdown.showPreviewToSide');
                     }
                     catch {
-                        // Fallback para preview padrao se falhar
+                        // documento já está aberto na tela com 100% de garantia
                     }
+                    return;
                 }
-                try {
-                    await vscode.commands.executeCommand('markdown.showPreviewToSide', uri);
+                catch (err) {
+                    vscode.window.showErrorMessage(`Falha ao abrir documento: ${err.message}`);
+                    return;
                 }
-                catch {
-                    const doc = await vscode.workspace.openTextDocument(uri);
-                    await vscode.window.showTextDocument(doc);
-                }
-                return;
             }
         }
         vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath}`);
@@ -122,7 +146,8 @@ function activate(context) {
     // Register Commands
     context.subscriptions.push(vscode.commands.registerCommand('conn2flow.refreshTree', () => {
         refreshAll();
-        vscode.window.showInformationMessage('Painel Conn2Flow atualizado.');
+    }), vscode.commands.registerCommand('conn2flow.terminal.toggleMode', () => {
+        terminalModeManager_1.TerminalModeManager.toggle(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.expandAll', () => {
         treeProvider.expandAll();
     }), vscode.commands.registerCommand('conn2flow.collapseAll', () => {

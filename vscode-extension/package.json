@@ -68,6 +68,12 @@
         "icon": "$(collapse-all)"
       },
       {
+        "command": "conn2flow.terminal.toggleMode",
+        "title": "Alternar Modo de Terminal (Reutilizar vs Novo)",
+        "category": "Conn2Flow",
+        "icon": "$(terminal)"
+      },
+      {
         "command": "conn2flow.custom.initManifest",
         "title": "Criar Ações Customizadas (.c2f/actions.json)",
         "category": "Conn2Flow Custom",

@@ -94,7 +94,7 @@ class ProjectsManager {
             }
             data.devEnvironment.projectTarget = projectId;
             fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
-            vscode.window.showInformationMessage(`Projeto Alvo padrão alterado para: ${projectId}`);
+            vscode.window.setStatusBarMessage(`Projeto alvo: ${projectId}`, 2000);
             if (onUpdated) {
                 onUpdated();
             }
@@ -189,7 +189,7 @@ class ProjectsManager {
             };
             mergeMissing(template, targetData);
             fs.writeFileSync(envPath, JSON.stringify(targetData, null, 2), 'utf8');
-            vscode.window.showInformationMessage('Estrutura de environment.json sincronizada com o template canônico do Core com sucesso!');
+            vscode.window.setStatusBarMessage('Environment sincronizado com template com sucesso.', 2000);
             if (onUpdated) {
                 onUpdated();
             }

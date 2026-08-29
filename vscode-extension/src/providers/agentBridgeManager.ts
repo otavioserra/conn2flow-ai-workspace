@@ -37,7 +37,7 @@ export class AgentBridgeManager {
     const goalPrompt = `claude "/goal Leia o briefing ativo em sdd/human-requests/CURRENT.md (${reqName}), execute todas as etapas da Live Todo List com rigor SDD, valide com c2f ai:sync, preencha sdd/validation/VALIDATION-CHECKLIST.md, registre as notas em sdd/handoffs/CURRENT-HANDOFF.md e sincronize no Git com commit semântico."`;
 
     runInTerminal(goalPrompt, 'Conn2Flow: Claude Code');
-    vscode.window.showInformationMessage(`🤖 Claude Code disparado no terminal dedicado em Modo /goal (${reqName})!`);
+    vscode.window.setStatusBarMessage(`🤖 Claude Code disparado no terminal (${reqName})`, 2500);
   }
 
   public static async copyExecutorPrompt(): Promise<void> {
@@ -83,7 +83,7 @@ ${active.content}
     }
 
     await openMarkdownFile('sdd/handoffs/CURRENT-HANDOFF.md');
-    vscode.window.showInformationMessage('📄 Handoff aberto. Cole o log ou resumo técnico do terminal aqui para o Arquiteto analisar.');
+    vscode.window.setStatusBarMessage('📄 Handoff aberto para edição.', 2000);
   }
 
   public static notifyArchitect(runInTerminal: (cmd: string, name?: string) => void): void {
@@ -93,6 +93,6 @@ ${active.content}
     const cmd = `git add sdd/human-requests/ sdd/implementation/ sdd/validation/ sdd/handoffs/; git commit -m "chore(handoff): deliver ${reqName} execution evidence for architect review"; git push origin main`;
     runInTerminal(cmd, 'Conn2Flow Dev Terminal');
 
-    vscode.window.showInformationMessage(`📡 Sincronização disparada no Git! O Macro-Arquiteto já pode auditar o lote [${reqName}].`);
+    vscode.window.setStatusBarMessage(`📡 Evidências enviadas no Git para auditoria [${reqName}].`, 2500);
   }
 }

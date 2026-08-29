@@ -4,6 +4,7 @@ import { ProjectsManager } from './projectsManager';
 import { CustomActionsManager } from './customActionsManager';
 import { LogFollowManager } from './logFollowManager';
 import { AgentBridgeManager } from './agentBridgeManager';
+import { TerminalModeManager } from './terminalModeManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -119,6 +120,13 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
             'conn2flow.modes.setHeadless',
             auto === 'autonomo_headless' ? 'check' : 'robot',
             'Execução silenciosa em background via Git Worktrees e MCP Hub'
+          ),
+          new Conn2FlowTreeItem(
+            TerminalModeManager.isReuse ? '🔄 Terminal: Reutilizar Ativo (Clique p/ Novo)' : '➕ Terminal: Criar Novo (Clique p/ Reutilizar)',
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.terminal.toggleMode',
+            TerminalModeManager.isReuse ? 'sync' : 'new-folder',
+            TerminalModeManager.isReuse ? 'Reutiliza o mesmo terminal ativo para não poluir o painel. Clique para alternar.' : 'Abre um novo terminal separado para cada comando. Clique para alternar.'
           )
         ]
       )

@@ -14,7 +14,7 @@ export class LogFollowManager {
         this.apacheTerminal.sendText('\u0003', false);
       }
       this.isApacheFollowing = false;
-      vscode.window.showInformationMessage('⏹️ Monitoramento de Logs do Apache parado. Terminal liberado!');
+      vscode.window.setStatusBarMessage('⏹️ Logs Apache parados. Terminal liberado.', 2000);
     } else {
       // Iniciar o follow em terminal dedicado
       if (!this.apacheTerminal || this.apacheTerminal.exitStatus !== undefined) {
@@ -23,7 +23,7 @@ export class LogFollowManager {
       this.apacheTerminal.show();
       this.apacheTerminal.sendText('docker logs conn2flow-app --tail 50 --follow');
       this.isApacheFollowing = true;
-      vscode.window.showInformationMessage('🟢 Monitorando Logs do Apache ao vivo. Clique novamente no botão para parar!');
+      vscode.window.setStatusBarMessage('🟢 Monitorando Logs Apache ao vivo.', 2000);
     }
 
     if (onUpdated) {
@@ -38,7 +38,7 @@ export class LogFollowManager {
         this.phpTerminal.sendText('\u0003', false);
       }
       this.isPhpFollowing = false;
-      vscode.window.showInformationMessage('⏹️ Monitoramento de Logs PHP parado. Terminal liberado!');
+      vscode.window.setStatusBarMessage('⏹️ Logs PHP parados. Terminal liberado.', 2000);
     } else {
       // Iniciar o follow em terminal dedicado
       if (!this.phpTerminal || this.phpTerminal.exitStatus !== undefined) {
@@ -47,7 +47,7 @@ export class LogFollowManager {
       this.phpTerminal.show();
       this.phpTerminal.sendText('docker exec conn2flow-app bash -c "tail -f /var/log/php_errors.log"');
       this.isPhpFollowing = true;
-      vscode.window.showInformationMessage('🟢 Monitorando Logs PHP ao vivo. Clique novamente no botão para parar!');
+      vscode.window.setStatusBarMessage('🟢 Monitorando Logs PHP ao vivo.', 2000);
     }
 
     if (onUpdated) {
