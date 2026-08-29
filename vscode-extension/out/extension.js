@@ -116,6 +116,18 @@ function activate(context) {
                 if (mpe) {
                     try {
                         await vscode.commands.executeCommand('vscode.openWith', uri, 'markdown-preview-enhanced');
+                        // Aguarda o VS Code instanciar o Custom Editor e fecha qualquer aba de texto que tenha sido aberta em paralelo
+                        await new Promise(resolve => setTimeout(resolve, 200));
+                        for (const group of vscode.window.tabGroups.all) {
+                            for (const tab of group.tabs) {
+                                if (tab.input instanceof vscode.TabInputText) {
+                                    const p = tab.input.uri.fsPath.toLowerCase();
+                                    if (p === uri.fsPath.toLowerCase() || p.includes('sdd') || p.includes('docs') || p.endsWith('.md')) {
+                                        await vscode.window.tabGroups.close(tab);
+                                    }
+                                }
+                            }
+                        }
                         return;
                     }
                     catch {
@@ -124,6 +136,17 @@ function activate(context) {
                 }
                 try {
                     await vscode.commands.executeCommand('markdown.showPreview', uri);
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                    for (const group of vscode.window.tabGroups.all) {
+                        for (const tab of group.tabs) {
+                            if (tab.input instanceof vscode.TabInputText) {
+                                const p = tab.input.uri.fsPath.toLowerCase();
+                                if (p === uri.fsPath.toLowerCase() || p.includes('sdd') || p.includes('docs') || p.endsWith('.md')) {
+                                    await vscode.window.tabGroups.close(tab);
+                                }
+                            }
+                        }
+                    }
                     return;
                 }
                 catch {
