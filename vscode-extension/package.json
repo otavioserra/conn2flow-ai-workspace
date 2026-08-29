@@ -56,6 +56,18 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "conn2flow.expandAll",
+        "title": "Expandir Todas as Seções",
+        "category": "Conn2Flow",
+        "icon": "$(expand-all)"
+      },
+      {
+        "command": "conn2flow.collapseAll",
+        "title": "Colapsar Todas as Seções",
+        "category": "Conn2Flow",
+        "icon": "$(collapse-all)"
+      },
+      {
         "command": "conn2flow.custom.initManifest",
         "title": "Criar Ações Customizadas (.c2f/actions.json)",
         "category": "Conn2Flow Custom",
@@ -120,6 +132,30 @@
         "title": "Abrir Checklist de Validação",
         "category": "Conn2Flow SDD",
         "icon": "$(checklist)"
+      },
+      {
+        "command": "conn2flow.bridge.launchClaudeGoal",
+        "title": "Iniciar Claude Code (/goal)",
+        "category": "Conn2Flow Triad",
+        "icon": "$(play-circle)"
+      },
+      {
+        "command": "conn2flow.bridge.copyPrompt",
+        "title": "Copiar Prompt do Executor",
+        "category": "Conn2Flow Triad",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "conn2flow.bridge.recordHandoff",
+        "title": "Registrar Log do Terminal (Handoff)",
+        "category": "Conn2Flow Triad",
+        "icon": "$(repo-pull)"
+      },
+      {
+        "command": "conn2flow.bridge.notifyArchitect",
+        "title": "Sincronizar e Notificar Arquiteto",
+        "category": "Conn2Flow Triad",
+        "icon": "$(cloud-upload)"
       },
       {
         "command": "conn2flow.docker.status",
@@ -299,9 +335,19 @@
     "menus": {
       "view/title": [
         {
+          "command": "conn2flow.expandAll",
+          "when": "view == conn2flow-explorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "conn2flow.collapseAll",
+          "when": "view == conn2flow-explorer",
+          "group": "navigation@2"
+        },
+        {
           "command": "conn2flow.refreshTree",
           "when": "view == conn2flow-explorer",
-          "group": "navigation"
+          "group": "navigation@3"
         }
       ]
     }

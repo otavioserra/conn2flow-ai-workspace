@@ -6,6 +6,7 @@ import { ModesManager } from './providers/modesManager';
 import { ProjectsManager } from './providers/projectsManager';
 import { CustomActionsManager } from './providers/customActionsManager';
 import { LogFollowManager } from './providers/logFollowManager';
+import { AgentBridgeManager } from './providers/agentBridgeManager';
 
 let terminal: vscode.Terminal | undefined;
 let dockerStatusBarItem: vscode.StatusBarItem;
@@ -140,6 +141,12 @@ export function activate(context: vscode.ExtensionContext) {
       refreshAll();
       vscode.window.showInformationMessage('Painel Conn2Flow atualizado.');
     }),
+    vscode.commands.registerCommand('conn2flow.expandAll', () => {
+      treeProvider.expandAll();
+    }),
+    vscode.commands.registerCommand('conn2flow.collapseAll', () => {
+      treeProvider.collapseAll();
+    }),
 
     // Custom Actions Commands (Plug & Play!)
     vscode.commands.registerCommand('conn2flow.custom.runTerminal', (cmd?: string) => {
@@ -209,6 +216,20 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('conn2flow.sdd.openChecklist', () => {
       openMarkdownFile('sdd/validation/VALIDATION-CHECKLIST.md');
+    }),
+
+    // Triad Bridge Commands (Agent Handoff & Goal Mode)
+    vscode.commands.registerCommand('conn2flow.bridge.launchClaudeGoal', () => {
+      AgentBridgeManager.launchClaudeGoal(runInTerminal);
+    }),
+    vscode.commands.registerCommand('conn2flow.bridge.copyPrompt', async () => {
+      await AgentBridgeManager.copyExecutorPrompt();
+    }),
+    vscode.commands.registerCommand('conn2flow.bridge.recordHandoff', async () => {
+      await AgentBridgeManager.recordTerminalHandoff(openMarkdownFile);
+    }),
+    vscode.commands.registerCommand('conn2flow.bridge.notifyArchitect', () => {
+      AgentBridgeManager.notifyArchitect(runInTerminal);
     }),
 
     // Docker Commands

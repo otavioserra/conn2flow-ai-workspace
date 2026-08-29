@@ -10,6 +10,7 @@ const modesManager_1 = require("./providers/modesManager");
 const projectsManager_1 = require("./providers/projectsManager");
 const customActionsManager_1 = require("./providers/customActionsManager");
 const logFollowManager_1 = require("./providers/logFollowManager");
+const agentBridgeManager_1 = require("./providers/agentBridgeManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -122,6 +123,10 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('conn2flow.refreshTree', () => {
         refreshAll();
         vscode.window.showInformationMessage('Painel Conn2Flow atualizado.');
+    }), vscode.commands.registerCommand('conn2flow.expandAll', () => {
+        treeProvider.expandAll();
+    }), vscode.commands.registerCommand('conn2flow.collapseAll', () => {
+        treeProvider.collapseAll();
     }), 
     // Custom Actions Commands (Plug & Play!)
     vscode.commands.registerCommand('conn2flow.custom.runTerminal', (cmd) => {
@@ -180,6 +185,16 @@ function activate(context) {
         openMarkdownFile('sdd/SPEC.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openChecklist', () => {
         openMarkdownFile('sdd/validation/VALIDATION-CHECKLIST.md');
+    }), 
+    // Triad Bridge Commands (Agent Handoff & Goal Mode)
+    vscode.commands.registerCommand('conn2flow.bridge.launchClaudeGoal', () => {
+        agentBridgeManager_1.AgentBridgeManager.launchClaudeGoal(runInTerminal);
+    }), vscode.commands.registerCommand('conn2flow.bridge.copyPrompt', async () => {
+        await agentBridgeManager_1.AgentBridgeManager.copyExecutorPrompt();
+    }), vscode.commands.registerCommand('conn2flow.bridge.recordHandoff', async () => {
+        await agentBridgeManager_1.AgentBridgeManager.recordTerminalHandoff(openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.bridge.notifyArchitect', () => {
+        agentBridgeManager_1.AgentBridgeManager.notifyArchitect(runInTerminal);
     }), 
     // Docker Commands
     vscode.commands.registerCommand('conn2flow.docker.status', () => {

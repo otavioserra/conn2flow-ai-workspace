@@ -3,6 +3,7 @@ import { ModesManager } from './modesManager';
 import { ProjectsManager } from './projectsManager';
 import { CustomActionsManager } from './customActionsManager';
 import { LogFollowManager } from './logFollowManager';
+import { AgentBridgeManager } from './agentBridgeManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -38,8 +39,20 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
   readonly onDidChangeTreeData: vscode.Event<Conn2FlowTreeItem | undefined | null | void> =
     this._onDidChangeTreeData.event;
 
+  private defaultCollapsibleState: vscode.TreeItemCollapsibleState = vscode.TreeItemCollapsibleState.Expanded;
+
   refresh(): void {
     this._onDidChangeTreeData.fire();
+  }
+
+  expandAll(): void {
+    this.defaultCollapsibleState = vscode.TreeItemCollapsibleState.Expanded;
+    this.refresh();
+  }
+
+  collapseAll(): void {
+    this.defaultCollapsibleState = vscode.TreeItemCollapsibleState.Collapsed;
+    this.refresh();
   }
 
   getTreeItem(element: Conn2FlowTreeItem): vscode.TreeItem {
@@ -67,7 +80,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     const categories: Conn2FlowTreeItem[] = [
       new Conn2FlowTreeItem(
         '🎛️ Modos de Operação & Autonomia',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'settings-gear',
         'Controle visual da topologia de agentes e do nível de autonomia da esteira',
@@ -144,7 +157,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       categories.push(
         new Conn2FlowTreeItem(
           `⭐ ${customManifest.title || 'Ações do Projeto'}`,
-          vscode.TreeItemCollapsibleState.Expanded,
+          this.defaultCollapsibleState,
           undefined,
           'star',
           'Ações e automações customizadas definidas no .c2f/actions.json deste projeto',
@@ -156,7 +169,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     categories.push(
       new Conn2FlowTreeItem(
         '🏛️ SDD & Governança Viva',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'shield',
         'Controle de especificações e requisitos SDD com renderização Markdown rica',
@@ -167,8 +180,21 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         ]
       ),
       new Conn2FlowTreeItem(
+        '🤝 Ponte da Tríade (Disparo & Handoff)',
+        this.defaultCollapsibleState,
+        undefined,
+        'organization',
+        'Disparo autônomo, cópia de prompts e troca de bastão entre agentes',
+        [
+          new Conn2FlowTreeItem('🚀 Iniciar Claude Code (/goal)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.launchClaudeGoal', 'play-circle', 'Abre terminal dedicado rodando Claude Code no modo /goal com a requisição ativa'),
+          new Conn2FlowTreeItem('📋 Copiar Prompt do Executor (Clipboard)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.copyPrompt', 'clippy', 'Copia para a área de transferência o prompt formatado com regras SDD para colar em qualquer IA'),
+          new Conn2FlowTreeItem('📥 Registrar Log do Terminal (Handoff)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.recordHandoff', 'repo-pull', 'Abre sdd/handoffs/CURRENT-HANDOFF.md para colar o log ou notas da tela'),
+          new Conn2FlowTreeItem('📡 Sincronizar e Notificar Arquiteto', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.notifyArchitect', 'cloud-upload', 'Comita e envia as evidências do lote para o repositório Git')
+        ]
+      ),
+      new Conn2FlowTreeItem(
         '🐳 Docker & Logs em Tempo Real',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'server',
         'Monitoramento e inspeção de containers Docker',
@@ -193,7 +219,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       ),
       new Conn2FlowTreeItem(
         '🛠️ Manager & Core (Sistema)',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'tools',
         'Comandos de compilação e pipeline do Core Framework',
@@ -206,7 +232,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       ),
       new Conn2FlowTreeItem(
         '🗃️ Projetos & Environment',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'folder-library',
         `Gerenciamento de projetos satélites (Alvo ativo: ${targetProject})`,
@@ -227,7 +253,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       ),
       new Conn2FlowTreeItem(
         '📚 AI Workspace Hub',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'circuit-board',
         'Ferramentas de IA, sincronização de skills e documentação',
@@ -240,7 +266,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       ),
       new Conn2FlowTreeItem(
         '📖 Documentação Oficial & Guias',
-        vscode.TreeItemCollapsibleState.Expanded,
+        this.defaultCollapsibleState,
         undefined,
         'book',
         'Manuais de referência, guias de arquitetura e documentação completa do ecossistema',

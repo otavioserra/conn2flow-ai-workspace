@@ -40,8 +40,17 @@ exports.Conn2FlowTreeItem = Conn2FlowTreeItem;
 class Conn2FlowTreeProvider {
     _onDidChangeTreeData = new vscode.EventEmitter();
     onDidChangeTreeData = this._onDidChangeTreeData.event;
+    defaultCollapsibleState = vscode.TreeItemCollapsibleState.Expanded;
     refresh() {
         this._onDidChangeTreeData.fire();
+    }
+    expandAll() {
+        this.defaultCollapsibleState = vscode.TreeItemCollapsibleState.Expanded;
+        this.refresh();
+    }
+    collapseAll() {
+        this.defaultCollapsibleState = vscode.TreeItemCollapsibleState.Collapsed;
+        this.refresh();
     }
     getTreeItem(element) {
         return element;
@@ -62,7 +71,7 @@ class Conn2FlowTreeProvider {
         const targetProject = projectsManager_1.ProjectsManager.getTargetProject();
         const customManifest = customActionsManager_1.CustomActionsManager.getActionsManifest();
         const categories = [
-            new Conn2FlowTreeItem('🎛️ Modos de Operação & Autonomia', vscode.TreeItemCollapsibleState.Expanded, undefined, 'settings-gear', 'Controle visual da topologia de agentes e do nível de autonomia da esteira', [
+            new Conn2FlowTreeItem('🎛️ Modos de Operação & Autonomia', this.defaultCollapsibleState, undefined, 'settings-gear', 'Controle visual da topologia de agentes e do nível de autonomia da esteira', [
                 new Conn2FlowTreeItem(`${isTriade ? '✔ ' : ''}🏛️ Tríade de Agentes (Arquiteto + Executor + Revisor)`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setTriAgent', isTriade ? 'check' : 'organization', 'Modo Enterprise: Revisor técnico dedicado inspeciona o código antes da homologação'),
                 new Conn2FlowTreeItem(`${!isTriade ? '✔ ' : ''}👥 Duplo Agente (Arquiteto + Executor)`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setDoubleAgent', !isTriade ? 'check' : 'person', 'Modo Didático: Fluxo ágil ideal para aprendizado e tarefas rápidas'),
                 new Conn2FlowTreeItem(`${auto === 'supervisionado' ? '✔ ' : ''}🛡️ Nível 1: Supervisionado`, vscode.TreeItemCollapsibleState.None, 'conn2flow.modes.setSupervised', auto === 'supervisionado' ? 'check' : 'shield', 'Apenas edição e testes locais; sem commit ou deploy automático sem aval humano'),
@@ -81,23 +90,28 @@ class Conn2FlowTreeProvider {
             });
             // Botão para editar o manifesto na hora
             customItems.push(new Conn2FlowTreeItem('⚙️ Editar Ações do Projeto (.c2f/actions.json)', vscode.TreeItemCollapsibleState.None, 'conn2flow.custom.editManifest', 'edit', 'Abre o manifesto de ações customizadas locais para edição rápida'));
-            categories.push(new Conn2FlowTreeItem(`⭐ ${customManifest.title || 'Ações do Projeto'}`, vscode.TreeItemCollapsibleState.Expanded, undefined, 'star', 'Ações e automações customizadas definidas no .c2f/actions.json deste projeto', customItems));
+            categories.push(new Conn2FlowTreeItem(`⭐ ${customManifest.title || 'Ações do Projeto'}`, this.defaultCollapsibleState, undefined, 'star', 'Ações e automações customizadas definidas no .c2f/actions.json deste projeto', customItems));
         }
-        categories.push(new Conn2FlowTreeItem('🏛️ SDD & Governança Viva', vscode.TreeItemCollapsibleState.Expanded, undefined, 'shield', 'Controle de especificações e requisitos SDD com renderização Markdown rica', [
+        categories.push(new Conn2FlowTreeItem('🏛️ SDD & Governança Viva', this.defaultCollapsibleState, undefined, 'shield', 'Controle de especificações e requisitos SDD com renderização Markdown rica', [
             new Conn2FlowTreeItem('Abrir CURRENT.md (Preview)', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openCurrent', 'file-text', 'Abre a requisição SDD ativa formatada via Preview'),
             new Conn2FlowTreeItem('Abrir SPEC.md (Preview)', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openSpec', 'file-code', 'Abre a especificação normativa geral formatada via Preview'),
             new Conn2FlowTreeItem('Abrir Checklist de Validação', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openChecklist', 'checklist', 'Abre o checklist de critérios de aceite e validação técnica')
-        ]), new Conn2FlowTreeItem('🐳 Docker & Logs em Tempo Real', vscode.TreeItemCollapsibleState.Expanded, undefined, 'server', 'Monitoramento e inspeção de containers Docker', [
+        ]), new Conn2FlowTreeItem('🤝 Ponte da Tríade (Disparo & Handoff)', this.defaultCollapsibleState, undefined, 'organization', 'Disparo autônomo, cópia de prompts e troca de bastão entre agentes', [
+            new Conn2FlowTreeItem('🚀 Iniciar Claude Code (/goal)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.launchClaudeGoal', 'play-circle', 'Abre terminal dedicado rodando Claude Code no modo /goal com a requisição ativa'),
+            new Conn2FlowTreeItem('📋 Copiar Prompt do Executor (Clipboard)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.copyPrompt', 'clippy', 'Copia para a área de transferência o prompt formatado com regras SDD para colar em qualquer IA'),
+            new Conn2FlowTreeItem('📥 Registrar Log do Terminal (Handoff)', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.recordHandoff', 'repo-pull', 'Abre sdd/handoffs/CURRENT-HANDOFF.md para colar o log ou notas da tela'),
+            new Conn2FlowTreeItem('📡 Sincronizar e Notificar Arquiteto', vscode.TreeItemCollapsibleState.None, 'conn2flow.bridge.notifyArchitect', 'cloud-upload', 'Comita e envia as evidências do lote para o repositório Git')
+        ]), new Conn2FlowTreeItem('🐳 Docker & Logs em Tempo Real', this.defaultCollapsibleState, undefined, 'server', 'Monitoramento e inspeção de containers Docker', [
             new Conn2FlowTreeItem('Status dos Containers', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.status', 'pulse', 'Executa docker ps no terminal integrado'),
             new Conn2FlowTreeItem(logFollowManager_1.LogFollowManager.isApacheFollowing ? '🟢 Logs Apache (Ao Vivo - Clique p/ Parar)' : '▶️ Logs Apache (Follow)', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.logsApache', logFollowManager_1.LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output', logFollowManager_1.LogFollowManager.isApacheFollowing ? 'Monitoramento ativo. Clique para parar (enviar Ctrl+C) e liberar o terminal' : 'Inicia o monitoramento contínuo dos logs do Apache'),
             new Conn2FlowTreeItem(logFollowManager_1.LogFollowManager.isPhpFollowing ? '🟢 Logs PHP (Ao Vivo - Clique p/ Parar)' : '▶️ Logs PHP (Follow)', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.logsPhp', logFollowManager_1.LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal', logFollowManager_1.LogFollowManager.isPhpFollowing ? 'Monitoramento ativo. Clique para parar (enviar Ctrl+C) e liberar o terminal' : 'Inicia o monitoramento contínuo do php_errors.log'),
             new Conn2FlowTreeItem('Limpar Logs PHP', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.truncatePhpLog', 'trash', 'Limpa o arquivo php_errors.log dentro do container')
-        ]), new Conn2FlowTreeItem('🛠️ Manager & Core (Sistema)', vscode.TreeItemCollapsibleState.Expanded, undefined, 'tools', 'Comandos de compilação e pipeline do Core Framework', [
+        ]), new Conn2FlowTreeItem('🛠️ Manager & Core (Sistema)', this.defaultCollapsibleState, undefined, 'tools', 'Comandos de compilação e pipeline do Core Framework', [
             new Conn2FlowTreeItem('Update All (Sistema)', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.updateAll', 'sync', 'Pipeline de 4 etapas: Core -> Resources -> Files -> Database & CSS Rebuild'),
             new Conn2FlowTreeItem('Sincronizar Recursos', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.syncResources', 'paintcan', 'Executa c2f resources:sync'),
             new Conn2FlowTreeItem('CSS Rebuild', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.cssRebuild', 'zap', 'Reconstrói css_precompiled e css_compiled do banco'),
             new Conn2FlowTreeItem('CSS Audit', vscode.TreeItemCollapsibleState.None, 'conn2flow.manager.cssAudit', 'search', 'Audita a procedência e classes Tailwind em banco')
-        ]), new Conn2FlowTreeItem('🗃️ Projetos & Environment', vscode.TreeItemCollapsibleState.Expanded, undefined, 'folder-library', `Gerenciamento de projetos satélites (Alvo ativo: ${targetProject})`, [
+        ]), new Conn2FlowTreeItem('🗃️ Projetos & Environment', this.defaultCollapsibleState, undefined, 'folder-library', `Gerenciamento de projetos satélites (Alvo ativo: ${targetProject})`, [
             new Conn2FlowTreeItem(`🎯 Projeto Alvo Ativo: [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.setTarget', 'target', 'Clique para alternar o projeto padrão no environment.json'),
             new Conn2FlowTreeItem(`🚀 Deploy Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployTarget', 'rocket', `Executa deploy 1-Click no projeto ativo '${targetProject}' sem pedir ID`),
             new Conn2FlowTreeItem('🎯 Deploy Escolhendo Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployWithSelect', 'list-selection', 'Abre lista com todos os projetos do environment.json para deploy'),
@@ -110,12 +124,12 @@ class Conn2FlowTreeProvider {
             new Conn2FlowTreeItem('📋 Abrir Template do Environment', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.openTemplate', 'file-submodule', 'Abre o template canônico dev-environment/templates/environment/environment.json'),
             new Conn2FlowTreeItem('📄 Abrir environment.json (Ativo)', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.openActive', 'file-text', 'Abre o environment.json de dados ativo para visualização/edição'),
             new Conn2FlowTreeItem('✨ Criar Ações Customizadas (.c2f/actions.json)', vscode.TreeItemCollapsibleState.None, 'conn2flow.custom.initManifest', 'sparkle', 'Cria o manifesto .c2f/actions.json para adicionar botões personalizados')
-        ]), new Conn2FlowTreeItem('📚 AI Workspace Hub', vscode.TreeItemCollapsibleState.Expanded, undefined, 'circuit-board', 'Ferramentas de IA, sincronização de skills e documentação', [
+        ]), new Conn2FlowTreeItem('📚 AI Workspace Hub', this.defaultCollapsibleState, undefined, 'circuit-board', 'Ferramentas de IA, sincronização de skills e documentação', [
             new Conn2FlowTreeItem('Sincronizar Skills (1-Click)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.syncSkills', 'cloud-download', 'Propaga as 36 skills em todos os repositórios'),
             new Conn2FlowTreeItem('Validar 36 Skills (ai:sync)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.validateSkills', 'pass', 'Valida contratos e integridade via c2f ai:sync'),
             new Conn2FlowTreeItem('Abrir Playbook Multi-Agentes', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openPlaybook', 'book', 'Abre o guia prático de orquestração multi-agentes'),
             new Conn2FlowTreeItem('Abrir Catálogo de Skills', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openCatalog', 'list-unordered', 'Abre o catálogo oficial das 36 skills do Conn2Flow')
-        ]), new Conn2FlowTreeItem('📖 Documentação Oficial & Guias', vscode.TreeItemCollapsibleState.Expanded, undefined, 'book', 'Manuais de referência, guias de arquitetura e documentação completa do ecossistema', [
+        ]), new Conn2FlowTreeItem('📖 Documentação Oficial & Guias', this.defaultCollapsibleState, undefined, 'book', 'Manuais de referência, guias de arquitetura e documentação completa do ecossistema', [
             new Conn2FlowTreeItem('🛠️ Manual do Painel Dev Tools', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openPanelGuide', 'file-text', 'Manual completo de cada botão e elemento desta extensão'),
             new Conn2FlowTreeItem('🛒 Guia de Publicação Marketplace', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openMarketplaceGuide', 'cloud-upload', 'Passo a passo para publicar na loja oficial da Microsoft'),
             new Conn2FlowTreeItem('📘 Playbook Multi-Agentes (Tríade)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openPlaybook', 'book', 'Manual prático de orquestração entre Claude, Codex e Antigravity'),

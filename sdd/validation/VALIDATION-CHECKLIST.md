@@ -614,6 +614,34 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `php cli/c2f.php ai:sync`.
 *   **Evidência**: 36/36 skills e contratos validados com sucesso em todos os toolkits ativos (.claude, .cursor, .gemini, .github, .codex).
 
+---
+
+## BATCH-036: Ponte da Tríade de Agentes e Botões de Controle da Árvore
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Implementação de `AgentBridgeManager` com suporte a Goal Mode, cópia de prompts e handoff de terminal.
+- [x] Criação de `sdd/handoffs/CURRENT-HANDOFF.md` para registro estruturado de outputs e decisões do executor.
+- [x] Adição da seção `🤝 Ponte da Tríade (Disparo & Handoff)` na árvore lateral do VS Code.
+- [x] Implementação dos botões `$(expand-all)` (Expandir Tudo) e `$(collapse-all)` (Colapsar Tudo) na barra de ferramentas da visualização (`view/title`).
+- [x] Compilação TypeScript com 0 erros (`npm run compile`).
+- [x] Empacotamento VSIX compliant (`conn2flow-tools-1.0.0.vsix` - 86.15 KB) e reinstalação no VS Code.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Compilação TypeScript
+*   **Comando**: `npm run compile` em `vscode-extension/`.
+*   **Evidência**: `tsc -p ./` finalizado com código de saída 0.
+
+#### Teste 2: Empacotamento VSIX
+*   **Comando**: `cmd.exe /c npx --yes @vscode/vsce package` em `vscode-extension/`.
+*   **Evidência**: `conn2flow-tools-1.0.0.vsix` gerado com sucesso (21 arquivos, 86.15 KB).
+
+#### Teste 3: Validação de Skills
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36/36 skills verificadas e homologadas.
+
+
 
 
 
