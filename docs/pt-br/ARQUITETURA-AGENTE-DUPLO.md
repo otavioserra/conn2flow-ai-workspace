@@ -54,3 +54,8 @@ flowchart TD
    - ⛔ **Regra Inviolável de Segurança**: Em qualquer nível autônomo, **é estritamente proibido realizar deploy automático em ambiente de produção**.
 8. **Protocolo de Reserva Atômica para Criação de `req-XXX.md`**: Qualquer agente (Arquiteto ou Executor) está formalmente autorizado a criar novos arquivos `req-XXX.md` quando instruído pelo operador humano ou ao levantar uma necessidade técnica, desde que execute `git pull`, reler atomicamente `sdd/human-requests/` e commitar/pushar imediatamente para travar a numeração contra agentes concorrentes.
 9. **Princípio da Autoridade do Código e da SPEC**: Configurações vigentes (`.env`, `settings.json`), schemas e especificações normativas (`sdd/SPEC.md`) têm autoridade absoluta sobre anotações de memórias passadas. Se uma restrição mudar no projeto, a anotação antiga em memória deve ser invalidada e alinhada imediatamente.
+10. **Rotina de Varredura Periódica das Documentações Oficiais de IA (Living Infrastructure)**: De tempos em tempos, o Arquiteto executa uma rotina proativa de leitura e varredura nos índices de documentação viva dos 3 grandes ecossistemas de IA adotados:
+    - **Anthropic Claude Code**: `https://code.claude.com/docs/llms.txt`
+    - **OpenAI Codex**: `https://developers.openai.com/codex/llms.txt`
+    - **Google Antigravity (AGY)**: `https://antigravity.google/docs` e suas subdocumentações embutidas (`agy-customizations`).
+    Essa rotina garante a identificação precoce de novas capacidades nativas (hooks, worktrees, autoVerify, canais MCP, formatos de skills e sandboxing), incorporando-as aos templates e aos 5 repositórios para manter a infraestrutura de agentes do Conn2Flow permanentemente no estado da arte mundial.

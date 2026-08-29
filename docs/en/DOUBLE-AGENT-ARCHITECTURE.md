@@ -54,3 +54,8 @@ flowchart TD
    - ⛔ **Inviolable Security Rule**: In any autonomous mode, **automatic deployment to production environments is strictly prohibited**.
 8. **Atomic Reservation Protocol for `req-XXX.md` Creation**: Any agent (Architect or Executor) is formally authorized to create new `req-XXX.md` files upon human instruction or technical discovery, provided it performs `git pull`, atomic sequential number check in `sdd/human-requests/`, and immediate commit/push to lock the reservation against concurrent agents.
 9. **Princípio da Autoridade do Código e da SPEC (Code & SPEC Absolute Authority)**: Active configurations (`.env`, `settings.json`), live schemas, and normative specifications (`sdd/SPEC.md`) have absolute authority over past engineering memories. If a technical restriction changes, obsolete memory entries must be invalidated and updated immediately.
+10. **Periodic Living Documentation Routine (Living Infrastructure)**: From time to time, the Architect executes a proactive discovery routine scanning the live documentation indexes of the 3 primary AI ecosystems:
+    - **Anthropic Claude Code**: `https://code.claude.com/docs/llms.txt`
+    - **OpenAI Codex**: `https://developers.openai.com/codex/llms.txt`
+    - **Google Antigravity (AGY)**: `https://antigravity.google/docs` and built-in customization references (`agy-customizations`).
+    This routine ensures early detection of emerging native capabilities (hooks, worktrees, autoVerify, MCP channels, skill formats, and sandboxing), incorporating them into project templates and the 5 repositories to keep Conn2Flow's AI infrastructure continuously at the global state of the art.
