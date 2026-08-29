@@ -87,13 +87,13 @@
       },
       {
         "command": "conn2flow.sdd.openCurrent",
-        "title": "Abrir CURRENT.md",
+        "title": "Abrir CURRENT.md (Preview)",
         "category": "Conn2Flow SDD",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.sdd.openSpec",
-        "title": "Abrir SPEC.md",
+        "title": "Abrir SPEC.md (Preview)",
         "category": "Conn2Flow SDD",
         "icon": "$(file-code)"
       },
@@ -102,18 +102,6 @@
         "title": "Abrir Checklist de Validação",
         "category": "Conn2Flow SDD",
         "icon": "$(checklist)"
-      },
-      {
-        "command": "conn2flow.sdd.setTopology",
-        "title": "Mudar Topologia de Agentes",
-        "category": "Conn2Flow SDD",
-        "icon": "$(organization)"
-      },
-      {
-        "command": "conn2flow.sdd.setAutonomy",
-        "title": "Mudar Nível de Autonomia",
-        "category": "Conn2Flow SDD",
-        "icon": "$(gear)"
       },
       {
         "command": "conn2flow.docker.status",
@@ -164,16 +152,46 @@
         "icon": "$(search)"
       },
       {
-        "command": "conn2flow.projects.updateAll",
-        "title": "Update All (Projeto)",
+        "command": "conn2flow.projects.setTarget",
+        "title": "Definir Projeto Alvo Padrão",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(target)"
+      },
+      {
+        "command": "conn2flow.projects.deployTarget",
+        "title": "Deploy Projeto Alvo",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "conn2flow.projects.deployWithSelect",
+        "title": "Deploy Escolhendo Projeto...",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "conn2flow.projects.updateAllTarget",
+        "title": "Update All Projeto Alvo",
         "category": "Conn2Flow Projetos",
         "icon": "$(refresh)"
       },
       {
-        "command": "conn2flow.projects.deploy",
-        "title": "Deploy Projeto",
+        "command": "conn2flow.projects.updateAllWithSelect",
+        "title": "Update All Escolhendo Projeto...",
         "category": "Conn2Flow Projetos",
-        "icon": "$(rocket)"
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "conn2flow.projects.addNew",
+        "title": "Cadastrar Novo Projeto no Environment",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(add)"
+      },
+      {
+        "command": "conn2flow.projects.checkRepositories",
+        "title": "Verificar Repositórios Clonados",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(repo)"
       },
       {
         "command": "conn2flow.ai.syncSkills",

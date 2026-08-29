@@ -7,6 +7,7 @@ const path = require("path");
 const fs = require("fs");
 const conn2flowTreeProvider_1 = require("./providers/conn2flowTreeProvider");
 const modesManager_1 = require("./providers/modesManager");
+const projectsManager_1 = require("./providers/projectsManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -29,7 +30,6 @@ function activate(context) {
         updateStatusBar();
     };
     refreshAll();
-    // Polling periódico do status bar a cada 30 segundos
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
     // Terminal Runner Helper
@@ -40,8 +40,8 @@ function activate(context) {
         terminal.show();
         terminal.sendText(command);
     };
-    // File Opener Helper
-    const openWorkspaceFile = async (relativePath) => {
+    // Markdown Opener with MPE / Preview Detection
+    const openMarkdownFile = async (relativePath) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
             vscode.window.showWarningMessage('Nenhum workspace aberto no VS Code.');
@@ -50,12 +50,61 @@ function activate(context) {
         for (const folder of workspaceFolders) {
             const fullPath = path.join(folder.uri.fsPath, relativePath);
             if (fs.existsSync(fullPath)) {
-                const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(fullPath));
-                await vscode.window.showTextDocument(doc);
+                const uri = vscode.Uri.file(fullPath);
+                // Checar se a extensão Markdown Preview Enhanced (MPE) ou similar está instalada
+                const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+                if (mpe) {
+                    try {
+                        await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
+                        return;
+                    }
+                    catch {
+                        // Fallback para preview padrão se falhar
+                    }
+                }
+                try {
+                    await vscode.commands.executeCommand('markdown.showPreviewToSide', uri);
+                }
+                catch {
+                    const doc = await vscode.workspace.openTextDocument(uri);
+                    await vscode.window.showTextDocument(doc);
+                }
                 return;
             }
         }
         vscode.window.showErrorMessage(`Arquivo não encontrado no workspace: ${relativePath}`);
+    };
+    // Helper para seleção de projeto do environment.json
+    const selectProjectFromEnvironment = async (placeHolder) => {
+        const list = projectsManager_1.ProjectsManager.getProjectsList();
+        if (list.length === 0) {
+            return await promptProjectIdManual(placeHolder);
+        }
+        const items = list.map(p => ({
+            label: p.name,
+            description: `[${p.id}] ${p.url || ''}`,
+            detail: p.path,
+            id: p.id
+        }));
+        items.push({
+            label: '✍️ Digitar ID manualmente...',
+            description: '',
+            detail: 'Para projetos ainda não cadastrados no environment.json',
+            id: '__manual__'
+        });
+        const sel = await vscode.window.showQuickPick(items, { placeHolder });
+        if (!sel)
+            return undefined;
+        if (sel.id === '__manual__') {
+            return await promptProjectIdManual(placeHolder);
+        }
+        return sel.id;
+    };
+    const promptProjectIdManual = async (placeHolder) => {
+        return await vscode.window.showInputBox({
+            prompt: placeHolder,
+            placeHolder: 'ex: transformamp-local, conn2flow-site, etc.'
+        });
     };
     // Register Commands
     context.subscriptions.push(vscode.commands.registerCommand('conn2flow.refreshTree', () => {
@@ -86,13 +135,13 @@ function activate(context) {
             await sel.action();
         }
     }), 
-    // SDD Commands
+    // SDD Commands (Markdown Preview Automatic)
     vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
-        openWorkspaceFile('sdd/human-requests/CURRENT.md');
+        openMarkdownFile('sdd/human-requests/CURRENT.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openSpec', () => {
-        openWorkspaceFile('sdd/SPEC.md');
+        openMarkdownFile('sdd/SPEC.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openChecklist', () => {
-        openWorkspaceFile('sdd/validation/VALIDATION-CHECKLIST.md');
+        openMarkdownFile('sdd/validation/VALIDATION-CHECKLIST.md');
     }), 
     // Docker Commands
     vscode.commands.registerCommand('conn2flow.docker.status', () => {
@@ -116,15 +165,44 @@ function activate(context) {
         runInTerminal('./c2f css:audit');
     }), 
     // Projects Commands
-    vscode.commands.registerCommand('conn2flow.projects.updateAll', async () => {
-        const projectId = await promptProjectId('Selecione ou digite o ID do projeto para Update All:');
+    vscode.commands.registerCommand('conn2flow.projects.setTarget', async () => {
+        const list = projectsManager_1.ProjectsManager.getProjectsList();
+        const items = list.map(p => ({
+            label: p.name,
+            description: `[${p.id}]`,
+            id: p.id
+        }));
+        const sel = await vscode.window.showQuickPick(items, { placeHolder: 'Selecione qual projeto será o Projeto Alvo padrão:' });
+        if (sel) {
+            await projectsManager_1.ProjectsManager.setTargetProject(sel.id, refreshAll);
+        }
+    }), vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
+        const target = projectsManager_1.ProjectsManager.getTargetProject();
+        runInTerminal(`./c2f project:deploy ${target}`);
+    }), vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
+        const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
+        if (projectId) {
+            runInTerminal(`./c2f project:deploy ${projectId}`);
+        }
+    }), vscode.commands.registerCommand('conn2flow.projects.updateAllTarget', () => {
+        const target = projectsManager_1.ProjectsManager.getTargetProject();
+        runInTerminal(`./c2f project:update-all ${target}`);
+    }), vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
+        const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
         if (projectId) {
             runInTerminal(`./c2f project:update-all ${projectId}`);
         }
-    }), vscode.commands.registerCommand('conn2flow.projects.deploy', async () => {
-        const projectId = await promptProjectId('Selecione ou digite o ID do projeto para Deploy:');
-        if (projectId) {
-            runInTerminal(`./c2f project:deploy ${projectId}`);
+    }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
+        await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.checkRepositories', () => {
+        const status = projectsManager_1.ProjectsManager.checkAdjacentRepositories();
+        const missing = status.filter(s => !s.exists);
+        if (missing.length === 0) {
+            vscode.window.showInformationMessage('✔ Todos os repositórios oficiais estão clonados e presentes ao lado do workspace!');
+        }
+        else {
+            const names = missing.map(m => m.name).join(', ');
+            vscode.window.showWarningMessage(`Atenção: Os seguintes repositórios não foram encontrados: ${names}. Para trabalhar com eles, certifique-se de cloná-los na mesma pasta pai.`);
         }
     }), 
     // AI Workspace Hub Commands
@@ -133,24 +211,10 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.ai.validateSkills', () => {
         runInTerminal('php cli/c2f.php ai:sync');
     }), vscode.commands.registerCommand('conn2flow.ai.openPlaybook', () => {
-        openWorkspaceFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
+        openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
     }), vscode.commands.registerCommand('conn2flow.ai.openCatalog', () => {
-        openWorkspaceFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+        openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
     }));
-}
-async function promptProjectId(placeHolder) {
-    const commonProjects = ['transformamp-local', 'transformamp', 'snapphoton-local', 'snapphoton', 'Outro...'];
-    const selection = await vscode.window.showQuickPick(commonProjects, { placeHolder });
-    if (!selection) {
-        return undefined;
-    }
-    if (selection === 'Outro...') {
-        return await vscode.window.showInputBox({
-            prompt: 'Digite o identificador do projeto:',
-            placeHolder: 'ex: meu-projeto-local'
-        });
-    }
-    return selection;
 }
 function updateStatusBar() {
     const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -185,13 +249,13 @@ function updateStatusBar() {
                 }
             }
             catch {
-                // Silencioso em caso de lock temporário
+                // Silencioso
             }
             break;
         }
     }
     sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
-    sddStatusBarItem.tooltip = 'Clique para abrir a requisição SDD ativa';
+    sddStatusBarItem.tooltip = 'Clique para abrir a requisição SDD ativa no Preview';
     sddStatusBarItem.show();
     // Atualizar Docker Status Item
     dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;

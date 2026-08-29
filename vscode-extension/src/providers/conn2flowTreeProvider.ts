@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { ModesManager } from './modesManager';
+import { ProjectsManager } from './projectsManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -57,6 +58,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     const isTriade = modes.topology === 'triade';
     const auto = modes.autonomy;
 
+    const targetProject = ProjectsManager.getTargetProject();
+
     return [
       new Conn2FlowTreeItem(
         '🎛️ Modos de Operação & Autonomia',
@@ -107,10 +110,10 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         vscode.TreeItemCollapsibleState.Expanded,
         undefined,
         'shield',
-        'Controle de especificações e requisitos SDD',
+        'Controle de especificações e requisitos SDD com renderização Markdown rica',
         [
-          new Conn2FlowTreeItem('Abrir CURRENT.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openCurrent', 'file-text', 'Abre a requisição SDD ativa no momento'),
-          new Conn2FlowTreeItem('Abrir SPEC.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openSpec', 'file-code', 'Abre a especificação normativa geral do sistema'),
+          new Conn2FlowTreeItem('Abrir CURRENT.md (Preview)', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openCurrent', 'file-text', 'Abre a requisição SDD ativa formatada via Preview'),
+          new Conn2FlowTreeItem('Abrir SPEC.md (Preview)', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openSpec', 'file-code', 'Abre a especificação normativa geral formatada via Preview'),
           new Conn2FlowTreeItem('Abrir Checklist de Validação', vscode.TreeItemCollapsibleState.None, 'conn2flow.sdd.openChecklist', 'checklist', 'Abre o checklist de critérios de aceite e validação técnica')
         ]
       ),
@@ -141,14 +144,19 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         ]
       ),
       new Conn2FlowTreeItem(
-        '🗃️ Projetos',
-        vscode.TreeItemCollapsibleState.Collapsed,
+        '🗃️ Projetos & Environment',
+        vscode.TreeItemCollapsibleState.Expanded,
         undefined,
         'folder-library',
-        'Gerenciamento e deploy de projetos satélites',
+        `Gerenciamento de projetos satélites (Alvo ativo: ${targetProject})`,
         [
-          new Conn2FlowTreeItem('Update All (Projeto)', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAll', 'refresh', 'Pipeline de 6 etapas para o projeto selecionado'),
-          new Conn2FlowTreeItem('Deploy de Projeto', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deploy', 'rocket', 'Executa deploy do projeto no ambiente configurado')
+          new Conn2FlowTreeItem(`🎯 Projeto Alvo Ativo: [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.setTarget', 'target', 'Clique para alternar o projeto padrão no environment.json'),
+          new Conn2FlowTreeItem(`🚀 Deploy Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployTarget', 'rocket', `Executa deploy 1-Click no projeto ativo '${targetProject}' sem pedir ID`),
+          new Conn2FlowTreeItem('🎯 Deploy Escolhendo Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.deployWithSelect', 'list-selection', 'Abre lista com todos os projetos do environment.json para deploy'),
+          new Conn2FlowTreeItem(`🔄 Update All Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllTarget', 'refresh', `Pipeline de 6 etapas no projeto ativo '${targetProject}'`),
+          new Conn2FlowTreeItem('💻 Update All Escolhendo Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllWithSelect', 'list-ordered', 'Abre lista de projetos para executar o pipeline de 6 etapas'),
+          new Conn2FlowTreeItem('➕ Cadastrar Novo Projeto no Environment', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.addNew', 'add', 'Cadastra novo projeto no devProjects do environment.json'),
+          new Conn2FlowTreeItem('🔍 Verificar Repositórios Clonados', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.checkRepositories', 'repo', 'Verifica se conn2flow, lumix, transformamp e conn2flow-site estão presentes')
         ]
       ),
       new Conn2FlowTreeItem(
