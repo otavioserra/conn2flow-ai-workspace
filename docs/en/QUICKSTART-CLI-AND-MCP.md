@@ -33,9 +33,15 @@ This practical tutorial covers how to operate the three components of the **Conn
 | Command | Description |
 | :--- | :--- |
 | `resources:sync` | Compiles and synchronizes 11 resource types into the database. |
+| `manager:update-all` | Full system pipeline (4 stages: Core → Resources → Files → DB & CSS Rebuild). |
+| `project:update-all <id>` | Full project pipeline (6 stages: Core → DB → Resources → Files → DB → CSS Rebuild). |
+| `css:audit` | Audits provenance (`css_source_hash`), coverage, and embedded PHP/JS classes. |
+| `css:rebuild [--url=...]` | Rebuilds derived CSS from database HTML and rendered page output. |
+| `page:inspect <url>` | Headless inspection (computed styles, animations, console errors, screenshot). |
+| `auth:cookie [--project=...]` | Generates session JWT tokens and cookie jar in `temp/agent-cookies.txt`. |
 | `db:test` | Runs the automated integration and database test suite. |
 | `module:create <name>` | Scaffolds a new canonical CRUD module based on `modulos-grupos`. |
-| `ai:sync` | Synchronizes all 33 skills and instructions across target repositories. |
+| `ai:sync` | Validates and audits all 36 skills and instructions across the 5 AI toolkits. |
 | `ai:mcp-setup` | Registers MCP Hub connectors in Claude Desktop, Cursor, and VS Code. |
 | `ai:prune-memories` | Runs idempotent memory gardening on SDD tracking files. |
 | `docker:status` | Displays health and container status for the stack. |

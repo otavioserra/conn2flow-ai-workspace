@@ -33,9 +33,15 @@ O `c2f` é o ponto de entrada unificado para todas as operações do repositóri
 | Comando | Descrição |
 | :--- | :--- |
 | `resources:sync` | Sincroniza e compila os 11 tipos de recursos no banco de dados. |
+| `manager:update-all` | Pipeline completo do sistema (4 etapas: Core → Resources → Files → DB & CSS Rebuild). |
+| `project:update-all <id>` | Pipeline completo do projeto (6 etapas: Core → DB → Resources → Files → DB → CSS Rebuild). |
+| `css:audit` | Audita procedência (`css_source_hash`), cobertura e classes embutidas em PHP/JS. |
+| `css:rebuild [--url=...]` | Reconstrói o CSS derivado contra o HTML do banco e da página renderizada. |
+| `page:inspect <url>` | Executa inspeção headless (estilos computados, animações, console errors, screenshot). |
+| `auth:cookie [--project=...]` | Gera tokens JWT de sessão e cookie jar em `temp/agent-cookies.txt`. |
 | `db:test` | Executa a suíte de testes de integração e banco. |
 | `module:create <nome>` | Cria o scaffold canônico de um novo módulo CRUD. |
-| `ai:sync` | Sincroniza todas as 33 skills e instruções nos repositórios. |
+| `ai:sync` | Valida e audita todas as 36 skills e instruções nos 5 kits de IA. |
 | `ai:mcp-setup` | Injeta os conectores do MCP Hub no Claude, Cursor e VS Code. |
 | `ai:prune-memories` | Executa a rotina de poda idempotente de memórias do SDD. |
 | `docker:status` | Exibe o status de saúde dos containers da stack. |
