@@ -100,16 +100,27 @@ export function activate(context: vscode.ExtensionContext) {
         try {
           const viewMode = SddViewModeManager.mode;
 
-          // 1. Modo Apenas Código-Fonte (Editor normal)
+          // 1. SEMPRE abre o documento no editor primeiro para que activeTextEditor exista
+          const doc = await vscode.workspace.openTextDocument(uri);
+          await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+
+          // Se o usuário quer apenas código-fonte
           if (viewMode === 'code') {
-            const doc = await vscode.workspace.openTextDocument(uri);
-            await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
             return;
+          }
+
+          // Garante que o MPE esteja ativo se instalado
+          const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+          if (mpe && !mpe.isActive) {
+            try {
+              await mpe.activate();
+            } catch {
+              // continua
+            }
           }
 
           // 2. Modo Apenas Renderizado (Preview)
           if (viewMode === 'preview') {
-            const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
             if (mpe) {
               try {
                 await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
@@ -124,19 +135,16 @@ export function activate(context: vscode.ExtensionContext) {
             } catch {
               // fallback
             }
+            return;
           }
 
           // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview na direita)
-          const doc = await vscode.workspace.openTextDocument(uri);
-          await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-
-          const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
           if (mpe) {
             try {
-              await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
+              await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
               return;
             } catch {
-              // fallback para preview nativo
+              // fallback para nativo
             }
           }
 
