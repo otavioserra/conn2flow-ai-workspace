@@ -47,15 +47,21 @@ function activate(context) {
         terminal.show();
         terminal.sendText(command);
     };
-    // Markdown Opener with MPE / Preview Detection
+    // Markdown Opener with Multi-Repo Path Resolution & MPE / Preview Detection
     const openMarkdownFile = async (relativePath) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
             vscode.window.showWarningMessage('Nenhum workspace aberto no VS Code.');
             return;
         }
+        const candidates = [];
         for (const folder of workspaceFolders) {
-            const fullPath = path.join(folder.uri.fsPath, relativePath);
+            candidates.push(path.join(folder.uri.fsPath, relativePath));
+            candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', relativePath));
+            candidates.push(path.join(folder.uri.fsPath, '..', 'conn2flow', 'ai-workspace', relativePath));
+            candidates.push(path.join(folder.uri.fsPath, 'ai-workspace', relativePath));
+        }
+        for (const fullPath of candidates) {
             if (fs.existsSync(fullPath)) {
                 const uri = vscode.Uri.file(fullPath);
                 const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
@@ -65,7 +71,7 @@ function activate(context) {
                         return;
                     }
                     catch {
-                        // Fallback para preview padrão se falhar
+                        // Fallback para preview padrao se falhar
                     }
                 }
                 try {
@@ -78,7 +84,7 @@ function activate(context) {
                 return;
             }
         }
-        vscode.window.showErrorMessage(`Arquivo não encontrado no workspace: ${relativePath}`);
+        vscode.window.showErrorMessage(`Documento não encontrado: ${relativePath}`);
     };
     // Helper para seleção de projeto do environment.json
     const selectProjectFromEnvironment = async (placeHolder) => {
@@ -256,6 +262,18 @@ function activate(context) {
         openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
     }), vscode.commands.registerCommand('conn2flow.ai.openCatalog', () => {
         openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
+    }), 
+    // Documentation & Guides Commands
+    vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
+        openMarkdownFile('pt-br/docs/GUIA-PAINEL-DEV-TOOLS-VSCODE.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openMarketplaceGuide', () => {
+        openMarkdownFile('docs/pt-br/GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openArchitectureGuide', () => {
+        openMarkdownFile('docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openDockerGuide', () => {
+        openMarkdownFile('pt-br/docs/CONN2FLOW-AMBIENTE-DOCKER.md');
+    }), vscode.commands.registerCommand('conn2flow.docs.openResourcesGuide', () => {
+        openMarkdownFile('pt-br/docs/CONN2FLOW-SISTEMA-RECURSOS.md');
     }));
 }
 async function openFileGeneral(relativePath) {

@@ -264,6 +264,36 @@
         "title": "Abrir Catálogo de Skills",
         "category": "Conn2Flow AI",
         "icon": "$(list-unordered)"
+      },
+      {
+        "command": "conn2flow.docs.openPanelGuide",
+        "title": "Manual do Painel Dev Tools",
+        "category": "Conn2Flow Docs",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "conn2flow.docs.openMarketplaceGuide",
+        "title": "Guia de Publicação Marketplace",
+        "category": "Conn2Flow Docs",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "conn2flow.docs.openArchitectureGuide",
+        "title": "Arquitetura Agente Duplo e Tríade",
+        "category": "Conn2Flow Docs",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "conn2flow.docs.openDockerGuide",
+        "title": "Guia de Ambiente Docker",
+        "category": "Conn2Flow Docs",
+        "icon": "$(server)"
+      },
+      {
+        "command": "conn2flow.docs.openResourcesGuide",
+        "title": "Sistema de Recursos e Runtime SQL",
+        "category": "Conn2Flow Docs",
+        "icon": "$(paintcan)"
       }
     ],
     "menus": {

@@ -115,6 +115,14 @@ class Conn2FlowTreeProvider {
             new Conn2FlowTreeItem('Validar 36 Skills (ai:sync)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.validateSkills', 'pass', 'Valida contratos e integridade via c2f ai:sync'),
             new Conn2FlowTreeItem('Abrir Playbook Multi-Agentes', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openPlaybook', 'book', 'Abre o guia prático de orquestração multi-agentes'),
             new Conn2FlowTreeItem('Abrir Catálogo de Skills', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openCatalog', 'list-unordered', 'Abre o catálogo oficial das 36 skills do Conn2Flow')
+        ]), new Conn2FlowTreeItem('📖 Documentação Oficial & Guias', vscode.TreeItemCollapsibleState.Expanded, undefined, 'book', 'Manuais de referência, guias de arquitetura e documentação completa do ecossistema', [
+            new Conn2FlowTreeItem('🛠️ Manual do Painel Dev Tools', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openPanelGuide', 'file-text', 'Manual completo de cada botão e elemento desta extensão'),
+            new Conn2FlowTreeItem('🛒 Guia de Publicação Marketplace', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openMarketplaceGuide', 'cloud-upload', 'Passo a passo para publicar na loja oficial da Microsoft'),
+            new Conn2FlowTreeItem('📘 Playbook Multi-Agentes (Tríade)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openPlaybook', 'book', 'Manual prático de orquestração entre Claude, Codex e Antigravity'),
+            new Conn2FlowTreeItem('🗂️ Catálogo Oficial das 36 Skills', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openCatalog', 'list-unordered', 'Catálogo das 29 skills core e 7 skills de governança SDD'),
+            new Conn2FlowTreeItem('👥 Arquitetura Agente Duplo e Tríade', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openArchitectureGuide', 'organization', 'Diretrizes arquiteturais da Tríade de Agentes de IA'),
+            new Conn2FlowTreeItem('🐳 Guia de Ambiente Docker', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openDockerGuide', 'server', 'Documentação da infraestrutura de containers e portas'),
+            new Conn2FlowTreeItem('🎨 Sistema de Recursos e Runtime SQL', vscode.TreeItemCollapsibleState.None, 'conn2flow.docs.openResourcesGuide', 'paintcan', 'Guia da taxonomia de recursos e pipeline de compilação')
         ]));
         return categories;
     }
