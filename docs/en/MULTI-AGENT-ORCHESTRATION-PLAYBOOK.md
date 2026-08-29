@@ -103,7 +103,7 @@ To manually switch across external IDEs and terminals:
 1. In VS Code with the official OpenAI Codex / ChatGPT extension enabled, open the chat panel.
 2. Type:
    > *"Execute the active requirement in sdd/human-requests/CURRENT.md in live monitored autonomous mode."*
-3. Codex automatically reads `CODEX.md`, `AGENTS.md`, and references the 33 skills in `.codex/skills/`.
+3. Codex automatically reads `CODEX.md`, `AGENTS.md`, and references the 36 skills in `.codex/skills/`.
 
 ---
 
@@ -117,3 +117,48 @@ To manually switch across external IDEs and terminals:
 
 > [!CAUTION]
 > **Golden Security Rule**: In any autonomous mode, deployment is permitted **EXCLUSIVELY in local test environments**. Automatic deployment to production is **strictly prohibited**.
+
+---
+
+## 🖥️ 6. Claude Code Desktop (Code Tab) & Native Capabilities
+
+Claude Code Desktop provides a rich graphical environment with code tabs, integrated browser pane, and task isolation:
+
+### 6.1. Worktree Isolation with `.worktreeinclude`
+When launching concurrent tasks or using the `--worktree` flag, Claude Desktop generates isolated working trees in `.claude/worktrees/`. The `.worktreeinclude` file at the repository root guarantees automatic replication of essential gitignored runtime files:
+```text
+.env
+.env.local
+dev-environment/data/environment.json
+temp/agent-cookies.txt
+```
+This prevents Docker database connection drops or session permission issues across parallel branches.
+
+### 6.2. Visual Autonomous Verification in Browser Pane (`.claude/launch.json`)
+With the `.claude/launch.json` file placed in the `.claude/` directory:
+```json
+{
+  "version": "0.0.1",
+  "autoVerify": true,
+  "configurations": [
+    {
+      "name": "conn2flow-local",
+      "url": "http://localhost"
+    }
+  ]
+}
+```
+The `"autoVerify": true` flag enables autonomous visual inspection via the Claude Desktop Browser Pane. After modifying UI components, pages, or layouts, Claude automatically inspects the DOM at `http://localhost`, captures screenshots, and verifies rendering without requiring manual human validation.
+
+### 6.3. Terminal ➔ Desktop Transition (`/desktop`)
+If you started an active session in the terminal CLI (`claude`) and wish to transfer the active thread, execution history, and diffs to the GUI, simply run:
+```bash
+/desktop
+```
+The session seamlessly migrates to Claude Code Desktop with complete context preservation.
+
+### 6.4. Rapid Side Chats with `/btw` (or `Ctrl + ;`)
+During an autonomous Spec-Driven Development (SDD) run, you can open a **Side Chat** by typing `/btw <question>` or pressing `Ctrl + ;`:
+* The Side Chat immediately inherits the full technical context of the primary thread;
+* Messages exchanged in the Side Chat **never pollute the primary thread history** or tamper with SDD batch tracking (`CURRENT.md` / `batch-XXX.md`);
+* Perfect for architectural queries, testing isolated snippets, or vetting design decisions before committing changes.

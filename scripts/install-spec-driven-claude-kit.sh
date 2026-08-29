@@ -129,6 +129,9 @@ copy_file() {
 }
 
 copy_file "CLAUDE.md" "CLAUDE.md"
+if [[ -f "$template_root/.worktreeinclude" ]]; then
+    copy_file ".worktreeinclude" ".worktreeinclude"
+fi
 copy_merged_tree "$template_root/.claude" "$target_root/.claude"
 
 install_sdd_boilerplate() {

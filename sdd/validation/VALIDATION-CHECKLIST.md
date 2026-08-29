@@ -453,6 +453,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 36 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-029: Integração Nativa com Claude Code Desktop (.worktreeinclude, launch.json, Playbooks)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação de `.worktreeinclude` na raiz do workspace e nos 4 templates do Claude Kit (`spec-driven` e `private` em PT-BR e EN).
+- [x] Criação de `.claude/launch.json` com `autoVerify: true` na raiz do workspace e nos 4 templates do Claude Kit.
+- [x] Atualização de `scripts/install-spec-driven-claude-kit.ps1` e `scripts/install-spec-driven-claude-kit.sh` para cópia automática de `.worktreeinclude` e `launch.json`.
+- [x] Atualização de `docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md` e `docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md` com a Seção 6 sobre Claude Code Desktop.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: `.worktreeinclude` e `.claude/launch.json` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+
 
 
 

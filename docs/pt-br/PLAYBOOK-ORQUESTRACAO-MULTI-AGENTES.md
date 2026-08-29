@@ -103,7 +103,7 @@ Caso você queira abrir manualmente as ferramentas no terminal ou IDE:
 1. No VS Code com a extensão oficial OpenAI Codex / ChatGPT ativa, abra o painel de chat.
 2. Digite:
    > *"Execute a requisição ativa em sdd/human-requests/CURRENT.md no modo autônomo monitorado."*
-3. O Codex lê automaticamente as instruções de `CODEX.md`, `AGENTS.md` e consulta as 33 skills em `.codex/skills/`.
+3. O Codex lê automaticamente as instruções de `CODEX.md`, `AGENTS.md` e consulta as 36 skills em `.codex/skills/`.
 
 ---
 
@@ -117,3 +117,48 @@ Caso você queira abrir manualmente as ferramentas no terminal ou IDE:
 
 > [!CAUTION]
 > **Regra de Ouro de Segurança**: Em qualquer modo autônomo, o deploy é permitido **EXCLUSIVAMENTE em ambiente de testes local**. É **estritamente proibido** realizar deploy automático em ambiente de produção.
+
+---
+
+## 🖥️ 6. Claude Code Desktop (Code Tab) & Recursos Nativos
+
+O Claude Code Desktop oferece um ambiente visual completo com abas de código, navegador integrado e isolamento de tarefas:
+
+### 6.1. Isolamento de Worktrees com `.worktreeinclude`
+Ao disparar tarefas concorrentes ou usar a flag `--worktree`, o Claude Desktop cria diretórios isolados em `.claude/worktrees/`. O arquivo `.worktreeinclude` na raiz do repositório garante a replicação automática de arquivos não rastreados pelo Git essenciais para o runtime:
+```text
+.env
+.env.local
+dev-environment/data/environment.json
+temp/agent-cookies.txt
+```
+Isso elimina falhas de conexão de banco de dados Docker ou permissões de sessão ao operar em branches paralelas.
+
+### 6.2. Autoverificação Visual no Browser Pane (`.claude/launch.json`)
+Com o arquivo `.claude/launch.json` configurado na raiz de `.claude/`:
+```json
+{
+  "version": "0.0.1",
+  "autoVerify": true,
+  "configurations": [
+    {
+      "name": "conn2flow-local",
+      "url": "http://localhost"
+    }
+  ]
+}
+```
+A flag `"autoVerify": true` habilita a inspeção autônoma pelo Browser Pane do Claude Desktop. Após cada modificação em componentes visuais, telas ou layouts, o próprio Claude inspeciona o DOM em `http://localhost`, coleta screenshots e valida a renderização sem necessidade de intervenção do operador.
+
+### 6.3. Transição Terminal ➔ Desktop (`/desktop`)
+Se você iniciou uma sessão de terminal via CLI (`claude`) e deseja transferir a conversa ativa, histórico de execução e diffs para a interface gráfica, execute no prompt do Claude:
+```bash
+/desktop
+```
+A sessão é migrada instantaneamente para o Claude Code Desktop com todo o contexto preservado.
+
+### 6.4. Side Chats Rápidos com `/btw` (ou `Ctrl + ;`)
+Durante uma execução autônoma orientada a especificações (SDD), você pode abrir um **Side Chat** digitando `/btw <pergunta>` ou pressionando `Ctrl + ;`:
+* O Side Chat herda instantaneamente todo o contexto técnico da thread principal;
+* As mensagens trocadas no Side Chat **não poluem o histórico da thread principal** nem interferem no rastreamento de lotes (`CURRENT.md` / `batch-XXX.md`);
+* Ideal para esclarecer dúvidas arquiteturais, testar snippets ou validar ideias antes de direcionar o executor.
