@@ -8,6 +8,7 @@ const fs = require("fs");
 const conn2flowTreeProvider_1 = require("./providers/conn2flowTreeProvider");
 const modesManager_1 = require("./providers/modesManager");
 const projectsManager_1 = require("./providers/projectsManager");
+const customActionsManager_1 = require("./providers/customActionsManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -30,6 +31,9 @@ function activate(context) {
         updateStatusBar();
     };
     refreshAll();
+    // Watcher para .c2f/actions.json (Hot Reload Plug & Play!)
+    const actionsWatcher = customActionsManager_1.CustomActionsManager.setupWatcher(refreshAll);
+    context.subscriptions.push(actionsWatcher);
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
     // Terminal Runner Helper
@@ -51,7 +55,6 @@ function activate(context) {
             const fullPath = path.join(folder.uri.fsPath, relativePath);
             if (fs.existsSync(fullPath)) {
                 const uri = vscode.Uri.file(fullPath);
-                // Checar se a extensão Markdown Preview Enhanced (MPE) ou similar está instalada
                 const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
                 if (mpe) {
                     try {
@@ -110,6 +113,32 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('conn2flow.refreshTree', () => {
         refreshAll();
         vscode.window.showInformationMessage('Painel Conn2Flow atualizado.');
+    }), 
+    // Custom Actions Commands (Plug & Play!)
+    vscode.commands.registerCommand('conn2flow.custom.runTerminal', (cmd) => {
+        if (cmd) {
+            runInTerminal(cmd);
+        }
+    }), vscode.commands.registerCommand('conn2flow.custom.openFile', (filePath) => {
+        if (filePath) {
+            if (filePath.endsWith('.md')) {
+                openMarkdownFile(filePath);
+            }
+            else {
+                openFileGeneral(filePath);
+            }
+        }
+    }), vscode.commands.registerCommand('conn2flow.custom.editManifest', async () => {
+        const p = customActionsManager_1.CustomActionsManager.getManifestPath();
+        if (p && fs.existsSync(p)) {
+            const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(p));
+            await vscode.window.showTextDocument(doc);
+        }
+        else {
+            await customActionsManager_1.CustomActionsManager.initSampleManifest(refreshAll);
+        }
+    }), vscode.commands.registerCommand('conn2flow.custom.initManifest', async () => {
+        await customActionsManager_1.CustomActionsManager.initSampleManifest(refreshAll);
     }), 
     // Modes & Autonomy Commands
     vscode.commands.registerCommand('conn2flow.modes.setDoubleAgent', async () => {
@@ -216,6 +245,19 @@ function activate(context) {
         openMarkdownFile('docs/pt-br/CATALOGO-DE-SKILLS.md');
     }));
 }
+async function openFileGeneral(relativePath) {
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (!workspaceFolders || workspaceFolders.length === 0)
+        return;
+    for (const folder of workspaceFolders) {
+        const full = path.join(folder.uri.fsPath, relativePath);
+        if (fs.existsSync(full)) {
+            const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(full));
+            await vscode.window.showTextDocument(doc);
+            return;
+        }
+    }
+}
 function updateStatusBar() {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -224,7 +266,6 @@ function updateStatusBar() {
         sddStatusBarItem.hide();
         return;
     }
-    // Modos SDD
     const modes = modesManager_1.ModesManager.getCurrentModes();
     const topLabel = modes.topology === 'triade' ? 'Tríade' : 'Duplo';
     const autoMap = {
@@ -236,7 +277,6 @@ function updateStatusBar() {
     modesStatusBarItem.text = `$(organization) ${topLabel} | ${autoLabel}`;
     modesStatusBarItem.tooltip = 'Clique para alterar a Topologia de Agentes ou Nível de Autonomia';
     modesStatusBarItem.show();
-    // Atualizar SDD Status Item
     let activeReq = 'Ativo';
     for (const folder of workspaceFolders) {
         const currentPath = path.join(folder.uri.fsPath, 'sdd', 'human-requests', 'CURRENT.md');
@@ -257,7 +297,6 @@ function updateStatusBar() {
     sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
     sddStatusBarItem.tooltip = 'Clique para abrir a requisição SDD ativa no Preview';
     sddStatusBarItem.show();
-    // Atualizar Docker Status Item
     dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
     dockerStatusBarItem.tooltip = 'Clique para inspecionar containers Docker ativos';
     dockerStatusBarItem.show();

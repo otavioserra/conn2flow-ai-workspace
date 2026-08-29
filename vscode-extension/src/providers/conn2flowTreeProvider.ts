@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { ModesManager } from './modesManager';
 import { ProjectsManager } from './projectsManager';
+import { CustomActionsManager } from './customActionsManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -9,7 +10,8 @@ export class Conn2FlowTreeItem extends vscode.TreeItem {
     public readonly commandId?: string,
     public readonly iconName?: string,
     public readonly tooltipText?: string,
-    public readonly children?: Conn2FlowTreeItem[]
+    public readonly children?: Conn2FlowTreeItem[],
+    public readonly commandArgs?: any[]
   ) {
     super(label, collapsibleState);
 
@@ -23,7 +25,7 @@ export class Conn2FlowTreeItem extends vscode.TreeItem {
       this.command = {
         command: commandId,
         title: label,
-        arguments: []
+        arguments: commandArgs || []
       };
     }
   }
@@ -59,8 +61,9 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     const auto = modes.autonomy;
 
     const targetProject = ProjectsManager.getTargetProject();
+    const customManifest = CustomActionsManager.getActionsManifest();
 
-    return [
+    const categories: Conn2FlowTreeItem[] = [
       new Conn2FlowTreeItem(
         '🎛️ Modos de Operação & Autonomia',
         vscode.TreeItemCollapsibleState.Expanded,
@@ -104,7 +107,52 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
             'Execução silenciosa em background via Git Worktrees e MCP Hub'
           )
         ]
-      ),
+      )
+    ];
+
+    // Se o projeto tiver ações customizadas locais (.c2f/actions.json), insere o acordeão Plug & Play!
+    if (customManifest && customManifest.actions.length > 0) {
+      const customItems = customManifest.actions.map(act => {
+        const isFile = act.type === 'file';
+        const cmdId = isFile ? 'conn2flow.custom.openFile' : 'conn2flow.custom.runTerminal';
+        const cmdArg = isFile ? act.path : act.command;
+        const icon = act.icon || (isFile ? 'file-code' : 'play');
+
+        return new Conn2FlowTreeItem(
+          act.label,
+          vscode.TreeItemCollapsibleState.None,
+          cmdId,
+          icon,
+          act.description || act.label,
+          undefined,
+          [cmdArg]
+        );
+      });
+
+      // Botão para editar o manifesto na hora
+      customItems.push(
+        new Conn2FlowTreeItem(
+          '⚙️ Editar Ações do Projeto (.c2f/actions.json)',
+          vscode.TreeItemCollapsibleState.None,
+          'conn2flow.custom.editManifest',
+          'edit',
+          'Abre o manifesto de ações customizadas locais para edição rápida'
+        )
+      );
+
+      categories.push(
+        new Conn2FlowTreeItem(
+          `⭐ ${customManifest.title || 'Ações do Projeto'}`,
+          vscode.TreeItemCollapsibleState.Expanded,
+          undefined,
+          'star',
+          'Ações e automações customizadas definidas no .c2f/actions.json deste projeto',
+          customItems
+        )
+      );
+    }
+
+    categories.push(
       new Conn2FlowTreeItem(
         '🏛️ SDD & Governança Viva',
         vscode.TreeItemCollapsibleState.Expanded,
@@ -156,7 +204,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
           new Conn2FlowTreeItem(`🔄 Update All Projeto Alvo [${targetProject}]`, vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllTarget', 'refresh', `Pipeline de 6 etapas no projeto ativo '${targetProject}'`),
           new Conn2FlowTreeItem('💻 Update All Escolhendo Projeto...', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.updateAllWithSelect', 'list-ordered', 'Abre lista de projetos para executar o pipeline de 6 etapas'),
           new Conn2FlowTreeItem('➕ Cadastrar Novo Projeto no Environment', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.addNew', 'add', 'Cadastra novo projeto no devProjects do environment.json'),
-          new Conn2FlowTreeItem('🔍 Verificar Repositórios Clonados', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.checkRepositories', 'repo', 'Verifica se conn2flow, lumix, transformamp e conn2flow-site estão presentes')
+          new Conn2FlowTreeItem('🔍 Verificar Repositórios Clonados', vscode.TreeItemCollapsibleState.None, 'conn2flow.projects.checkRepositories', 'repo', 'Verifica se conn2flow, lumix, transformamp e conn2flow-site estão presentes'),
+          new Conn2FlowTreeItem('✨ Criar Ações Customizadas (.c2f/actions.json)', vscode.TreeItemCollapsibleState.None, 'conn2flow.custom.initManifest', 'sparkle', 'Cria o manifesto .c2f/actions.json para adicionar botões personalizados')
         ]
       ),
       new Conn2FlowTreeItem(
@@ -172,6 +221,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
           new Conn2FlowTreeItem('Abrir Catálogo de Skills', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openCatalog', 'list-unordered', 'Abre o catálogo oficial das 36 skills do Conn2Flow')
         ]
       )
-    ];
+    );
+
+    return categories;
   }
 }

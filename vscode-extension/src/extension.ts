@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { Conn2FlowTreeProvider } from './providers/conn2flowTreeProvider';
 import { ModesManager } from './providers/modesManager';
 import { ProjectsManager } from './providers/projectsManager';
+import { CustomActionsManager } from './providers/customActionsManager';
 
 let terminal: vscode.Terminal | undefined;
 let dockerStatusBarItem: vscode.StatusBarItem;
@@ -34,6 +35,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   refreshAll();
 
+  // Watcher para .c2f/actions.json (Hot Reload Plug & Play!)
+  const actionsWatcher = CustomActionsManager.setupWatcher(refreshAll);
+  context.subscriptions.push(actionsWatcher);
+
   const interval = setInterval(refreshAll, 30000);
   context.subscriptions.push({ dispose: () => clearInterval(interval) });
 
@@ -59,7 +64,6 @@ export function activate(context: vscode.ExtensionContext) {
       if (fs.existsSync(fullPath)) {
         const uri = vscode.Uri.file(fullPath);
 
-        // Checar se a extensão Markdown Preview Enhanced (MPE) ou similar está instalada
         const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
         if (mpe) {
           try {
@@ -124,6 +128,34 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.refreshTree', () => {
       refreshAll();
       vscode.window.showInformationMessage('Painel Conn2Flow atualizado.');
+    }),
+
+    // Custom Actions Commands (Plug & Play!)
+    vscode.commands.registerCommand('conn2flow.custom.runTerminal', (cmd?: string) => {
+      if (cmd) {
+        runInTerminal(cmd);
+      }
+    }),
+    vscode.commands.registerCommand('conn2flow.custom.openFile', (filePath?: string) => {
+      if (filePath) {
+        if (filePath.endsWith('.md')) {
+          openMarkdownFile(filePath);
+        } else {
+          openFileGeneral(filePath);
+        }
+      }
+    }),
+    vscode.commands.registerCommand('conn2flow.custom.editManifest', async () => {
+      const p = CustomActionsManager.getManifestPath();
+      if (p && fs.existsSync(p)) {
+        const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(p));
+        await vscode.window.showTextDocument(doc);
+      } else {
+        await CustomActionsManager.initSampleManifest(refreshAll);
+      }
+    }),
+    vscode.commands.registerCommand('conn2flow.custom.initManifest', async () => {
+      await CustomActionsManager.initSampleManifest(refreshAll);
     }),
 
     // Modes & Autonomy Commands
@@ -262,6 +294,20 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+async function openFileGeneral(relativePath: string) {
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  if (!workspaceFolders || workspaceFolders.length === 0) return;
+
+  for (const folder of workspaceFolders) {
+    const full = path.join(folder.uri.fsPath, relativePath);
+    if (fs.existsSync(full)) {
+      const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(full));
+      await vscode.window.showTextDocument(doc);
+      return;
+    }
+  }
+}
+
 function updateStatusBar() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -271,7 +317,6 @@ function updateStatusBar() {
     return;
   }
 
-  // Modos SDD
   const modes = ModesManager.getCurrentModes();
   const topLabel = modes.topology === 'triade' ? 'Tríade' : 'Duplo';
   const autoMap: Record<string, string> = {
@@ -285,7 +330,6 @@ function updateStatusBar() {
   modesStatusBarItem.tooltip = 'Clique para alterar a Topologia de Agentes ou Nível de Autonomia';
   modesStatusBarItem.show();
 
-  // Atualizar SDD Status Item
   let activeReq = 'Ativo';
   for (const folder of workspaceFolders) {
     const currentPath = path.join(folder.uri.fsPath, 'sdd', 'human-requests', 'CURRENT.md');
@@ -307,7 +351,6 @@ function updateStatusBar() {
   sddStatusBarItem.tooltip = 'Clique para abrir a requisição SDD ativa no Preview';
   sddStatusBarItem.show();
 
-  // Atualizar Docker Status Item
   dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
   dockerStatusBarItem.tooltip = 'Clique para inspecionar containers Docker ativos';
   dockerStatusBarItem.show();

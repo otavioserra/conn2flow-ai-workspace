@@ -1,7 +1,7 @@
 {
   "name": "conn2flow-tools",
   "displayName": "Conn2Flow Dev Tools",
-  "description": "Painel oficial de desenvolvedor para o ecossistema Conn2Flow: controle visual de SDD, Modos de Agentes (Duplo/Tríade), Níveis de Autonomia, Docker, Core CLI, Projetos e AI Workspace Hub.",
+  "description": "Painel oficial de desenvolvedor para o ecossistema Conn2Flow: controle visual de SDD, Modos de Agentes (Duplo/Tríade), Níveis de Autonomia, Docker, Core CLI, Projetos, Ações Customizadas (.c2f/actions.json) e AI Workspace Hub.",
   "version": "1.0.0",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
@@ -48,6 +48,18 @@
         "title": "Atualizar Painel",
         "category": "Conn2Flow",
         "icon": "$(refresh)"
+      },
+      {
+        "command": "conn2flow.custom.initManifest",
+        "title": "Criar Ações Customizadas (.c2f/actions.json)",
+        "category": "Conn2Flow Custom",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "conn2flow.custom.editManifest",
+        "title": "Editar Ações do Projeto (.c2f/actions.json)",
+        "category": "Conn2Flow Custom",
+        "icon": "$(edit)"
       },
       {
         "command": "conn2flow.modes.selectMode",
