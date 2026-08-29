@@ -519,6 +519,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: `.claude/settings.json` com `crossSessionInbound: allow` e `sdd-workflow/SKILL.md` atualizados em `conn2flow`, `lumix`, `transformamp`, `conn2flow-site`.
 
+---
+
+## BATCH-032: Paridade Total da Tríade de IAs (OpenAI Codex, Google Antigravity e Claude Code)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Atualização e padronização de `AGENTS.md` na raiz do workspace e templates do Codex Kit com todas as 36 skills oficiais e regras de governança.
+- [x] Criação de `.codex/hooks.json` e `.codex/config.toml` no workspace e templates do Codex Kit.
+- [x] Criação de `.gemini/hooks.json` com `PreToolUse` e `Stop` no workspace e templates do Gemini Kit.
+- [x] Padronização de `GEMINI.md` com diretriz do Goal Mode (`/goal`).
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: `AGENTS.md`, `.codex/hooks.json`, `.codex/config.toml` e `.gemini/hooks.json` sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
+
+
 
 
 

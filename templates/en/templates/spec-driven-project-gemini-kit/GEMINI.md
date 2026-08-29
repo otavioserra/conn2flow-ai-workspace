@@ -41,6 +41,9 @@ Explicitly invoke the corresponding skill BEFORE editing code or closing batches
      * ⛔ **STRICT SAFETY RULE: NEVER PERFORM AUTOMATED DEPLOYS TO PRODUCTION OR REMOTE SERVERS.**
      * Semantic commit and push to the working branch.
      * Final executive report with validation evidence.
+   - **Goal Mode (`/goal`) for Continuous Execution**:
+     * For complex slices requiring multiple test-and-repair iterations, activate `/goal` in Gemini / Antigravity prompt.
+     * The agent maintains a continuous execution loop until deterministically fulfilling all technical criteria in `VALIDATION-CHECKLIST.md`.
 
 3. **Tier 3: HEADLESS AUTONOMOUS (Silent Background / Black-Box)**:
    - Activated when the request specifies `mode: headless_autonomous` (or `autonomo_headless`).
