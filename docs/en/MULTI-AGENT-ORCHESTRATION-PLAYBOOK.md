@@ -162,3 +162,29 @@ During an autonomous Spec-Driven Development (SDD) run, you can open a **Side Ch
 * The Side Chat immediately inherits the full technical context of the primary thread;
 * Messages exchanged in the Side Chat **never pollute the primary thread history** or tamper with SDD batch tracking (`CURRENT.md` / `batch-XXX.md`);
 * Perfect for architectural queries, testing isolated snippets, or vetting design decisions before committing changes.
+
+---
+
+## 🌐 7. Cross-Session Messaging, Goal Mode and conn2flow-devkit Plugin
+
+### 7.1. Cross-Session Messaging (`@session` & `crossSessionInbound`)
+With `"crossSessionInbound": "allow"` declared in `.claude/settings.json`, agents operating in separate sessions on the same machine can communicate directly:
+* **Core ↔ Project Coordination**: An agent maintaining `conn2flow` can dispatch updates and breaking change alerts directly to an agent working in `transformamp` or `lumix`:
+  ```text
+  @transformamp The Core pipeline has been updated to 6 stages with mandatory css:rebuild. Run c2f project:update-all transformamp-local to validate.
+  ```
+* **Privacy & Isolation**: Each session preserves its own local context and history, receiving only messages explicitly directed to it.
+
+### 7.2. Goal Mode (`/goal`) for Continuous SDD Execution
+For complex slices involving multiple files, migrations, or Tailwind compilation, prefix your prompt with the `/goal` command:
+```bash
+/goal Execute slice BATCH-XXX per sdd/human-requests/CURRENT.md until all checks in VALIDATION-CHECKLIST.md pass and the receipt is complete.
+```
+* The agent will not halt prematurely asking for intermediate confirmation for steps already authorized in the specification;
+* The loop completes only when technical acceptance criteria are deterministically fulfilled and recorded.
+
+### 7.3. Official Conn2Flow Plugin (`conn2flow-devkit`)
+The Conn2Flow AI infrastructure supports official Claude Code plugin distribution via `.claude-plugin/plugin.json`:
+* Bundles all **36 normative skills** and deterministic hooks (`PreToolUse`);
+* Enables 1-Click installation into any new repository or project without needing to copy configuration directories manually.
+

@@ -162,3 +162,29 @@ Durante uma execução autônoma orientada a especificações (SDD), você pode 
 * O Side Chat herda instantaneamente todo o contexto técnico da thread principal;
 * As mensagens trocadas no Side Chat **não poluem o histórico da thread principal** nem interferem no rastreamento de lotes (`CURRENT.md` / `batch-XXX.md`);
 * Ideal para esclarecer dúvidas arquiteturais, testar snippets ou validar ideias antes de direcionar o executor.
+
+---
+
+## 🌐 7. Comunicação Cross-Session, Modo Goal e Plugin conn2flow-devkit
+
+### 7.1. Cross-Session Messaging (`@sessao` & `crossSessionInbound`)
+Com a configuração `"crossSessionInbound": "allow"` ativa em `.claude/settings.json`, agentes executando em sessões diferentes no mesmo computador podem se comunicar diretamente:
+* **Coordenação Core ↔ Projetos**: Um agente trabalhando em `conn2flow` pode enviar notificações de atualização ou breaking changes para um agente atuando em `transformamp` ou `lumix`:
+  ```text
+  @transformamp Atualizamos o Core para 6 etapas com css:rebuild obrigatório. Execute c2f project:update-all transformamp-local para validar.
+  ```
+* **Privacidade e Isolamento**: Cada sessão mantém seu próprio histórico e estado local, recebendo apenas mensagens explicitamente endereçadas.
+
+### 7.2. Goal Mode (`/goal`) para Execução Contínua no SDD
+Para fatias complexas que envolvem múltiplos arquivos, migrações de banco ou compilação Tailwind, ative o comando `/goal` no início do prompt:
+```bash
+/goal Execute a fatia BATCH-XXX conforme sdd/human-requests/CURRENT.md até que todos os testes do VALIDATION-CHECKLIST.md passem e o relatório esteja preenchido.
+```
+* O agente não interrompe a execução prematuramente solicitando confirmações intermediárias para tarefas já aprovadas na especificação;
+* O loop só é concluído quando os critérios de aceite forem deterministamente satisfeitos e registrados.
+
+### 7.3. Plugin Oficial Conn2Flow (`conn2flow-devkit`)
+A infraestrutura de IA do Conn2Flow suporta empacotamento como plugin oficial do Claude Code através do manifesto `.claude-plugin/plugin.json`:
+* Contém as **36 skills normativas** e hooks determinísticos (`PreToolUse`);
+* Permite instalação 1-Click em qualquer novo repositório ou projeto Conn2Flow sem necessidade de copiar manualmente dezenas de arquivos de configuração.
+

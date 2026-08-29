@@ -1,0 +1,9 @@
+{
+  "name": "conn2flow-devkit",
+  "version": "2.1.0",
+  "description": "Suite oficial de 36 skills, hooks e governanca para o ecossistema Conn2Flow",
+  "author": {
+    "name": "Conn2Flow Core Team"
+  },
+  "skills": "./.claude/skills"
+}

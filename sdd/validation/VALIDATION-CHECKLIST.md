@@ -497,6 +497,29 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: Hooks e `CLAUDE.md` modulares sincronizados nos 4 repositórios alvo (`conn2flow`, `lumix`, `transformamp`, `conn2flow-site`).
 
+---
+
+## BATCH-031: Cross-Session Messaging, Goal Mode (/goal) e Plugin Oficial conn2flow-devkit
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Configuração de `"crossSessionInbound": "allow"` em `.claude/settings.json` nos masters e 4 templates do Claude Kit.
+- [x] Atualização de `sdd-workflow/SKILL.md` nos 5 masters e 10 templates (15 localizações) formalizando o Goal Mode (`/goal`) para execução ininterrupta de fatias.
+- [x] Criação do manifesto oficial `.claude-plugin/plugin.json` (v2.1.0) para empacotamento das 36 skills e hooks.
+- [x] Atualização de `docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md` e `docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md` com a Seção 7.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: `.claude/settings.json` com `crossSessionInbound: allow` e `sdd-workflow/SKILL.md` atualizados em `conn2flow`, `lumix`, `transformamp`, `conn2flow-site`.
+
+
 
 
 
