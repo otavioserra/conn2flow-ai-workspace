@@ -314,6 +314,18 @@
         "icon": "$(file-text)"
       },
       {
+        "command": "conn2flow.ai.sync",
+        "title": "Sincronizar Skills (ai:sync)",
+        "category": "Conn2Flow AI",
+        "icon": "$(extensions)"
+      },
+      {
+        "command": "conn2flow.ai.syncAllRepos",
+        "title": "Distribuir Skills p/ Todos os Repos (sync-all-repos)",
+        "category": "Conn2Flow AI",
+        "icon": "$(repo-clone)"
+      },
+      {
         "command": "conn2flow.ai.syncSkills",
         "title": "Sincronizar Skills (1-Click)",
         "category": "Conn2Flow AI",

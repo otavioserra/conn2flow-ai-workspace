@@ -14,6 +14,7 @@ const agentBridgeManager_1 = require("./providers/agentBridgeManager");
 const terminalModeManager_1 = require("./providers/terminalModeManager");
 const sddViewModeManager_1 = require("./providers/sddViewModeManager");
 const sddBrowserManager_1 = require("./providers/sddBrowserManager");
+const shellHelper_1 = require("./providers/shellHelper");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -274,15 +275,15 @@ function activate(context) {
     }), 
     // Manager & Core Commands
     vscode.commands.registerCommand('conn2flow.manager.updateAll', () => {
-        runInTerminal('./c2f manager:update-all');
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('manager:update-all'));
     }), vscode.commands.registerCommand('conn2flow.manager.syncResources', () => {
-        runInTerminal('./c2f resources:sync');
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('resources:sync'));
     }), vscode.commands.registerCommand('conn2flow.manager.cssRebuild', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
-        runInTerminal(`./c2f css:rebuild --project=${target}`);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`));
     }), vscode.commands.registerCommand('conn2flow.manager.cssAudit', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
-        runInTerminal(`./c2f css:audit --project=${target}`);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:audit --project=${target}`));
     }), 
     // Projects Commands
     vscode.commands.registerCommand('conn2flow.projects.setTarget', async () => {
@@ -298,19 +299,19 @@ function activate(context) {
         }
     }), vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(`./c2f project:deploy ${target}`);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${target}`));
     }), vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
-            runInTerminal(`./c2f project:deploy ${projectId}`);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`));
         }
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
-        runInTerminal(`./c2f project:update-all ${target}`);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`));
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
         if (projectId) {
-            runInTerminal(`./c2f project:update-all ${projectId}`);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`));
         }
     }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
@@ -336,10 +337,15 @@ function activate(context) {
         await projectsManager_1.ProjectsManager.openActiveEnvironment();
     }), 
     // AI Workspace Hub Commands
-    vscode.commands.registerCommand('conn2flow.ai.syncSkills', () => {
-        runInTerminal('powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\sync-all-repos.ps1');
+    vscode.commands.registerCommand('conn2flow.ai.sync', () => {
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:sync'));
+    }), vscode.commands.registerCommand('conn2flow.ai.syncSkills', () => {
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:sync'));
+    }), vscode.commands.registerCommand('conn2flow.ai.syncAllRepos', () => {
+        const cmd = shellHelper_1.ShellHelper.formatPowerShellScript('scripts/sync-all-repos.ps1', '-Force');
+        runInTerminal(cmd);
     }), vscode.commands.registerCommand('conn2flow.ai.validateSkills', () => {
-        runInTerminal('php cli/c2f.php ai:sync');
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('ai:sync'));
     }), vscode.commands.registerCommand('conn2flow.ai.openPlaybook', () => {
         openMarkdownFile('docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md');
     }), vscode.commands.registerCommand('conn2flow.ai.openCatalog', () => {

@@ -345,7 +345,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         'circuit-board',
         'Ferramentas de IA, sincronização de skills e documentação',
         [
-          new Conn2FlowTreeItem('Sincronizar Skills (ai:sync)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.sync', 'extensions', 'Executa php cli/c2f.php ai:sync para todas as IAs'),
+          new Conn2FlowTreeItem('Sincronizar Skills (ai:sync)', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.sync', 'extensions', 'Executa c2f ai:sync adaptado automaticamente ao seu terminal (Git Bash ou PowerShell)'),
+          new Conn2FlowTreeItem('Distribuir Skills p/ Todos os Repos', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.syncAllRepos', 'repo-clone', 'Executa sync-all-repos.ps1 distribuindo as 36 skills para todos os repositórios adjacentes'),
           new Conn2FlowTreeItem('Abrir AGENTS.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openAgents', 'person', 'Abre a convenção de agentes e papéis do ecossistema'),
           new Conn2FlowTreeItem('Abrir GEMINI.md', vscode.TreeItemCollapsibleState.None, 'conn2flow.ai.openGemini', 'sparkle', 'Abre a governança da Tríade de IAs do Google Antigravity')
         ],
