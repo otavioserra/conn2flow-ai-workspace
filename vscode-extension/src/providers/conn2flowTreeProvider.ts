@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { ModesManager } from './modesManager';
 import { ProjectsManager } from './projectsManager';
 import { CustomActionsManager } from './customActionsManager';
+import { LogFollowManager } from './logFollowManager';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -173,8 +174,20 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         'Monitoramento e inspeção de containers Docker',
         [
           new Conn2FlowTreeItem('Status dos Containers', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.status', 'pulse', 'Executa docker ps no terminal integrado'),
-          new Conn2FlowTreeItem('Logs Apache (Follow)', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.logsApache', 'output', 'Monitora os logs do Apache em tempo real'),
-          new Conn2FlowTreeItem('Logs PHP (Follow)', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.logsPhp', 'terminal', 'Monitora o php_errors.log em tempo real'),
+          new Conn2FlowTreeItem(
+            LogFollowManager.isApacheFollowing ? '🟢 Logs Apache (Ao Vivo - Clique p/ Parar)' : '▶️ Logs Apache (Follow)',
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.docker.logsApache',
+            LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output',
+            LogFollowManager.isApacheFollowing ? 'Monitoramento ativo. Clique para parar (enviar Ctrl+C) e liberar o terminal' : 'Inicia o monitoramento contínuo dos logs do Apache'
+          ),
+          new Conn2FlowTreeItem(
+            LogFollowManager.isPhpFollowing ? '🟢 Logs PHP (Ao Vivo - Clique p/ Parar)' : '▶️ Logs PHP (Follow)',
+            vscode.TreeItemCollapsibleState.None,
+            'conn2flow.docker.logsPhp',
+            LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal',
+            LogFollowManager.isPhpFollowing ? 'Monitoramento ativo. Clique para parar (enviar Ctrl+C) e liberar o terminal' : 'Inicia o monitoramento contínuo do php_errors.log'
+          ),
           new Conn2FlowTreeItem('Limpar Logs PHP', vscode.TreeItemCollapsibleState.None, 'conn2flow.docker.truncatePhpLog', 'trash', 'Limpa o arquivo php_errors.log dentro do container')
         ]
       ),

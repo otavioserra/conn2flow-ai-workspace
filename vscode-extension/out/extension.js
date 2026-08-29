@@ -9,6 +9,7 @@ const conn2flowTreeProvider_1 = require("./providers/conn2flowTreeProvider");
 const modesManager_1 = require("./providers/modesManager");
 const projectsManager_1 = require("./providers/projectsManager");
 const customActionsManager_1 = require("./providers/customActionsManager");
+const logFollowManager_1 = require("./providers/logFollowManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -34,6 +35,8 @@ function activate(context) {
     // Watcher para .c2f/actions.json (Hot Reload Plug & Play!)
     const actionsWatcher = customActionsManager_1.CustomActionsManager.setupWatcher(refreshAll);
     context.subscriptions.push(actionsWatcher);
+    // Monitorar fechamento de terminais de log
+    context.subscriptions.push(vscode.window.onDidCloseTerminal(t => logFollowManager_1.LogFollowManager.handleTerminalClosed(t, refreshAll)));
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
     // Terminal Runner Helper
@@ -176,9 +179,9 @@ function activate(context) {
     vscode.commands.registerCommand('conn2flow.docker.status', () => {
         runInTerminal('docker ps');
     }), vscode.commands.registerCommand('conn2flow.docker.logsApache', () => {
-        runInTerminal('docker logs conn2flow-app --tail 50 --follow');
+        logFollowManager_1.LogFollowManager.toggleApacheLogs(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.docker.logsPhp', () => {
-        runInTerminal('docker exec conn2flow-app bash -c "tail -f /var/log/php_errors.log"');
+        logFollowManager_1.LogFollowManager.togglePhpLogs(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.docker.truncatePhpLog', () => {
         runInTerminal('docker exec conn2flow-app bash -c "truncate -s 0 /var/log/php_errors.log"');
         vscode.window.showInformationMessage('Log de erros PHP truncado com sucesso.');
