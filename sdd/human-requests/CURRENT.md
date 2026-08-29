@@ -10,4 +10,4 @@
 
 ## Execução atual
 
-REQ-036 implementada tecnicamente no BATCH-038 e pronta para revisão humana após `Developer: Reload Window`. Compilação, 27 testes, VSIX e hashes da instalação local passaram. O humano autorizou commit e push para preservar a árvore ao final; deploy e release real continuam fora do escopo.
+REQ-036 corrigida tecnicamente no BATCH-038 após o feedback de que `Colapsar todas` não alterava o estado visual da árvore. A correção invalida os IDs memorizados apenas nas ações globais, passou em 31 testes e foi instalada localmente com hashes conferidos. Aguarda `Developer: Reload Window` e aceite visual humano; deploy e release real continuam fora do escopo.

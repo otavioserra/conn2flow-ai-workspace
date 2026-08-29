@@ -17,6 +17,7 @@
 - **2026-08-29 — REQ-036:** criada proposta de reorganização da interface, navegação de backlog, segurança operacional, interface `pt-BR`/`en` e releases separados do Gestor e do Gestor Instalador.
 - **2026-08-29 — BATCH-038:** REQ-036 aprovada; diagnóstico confirmou que `findRepoSdd()` retornava o SDD do workspace atual sem verificar o repositório solicitado, afetando especificamente o escopo `ai-workspace`.
 - **2026-08-29 — Entrega BATCH-038:** escopo corrigido; árvore progressiva, executor seguro, backlog, `pt-BR`/`en`, formulários compostos e releases Gestor/Instalador implementados; 27 testes e VSIX aprovados.
+- **2026-08-29 — Correção de revisão:** feedback humano revelou que `Colapsar todas` era sobrescrito pelo estado visual memorizado do VS Code; IDs de seção passaram a usar geração persistida nas ações globais, com 31 testes aprovados e instalação local atualizada.
 
 ## Decisões operacionais vigentes
 
@@ -25,8 +26,8 @@
 - Releases devem usar `c2f manager:release` e `c2f installer:release`, integrados respectivamente aos workflows `release-gestor.yml` e `release-instalador.yml`.
 - Os scripts de release precisam remover `git add .` antes de serem expostos pela interface.
 - Permissão de release deve ser comprovada; ausência ou indeterminação de permissão oferece somente diagnóstico seguro.
-- Modo supervisionado: commit e push foram autorizados explicitamente ao final para preservar a árvore; deploy e release permanecem não autorizados.
+- A implementação principal do BATCH-038 foi preservada nos commits `3786c7a` (`conn2flow-ai-workspace`) e `8186f92e` (`conn2flow`); deploy e release permanecem não autorizados.
 
 ## Pendência imediata
 
-- Aguardar Reload Window e aceite visual humano do BATCH-038; nenhum release, deploy, commit ou push foi executado.
+- Aguardar aceite visual humano dos controles `Expandir todas`/`Colapsar todas`; em 2026-08-29 o humano autorizou consolidar a correção com commit/push. Release e deploy continuam fora do escopo.

@@ -9,6 +9,7 @@ import { GardeningManager } from './gardeningManager';
 import { LocalizationManager } from './localizationManager';
 import { ReleaseManager } from './releaseManager';
 import { TranslationKey } from '../localizationCatalog';
+import { nextTreeExpansionVersion, normalizeTreeExpansionVersion, treeSectionId } from '../treeExpansionPolicy';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -36,14 +37,17 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
   readonly onDidChangeTreeData = this.changeEmitter.event;
   private expansion: 'default' | 'expanded' | 'collapsed';
   private readonly expansionKey = 'conn2flow.tree.expansion';
+  private expansionVersion: number;
+  private readonly expansionVersionKey = 'conn2flow.tree.expansionVersion';
 
   constructor(private readonly context: vscode.ExtensionContext) {
     this.expansion = context.workspaceState.get(this.expansionKey, 'default');
+    this.expansionVersion = normalizeTreeExpansionVersion(context.workspaceState.get(this.expansionVersionKey));
   }
 
   refresh(): void { this.changeEmitter.fire(); }
-  expandAll(): void { this.expansion = 'expanded'; void this.context.workspaceState.update(this.expansionKey, this.expansion); this.refresh(); }
-  collapseAll(): void { this.expansion = 'collapsed'; void this.context.workspaceState.update(this.expansionKey, this.expansion); this.refresh(); }
+  expandAll(): void { this.setExpansion('expanded'); }
+  collapseAll(): void { this.setExpansion('collapsed'); }
   getTreeItem(element: Conn2FlowTreeItem): vscode.TreeItem { return element; }
   getChildren(element?: Conn2FlowTreeItem): Thenable<Conn2FlowTreeItem[]> {
     return Promise.resolve(element?.children || this.rootItems());
@@ -55,6 +59,16 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     return primary ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed;
   }
 
+  private setExpansion(expansion: 'expanded' | 'collapsed'): void {
+    this.expansion = expansion;
+    this.expansionVersion = nextTreeExpansionVersion(this.expansionVersion);
+    void Promise.all([
+      this.context.workspaceState.update(this.expansionKey, this.expansion),
+      this.context.workspaceState.update(this.expansionVersionKey, this.expansionVersion)
+    ]);
+    this.refresh();
+  }
+
   private leaf(key: TranslationKey, command: string, icon: string, values: Record<string, string> = {}): Conn2FlowTreeItem {
     const label = LocalizationManager.t(key, values);
     return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, label);
@@ -62,7 +76,17 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
 
   private section(key: TranslationKey, id: string, icon: string, children: Conn2FlowTreeItem[], primary = false): Conn2FlowTreeItem {
     const label = LocalizationManager.t(key);
-    return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, label, children, undefined, undefined, `conn2flow.section.${id}`);
+    return new Conn2FlowTreeItem(
+      label,
+      this.state(primary),
+      undefined,
+      icon,
+      label,
+      children,
+      undefined,
+      undefined,
+      treeSectionId(id, this.expansionVersion)
+    );
   }
 
   private rootItems(): Conn2FlowTreeItem[] {

@@ -11,6 +11,7 @@ const sddScopeManager_1 = require("./sddScopeManager");
 const gardeningManager_1 = require("./gardeningManager");
 const localizationManager_1 = require("./localizationManager");
 const releaseManager_1 = require("./releaseManager");
+const treeExpansionPolicy_1 = require("../treeExpansionPolicy");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     children;
     constructor(label, collapsibleState, commandId, iconName, tooltipText, children, commandArgs, itemDescription, itemId) {
@@ -32,13 +33,16 @@ class Conn2FlowTreeProvider {
     onDidChangeTreeData = this.changeEmitter.event;
     expansion;
     expansionKey = 'conn2flow.tree.expansion';
+    expansionVersion;
+    expansionVersionKey = 'conn2flow.tree.expansionVersion';
     constructor(context) {
         this.context = context;
         this.expansion = context.workspaceState.get(this.expansionKey, 'default');
+        this.expansionVersion = (0, treeExpansionPolicy_1.normalizeTreeExpansionVersion)(context.workspaceState.get(this.expansionVersionKey));
     }
     refresh() { this.changeEmitter.fire(); }
-    expandAll() { this.expansion = 'expanded'; void this.context.workspaceState.update(this.expansionKey, this.expansion); this.refresh(); }
-    collapseAll() { this.expansion = 'collapsed'; void this.context.workspaceState.update(this.expansionKey, this.expansion); this.refresh(); }
+    expandAll() { this.setExpansion('expanded'); }
+    collapseAll() { this.setExpansion('collapsed'); }
     getTreeItem(element) { return element; }
     getChildren(element) {
         return Promise.resolve(element?.children || this.rootItems());
@@ -50,13 +54,22 @@ class Conn2FlowTreeProvider {
             return vscode.TreeItemCollapsibleState.Collapsed;
         return primary ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed;
     }
+    setExpansion(expansion) {
+        this.expansion = expansion;
+        this.expansionVersion = (0, treeExpansionPolicy_1.nextTreeExpansionVersion)(this.expansionVersion);
+        void Promise.all([
+            this.context.workspaceState.update(this.expansionKey, this.expansion),
+            this.context.workspaceState.update(this.expansionVersionKey, this.expansionVersion)
+        ]);
+        this.refresh();
+    }
     leaf(key, command, icon, values = {}) {
         const label = localizationManager_1.LocalizationManager.t(key, values);
         return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, label);
     }
     section(key, id, icon, children, primary = false) {
         const label = localizationManager_1.LocalizationManager.t(key);
-        return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, label, children, undefined, undefined, `conn2flow.section.${id}`);
+        return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, label, children, undefined, undefined, (0, treeExpansionPolicy_1.treeSectionId)(id, this.expansionVersion));
     }
     rootItems() {
         const modes = modesManager_1.ModesManager.getCurrentModes();

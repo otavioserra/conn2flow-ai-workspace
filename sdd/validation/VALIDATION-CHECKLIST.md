@@ -574,6 +574,8 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Deploy e release exigem confirmação explícita do alvo.
 - [x] Testes automatizados, TypeScript e empacotamento VSIX passam.
 - [x] Instalação local contém hashes idênticos aos artefatos compilados.
+- [x] Ações globais de expansão e colapso invalidam o estado visual memorizado sem afetar a navegação manual.
+- [ ] Humano confirma `Expandir todas` e `Colapsar todas` no Extension Host após Reload Window.
 
 ### 2. Evidências de Validação
 
@@ -601,6 +603,11 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 * **Status**: PASS.
 * **Evidência**: `npm test` aprovou 27/27; `tsc` sem erros; JSON e PowerShell parseados; VSIX com 59 arquivos e 139,49 KB. Instalação oficial encontrou `EPERM` por extensão carregada, seguida de atualização restrita no destino absoluto validado; hashes de package, NLS, extension, release e backlog ficaram idênticos.
+
+#### Teste 6: regressão de expansão e colapso global
+
+* **Status técnico**: PASS; aceite visual humano pendente.
+* **Evidência**: `treeExpansionPolicy.test.cjs` cobre estabilidade dentro da mesma geração, troca de IDs após ação global, normalização do estado persistido e reinício seguro do contador. A suíte completa aprovou 31/31; o VSIX foi gerado com 61 arquivos e 140,63 KB. Os quatro artefatos compilados atualizados na instalação local possuem hashes SHA-256 idênticos à origem. A memória operacional foi revisada e permaneceu abaixo do alerta, com 3.233 bytes e 33 linhas.
 
 
 

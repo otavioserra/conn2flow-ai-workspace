@@ -39,6 +39,11 @@ Hipótese inicial confirmada: `findRepoSdd(repoName)` aceita `<workspace-atual>/
 - [x] Atualizar a instalação local com destino e hashes validados.
 - [x] Realizar review findings-first e atualizar evidências SDD.
 - [x] Entregar o diff ao humano sem commit/push/deploy/release.
+- [x] Reabrir o lote após o feedback de que `Colapsar todas` não funciona visualmente.
+- [x] Invalidar de forma controlada o estado visual memorizado pelo VS Code.
+- [x] Adicionar regressão automatizada para a geração dos IDs das seções.
+- [x] Recompilar, empacotar e atualizar a instalação local.
+- [ ] Submeter a correção ao novo teste visual humano.
 
 ## Resultado implementado
 
@@ -50,18 +55,19 @@ Hipótese inicial confirmada: `findRepoSdd(repoName)` aceita `<workspace-atual>/
 - Backlog com índice, filtro, alerta de drift e promoção somente como preparação governada.
 - Releases separados para Gestor/Instalador, com permissão GitHub, preflight, formulário único e acompanhamento do workflow.
 - Scripts de release com árvore limpa, `--dry-run`, tag antecipada e staging explícito.
+- Controles `Expandir todas` e `Colapsar todas` agora avançam uma geração persistida dos IDs das seções, impedindo que o VS Code restaure o estado visual anterior; os IDs permanecem estáveis durante a navegação manual.
 
 ## Review findings-first
 
-Nenhum finding crítico ou alto permaneceu após a revisão final. Os diffs alheios já existentes no Core foram preservados e não entraram no escopo. A única pendência é o aceite visual humano após Reload Window; não exige nova alteração técnica por si só.
+O feedback visual revelou uma regressão: atualizar `TreeItemCollapsibleState` mantendo IDs estáveis permitia ao VS Code restaurar a expansão anterior. O finding foi corrigido com IDs versionados somente nas ações globais e quatro testes dedicados. Nenhum finding crítico ou alto permaneceu; aguarda novo aceite visual humano após Reload Window.
 
 ## Autorização de consolidação
 
-Após receber o diff revisável, o Humano-no-Loop autorizou explicitamente commit e push para preservar a árvore. A autorização não inclui deploy ou release. O commit do Core deve conter somente os quatro arquivos canônicos de release; alterações alheias já presentes no Gestor permanecem fora dele.
+Após receber o diff revisável, o Humano-no-Loop autorizou explicitamente commit e push para preservar a árvore. Em 2026-08-29, autorizou novamente a consolidação da correção de expansão/colapso. As autorizações não incluem deploy ou release. O commit anterior do Core conteve somente os quatro arquivos canônicos de release; alterações alheias do Gestor permaneceram fora dele.
 
 ## Limites de segurança
 
-- Nenhum release, deploy, commit ou push real será executado neste lote.
+- Nenhum release ou deploy real será executado neste lote; commit e push dependem de autorização humana explícita, recebida para esta consolidação.
 - A validação de release deve usar testes unitários, mocks e preflights somente leitura.
 - Scripts de release podem ser alterados, mas não acionados.
 - Nenhuma alteração em `sdd/SPEC.md` faz parte deste lote.
