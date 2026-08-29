@@ -35,7 +35,7 @@
       "activitybar": [
         {
           "id": "conn2flow-view-container",
-          "title": "Conn2Flow",
+          "title": "Conn2Flow Dev Tools",
           "icon": "resources/icon.svg"
         }
       ]
