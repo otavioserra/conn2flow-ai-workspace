@@ -12,6 +12,8 @@ const customActionsManager_1 = require("./providers/customActionsManager");
 const logFollowManager_1 = require("./providers/logFollowManager");
 const agentBridgeManager_1 = require("./providers/agentBridgeManager");
 const terminalModeManager_1 = require("./providers/terminalModeManager");
+const sddViewModeManager_1 = require("./providers/sddViewModeManager");
+const sddBrowserManager_1 = require("./providers/sddBrowserManager");
 let terminal;
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -44,15 +46,18 @@ function activate(context) {
     // Terminal Runner Helper com suporte inteligente a Reutilizar vs Criar Novo
     const runInTerminal = (command, name = 'Conn2Flow Dev Terminal') => {
         if (terminalModeManager_1.TerminalModeManager.isReuse) {
+            if (terminal && terminal.exitStatus === undefined) {
+                terminal.show();
+                terminal.sendText(command);
+                return;
+            }
             const active = vscode.window.activeTerminal;
             if (active && active.exitStatus === undefined) {
                 active.show();
                 active.sendText(command);
                 return;
             }
-            if (!terminal || terminal.exitStatus !== undefined) {
-                terminal = vscode.window.createTerminal({ name: 'Conn2Flow Dev Terminal' });
-            }
+            terminal = vscode.window.createTerminal({ name: 'Conn2Flow Dev Terminal' });
             terminal.show();
             terminal.sendText(command);
         }
@@ -62,7 +67,7 @@ function activate(context) {
             newTerm.sendText(command);
         }
     };
-    // Markdown Opener with Immediate TextDocument Show & Multi-Repo Preview Resolution
+    // Markdown Opener com suporte a Modos: Código, Preview ou Ambos Lado a Lado
     const openMarkdownFile = async (relativePath) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -80,10 +85,36 @@ function activate(context) {
             if (fs.existsSync(fullPath)) {
                 const uri = vscode.Uri.file(fullPath);
                 try {
-                    // 1. SEMPRE abre o documento de texto no editor primeiro
+                    const viewMode = sddViewModeManager_1.SddViewModeManager.mode;
+                    // 1. Modo Apenas Código-Fonte (Editor normal)
+                    if (viewMode === 'code') {
+                        const doc = await vscode.workspace.openTextDocument(uri);
+                        await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+                        return;
+                    }
+                    // 2. Modo Apenas Renderizado (Preview)
+                    if (viewMode === 'preview') {
+                        const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+                        if (mpe) {
+                            try {
+                                await vscode.commands.executeCommand('markdown-preview-enhanced.openPreview', uri);
+                                return;
+                            }
+                            catch {
+                                // fallback
+                            }
+                        }
+                        try {
+                            await vscode.commands.executeCommand('markdown.showPreview', uri);
+                            return;
+                        }
+                        catch {
+                            // fallback
+                        }
+                    }
+                    // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview na direita)
                     const doc = await vscode.workspace.openTextDocument(uri);
                     await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-                    // 2. Se MPE estiver instalado, abre o preview enhanced
                     const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
                     if (mpe) {
                         try {
@@ -94,12 +125,11 @@ function activate(context) {
                             // fallback para preview nativo
                         }
                     }
-                    // 3. Abre o preview nativo ao lado (já com o documento ativo!)
                     try {
                         await vscode.commands.executeCommand('markdown.showPreviewToSide');
                     }
                     catch {
-                        // documento já está aberto na tela com 100% de garantia
+                        // documento já aberto na tela
                     }
                     return;
                 }
@@ -203,17 +233,27 @@ function activate(context) {
             await sel.action();
         }
     }), 
-    // SDD Commands (Markdown Preview Automatic)
-    vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
+    // SDD Commands & Interactive Browsers
+    vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
+        sddViewModeManager_1.SddViewModeManager.toggle(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.sdd.openCurrent', () => {
         openMarkdownFile('sdd/human-requests/CURRENT.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openSpec', () => {
         openMarkdownFile('sdd/SPEC.md');
     }), vscode.commands.registerCommand('conn2flow.sdd.openChecklist', () => {
         openMarkdownFile('sdd/validation/VALIDATION-CHECKLIST.md');
+    }), vscode.commands.registerCommand('conn2flow.sdd.browseRequests', async () => {
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('human-requests', 'Requisições Humanas', openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.sdd.browseBatches', async () => {
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('implementation', 'Registros de Lotes', openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.sdd.browseDecisions', async () => {
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('decisions', 'Decisões Arquiteturais (ADRs)', openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.sdd.browseHandoffs', async () => {
+        await sddBrowserManager_1.SddBrowserManager.browseDirectory('handoffs', 'Handoffs de Agentes', openMarkdownFile);
     }), 
     // Triad Bridge Commands (Agent Handoff & Goal Mode)
-    vscode.commands.registerCommand('conn2flow.bridge.launchClaudeGoal', () => {
-        agentBridgeManager_1.AgentBridgeManager.launchClaudeGoal(runInTerminal);
+    vscode.commands.registerCommand('conn2flow.bridge.launchClaudeGoal', async () => {
+        await agentBridgeManager_1.AgentBridgeManager.launchClaudeGoal(runInTerminal);
     }), vscode.commands.registerCommand('conn2flow.bridge.copyPrompt', async () => {
         await agentBridgeManager_1.AgentBridgeManager.copyExecutorPrompt();
     }), vscode.commands.registerCommand('conn2flow.bridge.recordHandoff', async () => {
@@ -238,9 +278,11 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.manager.syncResources', () => {
         runInTerminal('./c2f resources:sync');
     }), vscode.commands.registerCommand('conn2flow.manager.cssRebuild', () => {
-        runInTerminal('./c2f css:rebuild');
+        const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
+        runInTerminal(`./c2f css:rebuild --project=${target}`);
     }), vscode.commands.registerCommand('conn2flow.manager.cssAudit', () => {
-        runInTerminal('./c2f css:audit');
+        const target = projectsManager_1.ProjectsManager.getTargetProject() || 'transformamp';
+        runInTerminal(`./c2f css:audit --project=${target}`);
     }), 
     // Projects Commands
     vscode.commands.registerCommand('conn2flow.projects.setTarget', async () => {

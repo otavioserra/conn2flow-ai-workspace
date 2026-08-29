@@ -30,14 +30,50 @@ export class AgentBridgeManager {
     };
   }
 
-  public static launchClaudeGoal(runInTerminal: (cmd: string, name?: string) => void): void {
+  public static async launchClaudeGoal(runInTerminal: (cmd: string, name?: string) => void): Promise<void> {
     const active = this.getActiveRequestFile();
     const reqName = active ? active.pointer : 'CURRENT.md';
 
     const goalPrompt = `claude "/goal Leia o briefing ativo em sdd/human-requests/CURRENT.md (${reqName}), execute todas as etapas da Live Todo List com rigor SDD, valide com c2f ai:sync, preencha sdd/validation/VALIDATION-CHECKLIST.md, registre as notas em sdd/handoffs/CURRENT-HANDOFF.md e sincronize no Git com commit semântico."`;
+    const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "/goal Leia o briefing ativo em sdd/human-requests/CURRENT.md (${reqName}), execute todas as etapas da Live Todo List com rigor SDD, valide com c2f ai:sync, preencha sdd/validation/VALIDATION-CHECKLIST.md, registre as notas em sdd/handoffs/CURRENT-HANDOFF.md e sincronize no Git com commit semântico."`;
 
-    runInTerminal(goalPrompt, 'Conn2Flow: Claude Code');
-    vscode.window.setStatusBarMessage(`🤖 Claude Code disparado no terminal (${reqName})`, 2500);
+    const items: vscode.QuickPickItem[] = [
+      {
+        label: '📋 Copiar Prompt para a Extensão do Claude (Recomendado no VS Code)',
+        description: 'Copia o prompt completo formatado para você apenas dar Ctrl+V na janela de chat do Claude'
+      },
+      {
+        label: '💻 Executar Claude CLI no Terminal',
+        description: 'Dispara comando direto no terminal: claude "/goal ..."'
+      },
+      {
+        label: '⚡ Executar via NPX no Terminal (Sem Instalação Prévia)',
+        description: 'Dispara comando sob demanda via npx @anthropic-ai/claude-code'
+      },
+      {
+        label: '📦 Instalar Claude CLI Globalmente',
+        description: 'Instala o comando globalmente no sistema: npm install -g @anthropic-ai/claude-code'
+      }
+    ];
+
+    const sel = await vscode.window.showQuickPick(items, {
+      placeHolder: 'Como você deseja disparar a execução do Claude Code?'
+    });
+
+    if (!sel) return;
+
+    if (sel.label.includes('Copiar Prompt')) {
+      await this.copyExecutorPrompt();
+      vscode.window.showInformationMessage('📋 Prompt copiado com sucesso! Abra o chat da extensão do Claude no VS Code e pressione Ctrl+V.');
+    } else if (sel.label.includes('Executar Claude CLI')) {
+      runInTerminal(goalPrompt, 'Conn2Flow: Claude Code');
+      vscode.window.setStatusBarMessage(`🤖 Claude Code disparado no terminal (${reqName})`, 2500);
+    } else if (sel.label.includes('Executar via NPX')) {
+      runInTerminal(npxGoalPrompt, 'Conn2Flow: Claude Code');
+      vscode.window.setStatusBarMessage(`🤖 Claude Code via NPX disparado no terminal (${reqName})`, 2500);
+    } else if (sel.label.includes('Instalar Claude CLI')) {
+      runInTerminal('npm install -g @anthropic-ai/claude-code', 'Conn2Flow: Instalação Claude');
+    }
   }
 
   public static async copyExecutorPrompt(): Promise<void> {

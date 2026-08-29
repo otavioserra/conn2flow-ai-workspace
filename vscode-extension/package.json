@@ -36,7 +36,7 @@
         {
           "id": "conn2flow-view-container",
           "title": "Conn2Flow Dev Tools",
-          "icon": "resources/icon.svg"
+          "icon": "$(circuit-board)"
         }
       ]
     },
@@ -122,14 +122,20 @@
         "icon": "$(robot)"
       },
       {
+        "command": "conn2flow.sdd.toggleViewMode",
+        "title": "Alternar Modo de Exibição SDD (Preview/Código/Ambos)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(split-horizontal)"
+      },
+      {
         "command": "conn2flow.sdd.openCurrent",
-        "title": "Abrir CURRENT.md (Preview)",
+        "title": "Abrir CURRENT.md",
         "category": "Conn2Flow SDD",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.sdd.openSpec",
-        "title": "Abrir SPEC.md (Preview)",
+        "title": "Abrir SPEC.md",
         "category": "Conn2Flow SDD",
         "icon": "$(file-code)"
       },
@@ -138,6 +144,30 @@
         "title": "Abrir Checklist de Validação",
         "category": "Conn2Flow SDD",
         "icon": "$(checklist)"
+      },
+      {
+        "command": "conn2flow.sdd.browseRequests",
+        "title": "Navegar Requisições Humanas (sdd/human-requests/)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "conn2flow.sdd.browseBatches",
+        "title": "Navegar Registros de Lotes (sdd/implementation/)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(history)"
+      },
+      {
+        "command": "conn2flow.sdd.browseDecisions",
+        "title": "Navegar Decisões Arquiteturais (sdd/decisions/)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(repo)"
+      },
+      {
+        "command": "conn2flow.sdd.browseHandoffs",
+        "title": "Navegar Handoffs de Agentes (sdd/handoffs/)",
+        "category": "Conn2Flow SDD",
+        "icon": "$(repo-pull)"
       },
       {
         "command": "conn2flow.bridge.launchClaudeGoal",
