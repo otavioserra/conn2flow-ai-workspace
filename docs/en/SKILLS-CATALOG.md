@@ -1,10 +1,10 @@
 # 🧩 Skills Catalog — Conn2Flow AI Workspace
 
-This catalog lists the **34 Skills** (27 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)**, and **OpenAI Codex (`.codex/skills/`)**.
+This catalog lists the **36 Skills** (29 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)**, and **OpenAI Codex (`.codex/skills/`)**.
 
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 27 Skills
+## 🛠️ 1. Core Framework Skills (`c2f-*`) — 29 Skills
 
 | Skill | Trigger & Core Purpose |
 | :--- | :--- |
@@ -28,12 +28,14 @@ This catalog lists the **34 Skills** (27 Core Framework Skills + 7 SDD Workflow 
 | **`c2f-javascript-ajax`** | **[UPDATED]** Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 Forbidden prevention (`ajax: 'sim'`), PHP lifecycle, and Version Bump rule. |
 | **`c2f-crawlers-and-bots`** | Detecting search bots, scrapers, and social media crawlers (OpenGraph). |
 | **`c2f-cookie-management`** | Cookie manipulation with hashing and LGPD/GDPR compliance. |
-| **`c2f-tailwind-css-architecture`** | **[NEW/UPDATED]** Tailwind CSS v4 governance, cascade collision avoidance, database `css_compiled` clearing, dynamic templates (`tailwind_dependencies`), and `c2f resources:sync` compilation. |
+| **`c2f-tailwind-css-architecture`** | **[UPDATED]** Tailwind CSS v4 governance, Authorship vs Derived separation (`html`/`css` = authorship, `css_precompiled`/`css_compiled` = derived), `c2f css:audit` and `c2f css:rebuild` instrumentation, `tailwind_sources` in PHP/JS classified as technical debt. |
 | **`c2f-library-system`** | Dynamic inclusion and versioning of system libraries (`gestor_incluir_biblioteca`). |
 | **`c2f-url-routing`** | Canonical URL resolution, dynamic routing, and URL rewrites. |
 | **`c2f-i18n-translations`** | Translation and internationalization of interfaces and dictionaries (`__t()`). |
 | **`c2f-file-system-operations`** | Secure uploads, file system operations, and absolute path resolution. |
 | **`c2f-log-system`** | Unified disk logging (`log_disco()`) and runtime debugging. |
+| **`c2f-shell-and-windows-traps`** | **[NEW]** Protection against the 5 Windows/Git Bash/Docker traps: MSYS path conversion, `curl` with `<`, Python heredocs with control bytes, silent asserts, and `multipart/form-data` forms with hidden triggers. |
+| **`c2f-project-pipeline-and-tasks`** | **[NEW]** Mandatory Pipeline ≠ File Copy rule (`c2f manager:update-all` and `c2f project:update-all`), `devProjects.<id>.local` declarative authority in `environment.json`, runtime source of truth (database vs disk), and VS Code Tasks ↔ CLI `c2f` equivalence table. |
 
 ---
 
@@ -55,7 +57,7 @@ This catalog lists the **34 Skills** (27 Core Framework Skills + 7 SDD Workflow 
 
 ## ⚡ 3. The Execution Contract Pattern (`TRIGGER` & `SKIP`)
 
-All 34 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
+All 36 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
 
 ```markdown
 # ⚡ Mandatory Trigger

@@ -169,15 +169,15 @@ As projects evolve, execution memories can grow large (~100 KB+), consuming unne
 
 ---
 
-## 🛠️ Conn2Flow Core Skills Catalog (27 Engineering Skills)
+## 🛠️ Conn2Flow Core Skills Catalog (29 Engineering Skills)
 
-The workspace centralizes a complete catalog of **27 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**34 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
+The workspace centralizes a complete catalog of **29 Conn2Flow Core Skills** (`c2f-*`) + **7 SDD Workflow Skills** (**36 Skills total**), automatically injected into all project kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/`) to equip any AI agent with native technical intelligence about the ecosystem:
 
 1. **Resources, Variables & Frontend**:
    - `c2f-resources-system`: Source compilation architecture for 11 resource types (`resources/`) to `*Data.json`, declarative SQL sync, and mandatory Version Bump rule.
    - `c2f-variables-system`: **[NEW]** Multi-language i18n, system alerts/warnings, and UI labels governance via `variables.json`. Prohibits hardcoded strings in PHP/HTML/JS.
    - `c2f-html-css-pages-and-components`: Mandatory rule prohibiting loose static `.html`, `.css`, and `.md` files outside `resources/`.
-   - `c2f-tailwind-css-architecture`: Tailwind CSS v4 governance for responsive cascade, `css_compiled`, dynamic templates, and builds through `c2f resources:sync`.
+   - `c2f-tailwind-css-architecture`: Tailwind CSS v4 governance, Authorship vs. Derived separation, `c2f css:audit` and `c2f css:rebuild` instrumentation, and elimination of manual `css_compiled` DB clearing.
    - `c2f-modelo-templates`: HTML template parsing and repeating cells (`modelo_var_troca`, `<!-- cel < -->`, `modelo_var_in`).
    - `c2f-javascript-ajax`: Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 prevention (`ajax: 'sim'`), PHP lifecycle, and Version Bump rule.
    - `c2f-multilingual-system`: Hybrid i18n system (`pt-br`, `en`, `es`), `language` natural key, and physical directories.
@@ -196,7 +196,9 @@ The workspace centralizes a complete catalog of **27 Conn2Flow Core Skills** (`c
    - `c2f-json-resources-sync` & `c2f-mysql-utf8-emoji-encoding`: UTF-8mb4 encoding and JSON metadata synchronization.
 
 3. **Projects, Plugins & Automation**:
-   - `c2f-agent-visual-inspection`: **[NEW]** Autonomous visual and runtime inspection in local Docker environment (`c2f page:inspect`, `c2f auth:cookie`).
+   - `c2f-project-pipeline-and-tasks`: **[NEW]** Mandatory Pipeline ≠ File Copy rule (`c2f manager:update-all` and `c2f project:update-all`), `devProjects.<id>.local` declarative authority in `environment.json`, and VS Code Tasks ↔ CLI `c2f` equivalence table.
+   - `c2f-shell-and-windows-traps`: **[NEW]** Protection against the 5 Windows, Git Bash, and Docker traps (MSYS path conversion, curl with `<`, Python heredocs, silent asserts, and multipart forms).
+   - `c2f-agent-visual-inspection`: **[NEW]** Autonomous visual and runtime inspection in local Docker environment (`c2f page:inspect`, `c2f auth:cookie`, `c2f css:audit --url=<route>`).
    - `c2f-projects-system`: Private project deployment pipeline via OAuth API (`/api/project/update`), ZIP, and inline execution.
    - `c2f-plugin-architecture`: Manifest `plugin.json`, scoping, and lifecycle (`_install`/`_uninstall`) for public and private plugins.
    - `c2f-system-tasks`: System automation tasks hub (`.vscode/tasks.json`) for Docker, builds, and deploys.
@@ -238,7 +240,7 @@ For in-depth technical guides, explore the dedicated documentation in `docs/en/`
 * 🚀 [Core CLI, MCP Hub & Worktrees Quickstart](docs/en/QUICKSTART-CLI-AND-MCP.md) — Complete tutorial and command reference.
 * 🧭 [Multi-Agent & IDE Orchestration Playbook](docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) — Seamlessly switch between Claude, Cursor, Copilot, and Antigravity.
 * 🏛️ [Double Agent Architecture](docs/en/DOUBLE-AGENT-ARCHITECTURE.md) — Role separation, writing boundaries, and governance.
-* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 34 skills with contracts.
+* 🧩 [Complete Skills Catalog](docs/en/SKILLS-CATALOG.md) — Exhaustive guide for all 36 skills with contracts.
 * 🔮 [Future Evolution Roadmap](docs/en/FUTURE-EVOLUTION-ROADMAP.md) — MCP Servers, self-healing CI/CD, and educational framework.
 
 👉 *Looking for Brazilian Portuguese documentation? Check the [Portuguese Documentation Hub](docs/pt-br/README.md).*

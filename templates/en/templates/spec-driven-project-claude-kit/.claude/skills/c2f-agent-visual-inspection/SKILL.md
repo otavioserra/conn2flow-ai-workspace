@@ -1,76 +1,91 @@
 ---
 name: c2f-agent-visual-inspection
-description: "MANDATORY READ before visually validating screens, CSS animations, console errors or authenticated Gestor routes in the local test environment. Eliminates the need for human intervention for visual checks."
+description: "LEIA OBRIGATORIAMENTE antes de validar visualmente telas, animações CSS, erros de console ou rotas autenticadas do Gestor no ambiente local de testes. Elimina a necessidade de intervenção humana para checagem visual."
 user-invocable: false
 ---
 
-# Automated Visual Inspection and Validation in Conn2Flow Local Environment
+# Inspeção e Validação Visual Automatizada no Ambiente Local Conn2Flow
 
-# ⚡ Mandatory Trigger
-- **TRIGGER**: Validating visual rendering, computed styles (`getComputedStyle`), CSS animations (`getAnimations`), JavaScript console errors, or authenticated Gestor routes in the local test environment (Docker).
-- **SKIP ONLY IF**: Purely backend CLI or migration tasks without screen rendering.
-- **CONSEQUENCE OF IGNORING**: Leaving items pending as "awaiting operator visual sign-off", consuming extra context rounds and masking visual bugs (e.g. `@media (prefers-reduced-motion)` or hidden CSS classes).
+# ⚡ Gatilho Obrigatório
+- **TRIGGER**: Validar renderização visual, estilos computados (`getComputedStyle`), animações CSS (`getAnimations`), erros de console JavaScript ou rotas autenticadas do Gestor no ambiente local de testes (Docker).
+- **SKIP APENAS SE**: Tarefas puramente de backend CLI ou migrations sem renderização de tela.
+- **CONSEQUÊNCIA DE IGNORAR**: Deixar itens pendentes como "aguarda homologação visual do operador", gastando rodadas extras de contexto e mascarando bugs visuais (ex: `@media (prefers-reduced-motion)` ou classes CSS ocultas).
 
 ---
 
-## 🔄 Canonical 5-Stage Lifecycle
+## 🔄 Ciclo de Vida Canônico de 5 Etapas
 
 ```mermaid
 graph LR
-    S1["1. Sync Mirror<br/>c2f project:sync-core"] --> S2["2. Enable Dev Mode<br/>c2f env:set development"]
-    S2 --> S3["3. Generate Session<br/>c2f auth:cookie --project"]
-    S3 --> S4["4. Inspect Screen<br/>c2f page:inspect"]
-    S4 --> S5["5. Restore Env<br/>c2f env:set production"]
+    S1["1. Sincronizar Mirror<br/>c2f project:sync-core"] --> S2["2. Ativar Modo Dev<br/>c2f env:set development"]
+    S2 --> S3["3. Gerar Sessão<br/>c2f auth:cookie --project"]
+    S3 --> S4["4. Inspecionar Tela<br/>c2f page:inspect"]
+    S4 --> S5["5. Restaurar Ambiente<br/>c2f env:set production"]
 ```
 
-### Step-by-Step Protocol:
+### Protocolo Passo a Passo:
 
-#### Step 1: Mirror Synchronization (If Core was modified)
+#### Passo 1: Sincronização do Mirror (Se o Core foi modificado)
 ```bash
 ./c2f project:sync-core <projectID>
 ```
-*Ensures the local test mirror (`dev-environment/data/sites/localhost/<site>/`) has the latest functions and libraries from Core.*
+*Garante que o espelho de teste local (`dev-environment/data/sites/localhost/<site>/`) possui as funções e bibliotecas mais recentes do Core.*
 
-#### Step 2: Enable Development Mode
+#### Passo 2: Ativação do Modo de Desenvolvimento
 ```bash
 ./c2f env:set development --project=<projectID>
 ```
-*Enables direct reading of physical disk resources (`resources/`) and secure cookie relaxation over local HTTP.*
+*Habilita leitura direta de recursos em disco (`resources/`) e relaxamento seguro de cookies em conexões HTTP locais.*
 
-#### Step 3: Server-Side Cookie Jar Generation
+#### Passo 3: Geração do Cookie Jar Server-Side
 ```bash
 ./c2f auth:cookie --project=<projectID>
 ```
-*Generates `temp/agent-cookies.txt` with authenticated session credentials from the runtime inside the Docker container.*
+*Gera `temp/agent-cookies.txt` com as credenciais de sessão autenticadas pelo runtime dentro do container Docker.*
 
-#### Step 4: Visual Inspection & Evidence Collection (Verbatim HTML with Sanitization Bypass)
+#### Passo 4: Inspeção Visual e Coleta de Evidências (HTML Verbatim com Bypass de Sanitização)
 ```bash
-./c2f page:inspect "http://localhost/<site>/<route>" --selector="<selector>" --computed="display,opacity,transform" --screenshot
+./c2f page:inspect "http://localhost/<site>/<rota>" --selector="<seletor>" --computed="display,opacity,transform" --screenshot
 ```
-*Executes Chrome Headless via Playwright, injects session cookies, and returns structured JSON with HTTP status, JS console errors, computed styles, and PNG screenshot.*
+*Executa o Chrome Headless via Playwright, injeta os cookies da sessão e devolve JSON com status HTTP, erros de console JS, estilos computados e screenshot PNG.*
 > [!NOTE]
-> Because the agent session uses administrative authentication (`auth:cookie`), the HTML sanitizer is **automatically bypassed** (`gestor_dashboard_toolbar_ativo() === true`). The agent receives verbatim HTML with architectural comments, section attributes (`data-id`, `data-title`), and widget markers (`<!-- widgets#... -->`) intact.
+> Como a sessão do agente utiliza autenticação de administrador (`auth:cookie`), o sanitizador de HTML é **automaticamente bypassado** (`gestor_dashboard_toolbar_ativo() === true`). O agente recebe o HTML com comentários de arquitetura, seções (`data-id`, `data-title`) e marcadores de widgets (`<!-- widgets#... -->`) intactos.
 
-#### Step 5: Environment Restoration (Mandatory Tear Down)
+#### Passo 5: Restauração do Ambiente (Tear Down Obrigatório)
 ```bash
 ./c2f env:set production --project=<projectID>
 ```
-*Restores production mode in project `.env` and safely concludes the test cycle.*
+*Restaura o modo de produção no `.env` do projeto e encerra o ciclo de teste com segurança.*
 
 ---
 
-## 🛠️ Troubleshooting Guide
+## 🛠️ Guia de Resolução de Problemas (Troubleshooting)
 
-1. **`DB_HOST=mysql` & Database Connectivity**:
-   - Commands accessing the database (`auth:cookie`, `db:test`) require the `conn2flow-app` / `mysql` Docker containers to be running.
+1. **`DB_HOST=mysql` & Conectividade de Banco**:
+   - Os comandos que acessam banco (`auth:cookie`, `db:test`) dependem do container Docker `conn2flow-app` / `mysql` ativo.
 2. **`503 .env not found`**:
-   - If the project cannot find `.env`, ensure you pass `--project=<projectID>` and check that `path_tests` is correctly configured in `dev-environment/data/environment.json`.
-3. **False Negatives from Outdated Core**:
-   - If a new core function is missing during page execution on the mirror, immediately run **Step 1** (`./c2f project:sync-core <projectID>`).
+   - Se o projeto não localizar o arquivo `.env`, certifique-se de passar `--project=<projectID>` e verificar se `path_tests` está configurado corretamente em `dev-environment/data/environment.json`.
+3. **Falsos Negativos por Core Desatualizado**:
+   - Se uma nova função do core não for encontrada durante a execução da página no mirror, execute imediatamente o **Passo 1** (`./c2f project:sync-core <projectID>`).
 
 ---
 
-## ⛔ Inviolable Inspection Rules:
-1. **EXCLUSIVE TO LOCAL TEST ENVIRONMENT**: NEVER execute automated inspection, auth, or scraping against production URLs.
-2. **SDD Registration**: Inspection evidence (JSON from `page:inspect` and screenshots) MUST be logged directly into `VALIDATION-CHECKLIST.md` rather than marking "pending operator".
-3. **Mandatory Tear Down**: ALWAYS finalize by restoring the environment via `c2f env:set production --project=<projectID>`.
+## 🎨 Auditoria de CSS em Telas Inspecionadas
+
+Após a inspeção visual (Passo 4), o agente pode complementar a validação com auditoria de CSS para identificar classes órfãs, CSS derivado desatualizado ou dívida técnica de classes Tailwind em PHP/JS:
+
+```bash
+./c2f css:audit --url=<rota-inspecionada>
+```
+
+Este comando audita a página composta real (layout + componentes renderizados) e mapeia:
+- Classes CSS declaradas mas não utilizadas no HTML renderizado.
+- Classes Tailwind geradas dinamicamente por PHP/JS (dívida técnica).
+- Divergências entre `css_compiled` no banco e o CSS que deveria ser derivado do HTML atual.
+
+---
+
+## ⛔ Regras Invioláveis de Inspeção:
+1. **EXCLUSIVO PARA AMBIENTE LOCAL DE TESTES**: NUNCA execute inspeção, auth ou scraping automatizado em URLs de produção.
+2. **Registro no SDD**: As evidências de inspeção (JSON do `page:inspect` e screenshots) DEVEM ser registradas diretamente no `VALIDATION-CHECKLIST.md` do repositório em vez de marcar "pendente do operador".
+3. **Tear Down Obrigatório**: SEMPRE finalize restaurando o ambiente com `c2f env:set production --project=<projectID>`.

@@ -402,6 +402,34 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 *   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
 *   **Evidência**: 34 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
 
+---
+
+## BATCH-027: Implementação das Skills #35 e #36, Governança de Autoria CSS e 36 Skills Oficiais
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação de `c2f-shell-and-windows-traps/SKILL.md` (Skill #35) nos 5 masters e 14 templates em PT-BR e EN (19 localizações).
+- [x] Criação de `c2f-project-pipeline-and-tasks/SKILL.md` (Skill #36) nos 5 masters e 14 templates em PT-BR e EN (19 localizações).
+- [x] Reestruturação de `c2f-tailwind-css-architecture/SKILL.md` em todos os masters e templates (Autoria vs Derivado, eliminação do hack `css_compiled = NULL`, comandos `c2f css:audit` e `c2f css:rebuild`, e dívida de `tailwind_sources`).
+- [x] Atualização de `c2f-resources-system/SKILL.md` em todos os masters e templates (seção 3.1 Fonte da Verdade em Runtime - banco vs disco).
+- [x] Atualização de `c2f-agent-visual-inspection/SKILL.md` em todos os masters e templates (auditoria de CSS pós-inspeção com `c2f css:audit --url=<rota>`).
+- [x] Atualização de `AiSyncCommand.php` no core `conn2flow` para auditar 36 skills.
+- [x] Atualização de `docs/pt-br/CATALOGO-DE-SKILLS.md` e `docs/en/SKILLS-CATALOG.md` para 36 skills (29 Core + 7 SDD).
+- [x] Atualização de `README.md` e `README-PT-BR.md`.
+- [x] Atualização de `scripts/sync-all-repos.ps1`.
+- [x] Propagação com `-Force` concluída nos 4 repositórios alvo via `sync-all-repos.ps1`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: Validação de Integridade e Contratos via Core CLI
+*   **Comando**: `php cli/c2f.php ai:sync`.
+*   **Evidência**: 36 skills validadas com 100% de conformidade de contrato `# ⚡ Gatilho Obrigatório` nos 5 kits (.claude, .cursor, .gemini, .github, .codex).
+
+#### Teste 2: Sincronização nos Repositórios
+*   **Comando**: `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-all-repos.ps1 -Force`.
+*   **Evidência**: 36 skills e 5 kits sincronizados com sucesso em `conn2flow`, `lumix`, `transformamp` e `conn2flow-site`.
+
+
 
 
 
