@@ -36,6 +36,29 @@ flowchart TD
 
 ---
 
+## 🎭 1.1 Topologias Suportadas (Duplo Agente vs. Tríade de Agentes)
+
+O framework suporta duas topologias oficiais, alternáveis visualmente pela **Extensão do VS Code (`conn2flow-tools`)** ou pelo cabeçalho do `sdd/human-requests/CURRENT.md`:
+
+```
+                    ┌─────────────────────────────────────────────────────────────┐
+                    │                    TOPOLOGIAS DE AGENTES                    │
+                    └─────────────────────────────────────────────────────────────┘
+                                   │                               │
+                [👥 MODO DUPLO AGENTE]             [🏛️ MODO TRÍADE DE AGENTES]
+                (Ágil / Didático / Iniciante)      (Enterprise / Rigor Máximo / QA)
+                         │                                         │
+        Humano ➔ Arquiteto ➔ Executor ➔ Humano   Humano ➔ Arquiteto ➔ Executor ➔ Revisor ➔ Arquiteto ➔ Humano
+```
+
+1. **Topologia 👥 Duplo Agente (Arquiteto + Executor)**:
+   - **Objetivo**: Máxima agilidade, ideal para aprendizado de novos desenvolvedores, prototipação rápida e tarefas do dia a dia.
+   - **Fluxo**: O Arquiteto planeja e gera a requisição (`req-XXX.md`), o Executor implementa e entrega o lote, e o Arquiteto audita em alto nível para o Humano.
+
+2. **Topologia 🏛️ Tríade de Agentes (Arquiteto + Executor + Revisor Técnico)**:
+   - **Objetivo**: Padrão corporativo para código de produção crítico, eliminando o "viés de confirmação" do executor.
+   - **Papel do Revisor (QA Inspector)**: Um agente com perfil hipercrítico que **não escreve código novo**; ele analisa diffs, variáveis não declaradas, ausência de internacionalização em `variables.json`, roda `c2f ai:sync` e `c2f css:audit`, e emite um relatório técnico de validação (`review-YYY.md`). Se houver falhas, solicita alterações antes da consolidação do Arquiteto.
+
 ## 🛡️ 2. Pilares de Sustentação da Metodologia
 
 1. **Fronteira de Escrita (Ping-Pong Boundary)**: O Arquiteto e o Executor possuem permissões rígidas sobre quais pastas do repositório podem modificar.
