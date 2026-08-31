@@ -758,15 +758,45 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Tarefa despachada pelo Arquiteto via ferramenta MCP `dispatch_task` (`conn2flow-hub`) registrando `tasks/REQ-041.json`.
-- [ ] Arquivo probe `vscode-extension/test/mcpTriadProbe.test.cjs` criado pelo Executor e aprovado em `npm test` (48/48 testes).
-- [ ] Recibo de conclusão emitido pelo Executor via ferramenta MCP `report_completion` (`completions/BATCH-043-receipt.json`).
-- [ ] Relatório de auditoria independente `sdd/validation/review-043.md` gerado pelo Revisor Técnico com parecer `APPROVED`.
-- [ ] Homologação executiva final realizada pelo Macro-Arquiteto.
+- [x] Tarefa despachada pelo Arquiteto via ferramenta MCP `dispatch_task` (`conn2flow-hub`) registrando `tasks/REQ-041.json`.
+- [x] Arquivo probe `vscode-extension/test/mcpTriadProbe.test.cjs` criado pelo Executor e aprovado em `npm test` (48/48 testes).
+- [x] Recibo de conclusão emitido pelo Executor via ferramenta MCP `report_completion` (`completions/BATCH-043-receipt.json`).
+- [x] Relatório de auditoria independente `sdd/validation/review-043.md` gerado pelo Revisor Técnico com parecer `APPROVED`.
+- [x] Homologação executiva final realizada pelo Macro-Arquiteto.
+
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote)*
+#### Teste 1: despacho MCP
+
+* **Status**: PASS.
+* **Evidência**: handshake JSON-RPC/stdio com `conn2flow-hub`, listagem das tools e chamada `dispatch_task`; `tasks/REQ-041.json` registra `repo=conn2flow-ai-workspace`, `mode=supervised` e `status=dispatched`.
+
+#### Teste 2: probe e regressão
+
+* **Status**: PASS.
+* **Comandos**: `node --test test/mcpTriadProbe.test.cjs`; `npm test`, ambos em `vscode-extension/`.
+* **Evidência**: probe focado 1/1; compilação TypeScript aprovada; suíte canônica 48/48, 0 falhas.
+
+#### Teste 3: recibo MCP
+
+* **Status**: PASS.
+* **Evidência**: chamada real `report_completion` pelo Hub gerou `completions/BATCH-043-receipt.json`, recibo `rec_1788200250647`, status `success`; timestamp `2026-08-31T18:17:30.646Z`, posterior ao despacho final `2026-08-31T18:06:25.576Z`, com o `task-1788199585576-df7a0` referenciado nos logs.
+
+#### Pendências de papéis independentes
+
+* Auditoria do Revisor Técnico e `sdd/validation/review-043.md`.
+* Homologação executiva final do Macro-Arquiteto.
+
+#### Teste 4: auditoria independente do Revisor Técnico
+
+* **Status**: FAIL / `CHANGES_REQUIRED`.
+* **Relatório**: `sdd/validation/review-043.md`.
+* **Regressão**: probe focado 1/1 e suíte canônica 48/48 aprovados pelo Revisor.
+* **Bloqueadores**: o recibo não possui vínculo estruturado com a tarefa e é sobrescrito por batch;
+  o probe não valida o arquivo de recibo; a tarefa permanece `dispatched` após o recibo `success`.
+* **Gate**: o item de relatório `APPROVED` permanece desmarcado até a correção e nova rodada de
+  auditoria.
 
 
 

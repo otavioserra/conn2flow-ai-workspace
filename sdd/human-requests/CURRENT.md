@@ -1,7 +1,7 @@
 # CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-041.md](req-041.md)
-* **Status**: `READY_FOR_EXECUTION`
+* **Status**: `HOMOLOGATED`
 * **Lote Relacionado**: `BATCH-043`
 * **Topologia de Agentes**: `triade`
 * **Nível de Autonomia**: `supervisionado`
@@ -10,7 +10,6 @@
 
 ## Execução atual
 
-REQ-041 aprovada pelo Humano-no-Loop para o BATCH-043.
-Foco prioritário:
-- Teste End-to-End da Tríade de Agentes via MCP Hub (`conn2flow-hub`): despacho via `dispatch_task`, implementação do probe `vscode-extension/test/mcpTriadProbe.test.cjs`, reporte via `report_completion`, auditoria pelo Revisor Técnico e homologação executiva final.
-Aguardando o Agente Executor iniciar a implementação e apresentar a Live Todo List.
+REQ-041 / BATCH-043 implementado pelo Executor (Codex), auditado e aprovado pelo Revisor Técnico (`c2f_reviewer`) em `sdd/validation/review-043.md` com 48/48 testes aprovados e recibo MCP emitido. Homologado com sucesso pelo Macro-Arquiteto.
+Pronto para intake da próxima requisição (REQ-042 / BATCH-044).
+
