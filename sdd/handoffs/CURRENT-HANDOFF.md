@@ -17,6 +17,9 @@ Olá Executor! A **REQ-043** realiza a reorganização ergonômica da árvore do
 
 ⚠️ **REGRA DE OURO**: **NENHUM comando existente deve ser removido**. A infraestrutura e todas as opções existentes de Core, Releases, Projetos Satélites, Diagnósticos, SDD e Docs continuam 100% ativas e presentes, apenas reposicionadas de forma mais lógica e limpa.
 
+🎨 **IDENTIDADE VISUAL VIVA**: Todos os rótulos de seções e itens da árvore nos catálogos NLS (`package.nls.json`, `package.nls.pt-br.json`, `localizationCatalog.ts`) devem receber **emojis Unicode coloridos** no início do texto para tornar a árvore super viva, visual e com alto contraste, acabando com a sensação de ícones PB apagados.
+
+
 ### 🌳 Mapa Completo da Nova Estrutura:
 
 #### 1. 🎛️ Seção "Controles Principais" (antiga "Visão Geral")
