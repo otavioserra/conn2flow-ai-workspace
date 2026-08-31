@@ -697,15 +697,51 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `findWorkflowRun` filtra execuções por timestamp (`createdAt >= triggeredAfter`) e ignora execuções antigas com falha para a mesma tag.
-- [ ] O `gh run watch` monitora a run correta e recém-disparada até o término.
-- [ ] Ao término com sucesso, o rascunho de release é limpo de `workspaceState`, a árvore atualiza e exibe a mensagem de sucesso.
-- [ ] Suíte de testes `npm test` atualizada e 100% aprovada.
-- [ ] Pacote VSIX gerado e instalado na máquina local com `--force`.
+- [x] `findWorkflowRun` filtra execuções por timestamp (`createdAt >= triggeredAfter`) e ignora execuções antigas com falha para a mesma tag.
+- [x] O `gh run watch` monitora a run correta e recém-disparada até o término.
+- [x] Ao término com sucesso, o rascunho de release é limpo de `workspaceState`, a árvore atualiza e exibe a mensagem de sucesso.
+- [x] Suíte de testes `npm test` atualizada e 100% aprovada.
+- [x] Pacote VSIX gerado e instalado na máquina local com `--force`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: política temporal de seleção da run
+
+* **Status**: PASS.
+* **Evidência**: `releasePolicy.test.cjs` cobre descarte de run anterior, descarte de falha concluída, filtro de tag, seleção de `queued`/`in_progress`, prioridade da run ativa mais recente, aceite imediato do sucesso terminal mais recente e continuidade do polling sem candidato elegível.
+
+#### Teste 2: integração do fluxo de release
+
+* **Status**: PASS.
+* **Evidência**: teste de contrato confirma `triggeredAfter` antes de `runner.run`, passagem do timestamp ao polling, consulta dos cinco campos do `gh`, limpeza aguardada de `workspaceState`, refresh por `onChanged` e diálogo localizado `release.completed`. A compilação TypeScript terminou sem erros.
+
+#### Teste 3: suíte, pacote e instalação
+
+* **Status**: PASS.
+* **Evidência**: `npm test` aprovou 47/47; `git diff --check` passou; VSIX com 61 arquivos e 153.957 bytes, SHA-256 `AD7F8BCEBEBEEBD276EAD3E196C9DFF45A0316EB8E16462FAE4DBEA097C0FE46`; instalação com `--force` concluída para `conn2flow.conn2flow-tools@1.0.0`; hashes de quatro JavaScripts críticos idênticos entre build e instalação.
+
+#### Teste 4: revisão e memória
+
+* **Status**: PASS.
+* **Evidência**: revisão findings-first sem findings funcionais, regressões ou spec drift remanescentes. `debug.log` local foi excluído do VSIX por `.vscodeignore`, sem apagar o arquivo do usuário. Memória medida em 2.118 bytes / 27 linhas antes do registro, abaixo do alerta de gardening.
+
+---
+
+## BATCH-042: Propagação Global da Governança Multi-Repositório
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `conn2flow/AGENTS.md` atualizado com a regra 7 (Identificação de Repositório em Handoffs e Prompts).
+- [ ] `conn2flow/GEMINI.md` atualizado com a regra 6 (Identificação de Repositório em Prompts para Agentes).
+- [ ] Skill canônica `sdd-workflow/SKILL.md` atualizada com o protocolo formal de identificação multi-repositório.
+- [ ] `php cli/c2f.php ai:sync` executado no Core com sucesso propagando as 36 skills para todas as ferramentas de IA suportadas.
+- [ ] Boilerplates de projetos satélites atualizados para incluir as regras de governança multi-repositório.
+- [ ] Verificação de integridade sem regressões ou quebra de testes.
 
 ### 2. Evidências de Validação
 
 *(Aguardando execução do lote pelo Agente Executor)*
+
 
 
 

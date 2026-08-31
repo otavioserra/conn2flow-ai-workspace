@@ -1,10 +1,11 @@
-# Handoff do Macro-Arquiteto — REQ-039 / BATCH-041
+# Handoff do Macro-Arquiteto — REQ-040 / BATCH-042
 
 * **Status**: `READY_FOR_EXECUTION`
 * **Emissor**: Macro-Arquiteto (Antigravity)
 * **Destinatário**: Agente Executor (OpenAI Codex / VS Code Extension)
 * **Data**: 2026-08-31
-* **Requisição Ativa**: [req-039.md](../human-requests/req-039.md)
+* **Projeto Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) + `conn2flow` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`)
+* **Requisição Ativa**: [req-040.md](../human-requests/req-040.md)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
 * **Autonomia**: `supervisionado`
 
@@ -12,39 +13,35 @@
 
 ## 🎯 Instruções para o Agente Executor
 
-Olá Executor! A **REQ-039** foi aberta para resolver o problema de monitoramento do GitHub Actions após o disparo do release no VS Code:
+Olá Executor! A **REQ-040** foi aberta para propagar globalmente a regra inviolável de **Identificação Mandatória de Repositório e Caminho Absoluto nos Prompts de Handoffs de Agentes** em todo o ecossistema Conn2Flow:
 
-### 1. Problema Diagnosticado
-No arquivo `vscode-extension/src/providers/releaseManager.ts`:
-- O método `findWorkflowRun(root, workflow, tag)` executa `gh run list --workflow <workflow> --json databaseId,headBranch --limit 20` e pega a primeira run com `headBranch === tag`.
-- Se houve uma execução anterior com falha para essa mesma tag, o `gh run list` retorna a execução antiga com falha.
-- Em seguida, o VS Code dispara `gh run watch <run-antiga-com-falha> --exit-status`, que falha imediatamente com o erro:
-  `Run Release Gestor (...) has already completed with 'failure'`.
-- Por conta disso, a extensão aborta na linha 372 (`if (!workflow.succeeded) return;`), **sem limpar o rascunho de release** e sem mostrar a notificação de sucesso para o usuário, mesmo que a run atual tenha sido iniciada com sucesso.
+### 1. No Repositório Core (`conn2flow` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`)
+- Atualizar `conn2flow/AGENTS.md`:
+  * Adicionar a Regra Inviolável 7:
+    > `7. **Identificação de Repositório em Handoffs e Prompts**: Sempre explicitar o identificador do projeto e o caminho absoluto da raiz do repositório alvo (ex: conn2flow em c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow) nas mensagens de acionamento para outros agentes.`
+- Atualizar `conn2flow/GEMINI.md`:
+  * Adicionar a Regra Inviolável 6:
+    > `6. **Identificação de Repositório em Prompts para Agentes**: Sempre que o Macro-Arquiteto preparar mensagens para o usuário repassar a agentes executores ou revisores, DEVE incluir o identificador e o caminho absoluto da raiz do repositório alvo para evitar confusão de contexto em sessões com múltiplos repositórios abertos.`
 
-### 2. Implementação Solicitada
-1. **Em `releaseManager.ts`**:
-   - Ajustar a assinatura ou chamador para guardar o momento do disparo: `const triggeredAfter = new Date();` antes do comando de release ser chamado.
-   - No método `findWorkflowRun`:
-     * Chamar `gh run list` solicitando os campos adicionais: `databaseId,headBranch,status,conclusion,createdAt`.
-     * Filtrar itens onde `item.headBranch === tag`.
-     * Descartar runs cujo `createdAt` seja nitidamente anterior ao momento do disparo, ou cujo `status === 'completed'` e `conclusion === 'failure'`.
-     * Priorizar runs cujo `status === 'in_progress'` ou `status === 'queued'`.
-     * Se a run mais recente já estiver com `status === 'completed'` e `conclusion === 'success'`, retornar diretamente sem travar.
-     * Continuar nas tentativas de polling (`attempt < 20`) aguardando a nova run aparecer.
-   - Garantir que, após o watch bem-sucedido (ou caso a run conclua com sucesso), o rascunho seja limpo (`workspaceState.update(this.draftKey(product), undefined)`), a árvore dê refresh e o diálogo de sucesso seja exibido.
+### 2. Na Skill Canônica de Governança SDD (`sdd-workflow`)
+- Atualizar o arquivo `SKILL.md` da skill `sdd-workflow` em ambos os repositórios (`conn2flow-ai-workspace/.gemini/skills/sdd-workflow/SKILL.md` e no Core):
+  * Adicionar a seção normativa sobre identificação obrigatória de repositório nos handoffs.
+- No repositório Core (`conn2flow`), rodar o script de sincronização oficial das 36 skills:
+  ```bash
+  php cli/c2f.php ai:sync
+  ```
+  Isso sincronizará a skill para todos os diretórios de agentes suportados (`.gemini/`, `.codex/`, `.claude/`, `.github/`, `.cursor/`).
 
-2. **Testes Unitários**:
-   - Adicionar teste em `test/releasePolicy.test.cjs` para a função/lógica de seleção de workflow run (descarte de runs antigas falhadas e seleção da run correta).
-   - Executar `npm test` para garantir 100% de aprovação.
+### 3. Nos Boilerplates de Novos Projetos Satélites
+- Verificar e atualizar os templates/boilerplates de `AGENTS.md` e `GEMINI.md` utilizados pelo comando `c2f project:scaffold` ou pela extensão do VS Code (`vscode-extension/src/providers/projectsManager.ts`), garantindo que qualquer novo projeto satélite já nasça com a regra incluída.
 
-3. **Compilação e Instalação**:
-   - Compilar o `.vsix` e atualizar a instalação local com:
-     `code --install-extension vscode-extension/conn2flow-tools-1.0.0.vsix --force`.
+### 4. Validação
+- Executar os testes em `vscode-extension/` (`npm test`) para garantir que nenhuma regressão foi introduzida.
+- Verificar integridade dos arquivos e não usar `git add .` ou `git add -A`.
 
 ---
 
 ## 📝 Protocolo de Execução
 1. Renderize a sua Live Todo List (`[ ]` ➔ `[x]`).
-2. Implemente a correção.
+2. Implemente as sincronizações nos arquivos indicados.
 3. Ao concluir, atualize `CURRENT-HANDOFF.md` e `CURRENT.md` para `READY_FOR_REVIEW` para que o Revisor Técnico faça a auditoria.
