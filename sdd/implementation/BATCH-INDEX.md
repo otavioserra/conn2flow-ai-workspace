@@ -27,9 +27,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-036** | complete | Ponte da tríade e controles da árvore | `VALIDATION-CHECKLIST.md#batch-036` | Concluído no commit `50845f7`. |
 | **BATCH-037** | complete | Recuperação pós-BATCH-036 e estabilização do preview MPE | `VALIDATION-CHECKLIST.md#batch-037` | REQ-035; validação humana concluída. |
 | **BATCH-038** | complete | Reestruturação segura, multilanguage, backlog e releases | `VALIDATION-CHECKLIST.md#batch-038` | Regressão de `Colapsar todas` corrigida; 31 testes e hashes aprovados. |
-| **BATCH-039** | in-progress | Estabilização de Preview MPE, Release em 2 Fases e Docs Pré-Release | `VALIDATION-CHECKLIST.md#batch-039` | REQ-037 ativa; foco em encadeamento de abas, painel inteligente de release e documentação bilíngue. |
+| **BATCH-039** | complete | Estabilização de Preview MPE, Release em 2 Fases e Docs Pré-Release | `VALIDATION-CHECKLIST.md#batch-039` | 38/38 testes, gates documentais e VSIX aprovados. |
+| **BATCH-040** | in-progress | Reatividade de Versão nos Rascunhos e Eliminação de Clique Mudo | `VALIDATION-CHECKLIST.md#batch-040` | REQ-038 ativa; reatividade de mensagens na preparação e comando sempre registrado na execução de release. |
 
 ## Próxima requisição
 
-`REQ-037` ativa em 2026-08-31 para o `BATCH-039`. O Executor inicia a implementação supervisionada.
+`REQ-038` ativa em 2026-08-31 para o `BATCH-040`. O Executor inicia a implementação supervisionada.
 

@@ -615,15 +615,61 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Código de `vscode-extension/src/extension.ts` reconciliado e compilando sem erros (`npm run compile`).
-- [ ] Preview de Markdown fecha abas de código intermediárias e foca exclusivamente no preview ativo sem encadeamento.
-- [ ] Preparação de release acessível mesmo com working tree suja (Fase 1: Diagnóstico e Rascunho).
-- [ ] Execução de release bloqueada quando a working tree estiver suja (Fase 2: Executar Release).
-- [ ] Sincronização e verificação de documentação pré-release (`README.md`, `README-PT-BR.md`, `CHANGELOG.md`, `.github/workflows/*.yml`) integrada.
-- [ ] Testes unitários novos/atualizados passando com 100% de sucesso (`npm test`).
-- [ ] Empacotamento de VSIX validado.
+- [x] Código de `vscode-extension/src/extension.ts` reconciliado e compilando sem erros (`npm run compile`).
+- [x] Preview de Markdown fecha abas de código intermediárias e foca exclusivamente no preview ativo sem encadeamento.
+- [x] Preparação de release acessível mesmo com working tree suja (Fase 1: Diagnóstico e Rascunho).
+- [x] Execução de release bloqueada quando a working tree estiver suja (Fase 2: Executar Release).
+- [x] Sincronização e verificação de documentação pré-release (`README.md`, `README-PT-BR.md`, `CHANGELOG.md`, `.github/workflows/*.yml`) integrada.
+- [x] Testes unitários novos/atualizados passando com 100% de sucesso (`npm test`).
+- [x] Empacotamento de VSIX validado.
+
+### 2. Evidências de Validação
+
+#### Teste 1: reconciliação e compilação
+
+* **Status**: PASS.
+* **Evidência**: o diff legado que removia os gerenciadores foi reconciliado; `npm run compile` finalizou com código 0. O runtime registra 80 comandos públicos e preserva `LocalizationManager`, `BacklogManager`, `ReleaseManager`, `CommandRunner`, `WorkspaceLocator` e Workspace Trust.
+
+#### Teste 2: lifecycle do preview Markdown
+
+* **Status**: PASS.
+* **Evidência**: 7 testes da política verificam normalização, fonte exata, preview anterior gerenciado, preservação de abas alheias, reconhecimento do MPE ativo e sequência com uma única abertura. MPE e fallback nativo compartilham a limpeza dos previews gerenciados.
+
+#### Teste 3: release em duas fases
+
+* **Status**: PASS sem release real.
+* **Evidência**: testes confirmam que Fase 1 continua acessível com árvore suja e Fase 2 exige permissão, árvore limpa, branch, remote GitHub, tag livre, workflow ocioso, documentos, arquivos obrigatórios e rascunho persistido no `workspaceState`.
+
+#### Teste 4: documentação e workflows
+
+* **Status**: PASS.
+* **Evidência**: Core sincronizado em README EN/PT-BR para o baseline publicado Gestor `2.9.51` e Instalador `1.5.6`; `CHANGELOG.md` atualizado. Os dois scripts passaram em `bash -n`; o gate local conferiu documentos não vazios, cabeçalhos dos dois workflows e versões do baseline. Após trabalho concorrente alterar o instalador no working tree para `2.0.0`, a política retornou `README:installer-version` e manteve a execução bloqueada, confirmando o comportamento fail-closed. Scripts e Actions repetem o gate antes de commit/tag/publicação.
+
+#### Teste 5: suíte e pacote
+
+* **Status**: PASS.
+* **Evidência**: `npm test` aprovou 38/38. VSIX com 61 entradas e 151.151 bytes; SHA-256 `C39166FF7BA29D61839C40DC4295460B27762CD86B8F451B53F832C7CC3C0D0B`. Artefatos críticos presentes e testes excluídos do pacote.
+
+#### Teste 6: review findings-first e memória
+
+* **Status**: PASS.
+* **Evidência**: dois findings médios (transição fallback nativo → MPE e cobertura dos comandos bloqueáveis) foram corrigidos. Nenhum finding crítico, alto ou médio conhecido permanece. Memória medida em 1.838 bytes / 26 linhas antes do registro, abaixo do alerta.
+
+---
+
+## BATCH-040: Reatividade de Versão nos Rascunhos e Eliminação de Clique Mudo
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Reatividade total em `actionFormPanel.ts`: alteração do incremento de versão atualiza dinamicamente `tagMessage`, `commitMessage` e `releaseNotes`.
+- [ ] O item de árvore "Executar Release" possui sempre comando registrado (nunca `undefined`), garantindo que o clique sempre responda.
+- [ ] Quando a execução estiver bloqueada, o clique em "Executar Release" exibe notificação clara com os impeditivos e ações rápidas ("Abrir Preparação", "Controle de Código-Fonte").
+- [ ] Salvar rascunho em `prepare()` atualiza imediatamente a árvore e o estado de liberação da Fase 2.
+- [ ] Suíte de testes `npm test` atualizada e 100% aprovada.
+- [ ] Pacote VSIX gerado e instalado na máquina local com `--force`.
 
 ### 2. Evidências de Validação
 
 *(Aguardando execução do lote pelo Agente Executor)*
+
 

@@ -1,48 +1,41 @@
-# Handoff do Macro-Arquiteto — REQ-037 / BATCH-039
+# Handoff do Macro-Arquiteto — REQ-038 / BATCH-040
 
 * **Status**: `READY_FOR_EXECUTION`
 * **Emissor**: Macro-Arquiteto (Antigravity)
-* **Destinatário**: Agente Executor (OpenAI Codex / Claude Code / VS Code Extension)
+* **Destinatário**: Agente Executor (OpenAI Codex / VS Code Extension)
 * **Data**: 2026-08-31
-* **Requisição Ativa**: [req-037.md](../human-requests/req-037.md)
+* **Requisição Ativa**: [req-038.md](../human-requests/req-038.md)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
-* **Autonomia**: `supervisionado` (sem commits/pushes amplos não autorizados)
+* **Autonomia**: `supervisionado`
 
 ---
 
 ## 🎯 Instruções para o Agente Executor
 
-Olá Executor! A **REQ-037** foi formalizada e aprovada pelo Humano-no-Loop.
+Olá Executor! A **REQ-038** foi aberta para corrigir dois problemas de UX e reatividade encontrados durante os testes do Humano-no-Loop no VS Code:
 
-Sua missão neste lote (**BATCH-039**) contempla:
+### 1. Reatividade Completa no Painel Webview de Preparação (`actionFormPanel.ts`)
+- No método `updateSemverPreview` do client-side do formulário:
+  * Quando o usuário mudar o select `releaseType` (patch ➔ minor ou major), atualmente apenas `nextVersion` e `tag` são atualizados.
+  * O código DEVE atualizar também os campos `tagMessage`, `commitMessage` e `releaseNotes`, substituindo qualquer menção da versão anterior (`currentVersion` ou a versão calculada anteriormente) pela nova versão e nova tag.
+  * Exemplo: Se estava `Conn2Flow Gestor v2.9.52`, ao mudar para minor deve virar `Conn2Flow Gestor v2.10.0`.
 
-1. **Reconciliação de Código (`extension.ts`)**:
-   - Restaurar o código íntegro de `vscode-extension/src/extension.ts` que havia sido sobreposto por uma versão legada.
-   - Manter os 51 comandos e os gerenciadores (`LocalizationManager`, `BacklogManager`, `ReleaseManager`, `Workspace Trust`).
+### 2. Eliminação do Clique Mudo em "Executar Release" (`conn2flowTreeProvider.ts` & `releaseManager.ts`)
+- Em `conn2flowTreeProvider.ts`, no método `releaseExecutionItem()`:
+  * Atualmente, se `canExecute` for falso, o item é instanciado com `command = undefined`. Isso faz com que o clique do usuário seja ignorado pelo VS Code!
+  * **O item DEVE SEMPRE ter o comando registrado** (`conn2flow.release.executeManager` ou `conn2flow.release.executeInstaller`), mesmo quando estiver bloqueado (com o ícone `lock`).
+- Em `releaseManager.ts`:
+  * No método `execute()`: quando chamado e o gate estiver bloqueado, deve exibir uma notificação clara com `vscode.window.showWarningMessage` listando exatamente quais são os impeditivos (ex: permissão, árvore suja, documentos) e fornecer botões de ação úteis ("Abrir Preparação", "Controle de Código-Fonte").
+  * Ao salvar o rascunho em `prepare()`, chamar `refreshAll()` / `onChanged?.()` para atualizar a árvore do VS Code e recalcular o estado de liberação na hora.
 
-2. **Estabilização do Preview Markdown**:
-   - No modo `preview`, eliminar o acúmulo de abas `TabInputText` (código-fonte dos `.md`) que ficam abertas em segundo plano.
-   - Assegurar que apenas a aba de preview ativa receba o foco ao navegar por vários arquivos markdown sequencialmente (ex: Guia do Painel, depois Marketplace, depois CLI).
-
-3. **Release em Duas Fases (Preparar Release x Executar Release)**:
-   - **Fase 1 (Preparar)**: Abre o painel mesmo com árvore de trabalho suja, exibindo os diagnósticos (permissão, branch, arquivos alterados) e gerando rascunhos de mensagens no `workspaceState`.
-   - **Fase 2 (Executar)**: Permanece estritamente travada/desabilitada até que a árvore de trabalho esteja limpa (`git status --porcelain` vazio).
-
-4. **Sincronização Mandatória de Documentação Pré-Release**:
-   - Antes do release, verificar/sincronizar:
-     * `README.md` (EN) e `README-PT-BR.md` (PT-BR).
-     * `CHANGELOG.md`.
-     * Workflows em `.github/workflows/*.yml`.
-   - Aplicar `c2f-documentation-governance` e `c2f-multilingual-system`.
-
-5. **Testes e Build**:
-   - Adicionar/atualizar testes em `vscode-extension/test/` cobrindo as políticas de preview e release.
-   - Executar `npm test` (garantir que passe 100%).
-   - Gerar e verificar o pacote VSIX.
+### 3. Validação e Testes
+- Adicionar testes cobrindo a substituição de templates de mensagens de release e o comportamento do clique bloqueado.
+- Rodar `npm test` (garantir 100% PASS).
+- Compilar o `.vsix` e atualizar a instalação local com `code --install-extension vscode-extension/conn2flow-tools-1.0.0.vsix --force`.
 
 ---
 
-## 📝 Protocolo Obrigatório de Execução
-- Inicie renderizando sua **Live Todo List (`[ ]` ➔ `[x]`)** no chat.
-- Ao concluir a implementação, atualize este arquivo `CURRENT-HANDOFF.md` e `sdd/human-requests/CURRENT.md` para `READY_FOR_REVIEW`.
-- O Revisor Técnico (`c2f_reviewer`) fará a auditoria findings-first na sequência conforme a topologia Tríade.
+## 📝 Protocolo de Execução
+1. Renderize a sua Live Todo List (`[ ]` ➔ `[x]`).
+2. Implemente as correções.
+3. Ao concluir, atualize `CURRENT-HANDOFF.md` e `CURRENT.md` para `READY_FOR_REVIEW` para que o Revisor Técnico faça a auditoria.
