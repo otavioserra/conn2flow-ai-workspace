@@ -1,20 +1,19 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-038.md](req-038.md)
+* **Ponteiro Ativo**: [req-039.md](req-039.md)
 * **Status**: `READY_FOR_EXECUTION`
-* **Lote Relacionado**: `BATCH-040`
+* **Lote Relacionado**: `BATCH-041`
 * **Topologia de Agentes**: `triade`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-08-31
-* **Lote Anterior Concluído**: [req-037.md](req-037.md) (`BATCH-039`)
+* **Lote Anterior Concluído**: [req-038.md](req-038.md) (`BATCH-040`)
 
 ## Execução atual
 
-REQ-038 aprovada pelo Humano-no-Loop para o BATCH-040.
-Focos prioritários:
-1. Reatividade completa no formulário de Preparar Release (atualizar tag message, commit message e release notes ao mudar de incremento).
-2. Eliminação do clique mudo/bloqueio silencioso em "Executar Release" na árvore do VS Code (manter comando sempre registrado e exibir diálogo claro de bloqueio).
-3. Desacoplar gates de produtos satélites e garantir refresh imediato da árvore ao salvar rascunho.
+REQ-039 aprovada pelo Humano-no-Loop para o BATCH-041.
+Foco prioritário:
+- Corrigir `findWorkflowRun` em `vscode-extension/src/providers/releaseManager.ts` para filtrar por timestamp (`createdAt`), ignorar execuções anteriores com falha para a mesma tag e selecionar a run ativa recém-disparada.
+- Garantir limpeza do rascunho de release e notificação de sucesso ao término.
 Aguardando o Agente Executor iniciar a implementação e apresentar a Live Todo List.
 
 

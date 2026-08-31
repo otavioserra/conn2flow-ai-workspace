@@ -661,15 +661,51 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Reatividade total em `actionFormPanel.ts`: alteração do incremento de versão atualiza dinamicamente `tagMessage`, `commitMessage` e `releaseNotes`.
-- [ ] O item de árvore "Executar Release" possui sempre comando registrado (nunca `undefined`), garantindo que o clique sempre responda.
-- [ ] Quando a execução estiver bloqueada, o clique em "Executar Release" exibe notificação clara com os impeditivos e ações rápidas ("Abrir Preparação", "Controle de Código-Fonte").
-- [ ] Salvar rascunho em `prepare()` atualiza imediatamente a árvore e o estado de liberação da Fase 2.
+- [x] Reatividade total em `actionFormPanel.ts`: alteração do incremento de versão atualiza dinamicamente `tagMessage`, `commitMessage` e `releaseNotes`.
+- [x] O item de árvore "Executar Release" possui sempre comando registrado (nunca `undefined`), garantindo que o clique sempre responda.
+- [x] Quando a execução estiver bloqueada, o clique em "Executar Release" exibe notificação clara com os impeditivos e ações rápidas ("Abrir Preparação", "Controle de Código-Fonte").
+- [x] Salvar rascunho em `prepare()` atualiza imediatamente a árvore e o estado de liberação da Fase 2.
+- [x] A Visão Geral separa Topologia e Autonomia, com ícones, comandos e QuickPicks exclusivos que persistem a seleção em `CURRENT.md` antes do refresh.
+- [x] Suíte de testes `npm test` atualizada e 100% aprovada.
+- [x] Pacote VSIX gerado e instalado na máquina local com `--force`.
+
+### 2. Evidências de Validação
+
+#### Teste 1: reatividade do rascunho
+
+* **Status**: PASS.
+* **Evidência**: testes exercitam substituição múltipla de `2.9.51`/`2.9.52` para `2.10.0` e depois `3.0.0`, incluindo tag anotada, commit e notas; o contrato do listener `change` e dos três campos também é verificado.
+
+#### Teste 2: árvore, bloqueios e modos
+
+* **Status**: PASS.
+* **Evidência**: testes estáticos confirmam comando presente no item com `lock`, `showWarningMessage` com ambas as ações, refresh após `saveDraft`, itens `overview.topology`/`overview.autonomy` e ausência de mistura entre as opções dos QuickPicks.
+
+#### Teste 3: suíte, pacote e instalação
+
+* **Status**: PASS.
+* **Evidência**: `npm test` aprovou 42/42; `git diff --check` passou; VSIX com 61 arquivos e 153.177 bytes, SHA-256 `C187B544CED9EB9F572D104A38FA4F21A31868FA848891655B9B667B5BB70C50`; instalação com `--force` concluída e hashes dos quatro JavaScripts críticos idênticos ao build.
+
+#### Teste 4: memória e limites
+
+* **Status**: PASS.
+* **Evidência**: memória operacional medida em 1.788 bytes / 25 linhas antes do registro, abaixo do alerta; alterações herdadas do BATCH-039 e a pasta não rastreada `completions/` foram preservadas.
+
+---
+
+## BATCH-041: Correção de Workflow Run no Watch e Limpeza de Rascunho
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `findWorkflowRun` filtra execuções por timestamp (`createdAt >= triggeredAfter`) e ignora execuções antigas com falha para a mesma tag.
+- [ ] O `gh run watch` monitora a run correta e recém-disparada até o término.
+- [ ] Ao término com sucesso, o rascunho de release é limpo de `workspaceState`, a árvore atualiza e exibe a mensagem de sucesso.
 - [ ] Suíte de testes `npm test` atualizada e 100% aprovada.
 - [ ] Pacote VSIX gerado e instalado na máquina local com `--force`.
 
 ### 2. Evidências de Validação
 
 *(Aguardando execução do lote pelo Agente Executor)*
+
 
 
