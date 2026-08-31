@@ -10,6 +10,11 @@ Servidor MCP (Model Context Protocol) de orquestração multi-agente para o ecos
 | `dispatch_task` | Despacha tarefas para filas de agentes no modo **Supervisionado** (IDE) ou **Headless** (Background). |
 | `report_completion` | Registra e notifica a conclusão de lotes/batches com evidências de execução. |
 
+`report_completion` aceita `task_id`, `req_id` e `role` (`executor`, `reviewer` ou `architect`) para
+correlacionar o recibo com o despacho. Quando o papel é informado, o Hub mantém um recibo específico
+em `completions/<batch>-<role>-receipt.json`, sincroniza o recibo canônico e transiciona a tarefa
+identificada para `completed` ou `failed`.
+
 ## 🚀 Como Executar
 
 ### 1. Local (Node.js)

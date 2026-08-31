@@ -10,6 +10,8 @@
   "command.conn2flow.custom.initManifest": "Criar Ações Customizadas (.c2f/actions.json)",
   "command.conn2flow.custom.editManifest": "Editar Ações do Projeto (.c2f/actions.json)",
   "command.conn2flow.modes.selectMode": "Selecionar Topologia ou Autonomia",
+  "command.conn2flow.modes.selectTopology": "Selecionar Topologia de Agentes",
+  "command.conn2flow.modes.selectAutonomy": "Selecionar Nível de Autonomia",
   "command.conn2flow.modes.setDoubleAgent": "Ativar Duplo Agente",
   "command.conn2flow.modes.setTriAgent": "Ativar Tríade de Agentes",
   "command.conn2flow.modes.setSupervised": "Ativar Modo Supervisionado (Nível 1)",
@@ -31,6 +33,7 @@
   "command.conn2flow.bridge.copyPrompt": "Copiar Prompt do Executor",
   "command.conn2flow.bridge.recordHandoff": "Registrar Log do Terminal (Handoff)",
   "command.conn2flow.bridge.notifyArchitect": "Sincronizar e Notificar Arquiteto",
+  "command.conn2flow.hub.toggleWatcher": "Alternar Watcher da Tríade (MCP Hub)",
   "command.conn2flow.docker.status": "Status dos Containers",
   "command.conn2flow.docker.logsApache": "Logs Apache (Follow)",
   "command.conn2flow.docker.logsPhp": "Logs PHP (Follow)",
@@ -77,7 +80,9 @@
   "command.conn2flow.sdd.browseBacklog": "Navegar Backlog SDD",
   "command.conn2flow.settings.selectLanguage": "Selecionar Idioma da Extensão",
   "command.conn2flow.release.verifyPermission": "Verificar Permissão de Release",
-  "command.conn2flow.release.manager": "Criar Release do Gestor",
-  "command.conn2flow.release.installer": "Criar Release do Gestor Instalador",
+  "command.conn2flow.release.manager": "Preparar Release do Gestor",
+  "command.conn2flow.release.installer": "Preparar Release do Gestor Instalador",
+  "command.conn2flow.release.executeManager": "Executar Release do Gestor",
+  "command.conn2flow.release.executeInstaller": "Executar Release do Gestor Instalador",
   "command.conn2flow.release.openActions": "Abrir GitHub Actions"
 }

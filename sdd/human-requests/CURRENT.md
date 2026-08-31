@@ -1,22 +1,17 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-042.md](req-042.md)
+* **Ponteiro Ativo**: [req-043.md](req-043.md)
 * **Status**: `READY_FOR_EXECUTION`
-* **Lote Relacionado**: `BATCH-044`
+* **Lote Relacionado**: `BATCH-045`
 * **Topologia de Agentes**: `triade`
-* **Nível de Autonomia**: `supervisionado` / `autonomo_monitorado`
+* **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-08-31
-* **Lote Anterior Concluído**: [req-041.md](req-041.md) (`BATCH-043`)
+* **Lote Anterior Concluído**: [req-042.md](req-042.md) (`BATCH-044`)
 
 ## Execução atual
 
-REQ-042 aprovada pelo Humano-no-Loop para o BATCH-044.
+REQ-043 aprovada pelo Humano-no-Loop para o BATCH-045.
 Foco prioritário:
-- Implementar `HubTaskWatcher` na extensão VS Code para monitorar e executar tarefas da Tríade em background.
-- Implementar Sessão Compartilhada de Lote (`sdd/sessions/batch-YYY-stream.md`) com `agent_id` estruturado no MCP Hub.
-- Adicionar feedback visual imediato de loading (spinner/Status Bar) nos botões da extensão.
-- Adicionar o botão "Salvar e Executar Release" diretamente no formulário de preparação de release.
+- Reorganizar a árvore da extensão VS Code (`conn2flowTreeProvider.ts`): renomear "Visão Geral" para "Controles Principais" com todos os toggles e seletores globais; mover ações de agentes para "SDD e Planejamento"; renomear e limpar "Documentações e Configurações".
 Aguardando o Agente Executor iniciar a implementação e apresentar a Live Todo List.
-
-
 

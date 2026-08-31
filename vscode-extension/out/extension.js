@@ -21,6 +21,7 @@ const commandRunner_1 = require("./providers/commandRunner");
 const workspaceLocator_1 = require("./providers/workspaceLocator");
 const backlogManager_1 = require("./providers/backlogManager");
 const releaseManager_1 = require("./providers/releaseManager");
+const hubTaskWatcher_1 = require("./providers/hubTaskWatcher");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 let dockerStatusBarItem;
 let sddStatusBarItem;
@@ -29,6 +30,9 @@ function activate(context) {
     sddScopeManager_1.SddScopeManager.initialize(context);
     sddViewModeManager_1.SddViewModeManager.initialize(context);
     gardeningManager_1.GardeningManager.initialize(context);
+    releaseManager_1.ReleaseManager.initialize(context);
+    const hubWatcher = hubTaskWatcher_1.HubTaskWatcher.initialize(context, () => refreshAll());
+    context.subscriptions.push(hubWatcher);
     let refreshAll = () => undefined;
     localizationManager_1.LocalizationManager.initialize(context, () => refreshAll());
     const treeProvider = new conn2flowTreeProvider_1.Conn2FlowTreeProvider(context);
@@ -42,7 +46,7 @@ function activate(context) {
     sddStatusBarItem.command = 'conn2flow.sdd.openCurrent';
     context.subscriptions.push(sddStatusBarItem);
     modesStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 98);
-    modesStatusBarItem.command = 'conn2flow.modes.selectMode';
+    modesStatusBarItem.command = 'conn2flow.modes.selectAutonomy';
     context.subscriptions.push(modesStatusBarItem);
     refreshAll = () => {
         treeProvider.refresh();
@@ -52,6 +56,7 @@ function activate(context) {
     refreshAll();
     const managedPreviewStateKey = 'conn2flow.sdd.managedMpePreviewPath';
     let managedMpePreviewPath = context.workspaceState.get(managedPreviewStateKey);
+    let managedNativePreviewTab;
     const describeTab = (tab) => {
         if (tab.input instanceof vscode.TabInputText) {
             return { kind: 'text', uriPath: tab.input.uri.fsPath };
@@ -80,17 +85,37 @@ function activate(context) {
         }
     };
     const waitForMpePreview = async (targetUri) => {
-        const target = (0, markdownPreviewPolicy_1.normalizePreviewPath)(targetUri.fsPath);
         for (let attempt = 0; attempt < 10; attempt++) {
-            const found = vscode.window.tabGroups.all.some(group => group.tabs.some(tab => tab.input instanceof vscode.TabInputCustom &&
-                tab.input.viewType === markdownPreviewPolicy_1.MPE_VIEW_TYPE &&
-                (0, markdownPreviewPolicy_1.normalizePreviewPath)(tab.input.uri.fsPath) === target));
+            const found = vscode.window.tabGroups.all.some(group => group.tabs.some(tab => tab.isActive && (0, markdownPreviewPolicy_1.isTargetMpePreview)(describeTab(tab), targetUri.fsPath)));
             if (found) {
                 return true;
             }
             await new Promise(resolve => setTimeout(resolve, 50));
         }
         return false;
+    };
+    const closeManagedNativePreview = async () => {
+        if (!managedNativePreviewTab)
+            return;
+        const stillOpen = vscode.window.tabGroups.all.some(group => group.tabs.includes(managedNativePreviewTab));
+        if (stillOpen)
+            await vscode.window.tabGroups.close(managedNativePreviewTab, true);
+        managedNativePreviewTab = undefined;
+    };
+    const waitForNativePreview = async () => {
+        for (let attempt = 0; attempt < 10; attempt++) {
+            const active = vscode.window.tabGroups.activeTabGroup.activeTab;
+            if (active?.isActive && active.input instanceof vscode.TabInputWebview) {
+                managedNativePreviewTab = active;
+                return true;
+            }
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        return false;
+    };
+    const closeAllManagedPreviews = async (targetUri) => {
+        await closeTabsForPreview(targetUri, new Set(['managed-preview']));
+        await closeManagedNativePreview();
     };
     // Watcher para .c2f/actions.json (Hot Reload Plug & Play!)
     const actionsWatcher = customActionsManager_1.CustomActionsManager.setupWatcher(refreshAll);
@@ -107,6 +132,7 @@ function activate(context) {
     };
     // Markdown Opener com suporte a Modos: Código, Preview ou Ambos Lado a Lado
     const openMarkdownFile = async (relativePath) => {
+        vscode.window.setStatusBarMessage(`$(file-text) ${localizationManager_1.LocalizationManager.t('common.loading')}`, 1200);
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders || workspaceFolders.length === 0) {
             vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('common.noWorkspace'));
@@ -153,13 +179,16 @@ function activate(context) {
                     try {
                         // Fecha somente o preview que uma chamada anterior desta extensão registrou.
                         // Previews MPE abertos manualmente nunca são adotados implicitamente.
-                        await closeTabsForPreview(uri, new Set(['managed-preview']));
-                        await vscode.commands.executeCommand('vscode.openWith', uri, markdownPreviewPolicy_1.MPE_VIEW_TYPE);
-                        await waitForMpePreview(uri);
-                        // Remove somente a fonte do documento solicitado, preservando o foco.
-                        await closeTabsForPreview(uri, new Set(['target-source']));
+                        await (0, markdownPreviewPolicy_1.runPreviewLifecycle)({
+                            closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
+                            openPreview: async () => {
+                                await vscode.commands.executeCommand('vscode.openWith', uri, markdownPreviewPolicy_1.MPE_VIEW_TYPE, vscode.ViewColumn.Active);
+                            },
+                            waitUntilPreviewIsActive: () => waitForMpePreview(uri),
+                            // Remove somente a fonte do documento solicitado, preservando o foco.
+                            closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
+                        });
                         // Revela explicitamente o Custom Editor depois da limpeza para garantir foco.
-                        await vscode.commands.executeCommand('vscode.openWith', uri, markdownPreviewPolicy_1.MPE_VIEW_TYPE);
                         managedMpePreviewPath = uri.fsPath;
                         await context.workspaceState.update(managedPreviewStateKey, managedMpePreviewPath);
                         return;
@@ -169,10 +198,14 @@ function activate(context) {
                     }
                 }
                 try {
-                    await vscode.commands.executeCommand('markdown.showPreview', uri);
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                    await closeTabsForPreview(uri, new Set(['target-source']));
-                    await vscode.commands.executeCommand('markdown.showPreview', uri);
+                    await (0, markdownPreviewPolicy_1.runPreviewLifecycle)({
+                        closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
+                        openPreview: async () => {
+                            await vscode.commands.executeCommand('markdown.showPreview', uri, vscode.ViewColumn.Active);
+                        },
+                        waitUntilPreviewIsActive: waitForNativePreview,
+                        closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
+                    });
                     return;
                 }
                 catch {
@@ -293,6 +326,10 @@ function activate(context) {
         await modesManager_1.ModesManager.setAutonomy('autonomo_monitorado', refreshAll);
     }), vscode.commands.registerCommand('conn2flow.modes.setHeadless', async () => {
         await modesManager_1.ModesManager.setAutonomy('autonomo_headless', refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.modes.selectTopology', async () => {
+        await modesManager_1.ModesManager.selectTopology(refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.modes.selectAutonomy', async () => {
+        await modesManager_1.ModesManager.selectAutonomy(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.modes.selectMode', async () => {
         const items = [
             { label: localizationManager_1.LocalizationManager.t('mode.triad'), action: () => modesManager_1.ModesManager.setTopology('triade', refreshAll) },
@@ -343,6 +380,8 @@ function activate(context) {
         await agentBridgeManager_1.AgentBridgeManager.recordTerminalHandoff(openMarkdownFile);
     }), vscode.commands.registerCommand('conn2flow.bridge.notifyArchitect', async () => {
         await agentBridgeManager_1.AgentBridgeManager.notifyArchitect(openMarkdownFile);
+    }), vscode.commands.registerCommand('conn2flow.hub.toggleWatcher', () => {
+        hubTaskWatcher_1.HubTaskWatcher.toggle(refreshAll);
     }), 
     // Docker Commands
     vscode.commands.registerCommand('conn2flow.docker.status', () => {
@@ -493,9 +532,13 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.release.verifyPermission', async () => {
         await releaseManager_1.ReleaseManager.verifyPermission(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.release.manager', async () => {
-        await releaseManager_1.ReleaseManager.create('manager', commandRunner, refreshAll);
+        await releaseManager_1.ReleaseManager.prepare('manager', refreshAll);
     }), vscode.commands.registerCommand('conn2flow.release.installer', async () => {
-        await releaseManager_1.ReleaseManager.create('installer', commandRunner, refreshAll);
+        await releaseManager_1.ReleaseManager.prepare('installer', refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.release.executeManager', async () => {
+        await releaseManager_1.ReleaseManager.execute('manager', commandRunner, refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.release.executeInstaller', async () => {
+        await releaseManager_1.ReleaseManager.execute('installer', commandRunner, refreshAll);
     }), vscode.commands.registerCommand('conn2flow.release.openActions', async () => {
         await releaseManager_1.ReleaseManager.openActions();
     }));

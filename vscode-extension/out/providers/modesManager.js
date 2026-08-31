@@ -4,6 +4,7 @@ exports.ModesManager = void 0;
 const vscode = require("vscode");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
+const localizationManager_1 = require("./localizationManager");
 class ModesManager {
     static cachedModes = {
         topology: 'triade',
@@ -16,6 +17,23 @@ class ModesManager {
             this.initialized = true;
         }
         return this.cachedModes;
+    }
+    static async selectTopology(onUpdated) {
+        const selected = await vscode.window.showQuickPick([
+            { label: localizationManager_1.LocalizationManager.t('mode.triad'), value: 'triade' },
+            { label: localizationManager_1.LocalizationManager.t('mode.dual'), value: 'duplo' }
+        ], { placeHolder: localizationManager_1.LocalizationManager.t('modes.selectTopology') });
+        if (selected)
+            await this.setTopology(selected.value, onUpdated);
+    }
+    static async selectAutonomy(onUpdated) {
+        const selected = await vscode.window.showQuickPick([
+            { label: localizationManager_1.LocalizationManager.t('mode.supervised'), value: 'supervisionado' },
+            { label: localizationManager_1.LocalizationManager.t('mode.monitored'), value: 'autonomo_monitorado' },
+            { label: localizationManager_1.LocalizationManager.t('mode.headless'), value: 'autonomo_headless' }
+        ], { placeHolder: localizationManager_1.LocalizationManager.t('modes.selectAutonomy') });
+        if (selected)
+            await this.setAutonomy(selected.value, onUpdated);
     }
     static initFromDisk() {
         const currentPath = this.getCurrentFilePath();

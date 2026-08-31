@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { randomBytes } from 'crypto';
+import { replaceReleaseVersionMentions } from '../releasePolicy';
 
 export type ActionFormFieldType = 'text' | 'textarea' | 'select' | 'checkbox' | 'readonly';
 
@@ -24,6 +25,7 @@ export interface ActionFormSchema {
   description?: string;
   impactSummary?: string;
   submitLabel: string;
+  saveAndExecuteLabel?: string;
   cancelLabel: string;
   validationErrorLabel: string;
   language: string;
@@ -34,6 +36,7 @@ export interface ActionFormSchema {
     nextFieldId: string;
     tagFieldId: string;
     commandFieldId: string;
+    messageFieldIds: readonly string[];
     tagPrefix: string;
     commandTemplate: string;
   };
@@ -41,8 +44,14 @@ export interface ActionFormSchema {
 
 export type ActionFormValues = Record<string, string | boolean>;
 
+export interface ActionFormSubmission {
+  action: 'submit' | 'save_and_execute';
+  values: ActionFormValues;
+  [key: string]: unknown;
+}
+
 export class ActionFormPanel {
-  public static async show(schema: ActionFormSchema): Promise<ActionFormValues | undefined> {
+  public static async show(schema: ActionFormSchema): Promise<ActionFormSubmission | undefined> {
     const panel = vscode.window.createWebviewPanel(
       `conn2flow.actionForm.${schema.id}`,
       schema.title,
@@ -56,14 +65,14 @@ export class ActionFormPanel {
     const nonce = randomBytes(18).toString('base64');
     panel.webview.html = this.render(schema, nonce);
 
-    return await new Promise<ActionFormValues | undefined>(resolve => {
+    return await new Promise<ActionFormSubmission | undefined>(resolve => {
       let resolved = false;
       let messageDisposable: vscode.Disposable | undefined;
-      const finish = (values?: ActionFormValues) => {
+      const finish = (submission?: ActionFormSubmission) => {
         if (resolved) return;
         resolved = true;
         messageDisposable?.dispose();
-        resolve(values);
+        resolve(submission);
       };
 
       messageDisposable = panel.webview.onDidReceiveMessage(message => {
@@ -78,7 +87,8 @@ export class ActionFormPanel {
           void panel.webview.postMessage({ type: 'validation-error' });
           return;
         }
-        finish(values);
+        const action = message.action === 'save_and_execute' ? 'save_and_execute' : 'submit';
+        finish({ action, values, ...values });
         panel.dispose();
       });
 
@@ -110,6 +120,7 @@ export class ActionFormPanel {
   private static render(schema: ActionFormSchema, nonce: string): string {
     const fields = schema.fields.map(field => this.renderField(field)).join('\n');
     const semverPreview = JSON.stringify(schema.semverPreview || null).replace(/</g, '\\u003c');
+    const replaceVersionMentions = replaceReleaseVersionMentions.toString();
     return `<!DOCTYPE html>
 <html lang="${this.escape(schema.language)}">
 <head>
@@ -130,7 +141,7 @@ export class ActionFormPanel {
     .help { color: var(--vscode-descriptionForeground); font-size: .9rem; margin-top: 5px; }
     .actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
     button { border: 0; padding: 8px 16px; font: inherit; cursor: pointer; }
-    button.primary { color: var(--vscode-button-foreground); background: var(--vscode-button-background); }
+    button.primary { color: var(--vscode-button-foreground); background: var(--vscode-button-background); font-weight: 600; }
     button.secondary { color: var(--vscode-button-secondaryForeground); background: var(--vscode-button-secondaryBackground); }
     #error { color: var(--vscode-errorForeground); min-height: 1.2em; margin-top: 8px; }
   </style>
@@ -144,15 +155,31 @@ export class ActionFormPanel {
     <div id="error" role="alert" aria-live="polite"></div>
     <div class="actions">
       <button class="secondary" type="button" id="cancel">${this.escape(schema.cancelLabel)}</button>
-      <button class="primary" type="submit">${this.escape(schema.submitLabel)}</button>
+      <button class="${schema.saveAndExecuteLabel ? 'secondary' : 'primary'}" type="button" id="submit-btn">${this.escape(schema.submitLabel)}</button>
+      ${schema.saveAndExecuteLabel ? `<button class="primary" type="button" id="save-and-execute-btn">${this.escape(schema.saveAndExecuteLabel)}</button>` : ''}
     </div>
   </form>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     const semverPreview = ${semverPreview};
+    const replaceReleaseVersionMentions = ${replaceVersionMentions};
     const form = document.getElementById('action-form');
     const error = document.getElementById('error');
-    document.getElementById('cancel').addEventListener('click', () => vscode.postMessage({ type: 'cancel' }));
+    
+    const submitForm = (action) => {
+      if (!form.reportValidity()) return;
+      const values = {};
+      for (const element of form.elements) {
+        if (!element.name) continue;
+        values[element.name] = element.type === 'checkbox' ? element.checked : element.value;
+      }
+      vscode.postMessage({ type: 'submit', action, values });
+    };
+
+    document.getElementById('cancel')?.addEventListener('click', () => vscode.postMessage({ type: 'cancel' }));
+    document.getElementById('submit-btn')?.addEventListener('click', () => submitForm('submit'));
+    document.getElementById('save-and-execute-btn')?.addEventListener('click', () => submitForm('save_and_execute'));
+    
     const computeNextVersion = (current, type) => {
       const parts = current.split('.').map(Number);
       if (parts.length !== 3 || parts.some(Number.isNaN)) return current;
@@ -160,12 +187,27 @@ export class ActionFormPanel {
       if (type === 'minor') return parts[0] + '.' + String(parts[1] + 1) + '.0';
       return parts[0] + '.' + parts[1] + '.' + String(parts[2] + 1);
     };
+    let previousNext = semverPreview
+      ? document.getElementById(semverPreview.nextFieldId)?.value || semverPreview.currentVersion
+      : '';
     const updateSemverPreview = () => {
       if (!semverPreview) return;
       const type = document.getElementById(semverPreview.typeFieldId)?.value || 'patch';
       const next = computeNextVersion(semverPreview.currentVersion, type);
       const tag = semverPreview.tagPrefix + next;
+      const previousTag = document.getElementById(semverPreview.tagFieldId)?.value || semverPreview.tagPrefix + previousNext;
       const values = { next, tag, type };
+      for (const fieldId of semverPreview.messageFieldIds) {
+        const field = document.getElementById(fieldId);
+        if (!field) continue;
+        field.value = replaceReleaseVersionMentions(
+          field.value,
+          [semverPreview.currentVersion, previousNext],
+          next,
+          [semverPreview.tagPrefix + semverPreview.currentVersion, previousTag],
+          tag
+        );
+      }
       for (const [fieldId, value] of [[semverPreview.nextFieldId, next], [semverPreview.tagFieldId, tag]]) {
         const field = document.getElementById(fieldId);
         if (field) field.value = value;
@@ -173,6 +215,7 @@ export class ActionFormPanel {
       const command = document.getElementById(semverPreview.commandFieldId);
       if (command) command.value = semverPreview.commandTemplate
         .replace('{type}', values.type).replace('{next}', values.next).replace('{tag}', values.tag);
+      previousNext = next;
     };
     if (semverPreview) {
       document.getElementById(semverPreview.typeFieldId)?.addEventListener('change', updateSemverPreview);
@@ -180,13 +223,7 @@ export class ActionFormPanel {
     }
     form.addEventListener('submit', event => {
       event.preventDefault();
-      if (!form.reportValidity()) return;
-      const values = {};
-      for (const element of form.elements) {
-        if (!element.name) continue;
-        values[element.name] = element.type === 'checkbox' ? element.checked : element.value;
-      }
-      vscode.postMessage({ type: 'submit', values });
+      submitForm('submit');
     });
     window.addEventListener('message', event => {
       if (event.data?.type === 'validation-error') error.textContent = ${JSON.stringify(schema.validationErrorLabel)};

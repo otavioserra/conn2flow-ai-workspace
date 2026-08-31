@@ -11,6 +11,7 @@ const sddScopeManager_1 = require("./sddScopeManager");
 const gardeningManager_1 = require("./gardeningManager");
 const localizationManager_1 = require("./localizationManager");
 const releaseManager_1 = require("./releaseManager");
+const hubTaskWatcher_1 = require("./hubTaskWatcher");
 const treeExpansionPolicy_1 = require("../treeExpansionPolicy");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     children;
@@ -71,10 +72,17 @@ class Conn2FlowTreeProvider {
         const label = localizationManager_1.LocalizationManager.t(key);
         return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, label, children, undefined, undefined, (0, treeExpansionPolicy_1.treeSectionId)(id, this.expansionVersion));
     }
+    releaseExecutionItem(product, key, command) {
+        if (releaseManager_1.ReleaseManager.canExecute(product))
+            return this.leaf(key, command, 'rocket');
+        const label = localizationManager_1.LocalizationManager.t(key);
+        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, 'lock', releaseManager_1.ReleaseManager.executionBlockerLabel(product));
+    }
     rootItems() {
         const modes = modesManager_1.ModesManager.getCurrentModes();
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         const targetValues = { target: target || localizationManager_1.LocalizationManager.t('common.none') };
+        const topologyKey = modes.topology === 'duplo' ? 'mode.dual' : 'mode.triad';
         const autonomyKey = modes.autonomy === 'autonomo_monitorado'
             ? 'mode.monitored'
             : modes.autonomy === 'autonomo_headless' ? 'mode.headless' : 'mode.supervised';
@@ -82,7 +90,8 @@ class Conn2FlowTreeProvider {
             this.leaf('overview.scope', 'conn2flow.sdd.selectScope', 'target', { scope: sddScopeManager_1.SddScopeManager.getScopeLabel() }),
             this.leaf(target ? 'overview.target' : 'overview.noTarget', 'conn2flow.projects.setTarget', 'project', targetValues),
             this.leaf('overview.language', 'conn2flow.settings.selectLanguage', 'globe', { language: localizationManager_1.LocalizationManager.languageLabel }),
-            this.leaf('overview.autonomy', 'conn2flow.modes.selectMode', 'shield', { mode: localizationManager_1.LocalizationManager.t(autonomyKey) })
+            this.leaf('overview.topology', 'conn2flow.modes.selectTopology', 'organization', { mode: localizationManager_1.LocalizationManager.t(topologyKey) }),
+            this.leaf('overview.autonomy', 'conn2flow.modes.selectAutonomy', 'shield', { mode: localizationManager_1.LocalizationManager.t(autonomyKey) })
         ];
         const sdd = [
             this.leaf('sdd.selectScope', 'conn2flow.sdd.selectScope', 'target'),
@@ -110,9 +119,11 @@ class Conn2FlowTreeProvider {
             core.push(this.leaf('core.cssAudit', 'conn2flow.manager.cssAudit', 'search', targetValues));
         }
         core.push(this.leaf('release.verify', 'conn2flow.release.verifyPermission', 'verified'));
+        core.push(this.leaf('release.manager', 'conn2flow.release.manager', 'package'));
+        core.push(this.leaf('release.installer', 'conn2flow.release.installer', 'package'));
+        core.push(this.releaseExecutionItem('manager', 'release.executeManager', 'conn2flow.release.executeManager'));
+        core.push(this.releaseExecutionItem('installer', 'release.executeInstaller', 'conn2flow.release.executeInstaller'));
         if (releaseManager_1.ReleaseManager.permissionState === 'allowed') {
-            core.push(this.leaf('release.manager', 'conn2flow.release.manager', 'package'));
-            core.push(this.leaf('release.installer', 'conn2flow.release.installer', 'package'));
             core.push(this.leaf('release.openActions', 'conn2flow.release.openActions', 'github-action'));
         }
         const projects = [this.leaf('projects.setTarget', 'conn2flow.projects.setTarget', 'target')];
@@ -136,8 +147,13 @@ class Conn2FlowTreeProvider {
             this.leaf('diagnostics.aiSync', 'conn2flow.ai.sync', 'extensions'),
             this.leaf('diagnostics.syncAll', 'conn2flow.ai.syncAllRepos', 'repo-clone')
         ];
+        const watcherKey = hubTaskWatcher_1.HubTaskWatcher.isEnabled()
+            ? 'agents.hubWatcherActive'
+            : 'agents.hubWatcherPaused';
+        const watcherIcon = hubTaskWatcher_1.HubTaskWatcher.isEnabled() ? 'pulse' : 'debug-pause';
         const agents = [
             this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear'),
+            this.leaf(watcherKey, 'conn2flow.hub.toggleWatcher', watcherIcon),
             this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
             this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
             this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),

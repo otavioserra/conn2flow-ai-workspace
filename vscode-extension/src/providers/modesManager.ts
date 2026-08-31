@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { SddScopeManager } from './sddScopeManager';
+import { LocalizationManager } from './localizationManager';
 
 export type TopologyMode = 'duplo' | 'triade';
 export type AutonomyLevel = 'supervisionado' | 'autonomo_monitorado' | 'autonomo_headless';
@@ -24,6 +25,29 @@ export class ModesManager {
       this.initialized = true;
     }
     return this.cachedModes;
+  }
+
+  public static async selectTopology(onUpdated?: () => void): Promise<void> {
+    const selected = await vscode.window.showQuickPick(
+      [
+        { label: LocalizationManager.t('mode.triad'), value: 'triade' as TopologyMode },
+        { label: LocalizationManager.t('mode.dual'), value: 'duplo' as TopologyMode }
+      ],
+      { placeHolder: LocalizationManager.t('modes.selectTopology') }
+    );
+    if (selected) await this.setTopology(selected.value, onUpdated);
+  }
+
+  public static async selectAutonomy(onUpdated?: () => void): Promise<void> {
+    const selected = await vscode.window.showQuickPick(
+      [
+        { label: LocalizationManager.t('mode.supervised'), value: 'supervisionado' as AutonomyLevel },
+        { label: LocalizationManager.t('mode.monitored'), value: 'autonomo_monitorado' as AutonomyLevel },
+        { label: LocalizationManager.t('mode.headless'), value: 'autonomo_headless' as AutonomyLevel }
+      ],
+      { placeHolder: LocalizationManager.t('modes.selectAutonomy') }
+    );
+    if (selected) await this.setAutonomy(selected.value, onUpdated);
   }
 
   private static initFromDisk(): void {

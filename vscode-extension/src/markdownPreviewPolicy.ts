@@ -9,6 +9,21 @@ export interface PreviewTabDescriptor {
   viewType?: string;
 }
 
+export interface PreviewLifecycle {
+  closePreviousManagedPreview(): Promise<void>;
+  openPreview(): Promise<void>;
+  waitUntilPreviewIsActive(): Promise<boolean>;
+  closeTargetSource(): Promise<void>;
+}
+
+export async function runPreviewLifecycle(lifecycle: PreviewLifecycle): Promise<boolean> {
+  await lifecycle.closePreviousManagedPreview();
+  await lifecycle.openPreview();
+  const focused = await lifecycle.waitUntilPreviewIsActive();
+  await lifecycle.closeTargetSource();
+  return focused;
+}
+
 export function normalizePreviewPath(value: string): string {
   return value.replace(/\//g, '\\').toLocaleLowerCase('en-US');
 }
@@ -40,4 +55,13 @@ export function getPreviewCloseReason(
   }
 
   return undefined;
+}
+
+export function isTargetMpePreview(tab: PreviewTabDescriptor, targetPath: string): boolean {
+  return Boolean(
+    tab.kind === 'custom' &&
+    tab.viewType === MPE_VIEW_TYPE &&
+    tab.uriPath &&
+    normalizePreviewPath(tab.uriPath) === normalizePreviewPath(targetPath)
+  );
 }

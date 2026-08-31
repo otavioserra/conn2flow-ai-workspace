@@ -95,6 +95,18 @@
         "icon": "$(settings-gear)"
       },
       {
+        "command": "conn2flow.modes.selectTopology",
+        "title": "%command.conn2flow.modes.selectTopology%",
+        "category": "Conn2Flow Modos",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "conn2flow.modes.selectAutonomy",
+        "title": "%command.conn2flow.modes.selectAutonomy%",
+        "category": "Conn2Flow Autonomia",
+        "icon": "$(shield)"
+      },
+      {
         "command": "conn2flow.modes.setDoubleAgent",
         "title": "%command.conn2flow.modes.setDoubleAgent%",
         "category": "Conn2Flow Modos",
@@ -219,6 +231,12 @@
         "title": "%command.conn2flow.bridge.notifyArchitect%",
         "category": "Conn2Flow Triad",
         "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "conn2flow.hub.toggleWatcher",
+        "title": "%command.conn2flow.hub.toggleWatcher%",
+        "category": "Conn2Flow Triad",
+        "icon": "$(pulse)"
       },
       {
         "command": "conn2flow.docker.status",
@@ -507,6 +525,18 @@
         "title": "%command.conn2flow.release.installer%",
         "category": "Conn2Flow Release",
         "icon": "$(package)"
+      },
+      {
+        "command": "conn2flow.release.executeManager",
+        "title": "%command.conn2flow.release.executeManager%",
+        "category": "Conn2Flow Release",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "conn2flow.release.executeInstaller",
+        "title": "%command.conn2flow.release.executeInstaller%",
+        "category": "Conn2Flow Release",
+        "icon": "$(rocket)"
       },
       {
         "command": "conn2flow.release.openActions",

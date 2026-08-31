@@ -1,39 +1,50 @@
-# Handoff do Macro-Arquiteto — REQ-042 / BATCH-044
+# Handoff do Macro-Arquiteto — REQ-043 / BATCH-045
 
 * **Status**: `READY_FOR_EXECUTION`
 * **Emissor**: Macro-Arquiteto (Antigravity)
 * **Destinatário**: Agente Executor (OpenAI Codex / Claude Code)
 * **Data**: 2026-08-31
 * **Projeto Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`)
-* **Requisição Ativa**: [req-042.md](../human-requests/req-042.md)
+* **Requisição Ativa**: [req-043.md](../human-requests/req-043.md)
 * **Topologia**: `triade`
-* **Autonomia**: `supervisionado` / `autonomo_monitorado`
+* **Autonomia**: `supervisionado`
 
 ---
 
 ## 🎯 Instruções para o Agente Executor
 
-Olá Executor! A **REQ-042** implementa a esteira autônoma e de usabilidade do Conn2Flow:
+Olá Executor! A **REQ-043** reorganiza a ergonomia da árvore de ferramentas no VS Code (`vscode-extension/src/providers/conn2flowTreeProvider.ts`):
 
-### 1. Watcher Autônomo da Tríade na Extensão (`src/providers/hubTaskWatcher.ts`)
-- Implementar o serviço `HubTaskWatcher` na extensão do VS Code escutando a pasta `tasks/` e `completions/` via `vscode.workspace.createFileSystemWatcher`.
-- Adicionar item de controle na barra lateral da árvore do Conn2Flow para alternar entre `Ativo` e `Pausado`.
-- Ao receber nova tarefa despachada, exibir notificação transitória na Status Bar (`$(sync~spin)`).
+### 1. Seção "Controles Principais" (antiga "Visão Geral")
+- Renomear `overview` para "Controles Principais" (`overview.mainControls` / `overview.sectionTitle`).
+- Conter:
+  * Escopo SDD (`overview.scope`)
+  * Projeto Alvo (`overview.target`)
+  * Idioma (`overview.language`)
+  * Topologia de Agentes (`overview.topology`)
+  * Nível de Autonomia (`overview.autonomy`)
+  * Watcher da Tríade (`agents.hubWatcherActive` / `hubWatcherPaused`)
 
-### 2. Sessão Compartilhada de Lote (`sdd/sessions/batch-YYY-stream.md`) & Identidade de Agentes
-- Criar o diretório `sdd/sessions/`.
-- No `mcp-hub`, implementar a tool `log_session_event(batch_id, agent_id, role, summary)` que faz append estruturado na timeline da sessão.
+### 2. Seção "SDD e Planejamento"
+- Mover as ações operacionais de agentes para cá:
+  * Iniciar Claude / Executor (`agents.launchClaude`)
+  * Copiar Prompt do Executor (`agents.copyPrompt`)
+  * Registrar Handoff (`agents.recordHandoff`)
+  * Submeter para Revisão (`agents.prepareReview`)
+- Manter os itens de navegação do SDD (Modo de Visualização, CURRENT.md, SPEC.md, Checklist, Browse Requests, Batches, Backlog, Decisions, Gardening).
 
-### 3. Feedback Visual de Loading Instantâneo
-- Nos comandos assíncronos da extensão (`conn2flowTreeProvider.ts`, `releaseManager.ts`, `extension.ts`), envolver o início da execução com feedback visual imediato (`vscode.window.withProgress` ou atualização da Status Bar com `$(sync~spin)`).
+### 3. Seção "Documentações e Configurações" (antiga "Agentes e Documentações")
+- Renomear para "Documentações e Configurações" (`docs.sectionTitle`).
+- Remover itens operacionais que foram para Controles Principais e SDD.
+- Manter estritamente os guias e atalhos de settings:
+  * Painel Dev Tools (`docs.panel`)
+  * Publicação Marketplace (`docs.marketplace`)
+  * CLI e Comandos (`docs.cli`)
+  * Orquestração SDD (`docs.orchestration`)
+  * Arquitetura do Core (`docs.architecture`)
+  * Configurações Globais (`agents.selectMode`)
 
-### 4. Botão "Salvar e Executar Release" no Formulário de Preparação
-- Em `vscode-extension/src/providers/actionFormPanel.ts`:
-  * Adicionar o botão primário `"Salvar e Executar Release"` no rodapé do formulário.
-  * Ao ser clicado, submeter com `{ type: 'submit', action: 'save_and_execute', values }`.
-- Em `vscode-extension/src/providers/releaseManager.ts`:
-  * Tratar a ação `save_and_execute`: salvar o rascunho em `workspaceState` e disparar imediatamente `this.execute(product, onChanged)`.
-
-### 5. Testes Automatizados
-- Adicionar testes cobrindo a ação de "Salvar e Executar" e a detecção de eventos no watcher.
-- Rodar `npm test` em `vscode-extension/` (garantir que todos os testes passem).
+### 4. Sincronização e Testes
+- Atualizar catálogos NLS (`package.nls.json`, `package.nls.pt-br.json`, `localizationCatalog.ts`).
+- Atualizar e rodar `npm test` em `vscode-extension/` garantindo 100% dos testes verdes.
+- Ao concluir, emita o recibo no MCP Hub e atualize para `READY_FOR_REVIEW`.

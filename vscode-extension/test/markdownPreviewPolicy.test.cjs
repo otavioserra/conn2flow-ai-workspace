@@ -3,8 +3,10 @@ const assert = require('node:assert/strict');
 
 const {
   getPreviewCloseReason,
+  isTargetMpePreview,
   MPE_VIEW_TYPE,
-  normalizePreviewPath
+  normalizePreviewPath,
+  runPreviewLifecycle
 } = require('../out/markdownPreviewPolicy.js');
 
 test('normaliza separadores e caixa para comparação segura no Windows', () => {
@@ -79,4 +81,28 @@ test('preserva abas sem URI e documentos Markdown alheios', () => {
     getPreviewCloseReason({ kind: 'text', uriPath: 'C:\\repo\\anotacoes.md' }, target),
     undefined
   );
+});
+
+test('reconhece somente o preview MPE do alvo atual para foco', () => {
+  const target = 'C:\\repo\\docs\\guia.md';
+  assert.equal(isTargetMpePreview({ kind: 'custom', uriPath: target, viewType: MPE_VIEW_TYPE }, target), true);
+  assert.equal(isTargetMpePreview({ kind: 'text', uriPath: target }, target), false);
+  assert.equal(isTargetMpePreview({ kind: 'custom', uriPath: 'C:\\repo\\docs\\outro.md', viewType: MPE_VIEW_TYPE }, target), false);
+});
+
+test('ciclo de preview abre uma unica vez, fecha a fonte e preserva o foco', async () => {
+  const calls = [];
+  const focused = await runPreviewLifecycle({
+    closePreviousManagedPreview: async () => calls.push('close-previous'),
+    openPreview: async () => calls.push('open'),
+    waitUntilPreviewIsActive: async () => {
+      calls.push('focus');
+      return true;
+    },
+    closeTargetSource: async () => calls.push('close-source')
+  });
+
+  assert.equal(focused, true);
+  assert.deepEqual(calls, ['close-previous', 'open', 'focus', 'close-source']);
+  assert.equal(calls.filter(call => call === 'open').length, 1);
 });

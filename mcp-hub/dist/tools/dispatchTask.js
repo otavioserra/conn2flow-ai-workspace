@@ -39,13 +39,13 @@ const path = __importStar(require("node:path"));
 /**
  * Dispatch a new task to the orchestration queue with 3-tier autonomy support.
  */
-async function dispatchTask(args) {
+async function dispatchTask(args, workspaceRoot = path.resolve(__dirname, '../../../')) {
     const mode = args.mode || 'supervised';
     const priority = args.priority || 'normal';
     const now = new Date().toISOString();
     const taskId = `task-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
     const executionToken = `tok_${Buffer.from(`${taskId}:${args.req_id}`).toString('base64url')}`;
-    const taskDir = path.resolve(process.cwd(), 'tasks');
+    const taskDir = path.join(workspaceRoot, 'tasks');
     if (!fs.existsSync(taskDir)) {
         fs.mkdirSync(taskDir, { recursive: true });
     }

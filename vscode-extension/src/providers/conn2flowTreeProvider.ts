@@ -8,6 +8,7 @@ import { SddScopeManager } from './sddScopeManager';
 import { GardeningManager } from './gardeningManager';
 import { LocalizationManager } from './localizationManager';
 import { ReleaseManager } from './releaseManager';
+import { HubTaskWatcher } from './hubTaskWatcher';
 import { TranslationKey } from '../localizationCatalog';
 import { nextTreeExpansionVersion, normalizeTreeExpansionVersion, treeSectionId } from '../treeExpansionPolicy';
 
@@ -89,10 +90,27 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     );
   }
 
+  private releaseExecutionItem(
+    product: 'manager' | 'installer',
+    key: TranslationKey,
+    command: string
+  ): Conn2FlowTreeItem {
+    if (ReleaseManager.canExecute(product)) return this.leaf(key, command, 'rocket');
+    const label = LocalizationManager.t(key);
+    return new Conn2FlowTreeItem(
+      label,
+      vscode.TreeItemCollapsibleState.None,
+      command,
+      'lock',
+      ReleaseManager.executionBlockerLabel(product)
+    );
+  }
+
   private rootItems(): Conn2FlowTreeItem[] {
     const modes = ModesManager.getCurrentModes();
     const target = ProjectsManager.getTargetProject();
     const targetValues = { target: target || LocalizationManager.t('common.none') };
+    const topologyKey: TranslationKey = modes.topology === 'duplo' ? 'mode.dual' : 'mode.triad';
     const autonomyKey: TranslationKey = modes.autonomy === 'autonomo_monitorado'
       ? 'mode.monitored'
       : modes.autonomy === 'autonomo_headless' ? 'mode.headless' : 'mode.supervised';
@@ -101,7 +119,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       this.leaf('overview.scope', 'conn2flow.sdd.selectScope', 'target', { scope: SddScopeManager.getScopeLabel() }),
       this.leaf(target ? 'overview.target' : 'overview.noTarget', 'conn2flow.projects.setTarget', 'project', targetValues),
       this.leaf('overview.language', 'conn2flow.settings.selectLanguage', 'globe', { language: LocalizationManager.languageLabel }),
-      this.leaf('overview.autonomy', 'conn2flow.modes.selectMode', 'shield', { mode: LocalizationManager.t(autonomyKey) })
+      this.leaf('overview.topology', 'conn2flow.modes.selectTopology', 'organization', { mode: LocalizationManager.t(topologyKey) }),
+      this.leaf('overview.autonomy', 'conn2flow.modes.selectAutonomy', 'shield', { mode: LocalizationManager.t(autonomyKey) })
     ];
 
     const sdd = [
@@ -131,9 +150,11 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       core.push(this.leaf('core.cssAudit', 'conn2flow.manager.cssAudit', 'search', targetValues));
     }
     core.push(this.leaf('release.verify', 'conn2flow.release.verifyPermission', 'verified'));
+    core.push(this.leaf('release.manager', 'conn2flow.release.manager', 'package'));
+    core.push(this.leaf('release.installer', 'conn2flow.release.installer', 'package'));
+    core.push(this.releaseExecutionItem('manager', 'release.executeManager', 'conn2flow.release.executeManager'));
+    core.push(this.releaseExecutionItem('installer', 'release.executeInstaller', 'conn2flow.release.executeInstaller'));
     if (ReleaseManager.permissionState === 'allowed') {
-      core.push(this.leaf('release.manager', 'conn2flow.release.manager', 'package'));
-      core.push(this.leaf('release.installer', 'conn2flow.release.installer', 'package'));
       core.push(this.leaf('release.openActions', 'conn2flow.release.openActions', 'github-action'));
     }
 
@@ -160,8 +181,14 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       this.leaf('diagnostics.syncAll', 'conn2flow.ai.syncAllRepos', 'repo-clone')
     ];
 
+    const watcherKey: TranslationKey = HubTaskWatcher.isEnabled()
+      ? 'agents.hubWatcherActive'
+      : 'agents.hubWatcherPaused';
+    const watcherIcon = HubTaskWatcher.isEnabled() ? 'pulse' : 'debug-pause';
+
     const agents = [
       this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear'),
+      this.leaf(watcherKey, 'conn2flow.hub.toggleWatcher', watcherIcon),
       this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
       this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
       this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),

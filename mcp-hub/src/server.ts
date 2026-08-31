@@ -2,6 +2,7 @@ import * as readline from 'node:readline';
 import { executeC2fCommand, type C2fRunCommandArgs } from './tools/c2fCommand.js';
 import { dispatchTask, type DispatchTaskArgs } from './tools/dispatchTask.js';
 import { reportCompletion, type ReportCompletionArgs } from './tools/reportCompletion.js';
+import { logSessionEvent, type LogSessionEventArgs } from './tools/logSessionEvent.js';
 
 export interface McpTool {
   name: string;
@@ -91,9 +92,58 @@ export class McpServer {
           summary: {
             type: 'string',
             description: 'Optional executive summary of accomplishments'
+          },
+          task_id: {
+            type: 'string',
+            description: 'Optional taskId returned by dispatch_task for structured correlation'
+          },
+          req_id: {
+            type: 'string',
+            description: 'Optional REQ identifier used to locate and transition the task record'
+          },
+          role: {
+            type: 'string',
+            enum: ['executor', 'reviewer', 'architect'],
+            description: 'Optional emitting role; creates a role-specific receipt alongside the canonical receipt'
           }
         },
         required: ['batch_id', 'status', 'logs']
+      }
+    });
+
+    this.tools.set('log_session_event', {
+      name: 'log_session_event',
+      description: 'Append a structured event to the shared batch session timeline in sdd/sessions/.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          batch_id: {
+            type: 'string',
+            description: 'Batch identifier (e.g. "BATCH-044")'
+          },
+          agent_id: {
+            type: 'string',
+            description: 'Structured identity of the emitting agent (e.g. "antigravity-architect", "codex-executor", "claude-reviewer")'
+          },
+          role: {
+            type: 'string',
+            enum: ['architect', 'executor', 'reviewer', 'human'],
+            description: 'Role of the emitting participant'
+          },
+          summary: {
+            type: 'string',
+            description: 'Actionable summary of the event or milestone'
+          },
+          details: {
+            type: 'string',
+            description: 'Optional detailed description, code diffs or test logs'
+          },
+          timestamp: {
+            type: 'string',
+            description: 'Optional ISO 8601 timestamp'
+          }
+        },
+        required: ['batch_id', 'agent_id', 'role', 'summary']
       }
     });
   }
@@ -143,6 +193,8 @@ export class McpServer {
             contentResult = await dispatchTask(toolArgs as DispatchTaskArgs);
           } else if (toolName === 'report_completion') {
             contentResult = await reportCompletion(toolArgs as ReportCompletionArgs);
+          } else if (toolName === 'log_session_event') {
+            contentResult = await logSessionEvent(toolArgs as LogSessionEventArgs);
           } else {
             return {
               jsonrpc: '2.0',

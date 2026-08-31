@@ -1,5 +1,192 @@
 export type ReleaseIncrement = 'patch' | 'minor' | 'major';
 export type ReleasePermission = 'unknown' | 'denied' | 'allowed';
+export type ReleaseProduct = 'manager' | 'installer';
+export type ReleaseBlocker =
+  | 'workspace-untrusted'
+  | 'permission-denied'
+  | 'permission-unknown'
+  | 'dirty-tree'
+  | 'detached-head'
+  | 'non-github-remote'
+  | 'tag-collision'
+  | 'documentation-outdated'
+  | 'draft-missing'
+  | 'required-file-missing'
+  | 'workflow-busy';
+
+export const REQUIRED_RELEASE_DOCUMENTS = ['README.md', 'README-PT-BR.md', 'CHANGELOG.md'] as const;
+
+export interface ReleaseGateInput {
+  workspaceTrusted: boolean;
+  permission: ReleasePermission;
+  dirtyFiles: readonly string[];
+  branch?: string;
+  githubRemote: boolean;
+  tagCollision: boolean;
+  documentationReady: boolean;
+  draftReady: boolean;
+  requiredFilesReady?: boolean;
+  workflowIdle?: boolean;
+}
+
+export interface ReleaseGateResult {
+  canPrepare: true;
+  canExecute: boolean;
+  blockers: ReleaseBlocker[];
+}
+
+export interface ReleaseDraftSuggestion {
+  product: ReleaseProduct;
+  increment: ReleaseIncrement;
+  currentVersion: string;
+  nextVersion: string;
+  tag: string;
+  tagMessage: string;
+  commitMessage: string;
+  releaseNotes: string;
+  mode: 'automatic' | 'manual';
+}
+
+export interface WorkflowRun {
+  databaseId: number;
+  headBranch: string;
+  status: string;
+  conclusion: string | null;
+  createdAt: string;
+}
+
+function normalizeWorkflowRunValue(value: string | null | undefined): string {
+  return String(value || '').toLocaleLowerCase('en-US');
+}
+
+export function selectWorkflowRun(
+  runs: readonly WorkflowRun[],
+  tag: string,
+  triggeredAfter: Date
+): WorkflowRun | undefined {
+  const threshold = triggeredAfter.getTime();
+  const eligible = runs
+    .filter(run => {
+      const createdAt = Date.parse(run.createdAt);
+      const status = normalizeWorkflowRunValue(run.status);
+      const conclusion = normalizeWorkflowRunValue(run.conclusion);
+      return Number.isInteger(run.databaseId) &&
+        run.headBranch === tag &&
+        Number.isFinite(createdAt) &&
+        createdAt >= threshold &&
+        !(status === 'completed' && conclusion === 'failure');
+    })
+    .sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
+
+  const latest = eligible[0];
+  if (!latest) return undefined;
+  if (
+    normalizeWorkflowRunValue(latest.status) === 'completed' &&
+    normalizeWorkflowRunValue(latest.conclusion) === 'success'
+  ) {
+    return latest;
+  }
+
+  return eligible.find(run => {
+    const status = normalizeWorkflowRunValue(run.status);
+    return status === 'in_progress' || status === 'queued';
+  });
+}
+
+function normalizeReleasePath(value: string): string {
+  return value.replace(/\\/g, '/').replace(/^\.\//, '').toLocaleLowerCase('en-US');
+}
+
+export function inspectReleaseDocumentPaths(paths: readonly string[]): {
+  required: string[];
+  workflows: string[];
+  missing: string[];
+  ready: boolean;
+} {
+  const normalized = new Map(paths.map(file => [normalizeReleasePath(file), file]));
+  const required = REQUIRED_RELEASE_DOCUMENTS.filter(file => normalized.has(normalizeReleasePath(file)));
+  const missing: string[] = REQUIRED_RELEASE_DOCUMENTS.filter(file => !normalized.has(normalizeReleasePath(file)));
+  const workflows = paths.filter(file => /^\.github\/workflows\/[^/]+\.ya?ml$/i.test(normalizeReleasePath(file)));
+  if (workflows.length === 0) missing.push('.github/workflows/*.yml');
+  return { required: [...required], workflows, missing, ready: missing.length === 0 };
+}
+
+export function inspectReleaseDocumentContents(
+  documents: Readonly<Record<string, string>>,
+  managerVersion?: string,
+  installerVersion?: string
+): string[] {
+  const normalized = new Map(
+    Object.entries(documents).map(([file, content]) => [normalizeReleasePath(file), content])
+  );
+  const readme = normalized.get('readme.md') || '';
+  const readmePt = normalized.get('readme-pt-br.md') || '';
+  const changelog = normalized.get('changelog.md') || '';
+  const issues: string[] = [];
+
+  if (managerVersion && (!readme.includes(`v${managerVersion}`) || !readmePt.includes(`v${managerVersion}`))) {
+    issues.push('README:manager-version');
+  }
+  if (
+    installerVersion &&
+    (!readme.includes(`instalador-v${installerVersion}`) || !readmePt.includes(`instalador-v${installerVersion}`))
+  ) {
+    issues.push('README:installer-version');
+  }
+  if (managerVersion && !changelog.includes(`[${managerVersion}]`)) {
+    issues.push('CHANGELOG:manager-version');
+  }
+
+  for (const [file, content] of normalized) {
+    if (/^\.github\/workflows\/[^/]+\.ya?ml$/i.test(file) &&
+      (!/^name:\s*\S+/m.test(content) || !/^on:\s*$/m.test(content))) {
+      issues.push(`${file}:header`);
+    }
+  }
+  return issues;
+}
+
+export function evaluateReleaseGate(input: ReleaseGateInput): ReleaseGateResult {
+  const blockers: ReleaseBlocker[] = [];
+  if (!input.workspaceTrusted) blockers.push('workspace-untrusted');
+  if (input.permission === 'denied') blockers.push('permission-denied');
+  if (input.permission === 'unknown') blockers.push('permission-unknown');
+  if (input.dirtyFiles.length > 0) blockers.push('dirty-tree');
+  if (!input.branch) blockers.push('detached-head');
+  if (!input.githubRemote) blockers.push('non-github-remote');
+  if (input.tagCollision) blockers.push('tag-collision');
+  if (!input.documentationReady) blockers.push('documentation-outdated');
+  if (!input.draftReady) blockers.push('draft-missing');
+  if (input.requiredFilesReady === false) blockers.push('required-file-missing');
+  if (input.workflowIdle === false) blockers.push('workflow-busy');
+  return { canPrepare: true, canExecute: blockers.length === 0, blockers };
+}
+
+export function createReleaseDraftSuggestion(
+  product: ReleaseProduct,
+  currentVersion: string,
+  increment: ReleaseIncrement,
+  recentCommits: readonly string[] = [],
+  activeBatch = ''
+): ReleaseDraftSuggestion {
+  const nextVersion = bumpSemver(currentVersion, increment);
+  const tag = `${product === 'manager' ? 'gestor-v' : 'instalador-v'}${nextVersion}`;
+  const notes = recentCommits.length > 0
+    ? recentCommits.map(commit => `- ${commit}`).join('\n')
+    : `- ${activeBatch || tag}`;
+  const batchLine = activeBatch ? `\n\nSDD: ${activeBatch}` : '';
+  return {
+    product,
+    increment,
+    currentVersion,
+    nextVersion,
+    tag,
+    tagMessage: tag,
+    commitMessage: `chore(release): publish ${product} ${nextVersion}`,
+    releaseNotes: `## ${tag}\n\n${notes}${batchLine}`,
+    mode: 'automatic'
+  };
+}
 
 export function bumpSemver(version: string, increment: ReleaseIncrement): string {
   const match = version.match(/^(\d+)\.(\d+)\.(\d+)$/);
@@ -10,6 +197,26 @@ export function bumpSemver(version: string, increment: ReleaseIncrement): string
   if (increment === 'major') return `${major + 1}.0.0`;
   if (increment === 'minor') return `${major}.${minor + 1}.0`;
   return `${major}.${minor}.${patch + 1}`;
+}
+
+export function replaceReleaseVersionMentions(
+  value: string,
+  previousVersions: readonly string[],
+  nextVersion: string,
+  previousTags: readonly string[],
+  nextTag: string
+): string {
+  let updated = value;
+  const replacements = [
+    ...previousTags.map(previous => [previous, nextTag] as const),
+    ...previousVersions.map(previous => [previous, nextVersion] as const)
+  ];
+
+  for (const [previous, next] of replacements) {
+    if (!previous || previous === next) continue;
+    updated = updated.split(previous).join(next);
+  }
+  return updated;
 }
 
 export function classifyViewerPermission(permission: string | undefined): ReleasePermission {

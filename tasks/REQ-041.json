@@ -1,11 +1,12 @@
 {
-  "taskId": "task-1788199585576-df7a0",
+  "taskId": "task-1788201541953-uo710",
   "reqId": "REQ-041",
   "repo": "conn2flow-ai-workspace",
   "mode": "supervised",
   "priority": "high",
-  "prompt": "Projeto: conn2flow-ai-workspace\r\nCaminho Raiz: C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\r\nRequisicao: REQ-041 | Batch: BATCH-043\r\nImplementar e validar o probe E2E da triade em vscode-extension/test/mcpTriadProbe.test.cjs, executar npm test e emitir recibo via report_completion, preservando o modo supervisionado.",
-  "createdAt": "2026-08-31T18:06:25.576Z",
-  "status": "dispatched",
-  "executionToken": "tok_dGFzay0xNzg4MTk5NTg1NTc2LWRmN2EwOlJFUS0wNDE"
+  "prompt": "Projeto: conn2flow-ai-workspace\r\nCaminho Raiz: C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\r\nRequisicao: REQ-041 | Batch: BATCH-043 | CR-001\r\nCorrigir e validar correlacao estruturada de recibos, transicao terminal da tarefa e probe E2E conforme CURRENT-HANDOFF.md.",
+  "createdAt": "2026-08-31T18:39:01.952Z",
+  "status": "completed",
+  "executionToken": "tok_dGFzay0xNzg4MjAxNTQxOTUzLXVvNzEwOlJFUS0wNDE",
+  "completedAt": "2026-08-31T18:39:39.728Z"
 }

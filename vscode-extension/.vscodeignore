@@ -8,4 +8,5 @@ out/**/*.test.js.map
 tsconfig.json
 .gitignore
 *.vsix
+*.log
 node_modules/**

@@ -15,8 +15,9 @@ export interface TaskRecord {
     createdAt: string;
     status: 'dispatched' | 'running' | 'completed' | 'failed';
     executionToken: string;
+    completedAt?: string;
 }
 /**
  * Dispatch a new task to the orchestration queue with 3-tier autonomy support.
  */
-export declare function dispatchTask(args: DispatchTaskArgs): Promise<TaskRecord>;
+export declare function dispatchTask(args: DispatchTaskArgs, workspaceRoot?: string): Promise<TaskRecord>;
