@@ -63,6 +63,19 @@ All **36 skills** are available in `.codex/skills/` (as well as `.claude/skills/
 
 ---
 
+## ⚡ Zero-Prompt Auto-Boot Protocol
+
+When the user opens a chat and sends short trigger phrases (e.g. `"start"`, `"chief"`, `"go"`, `"run"`, `"status"`):
+1. **Automatic Repository Identification**: The agent immediately assumes the context of the local repository.
+2. **Mandatory Reading of `CURRENT.md`**: The agent reads `sdd/human-requests/CURRENT.md` to inspect the active requirement pointer (`req-XXX.md`), matching batch, and autonomy mode (`supervised`, `monitored_autonomous`, or `headless_autonomous`).
+3. **Automatic Role Activation**:
+   - **In Antigravity (Master Architect / Chief Engineer)**: Activates `c2f-architect-master`, reads `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, checks pending items, and proposes the next strategic plan.
+   - **In VS Code / Claude Code / Codex (Tactical Executor)**: Activates `c2f-executor-agent`, immediately renders the **Live Todo List (`[ ]` ➔ `[x]`)** from the active requirement, and begins implementing the smallest approved slice.
+   - **In Reviewer (Quality Auditor)**: Activates `c2f-reviewer-agent`, audits diffs, and validates security/skill contracts.
+4. **Automatic MCP Integration**: Leverages the MCP Hub (`conn2flow-hub`) for CLI operations (`c2f_run_command`), task dispatch (`dispatch_task`), and completion receipts (`report_completion`).
+
+---
+
 ## 🛡️ Inviolable Governance Rules
 
 1. **Absolute Prohibition of `git add -A` and `git add .`**: Commits must ALWAYS list explicit paths (`git add <specific-paths>`).
@@ -71,3 +84,5 @@ All **36 skills** are available in `.codex/skills/` (as well as `.claude/skills/
 4. **Runtime Source of Truth**: Runtime strictly serves HTML and CSS from the SQL database. `resources/` is the authoring seed.
 5. **Mandatory Version Bump**: When editing JS scripts or static CSS, increment the version in the resource metadata `<id>.json`.
 6. **Goal Mode (`/goal`)**: Use `/goal` in the prompt for continuous execution in Monitored Autonomous mode until all checks in `VALIDATION-CHECKLIST.md` are fulfilled.
+7. **Repository Identification in Handoffs and Prompts**: Always explicitly specify the project identifier and the absolute root path of the target repository in activation messages for other agents.
+

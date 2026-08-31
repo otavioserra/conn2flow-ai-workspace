@@ -46,9 +46,13 @@ node $injectorScript "Claude Desktop" $claudeConfig $mcpHubEntry
 $cursorConfig = Join-Path $workspaceRoot '.cursor\mcp.json'
 node $injectorScript "Cursor (Workspace)" $cursorConfig $mcpHubEntry
 
-# 3. VS Code / Antigravity (Workspace level)
+# 3. VS Code Native MCP & Copilot (Workspace level)
 $vscodeConfig = Join-Path $workspaceRoot '.vscode\mcp.json'
-node $injectorScript "VS Code / Antigravity" $vscodeConfig $mcpHubEntry
+node $injectorScript "VS Code" $vscodeConfig $mcpHubEntry
+
+# 4. Google Antigravity / Gemini (Workspace level)
+$agentsConfig = Join-Path $workspaceRoot '.agents\mcp_config.json'
+node $injectorScript "Google Antigravity (.agents)" $agentsConfig $mcpHubEntry
 
 Write-Host ""
 Write-Host "[MCP Setup Complete] Conn2Flow Hub connectors registered successfully!" -ForegroundColor Green

@@ -57,6 +57,19 @@ The `.gemini/hooks.json` configuration provides deterministic lifecycle hooks:
 
 ---
 
+## ⚡ Zero-Prompt Auto-Boot Protocol
+
+When the user opens a chat and sends short trigger phrases (e.g. `"start"`, `"chief"`, `"go"`, `"run"`, `"status"`):
+1. **Automatic Repository Identification**: The agent immediately assumes the context of the local repository.
+2. **Mandatory Reading of `CURRENT.md`**: The agent reads `sdd/human-requests/CURRENT.md` to inspect the active requirement pointer (`req-XXX.md`), matching batch, and autonomy mode (`supervised`, `monitored_autonomous`, or `headless_autonomous`).
+3. **Automatic Role Activation**:
+   - **In Antigravity (Master Architect / Chief Engineer)**: Activates `c2f-architect-master`, reads `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, checks pending items, and proposes the next strategic plan.
+   - **In VS Code / Claude Code / Codex (Tactical Executor)**: Activates `c2f-executor-agent`, immediately renders the **Live Todo List (`[ ]` ➔ `[x]`)** from the active requirement, and begins implementing the smallest approved slice.
+   - **In Reviewer (Quality Auditor)**: Activates `c2f-reviewer-agent`, audits diffs, and validates security/skill contracts.
+4. **Automatic MCP Integration**: Leverages the MCP Hub (`conn2flow-hub`) for CLI operations (`c2f_run_command`), task dispatch (`dispatch_task`), and completion receipts (`report_completion`).
+
+---
+
 ## 🛡️ Inviolable Governance Rules
 
 1. **Writing Boundary**: Respect the strict boundary between normative area (read-only for executors) and implementation area.
@@ -64,6 +77,8 @@ The `.gemini/hooks.json` configuration provides deterministic lifecycle hooks:
 3. **Atomic Reservation**: When creating a new request, verify existing sequence in `sdd/human-requests/` after `git pull`, committing and pushing immediately.
 4. **Runtime Source of Truth**: Runtime strictly serves HTML and CSS from the SQL database. `resources/` is the authoring seed.
 5. **Mandatory Version Bump**: Increment the version in resource metadata `<id>.json` whenever editing JS scripts or static CSS.
+6. **Repository Identification in Prompts for Agents**: Whenever the Macro-Architect prepares prompts for the user to pass to executors or reviewers, it MUST include the target project identifier and absolute root path to avoid context confusion across multi-repo sessions.
+
 
 ---
 

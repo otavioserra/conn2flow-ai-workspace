@@ -1,0 +1,8 @@
+# Conn2Flow SDD & Multi-Agent Rules
+
+- Trate sdd/README.md e os arquivos SDD como fonte normativa.
+- Antes de editar código, consulte sdd/human-requests/CURRENT.md.
+- Proibição absoluta de git add -A e git commit -a. Sempre liste arquivos específicos.
+- Uso obrigatório de variables.json (sem strings de texto ou cores hardcoded no PHP/HTML).
+- Sincronização e compilação exclusivamente via CLI oficial (c2f resources:sync, c2f manager:update-all, etc.) ou MCP Queb (conn2flow-hub).
+

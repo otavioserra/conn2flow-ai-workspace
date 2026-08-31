@@ -19,12 +19,16 @@
 
 ## Evidências
 
-- Tarefa: `tasks/REQ-041.json`, status `dispatched`.
+- Tarefa: `tasks/REQ-041.json`, status `completed`, ID `task-1788201541953-uo710`.
 - Teste focado: 1/1 aprovado.
 - `npm test`: TypeScript compilado; 48/48 testes aprovados; 0 falhas.
-- Recibo: `completions/BATCH-043-receipt.json`, status `success`, ID `rec_1788200250647`, posterior ao despacho final e vinculado ao `task-1788199585576-df7a0`.
+- MCP Hub: build + testes unitários 1/1 aprovados.
+- Recibo estruturado: `completions/BATCH-043-executor-receipt.json`, status `success`, ID
+  `rec_1788201579729`, vinculado a `REQ-041` e `task-1788201541953-uo710`.
 
 ## Pendente
 
-- Revisor Técnico auditar o diff, repetir `npm test` e emitir `sdd/validation/review-043.md`.
-- Macro-Arquiteto realizar a homologação executiva final.
+- [x] Implementar a CR-001 conforme o handoff corretivo.
+- [x] Reexecutar o ciclo MCP real e as suítes.
+- [ ] Revisor Técnico realizar nova auditoria independente.
+- [ ] Macro-Arquiteto realizar a homologação executiva final.

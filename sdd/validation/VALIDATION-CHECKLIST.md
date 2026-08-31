@@ -873,22 +873,22 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Seção "Visão Geral" renomeada para "Controles Principais" contendo Escopo, Projeto, Idioma, Topologia, Autonomia e Watcher da Tríade.
-- [ ] Ações de disparo de IA ("Iniciar Claude", "Copiar Prompt", "Registrar Handoff", "Submeter para Revisão") integradas em "SDD e Planejamento".
-- [ ] Seção "Documentações e Configurações" limpa, focada exclusivamente em guias e referências.
-- [ ] Catálogos NLS em português e inglês sincronizados com paridade estrita.
-- [ ] 100% dos testes automatizados passando sem regressões (`npm test`).
+- [x] Seção "Visão Geral" renomeada para "Controles Principais" contendo Escopo, Projeto, Idioma, Topologia, Autonomia e Watcher da Tríade.
+- [x] Ações de disparo de IA ("Iniciar Claude", "Copiar Prompt", "Registrar Handoff", "Submeter para Revisão") integradas em "SDD e Planejamento".
+- [x] Seção "Documentações e Configurações" limpa, focada exclusivamente em guias e referências.
+- [x] Catálogos NLS em português e inglês sincronizados com paridade estrita.
+- [x] 100% dos testes automatizados passando sem regressões (`npm test`).
 
 ### 2. Evidências de Validação
 
 - `cd vscode-extension && npm test`: 54/54 testes aprovados, compilação TypeScript limpa.
 - `cd mcp-hub && npm test`: 2/2 testes aprovados.
-- O recibo executor correlacionado continua ausente e `docs.skills` continua fora do mapa aprovado; ver [REVIEW-045](review-045.md).
+- Recibos canônico e executor correlacionados a `REQ-043` e ao `task-1788203067202-ho0yv`; `docs.skills` formalizado na REQ-043.
 
 ### 3. Revisão Técnica
 
-- [ ] [REVIEW-045](review-045.md): reauditoria em 2026-08-31 confirmou 54/54 testes, batch e ponteiros SDD alinhados, mas mantém `CHANGES_REQUIRED` por recibo MCP sem correlação e pelo item `docs.skills` fora do mapa aprovado.
-- [x] Encerramento da revisão: `MEMORIA-ENGENHARIA-EXECUCAO.md` medida em 2.008 bytes e 32 linhas; não requer poda.
+- [x] [REVIEW-045](review-045.md): parecer final `APPROVED` em 2026-08-31; 54/54 testes da extensão, 2/2 do MCP Hub, recibo executor correlacionado e escopo de `docs.skills` formalizado.
+- [x] Encerramento da revisão: `MEMORIA-ENGENHARIA-EXECUCAO.md` medida em 1.975 bytes e 32 linhas; não requer poda.
 
 
 ---

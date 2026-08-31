@@ -1,104 +1,114 @@
 ---
 name: sdd-workflow
-description: "MANDATORY READ before creating or modifying any file in the sdd/ directory (process, implementation, validation, decisions). Prevents breaking the Double Agent pattern and governance decay."
+description: "LEIA ANTES de criar ou alterar qualquer arquivo na pasta sdd/ (process, implementation, validation, decisions). Se não ler: o fluxo de Agente Duplo é quebrado e os artefatos de controle perdem a governança."
 user-invocable: false
 ---
 
-# SDD Workflow
+# SDD workflow
 
-# ⚡ Mandatory Trigger
-- **TRIGGER**: Starting any SDD framework task, interpreting human intake, or classifying artifacts in control directories.
-- **SKIP ONLY IF**: Tasks completely outside the SDD lifecycle (e.g. direct infrastructure git commits).
-- **CONSEQUENCE OF IGNORING**: Disalignment between Architect and Executor, mislocated artifacts, and collapse of Double Agent governance.
+# ⚡ Gatilho Obrigatório
+- **TRIGGER**: Iniciar qualquer tarefa do framework SDD, interpretar requisições humanas ou classificar artefatos nas pastas de controle.
+- **SKIP APENAS SE**: Tarefas completamente alheias ao ciclo de governança SDD (ex: git commits diretos de infraestrutura).
+- **CONSEQUÊNCIA DE IGNORAR**: Desalinhamento entre Arquiteto e Executor, criação de arquivos em locais errados e colapso da metodologia de Agente Duplo.
 
 ---
 
-Use this skill when developing against versioned SDD specifications.
+Use esta skill quando o projeto for guiado por sdd versionados.
 
-## Minimum Initial Context Reading
+## Leitura mínima inicial
 
-Start with `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the active batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
+Comece por `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, o batch atual, `sdd/validation/VALIDATION-CHECKLIST.md` e `sdd/decisions/DECISION-LOG.md`.
 
-If assigned to `sdd/human-requests/*.md` or the `sdd/human-requests/` folder, read this intake first in deterministic order:
+Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-requests/`, leia primeiro esse intake humano. Quando vier apenas a pasta, use a seguinte ordem determinística:
 
 1. `CURRENT.md`
 2. `README.md`
-3. the most recent `.md` file
+3. o arquivo `.md` mais recente
 
-## Request Classification
+## Classificação da demanda
 
-1. Requirement or contract change:
-   - log in `sdd/change-requests/`
-   - evaluate impact on numbered SDDs, decisions, batches, and validation
-2. Review feedback without normative change:
-   - log in `sdd/reviews/`
-   - keep numbered SDDs stable
-3. Incremental implementation:
-   - check active batch in `sdd/implementation/`
-   - implement smallest approved slice
-   - validate and update `sdd/validation/`
-4. Validation or spec drift check:
-   - start with smallest automated check
-   - log evidence and gaps in proper artifacts
+1. Mudança de requisito ou contrato:
+   - registre em `sdd/change-requests/`
+   - avalie impacto nos sdd numerados, decisions, batches e validation
+2. Feedback de review sem mudança normativa:
+   - registre em `sdd/reviews/`
+   - mantenha os sdd numerados estáveis
+3. Implementação incremental:
+   - confira o batch atual em `sdd/implementation/`
+   - implemente o menor slice aprovado
+   - valide e atualize `sdd/validation/` quando necessário
+4. Validação ou spec drift check:
+   - comece pela menor checagem automatizada
+   - registre evidência e pendências nos artefatos certos
 
-## Golden Rules
+## Regras de ouro
 
-- Numbered SDD files are the normative truth.
-- `sdd/human-requests/` is never normative; it feeds change requests, reviews, batches, decisions, or validation.
-- Never rewrite numbered SDDs for minor review feedback.
-- Never start the next batch before the current one is stable and reviewable.
+- Os sdd numerados são a fonte normativa.
+- `sdd/human-requests/` nunca é fonte normativa; ele só alimenta change requests, reviews, batches, decisions ou validação.
+- Não reescreva os sdd numerados para comentários pequenos de review.
+- Não abra o próximo batch antes de o atual estar estável e revisável.
 
 
-## 📋 Transparency Protocol & Live Todo List
+## 📋 Protocolo de Transparência & Checklist Vivo (Live Todo List)
 
-- Upon starting any request or batch, immediately render the full task list (Todo List) with checkboxes [ ].
-- After each relevant step or command finishes, update and re-display the list marking [x] on completed steps and highlighting the current step (⏳ [IN PROGRESS]).
-- Never execute long sequences of actions without updating visual progress for the user.
+- Ao iniciar qualquer requisição ou lote, renderize imediatamente a lista completa de tarefas (Todo List) com caixas de seleção [ ].
+- A cada término de etapa/comando relevante, atualize e re-exiba a lista marcando [x] nas etapas concluídas e destacando a etapa atual (⏳ [EM ANDAMENTO]).
+- Nunca execute sequências longas de comandos sem atualizar o status visual para o usuário.
 
-## 🛡️ 3-Tier AI Autonomy Spectrum
+## 🛡️ Espectro de 3 Níveis de Autonomia de IA
 
-1. **Tier 1: SUPERVISED (Mandatory Default / Human-in-the-Loop)**:
-   - The agent implements code and runs tests, but **DOES NOT commit, push, or deploy automatically**.
-   - The human developer reviews and approves diffs in the chat/IDE before merging.
+1. **Nível 1: SUPERVISIONADO (Padrão Mandatório / Human-in-the-Loop)**:
+   - O agente implementa código e executa testes, mas **NÃO realiza commit, push ou deploy automático**.
+   - O desenvolvedor revisa e aprova as mudanças no chat/IDE antes da consolidação.
 
-2. **Tier 2: MONITORED AUTONOMOUS (Live Autopilot / Glass-Box in Chat)**:
-   - Activated when the request specifies `mode: monitored_autonomous` (or `autonomo_monitorado`) or the user explicitly authorizes live execution.
-   - The agent executes the entire pipeline with a **Live Todo List (`[ ]` ➔ `[x]`) visible and updated in real time**:
-     * Branch or worktree isolation (`feat/req-XXX`).
-     * Code implementation and resource compilation (`c2f resources:sync`).
-     * Automated unit test suite execution (`c2f db:test`).
-     * **DEPLOY EXCLUSIVELY TO LOCAL TEST ENVIRONMENT** (`c2f manager:update-all` or local Docker).
-     * ⛔ **STRICT SAFETY RULE: NEVER PERFORM AUTOMATED DEPLOYS TO PRODUCTION OR REMOTE SERVERS.**
-     * Semantic commit and push to the working branch.
-     * Final executive report with validation evidence.
+2. **Nível 2: AUTÔNOMO MONITORADO (Live Autopilot / Glass-Box no Chat)**:
+   - Ativado quando a requisição contiver `modo: autonomo_monitorado` ou o usuário autorizar expressamente o acompanhamento contínuo na tela.
+   - O agente executa a esteira completa com **Live Todo List (`[ ]` ➔ `[x]`) visível e atualizado em tempo real**:
+     * Criação de branch/worktree isolada (`feat/req-XXX`).
+     * Codificação e compilação de recursos (`c2f resources:sync`).
+     * Execução de testes automatizados (`c2f db:test`).
+     * **DEPLOY EXCLUSIVAMENTE EM AMBIENTE DE TESTE LOCAL** (`c2f manager:update-all` ou Docker local).
+     * ⛔ **REGRA INVIOLÁVEL DE SEGURANÇA: NUNCA REALIZAR DEPLOY AUTOMÁTICO EM AMBIENTE DE PRODUÇÃO OU SERVIDORES REMOTOS.**
+     * Commit semântico e push na branch de trabalho.
+     * Relatório final com logs de execução e evidências de validação.
+   - **Goal Mode (`/goal`) para Execução Contínua**:
+     * Em tarefas complexas ou fatias que exigem múltiplos ciclos de teste e correção, utilize o comando `/goal` no prompt do Claude / IDE.
+     * Exemplo de instrução: `"/goal Execute o lote BATCH-XXX até que todos os testes do VALIDATION-CHECKLIST.md passem e o relatório esteja preenchido."`
+     * O agente permanece em loop autônomo ininterrupto até satisfazer deterministamente todas as condições de encerramento do checklist técnico, impedindo paradas prematuras.
 
-3. **Tier 3: HEADLESS AUTONOMOUS (Silent Background / Black-Box)**:
-   - Activated when the request specifies `mode: headless_autonomous` (or `autonomo_headless`).
-   - The agent executes the entire pipeline in isolated background processes via MCP Hub / Git Worktrees, delivering a completion notification and final report upon completion.
+3. **Nível 3: AUTÔNOMO HEADLESS (Background Silencioso / Black-Box)**:
+   - Ativado quando a requisição contiver `modo: autonomo_headless`.
+   - O agente executa toda a esteira em segundo plano isolado via MCP Hub / Git Worktrees, emitindo notificação e relatório consolidado apenas ao término.
 
-## 🔒 Concurrency Rules & Atomic Request Reservation Protocol (`req-XXX.md`)
+## 🔒 Regras Mandatórias de Concorrência & Reserva Atômica de Requisições (`req-XXX.md`)
 
-1. **Strict Prohibition of `git add -A` and `git commit -a`**:
-   - The agent MUST execute `git add <path-1> <path-2>` strictly listing the files touched in its approved batch, preventing commits from capturing concurrent code or uncommitted changes from other agents.
-2. **Atomic Request Reservation Protocol for `req-XXX.md`**:
-   - Any agent (Architect or Executor) is authorized to create new `req-XXX.md` request files when instructed by the human operator in chat or when uncovering an essential technical requirement, strictly following:
-     1. Run `git pull origin <branch>` to fetch the latest state.
-     2. Scan `sdd/human-requests/` to identify the next available sequential number.
-     3. Create `req-XXX.md`, update `sdd/human-requests/CURRENT.md`, and commit/push immediately:
+1. **Proibição Absoluta de `git add -A` e `git commit -a`**:
+   - O agente DEVE executar `git add <caminho-1> <caminho-2>` listando estritamente os arquivos tocados no seu lote aprovado, prevenindo que commits arrastem código concorrente ou arquivos de outros agentes.
+2. **Protocolo de Reserva Atômica para Criação de `req-XXX.md`**:
+   - Qualquer agente (Arquiteto ou Executor) está autorizado a criar novos arquivos `req-XXX.md` quando instruído pelo usuário no chat ou ao levantar uma demanda técnica essencial, seguindo estritamente:
+     1. Executar `git pull origin <branch>` para obter o estado mais recente.
+     2. Reler atomicamente o diretório `sdd/human-requests/` para identificar o próximo número sequencial vago.
+     3. Criar o arquivo `req-XXX.md`, atualizar `sdd/human-requests/CURRENT.md` e commitar/pushar imediatamente:
         ```bash
         git add sdd/human-requests/req-XXX.md sdd/human-requests/CURRENT.md
-        git commit -m "docs(sdd): reserve REQ-XXX for <title>"
+        git commit -m "docs(sdd): reserve REQ-XXX for <titulo>"
         git push origin <branch>
         ```
+3. **Identificação Obrigatória de Repositório nos Handoffs**:
+   - Todo handoff humano-agente ou inter-agentes deve explicitar no topo da mensagem o identificador e o caminho absoluto da raiz do repositório alvo:
+     * **Projeto**: `<nome-do-projeto>`
+     * **Caminho Raiz**: `<caminho-absoluto-da-raiz>`
+     * **Requisição**: `REQ-XXX` | **Batch**: `BATCH-YYY`
+   - Previne que agentes executores ou revisores operem no repositório incorreto em ambientes com múltiplos workspaces abertos.
 
-## 🧠 Canonical Memory Layers
+## 🧠 Camadas Canônicas de Memória
 
-1. **Repository Memory (`sdd/ENGINEERING-MEMORY-EXECUTION.md` — Shared Git)**:
-   - Objective technical facts about the software: core bugs fixed, build/database hacks, CSS/Tailwind compilation nuances, discovered CLI commands, and lessons learned. Visible to all agents and developers.
-2. **Private AI Tool Memory (Local)**:
-   - Subjective operator preferences (chat style, prompt shortcuts, preferred language).
+1. **Memória do Repositório (`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` — Git Compartilhado)**:
+   - Fatos técnicos objetivos do software: bugs resolvidos no core, hacks temporários de build/banco, particularidades de compilação CSS/Tailwind, comandos CLI descobertos e lições aprendidas. Visível a todos os agentes e desenvolvedores.
+2. **Memória Privada da Ferramenta de IA (Local)**:
+   - Preferências subjetivas de interação do operador (estilo de resposta, atalhos de prompt, idioma preferido).
 
-## ⚖️ Principle of Source Code and SPEC Authority over Memories
+## ⚖️ Princípio da Autoridade do Código e da SPEC sobre Memórias
 
-- Every technical constraint noted in memory must include its timestamp (`YYYY-MM-DD`).
-- The live source code, active configurations (`settings.json`, `.env`), schemas, and normative documents (`sdd/SPEC.md`, `sdd/0X-*.md`) hold **absolute authority** over historical memory notes. When a project configuration changes, conflicting legacy notes in memory must be immediately invalidated and updated.
+- Toda anotação de restrição técnica em memória deve carregar a data de registro (`YYYY-MM-DD`).
+- O código-fonte real, as configurações vigentes (`settings.json`, `.env`), os schemas e os arquivos normativos (`sdd/SPEC.md`, `sdd/0X-*.md`) possuem **autoridade absoluta** sobre anotações de memórias passadas. Se uma restrição mudar no projeto, a anotação antiga em memória deve ser invalidada e atualizada.

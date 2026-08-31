@@ -57,6 +57,19 @@ A configuração `.gemini/hooks.json` contém hooks determinísticos de ciclo de
 
 ---
 
+## ⚡ Protocolo de Inicialização Zero-Prompt (Auto-Boot)
+
+Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `"chefe"`, `"inicia"`, `"bora"`, `"executa"`, `"status"`):
+1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
+2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
+3. **Ativação Automática por Papel**:
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
+
+---
+
 ## 🛡️ Regras Invioláveis de Governança
 
 1. **Fronteira de Escrita**: Respeite a divisão entre área normativa (apenas leitura para executores) e área de implementação.
@@ -71,7 +84,9 @@ A configuração `.gemini/hooks.json` contém hooks determinísticos de ciclo de
 
 ## 📦 Skills e Ferramentas
 
-O workspace possui **36 skills oficiais** em `.gemini/skills/` que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+O workspace possui **39 skills oficiais** em `.gemini/skills/` que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+- Papéis da Tríade SDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
 - Planejamento e fluxo SDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
 - Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`.
 - Arquitetura do Core: `c2f-*` (29 skills para pipelines, recursos, banco, Docker, Tailwind, shell e Windows traps).
+

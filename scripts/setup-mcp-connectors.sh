@@ -34,8 +34,11 @@ node "$INJECTOR" "Claude Desktop" "$CLAUDE_CONFIG" "$MCP_ENTRY"
 # 2. Cursor (Workspace level)
 node "$INJECTOR" "Cursor (Workspace)" "$WORKSPACE_ROOT/.cursor/mcp.json" "$MCP_ENTRY"
 
-# 3. VS Code / Antigravity (Workspace level)
-node "$INJECTOR" "VS Code / Antigravity" "$WORKSPACE_ROOT/.vscode/mcp.json" "$MCP_ENTRY"
+# 3. VS Code Native MCP & Copilot (Workspace level)
+node "$INJECTOR" "VS Code" "$WORKSPACE_ROOT/.vscode/mcp.json" "$MCP_ENTRY"
+
+# 4. Google Antigravity / Gemini (Workspace level)
+node "$INJECTOR" "Google Antigravity (.agents)" "$WORKSPACE_ROOT/.agents/mcp_config.json" "$MCP_ENTRY"
 
 echo ""
 echo "[MCP Setup Complete] Conn2Flow Hub connectors registered successfully!"

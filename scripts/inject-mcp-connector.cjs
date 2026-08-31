@@ -19,7 +19,8 @@ try {
   let data = {};
   if (fs.existsSync(filePath)) {
     try {
-      const raw = fs.readFileSync(filePath, 'utf8').trim();
+      let raw = fs.readFileSync(filePath, 'utf8').trim();
+      raw = raw.replace(/^\uFEFF/, '');
       if (raw) data = JSON.parse(raw);
     } catch (e) {
       data = {};

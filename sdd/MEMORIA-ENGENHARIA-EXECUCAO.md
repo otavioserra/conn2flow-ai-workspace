@@ -2,7 +2,7 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Último lote concluído:** [BATCH-043 — Teste de Integração End-to-End da Tríade via MCP Hub](implementation/batch-043.md)
+> **Último lote concluído:** [BATCH-045 — Reorganização Ergonômica da Árvore Dev Tools (Controles Principais e Ações SDD)](implementation/batch-045.md)
 >
 > **Lote atual:** nenhum lote ativo no momento; aguarda novo intake do Humano-no-Loop.
 >
@@ -10,8 +10,8 @@
 
 ## Atividades recentes
 
-- **2026-08-31 — BATCH-042:** propagada a regra inviolável de identificação mandatória de repositório e caminho absoluto para o Core (`conn2flow`), skill `sdd-workflow` e boilerplates. Homologado com 47/47 testes.
-- **2026-08-31 — REQ-041 / BATCH-043:** teste fim-a-fim da Tríade de Agentes conectada via MCP Hub (`dispatch_task` ➔ probe `mcpTriadProbe.test.cjs` ➔ `report_completion` ➔ auditoria independente em `review-043.md`). Homologado com 48/48 testes.
+- **2026-08-31 — BATCH-044:** implementado HubTaskWatcher na extensão, timeline de sessão compartilhada em `sdd/sessions/`, feedback visual de loading e botão 'Salvar e Executar Release'. Homologado com 53/53 testes.
+- **2026-08-31 — REQ-043 / BATCH-045:** reorganização ergonômica da árvore no VS Code com emojis visuais coloridos, centralização de Controles Principais e ações de IA em SDD. Homologado com 54/54 testes em `review-045.md`.
 
 ## Decisões operacionais vigentes
 
@@ -20,7 +20,7 @@
 
 ## Pendência imediata
 
-- Ciclo do BATCH-043 homologado com 100% de sucesso. Pronto para abertura da REQ-042 / BATCH-044 (Sessão Compartilhada & Identidade de Agentes no MCP Hub).
+- Lotes BATCH-043, BATCH-044 e BATCH-045 100% homologados e concluídos. Pronto para nova requisição.
 
 
 

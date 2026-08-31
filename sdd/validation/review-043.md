@@ -6,7 +6,7 @@
 * **Registro de Lote**: [batch-043.md](../implementation/batch-043.md)
 * **Checklist de Validação**: [VALIDATION-CHECKLIST.md](VALIDATION-CHECKLIST.md#batch-043-teste-de-integracao-end-to-end-da-triade-via-mcp-hub)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
-* **Parecer**: **REPROVADO COM RESSALVAS (`CHANGES_REQUIRED`)**
+* **Parecer atual**: **HOMOLOGADO APÓS CR-001 (`APPROVED`)**
 
 ---
 
@@ -90,3 +90,42 @@ está tecnicamente demonstrado. O BATCH-043 permanece em `ready-for-review` e n�
 homologação executiva até a correção dos findings F1–F3.
 
 **Status da Revisão**: `CHANGES_REQUIRED`
+
+---
+
+## 6. Segunda rodada independente — CR-001
+
+### 6.1 Findings
+
+Nenhum finding bloqueante ou menor permanece no escopo corretivo da CR-001.
+
+### 6.2 Verificação dos findings originais
+
+| Finding | Resultado da segunda rodada |
+|---|---|
+| **F1 — correlação estruturada** | **RESOLVIDO**: `report_completion` expõe e persiste `taskId`, `reqId` e `role`; o runtime compilado publicou os campos no schema de `tools/list` e rejeita `task_id` divergente da REQ. |
+| **F2 — recibos e probe** | **RESOLVIDO**: recibos `executor` e `reviewer` são separados; o probe abre `BATCH-043-executor-receipt.json` e valida batch, tarefa, REQ, papel, status e ordem temporal. |
+| **F3 — estado terminal** | **RESOLVIDO**: `tasks/REQ-041.json` está `completed`; `completedAt` coincide com o timestamp do recibo executor e permanece estável após o recibo reviewer. |
+
+### 6.3 Evidências independentes
+
+| Verificação | Resultado |
+|---|---|
+| `npm test` em `mcp-hub/` | **PASS — build TypeScript + 1/1 teste, 0 falhas** |
+| `npm test` em `vscode-extension/` | **PASS — build TypeScript + 48/48 testes, 0 falhas** |
+| Handshake e `tools/list` no runtime compilado | **PASS — schema de `report_completion` contém `task_id`, `req_id` e `role`** |
+| Recibo executor | **PASS — `rec_1788201579729`, role `executor`, SHA-256 `96ABAF7611F779AC2E579569A17D07AD7BE42ACD5C2DA027B85766782867EF9C`** |
+| Recibo reviewer real | **PASS — `rec_1788202002260`, role `reviewer`, vinculado a `REQ-041` e `task-1788201541953-uo710`** |
+| Estabilidade após reviewer | **PASS — recibo executor e tarefa mantiveram seus hashes; recibo canônico passou a refletir o reviewer sem alterar `completedAt`** |
+| Probe após recibo reviewer | **PASS — 1/1, 0 falhas** |
+| Isolamento concorrente | **PASS — hashes de `CURRENT.md`, `CURRENT-HANDOFF.md` e `BATCH-INDEX.md` permaneceram inalterados pela revisão** |
+
+### 6.4 Parecer final
+
+A CR-001 corrige integralmente F1–F3 e preserva compatibilidade com o recibo canônico. A separação por
+papel impede que o recibo reviewer destrua a evidência do executor, e a transição terminal fica
+restrita ao fechamento do executor.
+
+**Status da segunda rodada**: `APPROVED`
+
+**Próximo passo**: homologação executiva final pelo Macro-Arquiteto, mantida pendente.

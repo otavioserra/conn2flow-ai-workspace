@@ -71,6 +71,10 @@ Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-re
      * ⛔ **REGRA INVIOLÁVEL DE SEGURANÇA: NUNCA REALIZAR DEPLOY AUTOMÁTICO EM AMBIENTE DE PRODUÇÃO OU SERVIDORES REMOTOS.**
      * Commit semântico e push na branch de trabalho.
      * Relatório final com logs de execução e evidências de validação.
+   - **Goal Mode (`/goal`) para Execução Contínua**:
+     * Em tarefas complexas ou fatias que exigem múltiplos ciclos de teste e correção, utilize o comando `/goal` no prompt do Claude / IDE.
+     * Exemplo de instrução: `"/goal Execute o lote BATCH-XXX até que todos os testes do VALIDATION-CHECKLIST.md passem e o relatório esteja preenchido."`
+     * O agente permanece em loop autônomo ininterrupto até satisfazer deterministamente todas as condições de encerramento do checklist técnico, impedindo paradas prematuras.
 
 3. **Nível 3: AUTÔNOMO HEADLESS (Background Silencioso / Black-Box)**:
    - Ativado quando a requisição contiver `modo: autonomo_headless`.
@@ -90,6 +94,12 @@ Se a tarefa apontar para `sdd/human-requests/*.md` ou para a pasta `sdd/human-re
         git commit -m "docs(sdd): reserve REQ-XXX for <titulo>"
         git push origin <branch>
         ```
+3. **Identificação Obrigatória de Repositório nos Handoffs**:
+   - Todo handoff humano-agente ou inter-agentes deve explicitar no topo da mensagem o identificador e o caminho absoluto da raiz do repositório alvo:
+     * **Projeto**: `<nome-do-projeto>`
+     * **Caminho Raiz**: `<caminho-absoluto-da-raiz>`
+     * **Requisição**: `REQ-XXX` | **Batch**: `BATCH-YYY`
+   - Previne que agentes executores ou revisores operem no repositório incorreto em ambientes com múltiplos workspaces abertos.
 
 ## 🧠 Camadas Canônicas de Memória
 

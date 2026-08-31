@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "conn2flow-hub": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\mcp-hub\\dist\\index.js"
+      ]
+    }
+  },
+  "servers": {
+    "conn2flow-hub": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\mcp-hub\\dist\\index.js"
+      ]
+    }
+  }
+}
