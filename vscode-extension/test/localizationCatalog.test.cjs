@@ -23,5 +23,5 @@ test('environment só atua quando o idioma automático não é suportado', () =>
 });
 
 test('interpolação preserva chaves ausentes e substitui valores conhecidos', () => {
-  assert.equal(translate('en', 'overview.target', { target: 'lumix' }), 'Target Project: lumix');
+  assert.equal(translate('en', 'overview.target', { target: 'lumix' }), '📌 Target Project: lumix');
 });

@@ -115,15 +115,25 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       ? 'mode.monitored'
       : modes.autonomy === 'autonomo_headless' ? 'mode.headless' : 'mode.supervised';
 
+    const watcherKey: TranslationKey = HubTaskWatcher.isEnabled()
+      ? 'agents.hubWatcherActive'
+      : 'agents.hubWatcherPaused';
+    const watcherIcon = HubTaskWatcher.isEnabled() ? 'pulse' : 'debug-pause';
+
     const overview = [
       this.leaf('overview.scope', 'conn2flow.sdd.selectScope', 'target', { scope: SddScopeManager.getScopeLabel() }),
       this.leaf(target ? 'overview.target' : 'overview.noTarget', 'conn2flow.projects.setTarget', 'project', targetValues),
       this.leaf('overview.language', 'conn2flow.settings.selectLanguage', 'globe', { language: LocalizationManager.languageLabel }),
       this.leaf('overview.topology', 'conn2flow.modes.selectTopology', 'organization', { mode: LocalizationManager.t(topologyKey) }),
-      this.leaf('overview.autonomy', 'conn2flow.modes.selectAutonomy', 'shield', { mode: LocalizationManager.t(autonomyKey) })
+      this.leaf('overview.autonomy', 'conn2flow.modes.selectAutonomy', 'shield', { mode: LocalizationManager.t(autonomyKey) }),
+      this.leaf(watcherKey, 'conn2flow.hub.toggleWatcher', watcherIcon)
     ];
 
     const sdd = [
+      this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
+      this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
+      this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),
+      this.leaf('agents.prepareReview', 'conn2flow.bridge.notifyArchitect', 'source-control'),
       this.leaf('sdd.selectScope', 'conn2flow.sdd.selectScope', 'target'),
       this.leaf('sdd.viewMode', 'conn2flow.sdd.toggleViewMode', 'split-horizontal', { mode: SddViewModeManager.label }),
       this.leaf('sdd.openCurrent', 'conn2flow.sdd.openCurrent', 'file-text'),
@@ -181,26 +191,16 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       this.leaf('diagnostics.syncAll', 'conn2flow.ai.syncAllRepos', 'repo-clone')
     ];
 
-    const watcherKey: TranslationKey = HubTaskWatcher.isEnabled()
-      ? 'agents.hubWatcherActive'
-      : 'agents.hubWatcherPaused';
-    const watcherIcon = HubTaskWatcher.isEnabled() ? 'pulse' : 'debug-pause';
-
-    const agents = [
-      this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear'),
-      this.leaf(watcherKey, 'conn2flow.hub.toggleWatcher', watcherIcon),
-      this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
-      this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
-      this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),
-      this.leaf('agents.prepareReview', 'conn2flow.bridge.notifyArchitect', 'source-control'),
+    const docsConfig = [
       this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
       this.leaf('docs.marketplace', 'conn2flow.docs.openMarketplaceGuide', 'cloud-upload'),
       this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),
       this.leaf('docs.orchestration', 'conn2flow.docs.openSddGuide', 'organization'),
       this.leaf('docs.architecture', 'conn2flow.docs.openArchitectureGuide', 'type-hierarchy'),
       this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered'),
-      this.leaf('settings.language', 'conn2flow.settings.selectLanguage', 'globe')
+      this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear')
     ];
+
 
     const result = [
       this.section('section.overview', 'overview', 'dashboard', overview, true),
@@ -208,7 +208,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       this.section('section.core', 'core', 'tools', core),
       this.section('section.projects', 'projects', 'folder-library', projects),
       this.section('section.diagnostics', 'diagnostics', 'server', diagnostics),
-      this.section('section.agents', 'agents', 'organization', agents)
+      this.section('section.agents', 'agents', 'organization', docsConfig)
     ];
 
     const custom = CustomActionsManager.getActionsManifest();

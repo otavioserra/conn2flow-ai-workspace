@@ -1,7 +1,7 @@
 # CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-043.md](req-043.md)
-* **Status**: `READY_FOR_EXECUTION`
+* **Status**: `READY_FOR_REVIEW`
 * **Lote Relacionado**: `BATCH-045`
 * **Topologia de Agentes**: `triade`
 * **Nível de Autonomia**: `supervisionado`
@@ -10,8 +10,12 @@
 
 ## Execução atual
 
-REQ-043 aprovada pelo Humano-no-Loop para o BATCH-045.
-Foco prioritário:
-- Reorganizar a árvore da extensão VS Code (`conn2flowTreeProvider.ts`): renomear "Visão Geral" para "Controles Principais" com todos os toggles e seletores globais; mover ações de agentes para "SDD e Planejamento"; renomear e limpar "Documentações e Configurações".
-Aguardando o Agente Executor iniciar a implementação e apresentar a Live Todo List.
+REQ-043 / BATCH-045 implementado pelo Executor com as correções dos 3 findings da revisão preliminar:
+1. Recibo emitido no MCP Hub (`completions/BATCH-045-executor-receipt.json`) com `role: "executor"`, `req_id: "REQ-043"`, `task_id: "task-1788203067202-ho0yv"`;
+2. Duplicata `settings.language` removida da seção de Documentações e Configurações;
+3. Teste unitário de hierarquia criado (`vscode-extension/test/treeSectionHierarchy.test.cjs`) com 54/54 testes passando;
+4. `sdd/implementation/batch-045.md` e timeline de sessão criados.
+
+Aguardando re-auditoria do Revisor Técnico.
+
 

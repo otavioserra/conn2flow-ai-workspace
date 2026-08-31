@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788203913735",
+  "batchId": "BATCH-045",
+  "taskId": null,
+  "reqId": null,
+  "role": null,
+  "status": "success",
+  "timestamp": "2026-08-31T19:18:33.734Z",
+  "logSize": 221,
+  "acknowledgement": "Batch BATCH-045 marked as SUCCESS by MCP Hub Orchestrator.",
+  "summary": "REQ-043/BATCH-045: reorganizada a arvore do conn2flowTreeProvider.ts. \"Visao Geral\" virou \"Controles Principais\" (escopo, projeto, idioma, topologia, autonomia, watcher). Acoes de IA (launchClaude, copyPrompt, recordHandoff, prepareReview) movidas para \"SDD e Planejamento\". Secao antiga \"agents\" renomeada para foco em Documentacao & Configuracoes, mantendo docs.panel/marketplace/cli/orchestration/architecture/skills, settings.language e agents.selectMode. Nenhum comando de Core, Projetos, Diagnosticos, SDD ou Docs foi removido. Emojis Unicode adicionados em todos os rotulos de secao e item nos catalogos localizationCatalog.ts, package.nls.json e package.nls.pt-br.json, mantendo paridade estrita PT/EN. Ajustado teste de interpolacao em localizationCatalog.test.cjs para refletir o novo texto com emoji.",
+  "logs": "npm test (vscode-extension): tsc compile OK; node --test test/**/*.test.cjs => tests 53, pass 53, fail 0, cancelled 0, skipped 0, duration_ms 244.06. Status atualizado para READY_FOR_REVIEW, pronto para o Revisor Tecnico."
+}

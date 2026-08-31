@@ -33,8 +33,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-042** | complete | Propagação Global da Governança Multi-Repositório | `VALIDATION-CHECKLIST.md#batch-042` | REQ-040 homologada; sincronização de regras em Core, skills com ai:sync e boilerplates. |
 | **BATCH-043** | complete | Teste de Integração End-to-End da Tríade via MCP Hub | `VALIDATION-CHECKLIST.md#batch-043` | REQ-041 homologada; probe 48/48 testes, recibo MCP e auditoria APPROVED. |
 | **BATCH-044** | complete | Watcher Autônomo na Extensão, Sessão Compartilhada e Usabilidade de Release | `VALIDATION-CHECKLIST.md#batch-044` | REQ-042 homologada; 53/53 testes, HubTaskWatcher, timeline sdd/sessions e VSIX instalado. |
-| **BATCH-045** | in-progress | Reorganização Ergonômica da Árvore Dev Tools (Controles Principais e Ações SDD) | `VALIDATION-CHECKLIST.md#batch-045` | REQ-043 ativa; Controles Principais, ações em SDD e Documentações & Configurações. |
+| **BATCH-045** | ready-for-review | Reorganização Ergonômica da Árvore Dev Tools (Controles Principais e Ações SDD) | `VALIDATION-CHECKLIST.md#batch-045` | REQ-043 executada; 54/54 testes, recibo emitido e pronto para re-auditoria. |
 
 ## Próxima requisição
 
-`REQ-043` ativa em 2026-08-31 para o `BATCH-045`. O Executor inicia a implementação supervisionada.
+`REQ-043` / `BATCH-045` em fase de re-auditoria do Revisor Técnico.
+
