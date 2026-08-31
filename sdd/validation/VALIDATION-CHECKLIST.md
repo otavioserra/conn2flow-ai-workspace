@@ -761,8 +761,8 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Tarefa despachada pelo Arquiteto via ferramenta MCP `dispatch_task` (`conn2flow-hub`) registrando `tasks/REQ-041.json`.
 - [x] Arquivo probe `vscode-extension/test/mcpTriadProbe.test.cjs` criado pelo Executor e aprovado em `npm test` (48/48 testes).
 - [x] Recibo de conclusão emitido pelo Executor via ferramenta MCP `report_completion` (`completions/BATCH-043-receipt.json`).
-- [x] Relatório de auditoria independente `sdd/validation/review-043.md` gerado pelo Revisor Técnico com parecer `APPROVED`.
-- [x] Homologação executiva final realizada pelo Macro-Arquiteto.
+- [ ] Relatório de auditoria independente `sdd/validation/review-043.md` gerado pelo Revisor Técnico com parecer `APPROVED`.
+- [ ] Homologação executiva final realizada pelo Macro-Arquiteto.
 
 
 ### 2. Evidências de Validação
@@ -797,6 +797,23 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
   o probe não valida o arquivo de recibo; a tarefa permanece `dispatched` após o recibo `success`.
 * **Gate**: o item de relatório `APPROVED` permanece desmarcado até a correção e nova rodada de
   auditoria.
+
+---
+
+## BATCH-044: Watcher Autônomo na Extensão, Sessão Compartilhada e Usabilidade de Release
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `HubTaskWatcher` implementado na extensão VS Code com toggle de Ativo/Pausado na árvore lateral.
+- [ ] Timeline da Sessão Compartilhada criada em `sdd/sessions/` com suporte a `agent_id` no MCP Hub.
+- [ ] Feedback visual de loading com spinner/Status Bar ativado no clique de ações demoradas.
+- [ ] Formulário de preparação de release exibe o botão `"Salvar e Executar Release"` e dispara a esteira de ponta a ponta.
+- [ ] Suíte de testes automatizados da extensão atualizada e 100% verde (`npm test`).
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
 
 
 

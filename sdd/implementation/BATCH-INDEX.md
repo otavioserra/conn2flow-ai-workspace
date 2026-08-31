@@ -32,7 +32,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-041** | complete | Correção de Workflow Run no Watch e Limpeza de Rascunho | `VALIDATION-CHECKLIST.md#batch-041` | REQ-039 homologada; 47/47 testes e VSIX instalado localmente. |
 | **BATCH-042** | complete | Propagação Global da Governança Multi-Repositório | `VALIDATION-CHECKLIST.md#batch-042` | REQ-040 homologada; sincronização de regras em Core, skills com ai:sync e boilerplates. |
 | **BATCH-043** | complete | Teste de Integração End-to-End da Tríade via MCP Hub | `VALIDATION-CHECKLIST.md#batch-043` | REQ-041 homologada; probe 48/48 testes, recibo MCP e auditoria APPROVED. |
+| **BATCH-044** | in-progress | Watcher Autônomo na Extensão, Sessão Compartilhada e Usabilidade de Release | `VALIDATION-CHECKLIST.md#batch-044` | REQ-042 ativa; HubTaskWatcher, timeline sdd/sessions, loading feedback e salvar & executar. |
 
 ## Próxima requisição
 
-`REQ-041` concluída em 2026-08-31 no `BATCH-043`. Pronto para novo intake da REQ-042 (Sessão Compartilhada & Identidade de Agentes).
+`REQ-042` ativa em 2026-08-31 para o `BATCH-044`. O Executor inicia a implementação supervisionada/monitorada.
