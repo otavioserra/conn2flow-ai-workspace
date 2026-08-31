@@ -1,13 +1,18 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-036.md](req-036.md)
-* **Status**: `READY_FOR_REVIEW`
-* **Lote Relacionado**: `BATCH-038`
+* **Ponteiro Ativo**: [req-037.md](req-037.md)
+* **Status**: `READY_FOR_EXECUTION`
+* **Lote Relacionado**: `BATCH-039`
 * **Topologia de Agentes**: `triade`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-08-29
-* **Lote Anterior Concluído**: [req-035.md](req-035.md) (`BATCH-037`)
+* **Data de Entrada**: 2026-08-31
+* **Lote Anterior Concluído**: [req-036.md](req-036.md) (`BATCH-038`)
 
 ## Execução atual
 
-REQ-036 corrigida tecnicamente no BATCH-038 após o feedback de que `Colapsar todas` não alterava o estado visual da árvore. A correção invalida os IDs memorizados apenas nas ações globais, passou em 31 testes e foi instalada localmente com hashes conferidos. Aguarda `Developer: Reload Window` e aceite visual humano; deploy e release real continuam fora do escopo.
+REQ-037 aprovada pelo Humano-no-Loop para o BATCH-039.
+Focos prioritários:
+1. Reconciliar `vscode-extension/src/extension.ts` e corrigir o encadeamento/foco de abas ao abrir múltiplos previews Markdown no VS Code.
+2. Implementar o painel de Release em duas fases: Fase 1 (Preparar Release / Diagnóstico & Rascunho) e Fase 2 (Executar Release travado se houver árvore suja).
+3. Automação e sincronização mandatória de documentações (`README.md`, `README-PT-BR.md`, `CHANGELOG.md`, `.github/workflows/`) antes do release.
+Aguardando o Agente Executor iniciar a implementação e apresentar a Live Todo List.

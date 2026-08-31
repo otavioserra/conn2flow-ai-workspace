@@ -2,32 +2,25 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Último lote concluído:** [BATCH-037 — Recuperação SDD e estabilização do preview MPE](implementation/batch-037.md)
+> **Último lote concluído:** [BATCH-038 — Reestruturação segura, multilanguage, backlog e releases](implementation/batch-038.md)
 >
-> **Lote atual:** [BATCH-038 — Reestruturação segura, multilanguage, backlog e releases](implementation/batch-038.md), pronto para revisão humana.
+> **Lote atual:** [BATCH-039 — Estabilização de Preview MPE, Release em 2 Fases e Docs Bilíngues Pré-Release](implementation/batch-039.md), em andamento.
 >
 > **Política**: manter somente fatos recentes e acionáveis; detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
 
 ## Atividades recentes
 
-- **2026-08-29 — Recuperação:** auditado o estado posterior ao BATCH-036; 14 commits e 44 arquivos de evolução da extensão não possuíam registro operacional correspondente.
-- **2026-08-29 — BATCH-037:** removido o fechamento global de abas Markdown e introduzida política restrita ao fonte alvo e ao preview MPE gerenciado.
-- **2026-08-29 — Validação:** `npm test` aprovou 5/5 testes; TypeScript compilou; VSIX foi empacotado; hashes da instalação local ficaram idênticos aos artefatos compilados.
-- **2026-08-29 — Aceite humano:** após `Developer: Reload Window`, o preview encadeado passou a focar o documento correto sem acumular fontes Markdown.
-- **2026-08-29 — REQ-036:** criada proposta de reorganização da interface, navegação de backlog, segurança operacional, interface `pt-BR`/`en` e releases separados do Gestor e do Gestor Instalador.
-- **2026-08-29 — BATCH-038:** REQ-036 aprovada; diagnóstico confirmou que `findRepoSdd()` retornava o SDD do workspace atual sem verificar o repositório solicitado, afetando especificamente o escopo `ai-workspace`.
-- **2026-08-29 — Entrega BATCH-038:** escopo corrigido; árvore progressiva, executor seguro, backlog, `pt-BR`/`en`, formulários compostos e releases Gestor/Instalador implementados; 27 testes e VSIX aprovados.
-- **2026-08-29 — Correção de revisão:** feedback humano revelou que `Colapsar todas` era sobrescrito pelo estado visual memorizado do VS Code; IDs de seção passaram a usar geração persistida nas ações globais, com 31 testes aprovados e instalação local atualizada.
+- **2026-08-29 — BATCH-038:** entrega do BATCH-038 consolidada com 31 testes e VSIX atualizado.
+- **2026-08-31 — REQ-037 / BATCH-039:** formalizada requisição para reconciliar regressão acidental em `extension.ts`, eliminar encadeamento de abas `.md` no preview, implementar Release em duas fases (preparação x execução) e sincronização documental obrigatória (`README.md`, `README-PT-BR.md`, `CHANGELOG.md`, `.github/workflows/`) pré-release. Handoff emitido para o Agente Executor.
 
 ## Decisões operacionais vigentes
 
 - O Intake Gate continua obrigatório: itens de `sdd/backlog/` não são executáveis até promoção humana para uma requisição e associação a um batch.
-- A REQ-036 está `APPROVED` e o BATCH-038 está `READY_FOR_REVIEW` em modo supervisionado.
-- Releases devem usar `c2f manager:release` e `c2f installer:release`, integrados respectivamente aos workflows `release-gestor.yml` e `release-instalador.yml`.
-- Os scripts de release precisam remover `git add .` antes de serem expostos pela interface.
-- Permissão de release deve ser comprovada; ausência ou indeterminação de permissão oferece somente diagnóstico seguro.
-- A implementação principal do BATCH-038 foi preservada nos commits `3786c7a` (`conn2flow-ai-workspace`) e `8186f92e` (`conn2flow`); deploy e release permanecem não autorizados.
+- A REQ-037 está `APPROVED` e o BATCH-039 está `READY_FOR_EXECUTION` em modo supervisionado.
+- Releases inteligentes dividem-se em Fase 1 (Preparação / Diagnóstico & Rascunho) e Fase 2 (Execução travada contra working tree suja e docs desatualizados).
+- A sincronização documental bilíngue é pré-requisito mandatório antes do disparo de releases.
 
 ## Pendência imediata
 
-- Aguardar aceite visual humano dos controles `Expandir todas`/`Colapsar todas`; em 2026-08-29 o humano autorizou consolidar a correção com commit/push. Release e deploy continuam fora do escopo.
+- Agente Executor assumir a tarefa via `sdd/handoffs/CURRENT-HANDOFF.md`, renderizar a Live Todo List e realizar a implementação do BATCH-039.
+

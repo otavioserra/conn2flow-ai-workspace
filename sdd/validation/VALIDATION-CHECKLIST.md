@@ -609,25 +609,21 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 * **Status técnico**: PASS; aceite visual humano pendente.
 * **Evidência**: `treeExpansionPolicy.test.cjs` cobre estabilidade dentro da mesma geração, troca de IDs após ação global, normalização do estado persistido e reinício seguro do contador. A suíte completa aprovou 31/31; o VSIX foi gerado com 61 arquivos e 140,63 KB. Os quatro artefatos compilados atualizados na instalação local possuem hashes SHA-256 idênticos à origem. A memória operacional foi revisada e permaneceu abaixo do alerta, com 3.233 bytes e 33 linhas.
 
+---
 
+## BATCH-039: Estabilização de Preview MPE, Release em 2 Fases e Docs Bilíngues Pré-Release
 
+### 1. Checklist de Aceite Técnico
 
+- [ ] Código de `vscode-extension/src/extension.ts` reconciliado e compilando sem erros (`npm run compile`).
+- [ ] Preview de Markdown fecha abas de código intermediárias e foca exclusivamente no preview ativo sem encadeamento.
+- [ ] Preparação de release acessível mesmo com working tree suja (Fase 1: Diagnóstico e Rascunho).
+- [ ] Execução de release bloqueada quando a working tree estiver suja (Fase 2: Executar Release).
+- [ ] Sincronização e verificação de documentação pré-release (`README.md`, `README-PT-BR.md`, `CHANGELOG.md`, `.github/workflows/*.yml`) integrada.
+- [ ] Testes unitários novos/atualizados passando com 100% de sucesso (`npm test`).
+- [ ] Empacotamento de VSIX validado.
 
+### 2. Evidências de Validação
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*(Aguardando execução do lote pelo Agente Executor)*
 

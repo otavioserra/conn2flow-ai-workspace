@@ -26,8 +26,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-035** | complete | Clonagem e scaffold de projetos satélites | `VALIDATION-CHECKLIST.md#batch-035` | Gerenciamento de projetos incorporado à extensão. |
 | **BATCH-036** | complete | Ponte da tríade e controles da árvore | `VALIDATION-CHECKLIST.md#batch-036` | Concluído no commit `50845f7`. |
 | **BATCH-037** | complete | Recuperação pós-BATCH-036 e estabilização do preview MPE | `VALIDATION-CHECKLIST.md#batch-037` | REQ-035; validação humana concluída. |
-| **BATCH-038** | ready-for-review | Reestruturação segura, multilanguage, backlog e releases | `VALIDATION-CHECKLIST.md#batch-038` | Regressão de `Colapsar todas` corrigida; 31 testes e hashes aprovados, aguarda teste visual. |
+| **BATCH-038** | complete | Reestruturação segura, multilanguage, backlog e releases | `VALIDATION-CHECKLIST.md#batch-038` | Regressão de `Colapsar todas` corrigida; 31 testes e hashes aprovados. |
+| **BATCH-039** | in-progress | Estabilização de Preview MPE, Release em 2 Fases e Docs Pré-Release | `VALIDATION-CHECKLIST.md#batch-039` | REQ-037 ativa; foco em encadeamento de abas, painel inteligente de release e documentação bilíngue. |
 
 ## Próxima requisição
 
-`REQ-036` permanece ativa em 2026-08-29. O `BATCH-038` aguarda o aceite visual da correção de expansão/colapso, sem deploy ou release.
+`REQ-037` ativa em 2026-08-31 para o `BATCH-039`. O Executor inicia a implementação supervisionada.
+
