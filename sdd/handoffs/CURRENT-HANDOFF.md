@@ -1,11 +1,11 @@
-# Handoff do Macro-Arquiteto — REQ-040 / BATCH-042
+# Handoff do Macro-Arquiteto — REQ-041 / BATCH-043
 
 * **Status**: `READY_FOR_EXECUTION`
 * **Emissor**: Macro-Arquiteto (Antigravity)
-* **Destinatário**: Agente Executor (OpenAI Codex / VS Code Extension)
+* **Destinatário**: Agente Executor (OpenAI Codex / Antigravity Executor)
 * **Data**: 2026-08-31
-* **Projeto Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) + `conn2flow` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`)
-* **Requisição Ativa**: [req-040.md](../human-requests/req-040.md)
+* **Projeto Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`)
+* **Requisição Ativa**: [req-041.md](../human-requests/req-041.md)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
 * **Autonomia**: `supervisionado`
 
@@ -13,35 +13,19 @@
 
 ## 🎯 Instruções para o Agente Executor
 
-Olá Executor! A **REQ-040** foi aberta para propagar globalmente a regra inviolável de **Identificação Mandatória de Repositório e Caminho Absoluto nos Prompts de Handoffs de Agentes** em todo o ecossistema Conn2Flow:
+Olá Executor! A **REQ-041** é a primeira validação prática da **Tríade de Agentes Conectada via MCP Hub** (`conn2flow-hub`):
 
-### 1. No Repositório Core (`conn2flow` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`)
-- Atualizar `conn2flow/AGENTS.md`:
-  * Adicionar a Regra Inviolável 7:
-    > `7. **Identificação de Repositório em Handoffs e Prompts**: Sempre explicitar o identificador do projeto e o caminho absoluto da raiz do repositório alvo (ex: conn2flow em c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow) nas mensagens de acionamento para outros agentes.`
-- Atualizar `conn2flow/GEMINI.md`:
-  * Adicionar a Regra Inviolável 6:
-    > `6. **Identificação de Repositório em Prompts para Agentes**: Sempre que o Macro-Arquiteto preparar mensagens para o usuário repassar a agentes executores ou revisores, DEVE incluir o identificador e o caminho absoluto da raiz do repositório alvo para evitar confusão de contexto em sessões com múltiplos repositórios abertos.`
+### 1. Criação do Probe de Validação (`vscode-extension/test/mcpTriadProbe.test.cjs`)
+- Criar o arquivo `vscode-extension/test/mcpTriadProbe.test.cjs` com testes unitários usando `node:test` e `node:assert`:
+  * Teste 1: Valida que a fila de tarefas do MCP Hub (`tasks/REQ-041.json`) existe no workspace e contém `status === 'dispatched'`.
+  * Teste 2: Valida que a pasta `completions/` está acessível para emissão de recibos.
+  * Teste 3: Valida que os arquivos normativos `AGENTS.md` e `GEMINI.md` em `conn2flow-ai-workspace` possuem a regra de identificação obrigatória de repositório.
 
-### 2. Na Skill Canônica de Governança SDD (`sdd-workflow`)
-- Atualizar o arquivo `SKILL.md` da skill `sdd-workflow` em ambos os repositórios (`conn2flow-ai-workspace/.gemini/skills/sdd-workflow/SKILL.md` e no Core):
-  * Adicionar a seção normativa sobre identificação obrigatória de repositório nos handoffs.
-- No repositório Core (`conn2flow`), rodar o script de sincronização oficial das 36 skills:
-  ```bash
-  php cli/c2f.php ai:sync
-  ```
-  Isso sincronizará a skill para todos os diretórios de agentes suportados (`.gemini/`, `.codex/`, `.claude/`, `.github/`, `.cursor/`).
+### 2. Execução da Suíte de Testes
+- Rodar `npm test` em `vscode-extension/`:
+  * Deve passar 48/48 testes (os 47 anteriores + o novo probe).
 
-### 3. Nos Boilerplates de Novos Projetos Satélites
-- Verificar e atualizar os templates/boilerplates de `AGENTS.md` e `GEMINI.md` utilizados pelo comando `c2f project:scaffold` ou pela extensão do VS Code (`vscode-extension/src/providers/projectsManager.ts`), garantindo que qualquer novo projeto satélite já nasça com a regra incluída.
-
-### 4. Validação
-- Executar os testes em `vscode-extension/` (`npm test`) para garantir que nenhuma regressão foi introduzida.
-- Verificar integridade dos arquivos e não usar `git add .` ou `git add -A`.
-
----
-
-## 📝 Protocolo de Execução
-1. Renderize a sua Live Todo List (`[ ]` ➔ `[x]`).
-2. Implemente as sincronizações nos arquivos indicados.
-3. Ao concluir, atualize `CURRENT-HANDOFF.md` e `CURRENT.md` para `READY_FOR_REVIEW` para que o Revisor Técnico faça a auditoria.
+### 3. Emissão de Recibo no MCP Hub
+- Ao concluir a implementação com sucesso:
+  * Chamar a ferramenta MCP `report_completion` (se disponível no seu chat) OU gravar o arquivo de recibo em `completions/BATCH-043-receipt.json` com o status `success` e os logs de execução.
+- Atualizar `sdd/handoffs/CURRENT-HANDOFF.md` e `sdd/human-requests/CURRENT.md` para `READY_FOR_REVIEW`.

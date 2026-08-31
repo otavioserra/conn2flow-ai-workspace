@@ -731,16 +731,44 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `conn2flow/AGENTS.md` atualizado com a regra 7 (Identificação de Repositório em Handoffs e Prompts).
-- [ ] `conn2flow/GEMINI.md` atualizado com a regra 6 (Identificação de Repositório em Prompts para Agentes).
-- [ ] Skill canônica `sdd-workflow/SKILL.md` atualizada com o protocolo formal de identificação multi-repositório.
-- [ ] `php cli/c2f.php ai:sync` executado no Core com sucesso propagando as 36 skills para todas as ferramentas de IA suportadas.
-- [ ] Boilerplates de projetos satélites atualizados para incluir as regras de governança multi-repositório.
-- [ ] Verificação de integridade sem regressões ou quebra de testes.
+- [x] `conn2flow/AGENTS.md` atualizado com a regra 7 (Identificação de Repositório em Handoffs e Prompts).
+- [x] `conn2flow/GEMINI.md` atualizado com a regra 6 (Identificação de Repositório em Prompts para Agentes).
+- [x] Skill canônica `sdd-workflow/SKILL.md` atualizada com o protocolo formal de identificação multi-repositório.
+- [x] `php cli/c2f.php ai:sync` executado no Core com sucesso propagando as 36 skills para todas as ferramentas de IA suportadas.
+- [x] Boilerplates de projetos satélites atualizados para incluir as regras de governança multi-repositório.
+- [x] Verificação de integridade sem regressões ou quebra de testes.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+#### Teste 1: Governança no Core e Templates
+* **Status**: PASS.
+* **Evidência**: `conn2flow/AGENTS.md` (Regra 7) e `conn2flow/GEMINI.md` (Regra 6) contêm a obrigatoriedade de identificação de projeto e raiz absoluta. Templates em `templates/pt-br/` e `templates/en/` devidamente atualizados.
+
+#### Teste 2: Sincronização de Skills (`ai:sync`)
+* **Status**: PASS.
+* **Evidência**: `php cli/c2f.php ai:sync` validou com sucesso as 36 skills em todos os 5 kits de IA (`.claude/`, `.cursor/`, `.gemini/`, `.github/`, `.codex/`).
+
+#### Teste 3: Suíte de Testes e Revisão
+* **Status**: PASS.
+* **Evidência**: `npm test` em `vscode-extension/` aprovou 47/47 testes (0 falhas). Revisão técnica homologada em `sdd/validation/review-042.md` com parecer `APPROVED`.
+
+---
+
+## BATCH-043: Teste de Integração End-to-End da Tríade via MCP Hub
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Tarefa despachada pelo Arquiteto via ferramenta MCP `dispatch_task` (`conn2flow-hub`) registrando `tasks/REQ-041.json`.
+- [ ] Arquivo probe `vscode-extension/test/mcpTriadProbe.test.cjs` criado pelo Executor e aprovado em `npm test` (48/48 testes).
+- [ ] Recibo de conclusão emitido pelo Executor via ferramenta MCP `report_completion` (`completions/BATCH-043-receipt.json`).
+- [ ] Relatório de auditoria independente `sdd/validation/review-043.md` gerado pelo Revisor Técnico com parecer `APPROVED`.
+- [ ] Homologação executiva final realizada pelo Macro-Arquiteto.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote)*
+
+
 
 
 
