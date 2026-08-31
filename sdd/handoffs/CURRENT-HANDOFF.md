@@ -28,10 +28,17 @@ Olá Executor! A **REQ-038** foi aberta para corrigir dois problemas de UX e rea
   * No método `execute()`: quando chamado e o gate estiver bloqueado, deve exibir uma notificação clara com `vscode.window.showWarningMessage` listando exatamente quais são os impeditivos (ex: permissão, árvore suja, documentos) e fornecer botões de ação úteis ("Abrir Preparação", "Controle de Código-Fonte").
   * Ao salvar o rascunho em `prepare()`, chamar `refreshAll()` / `onChanged?.()` para atualizar a árvore do VS Code e recalcular o estado de liberação na hora.
 
-### 3. Validação e Testes
-- Adicionar testes cobrindo a substituição de templates de mensagens de release e o comportamento do clique bloqueado.
+### 3. Separação de Topologia e Autonomia na Visão Geral (`conn2flowTreeProvider.ts` & `modesManager.ts`)
+- Na seção **Visão Geral** da árvore, separar em dois itens distintos:
+  1. `Topologia: 🏛️ Tríade de Agentes` / `👥 Duplo Agente` (ícone `organization`), chamando `conn2flow.modes.selectTopology` (QuickPick apenas com os modos de topologia).
+  2. `Autonomia: 🛡️ Supervisionado` / `👁️ Autônomo Monitorado` / `🤖 Autônomo Headless` (ícone `shield`), chamando `conn2flow.modes.selectAutonomy` (QuickPick apenas com os níveis de autonomia).
+- Ao selecionar uma opção, refletir imediatamente no respectivo item da árvore e atualizar `CURRENT.md`.
+
+### 4. Validação e Testes
+- Adicionar testes cobrindo a substituição de templates de mensagens de release, o comportamento do clique bloqueado e os comandos de topologia/autonomia.
 - Rodar `npm test` (garantir 100% PASS).
 - Compilar o `.vsix` e atualizar a instalação local com `code --install-extension vscode-extension/conn2flow-tools-1.0.0.vsix --force`.
+
 
 ---
 
