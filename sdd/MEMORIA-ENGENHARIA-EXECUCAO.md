@@ -18,8 +18,10 @@
 - O Intake Gate continua obrigatório: itens de `sdd/backlog/` não são executáveis até promoção humana para uma requisição e associação a um batch.
 - A REQ-039 está `APPROVED` e o BATCH-041 está `READY_FOR_EXECUTION` em modo supervisionado.
 - Monitoramento de workflows de release no GitHub Actions deve ser temporalmente consciente e ignorar runs obsoletas com falha.
+- **Diretriz de Comunicação Multi-Repositório**: Ao gerar instruções prontas para o Humano-no-Loop colar no prompt dos executores ou revisores, SEMPRE incluir explicitamente o identificador do projeto e o caminho absoluto da raiz do repositório alvo (ex: `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) para evitar ambiguidades com múltiplos repositórios abertos simultaneamente.
 
 ## Pendência imediata
 
 - Agente Executor assumir a tarefa via `sdd/handoffs/CURRENT-HANDOFF.md`, renderizar a Live Todo List e realizar a implementação do BATCH-041.
+
 

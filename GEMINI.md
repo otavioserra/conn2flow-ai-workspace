@@ -64,6 +64,8 @@ A configuração `.gemini/hooks.json` contém hooks determinísticos de ciclo de
 3. **Reserva Atômica de Requisições**: Ao criar uma nova requisição, verificar a sequência existente em `sdd/human-requests/` após `git pull`, commitando e enviando para o repositório imediatamente para evitar colisões entre agentes.
 4. **Fonte da Verdade em Runtime**: O runtime serve HTML e CSS exclusivamente do banco de dados SQL. `resources/` é a semente de autoria.
 5. **Version Bump Mandatório**: Ao alterar scripts JS ou estilos estáticos, incremente a versão no metadado `<id>.json` do recurso.
+6. **Identificação de Repositório em Prompts para Agentes**: Sempre que o Macro-Arquiteto preparar mensagens para o usuário repassar a agentes executores ou revisores, DEVE incluir o identificador e o caminho absoluto da raiz do repositório alvo (ex: `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) para evitar confusão de contexto em sessões com múltiplos repositórios abertos.
+
 
 ---
 
