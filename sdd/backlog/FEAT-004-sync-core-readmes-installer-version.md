@@ -1,10 +1,12 @@
 # FEAT-004 — Sincronização de Versão nos READMEs do Core para Liberação de Release
 
-* **Status**: `ICEBOX`
+* **Status**: `COMPLETED`
 * **Tipo**: Documentação / Release Gate
-* **Autor**: Macro-Arquiteto (a partir do Achado no BATCH-047)
+* **Autor**: Macro-Arquiteto
 * **Data de Criação**: 2026-09-01
+* **Data de Conclusão**: 2026-09-01
 * **Repositório Alvo**: `conn2flow` (Core)
+
 
 ---
 
