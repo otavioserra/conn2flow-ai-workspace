@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
 const localizationManager_1 = require("./localizationManager");
+const agentPromptPolicy_1 = require("../agentPromptPolicy");
 class AgentBridgeManager {
     static getWorkspaceRoot() {
         const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -31,13 +32,36 @@ class AgentBridgeManager {
         return {
             pointer,
             fullPath: reqPath,
+            currentPath,
             content: reqContent
         };
     }
+    /**
+     * Identificação obrigatória do repositório alvo (REQ-044): projeto, raiz
+     * absoluta, raiz do SDD e caminhos absolutos de entrada, resolvidos a partir
+     * do escopo SDD ativo para evitar ambiguidade entre repositórios abertos.
+     */
+    static resolvePromptIdentity(active) {
+        return (0, agentPromptPolicy_1.buildAgentPromptIdentity)({
+            sddRoot: sddScopeManager_1.SddScopeManager.getActiveSddRoot(),
+            workspaceRoot: this.getWorkspaceRoot(),
+            currentPath: active?.currentPath,
+            reqPath: active?.fullPath,
+            request: active?.pointer
+        }, localizationManager_1.LocalizationManager.t('common.unknown'));
+    }
     static async launchClaudeGoal(runInTerminal) {
         const active = this.getActiveRequestFile();
-        const reqName = active ? active.pointer : 'CURRENT.md';
-        const instruction = localizationManager_1.LocalizationManager.t('agents.goalInstruction', { request: reqName }).replace(/"/g, '\\"');
+        const identity = this.resolvePromptIdentity(active);
+        const reqName = identity.request;
+        const instruction = localizationManager_1.LocalizationManager.t('agents.goalInstruction', {
+            repo: identity.repo,
+            root: identity.root,
+            sddRoot: identity.sddRoot,
+            currentPath: identity.currentPath,
+            reqPath: identity.reqPath,
+            request: reqName
+        }).replace(/"/g, '\\"');
         const goalPrompt = `claude "${instruction}"`;
         const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "${instruction}"`;
         const items = [
@@ -80,8 +104,14 @@ class AgentBridgeManager {
             vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('agents.activeMissing'));
             return;
         }
+        const identity = this.resolvePromptIdentity(active);
         const fullPrompt = localizationManager_1.LocalizationManager.t('agents.executorPrompt', {
-            request: active.pointer,
+            repo: identity.repo,
+            root: identity.root,
+            sddRoot: identity.sddRoot,
+            currentPath: identity.currentPath,
+            reqPath: identity.reqPath,
+            request: identity.request,
             content: active.content
         });
         await vscode.env.clipboard.writeText(fullPrompt);
@@ -97,7 +127,16 @@ class AgentBridgeManager {
         }
         if (!fs.existsSync(handoffPath)) {
             const active = this.getActiveRequestFile();
-            const initial = `# 🤝 Handoff do Agente Executor — ${active ? active.pointer : 'Sessão Ativa'}\n\n* **Data**: ${new Date().toISOString()}\n* **Status**: Em Andamento\n\n## 🖥️ Log do Terminal e Decisões Técnicas\n<!-- Cole aqui o log da execução do terminal -->\n`;
+            const identity = this.resolvePromptIdentity(active);
+            const initial = localizationManager_1.LocalizationManager.t('agents.handoffInitial', {
+                repo: identity.repo,
+                root: identity.root,
+                sddRoot: identity.sddRoot,
+                currentPath: identity.currentPath,
+                reqPath: identity.reqPath,
+                request: identity.request,
+                timestamp: new Date().toISOString()
+            });
             fs.writeFileSync(handoffPath, initial, 'utf8');
         }
         await openMarkdownFile('sdd/handoffs/CURRENT-HANDOFF.md');

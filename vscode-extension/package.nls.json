@@ -84,5 +84,7 @@
   "command.conn2flow.release.installer": "🚀 Prepare Gestor Installer Release",
   "command.conn2flow.release.executeManager": "▶️ Execute Gestor Release",
   "command.conn2flow.release.executeInstaller": "▶️ Execute Gestor Installer Release",
-  "command.conn2flow.release.openActions": "🐙 Open GitHub Actions"
+  "command.conn2flow.release.openActions": "🐙 Open GitHub Actions",
+  "agents.executorPrompt": "---\n🏷️ TARGET PROJECT IDENTIFICATION:\n- Project: {repo}\n- Root Path: {root}\n- SDD Root: {sddRoot}\n- Entry File: {currentPath}\n---\n\nYou are the Conn2Flow SDD Executor. Implement the approved active request [{request}]({currentPath}), maintain its Live Todo List, validate locally and record evidence in the validation checklist and current handoff. Never use broad Git staging, never copy files manually into test mirrors, and never commit, push, deploy or release without explicit human authorization.\n\nACTIVE REQUEST ({request})\n\n{content}",
+  "agents.goalInstruction": "/goal [Project: {repo} | Root: {root} | Entry: {currentPath}] Read the active brief in sdd/human-requests/CURRENT.md ({request}), complete its Live Todo List under SDD governance, validate locally, update the validation checklist and current handoff. Do not commit, push, deploy or release without explicit human authorization."
 }

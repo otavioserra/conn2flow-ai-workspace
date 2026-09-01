@@ -4,6 +4,14 @@ import * as fs from 'fs';
 
 import { SddScopeManager } from './sddScopeManager';
 import { LocalizationManager } from './localizationManager';
+import { AgentPromptIdentity, buildAgentPromptIdentity } from '../agentPromptPolicy';
+
+export interface ActiveRequestFile {
+  pointer: string;
+  fullPath: string;
+  currentPath: string;
+  content: string;
+}
 
 export class AgentBridgeManager {
   private static getWorkspaceRoot(): string | undefined {
@@ -12,7 +20,7 @@ export class AgentBridgeManager {
     return workspaceFolders[0].uri.fsPath;
   }
 
-  public static getActiveRequestFile(): { pointer: string; fullPath: string; content: string } | undefined {
+  public static getActiveRequestFile(): ActiveRequestFile | undefined {
     let currentPath = SddScopeManager.resolveSddFile('sdd/human-requests/CURRENT.md');
 
     if (!currentPath || !fs.existsSync(currentPath)) {
@@ -32,15 +40,42 @@ export class AgentBridgeManager {
     return {
       pointer,
       fullPath: reqPath,
+      currentPath,
       content: reqContent
     };
   }
 
+  /**
+   * Identificação obrigatória do repositório alvo (REQ-044): projeto, raiz
+   * absoluta, raiz do SDD e caminhos absolutos de entrada, resolvidos a partir
+   * do escopo SDD ativo para evitar ambiguidade entre repositórios abertos.
+   */
+  public static resolvePromptIdentity(active?: ActiveRequestFile): AgentPromptIdentity {
+    return buildAgentPromptIdentity(
+      {
+        sddRoot: SddScopeManager.getActiveSddRoot(),
+        workspaceRoot: this.getWorkspaceRoot(),
+        currentPath: active?.currentPath,
+        reqPath: active?.fullPath,
+        request: active?.pointer
+      },
+      LocalizationManager.t('common.unknown')
+    );
+  }
+
   public static async launchClaudeGoal(runInTerminal: (cmd: string, name?: string) => void): Promise<void> {
     const active = this.getActiveRequestFile();
-    const reqName = active ? active.pointer : 'CURRENT.md';
+    const identity = this.resolvePromptIdentity(active);
+    const reqName = identity.request;
 
-    const instruction = LocalizationManager.t('agents.goalInstruction', { request: reqName }).replace(/"/g, '\\"');
+    const instruction = LocalizationManager.t('agents.goalInstruction', {
+      repo: identity.repo,
+      root: identity.root,
+      sddRoot: identity.sddRoot,
+      currentPath: identity.currentPath,
+      reqPath: identity.reqPath,
+      request: reqName
+    }).replace(/"/g, '\\"');
     const goalPrompt = `claude "${instruction}"`;
     const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "${instruction}"`;
 
@@ -85,8 +120,15 @@ export class AgentBridgeManager {
       return;
     }
 
+    const identity = this.resolvePromptIdentity(active);
+
     const fullPrompt = LocalizationManager.t('agents.executorPrompt', {
-      request: active.pointer,
+      repo: identity.repo,
+      root: identity.root,
+      sddRoot: identity.sddRoot,
+      currentPath: identity.currentPath,
+      reqPath: identity.reqPath,
+      request: identity.request,
       content: active.content
     });
 
@@ -105,7 +147,16 @@ export class AgentBridgeManager {
 
     if (!fs.existsSync(handoffPath)) {
       const active = this.getActiveRequestFile();
-      const initial = `# 🤝 Handoff do Agente Executor — ${active ? active.pointer : 'Sessão Ativa'}\n\n* **Data**: ${new Date().toISOString()}\n* **Status**: Em Andamento\n\n## 🖥️ Log do Terminal e Decisões Técnicas\n<!-- Cole aqui o log da execução do terminal -->\n`;
+      const identity = this.resolvePromptIdentity(active);
+      const initial = LocalizationManager.t('agents.handoffInitial', {
+        repo: identity.repo,
+        root: identity.root,
+        sddRoot: identity.sddRoot,
+        currentPath: identity.currentPath,
+        reqPath: identity.reqPath,
+        request: identity.request,
+        timestamp: new Date().toISOString()
+      });
       fs.writeFileSync(handoffPath, initial, 'utf8');
     }
 

@@ -896,14 +896,28 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `AgentBridgeManager.copyExecutorPrompt` gera o prompt com o cabeçalho padronizado de identificação contendo Projeto, Caminho Raiz e Raiz SDD.
-- [ ] `AgentBridgeManager.launchClaudeGoal` inclui a identificação explícita do repositório e raiz no comando `/goal`.
-- [ ] Templates `agents.executorPrompt` e `agents.goalInstruction` atualizados nos catálogos NLS (`pt-BR` e `en`) com paridade estrita.
-- [ ] Testes unitários cobrindo a formatação e interpolação dos prompts com caminho absoluto aprovados em `npm test`.
+- [x] `AgentBridgeManager.copyExecutorPrompt` gera o prompt com o cabeçalho padronizado de identificação contendo Projeto, Caminho Raiz e Raiz SDD.
+- [x] `AgentBridgeManager.copyExecutorPrompt` grava o caminho absoluto do arquivo de entrada no corpo do prompt como `[{request}]({currentPath})`.
+- [x] `AgentBridgeManager.launchClaudeGoal` inclui a identificação explícita do repositório e raiz no comando `/goal`.
+- [x] `AgentBridgeManager.recordTerminalHandoff` cria `CURRENT-HANDOFF.md` já com o cabeçalho de Projeto e Raiz.
+- [x] Templates `agents.executorPrompt` e `agents.goalInstruction` atualizados nos catálogos NLS (`pt-BR` e `en`) com paridade estrita.
+- [x] Testes unitários cobrindo a formatação e interpolação dos prompts com caminho absoluto aprovados em `npm test`.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+- **Suíte da extensão**: `npm test` em `vscode-extension/` retornou **66/66 testes passando** (0 falhas), com compilação TypeScript limpa — 54 testes pré-existentes preservados e 12 novos adicionados.
+- **Novo teste unitário**: `vscode-extension/test/agentPromptPolicy.test.cjs` com 12/12 casos verdes, incluindo a asserção `prompt.includes('[req-044.md](' + CURRENT_PATH + ')')` com caminho absoluto e `findOrphanPlaceholders(prompt)` retornando `[]` em `pt-BR` e `en`.
+- **Módulo puro**: `vscode-extension/src/agentPromptPolicy.ts` isola `buildAgentPromptIdentity()` e `findOrphanPlaceholders()` da dependência de `vscode`, seguindo o padrão de `repositoryLocator.ts` e `hubTaskWatcherPolicy.ts`.
+- **Paridade de catálogos**: `localizationCatalog.test.cjs` continua verde (paridade estrita `en`/`ptBR`), `packageNls.test.cjs` continua verde (88 chaves em cada arquivo NLS) e o novo teste de sincronismo exige igualdade byte a byte dos dois templates entre `package.nls.*` e o catálogo de runtime.
+- **Saída real verificada**: prompt renderizado com `Projeto: conn2flow-ai-workspace`, `Caminho Raiz: c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`, `Raiz SDD: ...\sdd` e link `[req-044.md](...\sdd\human-requests\CURRENT.md)`; instrução `/goal` iniciando com `[Projeto: ... | Raiz: ... | Entrada: ...]`.
+- **Recibo MCP Hub**: `completions/BATCH-046-executor-receipt.json` com `role: "executor"`, `req_id: "REQ-044"` e `task_id: "task-1788262915507-xglp9"`.
+- **Detalhamento do lote**: [batch-046.md](../implementation/batch-046.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-046.md](review-046.md) emitido com parecer **APPROVED** em 2026-09-01 (66/66 testes, módulo puro agentPromptPolicy, interpolação bilíngue e caminho absoluto no link).
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 ---
 

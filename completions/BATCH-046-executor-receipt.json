@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788272691273",
+  "batchId": "BATCH-046",
+  "taskId": "task-1788262915507-xglp9",
+  "reqId": "REQ-044",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-01T14:24:51.272Z",
+  "logSize": 684,
+  "acknowledgement": "Batch BATCH-046 marked as SUCCESS by MCP Hub Orchestrator.",
+  "summary": "Identificacao obrigatoria de repositorio alvo e caminho absoluto nos prompts de agentes, com 66/66 testes verdes.",
+  "logs": "BATCH-046 concluido: novo modulo puro src/agentPromptPolicy.ts resolvendo {repo, root, sddRoot, currentPath, reqPath, request} a partir do escopo SDD ativo; AgentBridgeManager.copyExecutorPrompt, launchClaudeGoal e recordTerminalHandoff injetando a identidade completa; cabecalho padronizado e link de caminho absoluto [{request}]({currentPath}) nos templates agents.executorPrompt e agents.goalInstruction em localizationCatalog.ts, package.nls.json e package.nls.pt-br.json (pt-BR e en); novo teste test/agentPromptPolicy.test.cjs com 12 casos; npm test com 66/66 testes passando e compilacao TypeScript limpa. Nenhum commit, push, deploy ou release executado (modo supervisionado)."
+}

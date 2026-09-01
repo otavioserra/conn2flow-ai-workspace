@@ -6,6 +6,7 @@
   "priority": "normal",
   "prompt": "Implementar a identificação obrigatória do repositório alvo ({repo}), caminho raiz absoluto ({root}) e raiz do SDD ({sddRoot}) no comando 'Copiar Prompt do Executor', no disparador /goal do Claude e no template de handoff em AgentBridgeManager, com atualização dos catálogos NLS e novos testes unitários, conforme especificado em sdd/human-requests/req-044.md.",
   "createdAt": "2026-09-01T11:41:55.505Z",
-  "status": "dispatched",
-  "executionToken": "tok_dGFzay0xNzg4MjYyOTE1NTA3LXhnbHA5OlJFUS0wNDQ"
+  "status": "completed",
+  "executionToken": "tok_dGFzay0xNzg4MjYyOTE1NTA3LXhnbHA5OlJFUS0wNDQ",
+  "completedAt": "2026-09-01T14:24:51.272Z"
 }

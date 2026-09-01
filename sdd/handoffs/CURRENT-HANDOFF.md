@@ -1,51 +1,37 @@
-# Handoff do Macro-Arquiteto — REQ-044 / BATCH-046
+# Handoff do Macro-Arquiteto — REQ-045 / BATCH-047
 
 * **Status**: `READY_FOR_EXECUTION`
-* **Emissor**: Macro-Arquiteto (Antigravity)
+* **Emissor**: Macro-Arquiteto & Revisor (Antigravity)
 * **Destinatário**: Agente Executor (OpenAI Codex / Claude Code)
 * **Data**: 2026-09-01
 * **Projeto Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`)
-* **Requisição Ativa**: [req-044.md](../human-requests/req-044.md)
-* **Topologia**: `triade`
+* **Requisição Ativa**: [req-045.md](../human-requests/req-045.md)
+* **Topologia**: `dupla` (Duplo Agente)
 * **Autonomia**: `supervisionado`
 
 ---
 
 ## 🎯 Instruções para o Agente Executor
 
-Olá Executor! A **REQ-044** implementa a identificação obrigatória do repositório alvo e raiz absoluta em todos os prompts e pontes de agentes:
+Olá Executor! A **REQ-045** resolve o preflight de release do `gestor-instalador` e formaliza a governança de sondas HTTP e comandos CLI:
 
-### 1. No `AgentBridgeManager` (`vscode-extension/src/providers/agentBridgeManager.ts`)
-- Obter o repositório/escopo atual (`repo`), o caminho raiz absoluto do workspace (`root`), a raiz do SDD (`sddRoot`), o caminho absoluto de `CURRENT.md` (`currentPath`) e o caminho da requisição ativa (`reqPath`) usando `SddScopeManager` e `getActiveRequestFile()`.
-- Em `copyExecutorPrompt()`:
-  * Passar `{ repo, root, sddRoot, currentPath, reqPath, request: active.pointer, content: active.content }` para `LocalizationManager.t('agents.executorPrompt', ...)`.
-- Em `launchClaudeGoal()`:
-  * Passar `{ repo, root, request: reqName, currentPath }` para `LocalizationManager.t('agents.goalInstruction', ...)`.
-- Em `recordTerminalHandoff()`:
-  * Incluir `* **Projeto**: ${repo}\n* **Raiz**: ${root}` no cabeçalho inicial do arquivo `CURRENT-HANDOFF.md`.
+### 1. Na Extensão VS Code (`vscode-extension/src/providers/releaseManager.ts`)
+- Na definição do produto `installer`:
+  * Alterar `versionFile` para apontar para `path.join('gestor-instalador', 'src', 'InstallerGuard.php')` (ou suportar leitura resiliente de `InstallerGuard.php` com fallback para `index.php`).
+  * Atualizar o regex `versionPattern` para capturar `const VERSION = '(\d+\.\d+\.\d+)';` (ex: `/(?:const\s+VERSION|\$_GESTOR_INSTALADOR\[['"]versao['"]\])\s*=\s*['"]?(\d+\.\d+\.\d+)['"]?/`).
+  * Assegurar que `ReleaseManager.prepare('installer')` e o diagnóstico executem sem erro de preflight.
 
-### 2. Nos Catálogos NLS (`localizationCatalog.ts`, `package.nls.json`, `package.nls.pt-br.json`)
-- Atualizar o template `agents.executorPrompt` para conter:
-  ```text
-  ---
-  🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:
-  - Projeto: {repo}
-  - Caminho Raiz: {root}
-  - Raiz SDD: {sddRoot}
-  - Arquivo de Entrada: {currentPath}
-  ---
+### 2. No Script do Core (`conn2flow/ai-workspace/en/scripts/releases/version-installer.php`)
+- Atualizar a localização do arquivo alvo para `gestor-instalador/src/InstallerGuard.php` e substituir a linha `const VERSION = '...'`.
+- Se aplicável, atualizar o comentário em `gestor-instalador/index.php`.
 
-  Você é o Executor SDD do Conn2Flow. Implemente a requisição ativa aprovada [{request}]({currentPath}), mantenha a Live Todo List, valide localmente e registre evidências no checklist de validação e no handoff atual. Nunca use staging Git amplo, nunca copie arquivos manualmente para espelhos de teste e nunca execute commit, push, deploy ou release sem autorização humana explícita.
+### 3. Nas Skills Oficiais (`c2f-dev-scripts` e `c2f-html-css-pages-and-components`)
+- Em `.gemini/skills/c2f-dev-scripts/SKILL.md` (e espelhos):
+  * Formalizar que novos comandos do CLI implementam `Conn2Flow\Cli\Contracts\CommandInterface` ou estendem `Conn2Flow\Cli\Commands\BaseProcessCommand`.
+- Em `.gemini/skills/c2f-html-css-pages-and-components/SKILL.md` (e espelhos):
+  * Formalizar a regra anti-deadlock: toda sonda HTTP (como Rewrite Probe) deve partir do front-end/navegador para prevenir auto-bloqueio no PHP-FPM em ambiente single-worker.
 
-  REQUISIÇÃO ATIVA ({request})
-
-  {content}
-  ```
-- Atualizar a versão em inglês (`en`) com paridade estrita (`[{request}]({currentPath})`).
-- Atualizar `agents.goalInstruction` nos dois idiomas para incluir `[Projeto: {repo} | Raiz: {root} | Entrada: {currentPath}]`.
-
-
-### 3. Testes Automatizados
-- Criar/atualizar testes em `vscode-extension/test/` (ex: `test/agentBridgePrompts.test.cjs`) verificando que os prompts gerados possuem `{repo}`, `{root}` e `{sddRoot}` devidamente preenchidos e contêm o cabeçalho de identificação.
-- Rodar `npm test` em `vscode-extension/` garantindo 100% dos testes verdes.
+### 4. Testes Automatizados
+- Adicionar teste unitário em `vscode-extension/test/` validando o parser de versão para `installer` contra `InstallerGuard.php`.
+- Rodar `npm test` em `vscode-extension/` garantindo 100% verde.
 - Ao concluir, emita o recibo no MCP Hub e atualize para `READY_FOR_REVIEW`.

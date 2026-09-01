@@ -84,5 +84,7 @@
   "command.conn2flow.release.installer": "🚀 Preparar Release do Gestor Instalador",
   "command.conn2flow.release.executeManager": "▶️ Executar Release do Gestor",
   "command.conn2flow.release.executeInstaller": "▶️ Executar Release do Gestor Instalador",
-  "command.conn2flow.release.openActions": "🐙 Abrir GitHub Actions"
+  "command.conn2flow.release.openActions": "🐙 Abrir GitHub Actions",
+  "agents.executorPrompt": "---\n🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:\n- Projeto: {repo}\n- Caminho Raiz: {root}\n- Raiz SDD: {sddRoot}\n- Arquivo de Entrada: {currentPath}\n---\n\nVocê é o Executor SDD do Conn2Flow. Implemente a requisição ativa aprovada [{request}]({currentPath}), mantenha a Live Todo List, valide localmente e registre evidências no checklist de validação e no handoff atual. Nunca use staging Git amplo, nunca copie arquivos manualmente para espelhos de teste e nunca execute commit, push, deploy ou release sem autorização humana explícita.\n\nREQUISIÇÃO ATIVA ({request})\n\n{content}",
+  "agents.goalInstruction": "/goal [Projeto: {repo} | Raiz: {root} | Entrada: {currentPath}] Leia o briefing ativo em sdd/human-requests/CURRENT.md ({request}), conclua a Live Todo List sob governança SDD, valide localmente e atualize o checklist de validação e o handoff atual. Não execute commit, push, deploy ou release sem autorização humana explícita."
 }

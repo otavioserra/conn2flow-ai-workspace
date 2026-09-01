@@ -34,11 +34,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-043** | complete | Teste de Integração End-to-End da Tríade via MCP Hub | `VALIDATION-CHECKLIST.md#batch-043` | REQ-041 homologada; probe 48/48 testes, recibo MCP e auditoria APPROVED. |
 | **BATCH-044** | complete | Watcher Autônomo na Extensão, Sessão Compartilhada e Usabilidade de Release | `VALIDATION-CHECKLIST.md#batch-044` | REQ-042 homologada; 53/53 testes, HubTaskWatcher, timeline sdd/sessions e VSIX instalado. |
 | **BATCH-045** | complete | Reorganização Ergonômica da Árvore Dev Tools (Controles Principais e Ações SDD) | `VALIDATION-CHECKLIST.md#batch-045` | REQ-043 homologada; 54/54 testes, emojis visuais coloridos, recibo emitido e revisão APPROVED. |
-| **BATCH-046** | in-progress | Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes | `VALIDATION-CHECKLIST.md#batch-046` | REQ-044 ativa; AgentBridgeManager com {repo, root, sddRoot} em copyPrompt e goalInstruction. |
-| **BATCH-047** | planned | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 aprovada; InstallerGuard no releaseManager, sonda HTTP via front-end e CommandInterface. |
+| **BATCH-046** | complete | Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes | `VALIDATION-CHECKLIST.md#batch-046` | REQ-044 homologada; 66/66 testes, {repo, root, sddRoot, currentPath} no prompt e /goal, review APPROVED. |
+| **BATCH-047** | in-progress | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 ativa; InstallerGuard no releaseManager, sonda HTTP via front-end e CommandInterface. |
 
 ## Próxima requisição
 
-`REQ-044` ativa em 2026-09-01 para o `BATCH-046`. `REQ-045` planejada para o `BATCH-047`.
+`REQ-045` ativa em 2026-09-01 para o `BATCH-047`. Topologia: Duplo Agente (Arquiteto/Revisor + Executor).
+
 
 
