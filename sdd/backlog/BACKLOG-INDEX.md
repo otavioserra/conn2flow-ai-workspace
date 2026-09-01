@@ -16,9 +16,11 @@
 | [FEAT-006](FEAT-006-docs-section-curation-and-devtools-manual-v2.md) | Documentação | `ICEBOX` | Curadoria de Docs, Remoção de Duplicatas e Manual Dev Tools v2 | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-007](FEAT-007-integrate-core-ai-workspace-documentation.md) | Conhecimento | `ICEBOX` | Integração da Documentação Ampla do AI Workspace (`ai-workspace/docs`) | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-008](FEAT-008-persistent-action-loading-and-progress-feedback.md) | Usabilidade / UX | `ICEBOX` | Feedback Visual Contínuo e Barra de Progresso em Ações Longas | Aguardar promoção humana | 2026-09-01 |
+| [FEAT-009](FEAT-009-synchronize-prompt-topology-and-current-md.md) | Agentes / DX | `ICEBOX` | Sincronização Dinâmica de Topologia no Prompt e no CURRENT.md | Aguardar promoção humana | 2026-09-01 |
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
+
 
 
 
