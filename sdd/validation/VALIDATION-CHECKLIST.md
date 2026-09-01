@@ -890,6 +890,22 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] [REVIEW-045](review-045.md): parecer final `APPROVED` em 2026-08-31; 54/54 testes da extensão, 2/2 do MCP Hub, recibo executor correlacionado e escopo de `docs.skills` formalizado.
 - [x] Encerramento da revisão: `MEMORIA-ENGENHARIA-EXECUCAO.md` medida em 1.975 bytes e 32 linhas; não requer poda.
 
+---
+
+## BATCH-046: Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `AgentBridgeManager.copyExecutorPrompt` gera o prompt com o cabeçalho padronizado de identificação contendo Projeto, Caminho Raiz e Raiz SDD.
+- [ ] `AgentBridgeManager.launchClaudeGoal` inclui a identificação explícita do repositório e raiz no comando `/goal`.
+- [ ] Templates `agents.executorPrompt` e `agents.goalInstruction` atualizados nos catálogos NLS (`pt-BR` e `en`) com paridade estrita.
+- [ ] Testes unitários cobrindo a formatação e interpolação dos prompts com caminho absoluto aprovados em `npm test`.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 ---
 
