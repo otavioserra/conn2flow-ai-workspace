@@ -949,16 +949,26 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Tooltips contextuais ricos (1 a 2 frases) implementados em todos os nós da árvore Dev Tools em `pt-BR` e `en`.
-- [ ] `TreeItem.tooltip` configurado como `vscode.MarkdownString` com formatação legível.
-- [ ] Nó `docs.marketplace` ocultado da árvore da extensão.
-- [ ] Duplicata de seleção de topologia (`agents.selectMode`) removida de `Documentações & Configurações`.
-- [ ] Manual Dev Tools v2 (`docs.panel`) atualizado com novos controles, emojis, releases e IA.
-- [ ] Suíte de testes automatizados (`npm test`) passando com 100% de sucesso.
+- [x] Tooltips contextuais ricos (1 a 2 frases) implementados em todos os nós da árvore Dev Tools em `pt-BR` e `en`.
+- [x] `TreeItem.tooltip` configurado como `vscode.MarkdownString` com formatação legível.
+- [x] Nó `docs.marketplace` ocultado da árvore da extensão.
+- [x] Duplicata de seleção de topologia (`agents.selectMode`) removida de `Documentações & Configurações`.
+- [x] Manual Dev Tools v2 (`docs.panel`) atualizado com novos controles, emojis, releases e IA.
+- [x] Suíte de testes automatizados (`npm test`) passando com 100% de sucesso.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+* `cd vscode-extension && node scripts/generate-package-nls.cjs && npm test`: **79/79** testes aprovados; o gerador preservou tooltips e templates de agentes, com compilação TypeScript limpa, sem falhas ou skips.
+* `test/treeTooltipPolicy.test.cjs`: confirma tooltip rico localizado para todos os nós nativos, `MarkdownString` no provider e ausência de `docs.marketplace`/`agents.selectMode` em `docsConfig`.
+* `cd vscode-extension && npx @vscode/vsce package --no-dependencies`: VSIX `conn2flow-tools-1.0.0.vsix` gerado com 69 arquivos (168,63 KB), com prepublish TypeScript limpo.
+* Recibo do executor: `completions/BATCH-048-executor-receipt.json`.
+* Detalhamento do lote: [batch-048.md](../implementation/batch-048.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-048.md](review-048.md) emitido com parecer **APPROVED** em 2026-09-01.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

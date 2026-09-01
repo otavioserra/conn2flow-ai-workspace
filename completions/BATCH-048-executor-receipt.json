@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788287348795",
+  "batchId": "BATCH-048",
+  "taskId": "task-1788286320606-vdgkd",
+  "reqId": "REQ-046",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-01T18:29:08.795Z",
+  "logSize": 751,
+  "acknowledgement": "Batch BATCH-048 marked as SUCCESS by MCP Hub Orchestrator.",
+  "summary": "Tooltips ricos localizados, curadoria da árvore de documentação e Manual Dev Tools v2 implementados; 79/79 testes, gerador NLS resiliente e VSIX atualizado.",
+  "logs": "Evidência final do BATCH-048 em modo supervisionado: tooltips Markdown localizados em todos os nós nativos, incluindo estados bloqueados e ações customizadas; docs.marketplace e agents.selectMode removidos de docsConfig; manuais v2 PT-BR/EN atualizados. O gerador NLS foi corrigido para preservar tooltip.* e templates agents.* e completado com títulos ingleses de comandos atuais. Validação final: node scripts/generate-package-nls.cjs && npm test passou com 79/79, 0 falhas, 0 skips; npx @vscode/vsce package --no-dependencies gerou vscode-extension/conn2flow-tools-1.0.0.vsix com 69 arquivos e 168,63 KB; git diff --check passou. Registros atualizados em batch-048.md, checklist, handoff e memória. Nenhum commit, push, deploy ou release executado."
+}

@@ -1,9 +1,11 @@
 # FEAT-005 — Tooltips Ricos e Explicativos na Árvore Dev Tools
 
-* **Status**: `ICEBOX`
+* **Status**: `COMPLETED`
 * **Tipo**: Usabilidade / Interface / DX
 * **Autor**: Humano-no-Loop & Macro-Arquiteto
 * **Data de Criação**: 2026-09-01
+* **Data de Conclusão**: 2026-09-01 (BATCH-048)
+
 * **Repositório Alvo**: `conn2flow-ai-workspace` (`vscode-extension`)
 
 ---

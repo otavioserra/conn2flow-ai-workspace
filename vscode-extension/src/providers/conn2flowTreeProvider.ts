@@ -11,6 +11,7 @@ import { ReleaseManager } from './releaseManager';
 import { HubTaskWatcher } from './hubTaskWatcher';
 import { TranslationKey } from '../localizationCatalog';
 import { nextTreeExpansionVersion, normalizeTreeExpansionVersion, treeSectionId } from '../treeExpansionPolicy';
+import { treeTooltipKey } from '../treeTooltipPolicy';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -25,7 +26,9 @@ export class Conn2FlowTreeItem extends vscode.TreeItem {
     itemId?: string
   ) {
     super(label, collapsibleState);
-    this.tooltip = tooltipText || label;
+    const tooltip = new vscode.MarkdownString(tooltipText || label);
+    tooltip.isTrusted = false;
+    this.tooltip = tooltip;
     this.description = itemDescription;
     this.id = itemId;
     if (iconName) this.iconPath = typeof iconName === 'string' ? new vscode.ThemeIcon(iconName) : iconName;
@@ -72,7 +75,13 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
 
   private leaf(key: TranslationKey, command: string, icon: string, values: Record<string, string> = {}): Conn2FlowTreeItem {
     const label = LocalizationManager.t(key, values);
-    return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, label);
+    return new Conn2FlowTreeItem(
+      label,
+      vscode.TreeItemCollapsibleState.None,
+      command,
+      icon,
+      `**${label}**\n\n${LocalizationManager.t(treeTooltipKey(key), values)}`
+    );
   }
 
   private section(key: TranslationKey, id: string, icon: string, children: Conn2FlowTreeItem[], primary = false): Conn2FlowTreeItem {
@@ -82,7 +91,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       this.state(primary),
       undefined,
       icon,
-      label,
+      `**${label}**\n\n${LocalizationManager.t(treeTooltipKey(key))}`,
       children,
       undefined,
       undefined,
@@ -102,7 +111,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       vscode.TreeItemCollapsibleState.None,
       command,
       'lock',
-      ReleaseManager.executionBlockerLabel(product)
+      `**${label}**\n\n${LocalizationManager.t(treeTooltipKey(key))}\n\n${ReleaseManager.executionBlockerLabel(product)}`
     );
   }
 
@@ -193,12 +202,10 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
 
     const docsConfig = [
       this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
-      this.leaf('docs.marketplace', 'conn2flow.docs.openMarketplaceGuide', 'cloud-upload'),
       this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),
       this.leaf('docs.orchestration', 'conn2flow.docs.openSddGuide', 'organization'),
       this.leaf('docs.architecture', 'conn2flow.docs.openArchitectureGuide', 'type-hierarchy'),
-      this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered'),
-      this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear')
+      this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered')
     ];
 
 
@@ -218,7 +225,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         vscode.TreeItemCollapsibleState.None,
         action.type === 'file' ? 'conn2flow.custom.openFile' : 'conn2flow.custom.runTerminal',
         action.icon || (action.type === 'file' ? 'file-code' : 'play'),
-        action.description || action.label,
+        `**${action.label}**\n\n${action.description || LocalizationManager.t('tooltip.custom.action')}`,
         undefined,
         [action.type === 'file' ? action.path : action.command]
       ));

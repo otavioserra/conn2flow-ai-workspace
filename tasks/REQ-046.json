@@ -6,6 +6,7 @@
   "priority": "normal",
   "prompt": "Implementar a REQ-046 / BATCH-048 no conn2flow-ai-workspace (c:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace):\n1. Tooltips Ricos na Árvore Dev Tools (FEAT-005): Adicionar descrições contextuais ricas de 1 a 2 frases para todos os nós da árvore em localizationCatalog.ts e package.nls.*.json, configurando TreeItem.tooltip como vscode.MarkdownString.\n2. Curadoria de Documentação & Limpeza da Árvore (FEAT-006): Remover docs.marketplace da árvore, remover duplicata agents.selectMode de Documentações & Configurações e atualizar o manual dev tools v2 (docs.panel).\n3. Testes: Garantir 100% dos testes passando em npm test no vscode-extension.\n4. Recibo: Emitir completions/BATCH-048-executor-receipt.json.",
   "createdAt": "2026-09-01T18:12:00.606Z",
-  "status": "dispatched",
-  "executionToken": "tok_dGFzay0xNzg4Mjg2MzIwNjA2LXZkZ2tkOlJFUS0wNDY"
+  "status": "completed",
+  "executionToken": "tok_dGFzay0xNzg4Mjg2MzIwNjA2LXZkZ2tkOlJFUS0wNDY",
+  "completedAt": "2026-09-01T18:29:08.795Z"
 }

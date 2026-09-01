@@ -1,9 +1,11 @@
 # FEAT-006 — Curadoria da Seção de Documentação, Remoção de Duplicatas e Manual Dev Tools v2
 
-* **Status**: `ICEBOX`
+* **Status**: `COMPLETED`
 * **Tipo**: Documentação / Limpeza de UI / UX
 * **Autor**: Humano-no-Loop & Macro-Arquiteto
 * **Data de Criação**: 2026-09-01
+* **Data de Conclusão**: 2026-09-01 (BATCH-048)
+
 * **Repositório Alvo**: `conn2flow-ai-workspace` (`vscode-extension` e docs)
 
 ---

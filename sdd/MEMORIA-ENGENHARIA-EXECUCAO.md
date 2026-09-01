@@ -2,9 +2,9 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Último lote concluído:** [BATCH-047 — Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI](implementation/batch-047.md)
+> **Último lote concluído:** [BATCH-048 — Tooltips Ricos, Curadoria de Documentações e Manual Dev Tools v2](implementation/batch-048.md)
 >
-> **Lote atual:** nenhum lote ativo no momento; aguarda novo intake do Humano-no-Loop.
+> **Lote atual:** BATCH-048 `ready-for-review`; aguarda revisão do Humano-no-Loop.
 
 >
 > **Política**: manter somente fatos recentes e acionáveis; detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
@@ -15,6 +15,7 @@
 - **2026-08-31 — REQ-043 / BATCH-045:** reorganização ergonômica da árvore no VS Code com emojis visuais coloridos, centralização de Controles Principais e ações de IA em SDD. Homologado com 54/54 testes em `review-045.md`.
 - **2026-09-01 — REQ-044 / BATCH-046:** identificação obrigatória de repositório alvo nos prompts da extensão. Novo módulo puro `agentPromptPolicy.ts`, `AgentBridgeManager` com `{repo, root, sddRoot, currentPath, reqPath}` e link `[{request}]({currentPath})`. 66/66 testes verdes; `ready-for-review`.
 - **2026-09-01 — REQ-045 / BATCH-047:** preflight de release do instalador corrigido com fontes de versão ordenadas (`PRODUCT_VERSION_SOURCES` / `resolveProductVersion` em `releasePolicy.ts`); scripts de versão do Core migrados para `InstallerGuard::VERSION`; Regra Anti-Deadlock de Sonda HTTP e contrato `CommandInterface` formalizados nas skills. 76/76 testes verdes; `ready-for-review`.
+- **2026-09-01 — REQ-046 / BATCH-048:** tooltips ricos foram centralizados em `treeTooltipPolicy.ts` e `localizationCatalog.ts`; providers que importam `vscode` permanecem cobertos por teste de fonte, enquanto a lista pura de chaves é testada sobre `out/`. `Conn2FlowTreeItem` usa `MarkdownString` não confiável. `docs.marketplace` e `agents.selectMode` saíram de `docsConfig`; Manual Dev Tools v2 atualizado em PT-BR e EN. O gerador NLS preserva tooltips e templates `agents.*`. 79/79 testes verdes e VSIX com 69 arquivos; `ready-for-review`.
 
 ## Decisões operacionais vigentes
 

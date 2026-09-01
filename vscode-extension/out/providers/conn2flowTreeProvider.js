@@ -13,12 +13,15 @@ const localizationManager_1 = require("./localizationManager");
 const releaseManager_1 = require("./releaseManager");
 const hubTaskWatcher_1 = require("./hubTaskWatcher");
 const treeExpansionPolicy_1 = require("../treeExpansionPolicy");
+const treeTooltipPolicy_1 = require("../treeTooltipPolicy");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     children;
     constructor(label, collapsibleState, commandId, iconName, tooltipText, children, commandArgs, itemDescription, itemId) {
         super(label, collapsibleState);
         this.children = children;
-        this.tooltip = tooltipText || label;
+        const tooltip = new vscode.MarkdownString(tooltipText || label);
+        tooltip.isTrusted = false;
+        this.tooltip = tooltip;
         this.description = itemDescription;
         this.id = itemId;
         if (iconName)
@@ -66,17 +69,17 @@ class Conn2FlowTreeProvider {
     }
     leaf(key, command, icon, values = {}) {
         const label = localizationManager_1.LocalizationManager.t(key, values);
-        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, label);
+        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, `**${label}**\n\n${localizationManager_1.LocalizationManager.t((0, treeTooltipPolicy_1.treeTooltipKey)(key), values)}`);
     }
     section(key, id, icon, children, primary = false) {
         const label = localizationManager_1.LocalizationManager.t(key);
-        return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, label, children, undefined, undefined, (0, treeExpansionPolicy_1.treeSectionId)(id, this.expansionVersion));
+        return new Conn2FlowTreeItem(label, this.state(primary), undefined, icon, `**${label}**\n\n${localizationManager_1.LocalizationManager.t((0, treeTooltipPolicy_1.treeTooltipKey)(key))}`, children, undefined, undefined, (0, treeExpansionPolicy_1.treeSectionId)(id, this.expansionVersion));
     }
     releaseExecutionItem(product, key, command) {
         if (releaseManager_1.ReleaseManager.canExecute(product))
             return this.leaf(key, command, 'rocket');
         const label = localizationManager_1.LocalizationManager.t(key);
-        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, 'lock', releaseManager_1.ReleaseManager.executionBlockerLabel(product));
+        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, 'lock', `**${label}**\n\n${localizationManager_1.LocalizationManager.t((0, treeTooltipPolicy_1.treeTooltipKey)(key))}\n\n${releaseManager_1.ReleaseManager.executionBlockerLabel(product)}`);
     }
     rootItems() {
         const modes = modesManager_1.ModesManager.getCurrentModes();
@@ -158,12 +161,10 @@ class Conn2FlowTreeProvider {
         ];
         const docsConfig = [
             this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
-            this.leaf('docs.marketplace', 'conn2flow.docs.openMarketplaceGuide', 'cloud-upload'),
             this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),
             this.leaf('docs.orchestration', 'conn2flow.docs.openSddGuide', 'organization'),
             this.leaf('docs.architecture', 'conn2flow.docs.openArchitectureGuide', 'type-hierarchy'),
-            this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered'),
-            this.leaf('agents.selectMode', 'conn2flow.modes.selectMode', 'settings-gear')
+            this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered')
         ];
         const result = [
             this.section('section.overview', 'overview', 'dashboard', overview, true),
@@ -175,7 +176,7 @@ class Conn2FlowTreeProvider {
         ];
         const custom = customActionsManager_1.CustomActionsManager.getActionsManifest();
         if (custom?.actions.length) {
-            const children = custom.actions.map(action => new Conn2FlowTreeItem(action.label, vscode.TreeItemCollapsibleState.None, action.type === 'file' ? 'conn2flow.custom.openFile' : 'conn2flow.custom.runTerminal', action.icon || (action.type === 'file' ? 'file-code' : 'play'), action.description || action.label, undefined, [action.type === 'file' ? action.path : action.command]));
+            const children = custom.actions.map(action => new Conn2FlowTreeItem(action.label, vscode.TreeItemCollapsibleState.None, action.type === 'file' ? 'conn2flow.custom.openFile' : 'conn2flow.custom.runTerminal', action.icon || (action.type === 'file' ? 'file-code' : 'play'), `**${action.label}**\n\n${action.description || localizationManager_1.LocalizationManager.t('tooltip.custom.action')}`, undefined, [action.type === 'file' ? action.path : action.command]));
             children.push(this.leaf('custom.edit', 'conn2flow.custom.editManifest', 'edit'));
             result.push(this.section('section.custom', 'custom', 'star', children));
         }

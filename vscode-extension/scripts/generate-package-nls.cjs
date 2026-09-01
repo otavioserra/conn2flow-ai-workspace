@@ -4,20 +4,22 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const packagePath = path.join(root, 'package.json');
 const manifest = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+const previousEnPath = path.join(root, 'package.nls.json');
+const previousEn = fs.existsSync(previousEnPath) ? JSON.parse(fs.readFileSync(previousEnPath, 'utf8')) : {};
 const previousPtPath = path.join(root, 'package.nls.pt-br.json');
 const previousPt = fs.existsSync(previousPtPath) ? JSON.parse(fs.readFileSync(previousPtPath, 'utf8')) : {};
 
 const english = {
   'conn2flow.refreshTree': 'Refresh Panel', 'conn2flow.expandAll': 'Expand All Sections', 'conn2flow.collapseAll': 'Collapse All Sections',
   'conn2flow.terminal.toggleMode': 'Toggle Terminal Mode', 'conn2flow.custom.initManifest': 'Create Custom Actions Manifest', 'conn2flow.custom.editManifest': 'Edit Project Actions',
-  'conn2flow.modes.selectMode': 'Select Topology or Autonomy', 'conn2flow.modes.setDoubleAgent': 'Enable Dual Agent', 'conn2flow.modes.setTriAgent': 'Enable Agent Triad',
+  'conn2flow.modes.selectMode': 'Select Topology or Autonomy', 'conn2flow.modes.selectTopology': 'Select Agent Topology', 'conn2flow.modes.selectAutonomy': 'Select Autonomy Level', 'conn2flow.modes.setDoubleAgent': 'Enable Dual Agent', 'conn2flow.modes.setTriAgent': 'Enable Agent Triad',
   'conn2flow.modes.setSupervised': 'Enable Supervised Mode (Level 1)', 'conn2flow.modes.setMonitored': 'Enable Autonomous Monitored Mode (Level 2)', 'conn2flow.modes.setHeadless': 'Enable Autonomous Headless Mode (Level 3)',
   'conn2flow.sdd.selectScope': 'Select SDD Scope', 'conn2flow.sdd.toggleViewMode': 'Toggle SDD Display Mode', 'conn2flow.sdd.toggleAutoGardening': 'Toggle SDD Memory Monitoring',
   'conn2flow.sdd.runGardening': 'Run Memory Gardening', 'conn2flow.sdd.createGardeningRequest': 'Create Gardening Request', 'conn2flow.sdd.openCurrent': 'Open CURRENT.md',
   'conn2flow.sdd.openSpec': 'Open SPEC.md', 'conn2flow.sdd.openChecklist': 'Open Validation Checklist', 'conn2flow.sdd.browseRequests': 'Browse Human Requests',
-  'conn2flow.sdd.browseBatches': 'Browse Implementation Batches', 'conn2flow.sdd.browseDecisions': 'Browse Architecture Decisions', 'conn2flow.sdd.browseHandoffs': 'Browse Agent Handoffs',
+  'conn2flow.sdd.browseBatches': 'Browse Implementation Batches', 'conn2flow.sdd.browseDecisions': 'Browse Architecture Decisions', 'conn2flow.sdd.browseHandoffs': 'Browse Agent Handoffs', 'conn2flow.sdd.browseBacklog': 'Browse SDD Backlog',
   'conn2flow.sdd.browseBacklog': 'Browse SDD Backlog', 'conn2flow.bridge.launchClaudeGoal': 'Start Claude Code (/goal)', 'conn2flow.bridge.copyPrompt': 'Copy Executor Prompt',
-  'conn2flow.bridge.recordHandoff': 'Open Current Handoff', 'conn2flow.bridge.notifyArchitect': 'Prepare Architect Review', 'conn2flow.docker.status': 'Docker Container Status',
+  'conn2flow.bridge.recordHandoff': 'Open Current Handoff', 'conn2flow.bridge.notifyArchitect': 'Prepare Architect Review', 'conn2flow.hub.toggleWatcher': 'Toggle Triad MCP Hub Watcher', 'conn2flow.docker.status': 'Docker Container Status',
   'conn2flow.docker.logsApache': 'Follow Apache Logs', 'conn2flow.docker.logsPhp': 'Follow PHP Logs', 'conn2flow.docker.truncatePhpLog': 'Clear PHP Logs',
   'conn2flow.manager.updateAll': 'Update Core System', 'conn2flow.manager.syncResources': 'Sync Resources', 'conn2flow.manager.cssRebuild': 'Rebuild CSS', 'conn2flow.manager.cssAudit': 'Audit CSS',
   'conn2flow.projects.setTarget': 'Set Target Project', 'conn2flow.projects.deployTarget': 'Deploy Target Project', 'conn2flow.projects.syncCoreTarget': 'Sync Core to Target Project',
@@ -32,8 +34,8 @@ const english = {
   'conn2flow.docs.openDevGuide': 'Conn2Flow Developer Guide', 'conn2flow.docs.openSddGuide': 'SDD Governance Guide', 'conn2flow.docs.openTailwindGuide': 'Tailwind CSS Architecture',
   'conn2flow.docs.openPanelGuide': 'Dev Tools Panel Manual (Legacy)', 'conn2flow.docs.openMarketplaceGuide': 'Marketplace Publication Guide', 'conn2flow.docs.openArchitectureGuide': 'Dual-Agent and Triad Architecture',
   'conn2flow.docs.openDockerGuide': 'Docker Environment Guide', 'conn2flow.docs.openResourcesGuide': 'Resources and SQL Runtime', 'conn2flow.settings.selectLanguage': 'Select Extension Language',
-  'conn2flow.release.verifyPermission': 'Verify Release Permission', 'conn2flow.release.manager': 'Create Gestor Release', 'conn2flow.release.installer': 'Create Gestor Installer Release',
-  'conn2flow.release.openActions': 'Open GitHub Actions'
+  'conn2flow.release.verifyPermission': 'Verify Release Permission', 'conn2flow.release.manager': 'Prepare Gestor Release', 'conn2flow.release.installer': 'Prepare Gestor Installer Release',
+  'conn2flow.release.executeManager': 'Execute Gestor Release', 'conn2flow.release.executeInstaller': 'Execute Gestor Installer Release', 'conn2flow.release.openActions': 'Open GitHub Actions'
 };
 
 const en = {
@@ -50,6 +52,13 @@ const pt = {
   'config.language.description': 'Idioma da interface em runtime. Automático acompanha o idioma de exibição do VS Code.',
   'config.githubOwner.description': 'Owner ou organização GitHub opcional, usado somente quando não puder ser derivado do remoto origin do Core.'
 };
+
+for (const key of Object.keys(previousEn)) {
+  if (key.startsWith('tooltip.') || key.startsWith('agents.')) en[key] = previousEn[key];
+}
+for (const key of Object.keys(previousPt)) {
+  if (key.startsWith('tooltip.') || key.startsWith('agents.')) pt[key] = previousPt[key];
+}
 
 for (const command of manifest.contributes.commands) {
   const key = `command.${command.command}`;

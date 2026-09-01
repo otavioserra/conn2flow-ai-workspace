@@ -13,3 +13,12 @@ test('catálogos NLS possuem paridade e cobrem todos os comandos declarados', ()
     assert.equal(typeof pt[match[1]], 'string');
   }
 });
+
+test('catálogos NLS preservam as chaves de tooltip da árvore', () => {
+  const tooltipKeys = Object.keys(en).filter(key => key.startsWith('tooltip.'));
+  assert.ok(tooltipKeys.length > 0);
+  for (const key of tooltipKeys) {
+    assert.match(en[key], /\S.{20,}/);
+    assert.match(pt[key], /\S.{20,}/);
+  }
+});
