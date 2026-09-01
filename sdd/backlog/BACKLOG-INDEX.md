@@ -12,9 +12,13 @@
 | [FEAT-004](FEAT-004-sync-core-readmes-installer-version.md) | Release | `COMPLETED` | Sincronização de Versão nos READMEs do Core (instalador-v2.1.0) | Entregue pelo Macro-Arquiteto (READMEs sincronizados) | 2026-09-01 |
 
 | [ARCH-006](ARCH-006-satellite-skills-sync-and-checklist-gardening.md) | Governança | `ICEBOX` | Sincronização de Skills nos Satélites & Poda SDD | Aguardar promoção humana | 2026-09-01 |
+| [FEAT-005](FEAT-005-dev-tools-rich-hover-tooltips.md) | Interface / UX | `ICEBOX` | Tooltips Ricos e Explicativos na Árvore Dev Tools | Aguardar promoção humana | 2026-09-01 |
+| [FEAT-006](FEAT-006-docs-section-curation-and-devtools-manual-v2.md) | Documentação | `ICEBOX` | Curadoria de Docs, Remoção de Duplicatas e Manual Dev Tools v2 | Aguardar promoção humana | 2026-09-01 |
+| [FEAT-007](FEAT-007-integrate-core-ai-workspace-documentation.md) | Conhecimento | `ICEBOX` | Integração da Documentação Ampla do AI Workspace (`ai-workspace/docs`) | Aguardar promoção humana | 2026-09-01 |
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
+
 
 
 
