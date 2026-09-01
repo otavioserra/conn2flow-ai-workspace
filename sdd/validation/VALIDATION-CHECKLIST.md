@@ -905,6 +905,23 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 *(Aguardando execução do lote pelo Agente Executor)*
 
+---
+
+## BATCH-047: Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `releaseManager.ts` lê a versão do `gestor-instalador` a partir de `InstallerGuard.php` sem falhas de preflight.
+- [ ] Formulário "Preparar Release do Instalador" abre com sucesso no VS Code exibindo versão atual, próximo incremento e tags calculadas.
+- [ ] Script `version-installer.php` no Core devidamente preparado para incrementar a versão em `InstallerGuard.php`.
+- [ ] Regra de Sonda HTTP front-end e contrato `CommandInterface` formalizados nas skills oficiais.
+- [ ] Suíte de testes automatizados da extensão aprovada em 100% dos testes (`npm test`).
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 
 ---
