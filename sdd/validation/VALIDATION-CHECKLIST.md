@@ -925,15 +925,24 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `releaseManager.ts` lê a versão do `gestor-instalador` a partir de `InstallerGuard.php` sem falhas de preflight.
-- [ ] Formulário "Preparar Release do Instalador" abre com sucesso no VS Code exibindo versão atual, próximo incremento e tags calculadas.
-- [ ] Script `version-installer.php` no Core devidamente preparado para incrementar a versão em `InstallerGuard.php`.
-- [ ] Regra de Sonda HTTP front-end e contrato `CommandInterface` formalizados nas skills oficiais.
-- [ ] Suíte de testes automatizados da extensão aprovada em 100% dos testes (`npm test`).
+- [x] `releaseManager.ts` e `releasePolicy.ts` leem a versão do `gestor-instalador` a partir de `InstallerGuard.php` sem falhas de preflight (`canPrepare: true`).
+- [x] Formulário "Preparar Release do Instalador" abre com sucesso no VS Code exibindo versão atual, próximo incremento e tags calculadas.
+- [x] Script `version-installer.php` no Core devidamente preparado para incrementar a versão em `InstallerGuard.php` e sincronizar comentários.
+- [x] Regra de Sonda HTTP front-end e contrato `CommandInterface` formalizados nas skills oficiais (36/36 `ai:sync`).
+- [x] Suíte de testes automatizados da extensão aprovada em 100% dos testes (`npm test` — 76/76 PASS).
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+- `cd vscode-extension && npm test`: 76/76 testes aprovados, compilação TypeScript limpa.
+- `Core: php cli/c2f.php ai:sync`: 36/36 skills verificadas nos 5 kits.
+- Recibo do Executor: `completions/BATCH-047-executor-receipt.json` (`rec_1788275223806`).
+- Detalhamento do lote: [batch-047.md](../implementation/batch-047.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-047.md](review-047.md) emitido com parecer **APPROVED** em 2026-09-01.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

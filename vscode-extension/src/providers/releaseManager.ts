@@ -18,8 +18,12 @@ import {
   githubRepositoryUrl,
   inspectReleaseDocumentContents,
   inspectReleaseDocumentPaths,
+  productVersionCandidates,
   quoteShellArg,
+  resolveProductVersion,
   selectWorkflowRun,
+  PRODUCT_VERSION_SOURCES,
+  ProductVersionSource,
   ReleaseBlocker,
   ReleaseDraftSuggestion,
   ReleaseGateResult,
@@ -34,8 +38,7 @@ interface ReleaseDefinition {
   product: ReleaseProduct;
   label: string;
   command: string;
-  versionFile: string;
-  versionPattern: RegExp;
+  versionSources: readonly ProductVersionSource[];
   tagPrefix: string;
   workflow: string;
 }
@@ -160,7 +163,9 @@ export class ReleaseManager {
     const currentVersion = this.readVersion(root, definition);
     if (!currentVersion) {
       vscode.window.showErrorMessage(
-        LocalizationManager.t('release.preflightFailed', { reason: definition.versionFile })
+        LocalizationManager.t('release.preflightFailed', {
+          reason: productVersionCandidates(definition.versionSources).join(' | ')
+        })
       );
       return;
     }
@@ -429,16 +434,14 @@ export class ReleaseManager {
       product,
       label: LocalizationManager.t('release.productManager'),
       command: 'manager:release',
-      versionFile: path.join('gestor', 'config.php'),
-      versionPattern: /\$_GESTOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/,
+      versionSources: PRODUCT_VERSION_SOURCES.manager,
       tagPrefix: 'gestor-v',
       workflow: '.github/workflows/release-gestor.yml'
     } : {
       product,
       label: LocalizationManager.t('release.productInstaller'),
       command: 'installer:release',
-      versionFile: path.join('gestor-instalador', 'index.php'),
-      versionPattern: /\$_GESTOR_INSTALADOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/,
+      versionSources: PRODUCT_VERSION_SOURCES.installer,
       tagPrefix: 'instalador-v',
       workflow: '.github/workflows/release-instalador.yml'
     };
@@ -451,8 +454,9 @@ export class ReleaseManager {
     draftReady: boolean,
     expectedDocumentationFingerprint?: string
   ): Promise<ReleaseDiagnostics> {
-    const required = [definition.workflow, definition.versionFile, 'c2f'];
-    const requiredFilesReady = required.every(file => fs.existsSync(path.join(root, file)));
+    const required = [definition.workflow, 'c2f'];
+    const requiredFilesReady = required.every(file => fs.existsSync(path.join(root, file))) &&
+      this.versionSourcesReady(root, definition);
     const version = this.readVersion(root, definition);
 
     let dirtyFiles: string[] = [];
@@ -568,10 +572,18 @@ export class ReleaseManager {
     };
   }
 
-  private static readVersion(root: string, definition: ReleaseDefinition): string | undefined {
-    const fullPath = path.join(root, definition.versionFile);
+  private static readSource(root: string, file: string): string | undefined {
+    const fullPath = path.join(root, ...file.split('/'));
     if (!fs.existsSync(fullPath)) return undefined;
-    return fs.readFileSync(fullPath, 'utf8').match(definition.versionPattern)?.[1];
+    return fs.readFileSync(fullPath, 'utf8');
+  }
+
+  private static readVersion(root: string, definition: ReleaseDefinition): string | undefined {
+    return resolveProductVersion(definition.versionSources, file => this.readSource(root, file)).version;
+  }
+
+  private static versionSourcesReady(root: string, definition: ReleaseDefinition): boolean {
+    return definition.versionSources.some(source => typeof this.readSource(root, source.file) === 'string');
   }
 
   private static async recentCommits(root: string): Promise<string[]> {

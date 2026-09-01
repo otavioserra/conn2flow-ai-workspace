@@ -87,7 +87,9 @@ class ReleaseManager {
         await this.verifyPermission(undefined, true);
         const currentVersion = this.readVersion(root, definition);
         if (!currentVersion) {
-            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('release.preflightFailed', { reason: definition.versionFile }));
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('release.preflightFailed', {
+                reason: (0, releasePolicy_1.productVersionCandidates)(definition.versionSources).join(' | ')
+            }));
             return;
         }
         const existing = this.loadDraft(product);
@@ -299,23 +301,22 @@ class ReleaseManager {
             product,
             label: localizationManager_1.LocalizationManager.t('release.productManager'),
             command: 'manager:release',
-            versionFile: path.join('gestor', 'config.php'),
-            versionPattern: /\$_GESTOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/,
+            versionSources: releasePolicy_1.PRODUCT_VERSION_SOURCES.manager,
             tagPrefix: 'gestor-v',
             workflow: '.github/workflows/release-gestor.yml'
         } : {
             product,
             label: localizationManager_1.LocalizationManager.t('release.productInstaller'),
             command: 'installer:release',
-            versionFile: path.join('gestor-instalador', 'index.php'),
-            versionPattern: /\$_GESTOR_INSTALADOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/,
+            versionSources: releasePolicy_1.PRODUCT_VERSION_SOURCES.installer,
             tagPrefix: 'instalador-v',
             workflow: '.github/workflows/release-instalador.yml'
         };
     }
     static async diagnose(root, definition, increment, draftReady, expectedDocumentationFingerprint) {
-        const required = [definition.workflow, definition.versionFile, 'c2f'];
-        const requiredFilesReady = required.every(file => fs.existsSync(path.join(root, file)));
+        const required = [definition.workflow, 'c2f'];
+        const requiredFilesReady = required.every(file => fs.existsSync(path.join(root, file))) &&
+            this.versionSourcesReady(root, definition);
         const version = this.readVersion(root, definition);
         let dirtyFiles = [];
         let branch;
@@ -416,11 +417,17 @@ class ReleaseManager {
             ready: inventory.ready && issues.length === 0
         };
     }
-    static readVersion(root, definition) {
-        const fullPath = path.join(root, definition.versionFile);
+    static readSource(root, file) {
+        const fullPath = path.join(root, ...file.split('/'));
         if (!fs.existsSync(fullPath))
             return undefined;
-        return fs.readFileSync(fullPath, 'utf8').match(definition.versionPattern)?.[1];
+        return fs.readFileSync(fullPath, 'utf8');
+    }
+    static readVersion(root, definition) {
+        return (0, releasePolicy_1.resolveProductVersion)(definition.versionSources, file => this.readSource(root, file)).version;
+    }
+    static versionSourcesReady(root, definition) {
+        return definition.versionSources.some(source => typeof this.readSource(root, source.file) === 'string');
     }
     static async recentCommits(root) {
         try {

@@ -9,8 +9,11 @@
 | [ARCH-003](ARCH-003-multi-agent-git-worktrees-and-autonomy-modes.md) | Governança Git | `COMPLETED` | Modos de Autonomia (Supervisionado/Transparente) & Worktrees | Entregue no BATCH-015 (scripts/git/) | 2026-08-20 |
 | [ARCH-004](ARCH-004-resilient-multi-model-provider-pool-and-failover.md) | Arquitetura | `ICEBOX` | Failover Multi-Modelo Resiliente & Pool de Provedores de IA | Aguardar planejamento / promoção humana | 2026-08-31 |
 | [ARCH-005](ARCH-005-shared-batch-execution-stream-and-blackboard.md) | Arquitetura | `ICEBOX` | Sessão Compartilhada de Lote (Blackboard & Stream) | Aguardar planejamento / promoção humana | 2026-08-31 |
+| [FEAT-004](FEAT-004-sync-core-readmes-installer-version.md) | Release | `ICEBOX` | Sincronização de Versão nos READMEs do Core (instalador-v2.1.0) | Aguardar promoção humana para destravar gate de release | 2026-09-01 |
+| [ARCH-006](ARCH-006-satellite-skills-sync-and-checklist-gardening.md) | Governança | `ICEBOX` | Sincronização de Skills nos Satélites & Poda SDD | Aguardar promoção humana | 2026-09-01 |
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
+
 
 

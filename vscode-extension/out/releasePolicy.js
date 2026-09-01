@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.REQUIRED_RELEASE_DOCUMENTS = void 0;
+exports.PRODUCT_VERSION_SOURCES = exports.REQUIRED_RELEASE_DOCUMENTS = void 0;
+exports.productVersionCandidates = productVersionCandidates;
+exports.resolveProductVersion = resolveProductVersion;
 exports.selectWorkflowRun = selectWorkflowRun;
 exports.inspectReleaseDocumentPaths = inspectReleaseDocumentPaths;
 exports.inspectReleaseDocumentContents = inspectReleaseDocumentContents;
@@ -12,6 +14,52 @@ exports.classifyViewerPermission = classifyViewerPermission;
 exports.githubRepositoryUrl = githubRepositoryUrl;
 exports.quoteShellArg = quoteShellArg;
 exports.REQUIRED_RELEASE_DOCUMENTS = ['README.md', 'README-PT-BR.md', 'CHANGELOG.md'];
+/**
+ * Fontes de versão por produto, em ordem de precedência.
+ *
+ * O instalador v2 concentra a versão canônica em `InstallerGuard::VERSION`; o `index.php`
+ * apenas referencia a constante (`$_GESTOR_INSTALADOR['versao'] = InstallerGuard::VERSION;`),
+ * por isso ele permanece somente como fallback retrocompatível para instaladores v1, onde a
+ * versão ainda era um literal na atribuição.
+ */
+exports.PRODUCT_VERSION_SOURCES = {
+    manager: [
+        {
+            file: 'gestor/config.php',
+            pattern: /\$_GESTOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/
+        }
+    ],
+    installer: [
+        {
+            file: 'gestor-instalador/src/InstallerGuard.php',
+            pattern: /const\s+VERSION\s*=\s*['"](\d+\.\d+\.\d+)['"]/
+        },
+        {
+            file: 'gestor-instalador/index.php',
+            pattern: /(?:const\s+VERSION|\$_GESTOR_INSTALADOR\[['"]versao['"]\])\s*=\s*['"]?(\d+\.\d+\.\d+)['"]?/
+        }
+    ]
+};
+function productVersionCandidates(sources) {
+    return sources.map(source => source.file);
+}
+/**
+ * Percorre as fontes na ordem declarada e devolve a primeira versão encontrada.
+ * `readSource` devolve `undefined` quando o arquivo não existe, o que faz a resolução
+ * degradar para a próxima fonte em vez de falhar o preflight.
+ */
+function resolveProductVersion(sources, readSource) {
+    const candidates = productVersionCandidates(sources);
+    for (const source of sources) {
+        const content = readSource(source.file);
+        if (typeof content !== 'string')
+            continue;
+        const version = content.match(source.pattern)?.[1];
+        if (version)
+            return { version, file: source.file, candidates };
+    }
+    return { candidates };
+}
 function normalizeWorkflowRunValue(value) {
     return String(value || '').toLocaleLowerCase('en-US');
 }

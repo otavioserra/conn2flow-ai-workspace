@@ -6,6 +6,7 @@
   "priority": "normal",
   "prompt": "Corrigir o erro de preflight de release do gestor-instalador em releaseManager.ts lendo InstallerGuard.php, atualizar version-installer.php no Core, formalizar governança de sondas HTTP anti-deadlock e contrato CommandInterface nas skills, e adicionar testes unitários conforme req-045.md.",
   "createdAt": "2026-09-01T14:36:27.896Z",
-  "status": "dispatched",
-  "executionToken": "tok_dGFzay0xNzg4MjczMzg3ODk2LThxOXB6OlJFUS0wNDU"
+  "status": "completed",
+  "executionToken": "tok_dGFzay0xNzg4MjczMzg3ODk2LThxOXB6OlJFUS0wNDU",
+  "completedAt": "2026-09-01T15:07:03.805Z"
 }

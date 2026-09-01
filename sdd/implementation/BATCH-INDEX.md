@@ -35,11 +35,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-044** | complete | Watcher Autônomo na Extensão, Sessão Compartilhada e Usabilidade de Release | `VALIDATION-CHECKLIST.md#batch-044` | REQ-042 homologada; 53/53 testes, HubTaskWatcher, timeline sdd/sessions e VSIX instalado. |
 | **BATCH-045** | complete | Reorganização Ergonômica da Árvore Dev Tools (Controles Principais e Ações SDD) | `VALIDATION-CHECKLIST.md#batch-045` | REQ-043 homologada; 54/54 testes, emojis visuais coloridos, recibo emitido e revisão APPROVED. |
 | **BATCH-046** | complete | Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes | `VALIDATION-CHECKLIST.md#batch-046` | REQ-044 homologada; 66/66 testes, {repo, root, sddRoot, currentPath} no prompt e /goal, review APPROVED. |
-| **BATCH-047** | in-progress | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 ativa; InstallerGuard no releaseManager, sonda HTTP via front-end e CommandInterface. |
+| **BATCH-047** | complete | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 homologada; 76/76 testes, InstallerGuard no releasePolicy, preflight OK e ai:sync 36/36. |
 
 ## Próxima requisição
 
-`REQ-045` ativa em 2026-09-01 para o `BATCH-047`. Topologia: Duplo Agente (Arquiteto/Revisor + Executor).
-
-
-
+`REQ-045` concluída em 2026-09-01 no `BATCH-047`. Pronto para novo intake de requisição humana.
+ Topologia: Duplo Agente (Arquiteto/Revisor + Executor).

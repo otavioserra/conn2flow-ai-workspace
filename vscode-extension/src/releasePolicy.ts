@@ -16,6 +16,69 @@ export type ReleaseBlocker =
 
 export const REQUIRED_RELEASE_DOCUMENTS = ['README.md', 'README-PT-BR.md', 'CHANGELOG.md'] as const;
 
+export interface ProductVersionSource {
+  /** Caminho POSIX relativo à raiz do repositório Core. */
+  file: string;
+  /** Padrão cujo primeiro grupo de captura é a versão semântica. */
+  pattern: RegExp;
+}
+
+export interface ResolvedProductVersion {
+  version?: string;
+  file?: string;
+  candidates: string[];
+}
+
+/**
+ * Fontes de versão por produto, em ordem de precedência.
+ *
+ * O instalador v2 concentra a versão canônica em `InstallerGuard::VERSION`; o `index.php`
+ * apenas referencia a constante (`$_GESTOR_INSTALADOR['versao'] = InstallerGuard::VERSION;`),
+ * por isso ele permanece somente como fallback retrocompatível para instaladores v1, onde a
+ * versão ainda era um literal na atribuição.
+ */
+export const PRODUCT_VERSION_SOURCES: Readonly<Record<ReleaseProduct, readonly ProductVersionSource[]>> = {
+  manager: [
+    {
+      file: 'gestor/config.php',
+      pattern: /\$_GESTOR\[['"]versao['"]\]\s*=\s*['"](\d+\.\d+\.\d+)['"]/
+    }
+  ],
+  installer: [
+    {
+      file: 'gestor-instalador/src/InstallerGuard.php',
+      pattern: /const\s+VERSION\s*=\s*['"](\d+\.\d+\.\d+)['"]/
+    },
+    {
+      file: 'gestor-instalador/index.php',
+      pattern: /(?:const\s+VERSION|\$_GESTOR_INSTALADOR\[['"]versao['"]\])\s*=\s*['"]?(\d+\.\d+\.\d+)['"]?/
+    }
+  ]
+};
+
+export function productVersionCandidates(sources: readonly ProductVersionSource[]): string[] {
+  return sources.map(source => source.file);
+}
+
+/**
+ * Percorre as fontes na ordem declarada e devolve a primeira versão encontrada.
+ * `readSource` devolve `undefined` quando o arquivo não existe, o que faz a resolução
+ * degradar para a próxima fonte em vez de falhar o preflight.
+ */
+export function resolveProductVersion(
+  sources: readonly ProductVersionSource[],
+  readSource: (file: string) => string | undefined
+): ResolvedProductVersion {
+  const candidates = productVersionCandidates(sources);
+  for (const source of sources) {
+    const content = readSource(source.file);
+    if (typeof content !== 'string') continue;
+    const version = content.match(source.pattern)?.[1];
+    if (version) return { version, file: source.file, candidates };
+  }
+  return { candidates };
+}
+
 export interface ReleaseGateInput {
   workspaceTrusted: boolean;
   permission: ReleasePermission;

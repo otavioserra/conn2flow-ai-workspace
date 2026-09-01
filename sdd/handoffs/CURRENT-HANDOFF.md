@@ -1,6 +1,6 @@
 # Handoff do Macro-Arquiteto — REQ-045 / BATCH-047
 
-* **Status**: `READY_FOR_EXECUTION`
+* **Status**: `READY_FOR_REVIEW`
 * **Emissor**: Macro-Arquiteto & Revisor (Antigravity)
 * **Destinatário**: Agente Executor (OpenAI Codex / Claude Code)
 * **Data**: 2026-09-01

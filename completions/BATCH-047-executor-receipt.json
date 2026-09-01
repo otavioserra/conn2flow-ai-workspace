@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788275223806",
+  "batchId": "BATCH-047",
+  "taskId": "task-1788273387896-8q9pz",
+  "reqId": "REQ-045",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-01T15:07:03.805Z",
+  "logSize": 1676,
+  "acknowledgement": "Batch BATCH-047 marked as SUCCESS by MCP Hub Orchestrator.",
+  "summary": "Preflight de release do gestor-instalador corrigido para InstallerGuard::VERSION, com governanca de sonda HTTP anti-deadlock e contrato CommandInterface formalizados. 76/76 testes verdes.",
+  "logs": "BATCH-047 concluido. Extensao: novas fontes de versao ordenadas PRODUCT_VERSION_SOURCES/resolveProductVersion/productVersionCandidates em src/releasePolicy.ts; ReleaseDefinition passou de versionFile+versionPattern para versionSources; readVersion, versionSourcesReady, diagnose e mensagem de preflight adequados em src/providers/releaseManager.ts; novo teste test/releaseVersionSource.test.cjs com 10 casos. Core: version-installer.php e version-instalador.php reescritos para incrementar const VERSION em gestor-instalador/src/InstallerGuard.php e sincronizar o comentario do index.php, com fallback retrocompativel para o literal v1 e --dry-run em ambos os idiomas; release-installer.sh com lista de permissao de caminhos alterados e staging explicito; release-instalador.sh com git add . substituido por staging explicito. Governanca: Regra Anti-Deadlock de Sonda HTTP formalizada em c2f-html-css-pages-and-components secao 3 e c2f-dev-scripts secao 4; contrato Conn2FlowCliContractsCommandInterface e BaseProcessCommand formalizado em c2f-dev-scripts secao 3 e em cli/CLAUDE.md, removendo a alucinacao Symfony Console; skills propagadas em 21 e 24 copias com hash unico e cli/CLAUDE.md em 4 copias. Validacao: npm test 76/76 verdes com compilacao TypeScript limpa; php cli/c2f.php ai:sync 36/36 skills em 5 kits com exit 0; scripts de versao validados em sandbox nos tres caminhos (v2 canonico, fallback v1 e ausencia de fonte); guarda de caminhos simulada em 5 cenarios; VSIX regenerado com 67 arquivos. Nenhum commit, push, deploy ou release executado (modo supervisionado). Pendente: homologacao visual do formulario Preparar Release do Instalador pelo Humano-no-Loop."
+}
