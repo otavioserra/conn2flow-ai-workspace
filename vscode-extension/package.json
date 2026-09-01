@@ -26,9 +26,7 @@
     "tailwind",
     "ai"
   ],
-  "activationEvents": [
-    "onView:conn2flow-explorer"
-  ],
+  "activationEvents": [],
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": "limited",
