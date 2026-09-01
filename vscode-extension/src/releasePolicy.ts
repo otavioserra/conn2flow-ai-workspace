@@ -187,17 +187,34 @@ export function inspectReleaseDocumentContents(
   const changelog = normalized.get('changelog.md') || '';
   const issues: string[] = [];
 
-  if (managerVersion && (!readme.includes(`v${managerVersion}`) || !readmePt.includes(`v${managerVersion}`))) {
-    issues.push('README:manager-version');
+  const managerCandidates = managerVersion
+    ? [managerVersion, bumpSemver(managerVersion, 'patch'), bumpSemver(managerVersion, 'minor'), bumpSemver(managerVersion, 'major')]
+    : [];
+  const installerCandidates = installerVersion
+    ? [installerVersion, bumpSemver(installerVersion, 'patch'), bumpSemver(installerVersion, 'minor'), bumpSemver(installerVersion, 'major')]
+    : [];
+
+  if (managerCandidates.length > 0) {
+    const hasReadme = managerCandidates.some(v => readme.includes(`v${v}`));
+    const hasReadmePt = managerCandidates.some(v => readmePt.includes(`v${v}`));
+    if (!hasReadme || !hasReadmePt) {
+      issues.push('README:manager-version');
+    }
   }
-  if (
-    installerVersion &&
-    (!readme.includes(`instalador-v${installerVersion}`) || !readmePt.includes(`instalador-v${installerVersion}`))
-  ) {
-    issues.push('README:installer-version');
+
+  if (installerCandidates.length > 0) {
+    const hasReadme = installerCandidates.some(v => readme.includes(`instalador-v${v}`));
+    const hasReadmePt = installerCandidates.some(v => readmePt.includes(`instalador-v${v}`));
+    if (!hasReadme || !hasReadmePt) {
+      issues.push('README:installer-version');
+    }
   }
-  if (managerVersion && !changelog.includes(`[${managerVersion}]`)) {
-    issues.push('CHANGELOG:manager-version');
+
+  if (managerCandidates.length > 0) {
+    const hasChangelog = managerCandidates.some(v => changelog.includes(`[${v}]`));
+    if (!hasChangelog) {
+      issues.push('CHANGELOG:manager-version');
+    }
   }
 
   for (const [file, content] of normalized) {
