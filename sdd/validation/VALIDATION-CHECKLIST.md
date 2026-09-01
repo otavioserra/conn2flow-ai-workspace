@@ -943,6 +943,24 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Auditoria do Revisor Técnico: [review-047.md](review-047.md) emitido com parecer **APPROVED** em 2026-09-01.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-048: Tooltips Ricos na Árvore Dev Tools, Curadoria de Documentações e Manual v2
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Tooltips contextuais ricos (1 a 2 frases) implementados em todos os nós da árvore Dev Tools em `pt-BR` e `en`.
+- [ ] `TreeItem.tooltip` configurado como `vscode.MarkdownString` com formatação legível.
+- [ ] Nó `docs.marketplace` ocultado da árvore da extensão.
+- [ ] Duplicata de seleção de topologia (`agents.selectMode`) removida de `Documentações & Configurações`.
+- [ ] Manual Dev Tools v2 (`docs.panel`) atualizado com novos controles, emojis, releases e IA.
+- [ ] Suíte de testes automatizados (`npm test`) passando com 100% de sucesso.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 
 
