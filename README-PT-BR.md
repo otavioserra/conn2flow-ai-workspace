@@ -173,9 +173,10 @@ As instruções de sistema nos kits orientam automaticamente o agente a:
 
 Conforme os projetos evoluem, as memórias de execução podem crescer em excesso (~100 KB+), consumindo tokens valiosos de prompt no início de cada sessão. O framework implementa o protocolo **Memory Gardening**:
 *   **Limites de Poda Idempotente**:
-    - **Alerta Preventivo**: Acionado a partir de **35 KB / ~100 linhas**.
-    - **Teto Mandatório de Poda**: Execução obrigatória ao atingir **50 KB / ~150 linhas**.
-    - **Alvo Pós-Poda**: Reduz o arquivo para **~15 KB** (preservando as **12 a 15 tarefas mais recentes**).
+    - **Faixa Saudável**: Abaixo de **50 KB / ~200 linhas**, a poda é proibida.
+    - **Alerta Preventivo**: Acionado em **50 KB / ~200 linhas**.
+    - **Teto Mandatório de Poda**: Execução obrigatória ao atingir **75 KB / ~300 linhas**.
+    - **Alvo Pós-Poda**: Reduz o arquivo para **~25 KB** (preservando as **20 a 25 tarefas mais recentes**).
 *   **Colheita de Skills**: Os padrões extraídos são destilados em **Skills** reutilizáveis acionadas sob demanda:
     - **Core Skills**: Armazenadas no `conn2flow-ai-workspace` para padrões gerais do framework (ex: `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
     - **Skills de Projeto**: Armazenadas em `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/` e `.codex/skills/` para regras específicas carregadas dinamicamente (ex: `lumix-tailwind-v4`, `transformamp-wp-etl`).
@@ -265,7 +266,7 @@ Para aprofundamento técnico, consulte os manuais dedicados na pasta `docs/pt-br
 ## 🧹 Otimização de Contexto e Arquivamento SDD
 
 Para evitar a degradação da atenção do agente devido ao excesso de informações nos prompts (bloating) e manter o consumo de tokens altamente eficiente, o framework implementa um limite ativo de tamanho:
-*   **Limite de 25 Itens Ativos**: Arquivos de controle centrais como `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` mantêm os **25 itens ativos mais recentes** (com teto de 35 KB a 50 KB), preservando histórico relevante e eliminando podas excessivas.
+*   **Limite de 25 Itens Ativos**: Arquivos de controle centrais como `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` mantêm os **25 itens ativos mais recentes**. A memória operacional usa alerta em 50 KB e teto de 75 KB, eliminando podas excessivas.
 *   **Estrutura de Arquivos Archive**: Registros históricos antigos que ultrapassam o limite são movidos para a subpasta `/archive/` correspondente a cada diretório (ex: `sdd/decisions/archive/`, `sdd/implementation/archive/`, etc.).
 *   **Instalação Automatizada**: Os scripts de instalação (`scripts/install-spec-driven-*.ps1` / `.sh`) detectam pastas `sdd/` preexistentes e provisionam de forma segura essas subpastas de arquivos junto com seus `README.md` explicativos padrão, atualizando repositórios antigos de forma automática e não destrutiva.
 

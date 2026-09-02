@@ -64,7 +64,7 @@ O framework suporta duas topologias oficiais, alternáveis visualmente pela **Ex
 1. **Fronteira de Escrita (Ping-Pong Boundary)**: O Arquiteto e o Executor possuem permissões rígidas sobre quais pastas do repositório podem modificar.
 2. **O Arquiteto como Guardião da Documentação**: A documentação viva (`READMEs` e `docs/`) é redigida e atualizada pelo Arquiteto ao fechar cada lote, garantindo visão sistêmica e eliminando documentações desatualizadas.
 3. **Colheita de Habilidades (Skill Harvesting)**: Quando um executor comete um erro ou descobre uma convenção de framework, a regra é extraída e transformada em uma Skill atômica sob demanda (`.claude/skills/`, etc.), em vez de inflar os prompts de sistema.
-4. **Poda de Memória Idempotente (Memory Gardening)**: Memórias operacionais são mantidas preventivamente abaixo de 35 KB (~100 linhas), com teto obrigatório em 50 KB, podando o histórico para ~15 KB (12 a 15 tarefas recentes) em rodadas de manutenção dedicadas ou via `./c2f ai:prune-memories`.
+4. **Poda de Memória Idempotente (Memory Gardening)**: A poda é proibida abaixo de 50 KB / 200 linhas. O alerta ocorre nesse patamar, o teto obrigatório é 75 KB / 300 linhas e o alvo pós-poda é ~25 KB, preservando 20 a 25 tarefas recentes. Encerrar sessão ou batch não aciona gardening.
 5. **Intake Gate no Backlog (`sdd/backlog/`)**: Ideias em incubação (`ICEBOX` e `IN-DISCUSSION`) são blindadas contra leitura precipitada de agentes executores até promoção humana explícita.
 6. **A Tríade da Orquestração Moderna**:
    - **`c2f` (Core CLI)**: Ponto de entrada nativo em PHP 8.2+ OOP no core para execução de recursos, banco, Docker e IA.

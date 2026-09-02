@@ -39,7 +39,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 #### Teste 2: Memory Gardening c2f
 *   **Comandos**: `c2f.ps1 ai:prune-memories`.
-*   **Evidência**: Memória podada para 1.917 bytes (32 linhas) respeitando o teto de 5KB / 50 linhas.
+*   **Evidência**: Memória podada para 1.917 bytes (32 linhas), conforme o limite normativo vigente naquele lote.
 
 #### Teste 3: Propagação dos Kits
 *   **Comandos**: 16 execuções de instaladores spec-driven com `-Force`.
@@ -73,7 +73,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [x] Tetos de Memory Gardening recalibrados para 35 KB (alerta) ~ 50 KB (teto) e ~15 KB (12 a 15 tarefas) pós-poda.
+- [x] Tetos de Memory Gardening recalibrados conforme a política normativa vigente naquele lote.
 - [x] Limite de itens ativos nos índices SDD expandido para 25 itens ativos.
 - [x] Documentos normativos atualizados (`sdd-memory-gardening`, `sdd/process/MEMORY-GARDENING-GUIDELINES.md`, `sdd/SPEC.md`).
 - [x] Comando `c2f ai:prune-memories` atualizado com os novos limites de 35KB e 50KB.
@@ -210,7 +210,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [x] Atualização da linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e nos boilerplates/templates fixando 35 KB (alerta) / 50 KB (teto) / ~15 KB (alvo pós-poda).
+- [x] Atualização da linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e nos boilerplates/templates, conforme os limites vigentes naquele lote.
 - [x] Atualização de `sdd-workflow/SKILL.md` em todos os templates e masters com o **Protocolo de Reserva Atômica** de `req-XXX.md` e a separação das camadas de memória (Git vs Agente).
 - [x] Atualização de `project-validation/SKILL.md` com a regra anti-hábito de "Pendente do Operador" (obrigatoriedade de validação via `c2f page:inspect` / `c2f auth:cookie`).
 - [x] Atualização de `sdd/SPEC.md` incorporando a governança de reserva atômica de requisições, divisão de memórias e autoridade do código/SPEC sobre memórias passadas.
@@ -975,15 +975,23 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Skill `sdd-memory-gardening` atualizada removendo o gatilho incondicional ao final de sessão.
-- [ ] Regra `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas` adicionada em todas as cópias da skill e templates.
-- [ ] Resíduos de `5 KB / 50 linhas` eliminados de `MEMORIA-ENGENHARIA-CHEFIA.md`, `MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
-- [ ] `gardeningManager.ts` e `localizationCatalog.ts` na extensão atualizados para 50 KB / 75 KB / ~25 KB.
-- [ ] `npm test` na extensão e `php cli/c2f.php ai:sync` no Core validados com sucesso.
+- [x] Skill `sdd-memory-gardening` atualizada removendo o gatilho incondicional ao final de sessão.
+- [x] Regra `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas` adicionada em todas as cópias da skill e templates.
+- [x] Resíduos da politica legada eliminados de `MEMORIA-ENGENHARIA-CHEFIA.md`, `MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
+- [x] `gardeningManager.ts` e `localizationCatalog.ts` na extensão atualizados para 50 KB / 75 KB / ~25 KB.
+- [x] `npm test` na extensão e `php cli/c2f.php ai:sync` no Core validados com sucesso.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+1. **Extensão VS Code:** `npm test` em `vscode-extension/` compilou TypeScript e aprovou **84/84 testes**; 0 falhas, 0 skips e 0 cancelamentos. A cobertura inclui os limiares preventivos de 50 KB / 200 linhas, os limiares críticos de 75 KB / 300 linhas e o alvo de 25 KB com 20 a 25 tarefas.
+2. **Core:** `php cli/c2f.php ai:sync` aprovou **36/36 skills** e respectivos contratos nos cinco toolkits ativos.
+3. **Paridade:** `.github/skills/sdd-memory-gardening/SKILL.md` possui SHA-256 `95741e3599fd2b060937878aa570ac12a15ad4d5581f4070b97dead81487c4dc` em `conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `lumix` e `transformamp`.
+4. **Governança:** a auditoria dos documentos ativos confirmou os limites 50 KB / 200 linhas, 75 KB / 300 linhas e ~25 KB, sem residuos operacionais obsoletos nos alvos normativos; contratos em PT-BR e ingles foram verificados com suas respectivas redacoes equivalentes.
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-049.md](review-049.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

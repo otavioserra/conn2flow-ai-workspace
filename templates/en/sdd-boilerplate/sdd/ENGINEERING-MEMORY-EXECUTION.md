@@ -4,7 +4,7 @@
 >
 > **Permission**: Read and write for AI execution agents. You **must** update this file at the end of every task, recording new learnings to ensure context persistence across sessions.
 >
-> **Policy**: retain 12 to 15 recent tasks, preventive alert at 35 KB (~100 lines), mandatory pruning ceiling at 50 KB (~150 lines), and post-pruning target at ~15 KB. Chief Memory is read-only.
+> **Policy**: pruning below 50 KB / 200 lines is prohibited; issue a preventive warning at that threshold, prune only when the file reaches 75 KB / 300 lines, and target ~25 KB while retaining 20 to 25 recent tasks and learnings. Session or batch completion does not trigger pruning. Chief Memory is read-only.
 
 ---
 

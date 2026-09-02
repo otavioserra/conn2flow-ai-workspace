@@ -4,13 +4,14 @@
 >
 > **Último lote concluído:** [BATCH-048 — Tooltips Ricos, Curadoria de Documentações e Manual Dev Tools v2](implementation/batch-048.md)
 >
-> **Lote atual:** BATCH-048 `ready-for-review`; aguarda revisão do Humano-no-Loop.
+> **Lote atual:** [BATCH-049 — Modernização dos Tetos de Memory Gardening](implementation/batch-049.md) `ready-for-review`; aguarda revisão do Humano-no-Loop.
 
 >
-> **Política**: manter somente fatos recentes e acionáveis; detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
+> **Política**: manter somente fatos recentes e acionáveis; é proibido podar abaixo de 50 KB / 200 linhas. Emitir alerta preventivo nesse patamar, podar obrigatoriamente apenas ao atingir 75 KB / 300 linhas e mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes. Detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
 
 ## Atividades recentes
 
+- **2026-09-02 — REQ-047 / BATCH-049:** gardening modernizado para bloqueio abaixo de 50 KB / 200 linhas, alerta nesse patamar, poda obrigatoria em 75 KB / 300 linhas e alvo de ~25 KB com 20 a 25 itens recentes. Propagacao oficial dos kits locais concluida; paridade SHA-256 confirmada entre cinco repositorios. Extensao: 84/84 testes; Core `ai:sync`: 36/36 skills. Nenhuma memoria foi podada, commit, push ou deploy executado.
 - **2026-08-31 — BATCH-044:** implementado HubTaskWatcher na extensão, timeline de sessão compartilhada em `sdd/sessions/`, feedback visual de loading e botão 'Salvar e Executar Release'. Homologado com 53/53 testes.
 - **2026-08-31 — REQ-043 / BATCH-045:** reorganização ergonômica da árvore no VS Code com emojis visuais coloridos, centralização de Controles Principais e ações de IA em SDD. Homologado com 54/54 testes em `review-045.md`.
 - **2026-09-01 — REQ-044 / BATCH-046:** identificação obrigatória de repositório alvo nos prompts da extensão. Novo módulo puro `agentPromptPolicy.ts`, `AgentBridgeManager` com `{repo, root, sddRoot, currentPath, reqPath}` e link `[{request}]({currentPath})`. 66/66 testes verdes; `ready-for-review`.
@@ -33,7 +34,6 @@
 
 - Lotes BATCH-043 a BATCH-046 concluídos. BATCH-047 implementado e aguardando homologação visual do formulário de release do instalador (VSIX regenerado) e revisão técnica.
 - `sdd/validation/VALIDATION-CHECKLIST.md` (~62 KB) e `BATCH-INDEX.md` (17 lotes ativos) estão acima do teto de 10 itens da `MEMORIA-ENGENHARIA-CHEFIA.md` §4. Arquivamento não solicitado até aqui; depende de tarefa explícita do Arquiteto.
-
 
 
 

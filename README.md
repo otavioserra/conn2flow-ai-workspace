@@ -173,9 +173,10 @@ AI instructions in the kits automatically prompt the agent to:
 
 As projects evolve, execution memories can grow large (~100 KB+), consuming unnecessary prompt tokens upon session start. The framework implements **Memory Gardening**:
 *   **Idempotent Pruning Thresholds**:
-    - **Preventive Attention Trigger**: Fired at **35 KB / ~100 lines**.
-    - **Mandatory Pruning Ceiling**: Strictly required when reaching **50 KB / ~150 lines**.
-    - **Post-Pruning Target**: Reduces active memory file to **~15 KB** (retaining the **12 to 15 most recent tasks**).
+    - **Healthy Range**: Below **50 KB / ~200 lines**, pruning is prohibited.
+    - **Preventive Attention Trigger**: Fired at **50 KB / ~200 lines**.
+    - **Mandatory Pruning Ceiling**: Strictly required when reaching **75 KB / ~300 lines**.
+    - **Post-Pruning Target**: Reduces active memory file to **~25 KB** (retaining the **20 to 25 most recent tasks**).
 *   **Skill Harvesting**: Extracted patterns are distilled into reusable, on-demand **Skills**:
     - **Core Skills**: Kept in `conn2flow-ai-workspace` for general framework patterns (e.g. `c2f-json-resources-sync`, `c2f-widget-development`, `c2f-tailwind-css-architecture`).
     - **Project Skills**: Kept in `.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, and `.codex/skills/` for repository-specific, dynamically loaded rules (e.g. `lumix-tailwind-v4`, `transformamp-wp-etl`).
@@ -265,7 +266,7 @@ For in-depth technical guides, explore the dedicated documentation in `docs/en/`
 ## 🧹 Context Optimization & SDD Archiving
 
 To prevent agent attention degradation due to prompt bloat and keep token usage highly cost-efficient, the framework implements an active size limit:
-*   **25-Item Active Cap**: Core tracking files like `DECISION-LOG.md`, `BATCH-INDEX.md`, and `VALIDATION-CHECKLIST.md` maintain the **25 most recent active items** (with a 35 KB to 50 KB ceiling), preserving valuable history and eliminating frequent pruning cycles.
+*   **25-Item Active Cap**: Core tracking files like `DECISION-LOG.md`, `BATCH-INDEX.md`, and `VALIDATION-CHECKLIST.md` maintain the **25 most recent active items**. Operational memory uses a 50 KB warning and 75 KB ceiling, eliminating frequent pruning cycles.
 *   **Archive Folder Structure**: Older entries are relocated to an `/archive/` subfolder in their respective directories (e.g., `sdd/decisions/archive/`, `sdd/implementation/archive/`, etc.).
 *   **Automatic Upgrades**: The installer scripts (`scripts/install-spec-driven-*.ps1` / `.sh`) detect pre-existing `sdd/` folders and safely provision these archive directories with standard `README.md` explanation sheets, upgrading legacy projects automatically without altering existing configurations.
 

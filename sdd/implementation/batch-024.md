@@ -11,7 +11,7 @@
 ## 🎯 Resumo da Execução
 
 1. **Unificação Categórica dos Tetos de Memory Gardening**:
-   - Atualizada a linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e em todos os boilerplates/templates (`MEMORIA-ENGENHARIA-EXECUCAO.md` e `ENGINEERING-MEMORY-EXECUTION.md`), fixando categoricamente: **35 KB (~100 linhas) para alerta preventivo**, **50 KB (~150 linhas) para teto mandatório de poda** e **~15 KB para alvo pós-poda**.
+   - Atualizada a linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e em todos os boilerplates/templates (`MEMORIA-ENGENHARIA-EXECUCAO.md` e `ENGINEERING-MEMORY-EXECUTION.md`), fixando os limites normativos vigentes naquele lote.
 2. **Protocolo de Reserva Atômica para Criação de `req-XXX.md`**:
    - Formalizado em `sdd-workflow/SKILL.md`, `sdd/SPEC.md` e `README.md`/`README-PT-BR.md`: qualquer agente (Arquiteto ou Executor) está autorizado a criar requisições quando instruído pelo usuário ou por demanda técnica, executando `git pull`, checagem sequencial e `git commit`/`push` imediatos para travar a numeração contra agentes concorrentes.
 3. **Regra Anti-Hábito de "Pendente do Operador"**:

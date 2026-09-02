@@ -104,8 +104,9 @@ As memórias de execução são contexto operacional curto, não um arquivo hist
 
 ### Limites e ciclo de poda
 
-*   A memória de execução entra em atenção preventiva ao atingir **35 KB ou 100 linhas** e deve ser podada obrigatoriamente antes de exceder **50 KB ou 150 linhas**.
-*   Após a poda, deve permanecer abaixo de 35 KB, mirando aproximadamente **15 KB** e preservando as **12 a 15 tarefas mais recentes** e pendências ainda ativas.
+*   Abaixo de **50 KB e 200 linhas**, a memória de execução está saudável e sua poda é proibida. O encerramento de sessão ou conclusão de batch não constitui gatilho.
+*   A memória entra em atenção preventiva ao atingir **50 KB ou 200 linhas** e deve ser podada obrigatoriamente ao atingir **75 KB ou 300 linhas**.
+*   Após a poda, deve mirar aproximadamente **25 KB**, preservando as **20 a 25 tarefas, aprendizados e pendências mais recentes**.
 *   A memória de Chefia permanece somente leitura para executores e não pode ser podada sem instrução humana explícita.
 *   O histórico removido continua recuperável pelo Git; não deve ser copiado para outro arquivo carregado automaticamente.
 

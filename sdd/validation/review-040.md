@@ -19,7 +19,7 @@
 | **Abordagem Findings-First** | Verificação da resolução dos problemas diagnosticados na REQ-038 | **PASS**: Reatividade nos 3 campos dependentes, eliminação do clique mudo e separação clara de modos comprovados por testes automatizados. |
 | **Integridade de Comandos** | Teste `commandCoverage.test.cjs` e `package.json` | **PASS**: Comandos públicos registrados na árvore e no manifest, incluindo `conn2flow.modes.selectTopology` e `conn2flow.modes.selectAutonomy`. |
 | **Suíte de Testes Automatizada** | Execução de `npm test` em `vscode-extension/` | **PASS**: 42 testes executados, 42 aprovados, 0 falhas. |
-| **Memory Gardening** | Tamanho de `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.155 bytes / 26 linhas (bem abaixo do alerta de 35 KB / 50 linhas). |
+| **Memory Gardening** | Tamanho de `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.155 bytes / 26 linhas (bem abaixo do alerta vigente no lote). |
 
 ---
 

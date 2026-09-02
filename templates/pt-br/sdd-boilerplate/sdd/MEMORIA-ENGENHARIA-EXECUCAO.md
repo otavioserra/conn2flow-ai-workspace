@@ -4,7 +4,7 @@
 >
 > **Permissão**: Leitura e escrita para agentes executores IA. Atualize este arquivo **compulsoriamente** ao término de cada tarefa, registrando novos aprendizados para garantir a persistência do contexto entre sessões.
 >
-> **Política**: manter 12 a 15 tarefas recentes, alerta preventivo em 35 KB (~100 linhas), teto mandatório de poda em 50 KB (~150 linhas) e alvo pós-poda em ~15 KB. A memória de Chefia é somente leitura.
+> **Política**: é proibido podar abaixo de 50 KB / 200 linhas; emitir alerta preventivo nesse patamar, podar obrigatoriamente ao atingir 75 KB / 300 linhas e mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes. O fim da sessão ou do batch não aciona poda. A memória de Chefia é somente leitura.
 
 ---
 

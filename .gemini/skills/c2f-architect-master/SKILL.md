@@ -51,7 +51,7 @@ Ao iniciar, oriente seu contexto lendo apenas o essencial:
 
 ### 5. Monitoramento Proativo de Memory Gardening
 - Mantenha `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` com no máximo os **10 itens ativos mais recentes**. Itens antigos devem ser arquivados em `/archive/`.
-- `MEMORIA-ENGENHARIA-EXECUCAO.md` deve ser podada se exceder 50 KB ou 150 linhas.
+- `MEMORIA-ENGENHARIA-EXECUCAO.md` não deve ser podada abaixo de 50 KB / 200 linhas; emita alerta nesse patamar e exija poda apenas ao atingir 75 KB / 300 linhas, mirando ~25 KB e preservando 20 a 25 tarefas recentes.
 - **NUNCA** altere `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` sem ordem explícita do Engenheiro Chefe Humano.
 
 ### 6. Handoffs de Prompts com Identificação de Repositório

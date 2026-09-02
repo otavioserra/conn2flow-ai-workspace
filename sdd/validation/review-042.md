@@ -19,7 +19,7 @@
 | **Abordagem Findings-First** | Verificação da propagação da regra multi-repositório | **PASS**: Regra 7 no `AGENTS.md` (Core) e Regra 6 no `GEMINI.md` (Core), skill canônica `sdd-workflow` e templates sincronizados. |
 | **Paridade e Sincronização de Skills** | Execução de `php cli/c2f.php ai:sync` no Core | **PASS**: 36/36 skills com contratos válidos em todos os 5 toolkits (.claude, .cursor, .gemini, .github, .codex). |
 | **Suíte de Testes Automatizada** | Execução de `npm test` em `vscode-extension/` | **PASS**: 47 testes executados, 47 aprovados, 0 falhas. |
-| **Memory Gardening** | Tamanho de `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.037 bytes / 28 linhas (bem abaixo do alerta de 35 KB / 50 linhas). |
+| **Memory Gardening** | Tamanho de `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.037 bytes / 28 linhas (bem abaixo do alerta vigente no lote). |
 
 ---
 

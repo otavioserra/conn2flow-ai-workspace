@@ -22,7 +22,7 @@
 4. **Monitoramento Proativo de SDD Archiving & Memory Gardening (Mandatório)**:
    - Ao formular ou revisar qualquer requisição (`req-XXX.md`), o Arquiteto DEVE auditar proativamente o tamanho dos arquivos em todas as subpastas do `sdd/` do repositório alvo.
    - **Teto Ativo de 10 Itens**: `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` mantêm apenas os **10 itens ativos mais recentes**. Itens antigos devem ser movidos para suas respectivas subpastas `/archive/` (ex: `sdd/decisions/archive/`, `sdd/validation/archive/`).
-   - **Teto de Memória de Execução**: `MEMORIA-ENGENHARIA-EXECUCAO.md` com teto de 15 KB / 50 linhas deve ser podada para ~4 KB a 5 KB (mantendo apenas 3–5 tarefas recentes).
+   - **Teto de Memória de Execução**: `MEMORIA-ENGENHARIA-EXECUCAO.md` permanece intacta abaixo de 50 KB / 200 linhas, entra em alerta preventivo nesse patamar e só exige poda ao atingir 75 KB / 300 linhas; o alvo pós-poda é ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes.
    - Se qualquer arquivo exceder os limites, o Arquiteto inclui automaticamente a tarefa de arquivamento/poda na requisição do executor.
 
 5. **Proibição de Código Solto e Strings Hardcoded**:

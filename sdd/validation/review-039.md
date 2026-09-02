@@ -19,7 +19,7 @@
 | **Abordagem Findings-First** | Verificado se o Executor reportou e corrigiu achados técnicos reais | **PASS**: Registrados e sanados 2 findings médios (transição fallback nativo ➔ MPE e cobertura de comandos bloqueáveis). |
 | **Integridade de Comandos** | Teste automatizado `commandCoverage.test.cjs` e manifest `package.json` | **PASS**: Todos os comandos da árvore registrados em `extension.ts` e declarados no manifest. |
 | **Suíte de Testes Automatizada** | Execução independente de `npm test` em `vscode-extension/` | **PASS**: 38 testes executados, 38 aprovados, 0 falhas. |
-| **Memory Gardening** | Tamanho do arquivo `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.169 bytes / 27 linhas (bem abaixo do alerta de 35 KB / 50 linhas). |
+| **Memory Gardening** | Tamanho do arquivo `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | **PASS**: 2.169 bytes / 27 linhas (bem abaixo do alerta vigente no lote). |
 
 ---
 

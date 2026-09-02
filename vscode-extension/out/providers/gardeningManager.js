@@ -5,6 +5,8 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
+const localizationManager_1 = require("./localizationManager");
+const gardeningPolicy_1 = require("../gardeningPolicy");
 class GardeningManager {
     static _autoGardening = true;
     static storage;
@@ -42,21 +44,22 @@ class GardeningManager {
             const lineCount = content.split('\n').length;
             const sizeBytes = stats.size;
             const sizeKb = (sizeBytes / 1024).toFixed(1);
-            if (sizeBytes > 51200 || lineCount > 150) {
+            const status = (0, gardeningPolicy_1.classifyMemoryHealth)(sizeBytes, lineCount);
+            if (status === 'critical') {
                 return {
                     sizeBytes,
                     lineCount,
                     status: 'critical',
-                    label: `🔴 Crítico: ${sizeKb} KB / ${lineCount} linhas (Teto: 50KB/150L)`,
+                    label: localizationManager_1.LocalizationManager.t('gardening.criticalLabel', { sizeKb, lineCount }),
                     filePath: memPath
                 };
             }
-            if (sizeBytes > 35840 || lineCount > 100) {
+            if (status === 'warning') {
                 return {
                     sizeBytes,
                     lineCount,
                     status: 'warning',
-                    label: `🟡 Atenção: ${sizeKb} KB / ${lineCount} linhas (Alerta: 35KB/100L)`,
+                    label: localizationManager_1.LocalizationManager.t('gardening.warningLabel', { sizeKb, lineCount }),
                     filePath: memPath
                 };
             }
@@ -64,12 +67,12 @@ class GardeningManager {
                 sizeBytes,
                 lineCount,
                 status: 'healthy',
-                label: `🟢 Saudável: ${sizeKb} KB (${lineCount} linhas)`,
+                label: localizationManager_1.LocalizationManager.t('gardening.healthyLabel', { sizeKb, lineCount }),
                 filePath: memPath
             };
         }
         catch {
-            return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: 'Erro ao ler memória' };
+            return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: localizationManager_1.LocalizationManager.t('gardening.readError') };
         }
     }
     static checkAndNotify() {
@@ -123,26 +126,32 @@ class GardeningManager {
         const targetFile = path.join(reqDir, reqFileName);
         const health = this.getMemoryHealth();
         const sizeKb = (health.sizeBytes / 1024).toFixed(1);
+        if (health.status === 'healthy') {
+            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('gardening.noPruneHealthy', { sizeKb, lineCount: health.lineCount }));
+            return;
+        }
         const templateContent = `# Requisição Humana req-${padNum}: SDD Memory Gardening & Higienização
 
 ## 🎯 Objetivo
 Executar poda, destilação e higienização periódica da memória de execução (\`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md\`) conforme as diretrizes da skill oficial \`sdd-memory-gardening\`.
 - **Escopo**: ${scopeLabel}
 - **Status Atual da Memória**: ${health.sizeBytes} bytes (~${sizeKb} KB) / ${health.lineCount} linhas
-- **Teto Normativo**: 50 KB / 150 linhas (alerta preventivo aos 35 KB / 100 linhas).
-- **Meta de Poda**: Reduzir para ~15 KB preservando as 12 a 15 tarefas mais recentes.
+- **Faixa Saudável (Poda Proibida)**: abaixo de 50 KB / 200 linhas.
+- **Alerta Preventivo**: 50 KB / 200 linhas.
+- **Teto Normativo de Poda Obrigatória**: 75 KB / 300 linhas.
+- **Meta de Poda**: Reduzir para ~25 KB preservando as 20 a 25 tarefas mais recentes.
 
 ## 📋 Checklist de Ações do Executor
 - [ ] 1. Ler a memória de execução completa (\`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md\`).
-- [ ] 2. Preservar as 12 a 15 tarefas mais recentes e pendências ativas.
+- [ ] 2. Preservar as 20 a 25 tarefas mais recentes e pendências ativas.
 - [ ] 3. Destilar regras arquiteturais recorrentes para as skills Core ou documento normativo correspondente.
 - [ ] 4. Nunca alterar ou remover diretrizes de governança da Chefia sem instrução humana explícita.
-- [ ] 5. Reescrever a memória visando cerca de 15 KB.
+- [ ] 5. Reescrever a memória visando cerca de 25 KB.
 - [ ] 6. Executar validação de conformidade com \`./c2f ai:prune-memories\`.
 - [ ] 7. Registrar evidências no checklist do lote em \`sdd/validation/VALIDATION-CHECKLIST.md\`.
 
 ## 🛡️ Critérios de Aceite
-- [ ] Memória de engenharia de execução reduzida para o intervalo de 10 KB a 20 KB.
+- [ ] Memória de engenharia de execução reduzida para aproximadamente 25 KB.
 - [ ] Comando \`./c2f ai:prune-memories\` executado com status verde (Healthy).
 - [ ] Nenhuma diretriz operacional crítica ou tarefa pendente foi descartada.
 `;

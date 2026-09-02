@@ -11,9 +11,7 @@
 ## 🎯 Resumo da Execução
 
 1. **Recalibração das Métricas de Memory Gardening & Índices Ativos**:
-   - Atenção preventiva: **35 KB / 100 linhas**.
-   - Teto máximo obrigatório: **50 KB / 150 linhas**.
-   - Tamanho alvo pós-poda: **~15 KB (12 a 15 tarefas recentes)**.
+   - Atenção preventiva, teto obrigatório e alvo pós-poda foram alinhados à política vigente naquele lote.
    - Limite de itens ativos nos índices (`BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md`, etc.): **25 itens ativos**.
    - Atualizados: `sdd-memory-gardening` em todos os templates, `sdd/process/MEMORY-GARDENING-GUIDELINES.md`, `sdd/SPEC.md` e comando `c2f ai:prune-memories` no core CLI.
 2. **Governança dos Modos de Autonomia de IA**:

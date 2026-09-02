@@ -41,7 +41,7 @@ flowchart TD
 1. **Ping-Pong Writing Boundary**: The Architect and the Executor enforce strict write permissions across repository folders.
 2. **The Architect as Documentation Guardian**: Living documentation (`READMEs` and `docs/`) is authored and maintained by the Architect upon closing each batch, eliminating stale documentation.
 3. **Skill Harvesting**: When an executor encounters an error or discovers a framework idiom, the rule is harvested into an atomic on-demand Skill (`.claude/skills/`, etc.) rather than bloating system prompts.
-4. **Idempotent Memory Gardening**: Operational memories are proactively maintained below 35 KB (~100 lines), with a mandatory 50 KB ceiling, pruning history down to ~15 KB (12 to 15 recent tasks) in dedicated maintenance passes or via `./c2f ai:prune-memories`.
+4. **Idempotent Memory Gardening**: Pruning is prohibited below 50 KB / 200 lines. That threshold raises a warning, the mandatory ceiling is 75 KB / 300 lines, and post-pruning targets ~25 KB while preserving 20 to 25 recent tasks. Session or batch completion does not trigger gardening.
 5. **Backlog Intake Gate (`sdd/backlog/`)**: Incubation items (`ICEBOX` and `IN-DISCUSSION`) are shielded from premature agent execution until explicit human promotion.
 6. **The AI Orchestration Triad**:
    - **`c2f` (Core CLI)**: Native PHP 8.2+ OOP CLI in the core repository for resources, database, Docker, and AI.

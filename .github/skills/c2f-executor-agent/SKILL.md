@@ -35,6 +35,11 @@ Ao iniciar, leia deterministamente:
 
 ## 🛡️ Regras Invioláveis do Executor
 
+### 0. Bloqueio de Podas Prematuras
+- **PROIBIDO** acionar Memory Gardening apenas pelo encerramento da sessão ou conclusão do batch.
+- Se a memória de execução estiver abaixo de 50 KB e 200 linhas, registre que está saudável e não a reescreva.
+- Em 50 KB / 200 linhas, apenas emita alerta preventivo; a poda torna-se obrigatória em 75 KB / 300 linhas e deve mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes.
+
 ### 1. Proibição Absoluta de `git add -A` e `git add .`
 - Commits devem SEMPRE listar os arquivos modificados explicitamente:
   `git add caminho/para/arquivo1.php caminho/para/arquivo2.json`
