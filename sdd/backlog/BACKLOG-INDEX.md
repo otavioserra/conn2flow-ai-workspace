@@ -21,9 +21,11 @@
 | [FEAT-010](FEAT-010-persistent-devtools-configuration-and-scope.md) | Persistência / UX | `ICEBOX` | Persistência Externa de Configurações, Escopo e Topologia | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-011](FEAT-011-vm-infrastructure-pipelines-and-api-updater.md) | Infraestrutura / CLI | `ICEBOX` | Adaptação e Resiliência de Pipelines para Ambientes VM (HestiaCP) | Aguardar planejamento cuidadoso | 2026-09-01 |
 | [FEAT-012](FEAT-012-multiproject-ssh-public-path-and-css-pipeline.md) | CLI / Multiprojeto | `ICEBOX` | Suporte a `public_path` e Execução SSH Automática no Pipeline Multiprojeto | Aguardar promoção humana | 2026-09-02 |
+| [FEAT-013](FEAT-013-sdd-file-archiving-rule-of-10-and-link-integrity.md) | Governança SDD / DX | `ICEBOX` | Regra dos 10 Ativos na Raiz SDD e Manutenção Mandatória da Integridade de Links nos Índices | Aguardar promoção humana | 2026-09-02 |
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
+
 
 
 
