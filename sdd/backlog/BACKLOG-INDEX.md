@@ -17,11 +17,12 @@
 
 | [FEAT-007](FEAT-007-integrate-core-ai-workspace-documentation.md) | Conhecimento | `ICEBOX` | Integração da Documentação Ampla do AI Workspace (`ai-workspace/docs`) | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-008](FEAT-008-persistent-action-loading-and-progress-feedback.md) | Usabilidade / UX | `ICEBOX` | Feedback Visual Contínuo e Barra de Progresso em Ações Longas | Aguardar promoção humana | 2026-09-01 |
-| [FEAT-009](FEAT-009-synchronize-prompt-topology-and-current-md.md) | Agentes / DX | `ICEBOX` | Sincronização Dinâmica de Topologia no Prompt e no CURRENT.md | Aguardar promoção humana | 2026-09-01 |
-| [FEAT-010](FEAT-010-persistent-devtools-configuration-and-scope.md) | Persistência / UX | `ICEBOX` | Persistência Externa de Configurações, Escopo e Topologia | Aguardar promoção humana | 2026-09-01 |
+| [FEAT-009](FEAT-009-synchronize-prompt-topology-and-current-md.md) | Agentes / DX | `COMPLETED` | Sincronização Dinâmica de Topologia no Prompt e no CURRENT.md | Entregue no BATCH-051 | 2026-09-02 |
+| [FEAT-010](FEAT-010-persistent-devtools-configuration-and-scope.md) | Persistência / UX | `COMPLETED` | Persistência Externa de Configurações, Escopo e Topologia | Entregue no BATCH-051 | 2026-09-02 |
 | [FEAT-011](FEAT-011-vm-infrastructure-pipelines-and-api-updater.md) | Infraestrutura / CLI | `ICEBOX` | Adaptação e Resiliência de Pipelines para Ambientes VM (HestiaCP) | Aguardar planejamento cuidadoso | 2026-09-01 |
-| [FEAT-012](FEAT-012-multiproject-ssh-public-path-and-css-pipeline.md) | CLI / Multiprojeto | `ICEBOX` | Suporte a `public_path` e Execução SSH Automática no Pipeline Multiprojeto | Aguardar promoção humana | 2026-09-02 |
-| [FEAT-013](FEAT-013-sdd-file-archiving-rule-of-10-and-link-integrity.md) | Governança SDD / DX | `ICEBOX` | Regra dos 10 Ativos na Raiz SDD e Manutenção Mandatória da Integridade de Links nos Índices | Aguardar promoção humana | 2026-09-02 |
+| [FEAT-012](FEAT-012-multiproject-ssh-public-path-and-css-pipeline.md) | CLI / Multiprojeto | `COMPLETED` | Suporte a `public_path` e Execução SSH Automática no Pipeline Multiprojeto | Entregue no BATCH-052 | 2026-09-02 |
+| [FEAT-013](FEAT-013-sdd-file-archiving-rule-of-10-and-link-integrity.md) | Governança SDD / DX | `COMPLETED` | Regra dos 10 Ativos na Raiz SDD e Manutenção Mandatória da Integridade de Links nos Índices | Entregue no BATCH-050 | 2026-09-02 |
+
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
