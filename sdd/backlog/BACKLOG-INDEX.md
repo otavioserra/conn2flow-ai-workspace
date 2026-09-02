@@ -20,9 +20,11 @@
 | [FEAT-009](FEAT-009-synchronize-prompt-topology-and-current-md.md) | Agentes / DX | `ICEBOX` | Sincronização Dinâmica de Topologia no Prompt e no CURRENT.md | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-010](FEAT-010-persistent-devtools-configuration-and-scope.md) | Persistência / UX | `ICEBOX` | Persistência Externa de Configurações, Escopo e Topologia | Aguardar promoção humana | 2026-09-01 |
 | [FEAT-011](FEAT-011-vm-infrastructure-pipelines-and-api-updater.md) | Infraestrutura / CLI | `ICEBOX` | Adaptação e Resiliência de Pipelines para Ambientes VM (HestiaCP) | Aguardar planejamento cuidadoso | 2026-09-01 |
+| [FEAT-012](FEAT-012-multiproject-ssh-public-path-and-css-pipeline.md) | CLI / Multiprojeto | `ICEBOX` | Suporte a `public_path` e Execução SSH Automática no Pipeline Multiprojeto | Aguardar promoção humana | 2026-09-02 |
 
 > [!IMPORTANT]
 > **Intake Gate**: Itens no backlog continuam não executáveis até promoção humana explícita para `sdd/human-requests/`.
+
 
 
 
