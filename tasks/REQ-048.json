@@ -1,0 +1,11 @@
+{
+  "taskId": "task-1788388349782-iilor",
+  "reqId": "REQ-048",
+  "repo": "conn2flow",
+  "mode": "supervised",
+  "priority": "normal",
+  "prompt": "Implementar a REQ-048 / BATCH-050 no conn2flow (Core) e demais repositórios:\n1. Criar o comando CLI no Core conn2flow/cli/src/Commands/AiArchiveSddCommand.php (./c2f ai:archive-sdd [--repo=PATH] [--keep=10] [--dry-run]) e registrá-lo em Application.php. O comando deve mover os arquivos individuais excedentes de human-requests/ e implementation/ para /archive/ e reescrever deterministicamente os links relativos de markdown em BATCH-INDEX.md, VALIDATION-CHECKLIST.md e CURRENT.md para apontar para archive/ sem quebrar navegação.\n2. Atualizar as skills c2f-architect-master, sdd-memory-gardening e sdd-workflow em todos os toolkits (.claude, .codex, .gemini, .github, .cursor) com a Regra dos 10 Ativos na Raiz SDD.\n3. Executar ./c2f ai:archive-sdd em todos os repositórios (conn2flow, conn2flow-ai-workspace, conn2flow-site, lumix, transformamp).\n4. Validar php cli/c2f.php ai:sync (36/36 skills verdes).\n5. Emitir completions/BATCH-050-executor-receipt.json.",
+  "createdAt": "2026-09-02T22:32:29.782Z",
+  "status": "dispatched",
+  "executionToken": "tok_dGFzay0xNzg4Mzg4MzQ5NzgyLWlpbG9yOlJFUS0wNDg"
+}

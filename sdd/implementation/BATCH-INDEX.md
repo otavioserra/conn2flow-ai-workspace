@@ -37,9 +37,11 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-046** | complete | Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes | `VALIDATION-CHECKLIST.md#batch-046` | REQ-044 homologada; 66/66 testes, {repo, root, sddRoot, currentPath} no prompt e /goal, review APPROVED. |
 | **BATCH-047** | complete | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 homologada; 76/76 testes, InstallerGuard no releasePolicy, preflight OK e ai:sync 36/36. |
 | **BATCH-048** | complete | Tooltips Ricos na Árvore Dev Tools, Curadoria de Documentações e Manual v2 | `VALIDATION-CHECKLIST.md#batch-048` | REQ-046 homologada; 79/79 testes, tooltips Markdown ricos, duplicatas removidas da árvore e manual v2. |
-| **BATCH-049** | ready-for-review | Modernização dos Tetos de Memory Gardening e Eliminação de Podas Prematuras | `batch-049.md` | REQ-047 implementada; 84/84 testes, Core `ai:sync` 36/36 e paridade SHA-256 confirmada. |
+| **BATCH-049** | complete | Modernização dos Tetos de Memory Gardening e Eliminação de Podas Prematuras | `VALIDATION-CHECKLIST.md#batch-049` | REQ-047 homologada; fim do gatilho por fim de turno, trava 50 KB / 75 KB e sincronismo nos 5 repositórios. |
+| **BATCH-050** | in-progress | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 ativa; comando CLI ai:archive-sdd, movimentação para archive/, reescrita de links e limpeza em 5 repositórios. |
 
-## Próxima requisição
+## Próximas requisições planejadas
 
-`REQ-047` ativa em 2026-09-02 para o `BATCH-049`. Topologia: Duplo Agente (Arquiteto/Revisor + Executor).
-
+- `REQ-048` (Passo 1): **ATIVA** em 2026-09-02 para o `BATCH-050`.
+- `REQ-049` (Passo 2): `BATCH-051` (Persistência Externa em settings.json e sincronização dinâmica do prompt).
+- `REQ-050` (Passo 3): `BATCH-052` (Suporte a ssh_public_path e execução SSH automática no pipeline multiprojeto).

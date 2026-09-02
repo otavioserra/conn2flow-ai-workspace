@@ -992,6 +992,23 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Auditoria do Revisor Técnico: [review-049.md](review-049.md) emitido com parecer **APPROVED** em 2026-09-02.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-050: Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Comando CLI `./c2f ai:archive-sdd` criado no Core com suporte a `--repo`, `--keep=10` e `--dry-run`.
+- [ ] Movimentação física dos arquivos excedentes de `human-requests/` e `implementation/` para `/archive/`.
+- [ ] Reescrita automática de todos os links de markdown correspondentes em `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `CURRENT.md` (zero links 404).
+- [ ] Atualização das skills `c2f-architect-master`, `sdd-memory-gardening` e `sdd-workflow` com a regra dos 10 ativos.
+- [ ] Higienização dos 5 repositórios (`conn2flow`, `conn2flow-ai-workspace`, `conn2flow-site`, `lumix`, `transformamp`) e `ai:sync` 36/36 aprovado.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 
 

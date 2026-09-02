@@ -1,41 +1,28 @@
-# CURRENT HANDOFF — REQ-047 / BATCH-049
+# CURRENT HANDOFF — REQ-048 / BATCH-050
 
 * **Origem**: Macro-Arquiteto
 * **Destino**: Agente Executor (Claude Code / Codex)
 * **Data**: 2026-09-02
 * **Topologia**: `dupla` (Supervisionado)
-* **Repositório Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) e repositórios associados (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`)
-* **Requisição Ativa**: `sdd/human-requests/req-047.md`
-* **Status de Execução**: `ready-for-review`
+* **Repositório Alvo**: `conn2flow` (Core em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`), `conn2flow-ai-workspace` e repositórios satélites (`conn2flow-site`, `lumix`, `transformamp`)
+* **Requisição Ativa**: `sdd/human-requests/req-048.md`
 
 ---
 
 ## 🎯 Instruções Técnicas para Execução
 
-1. **Reformulação da Skill `sdd-memory-gardening`**:
-   - Editar `.claude/skills/sdd-memory-gardening/SKILL.md`, `.gemini/skills/sdd-memory-gardening/SKILL.md`, `.codex/skills/sdd-memory-gardening/SKILL.md`, `.github/skills/sdd-memory-gardening/SKILL.md`, `.cursor/skills/sdd-memory-gardening/SKILL.md` e em `templates/{en,pt-br}/*`.
-   - Remover gatilho de finalização de sessão.
-   - Adicionar trava: `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas.`
-   - Atualizar tetos: 50 KB (alerta) / 75 KB (teto) / ~25 KB (alvo pós-poda).
-
-2. **Limpeza de Governança Multirepositório**:
-   - Em `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` (linha 25), substituir a politica legada pelos novos limites (50 KB / 75 KB / ~25 KB).
-   - Atualizar a linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md`, `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
-
-3. **Atualização da Extensão VS Code**:
-   - Atualizar `vscode-extension/src/providers/gardeningManager.ts` e `localizationCatalog.ts`.
-   - Rodar `npm test` em `vscode-extension/`.
-
+1. **Criar o comando CLI no Core (`conn2flow/cli/`)**:
+   - Criar `conn2flow/cli/src/Commands/AiArchiveSddCommand.php` com o comando `ai:archive-sdd`.
+   - Adicionar o registro do comando em `conn2flow/cli/src/Application.php`.
+   - Funcionalidade:
+     * Recebe `--repo=PATH` (default: repo atual), `--keep=10` (default: 10) e `--dry-run`.
+     * Varre `sdd/human-requests/` e `sdd/implementation/`.
+     * Mantém apenas os 10 arquivos `.md` individuais mais recentes. Os demais são movidos para `archive/`.
+     * Atualiza automaticamente os links markdown em `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `CURRENT.md` (reescrevendo de `(file.md)` para `(archive/file.md)`).
+2. **Atualização das Skills**:
+   - Atualizar `c2f-architect-master`, `sdd-memory-gardening` e `sdd-workflow` em `.claude/`, `.gemini/`, `.codex/`, `.github/`, `.cursor/`.
+3. **Execução da Faxina**:
+   - Executar `./c2f ai:archive-sdd` em todos os repositórios (`conn2flow`, `conn2flow-ai-workspace`, `conn2flow-site`, `lumix`, `transformamp`).
 4. **Validação**:
-   - Rodar `php cli/c2f.php ai:sync` no Core.
-   - Emitir recibo MCP `completions/BATCH-049-executor-receipt.json`.
-
----
-
-## Resultado do Executor
-
-- A politica, masters, templates, boilerplates e extensao foram atualizados para 50 KB / 200 linhas (alerta), 75 KB / 300 linhas (poda obrigatoria) e ~25 KB (alvo).
-- `npm test` em `vscode-extension/` passou com **84/84** testes e compilacao TypeScript limpa.
-- `php cli/c2f.php ai:sync` no Core validou **36/36** skills nos cinco kits.
-- A skill de gardening tem SHA-256 `95741e3599fd2b060937878aa570ac12a15ad4d5581f4070b97dead81487c4dc` nos cinco repositorios alvo.
-- Nenhum commit, push, deploy ou release foi executado. O lote aguarda revisao do Humano-no-Loop.
+   - Executar `php cli/c2f.php ai:sync` no Core.
+   - Emitir recibo MCP `completions/BATCH-050-executor-receipt.json`.
