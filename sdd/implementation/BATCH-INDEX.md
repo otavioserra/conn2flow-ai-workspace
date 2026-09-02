@@ -37,8 +37,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-046** | complete | Identificação Obrigatória de Repositório Alvo e Raiz nos Prompts de Agentes | `VALIDATION-CHECKLIST.md#batch-046` | REQ-044 homologada; 66/66 testes, {repo, root, sddRoot, currentPath} no prompt e /goal, review APPROVED. |
 | **BATCH-047** | complete | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 homologada; 76/76 testes, InstallerGuard no releasePolicy, preflight OK e ai:sync 36/36. |
 | **BATCH-048** | complete | Tooltips Ricos na Árvore Dev Tools, Curadoria de Documentações e Manual v2 | `VALIDATION-CHECKLIST.md#batch-048` | REQ-046 homologada; 79/79 testes, tooltips Markdown ricos, duplicatas removidas da árvore e manual v2. |
+| **BATCH-049** | in-progress | Modernização dos Tetos de Memory Gardening e Eliminação de Podas Prematuras | `VALIDATION-CHECKLIST.md#batch-049` | REQ-047 ativa; eliminação do gatilho por fim de sessão, trava de 50 KB / 75 KB e limpeza de 5 KB em todos os repositórios. |
 
 ## Próxima requisição
 
-`REQ-046` concluída em 2026-09-01 no `BATCH-048`. Pronto para novo intake de requisição humana (Opção 3 / REQ-047).
- Topologia: Duplo Agente (Arquiteto/Revisor + Executor).
+`REQ-047` ativa em 2026-09-02 para o `BATCH-049`. Topologia: Duplo Agente (Arquiteto/Revisor + Executor).
+

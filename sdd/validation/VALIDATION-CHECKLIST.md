@@ -969,6 +969,23 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Auditoria do Revisor Técnico: [review-048.md](review-048.md) emitido com parecer **APPROVED** em 2026-09-01.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-049: Modernização dos Tetos de Memory Gardening e Eliminação de Podas Prematuras
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Skill `sdd-memory-gardening` atualizada removendo o gatilho incondicional ao final de sessão.
+- [ ] Regra `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas` adicionada em todas as cópias da skill e templates.
+- [ ] Resíduos de `5 KB / 50 linhas` eliminados de `MEMORIA-ENGENHARIA-CHEFIA.md`, `MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
+- [ ] `gardeningManager.ts` e `localizationCatalog.ts` na extensão atualizados para 50 KB / 75 KB / ~25 KB.
+- [ ] `npm test` na extensão e `php cli/c2f.php ai:sync` no Core validados com sucesso.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 
 
