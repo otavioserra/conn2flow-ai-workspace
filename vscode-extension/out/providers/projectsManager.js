@@ -5,6 +5,7 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const localizationManager_1 = require("./localizationManager");
+const workspacePreferencesPolicy_1 = require("../workspacePreferencesPolicy");
 class ProjectsManager {
     static toGitPath(value) {
         return value.replace(/^([A-Za-z]):[\\/]/, (_, drive) => `/${drive.toLowerCase()}/`).replace(/\\/g, '/');
@@ -78,11 +79,21 @@ class ProjectsManager {
             return undefined;
         }
     }
+    /**
+     * `environment.json` continua sendo a fonte da verdade do pipeline; a
+     * configuração `conn2flow.projects.activeId` só entra quando o arquivo não é
+     * alcançável a partir do workspace aberto (REQ-049 / BATCH-051), evitando que
+     * a seleção do operador se perca no reload da janela.
+     */
     static getTargetProject() {
         const data = this.getEnvironmentData();
         const target = data?.devEnvironment?.projectTarget;
         if (typeof target === 'string' && data?.devProjects?.[target]) {
             return target;
+        }
+        const persisted = (0, workspacePreferencesPolicy_1.recognizeProjectId)(vscode.workspace.getConfiguration(workspacePreferencesPolicy_1.PREFERENCE_SECTION).get(workspacePreferencesPolicy_1.PREFERENCE_KEYS.activeProjectId));
+        if (persisted && (!data?.devProjects || data.devProjects[persisted])) {
+            return persisted;
         }
         return undefined;
     }
@@ -121,6 +132,7 @@ class ProjectsManager {
             }
             data.devEnvironment.projectTarget = projectId;
             fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
+            await this.persistActiveProjectId(projectId);
             vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('projects.targetChanged', { target: projectId }), 2000);
             if (onUpdated) {
                 onUpdated();
@@ -128,6 +140,19 @@ class ProjectsManager {
         }
         catch (err) {
             vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
+        }
+    }
+    /** Espelha o projeto alvo em `settings.json` para sobreviver ao reload. */
+    static async persistActiveProjectId(projectId) {
+        const config = vscode.workspace.getConfiguration(workspacePreferencesPolicy_1.PREFERENCE_SECTION);
+        const target = vscode.workspace.workspaceFolders?.length
+            ? vscode.ConfigurationTarget.Workspace
+            : vscode.ConfigurationTarget.Global;
+        try {
+            await config.update(workspacePreferencesPolicy_1.PREFERENCE_KEYS.activeProjectId, projectId, target);
+        }
+        catch {
+            // environment.json permanece como fonte da verdade
         }
     }
     static async addNewProject(onUpdated) {

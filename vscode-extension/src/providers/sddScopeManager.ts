@@ -4,6 +4,13 @@ import * as fs from 'fs';
 import { ProjectsManager } from './projectsManager';
 import { buildRepositorySddCandidates, inferScopeIdFromWorkspace } from '../repositoryLocator';
 import { LocalizationManager } from './localizationManager';
+import {
+  DEFAULT_SCOPE_ID,
+  PREFERENCE_KEYS,
+  PREFERENCE_SECTION,
+  recognizeScopeId,
+  resolvePersistedPreference
+} from '../workspacePreferencesPolicy';
 
 export interface SddScope {
   id: string; // 'core' | 'ai-workspace' | 'project:<id>'
@@ -17,10 +24,24 @@ export class SddScopeManager {
   private static storage: vscode.Memento | undefined;
   private static readonly storageKey = 'conn2flow.sdd.scopeId';
 
+  /**
+   * Precedência de restauração (REQ-049 / BATCH-051): `settings.json` primeiro,
+   * `workspaceState` legado em seguida — migrando workspaces já em uso — e por
+   * fim a inferência a partir das pastas abertas.
+   */
   public static initialize(context: vscode.ExtensionContext): void {
     this.storage = context.workspaceState;
     const workspacePaths = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
-    this._currentScopeId = this.storage.get<string>(this.storageKey) || inferScopeIdFromWorkspace(workspacePaths);
+
+    this._currentScopeId = resolvePersistedPreference(
+      {
+        settings: vscode.workspace.getConfiguration(PREFERENCE_SECTION).get<string>(PREFERENCE_KEYS.scopeId),
+        workspaceState: this.storage.get<string>(this.storageKey),
+        inferred: inferScopeIdFromWorkspace(workspacePaths)
+      },
+      recognizeScopeId,
+      DEFAULT_SCOPE_ID
+    );
   }
 
   public static getCurrentScopeId(): string {
@@ -133,11 +154,26 @@ export class SddScopeManager {
     if (sel && sel.detail) {
       this._currentScopeId = sel.detail;
       await this.storage?.update(this.storageKey, this._currentScopeId);
+      await this.persistScopeSetting(this._currentScopeId);
       const chosen = scopes.find(s => s.id === sel.detail);
       vscode.window.setStatusBarMessage(LocalizationManager.t('sdd.scopeChanged', { scope: chosen?.label || sel.detail }), 2500);
       if (onChanged) {
         onChanged();
       }
+    }
+  }
+
+  /** Espelha o escopo ativo em `settings.json` para sobreviver ao reload. */
+  private static async persistScopeSetting(scopeId: string): Promise<void> {
+    const config = vscode.workspace.getConfiguration(PREFERENCE_SECTION);
+    const target = vscode.workspace.workspaceFolders?.length
+      ? vscode.ConfigurationTarget.Workspace
+      : vscode.ConfigurationTarget.Global;
+
+    try {
+      await config.update(PREFERENCE_KEYS.scopeId, scopeId, target);
+    } catch {
+      // workspaceState permanece como fallback
     }
   }
 

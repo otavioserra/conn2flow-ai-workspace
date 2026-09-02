@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const sddScopeManager_1 = require("./sddScopeManager");
 const localizationManager_1 = require("./localizationManager");
+const modesManager_1 = require("./modesManager");
 const agentPromptPolicy_1 = require("../agentPromptPolicy");
 class AgentBridgeManager {
     static getWorkspaceRoot() {
@@ -50,17 +51,35 @@ class AgentBridgeManager {
             request: active?.pointer
         }, localizationManager_1.LocalizationManager.t('common.unknown'));
     }
+    /**
+     * Traduz a topologia e a autonomia ativas para o prompt (REQ-049), para que
+     * o texto entregue ao agente descreva os papéis realmente selecionados no
+     * painel — e não um modelo fixo.
+     */
+    static resolvePromptModes() {
+        const modes = modesManager_1.ModesManager.getCurrentModes();
+        const keys = (0, agentPromptPolicy_1.resolvePromptModeKeys)(modes);
+        return {
+            topology: localizationManager_1.LocalizationManager.t(keys.topologyKey),
+            autonomy: localizationManager_1.LocalizationManager.t(keys.autonomyKey),
+            roles: localizationManager_1.LocalizationManager.t(keys.rolesKey)
+        };
+    }
     static async launchClaudeGoal(runInTerminal) {
         const active = this.getActiveRequestFile();
         const identity = this.resolvePromptIdentity(active);
         const reqName = identity.request;
+        const modes = this.resolvePromptModes();
         const instruction = localizationManager_1.LocalizationManager.t('agents.goalInstruction', {
             repo: identity.repo,
             root: identity.root,
             sddRoot: identity.sddRoot,
             currentPath: identity.currentPath,
             reqPath: identity.reqPath,
-            request: reqName
+            request: reqName,
+            topology: modes.topology,
+            autonomy: modes.autonomy,
+            roles: modes.roles
         }).replace(/"/g, '\\"');
         const goalPrompt = `claude "${instruction}"`;
         const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "${instruction}"`;
@@ -105,6 +124,7 @@ class AgentBridgeManager {
             return;
         }
         const identity = this.resolvePromptIdentity(active);
+        const modes = this.resolvePromptModes();
         const fullPrompt = localizationManager_1.LocalizationManager.t('agents.executorPrompt', {
             repo: identity.repo,
             root: identity.root,
@@ -112,6 +132,9 @@ class AgentBridgeManager {
             currentPath: identity.currentPath,
             reqPath: identity.reqPath,
             request: identity.request,
+            topology: modes.topology,
+            autonomy: modes.autonomy,
+            roles: modes.roles,
             content: active.content
         });
         await vscode.env.clipboard.writeText(fullPrompt);

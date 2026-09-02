@@ -30,4 +30,4 @@ Para o desenvolvimento deste repositório, os papéis são divididos estritament
 ## 3. Estado Inicial (Dogfooding)
 *   **BATCH-000**: Implantação e Onboarding do SDD local concluído.
 *   **BATCH-001**: Reorganização do repositório em estrutura bilingue (`en/` e `pt-br/`), criação dos boilerplates correspondentes e atualização dos instaladores em `scripts/` para suportar idiomas e prefixação.
-*   **Ponteiro Ativo**: A demanda ativa está descrita em [sdd/human-requests/req-001.md](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/sdd/human-requests/req-001.md).
+*   **Ponteiro Ativo**: A demanda ativa está descrita em [sdd/human-requests/req-001.md](file:///C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/sdd/human-requests/archive/req-001.md).

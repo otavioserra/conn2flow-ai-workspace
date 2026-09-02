@@ -11,8 +11,8 @@
   "tooltip.section.diagnostics": "Inspecione serviços locais, logs e consistência dos kits de IA ao diagnosticar o ambiente de desenvolvimento.",
   "tooltip.section.agents": "Abra os guias operacionais do Dev Tools, CLI, fluxo SDD, arquitetura de agentes e skills.",
   "tooltip.section.custom": "Execute ações do projeto definidas no manifesto local confiável.",
-  "agents.executorPrompt": "---\n🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:\n- Projeto: {repo}\n- Caminho Raiz: {root}\n- Raiz SDD: {sddRoot}\n- Arquivo de Entrada: {currentPath}\n---\n\nVocê é o Executor SDD do Conn2Flow. Implemente a requisição ativa aprovada [{request}]({currentPath}), mantenha a Live Todo List, valide localmente e registre evidências no checklist de validação e no handoff atual. Nunca use staging Git amplo, nunca copie arquivos manualmente para espelhos de teste e nunca execute commit, push, deploy ou release sem autorização humana explícita.\n\nREQUISIÇÃO ATIVA ({request})\n\n{content}",
-  "agents.goalInstruction": "/goal [Projeto: {repo} | Raiz: {root} | Entrada: {currentPath}] Leia o briefing ativo em sdd/human-requests/CURRENT.md ({request}), conclua a Live Todo List sob governança SDD, valide localmente e atualize o checklist de validação e o handoff atual. Não execute commit, push, deploy ou release sem autorização humana explícita.",
+  "agents.executorPrompt": "---\n🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:\n- Projeto: {repo}\n- Caminho Raiz: {root}\n- Raiz SDD: {sddRoot}\n- Arquivo de Entrada: {currentPath}\n- Topologia de Agentes: {topology}\n- Nível de Autonomia: {autonomy}\n---\n\n{roles}\n\nVocê é o Executor SDD do Conn2Flow. Implemente a requisição ativa aprovada [{request}]({currentPath}), mantenha a Live Todo List, valide localmente e registre evidências no checklist de validação e no handoff atual. Nunca use staging Git amplo, nunca copie arquivos manualmente para espelhos de teste e nunca execute commit, push, deploy ou release sem autorização humana explícita.\n\nREQUISIÇÃO ATIVA ({request})\n\n{content}",
+  "agents.goalInstruction": "/goal [Projeto: {repo} | Raiz: {root} | Entrada: {currentPath} | Topologia: {topology} | Autonomia: {autonomy}] Leia o briefing ativo em sdd/human-requests/CURRENT.md ({request}), conclua a Live Todo List sob governança SDD, valide localmente e atualize o checklist de validação e o handoff atual. Não execute commit, push, deploy ou release sem autorização humana explícita.",
   "command.conn2flow.refreshTree": "🔄 Atualizar Painel",
   "command.conn2flow.expandAll": "⏬ Expandir Todas as Seções",
   "command.conn2flow.collapseAll": "⏫ Colapsar Todas as Seções",
@@ -93,5 +93,11 @@
   "command.conn2flow.release.installer": "🚀 Preparar Release do Gestor Instalador",
   "command.conn2flow.release.executeManager": "▶️ Executar Release do Gestor",
   "command.conn2flow.release.executeInstaller": "▶️ Executar Release do Gestor Instalador",
-  "command.conn2flow.release.openActions": "🐙 Abrir GitHub Actions"
+  "command.conn2flow.release.openActions": "🐙 Abrir GitHub Actions",
+  "agents.roles.dual": "Topologia de agente duplo: o Engenheiro Chefe humano e você como Executor. Não há agente revisor separado, então faça você mesmo o autorreview findings-first antes de devolver o lote.",
+  "agents.roles.triad": "Topologia de tríade: Arquiteto (specs e decisões), você como Executor (código e evidências) e um agente Revisor separado. Pare nas evidências de validação e deixe a auditoria para o revisor.",
+  "config.sddScopeId.description": "Escopo SDD ativo, preservado entre recarregamentos da janela (core, ai-workspace ou project:<id>).",
+  "config.activeProjectId.description": "Identificador do projeto satélite alvo, preservado entre recarregamentos da janela.",
+  "config.agentsTopology.description": "Topologia de colaboração usada nos prompts de executor gerados (dupla ou tríade).",
+  "config.agentsAutonomy.description": "Nível de autonomia usado nos prompts de executor gerados (supervisionado, monitorado ou headless)."
 }

@@ -1,18 +1,16 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-048.md](req-048.md)
-* **Status**: `APPROVED`
-* **Lote Relacionado**: `BATCH-050`
+* **Ponteiro Ativo**: [req-050.md](req-050.md)
+* **Status**: `HOMOLOGATED`
+* **Lote Relacionado**: `BATCH-052`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-09-02
-* **Lote Anterior Concluído**: [req-047.md](req-047.md) (`BATCH-049`)
+* **Lotes Concluídos e Homologados na Rodada**:
+  - [req-048.md](req-048.md) (`BATCH-050`): Regra dos 10 Ativos na Raiz SDD, Comando CLI `c2f ai:archive-sdd` e Manutenção de Links nos Índices.
+  - [req-049.md](req-049.md) (`BATCH-051`): Persistência de Configurações em `settings.json` e Sincronização Dinâmica do Prompt/CURRENT.md.
+  - [req-050.md](req-050.md) (`BATCH-052`): Suporte a `ssh_public_path` e Execução SSH Automática no Pipeline Multiprojeto.
 
-## 🎯 Instrução Imediata para o Executor
+## 🎯 Status do Sistema
 
-Implementar a **REQ-048 / BATCH-050** no `conn2flow` (Core CLI), `conn2flow-ai-workspace` e repositórios satélites (`conn2flow-site`, `lumix`, `transformamp`):
-1. **Comando CLI no Core (`conn2flow/cli/`)**: Criar `AiArchiveSddCommand.php` (`c2f ai:archive-sdd [--repo=PATH] [--keep=10] [--dry-run]`) para mover fisicamente os arquivos de `human-requests/` e `implementation/` que ultrapassarem os 10 ativos mais recentes para `/archive/`, reescrevendo deterministicamente todos os links de markdown correspondentes em `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `CURRENT.md`.
-2. **Atualização de Skills**: Atualizar `c2f-architect-master`, `sdd-memory-gardening` e `sdd-workflow` em todas as pastas de toolkits (`.claude`, `.codex`, `.gemini`, `.github`, `.cursor`) com a regra dos 10 ativos na raiz.
-3. **Execução da Faxina**: Rodar `./c2f ai:archive-sdd` em todos os repositórios (Core, AI Workspace, Site, Lumix, TransformaMP), garantindo que as pastas fiquem com no máximo 10 arquivos soltos e **zero links quebrados**.
-4. **Validação**: Validar `php cli/c2f.php ai:sync` com 36/36 skills verdes nos 5 toolkits.
-5. **Recibo MCP**: Emitir `completions/BATCH-050-executor-receipt.json`.
+Todos os 3 lotes do roadmap planejado (`BATCH-050`, `BATCH-051` e `BATCH-052`) foram implementados, testados (98/98 testes TS e 17/17 PHPUnit) e homologados com parecer técnico `APPROVED`. Pronto para novo intake de requisição humana.

@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { LocalizationManager } from './localizationManager';
+import { PREFERENCE_KEYS, PREFERENCE_SECTION, recognizeProjectId } from '../workspacePreferencesPolicy';
 
 export interface DevProject {
   id: string;
@@ -95,12 +96,26 @@ export class ProjectsManager {
     }
   }
 
+  /**
+   * `environment.json` continua sendo a fonte da verdade do pipeline; a
+   * configuração `conn2flow.projects.activeId` só entra quando o arquivo não é
+   * alcançável a partir do workspace aberto (REQ-049 / BATCH-051), evitando que
+   * a seleção do operador se perca no reload da janela.
+   */
   public static getTargetProject(): string | undefined {
     const data = this.getEnvironmentData();
     const target = data?.devEnvironment?.projectTarget;
     if (typeof target === 'string' && data?.devProjects?.[target]) {
       return target;
     }
+
+    const persisted = recognizeProjectId(
+      vscode.workspace.getConfiguration(PREFERENCE_SECTION).get<string>(PREFERENCE_KEYS.activeProjectId)
+    );
+    if (persisted && (!data?.devProjects || data.devProjects[persisted])) {
+      return persisted;
+    }
+
     return undefined;
   }
 
@@ -145,6 +160,7 @@ export class ProjectsManager {
 
       data.devEnvironment.projectTarget = projectId;
       fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
+      await this.persistActiveProjectId(projectId);
 
       vscode.window.setStatusBarMessage(LocalizationManager.t('projects.targetChanged', { target: projectId }), 2000);
       if (onUpdated) {
@@ -152,6 +168,20 @@ export class ProjectsManager {
       }
     } catch (err: any) {
       vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+    }
+  }
+
+  /** Espelha o projeto alvo em `settings.json` para sobreviver ao reload. */
+  private static async persistActiveProjectId(projectId: string): Promise<void> {
+    const config = vscode.workspace.getConfiguration(PREFERENCE_SECTION);
+    const target = vscode.workspace.workspaceFolders?.length
+      ? vscode.ConfigurationTarget.Workspace
+      : vscode.ConfigurationTarget.Global;
+
+    try {
+      await config.update(PREFERENCE_KEYS.activeProjectId, projectId, target);
+    } catch {
+      // environment.json permanece como fonte da verdade
     }
   }
 

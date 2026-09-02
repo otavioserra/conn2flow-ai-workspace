@@ -7,14 +7,24 @@ const fs = require("fs");
 const projectsManager_1 = require("./projectsManager");
 const repositoryLocator_1 = require("../repositoryLocator");
 const localizationManager_1 = require("./localizationManager");
+const workspacePreferencesPolicy_1 = require("../workspacePreferencesPolicy");
 class SddScopeManager {
     static _currentScopeId = 'core';
     static storage;
     static storageKey = 'conn2flow.sdd.scopeId';
+    /**
+     * Precedência de restauração (REQ-049 / BATCH-051): `settings.json` primeiro,
+     * `workspaceState` legado em seguida — migrando workspaces já em uso — e por
+     * fim a inferência a partir das pastas abertas.
+     */
     static initialize(context) {
         this.storage = context.workspaceState;
         const workspacePaths = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
-        this._currentScopeId = this.storage.get(this.storageKey) || (0, repositoryLocator_1.inferScopeIdFromWorkspace)(workspacePaths);
+        this._currentScopeId = (0, workspacePreferencesPolicy_1.resolvePersistedPreference)({
+            settings: vscode.workspace.getConfiguration(workspacePreferencesPolicy_1.PREFERENCE_SECTION).get(workspacePreferencesPolicy_1.PREFERENCE_KEYS.scopeId),
+            workspaceState: this.storage.get(this.storageKey),
+            inferred: (0, repositoryLocator_1.inferScopeIdFromWorkspace)(workspacePaths)
+        }, workspacePreferencesPolicy_1.recognizeScopeId, workspacePreferencesPolicy_1.DEFAULT_SCOPE_ID);
     }
     static getCurrentScopeId() {
         return this._currentScopeId;
@@ -114,11 +124,25 @@ class SddScopeManager {
         if (sel && sel.detail) {
             this._currentScopeId = sel.detail;
             await this.storage?.update(this.storageKey, this._currentScopeId);
+            await this.persistScopeSetting(this._currentScopeId);
             const chosen = scopes.find(s => s.id === sel.detail);
             vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('sdd.scopeChanged', { scope: chosen?.label || sel.detail }), 2500);
             if (onChanged) {
                 onChanged();
             }
+        }
+    }
+    /** Espelha o escopo ativo em `settings.json` para sobreviver ao reload. */
+    static async persistScopeSetting(scopeId) {
+        const config = vscode.workspace.getConfiguration(workspacePreferencesPolicy_1.PREFERENCE_SECTION);
+        const target = vscode.workspace.workspaceFolders?.length
+            ? vscode.ConfigurationTarget.Workspace
+            : vscode.ConfigurationTarget.Global;
+        try {
+            await config.update(workspacePreferencesPolicy_1.PREFERENCE_KEYS.scopeId, scopeId, target);
+        }
+        catch {
+            // workspaceState permanece como fallback
         }
     }
     static findRepoSdd(repoName) {

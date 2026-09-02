@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildAgentPromptIdentity = buildAgentPromptIdentity;
+exports.resolvePromptModeKeys = resolvePromptModeKeys;
 exports.findOrphanPlaceholders = findOrphanPlaceholders;
 const path = require("path");
 const SDD_DIRECTORY = 'sdd';
@@ -40,6 +41,28 @@ function buildAgentPromptIdentity(input = {}, fallbackLabel = 'unknown') {
         currentPath: currentPath || fallbackLabel,
         reqPath: reqPath || fallbackLabel,
         request: (input.request || '').trim() || 'CURRENT.md'
+    };
+}
+const TOPOLOGY_LABEL_KEYS = {
+    duplo: 'mode.dual',
+    triade: 'mode.triad'
+};
+const TOPOLOGY_ROLE_KEYS = {
+    duplo: 'agents.roles.dual',
+    triade: 'agents.roles.triad'
+};
+const AUTONOMY_LABEL_KEYS = {
+    supervisionado: 'mode.supervised',
+    autonomo_monitorado: 'mode.monitored',
+    autonomo_headless: 'mode.headless'
+};
+function resolvePromptModeKeys(modes = {}) {
+    const topology = modes.topology === 'duplo' ? 'duplo' : 'triade';
+    const autonomy = AUTONOMY_LABEL_KEYS[modes.autonomy || ''] ? modes.autonomy : 'supervisionado';
+    return {
+        topologyKey: TOPOLOGY_LABEL_KEYS[topology],
+        rolesKey: TOPOLOGY_ROLE_KEYS[topology],
+        autonomyKey: AUTONOMY_LABEL_KEYS[autonomy]
     };
 }
 /**

@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788391853706",
+  "batchId": "BATCH-051",
+  "taskId": "task-local-executor-batch-051",
+  "reqId": "REQ-049",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-02T23:30:53.704863Z",
+  "logSize": 901,
+  "acknowledgement": "Batch BATCH-051 implemented by the local SDD Executor in supervised mode; awaiting human review.",
+  "summary": "Escopo SDD, projeto alvo, topologia e autonomia passaram a persistir em settings.json, e o prompt do executor reflete a topologia ativa. Corrigido o defeito que fazia o vocabulario dupla do CURRENT.md cair sempre no padrao triade.",
+  "logs": "Modo supervisionado, sem commit, push, deploy, release ou empacotamento de VSIX. Novo modulo puro src/workspacePreferencesPolicy.ts com reconhecedores que distinguem ausencia de escolha do valor padrao, e precedencia settings.json > workspaceState legado > inferencia. Quatro configuracoes de escopo window declaradas no package.json com descricoes NLS em ingles e portugues. ModesManager, SddScopeManager e ProjectsManager passaram a ler e gravar por esse modulo; environment.json permanece a fonte da verdade do projeto alvo. agents.executorPrompt e agents.goalInstruction ganharam topology, autonomy e roles, espelhados byte a byte em localizationCatalog.ts, package.nls.json e package.nls.pt-br.json. npm test em vscode-extension: 98/98 testes aprovados, baseline era 84/84, 0 falhas e 0 skips. A gravacao efetiva em settings.json depende da extensao carregada e fica para homologacao do operador."
+}

@@ -1,4 +1,5 @@
 import * as path from 'path';
+import type { TranslationKey } from './localizationCatalog';
 
 /**
  * Identificação obrigatória do repositório alvo injetada em todos os prompts
@@ -76,6 +77,44 @@ export function buildAgentPromptIdentity(
     currentPath: currentPath || fallbackLabel,
     reqPath: reqPath || fallbackLabel,
     request: (input.request || '').trim() || 'CURRENT.md'
+  };
+}
+
+/**
+ * Chaves de catálogo que descrevem a topologia e a autonomia ativas dentro do
+ * prompt gerado (REQ-049 / BATCH-051). Manter a resolução aqui — e não no
+ * provider — permite testar a sincronização sem carregar `vscode`.
+ */
+export interface AgentPromptModeKeys {
+  topologyKey: TranslationKey;
+  rolesKey: TranslationKey;
+  autonomyKey: TranslationKey;
+}
+
+const TOPOLOGY_LABEL_KEYS: Record<string, TranslationKey> = {
+  duplo: 'mode.dual',
+  triade: 'mode.triad'
+};
+
+const TOPOLOGY_ROLE_KEYS: Record<string, TranslationKey> = {
+  duplo: 'agents.roles.dual',
+  triade: 'agents.roles.triad'
+};
+
+const AUTONOMY_LABEL_KEYS: Record<string, TranslationKey> = {
+  supervisionado: 'mode.supervised',
+  autonomo_monitorado: 'mode.monitored',
+  autonomo_headless: 'mode.headless'
+};
+
+export function resolvePromptModeKeys(modes: { topology?: string; autonomy?: string } = {}): AgentPromptModeKeys {
+  const topology = modes.topology === 'duplo' ? 'duplo' : 'triade';
+  const autonomy = AUTONOMY_LABEL_KEYS[modes.autonomy || ''] ? (modes.autonomy as string) : 'supervisionado';
+
+  return {
+    topologyKey: TOPOLOGY_LABEL_KEYS[topology],
+    rolesKey: TOPOLOGY_ROLE_KEYS[topology],
+    autonomyKey: AUTONOMY_LABEL_KEYS[autonomy]
   };
 }
 

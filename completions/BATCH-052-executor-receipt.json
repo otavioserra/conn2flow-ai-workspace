@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788391853708",
+  "batchId": "BATCH-052",
+  "taskId": "task-local-executor-batch-052",
+  "reqId": "REQ-050",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-02T23:30:53.704863Z",
+  "logSize": 1090,
+  "acknowledgement": "Batch BATCH-052 implemented by the local SDD Executor in supervised mode; awaiting human review.",
+  "summary": "Pipeline multiprojeto passou a alcancar a VM: assets:publish publica o dist em ssh_public_path por rsync e css:rebuild executa dentro da VM, com confirmacao remota obrigatoria.",
+  "logs": "Modo supervisionado. NENHUM comando remoto foi executado: a construcao das linhas de comando esta coberta por teste e a execucao contra a VM depende de homologacao do operador. Novo cli/src/Support/SshRemoteTransport.php replica em PHP as guardas da biblioteca bash project-transport.sh: caminho remoto absoluto obrigatorio, citacao POSIX argumento a argumento, ssh_run_as validado, BatchMode e ConnectTimeout, e rsync-path sudo rsync apenas para o processo remoto. Template do environment.json passou a documentar deploy_mode e todas as chaves ssh_, incluindo ssh_public_path, ssh_cli_entrypoint e ssh_cli_path. Etapa 8/8 do project:update-all passou a declarar o projeto alvo, corrigindo a leitura do PUBLIC_PATH do CORE. Novo tests/Unit/PHP/ProjectSshPublicPathReq050Test.php: 17 casos e 47 asserçoes aprovados. vendor/bin/phpunit: 1113/1113 com 7595 asserçoes e 4 skipped pre-existentes; ProjectSshDeployReq034Test segue verde. npx vitest run: 408/408. Caminho local medido sem regressao. Os dois projetos com deploy_mode ssh ainda nao declaram ssh_public_path e a etapa apenas informa."
+}

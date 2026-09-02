@@ -998,15 +998,95 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Comando CLI `./c2f ai:archive-sdd` criado no Core com suporte a `--repo`, `--keep=10` e `--dry-run`.
-- [ ] Movimentação física dos arquivos excedentes de `human-requests/` e `implementation/` para `/archive/`.
-- [ ] Reescrita automática de todos os links de markdown correspondentes em `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `CURRENT.md` (zero links 404).
-- [ ] Atualização das skills `c2f-architect-master`, `sdd-memory-gardening` e `sdd-workflow` com a regra dos 10 ativos.
-- [ ] Higienização dos 5 repositórios (`conn2flow`, `conn2flow-ai-workspace`, `conn2flow-site`, `lumix`, `transformamp`) e `ai:sync` 36/36 aprovado.
+- [x] Comando CLI `./c2f ai:archive-sdd` criado no Core com suporte a `--repo`, `--keep=10`, `--protect`, `--repair-links`, `--dry-run` e `--verbose`.
+- [x] Movimentação física dos arquivos excedentes de `human-requests/` e `implementation/` para `/archive/`.
+- [x] Reescrita automática dos links de markdown (relativos e `file:///`) em `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md`, `DECISION-LOG.md`, `CURRENT.md` e demais `.md` sob `sdd/`.
+- [x] Atualização das skills `c2f-architect-master`, `sdd-memory-gardening` e `sdd-workflow` com a regra dos 10 ativos.
+- [x] Higienização dos 5 repositórios (`conn2flow`, `conn2flow-ai-workspace`, `conn2flow-site`, `lumix`, `transformamp`) e `ai:sync` 36/36 aprovado.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+1. **Sandbox antes do repositório real:** cópia isolada do `sdd/` em scratchpad; 88 arquivos arquivados, gate de integridade limpo, e o `diff` do `BATCH-INDEX.md` alterou **apenas** os alvos dos links dentro de linhas de tabela de milhares de caracteres.
+2. **Faxina nos 5 repositórios:** 295 arquivos arquivados, 321 links reescritos e 158 links historicamente quebrados reancorados. Órfãos sob `sdd/`: **218 → 7**.
+
+   | Repositório | Arquivados | Links reescritos | Reparados | Órfãos antes → depois |
+   | --- | --- | --- | --- | --- |
+   | `conn2flow` | 88 | 146 | 107 | 113 → 6 |
+   | `conn2flow-ai-workspace` | 90 | 6 | 0 | 0 → 0 |
+   | `conn2flow-site` | 0 | 0 | 0 | 0 → 0 |
+   | `lumix` | 92 | 69 | 21 | 21 → 0 |
+   | `transformamp` | 25 | 100 | 30 | 43 → 1 |
+
+3. **Regra dos 10 atingida:** raiz com no máximo 10 arquivos sequenciados por pasta governada nos 5 repositórios (`conn2flow-site` fica abaixo do teto, com 5 e 4).
+4. **Contratos:** `php cli/c2f.php ai:sync` com **36/36 skills** nos cinco kits. `php -l` limpo nos arquivos novos e alterados.
+5. **Sem regressão no Core:** `vendor/bin/phpunit` **1113/1113** (4 skipped pré-existentes); `npx vitest run` **408/408**.
+6. **Paridade das skills** (um hash por variante em todas as cópias): `sdd-workflow` `84a799ac…` (39 cópias), `sdd-memory-gardening` PT-BR `20a7756e…` (32), EN `18636b46…` (7), `c2f-architect-master` `ad4d9bb1…` (5).
+
+### 3. Achados abertos (pré-existentes, não causados pelo lote)
+
+Sete links continuam órfãos por apontarem para arquivos que nunca existiram nos respectivos
+repositórios — reportados em vez de silenciados: `BL-011-*`, `BL-012-*`, `BATCH-116.md`,
+`BATCH-131.md`, `BATCH-135.md` e `../implementation/batch-047.md` no `conn2flow`; e
+`### 4. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-050.md](review-050.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
+---
+
+## BATCH-051 — Persistência Externa em settings.json e Sincronização Dinâmica do Prompt (REQ-049, 2026-09-02)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Escopo SDD, projeto alvo, topologia e autonomia persistidos em configuração do VS Code (escopo `window`).
+- [x] Preferências recarregadas na inicialização com precedência `settings.json` → `workspaceState` legado → inferência.
+- [x] `conn2flow.sdd.copyPrompt` gera o prompt refletindo topologia e papéis ativos.
+- [x] Metadado `Topologia de Agentes` sincronizado no `CURRENT.md`, preservando o vocabulário `dupla`.
+- [x] Testes de unidade adicionados em `vscode-extension/test/`.
+
+### 2. Evidências de Validação
+
+1. `npm test` em `vscode-extension/`: compilação TypeScript limpa e **98/98 testes aprovados** (baseline 84/84), 0 falhas e 0 skips.
+2. Novo `test/workspacePreferencesPolicy.test.cjs` (11 casos): paridade entre `PREFERENCE_KEYS` e o `contributes.configuration`; aliases de vocabulário; recusa de escopo/id inválidos; as três camadas de precedência; leitura do `CURRENT.md` **real** do repositório; atualização in-place sem mudar a contagem de linhas; inserção após `Status`; preservação de `dupla` na escrita.
+3. `agentPromptPolicy.test.cjs` passou a exigir que o prompt de topologia dupla seja **diferente** do de tríade e contenha o texto de papéis correspondente, nos dois idiomas.
+
+### 3. Defeito de causa-raiz corrigido
+
+O `CURRENT.md` declara `` `dupla` `` e o `ModesManager` só aceitava `` `duplo` ``: **toda** leitura de
+topologia caía no padrão `triade`. A seleção do painel era ignorada mesmo dentro da mesma sessão, não
+apenas após o reload. Os normalizadores passaram a aceitar aliases e a escrita preserva o termo do documento.
+
+### 4. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-051.md](review-051.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
+---
+
+## BATCH-052 — Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto (REQ-050, 2026-09-02)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Campo `ssh_public_path` (e demais chaves `ssh_*`) declarado no template do `environment.json` e exposto pelo `ProjectEnvironmentResolver`.
+- [x] `assets:publish --project=ID` publica o `dist/` no docroot da VM via rsync/SSH.
+- [x] `css:rebuild --project=ID` dispara dentro da VM quando `deploy_mode: "ssh"`.
+- [x] Etapa 8/8 do `project:update-all` declara o projeto alvo.
+- [x] Guardas de caminho remoto, citação e confirmação explícita cobertas por teste.
+
+### 2. Evidências de Validação
+
+1. Novo `tests/Unit/PHP/ProjectSshPublicPathReq050Test.php`: **17 casos, 47 asserções**, todos aprovados.
+2. `vendor/bin/phpunit`: **1113/1113** aprovados, 7595 asserções, 4 skipped pré-existentes. `ProjectSshDeployReq034Test` (19 casos) segue verde — modo local sem regressão.
+3. `npx vitest run`: **408/408**.
+4. Simulação sem execução remota (`--simular-remoto`): `ssh -o BatchMode=yes -o ConnectTimeout=15 -p 22 "otavio@192.168.1.108" "cd '/home/snapphoton/web/snapphoton.local/conn2flow-gestor' && sudo -u 'snapphoton' './c2f' 'css:rebuild'"`.
+5. Ausência de regressão medida: `assets:publish --project=transformamp-local --dry-run` e `assets:publish --dry-run` produzem saída idêntica à anterior.
+6. Projeto SSH sem `ssh_public_path` reporta a ausência e sai com 0, em vez de publicar num docroot adivinhado.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-052.md](review-052.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

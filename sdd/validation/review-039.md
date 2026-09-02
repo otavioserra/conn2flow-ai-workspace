@@ -3,8 +3,8 @@
 * **Data**: 2026-08-31
 * **Auditor**: Revisor Técnico / Auditor de QA (`c2f_reviewer`)
 * **Executor Avaliado**: OpenAI Codex
-* **Requisição**: [req-037.md](../human-requests/req-037.md)
-* **Registro de Lote**: [batch-039.md](../implementation/batch-039.md)
+* **Requisição**: [req-037.md](../human-requests/archive/req-037.md)
+* **Registro de Lote**: [batch-039.md](../implementation/archive/batch-039.md)
 * **Checklist de Validação**: [VALIDATION-CHECKLIST.md](VALIDATION-CHECKLIST.md#batch-039)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
 * **Parecer**: **HOMOLOGADO COM SUCESSO (`APPROVED`)**

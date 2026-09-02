@@ -413,7 +413,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     // SDD Commands & Interactive Browsers
     vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
-      await SddScopeManager.selectScope(refreshAll);
+      // Trocar de escopo troca o CURRENT.md de referência: recarrega os modos
+      // persistidos antes de repintar a árvore (REQ-049 / BATCH-051).
+      await SddScopeManager.selectScope(() => {
+        ModesManager.reload();
+        refreshAll();
+      });
     }),
     vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
       SddViewModeManager.toggle(refreshAll);

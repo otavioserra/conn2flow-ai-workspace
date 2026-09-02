@@ -13,14 +13,14 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 ## Histórico consolidado
 
 - **BATCH-000 a BATCH-003**: onboarding, reorganização bilíngue e otimizações iniciais; detalhes nos arquivos do lote e em `validation/archive/validation-001-003.md`.
-- **BATCH-006 a BATCH-032**: lotes concluídos; detalhes preservados nos arquivos individuais `batch-006*` a `batch-032.md` e no histórico Git.
+- **BATCH-006 a BATCH-032**: lotes concluídos; detalhes preservados em [sdd/implementation/archive/](archive/) e no histórico Git.
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-004** | ready-for-intake | Integração e protocolo MCP para agentes locais | `batch-004-mcp-integration.md` | Reservado; ainda sem intake ativo. |
-| **BATCH-005** | ready-for-intake | Validador de governança SDD em CI/CD | `batch-005-sdd-governance-ci.md` | Reservado; ainda sem intake ativo. |
+| **BATCH-004** | ready-for-intake | Integração e protocolo MCP para agentes locais | [batch-004-mcp-integration.md](archive/batch-004-mcp-integration.md) | Reservado; ainda sem intake ativo. |
+| **BATCH-005** | ready-for-intake | Validador de governança SDD em CI/CD | [batch-005-sdd-governance-ci.md](archive/batch-005-sdd-governance-ci.md) | Reservado; ainda sem intake ativo. |
 | **BATCH-033** | complete | Extensão oficial Conn2Flow Dev Tools para VS Code | `VALIDATION-CHECKLIST.md#batch-033` | Scaffold, árvore, comandos, compilação e VSIX. |
 | **BATCH-034** | complete | Infraestrutura Antigravity, regras e subagentes | `VALIDATION-CHECKLIST.md#batch-034` | Regras e agentes nativos sincronizados. |
 | **BATCH-035** | complete | Clonagem e scaffold de projetos satélites | `VALIDATION-CHECKLIST.md#batch-035` | Gerenciamento de projetos incorporado à extensão. |
@@ -38,10 +38,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-047** | complete | Correção de Preflight do Instalador e Governança de Sondas HTTP e Contratos CLI | `VALIDATION-CHECKLIST.md#batch-047` | REQ-045 homologada; 76/76 testes, InstallerGuard no releasePolicy, preflight OK e ai:sync 36/36. |
 | **BATCH-048** | complete | Tooltips Ricos na Árvore Dev Tools, Curadoria de Documentações e Manual v2 | `VALIDATION-CHECKLIST.md#batch-048` | REQ-046 homologada; 79/79 testes, tooltips Markdown ricos, duplicatas removidas da árvore e manual v2. |
 | **BATCH-049** | complete | Modernização dos Tetos de Memory Gardening e Eliminação de Podas Prematuras | `VALIDATION-CHECKLIST.md#batch-049` | REQ-047 homologada; fim do gatilho por fim de turno, trava 50 KB / 75 KB e sincronismo nos 5 repositórios. |
-| **BATCH-050** | in-progress | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 ativa; comando CLI ai:archive-sdd, movimentação para archive/, reescrita de links e limpeza em 5 repositórios. |
+| **BATCH-050** | complete | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 homologada; comando CLI ai:archive-sdd, movimentação para archive/ e integridade de links. |
+| **BATCH-051** | complete | Persistência Externa em settings.json e Sincronização Dinâmica do Prompt e CURRENT.md | `VALIDATION-CHECKLIST.md#batch-051` | REQ-049 homologada; 98/98 testes, workspacePreferencesPolicy e sincronismo dinâmico de topologia. |
+| **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
 
 ## Próximas requisições planejadas
 
-- `REQ-048` (Passo 1): **ATIVA** em 2026-09-02 para o `BATCH-050`.
-- `REQ-049` (Passo 2): `BATCH-051` (Persistência Externa em settings.json e sincronização dinâmica do prompt).
-- `REQ-050` (Passo 3): `BATCH-052` (Suporte a ssh_public_path e execução SSH automática no pipeline multiprojeto).
+- `REQ-050` / `BATCH-052`: implementada em 2026-09-02, aguardando `ssh_public_path` do operador e homologação contra a VM.

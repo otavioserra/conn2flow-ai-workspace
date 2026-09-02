@@ -15,6 +15,27 @@ user-invocable: false
 
 ---
 
+## 📦 Rule of 10 Active Files in the SDD Root
+
+Beyond execution memory, the control folders keep a fixed window of **10 active files** in their root:
+
+- `sdd/human-requests/`: at most **10 loose requests**, plus `CURRENT.md` and `README.md`. Everything older moves to `sdd/human-requests/archive/`.
+- `sdd/implementation/`: at most **10 loose batch reports**, plus `BATCH-INDEX.md`. Everything older moves to `sdd/implementation/archive/`.
+- `DECISION-LOG.md`, `BATCH-INDEX.md` and `VALIDATION-CHECKLIST.md` keep at most 10 current items, with the archived history summarized in a table linking to `archive/`.
+
+**Never move these files by hand**: when a file is archived, every markdown link that pointed to the old path in `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md`, `DECISION-LOG.md` and `CURRENT.md` must be rewritten to `archive/`. Use the deterministic Core command, which moves files and rewrites links in a single operation:
+
+```bash
+php cli/c2f.php ai:archive-sdd --repo=<repo-path> --keep=10 --dry-run   # inspection
+php cli/c2f.php ai:archive-sdd --repo=<repo-path> --repair-links        # execution
+```
+
+The command exits with code 1 while any orphaned relative link remains under `sdd/`. Remaining links that point to files which never existed are documentation findings and must be reported to the Architect, not silenced.
+
+---
+
+## 🧠 Execution Memory Pruning
+
 1. Measure bytes and line count and read the full execution memory (or run `c2f ai:prune-memories`).
 2. If the file is below 50 KB and 200 lines, stop and record that memory is healthy; do not rewrite it.
 3. Between 50 KB / 200 lines and 75 KB / 300 lines, issue a preventive warning and schedule maintenance without automatic pruning.

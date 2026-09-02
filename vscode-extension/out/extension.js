@@ -345,7 +345,12 @@ function activate(context) {
     }), 
     // SDD Commands & Interactive Browsers
     vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
-        await sddScopeManager_1.SddScopeManager.selectScope(refreshAll);
+        // Trocar de escopo troca o CURRENT.md de referência: recarrega os modos
+        // persistidos antes de repintar a árvore (REQ-049 / BATCH-051).
+        await sddScopeManager_1.SddScopeManager.selectScope(() => {
+            modesManager_1.ModesManager.reload();
+            refreshAll();
+        });
     }), vscode.commands.registerCommand('conn2flow.sdd.toggleViewMode', () => {
         sddViewModeManager_1.SddViewModeManager.toggle(refreshAll);
     }), vscode.commands.registerCommand('conn2flow.sdd.toggleAutoGardening', () => {

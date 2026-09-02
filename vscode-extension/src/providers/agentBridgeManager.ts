@@ -4,7 +4,8 @@ import * as fs from 'fs';
 
 import { SddScopeManager } from './sddScopeManager';
 import { LocalizationManager } from './localizationManager';
-import { AgentPromptIdentity, buildAgentPromptIdentity } from '../agentPromptPolicy';
+import { ModesManager } from './modesManager';
+import { AgentPromptIdentity, buildAgentPromptIdentity, resolvePromptModeKeys } from '../agentPromptPolicy';
 
 export interface ActiveRequestFile {
   pointer: string;
@@ -63,18 +64,38 @@ export class AgentBridgeManager {
     );
   }
 
+  /**
+   * Traduz a topologia e a autonomia ativas para o prompt (REQ-049), para que
+   * o texto entregue ao agente descreva os papéis realmente selecionados no
+   * painel — e não um modelo fixo.
+   */
+  public static resolvePromptModes(): { topology: string; autonomy: string; roles: string } {
+    const modes = ModesManager.getCurrentModes();
+    const keys = resolvePromptModeKeys(modes);
+
+    return {
+      topology: LocalizationManager.t(keys.topologyKey),
+      autonomy: LocalizationManager.t(keys.autonomyKey),
+      roles: LocalizationManager.t(keys.rolesKey)
+    };
+  }
+
   public static async launchClaudeGoal(runInTerminal: (cmd: string, name?: string) => void): Promise<void> {
     const active = this.getActiveRequestFile();
     const identity = this.resolvePromptIdentity(active);
     const reqName = identity.request;
 
+    const modes = this.resolvePromptModes();
     const instruction = LocalizationManager.t('agents.goalInstruction', {
       repo: identity.repo,
       root: identity.root,
       sddRoot: identity.sddRoot,
       currentPath: identity.currentPath,
       reqPath: identity.reqPath,
-      request: reqName
+      request: reqName,
+      topology: modes.topology,
+      autonomy: modes.autonomy,
+      roles: modes.roles
     }).replace(/"/g, '\\"');
     const goalPrompt = `claude "${instruction}"`;
     const npxGoalPrompt = `npx -y @anthropic-ai/claude-code "${instruction}"`;
@@ -122,6 +143,7 @@ export class AgentBridgeManager {
 
     const identity = this.resolvePromptIdentity(active);
 
+    const modes = this.resolvePromptModes();
     const fullPrompt = LocalizationManager.t('agents.executorPrompt', {
       repo: identity.repo,
       root: identity.root,
@@ -129,6 +151,9 @@ export class AgentBridgeManager {
       currentPath: identity.currentPath,
       reqPath: identity.reqPath,
       request: identity.request,
+      topology: modes.topology,
+      autonomy: modes.autonomy,
+      roles: modes.roles,
       content: active.content
     });
 

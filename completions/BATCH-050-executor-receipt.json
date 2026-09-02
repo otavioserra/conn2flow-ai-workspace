@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_1788391853705",
+  "batchId": "BATCH-050",
+  "taskId": "task-local-executor-batch-050",
+  "reqId": "REQ-048",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-02T23:30:53.704863Z",
+  "logSize": 915,
+  "acknowledgement": "Batch BATCH-050 implemented by the local SDD Executor in supervised mode; awaiting human review.",
+  "summary": "Regra dos 10 Ativos na raiz SDD implementada com o comando ai:archive-sdd no Core: 295 arquivos arquivados e 321 links reescritos nos 5 repositorios, com links orfaos caindo de 218 para 7.",
+  "logs": "Modo supervisionado, sem commit, push, deploy ou release. Novo cli/src/Commands/AiArchiveSddCommand.php registrado no Application.php, validado antes em sandbox isolado no scratchpad. Faxina executada em conn2flow (88 arquivados, 146 links reescritos, 107 reparados), conn2flow-ai-workspace (90/6/0), conn2flow-site (0, ja conforme), lumix (92/69/21) e transformamp (25/100/30). Raiz de human-requests e implementation com no maximo 10 arquivos sequenciados nos 5 repositorios. Skills c2f-architect-master, sdd-memory-gardening e sdd-workflow atualizadas e propagadas com paridade de hash: sdd-workflow 39 copias, sdd-memory-gardening PT-BR 32 copias e EN 7 copias, c2f-architect-master 5 copias. php cli/c2f.php ai:sync: 36/36 skills nos cinco kits. vendor/bin/phpunit: 1113/1113. npx vitest run: 408/408. Sete links seguem orfaos por apontarem para arquivos que nunca existiram; foram reportados, nao silenciados."
+}

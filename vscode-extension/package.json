@@ -562,6 +562,39 @@
           "default": "",
           "scope": "window",
           "description": "%config.githubOwner.description%"
+        },
+        "conn2flow.sdd.scopeId": {
+          "type": "string",
+          "default": "",
+          "scope": "window",
+          "description": "%config.sddScopeId.description%"
+        },
+        "conn2flow.projects.activeId": {
+          "type": "string",
+          "default": "",
+          "scope": "window",
+          "description": "%config.activeProjectId.description%"
+        },
+        "conn2flow.agents.topology": {
+          "type": "string",
+          "enum": [
+            "duplo",
+            "triade"
+          ],
+          "default": "triade",
+          "scope": "window",
+          "description": "%config.agentsTopology.description%"
+        },
+        "conn2flow.agents.autonomy": {
+          "type": "string",
+          "enum": [
+            "supervisionado",
+            "autonomo_monitorado",
+            "autonomo_headless"
+          ],
+          "default": "supervisionado",
+          "scope": "window",
+          "description": "%config.agentsAutonomy.description%"
         }
       }
     },
