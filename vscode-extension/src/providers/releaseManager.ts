@@ -209,6 +209,8 @@ export class ReleaseManager {
       impactSummary: LocalizationManager.t('release.prepareImpact'),
       submitLabel: LocalizationManager.t('release.saveDraft'),
       saveAndExecuteLabel: LocalizationManager.t('release.saveAndExecute'),
+      loadingLabel: LocalizationManager.t('release.executing'),
+      keepOpenOnSaveAndExecute: true,
       cancelLabel: LocalizationManager.t('common.cancel'),
       validationErrorLabel: LocalizationManager.t('common.invalidForm'),
       language: LocalizationManager.currentLocale,
@@ -282,17 +284,21 @@ export class ReleaseManager {
     onChanged?.();
 
     if (submission.action === 'save_and_execute') {
-      if (!diagnostics.gate.canExecute) {
-        await this.showBlockedActions(
-          product,
-          LocalizationManager.t('release.executionBlocked', {
-            blockers: diagnostics.gate.blockers.map(blocker => this.blockerLabel(blocker)).join('; ')
-          })
-        );
+      try {
+        if (!diagnostics.gate.canExecute) {
+          await this.showBlockedActions(
+            product,
+            LocalizationManager.t('release.executionBlocked', {
+              blockers: diagnostics.gate.blockers.map(blocker => this.blockerLabel(blocker)).join('; ')
+            })
+          );
+          return;
+        }
+        await this.execute(product, new CommandRunner(), onChanged);
         return;
+      } finally {
+        submission.close?.();
       }
-      await this.execute(product, new CommandRunner(), onChanged);
-      return;
     }
 
     const resultMessage = diagnostics.gate.canExecute
@@ -377,7 +383,8 @@ export class ReleaseManager {
       target: tag,
       exclusive: true,
       confirmationSatisfied: true,
-      notifySuccess: false
+      notifySuccess: false,
+      progressTitle: LocalizationManager.t('release.progress', { product: definition.label })
     });
 
     if (result.succeeded && draft.mode === 'automatic') {
@@ -398,7 +405,8 @@ export class ReleaseManager {
           label: `${definition.label} · GitHub Actions`,
           impact: 'read-only',
           target: tag,
-          exclusive: true
+          exclusive: true,
+          progressTitle: LocalizationManager.t('release.workflowProgress', { product: definition.label })
         });
         if (!workflow.succeeded) return;
       }

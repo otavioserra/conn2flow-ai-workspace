@@ -45,6 +45,18 @@ class CommandRunner {
             this.exclusiveActive = true;
         }
         try {
+            if (request.progressTitle) {
+                return await vscode.window.withProgress({
+                    location: vscode.ProgressLocation.Notification,
+                    title: request.progressTitle,
+                    cancellable: false
+                }, progress => {
+                    progress.report({
+                        message: localizationManager_1.LocalizationManager.t('command.progressRunning', { label: request.label })
+                    });
+                    return this.executeTask(request);
+                });
+            }
             return await this.executeTask(request);
         }
         finally {

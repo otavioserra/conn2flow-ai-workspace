@@ -155,11 +155,21 @@ export function activate(context: vscode.ExtensionContext) {
     impact: CommandImpact = 'mutating',
     target?: string,
     exclusive = false,
-    confirmationSatisfied = false
+    confirmationSatisfied = false,
+    showProgress = false
   ) => {
     const cwd = WorkspaceLocator.getCoreRoot() || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     if (!cwd) return;
-    void commandRunner.run({ command, cwd, label: name, impact, target, exclusive, confirmationSatisfied });
+    void commandRunner.run({
+      command,
+      cwd,
+      label: name,
+      impact,
+      target,
+      exclusive,
+      confirmationSatisfied,
+      progressTitle: showProgress ? LocalizationManager.t('command.progressTitle', { label: name }) : undefined
+    });
   };
 
   // Markdown Opener com suporte a Modos: Código, Preview ou Ambos Lado a Lado
@@ -490,15 +500,15 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Manager & Core Commands
     vscode.commands.registerCommand('conn2flow.manager.updateAll', () => {
-      runInTerminal(ShellHelper.formatC2fCommand('manager:update-all'), LocalizationManager.t('core.updateAll'), 'mutating', 'Core', true);
+      runInTerminal(ShellHelper.formatC2fCommand('manager:update-all'), LocalizationManager.t('core.updateAll'), 'mutating', 'Core', true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.manager.syncResources', () => {
-      runInTerminal(ShellHelper.formatC2fCommand('resources:sync'), LocalizationManager.t('core.syncResources'), 'mutating', 'Core', true);
+      runInTerminal(ShellHelper.formatC2fCommand('resources:sync'), LocalizationManager.t('core.syncResources'), 'mutating', 'Core', true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.manager.cssRebuild', () => {
       const target = ProjectsManager.getTargetProject();
       if (!target) return void vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
-      runInTerminal(ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`), LocalizationManager.t('core.cssRebuild', { target }), 'mutating', target, true);
+      runInTerminal(ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`), LocalizationManager.t('core.cssRebuild', { target }), 'mutating', target, true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.manager.cssAudit', () => {
       const target = ProjectsManager.getTargetProject();
@@ -523,12 +533,12 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
       const target = ProjectsManager.getTargetProject();
       if (!target) return void vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
-      runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${target}`), LocalizationManager.t('projects.deploy', { target }), 'remote', target, true);
+      runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${target}`), LocalizationManager.t('projects.deploy', { target }), 'remote', target, true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.projects.syncCoreTarget', () => {
       const target = ProjectsManager.getTargetProject();
       if (!target) return void vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
-      runInTerminal(ShellHelper.formatC2fCommand(`project:sync-core ${target}`), LocalizationManager.t('projects.syncCore', { target }), 'mutating', target, true);
+      runInTerminal(ShellHelper.formatC2fCommand(`project:sync-core ${target}`), LocalizationManager.t('projects.syncCore', { target }), 'mutating', target, true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.projects.syncFilesTarget', () => {
       const target = ProjectsManager.getTargetProject();
@@ -538,18 +548,18 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
       const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
       if (projectId) {
-        runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
+        runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true, false, true);
       }
     }),
     vscode.commands.registerCommand('conn2flow.projects.updateAllTarget', () => {
       const target = ProjectsManager.getTargetProject();
       if (!target) return void vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
-      runInTerminal(ShellHelper.formatC2fCommand(`project:update-all ${target}`), LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true);
+      runInTerminal(ShellHelper.formatC2fCommand(`project:update-all ${target}`), LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true, false, true);
     }),
     vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
       const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
       if (projectId) {
-        runInTerminal(ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true);
+        runInTerminal(ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true, false, true);
       }
     }),
     vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
@@ -614,6 +624,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.docs.openDevToolsGuide', () => {
       openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
     }),
+    vscode.commands.registerCommand('conn2flow.docs.openIndex', () => {
+      openMarkdownFile(localizedDoc('docs/pt-br/README.md', 'docs/en/README.md'));
+    }),
     vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
       openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
     }),
@@ -638,12 +651,15 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.docs.openResourcesGuide', () => {
       openMarkdownFile(localizedDoc('docs/pt-br/CATALOGO-DE-SKILLS.md', 'docs/en/SKILLS-CATALOG.md'));
     }),
+    vscode.commands.registerCommand('conn2flow.docs.openRoadmap', () => {
+      openMarkdownFile(localizedDoc('docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md', 'docs/en/FUTURE-EVOLUTION-ROADMAP.md'));
+    }),
 
     // Aliases para Projetos
     vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
       const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
       if (projectId) {
-        runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
+        runInTerminal(ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true, false, true);
       }
     }),
     vscode.commands.registerCommand('conn2flow.projects.scaffoldNew', async () => {
@@ -737,9 +753,13 @@ function updateStatusBar() {
   sddStatusBarItem.tooltip = LocalizationManager.t('status.sddTooltip');
   sddStatusBarItem.show();
 
-  dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
-  dockerStatusBarItem.tooltip = LocalizationManager.t('status.dockerTooltip');
-  dockerStatusBarItem.show();
+  if (ProjectsManager.isTargetVm()) {
+    dockerStatusBarItem.hide();
+  } else {
+    dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
+    dockerStatusBarItem.tooltip = LocalizationManager.t('status.dockerTooltip');
+    dockerStatusBarItem.show();
+  }
 }
 
 export function deactivate() {}

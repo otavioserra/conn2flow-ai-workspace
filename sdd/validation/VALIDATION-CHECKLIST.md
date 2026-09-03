@@ -1093,16 +1093,42 @@ apenas após o reload. Os normalizadores passaram a aceitar aliases e a escrita 
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Feedback visual de loading (`vscode.window.withProgress`) implementado em ações longas (release, updates e compilação).
-- [ ] Script de atualização via API (`update-system.sh`) com suporte a cURL `-k` / `--insecure` para `.local` e logging detalhado de erros HTTP.
-- [ ] Nós de diagnóstico do VS Code adaptados para o modo VM (ocultando Docker quando o projeto for VM).
-- [ ] Poda SDD de checklists históricos em `conn2flow`, `lumix` e `transformamp` (preservando até 25 itens ativos e arquivando o restante).
-- [ ] Atalhos de documentação ampla (`docs/`) adicionados na árvore Dev Tools.
-- [ ] `npm test` em 100% verde e `php cli/c2f.php ai:sync` com 36/36 skills nos 5 kits.
+- [x] Feedback visual de loading (`vscode.window.withProgress`) implementado em ações longas (release, updates e compilação).
+- [x] Script de atualização via API (`update-system.sh`) com suporte a cURL `-k` / `--insecure` para `.local` e logging detalhado de erros HTTP.
+- [x] Nós de diagnóstico do VS Code adaptados para o modo VM (ocultando Docker quando o projeto for VM).
+- [x] Poda SDD de checklists históricos em `conn2flow`, `lumix` e `transformamp` (preservando até 25 itens ativos e arquivando o restante).
+- [x] Atalhos de documentação ampla (`docs/`) adicionados na árvore Dev Tools.
+- [x] `npm test` em 100% verde e `php cli/c2f.php ai:sync` com 36/36 skills nos 5 kits.
 
 ### 2. Evidências de Validação
 
-*(Aguardando execução do lote pelo Agente Executor)*
+1. `npm test` em `vscode-extension/`: **104/104 testes aprovados**, 0 falhas e 0 skips. Os novos
+   testes cobrem progress notification até o fim da task, spinner/`aria-busy` no formulário,
+   detecção de VM por `deploy_mode: "ssh"`, ocultação de Docker e rotas bilíngues de docs.
+2. `tests/Unit/PHP/ProjectUpdateSystemVmReq051Test.php`: **5 testes, 21 asserções**; contrato de
+   `.local`, opt-in `api.insecure_ssl`, preservação do erro cURL, corpo HTTP e repasse PHP validados.
+3. `vendor/bin/phpunit`: **1121/1121 testes**, 7629 asserções, 4 skips e 2 depreciações
+   preexistentes. `bash -n` e `php -l` também limpos.
+4. `php cli/c2f.php ai:sync`: **36/36 skills** nos cinco toolkits do Core. Checagem somente-leitura
+   confirmou as 36 skills obrigatórias e contratos em todos os cinco kits de `conn2flow-site`,
+   `lumix` e `transformamp`.
+5. Poda: Core **42 → 25** blocos ativos e 17 preservados em
+   `sdd/validation/archive/validation-111-134.md`; `lumix=8` e `transformamp=11`, portanto já
+   conformes e sem remoção indevida.
+6. Os dois efeitos colaterais versionados da suíte completa (`schema-metadata.json` e
+   `.tailwind-build-manifest.json`) foram restaurados. O `BATCH-165.md` concorrente foi preservado.
+7. Nenhum update remoto, commit, push, deploy ou release foi executado. A validação ao vivo da VM
+   fica para homologação humana porque o endpoint inicia uma sessão remota mesmo em dry-run.
+8. Gate SDD final: `ai:archive-sdd --keep=10 --repair-links --dry-run` confirmou 10 requisições,
+   10 batches e **zero links relativos órfãos** no `conn2flow-ai-workspace`.
+
+Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-053.md](review-053.md) emitido com parecer **APPROVED** em 2026-09-03.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

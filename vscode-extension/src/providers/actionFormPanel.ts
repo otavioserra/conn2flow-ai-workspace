@@ -26,6 +26,8 @@ export interface ActionFormSchema {
   impactSummary?: string;
   submitLabel: string;
   saveAndExecuteLabel?: string;
+  loadingLabel?: string;
+  keepOpenOnSaveAndExecute?: boolean;
   cancelLabel: string;
   validationErrorLabel: string;
   language: string;
@@ -47,6 +49,7 @@ export type ActionFormValues = Record<string, string | boolean>;
 export interface ActionFormSubmission {
   action: 'submit' | 'save_and_execute';
   values: ActionFormValues;
+  close?: () => void;
   [key: string]: unknown;
 }
 
@@ -88,8 +91,9 @@ export class ActionFormPanel {
           return;
         }
         const action = message.action === 'save_and_execute' ? 'save_and_execute' : 'submit';
-        finish({ action, values, ...values });
-        panel.dispose();
+        const keepOpen = action === 'save_and_execute' && schema.keepOpenOnSaveAndExecute;
+        finish({ action, values, ...values, close: keepOpen ? () => panel.dispose() : undefined });
+        if (!keepOpen) panel.dispose();
       });
 
       panel.onDidDispose(() => finish(undefined));
@@ -120,6 +124,7 @@ export class ActionFormPanel {
   private static render(schema: ActionFormSchema, nonce: string): string {
     const fields = schema.fields.map(field => this.renderField(field)).join('\n');
     const semverPreview = JSON.stringify(schema.semverPreview || null).replace(/</g, '\\u003c');
+    const loadingLabel = JSON.stringify(schema.loadingLabel || schema.saveAndExecuteLabel || schema.submitLabel);
     const replaceVersionMentions = replaceReleaseVersionMentions.toString();
     return `<!DOCTYPE html>
 <html lang="${this.escape(schema.language)}">
@@ -143,6 +148,8 @@ export class ActionFormPanel {
     button { border: 0; padding: 8px 16px; font: inherit; cursor: pointer; }
     button.primary { color: var(--vscode-button-foreground); background: var(--vscode-button-background); font-weight: 600; }
     button.secondary { color: var(--vscode-button-secondaryForeground); background: var(--vscode-button-secondaryBackground); }
+    button.busy::before { content: ''; display: inline-block; width: .8em; height: .8em; margin-right: .55em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     #error { color: var(--vscode-errorForeground); min-height: 1.2em; margin-top: 8px; }
   </style>
 </head>
@@ -162,6 +169,7 @@ export class ActionFormPanel {
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     const semverPreview = ${semverPreview};
+    const loadingLabel = ${loadingLabel};
     const replaceReleaseVersionMentions = ${replaceVersionMentions};
     const form = document.getElementById('action-form');
     const error = document.getElementById('error');
@@ -172,6 +180,15 @@ export class ActionFormPanel {
       for (const element of form.elements) {
         if (!element.name) continue;
         values[element.name] = element.type === 'checkbox' ? element.checked : element.value;
+      }
+      if (action === 'save_and_execute') {
+        form.setAttribute('aria-busy', 'true');
+        for (const button of form.querySelectorAll('button')) button.disabled = true;
+        const executeButton = document.getElementById('save-and-execute-btn');
+        if (executeButton) {
+          executeButton.textContent = loadingLabel;
+          executeButton.classList.add('busy');
+        }
       }
       vscode.postMessage({ type: 'submit', action, values });
     };

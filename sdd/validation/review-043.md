@@ -2,8 +2,8 @@
 
 * **Data**: 2026-08-31
 * **Auditor**: Revisor Técnico / Auditor de QA (`c2f_reviewer`)
-* **Requisição**: [req-041.md](../human-requests/req-041.md)
-* **Registro de Lote**: [batch-043.md](../implementation/batch-043.md)
+* **Requisição**: [req-041.md](../human-requests/archive/req-041.md)
+* **Registro de Lote**: [batch-043.md](../implementation/archive/batch-043.md)
 * **Checklist de Validação**: [VALIDATION-CHECKLIST.md](VALIDATION-CHECKLIST.md#batch-043-teste-de-integracao-end-to-end-da-triade-via-mcp-hub)
 * **Topologia**: `triade` (Arquiteto ➔ Executor ➔ Revisor ➔ Humano)
 * **Parecer atual**: **HOMOLOGADO APÓS CR-001 (`APPROVED`)**

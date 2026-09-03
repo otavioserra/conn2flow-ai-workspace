@@ -9,8 +9,11 @@ test('formulário de release integra botão Salvar e Executar com releaseManager
   assert.match(formSource, /saveAndExecuteLabel/);
   assert.match(formSource, /save-and-execute-btn/);
   assert.match(formSource, /submitForm\('save_and_execute'\)/);
+  assert.match(formSource, /keepOpenOnSaveAndExecute/);
+  assert.match(formSource, /loadingLabel/);
 
   assert.match(managerSource, /saveAndExecuteLabel:\s*LocalizationManager\.t\('release\.saveAndExecute'\)/);
   assert.match(managerSource, /submission\.action === 'save_and_execute'/);
   assert.match(managerSource, /await this\.execute\(product, new CommandRunner\(\), onChanged\)/);
+  assert.match(managerSource, /submission\.close\?\.\(\)/);
 });

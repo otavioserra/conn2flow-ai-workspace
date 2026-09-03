@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { LocalizationManager } from './localizationManager';
 import { PREFERENCE_KEYS, PREFERENCE_SECTION, recognizeProjectId } from '../workspacePreferencesPolicy';
+import { isVmProject } from '../projectEnvironmentPolicy';
 
 export interface DevProject {
   id: string;
@@ -11,6 +12,7 @@ export interface DevProject {
   path_tests?: string;
   local?: boolean;
   url?: string;
+  deploy_mode?: string;
 }
 
 export class ProjectsManager {
@@ -123,6 +125,11 @@ export class ProjectsManager {
     return projectId ? this.getProjectsList().find(project => project.id === projectId) : undefined;
   }
 
+  public static isTargetVm(): boolean {
+    const data = this.getEnvironmentData();
+    return isVmProject(data, this.getTargetProject());
+  }
+
   public static getProjectsList(): DevProject[] {
     const data = this.getEnvironmentData();
     const list: DevProject[] = [];
@@ -135,7 +142,8 @@ export class ProjectsManager {
           path: proj.path || '',
           path_tests: proj.path_tests,
           local: proj.local,
-          url: proj.url
+          url: proj.url,
+          deploy_mode: proj.deploy_mode
         });
       }
     }

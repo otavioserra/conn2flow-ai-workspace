@@ -1,27 +1,50 @@
 # CURRENT HANDOFF — REQ-051 / BATCH-053
 
-* **Origem**: Macro-Arquiteto
-* **Destino**: Agente Executor (Claude Code / Codex)
-* **Data**: 2026-09-03
-* **Topologia**: `dupla` (Supervisionado)
-* **Repositório Alvo**: `conn2flow-ai-workspace` (`c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`), `conn2flow` (Core em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`) e satélites
-* **Requisição Ativa**: `sdd/human-requests/req-051.md`
-
+---
+🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:
+- Projeto: `conn2flow-ai-workspace`
+- Caminho Raiz: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
+- Core: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
+- Raiz SDD: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace\sdd`
+- Requisição: `REQ-051` | Batch: `BATCH-053`
 ---
 
-## 🎯 Instruções Técnicas para Execução
+- **Origem:** Agente Executor SDD
+- **Destino:** Agente Revisor separado
+- **Data:** 2026-09-03
+- **Status:** `ready-for-review`
+- **Topologia desta execução:** tríade, por instrução humana explícita (o intake histórico mantém `dupla`)
+- **Autonomia:** supervisionado
 
-1. **Feedback Visual Contínuo & Loading na Extensão (`FEAT-008`)**:
-   - Em `vscode-extension/src/releaseManager.ts`: na ação "Salvar e Executar", envolver em `vscode.window.withProgress` com notificação e barra de progresso.
-   - Em `coreCommands.ts` e `projectsManager.ts`: adicionar indicação de progresso nas execuções de compilação, release e atualizações de projeto.
-2. **Resiliência do Atualizador de API e Diagnóstico VM (`FEAT-011`)**:
-   - Em `conn2flow/ai-workspace/en/scripts/projects/update-system.sh`: adicionar flag cURL `-k` / `--insecure` para domínios `.local` e logar o corpo do erro HTTP retornado pelo endpoint `/_api/system/update`.
-   - Na extensão do VS Code: ocultar nós exclusivos de Docker em `diagnostics` quando o projeto ativo operar em VM (`deploy_mode: "ssh"`).
-3. **Poda SDD de Checklists Históricos (`ARCH-006`)**:
-   - Em `conn2flow`, `lumix` e `transformamp`: mover blocos de validação de lotes antigos em `VALIDATION-CHECKLIST.md` que excedam 25 itens ativos para `sdd/validation/archive/`.
-4. **Integração de Documentação Ampla (`FEAT-007`)**:
-   - Em `conn2flowTreeProvider.ts`: adicionar nós para os guias em `docs/pt-br/` e `docs/en/` na seção `📚 Documentações & Configurações`.
-5. **Validação**:
-   - `npm test` em `vscode-extension/`.
-   - `php cli/c2f.php ai:sync` no Core.
-   - Emitir `completions/BATCH-053-executor-receipt.json`.
+## Entrega
+
+- Progresso nativo contínuo nos pipelines longos e releases; formulário de “Salvar e Executar” com
+  spinner, controles desabilitados e `aria-busy` até o encerramento.
+- Updater da API com `--insecure` restrito a `.local`/opt-in, captura de erro cURL e relatório de
+  status HTTP + corpo em todas as etapas.
+- Árvore e barra de status sem ações Docker quando o alvo usa `deploy_mode: "ssh"`.
+- Índice e roadmap bilíngues adicionados à seção documental, com labels/tooltips localizados.
+- Checklist do Core podado de 42 para 25 blocos; 17 blocos preservados em arquivo e link reancorado.
+  `lumix` (8) e `transformamp` (11) já estavam conformes e não foram podados.
+
+## Evidências para auditoria
+
+- Extensão: `npm test` — **104/104**.
+- Core focado: **5 testes, 21 asserções**.
+- Core completo: **1121/1121**, 7629 asserções, 4 skips, 2 depreciações preexistentes.
+- Sintaxe: `bash -n` e `php -l` limpos; help Bash/CLI expõe `--insecure`.
+- Skills: `php cli/c2f.php ai:sync` — **36/36** nos cinco kits do Core; satélites conferidos por
+  inspeção somente-leitura do mesmo conjunto obrigatório.
+- Artefato detalhado: [batch-053.md](../implementation/batch-053.md).
+- Recibo: `completions/BATCH-053-executor-receipt.json`.
+
+## Limites observados
+
+- Nenhuma chamada real de atualização foi feita contra VM, pois o endpoint inicia sessão remota.
+- Nenhum commit, push, deploy ou release foi executado.
+- `sdd/implementation/BATCH-165.md` apareceu por execução concorrente durante o trabalho e foi
+  preservado; não pertence a este lote.
+
+## Próximo passo
+
+Executar auditoria findings-first como Revisor separado, sem atribuí-la ao Executor.

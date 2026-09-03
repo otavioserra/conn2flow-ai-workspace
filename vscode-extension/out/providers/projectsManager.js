@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const localizationManager_1 = require("./localizationManager");
 const workspacePreferencesPolicy_1 = require("../workspacePreferencesPolicy");
+const projectEnvironmentPolicy_1 = require("../projectEnvironmentPolicy");
 class ProjectsManager {
     static toGitPath(value) {
         return value.replace(/^([A-Za-z]):[\\/]/, (_, drive) => `/${drive.toLowerCase()}/`).replace(/\\/g, '/');
@@ -100,6 +101,10 @@ class ProjectsManager {
     static getProject(projectId) {
         return projectId ? this.getProjectsList().find(project => project.id === projectId) : undefined;
     }
+    static isTargetVm() {
+        const data = this.getEnvironmentData();
+        return (0, projectEnvironmentPolicy_1.isVmProject)(data, this.getTargetProject());
+    }
     static getProjectsList() {
         const data = this.getEnvironmentData();
         const list = [];
@@ -111,7 +116,8 @@ class ProjectsManager {
                     path: proj.path || '',
                     path_tests: proj.path_tests,
                     local: proj.local,
-                    url: proj.url
+                    url: proj.url,
+                    deploy_mode: proj.deploy_mode
                 });
             }
         }

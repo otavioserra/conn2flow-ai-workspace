@@ -124,11 +124,20 @@ function activate(context) {
     context.subscriptions.push(vscode.window.onDidCloseTerminal(t => logFollowManager_1.LogFollowManager.handleTerminalClosed(t, refreshAll)));
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
-    const runInTerminal = (command, name = 'Conn2Flow', impact = 'mutating', target, exclusive = false, confirmationSatisfied = false) => {
+    const runInTerminal = (command, name = 'Conn2Flow', impact = 'mutating', target, exclusive = false, confirmationSatisfied = false, showProgress = false) => {
         const cwd = workspaceLocator_1.WorkspaceLocator.getCoreRoot() || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
         if (!cwd)
             return;
-        void commandRunner.run({ command, cwd, label: name, impact, target, exclusive, confirmationSatisfied });
+        void commandRunner.run({
+            command,
+            cwd,
+            label: name,
+            impact,
+            target,
+            exclusive,
+            confirmationSatisfied,
+            progressTitle: showProgress ? localizationManager_1.LocalizationManager.t('command.progressTitle', { label: name }) : undefined
+        });
     };
     // Markdown Opener com suporte a Modos: Código, Preview ou Ambos Lado a Lado
     const openMarkdownFile = async (relativePath) => {
@@ -400,14 +409,14 @@ function activate(context) {
     }), 
     // Manager & Core Commands
     vscode.commands.registerCommand('conn2flow.manager.updateAll', () => {
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('manager:update-all'), localizationManager_1.LocalizationManager.t('core.updateAll'), 'mutating', 'Core', true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('manager:update-all'), localizationManager_1.LocalizationManager.t('core.updateAll'), 'mutating', 'Core', true, false, true);
     }), vscode.commands.registerCommand('conn2flow.manager.syncResources', () => {
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('resources:sync'), localizationManager_1.LocalizationManager.t('core.syncResources'), 'mutating', 'Core', true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand('resources:sync'), localizationManager_1.LocalizationManager.t('core.syncResources'), 'mutating', 'Core', true, false, true);
     }), vscode.commands.registerCommand('conn2flow.manager.cssRebuild', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
             return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`), localizationManager_1.LocalizationManager.t('core.cssRebuild', { target }), 'mutating', target, true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`css:rebuild --project=${target}`), localizationManager_1.LocalizationManager.t('core.cssRebuild', { target }), 'mutating', target, true, false, true);
     }), vscode.commands.registerCommand('conn2flow.manager.cssAudit', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
@@ -430,12 +439,12 @@ function activate(context) {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
             return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${target}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target }), 'remote', target, true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${target}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target }), 'remote', target, true, false, true);
     }), vscode.commands.registerCommand('conn2flow.projects.syncCoreTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
             return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-core ${target}`), localizationManager_1.LocalizationManager.t('projects.syncCore', { target }), 'mutating', target, true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:sync-core ${target}`), localizationManager_1.LocalizationManager.t('projects.syncCore', { target }), 'mutating', target, true, false, true);
     }), vscode.commands.registerCommand('conn2flow.projects.syncFilesTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
@@ -444,17 +453,17 @@ function activate(context) {
     }), vscode.commands.registerCommand('conn2flow.projects.deployWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true, false, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
             return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true, false, true);
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true, false, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
@@ -502,6 +511,8 @@ function activate(context) {
     // Documentation & Guides Commands
     vscode.commands.registerCommand('conn2flow.docs.openDevToolsGuide', () => {
         openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
+    }), vscode.commands.registerCommand('conn2flow.docs.openIndex', () => {
+        openMarkdownFile(localizedDoc('docs/pt-br/README.md', 'docs/en/README.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openPanelGuide', () => {
         openMarkdownFile(localizedDoc('docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md', 'docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openMarketplaceGuide', () => {
@@ -518,12 +529,14 @@ function activate(context) {
         openMarkdownFile(localizedDoc('docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md', 'docs/en/QUICKSTART-CLI-AND-MCP.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openResourcesGuide', () => {
         openMarkdownFile(localizedDoc('docs/pt-br/CATALOGO-DE-SKILLS.md', 'docs/en/SKILLS-CATALOG.md'));
+    }), vscode.commands.registerCommand('conn2flow.docs.openRoadmap', () => {
+        openMarkdownFile(localizedDoc('docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md', 'docs/en/FUTURE-EVOLUTION-ROADMAP.md'));
     }), 
     // Aliases para Projetos
     vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true, false, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.scaffoldNew', async () => {
         await projectsManager_1.ProjectsManager.scaffoldNewSatelliteProject(refreshAll);
@@ -600,9 +613,14 @@ function updateStatusBar() {
     sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
     sddStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.sddTooltip');
     sddStatusBarItem.show();
-    dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
-    dockerStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.dockerTooltip');
-    dockerStatusBarItem.show();
+    if (projectsManager_1.ProjectsManager.isTargetVm()) {
+        dockerStatusBarItem.hide();
+    }
+    else {
+        dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
+        dockerStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.dockerTooltip');
+        dockerStatusBarItem.show();
+    }
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

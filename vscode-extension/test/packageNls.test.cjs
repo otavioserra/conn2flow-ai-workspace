@@ -6,6 +6,8 @@ const pt = require('../package.nls.pt-br.json');
 
 test('catálogos NLS possuem paridade e cobrem todos os comandos declarados', () => {
   assert.deepEqual(Object.keys(en).sort(), Object.keys(pt).sort());
+  const commandIds = manifest.contributes.commands.map(command => command.command);
+  assert.equal(new Set(commandIds).size, commandIds.length, 'command IDs must be unique');
   for (const command of manifest.contributes.commands) {
     const match = command.title.match(/^%(.+)%$/);
     assert.ok(match, `${command.command} must use an NLS placeholder`);

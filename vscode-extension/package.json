@@ -447,6 +447,18 @@
         "icon": "$(dashboard)"
       },
       {
+        "command": "conn2flow.docs.openIndex",
+        "title": "%command.conn2flow.docs.openIndex%",
+        "category": "Conn2Flow Docs",
+        "icon": "$(library)"
+      },
+      {
+        "command": "conn2flow.docs.openRoadmap",
+        "title": "%command.conn2flow.docs.openRoadmap%",
+        "category": "Conn2Flow Docs",
+        "icon": "$(milestone)"
+      },
+      {
         "command": "conn2flow.docs.openDevGuide",
         "title": "%command.conn2flow.docs.openDevGuide%",
         "category": "Conn2Flow Docs",

@@ -191,21 +191,28 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     projects.push(this.leaf('projects.clone', 'conn2flow.projects.cloneMissing', 'repo-clone'));
     projects.push(this.leaf('projects.syncTemplate', 'conn2flow.projects.syncTemplate', 'diff-added'));
 
-    const diagnostics = [
-      this.leaf('diagnostics.dockerStatus', 'conn2flow.docker.status', 'pulse'),
-      this.leaf('diagnostics.apacheLogs', 'conn2flow.docker.logsApache', LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output'),
-      this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'),
-      this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash'),
+    const diagnostics: Conn2FlowTreeItem[] = [];
+    if (!ProjectsManager.isTargetVm()) {
+      diagnostics.push(
+        this.leaf('diagnostics.dockerStatus', 'conn2flow.docker.status', 'pulse'),
+        this.leaf('diagnostics.apacheLogs', 'conn2flow.docker.logsApache', LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output'),
+        this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'),
+        this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash')
+      );
+    }
+    diagnostics.push(
       this.leaf('diagnostics.aiSync', 'conn2flow.ai.sync', 'extensions'),
       this.leaf('diagnostics.syncAll', 'conn2flow.ai.syncAllRepos', 'repo-clone')
-    ];
+    );
 
     const docsConfig = [
+      this.leaf('docs.index', 'conn2flow.docs.openIndex', 'library'),
       this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
       this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),
       this.leaf('docs.orchestration', 'conn2flow.docs.openSddGuide', 'organization'),
       this.leaf('docs.architecture', 'conn2flow.docs.openArchitectureGuide', 'type-hierarchy'),
-      this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered')
+      this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered'),
+      this.leaf('docs.roadmap', 'conn2flow.docs.openRoadmap', 'milestone')
     ];
 
 

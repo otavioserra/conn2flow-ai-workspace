@@ -14,6 +14,7 @@ export interface CommandRequest {
   confirmationSatisfied?: boolean;
   exclusive?: boolean;
   notifySuccess?: boolean;
+  progressTitle?: string;
 }
 
 export interface CommandResult {
@@ -70,6 +71,21 @@ export class CommandRunner {
     }
 
     try {
+      if (request.progressTitle) {
+        return await vscode.window.withProgress(
+          {
+            location: vscode.ProgressLocation.Notification,
+            title: request.progressTitle,
+            cancellable: false
+          },
+          progress => {
+            progress.report({
+              message: LocalizationManager.t('command.progressRunning', { label: request.label })
+            });
+            return this.executeTask(request);
+          }
+        );
+      }
       return await this.executeTask(request);
     } finally {
       if (request.exclusive) {

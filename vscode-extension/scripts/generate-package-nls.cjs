@@ -31,6 +31,8 @@ const english = {
   'conn2flow.ai.sync': 'Sync Skills', 'conn2flow.ai.syncAllRepos': 'Distribute Skills to Repositories', 'conn2flow.ai.syncSkills': 'Sync Skills (One Click)',
   'conn2flow.ai.validateSkills': 'Validate Skills', 'conn2flow.ai.openPlaybook': 'Open Multi-Agent Playbook', 'conn2flow.ai.openCatalog': 'Open Skills Catalog',
   'conn2flow.ai.openAgents': 'Open AGENTS.md', 'conn2flow.ai.openGemini': 'Open GEMINI.md', 'conn2flow.docs.openDevToolsGuide': 'Dev Tools Panel Manual',
+  'conn2flow.docs.openIndex': 'Documentation Index', 'conn2flow.docs.openRoadmap': 'Future Evolution Roadmap',
+  'conn2flow.docs.openIndex': 'Documentation Index', 'conn2flow.docs.openRoadmap': 'Future Evolution Roadmap',
   'conn2flow.docs.openDevGuide': 'Conn2Flow Developer Guide', 'conn2flow.docs.openSddGuide': 'SDD Governance Guide', 'conn2flow.docs.openTailwindGuide': 'Tailwind CSS Architecture',
   'conn2flow.docs.openPanelGuide': 'Dev Tools Panel Manual (Legacy)', 'conn2flow.docs.openMarketplaceGuide': 'Marketplace Publication Guide', 'conn2flow.docs.openArchitectureGuide': 'Dual-Agent and Triad Architecture',
   'conn2flow.docs.openDockerGuide': 'Docker Environment Guide', 'conn2flow.docs.openResourcesGuide': 'Resources and SQL Runtime', 'conn2flow.settings.selectLanguage': 'Select Extension Language',
@@ -43,15 +45,24 @@ const en = {
   'extension.description': 'Official developer panel for SDD, Core, projects, diagnostics, agents, backlog and releases.',
   'view.title': 'Conn2Flow Dev Tools',
   'config.language.description': 'Runtime interface language. Automatic follows the VS Code display language.',
-  'config.githubOwner.description': 'Optional GitHub owner or organization, used only when it cannot be derived from the Core origin remote.'
+  'config.githubOwner.description': 'Optional GitHub owner or organization, used only when it cannot be derived from the Core origin remote.',
+  'config.sddScopeId.description': 'Active SDD scope identifier saved for the workspace session.',
+  'config.activeProjectId.description': 'Active target project identifier in environment.json.',
+  'config.agentsTopology.description': 'Agent workflow topology (dual agent or triad).',
+  'config.agentsAutonomy.description': 'Agent autonomy level (supervised, monitored, or headless).'
 };
 const pt = {
   'extension.displayName': 'Conn2Flow Dev Tools',
   'extension.description': 'Painel oficial para SDD, Core, projetos, diagnóstico, agentes, backlog e releases.',
   'view.title': 'Conn2Flow Dev Tools',
   'config.language.description': 'Idioma da interface em runtime. Automático acompanha o idioma de exibição do VS Code.',
-  'config.githubOwner.description': 'Owner ou organização GitHub opcional, usado somente quando não puder ser derivado do remoto origin do Core.'
+  'config.githubOwner.description': 'Owner ou organização GitHub opcional, usado somente quando não puder ser derivado do remoto origin do Core.',
+  'config.sddScopeId.description': 'Identificador do escopo SDD ativo salvo para a sessão do workspace.',
+  'config.activeProjectId.description': 'Identificador do projeto alvo ativo em environment.json.',
+  'config.agentsTopology.description': 'Topologia de trabalho dos agentes (agente duplo ou tríade).',
+  'config.agentsAutonomy.description': 'Nível de autonomia dos agentes (supervisionado, monitorado ou headless).'
 };
+
 
 for (const key of Object.keys(previousEn)) {
   if (key.startsWith('tooltip.') || key.startsWith('agents.')) en[key] = previousEn[key];
