@@ -1162,6 +1162,20 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [x] Auditoria do Revisor Técnico: [review-054.md](review-054.md) emitido com parecer **APPROVED** em 2026-09-03.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-055: Resolução de Permissão de Logs VM e Execução SSH do css:rebuild sem Dependência de ./c2f
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `vmDiagnosticsPolicy.ts` invoca `sudo tail -n 100` para leitura de logs remotos (`php-error.log` e `nginx-error.log`) eliminando `Permission denied`.
+- [ ] `CssRebuildCommand::regenerarViaSsh()` invoca `php controladores/agents/arquitetura/css-regenerar.php --gestor=.` com suporte a `NODE_PATH` em vez de falhar por falta de `./c2f`.
+- [ ] `tailwind-recursos.php` suporta fallback para o comando global `tailwindcss` quando não houver `node_modules` local.
+- [ ] `npm test` da extensão 100% verde.
+- [ ] Testes do Core CLI aprovados.
+- [ ] Recibo emitido em `completions/BATCH-055-executor-receipt.json`.
+
+
 
 
 
