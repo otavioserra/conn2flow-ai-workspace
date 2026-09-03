@@ -1169,12 +1169,15 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 ### 1. Checklist de Aceite Técnico
 
 - [ ] `vmDiagnosticsPolicy.ts` invoca `sudo tail -n 100` para leitura de logs remotos (`php-error.log` e `nginx-error.log`) eliminando `Permission denied`.
-- [ ] `CssRebuildCommand::regenerarViaSsh()` invoca `php controladores/agents/arquitetura/css-regenerar.php --gestor=.` com suporte a `NODE_PATH` em vez de falhar por falta de `./c2f`.
+- [ ] `sync-core-to-project.sh` sincroniza `c2f` e `cli/` para a instalação remota SSH.
+- [ ] `CssRebuildCommand::regenerarViaSsh()` implementa modo duplo (CLI primário e fallback via `php controladores/agents/arquitetura/css-regenerar.php`).
 - [ ] `tailwind-recursos.php` suporta fallback para o comando global `tailwindcss` quando não houver `node_modules` local.
 - [ ] `ProjectSshPublicPathReq050Test.php` compatível com o comportamento de `escapeshellarg` no Linux (Ubuntu runner do GitHub Actions).
+- [ ] Host SSH padronizado para `lab.conn2flow.local`.
 - [ ] `npm test` da extensão 100% verde.
 - [ ] Testes do Core CLI aprovados.
 - [ ] Recibo emitido em `completions/BATCH-055-executor-receipt.json`.
+
 
 
 
