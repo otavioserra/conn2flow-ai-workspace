@@ -49,8 +49,15 @@ Ao iniciar, oriente seu contexto lendo apenas o essencial:
 - **Requisitos (`sdd/human-requests/req-XXX.md`)**: Apenas tarefas ativas e aprovadas para o ciclo imediato de implementação se tornam requisições formais e apontam em `sdd/human-requests/CURRENT.md`.
 - **Reserva Atômica**: Ao criar nova requisição, atualize a branch com `git pull`, selecione o próximo número livre, comite e push imediatamente.
 
-### 5. Monitoramento Proativo de Memory Gardening
+### 5. Monitoramento Proativo de Memory Gardening e da Regra dos 10 Ativos
 - Mantenha `DECISION-LOG.md`, `BATCH-INDEX.md` e `VALIDATION-CHECKLIST.md` com no máximo os **10 itens ativos mais recentes**. Itens antigos devem ser arquivados em `/archive/`.
+- **Regra dos 10 Ativos na Raiz**: a raiz de `sdd/human-requests/` guarda no máximo **10 requisições** soltas (além de `CURRENT.md` e `README.md`) e a de `sdd/implementation/` no máximo **10 relatórios de lote** (além de `BATCH-INDEX.md`). O excedente mais antigo vai para a subpasta `archive/` correspondente.
+- **Manutenção mandatória de links**: arquivar sem reescrever os links de markdown é proibido. Ao auditar ou solicitar a faxina, exija o comando determinístico do Core, que move os arquivos e reescreve os links na mesma operação:
+  ```bash
+  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --keep=10 --dry-run   # inspeção
+  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --repair-links        # execução
+  ```
+- O comando retorna exit 1 enquanto restar link relativo órfão sob `sdd/`. Links que apontem para arquivos que nunca existiram são achados de documentação e devem virar intake, não ser silenciados.
 - `MEMORIA-ENGENHARIA-EXECUCAO.md` não deve ser podada abaixo de 50 KB / 200 linhas; emita alerta nesse patamar e exija poda apenas ao atingir 75 KB / 300 linhas, mirando ~25 KB e preservando 20 a 25 tarefas recentes.
 - **NUNCA** altere `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` sem ordem explícita do Engenheiro Chefe Humano.
 

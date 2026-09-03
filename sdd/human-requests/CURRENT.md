@@ -1,16 +1,25 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-050.md](req-050.md)
-* **Status**: `HOMOLOGATED`
-* **Lote Relacionado**: `BATCH-052`
+* **Ponteiro Ativo**: [req-051.md](req-051.md)
+* **Status**: `APPROVED`
+* **Lote Relacionado**: `BATCH-053`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-09-02
-* **Lotes Concluídos e Homologados na Rodada**:
-  - [req-048.md](req-048.md) (`BATCH-050`): Regra dos 10 Ativos na Raiz SDD, Comando CLI `c2f ai:archive-sdd` e Manutenção de Links nos Índices.
-  - [req-049.md](req-049.md) (`BATCH-051`): Persistência de Configurações em `settings.json` e Sincronização Dinâmica do Prompt/CURRENT.md.
-  - [req-050.md](req-050.md) (`BATCH-052`): Suporte a `ssh_public_path` e Execução SSH Automática no Pipeline Multiprojeto.
+* **Data de Entrada**: 2026-09-03
+* **Lote Anterior Concluído**: [req-050.md](req-050.md) (`BATCH-052`)
 
-## 🎯 Status do Sistema
+## 🎯 Instrução Imediata para o Executor
 
-Todos os 3 lotes do roadmap planejado (`BATCH-050`, `BATCH-051` e `BATCH-052`) foram implementados, testados (98/98 testes TS e 17/17 PHPUnit) e homologados com parecer técnico `APPROVED`. Pronto para novo intake de requisição humana.
+Implementar a **REQ-051 / BATCH-053** no `conn2flow-ai-workspace`, `conn2flow` (Core CLI) e satélites:
+1. **Feedback Visual e Loading na Extensão (`FEAT-008`)**:
+   - Adicionar `vscode.window.withProgress` com mensagens contextuais de status em ações longas (`releaseManager.ts` / salvar e executar, `coreCommands.ts`, `projectsManager.ts`), eliminando a sensação de tela travada.
+2. **Resiliência do Atualizador de API e Adaptação VM (`FEAT-011`)**:
+   - Em `update-system.sh` / `ProjectUpdateSystemCommand.php`: adicionar flag cURL `-k` / `--insecure` para domínios `.local` da VM e exibir o corpo da resposta HTTP / erro JSON da API caso a chamada falhe.
+   - Na extensão do VS Code: ocultar ações exclusivas de Docker no Diagnóstico quando o projeto ativo operar em VM (`deploy_mode: "ssh"`).
+3. **Poda SDD de Checklists Históricos nos Satélites (`ARCH-006`)**:
+   - Podar blocos antigos em `VALIDATION-CHECKLIST.md` que excedam 25 lotes ativos para `sdd/validation/archive/` em `conn2flow`, `lumix` e `transformamp`.
+4. **Integração de Documentação Ampla (`FEAT-007`)**:
+   - Expor guias em `docs/pt-br/` e `docs/en/` na seção `📚 Documentações & Configurações` do Dev Tools.
+5. **Validação**:
+   - `npm test` em `vscode-extension/` (100% verde) e `php cli/c2f.php ai:sync` (36/36 skills).
+   - Emitir `completions/BATCH-053-executor-receipt.json`.

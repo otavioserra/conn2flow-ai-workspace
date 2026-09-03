@@ -41,7 +41,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-050** | complete | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 homologada; comando CLI ai:archive-sdd, movimentação para archive/ e integridade de links. |
 | **BATCH-051** | complete | Persistência Externa em settings.json e Sincronização Dinâmica do Prompt e CURRENT.md | `VALIDATION-CHECKLIST.md#batch-051` | REQ-049 homologada; 98/98 testes, workspacePreferencesPolicy e sincronismo dinâmico de topologia. |
 | **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
+| **BATCH-053** | in-progress | Feedback Visual de Loading na Extensão, Resiliência VM, Poda de Checklists e Integração de Docs | `VALIDATION-CHECKLIST.md#batch-053` | REQ-051 ativa; unificação de FEAT-008, FEAT-011, ARCH-006 e FEAT-007. |
 
 ## Próximas requisições planejadas
 
-- `REQ-050` / `BATCH-052`: implementada em 2026-09-02, aguardando `ssh_public_path` do operador e homologação contra a VM.
+- `REQ-051`: **ATIVA** em 2026-09-03 para o `BATCH-053`.
+

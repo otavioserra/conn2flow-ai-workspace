@@ -1087,6 +1087,24 @@ apenas após o reload. Os normalizadores passaram a aceitar aliases e a escrita 
 - [x] Auditoria do Revisor Técnico: [review-052.md](review-052.md) emitido com parecer **APPROVED** em 2026-09-02.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-053: Feedback Visual de Loading na Extensão, Resiliência VM, Poda de Checklists e Integração de Docs
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Feedback visual de loading (`vscode.window.withProgress`) implementado em ações longas (release, updates e compilação).
+- [ ] Script de atualização via API (`update-system.sh`) com suporte a cURL `-k` / `--insecure` para `.local` e logging detalhado de erros HTTP.
+- [ ] Nós de diagnóstico do VS Code adaptados para o modo VM (ocultando Docker quando o projeto for VM).
+- [ ] Poda SDD de checklists históricos em `conn2flow`, `lumix` e `transformamp` (preservando até 25 itens ativos e arquivando o restante).
+- [ ] Atalhos de documentação ampla (`docs/`) adicionados na árvore Dev Tools.
+- [ ] `npm test` em 100% verde e `php cli/c2f.php ai:sync` com 36/36 skills nos 5 kits.
+
+### 2. Evidências de Validação
+
+*(Aguardando execução do lote pelo Agente Executor)*
+
+
 
 
 
