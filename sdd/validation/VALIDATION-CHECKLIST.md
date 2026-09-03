@@ -1171,9 +1171,11 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [ ] `vmDiagnosticsPolicy.ts` invoca `sudo tail -n 100` para leitura de logs remotos (`php-error.log` e `nginx-error.log`) eliminando `Permission denied`.
 - [ ] `CssRebuildCommand::regenerarViaSsh()` invoca `php controladores/agents/arquitetura/css-regenerar.php --gestor=.` com suporte a `NODE_PATH` em vez de falhar por falta de `./c2f`.
 - [ ] `tailwind-recursos.php` suporta fallback para o comando global `tailwindcss` quando não houver `node_modules` local.
+- [ ] `ProjectSshPublicPathReq050Test.php` compatível com o comportamento de `escapeshellarg` no Linux (Ubuntu runner do GitHub Actions).
 - [ ] `npm test` da extensão 100% verde.
 - [ ] Testes do Core CLI aprovados.
 - [ ] Recibo emitido em `completions/BATCH-055-executor-receipt.json`.
+
 
 
 

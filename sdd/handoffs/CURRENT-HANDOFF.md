@@ -31,7 +31,9 @@ Implementar a requisição **`REQ-053`** detalhada em [sdd/human-requests/req-05
     (Exatamente da mesma forma que `CssAuditCommand.php` já faz com sucesso para `css-auditoria.php`).
 - Em `gestor/controladores/agents/arquitetura/tailwind-recursos.php`:
   * Em `tailwind_recursos_resolver_command()`: caso `$localCandidates` esteja vazio, testar se `tailwindcss` existe no PATH do sistema (`which tailwindcss`) antes de falhar.
-  * Em `css-regenerar.php`: permitir a resolução de `@import "tailwindcss/utilities.css"` mesmo quando executado em ambientes sem `node_modules` local, detectando `NODE_PATH` global (ex: `/opt/node-v22.22.3-linux-x64/lib/node_modules`).
+  * Em `css-regenerar.php`: permitir a resolução de `@import "tailwindcss/utilities.css"` em ambientes sem `node_modules` local, detectando `NODE_PATH` global (`/opt/node-v22.22.3-linux-x64/lib/node_modules`).
+- Em `tests/Unit/PHP/ProjectSshPublicPathReq050Test.php`:
+  * Corrigir a portabilidade de asserções entre Windows e Linux (onde `escapeshellarg()` escapa aspas internas como `'\''`), fazendo com que o CI do GitHub Actions (Ubuntu) passe 100% verde no workflow de release.
 
 ### 3. Validação e Handoff:
 - Executar `npm test` em `vscode-extension/`.
