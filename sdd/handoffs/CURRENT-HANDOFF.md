@@ -1,50 +1,37 @@
-# CURRENT HANDOFF — REQ-051 / BATCH-053
+# CURRENT HANDOFF — BATCH-054 / REQ-052
+
+* **De:** Macro-Arquiteto (Antigravity)
+* **Para:** Executor Tático (Claude Code / VS Code / Codex)
+* **Status:** `READY_FOR_EXECUTION`
+* **Data:** 2026-09-03
+* **Repositório Principal:** `conn2flow-ai-workspace` (`C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`)
+* **Repositório Core:** `conn2flow` (`C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`)
 
 ---
-🏷️ IDENTIFICAÇÃO DO PROJETO ALVO:
-- Projeto: `conn2flow-ai-workspace`
-- Caminho Raiz: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- Core: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
-- Raiz SDD: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace\sdd`
-- Requisição: `REQ-051` | Batch: `BATCH-053`
----
 
-- **Origem:** Agente Executor SDD
-- **Destino:** Agente Revisor separado
-- **Data:** 2026-09-03
-- **Status:** `ready-for-review`
-- **Topologia desta execução:** tríade, por instrução humana explícita (o intake histórico mantém `dupla`)
-- **Autonomia:** supervisionado
+## 🎯 Instruções para o Executor
 
-## Entrega
+Implementar a requisição **`REQ-052`** detalhada em [sdd/human-requests/req-052.md](../human-requests/req-052.md):
 
-- Progresso nativo contínuo nos pipelines longos e releases; formulário de “Salvar e Executar” com
-  spinner, controles desabilitados e `aria-busy` até o encerramento.
-- Updater da API com `--insecure` restrito a `.local`/opt-in, captura de erro cURL e relatório de
-  status HTTP + corpo em todas as etapas.
-- Árvore e barra de status sem ações Docker quando o alvo usa `deploy_mode: "ssh"`.
-- Índice e roadmap bilíngues adicionados à seção documental, com labels/tooltips localizados.
-- Checklist do Core podado de 42 para 25 blocos; 17 blocos preservados em arquivo e link reancorado.
-  `lumix` (8) e `transformamp` (11) já estavam conformes e não foram podados.
+### 1. Core CLI (`conn2flow`):
+- `CssAuditCommand.php`: adicionar resolução SSH para projetos `deploy_mode: "ssh"`, delegando a auditoria via SSH na VM e devolvendo a saída sem exigir `.env` local.
+- `ProjectUpdateAllCommand.php`: para projetos onde `local: true` e `deploy_mode: "ssh"`, permitir que a etapa 6/8 (`css:rebuild`) passe `--confirmar-remoto` automaticamente.
+- Versionar `.tailwind-build-manifest.json` com os 237 recursos em cache.
 
-## Evidências para auditoria
+### 2. Extensão VS Code (`conn2flow-ai-workspace/vscode-extension`):
+- `commandRunner.ts` e afins: substituir `vscode.window.showInformationMessage` para operações de rotina (prompt copiado, conclusão simples) por `vscode.window.setStatusBarMessage(..., 3000)`. Manter pop-ups exclusivamente para erros, avisos e confirmações críticas.
+- `extension.ts`:
+  * No `updateAllTarget` e `updateAllWithSelect`: passar `--confirmar-remoto` se `ProjectsManager.isTargetVm()`.
+  * Na barra de status: reexecutar `updateStatusBar()` em eventos de troca de projeto ou settings; se o projeto for VM, exibir `$(vm) Conn2Flow VM` e fornecer atalho de logs.
+  * No menu Diagnóstico: adicionar ações para ler logs da VM (`php-error.log`, `nginx-error.log`).
+  * Adicionar comando de busca rápida `conn2flow.docs.search` indexando `ai-workspace/pt-br/docs`.
+  * No preview Markdown: preservar modo preview em links clicados internamente.
+- `package.json`:
+  * Atualizar versão para `1.1.0`.
+  * Adicionar script de version bump para novos empacotamentos.
 
-- Extensão: `npm test` — **104/104**.
-- Core focado: **5 testes, 21 asserções**.
-- Core completo: **1121/1121**, 7629 asserções, 4 skips, 2 depreciações preexistentes.
-- Sintaxe: `bash -n` e `php -l` limpos; help Bash/CLI expõe `--insecure`.
-- Skills: `php cli/c2f.php ai:sync` — **36/36** nos cinco kits do Core; satélites conferidos por
-  inspeção somente-leitura do mesmo conjunto obrigatório.
-- Artefato detalhado: [batch-053.md](../implementation/batch-053.md).
-- Recibo: `completions/BATCH-053-executor-receipt.json`.
-
-## Limites observados
-
-- Nenhuma chamada real de atualização foi feita contra VM, pois o endpoint inicia sessão remota.
-- Nenhum commit, push, deploy ou release foi executado.
-- `sdd/implementation/BATCH-165.md` apareceu por execução concorrente durante o trabalho e foi
-  preservado; não pertence a este lote.
-
-## Próximo passo
-
-Executar auditoria findings-first como Revisor separado, sem atribuí-la ao Executor.
+### 3. Validação e Handoff:
+- Executar `npm test` em `vscode-extension/` (assegurando 100% verde).
+- Executar testes PHPUnit no Core CLI.
+- Executar `php cli/c2f.php ai:sync`.
+- Emitir recibo em `completions/BATCH-054-executor-receipt.json`.

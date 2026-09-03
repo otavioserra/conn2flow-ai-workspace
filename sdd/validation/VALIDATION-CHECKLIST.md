@@ -1129,6 +1129,23 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [x] Auditoria do Revisor Técnico: [review-053.md](review-053.md) emitido com parecer **APPROVED** em 2026-09-03.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
+---
+
+## BATCH-054: SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `c2f css:audit` com suporte a projetos VM (`deploy_mode: "ssh"`) delegando via SSH sem erro de `.env`.
+- [ ] Etapa 6/8 de `project:update-all` autorizada automaticamente em projetos VM locais (`--confirmar-remoto`).
+- [ ] Saneamento da barra de notificações do VS Code: fim dos toasts redundantes de sucesso (usar `setStatusBarMessage(..., 3000)`).
+- [ ] Version Bump automatizado da extensão VS Code (atualização para 1.1.0 e rotina de bump).
+- [ ] Barra de status do VS Code dinâmica (exibindo VM quando o projeto ativo for VM) com links para logs da VM (`php-error.log`, `nginx-error.log`).
+- [ ] Busca rápida e navegação de documentação técnica do sistema em `ai-workspace/pt-br/docs`.
+- [ ] Navegação contínua no preview Markdown preservando o modo de visualização.
+- [ ] `npm test` da extensão 100% verde e testes do Core aprovados.
+- [ ] Recibo emitido em `completions/BATCH-054-executor-receipt.json`.
+
+
 
 
 

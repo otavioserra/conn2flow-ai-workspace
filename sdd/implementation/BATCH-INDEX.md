@@ -78,7 +78,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-051** | complete | Persistência Externa em settings.json e Sincronização Dinâmica do Prompt e CURRENT.md | `VALIDATION-CHECKLIST.md#batch-051` | REQ-049 homologada; 98/98 testes, workspacePreferencesPolicy e sincronismo dinâmico de topologia. |
 | **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
 | **BATCH-053** | complete | Feedback Visual de Loading na Extensão, Resiliência VM, Poda de Checklists e Integração de Docs | `VALIDATION-CHECKLIST.md#batch-053` | REQ-051 homologada; 104/104 testes na extensão, 1121 testes PHPUnit, loading nativo, resiliência VM e poda do Core 42->25. |
+| **BATCH-054** | in-progress | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 ativa; escopo de usabilidade, SSH no audit, status bar VM e busca de documentação técnica. |
 
 ## Próxima requisição
 
-`REQ-051` concluída e homologada em 2026-09-03 no lote `BATCH-053`. Sistema pronto para novo ciclo de intake humano.
+`REQ-052`: **ATIVA** em 2026-09-03 para o lote `BATCH-054`.
+
