@@ -1135,15 +1135,33 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `c2f css:audit` com suporte a projetos VM (`deploy_mode: "ssh"`) delegando via SSH sem erro de `.env`.
-- [ ] Etapa 6/8 de `project:update-all` autorizada automaticamente em projetos VM locais (`--confirmar-remoto`).
-- [ ] Saneamento da barra de notificações do VS Code: fim dos toasts redundantes de sucesso (usar `setStatusBarMessage(..., 3000)`).
-- [ ] Version Bump automatizado da extensão VS Code (atualização para 1.1.0 e rotina de bump).
-- [ ] Barra de status do VS Code dinâmica (exibindo VM quando o projeto ativo for VM) com links para logs da VM (`php-error.log`, `nginx-error.log`).
-- [ ] Busca rápida e navegação de documentação técnica do sistema em `ai-workspace/pt-br/docs`.
-- [ ] Navegação contínua no preview Markdown preservando o modo de visualização.
-- [ ] `npm test` da extensão 100% verde e testes do Core aprovados.
-- [ ] Recibo emitido em `completions/BATCH-054-executor-receipt.json`.
+- [x] `c2f css:audit` com suporte a projetos VM (`deploy_mode: "ssh"`) delegando via SSH sem erro de `.env`.
+- [x] Etapa 6/8 de `project:update-all` autorizada automaticamente em projetos VM locais (`--confirmar-remoto`).
+- [x] Saneamento da barra de notificações do VS Code: fim dos toasts redundantes de sucesso (usar `setStatusBarMessage(..., 3000)`).
+- [x] Version Bump automatizado da extensão VS Code (atualização para 1.1.0 e rotina de bump).
+- [x] Barra de status do VS Code dinâmica (exibindo VM quando o projeto ativo for VM) com links para logs da VM (`php-error.log`, `nginx-error.log`).
+- [x] Busca rápida e navegação de documentação técnica do sistema em `ai-workspace/pt-br/docs`.
+- [x] Navegação contínua no preview Markdown preservando o modo de visualização.
+- [x] `npm test` da extensão 100% verde e testes do Core aprovados.
+- [x] Recibo emitido em `completions/BATCH-054-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. `npm test` na extensão: **111/111**; pacote `conn2flow-tools-1.1.0.vsix` gerado com 79 arquivos.
+2. Core PHP: **1125/1125**, 7650 asserções, 4 skips; teste novo **2/2**, 12 asserções.
+3. Core JavaScript: `npx vitest run` com **417/417** testes em 29 arquivos.
+4. Execução SSH real do `css:audit` para `conn2flow-site-local`: código 0, relatório das quatro
+   tabelas retornado pela VM e nenhuma tentativa de leitura do `.env` local.
+5. Manifesto Tailwind confirmado com **237 recursos** e preservado como alteração preexistente.
+6. Detalhamento operacional: [batch-054.md](../implementation/batch-054.md).
+7. Gate SDD final: 10 requisições, 10 batches e zero links relativos órfãos; `batch-044.md`
+   preservado em `implementation/archive/` pelo comando oficial.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-054.md](review-054.md) emitido com parecer **APPROVED** em 2026-09-03.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+
 
 
 

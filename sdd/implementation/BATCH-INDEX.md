@@ -77,10 +77,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-050** | complete | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 homologada; comando CLI ai:archive-sdd, movimentação para archive/ e integridade de links. |
 | **BATCH-051** | complete | Persistência Externa em settings.json e Sincronização Dinâmica do Prompt e CURRENT.md | `VALIDATION-CHECKLIST.md#batch-051` | REQ-049 homologada; 98/98 testes, workspacePreferencesPolicy e sincronismo dinâmico de topologia. |
 | **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
-| **BATCH-053** | complete | Feedback Visual de Loading na Extensão, Resiliência VM, Poda de Checklists e Integração de Docs | `VALIDATION-CHECKLIST.md#batch-053` | REQ-051 homologada; 104/104 testes na extensão, 1121 testes PHPUnit, loading nativo, resiliência VM e poda do Core 42->25. |
-| **BATCH-054** | in-progress | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 ativa; escopo de usabilidade, SSH no audit, status bar VM e busca de documentação técnica. |
+| **BATCH-054** | complete | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 homologada; 111/111 testes na extensão, 1125 testes PHPUnit, css:audit SSH, status bar VM, busca de docs e VSIX 1.1.0. |
 
 ## Próxima requisição
 
-`REQ-052`: **ATIVA** em 2026-09-03 para o lote `BATCH-054`.
+`REQ-052` concluída e homologada em 2026-09-03 no lote `BATCH-054`. Sistema pronto para novo ciclo de intake humano.
 

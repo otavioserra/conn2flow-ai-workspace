@@ -12,13 +12,13 @@ class BacklogManager {
         const root = sddScopeManager_1.SddScopeManager.getActiveSddRoot();
         const scope = sddScopeManager_1.SddScopeManager.getScopeLabel();
         if (!root) {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('sdd.folderMissing', { scope }));
+            vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('sdd.folderMissing', { scope }));
             return;
         }
         const backlogRoot = path.join(root, 'backlog');
         const indexPath = path.join(backlogRoot, 'BACKLOG-INDEX.md');
         if (!fs.existsSync(indexPath)) {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('backlog.empty', { scope }));
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('backlog.empty', { scope }), 3000);
             return;
         }
         const items = (0, backlogPolicy_1.parseBacklogIndex)(fs.readFileSync(indexPath, 'utf8')).map(item => this.withFileStatus(backlogRoot, item));

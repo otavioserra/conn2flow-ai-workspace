@@ -6,7 +6,8 @@ const {
   isTargetMpePreview,
   MPE_VIEW_TYPE,
   normalizePreviewPath,
-  runPreviewLifecycle
+  runPreviewLifecycle,
+  shouldRedirectMarkdownSourceToPreview
 } = require('../out/markdownPreviewPolicy.js');
 
 test('normaliza separadores e caixa para comparação segura no Windows', () => {
@@ -14,6 +15,17 @@ test('normaliza separadores e caixa para comparação segura no Windows', () => 
     normalizePreviewPath('C:/Repo/SDD/CURRENT.md'),
     normalizePreviewPath('c:\\repo\\sdd\\current.md')
   );
+});
+
+test('redireciona links Markdown do preview gerenciado sem capturar edicao intencional', () => {
+  const current = 'C:\\repo\\docs\\atual.md';
+  const linked = 'C:\\repo\\docs\\destino.md';
+
+  assert.equal(shouldRedirectMarkdownSourceToPreview(linked, current, 'preview'), true);
+  assert.equal(shouldRedirectMarkdownSourceToPreview(current, current, 'preview'), false);
+  assert.equal(shouldRedirectMarkdownSourceToPreview(linked, current, 'code'), false);
+  assert.equal(shouldRedirectMarkdownSourceToPreview(linked, current, 'preview', true), false);
+  assert.equal(shouldRedirectMarkdownSourceToPreview('C:\\repo\\arquivo.ts', current, 'preview'), false);
 });
 
 test('fecha somente a fonte exata do documento solicitado', () => {

@@ -40,7 +40,7 @@ class LocalizationManager {
             .getConfiguration('conn2flow')
             .update('language', selected.value, vscode.ConfigurationTarget.Global);
         this.refreshLocale();
-        vscode.window.showInformationMessage(`${this.t('language.changed', { language: selected.label })} ${this.t('language.reload')}`);
+        vscode.window.setStatusBarMessage(`${this.t('language.changed', { language: selected.label })} ${this.t('language.reload')}`, 3000);
     }
     static refreshLocale() {
         const preference = vscode.workspace

@@ -141,7 +141,7 @@ export class CustomActionsManager {
     const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(targetFile));
     await vscode.window.showTextDocument(doc);
 
-    vscode.window.showInformationMessage(LocalizationManager.t('custom.created'));
+    vscode.window.setStatusBarMessage(LocalizationManager.t('custom.created'), 3000);
 
     if (onCreated) {
       onCreated();

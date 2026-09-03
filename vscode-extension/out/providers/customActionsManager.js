@@ -108,7 +108,7 @@ class CustomActionsManager {
         // Abre o arquivo para o usuário editar
         const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(targetFile));
         await vscode.window.showTextDocument(doc);
-        vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('custom.created'));
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('custom.created'), 3000);
         if (onCreated) {
             onCreated();
         }

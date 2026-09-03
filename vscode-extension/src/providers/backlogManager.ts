@@ -15,14 +15,14 @@ export class BacklogManager {
     const root = SddScopeManager.getActiveSddRoot();
     const scope = SddScopeManager.getScopeLabel();
     if (!root) {
-      vscode.window.showInformationMessage(LocalizationManager.t('sdd.folderMissing', { scope }));
+      vscode.window.showWarningMessage(LocalizationManager.t('sdd.folderMissing', { scope }));
       return;
     }
 
     const backlogRoot = path.join(root, 'backlog');
     const indexPath = path.join(backlogRoot, 'BACKLOG-INDEX.md');
     if (!fs.existsSync(indexPath)) {
-      vscode.window.showInformationMessage(LocalizationManager.t('backlog.empty', { scope }));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('backlog.empty', { scope }), 3000);
       return;
     }
 

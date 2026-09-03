@@ -3,7 +3,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { LocalizationManager } from './localizationManager';
 import { PREFERENCE_KEYS, PREFERENCE_SECTION, recognizeProjectId } from '../workspacePreferencesPolicy';
-import { isVmProject } from '../projectEnvironmentPolicy';
+import { isLocalVmProject, isVmProject } from '../projectEnvironmentPolicy';
+import { normalizeVmConnection, VmConnection } from '../vmDiagnosticsPolicy';
 
 export interface DevProject {
   id: string;
@@ -13,9 +14,16 @@ export interface DevProject {
   local?: boolean;
   url?: string;
   deploy_mode?: string;
+  ssh_user?: string;
+  ssh_host?: string;
+  ssh_port?: number;
+  ssh_target_path?: string;
 }
 
 export class ProjectsManager {
+  private static readonly targetProjectChangedEmitter = new vscode.EventEmitter<string>();
+  public static readonly onTargetProjectChanged = this.targetProjectChangedEmitter.event;
+
   private static toGitPath(value: string): string {
     return value.replace(/^([A-Za-z]):[\\/]/, (_, drive: string) => `/${drive.toLowerCase()}/`).replace(/\\/g, '/');
   }
@@ -130,6 +138,24 @@ export class ProjectsManager {
     return isVmProject(data, this.getTargetProject());
   }
 
+  public static isProjectVmLocal(projectId: string | undefined): boolean {
+    return isLocalVmProject(this.getEnvironmentData(), projectId);
+  }
+
+  public static remoteConfirmationArgument(projectId: string | undefined): string {
+    return this.isProjectVmLocal(projectId) ? ' --confirmar-remoto' : '';
+  }
+
+  public static getTargetVmConnection(): VmConnection | undefined {
+    const project = this.getProject(this.getTargetProject());
+    return normalizeVmConnection(project ? {
+      user: project.ssh_user,
+      host: project.ssh_host,
+      port: project.ssh_port ?? 22,
+      targetPath: project.ssh_target_path
+    } : undefined);
+  }
+
   public static getProjectsList(): DevProject[] {
     const data = this.getEnvironmentData();
     const list: DevProject[] = [];
@@ -143,7 +169,11 @@ export class ProjectsManager {
           path_tests: proj.path_tests,
           local: proj.local,
           url: proj.url,
-          deploy_mode: proj.deploy_mode
+          deploy_mode: proj.deploy_mode,
+          ssh_user: proj.ssh_user,
+          ssh_host: proj.ssh_host,
+          ssh_port: proj.ssh_port,
+          ssh_target_path: proj.ssh_target_path
         });
       }
     }
@@ -169,8 +199,9 @@ export class ProjectsManager {
       data.devEnvironment.projectTarget = projectId;
       fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
       await this.persistActiveProjectId(projectId);
+      this.targetProjectChangedEmitter.fire(projectId);
 
-      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.targetChanged', { target: projectId }), 2000);
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.targetChanged', { target: projectId }), 3000);
       if (onUpdated) {
         onUpdated();
       }
@@ -245,7 +276,7 @@ export class ProjectsManager {
       };
 
       fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
-      vscode.window.showInformationMessage(LocalizationManager.t('projects.saved', { name, id }));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.saved', { name, id }), 3000);
 
       if (onUpdated) {
         onUpdated();
@@ -294,7 +325,7 @@ export class ProjectsManager {
       mergeMissing(template, targetData);
       fs.writeFileSync(envPath, JSON.stringify(targetData, null, 2), 'utf8');
 
-      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.syncSucceeded'), 2000);
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.syncSucceeded'), 3000);
       if (onUpdated) {
         onUpdated();
       }
@@ -345,7 +376,7 @@ export class ProjectsManager {
     const missing = repos.filter(r => !r.exists);
 
     if (missing.length === 0) {
-      vscode.window.showInformationMessage(LocalizationManager.t('projects.allPresent'));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.allPresent'), 3000);
       return;
     }
 
@@ -470,7 +501,7 @@ export class ProjectsManager {
         fs.writeFileSync(envPath, JSON.stringify(data, null, 2), 'utf8');
       }
 
-      vscode.window.showInformationMessage(LocalizationManager.t('projects.scaffolded', { name, id }));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.scaffolded', { name, id }), 3000);
       if (onUpdated) {
         onUpdated();
       }

@@ -127,7 +127,7 @@ class GardeningManager {
         const health = this.getMemoryHealth();
         const sizeKb = (health.sizeBytes / 1024).toFixed(1);
         if (health.status === 'healthy') {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('gardening.noPruneHealthy', { sizeKb, lineCount: health.lineCount }));
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('gardening.noPruneHealthy', { sizeKb, lineCount: health.lineCount }), 3000);
             return;
         }
         const templateContent = `# Requisição Humana req-${padNum}: SDD Memory Gardening & Higienização

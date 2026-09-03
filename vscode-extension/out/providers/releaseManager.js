@@ -59,7 +59,7 @@ class ReleaseManager {
             this.permission = (0, releasePolicy_1.classifyViewerPermission)(this.viewerPermission);
             this.repositoryUrl = typeof info.url === 'string' ? info.url : undefined;
             if (!silent && this.permission === 'allowed') {
-                vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('release.permissionAllowed', { permission: this.viewerPermission }));
+                vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('release.permissionAllowed', { permission: this.viewerPermission }), 3000);
             }
             else if (!silent) {
                 vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('release.permissionDenied', { permission: this.viewerPermission || '?' }));
@@ -206,7 +206,7 @@ class ReleaseManager {
         const resultMessage = diagnostics.gate.canExecute
             ? localizationManager_1.LocalizationManager.t('release.executeReady')
             : localizationManager_1.LocalizationManager.t('release.executionBlocked', { blockers: diagnostics.gate.blockers.join(', ') });
-        vscode.window.showInformationMessage(`${localizationManager_1.LocalizationManager.t('release.draftSaved')} ${resultMessage}`);
+        vscode.window.setStatusBarMessage(`${localizationManager_1.LocalizationManager.t('release.draftSaved')} ${resultMessage}`, 3000);
         if (diagnostics.dirtyFiles.length > 0) {
             await this.offerSourceControl();
         }
@@ -286,9 +286,7 @@ class ReleaseManager {
             await this.context?.workspaceState.update(this.draftKey(product), undefined);
             this.executionGates.delete(product);
             onChanged?.();
-            const open = await vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('release.completed', { product: definition.label }), localizationManager_1.LocalizationManager.t('release.openActions'));
-            if (open)
-                await this.openActions();
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('release.completed', { product: definition.label }), 3000);
         }
     }
     static async openActions() {

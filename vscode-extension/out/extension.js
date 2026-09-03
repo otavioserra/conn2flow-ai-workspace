@@ -23,6 +23,8 @@ const backlogManager_1 = require("./providers/backlogManager");
 const releaseManager_1 = require("./providers/releaseManager");
 const hubTaskWatcher_1 = require("./providers/hubTaskWatcher");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
+const documentationSearchPolicy_1 = require("./documentationSearchPolicy");
+const vmDiagnosticsPolicy_1 = require("./vmDiagnosticsPolicy");
 let dockerStatusBarItem;
 let sddStatusBarItem;
 let modesStatusBarItem;
@@ -54,6 +56,10 @@ function activate(context) {
         gardeningManager_1.GardeningManager.checkAndNotify();
     };
     refreshAll();
+    context.subscriptions.push(projectsManager_1.ProjectsManager.onTargetProjectChanged(() => updateStatusBar()), vscode.workspace.onDidChangeConfiguration(event => {
+        if (event.affectsConfiguration('conn2flow.projects.activeId'))
+            updateStatusBar();
+    }));
     const managedPreviewStateKey = 'conn2flow.sdd.managedMpePreviewPath';
     let managedMpePreviewPath = context.workspaceState.get(managedPreviewStateKey);
     let managedNativePreviewTab;
@@ -147,7 +153,9 @@ function activate(context) {
             vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('common.noWorkspace'));
             return;
         }
-        let resolvedFullPath = sddScopeManager_1.SddScopeManager.resolveSddFile(relativePath);
+        let resolvedFullPath = path.isAbsolute(relativePath) && fs.existsSync(relativePath)
+            ? relativePath
+            : sddScopeManager_1.SddScopeManager.resolveSddFile(relativePath);
         const isScopedSddPath = /^sdd[/\\]/i.test(relativePath);
         if (!resolvedFullPath && !isScopedSddPath) {
             const candidates = [];
@@ -252,6 +260,34 @@ function activate(context) {
             vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('common.error', { message: err.message }));
             return;
         }
+    };
+    let managedPreviewNavigationInProgress = false;
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(editor => {
+        const candidatePath = editor?.document.uri.fsPath;
+        if (!candidatePath || !(0, markdownPreviewPolicy_1.shouldRedirectMarkdownSourceToPreview)(candidatePath, managedMpePreviewPath, sddViewModeManager_1.SddViewModeManager.mode, managedPreviewNavigationInProgress))
+            return;
+        managedPreviewNavigationInProgress = true;
+        void openMarkdownFile(candidatePath).finally(() => {
+            managedPreviewNavigationInProgress = false;
+        });
+    }));
+    const documentationRoots = () => {
+        const roots = [];
+        const locale = localizationManager_1.LocalizationManager.currentLocale === 'en' ? 'en' : 'pt-br';
+        for (const folder of vscode.workspace.workspaceFolders || []) {
+            const workspaceRoot = folder.uri.fsPath;
+            roots.push({ rootPath: path.join(workspaceRoot, 'docs', locale), label: `${path.basename(workspaceRoot)}/docs/${locale}` }, { rootPath: path.join(workspaceRoot, 'docs'), label: `${path.basename(workspaceRoot)}/docs` }, { rootPath: path.join(workspaceRoot, 'ai-workspace', 'pt-br', 'docs'), label: 'conn2flow/ai-workspace/pt-br/docs' }, { rootPath: path.join(workspaceRoot, '..', 'conn2flow', 'ai-workspace', 'pt-br', 'docs'), label: 'conn2flow/ai-workspace/pt-br/docs' }, { rootPath: path.join(workspaceRoot, '..', 'conn2flow-ai-workspace', 'docs', locale), label: `conn2flow-ai-workspace/docs/${locale}` });
+        }
+        return roots;
+    };
+    const runVmLog = (logName) => {
+        const connection = projectsManager_1.ProjectsManager.getTargetVmConnection();
+        const target = projectsManager_1.ProjectsManager.getTargetProject();
+        if (!connection || !target) {
+            vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('diagnostics.vmConfigMissing'));
+            return;
+        }
+        runInTerminal((0, vmDiagnosticsPolicy_1.buildVmLogCommand)(connection, logName), localizationManager_1.LocalizationManager.t(logName === 'php-error.log' ? 'diagnostics.vmPhpLogs' : 'diagnostics.vmNginxLogs'), 'read-only', target);
     };
     // Helper para seleção de projeto do environment.json
     const selectProjectFromEnvironment = async (placeHolder) => {
@@ -459,11 +495,13 @@ function activate(context) {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)
             return void vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('projects.noTargetWarning'));
-        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true, false, true);
+        const remoteConfirmation = projectsManager_1.ProjectsManager.remoteConfirmationArgument(target);
+        runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${target}${remoteConfirmation}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target }), 'mutating', target, true, false, true);
     }), vscode.commands.registerCommand('conn2flow.projects.updateAllWithSelect', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Update All (6 etapas):');
         if (projectId) {
-            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true, false, true);
+            const remoteConfirmation = projectsManager_1.ProjectsManager.remoteConfirmationArgument(projectId);
+            runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:update-all ${projectId}${remoteConfirmation}`), localizationManager_1.LocalizationManager.t('projects.updateAll', { target: projectId }), 'mutating', projectId, true, false, true);
         }
     }), vscode.commands.registerCommand('conn2flow.projects.addNew', async () => {
         await projectsManager_1.ProjectsManager.addNewProject(refreshAll);
@@ -475,7 +513,7 @@ function activate(context) {
         const status = projectsManager_1.ProjectsManager.checkAdjacentRepositories();
         const missing = status.filter(s => !s.exists);
         if (missing.length === 0) {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('projects.allPresent'));
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('projects.allPresent'), 3000);
         }
         else {
             const names = missing.map(m => m.name).join(', ');
@@ -531,9 +569,27 @@ function activate(context) {
         openMarkdownFile(localizedDoc('docs/pt-br/CATALOGO-DE-SKILLS.md', 'docs/en/SKILLS-CATALOG.md'));
     }), vscode.commands.registerCommand('conn2flow.docs.openRoadmap', () => {
         openMarkdownFile(localizedDoc('docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md', 'docs/en/FUTURE-EVOLUTION-ROADMAP.md'));
-    }), 
-    // Aliases para Projetos
-    vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
+    }), vscode.commands.registerCommand('conn2flow.docs.search', async () => {
+        const documents = (0, documentationSearchPolicy_1.collectMarkdownDocuments)(documentationRoots());
+        if (documents.length === 0) {
+            vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('docs.searchEmpty'));
+            return;
+        }
+        const selected = await vscode.window.showQuickPick(documents, {
+            placeHolder: localizationManager_1.LocalizationManager.t('docs.searchPlaceholder'),
+            matchOnDescription: true,
+            matchOnDetail: true
+        });
+        if (selected)
+            await openMarkdownFile(selected.path);
+    }), vscode.commands.registerCommand('conn2flow.vm.logsPhp', () => runVmLog('php-error.log')), vscode.commands.registerCommand('conn2flow.vm.logsNginx', () => runVmLog('nginx-error.log')), vscode.commands.registerCommand('conn2flow.vm.diagnostics', async () => {
+        const selected = await vscode.window.showQuickPick([
+            { label: localizationManager_1.LocalizationManager.t('diagnostics.vmPhpLogs'), command: 'conn2flow.vm.logsPhp' },
+            { label: localizationManager_1.LocalizationManager.t('diagnostics.vmNginxLogs'), command: 'conn2flow.vm.logsNginx' }
+        ], { placeHolder: localizationManager_1.LocalizationManager.t('diagnostics.vmSelectLog') });
+        if (selected)
+            await vscode.commands.executeCommand(selected.command);
+    }), vscode.commands.registerCommand('conn2flow.projects.deployOther', async () => {
         const projectId = await selectProjectFromEnvironment('Selecione o projeto para Deploy:');
         if (projectId) {
             runInTerminal(shellHelper_1.ShellHelper.formatC2fCommand(`project:deploy ${projectId}`), localizationManager_1.LocalizationManager.t('projects.deploy', { target: projectId }), 'remote', projectId, true, false, true);
@@ -614,11 +670,18 @@ function updateStatusBar() {
     sddStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.sddTooltip');
     sddStatusBarItem.show();
     if (projectsManager_1.ProjectsManager.isTargetVm()) {
-        dockerStatusBarItem.hide();
+        const connection = projectsManager_1.ProjectsManager.getTargetVmConnection();
+        dockerStatusBarItem.text = `$(vm) Conn2Flow VM`;
+        dockerStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.vmTooltip', {
+            connection: (0, vmDiagnosticsPolicy_1.describeVmConnection)(connection) || localizationManager_1.LocalizationManager.t('common.unknown')
+        });
+        dockerStatusBarItem.command = 'conn2flow.vm.diagnostics';
+        dockerStatusBarItem.show();
     }
     else {
         dockerStatusBarItem.text = `$(server) Conn2Flow Docker`;
         dockerStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.dockerTooltip');
+        dockerStatusBarItem.command = 'conn2flow.docker.status';
         dockerStatusBarItem.show();
     }
 }

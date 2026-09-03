@@ -5,6 +5,7 @@ exports.runPreviewLifecycle = runPreviewLifecycle;
 exports.normalizePreviewPath = normalizePreviewPath;
 exports.getPreviewCloseReason = getPreviewCloseReason;
 exports.isTargetMpePreview = isTargetMpePreview;
+exports.shouldRedirectMarkdownSourceToPreview = shouldRedirectMarkdownSourceToPreview;
 exports.MPE_VIEW_TYPE = 'markdown-preview-enhanced';
 async function runPreviewLifecycle(lifecycle) {
     await lifecycle.closePreviousManagedPreview();
@@ -39,5 +40,12 @@ function isTargetMpePreview(tab, targetPath) {
         tab.viewType === exports.MPE_VIEW_TYPE &&
         tab.uriPath &&
         normalizePreviewPath(tab.uriPath) === normalizePreviewPath(targetPath));
+}
+function shouldRedirectMarkdownSourceToPreview(candidatePath, managedPreviewPath, viewMode, navigationInProgress = false) {
+    if (navigationInProgress || viewMode !== 'preview' || !managedPreviewPath)
+        return false;
+    if (!candidatePath.toLocaleLowerCase('en-US').endsWith('.md'))
+        return false;
+    return normalizePreviewPath(candidatePath) !== normalizePreviewPath(managedPreviewPath);
 }
 //# sourceMappingURL=markdownPreviewPolicy.js.map

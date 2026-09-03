@@ -199,6 +199,11 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
         this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'),
         this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash')
       );
+    } else {
+      diagnostics.push(
+        this.leaf('diagnostics.vmPhpLogs', 'conn2flow.vm.logsPhp', 'terminal'),
+        this.leaf('diagnostics.vmNginxLogs', 'conn2flow.vm.logsNginx', 'output')
+      );
     }
     diagnostics.push(
       this.leaf('diagnostics.aiSync', 'conn2flow.ai.sync', 'extensions'),
@@ -206,6 +211,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     );
 
     const docsConfig = [
+      this.leaf('docs.search', 'conn2flow.docs.search', 'search'),
       this.leaf('docs.index', 'conn2flow.docs.openIndex', 'library'),
       this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
       this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),

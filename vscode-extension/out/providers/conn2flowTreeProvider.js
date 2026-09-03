@@ -155,8 +155,12 @@ class Conn2FlowTreeProvider {
         if (!projectsManager_1.ProjectsManager.isTargetVm()) {
             diagnostics.push(this.leaf('diagnostics.dockerStatus', 'conn2flow.docker.status', 'pulse'), this.leaf('diagnostics.apacheLogs', 'conn2flow.docker.logsApache', logFollowManager_1.LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output'), this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', logFollowManager_1.LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'), this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash'));
         }
+        else {
+            diagnostics.push(this.leaf('diagnostics.vmPhpLogs', 'conn2flow.vm.logsPhp', 'terminal'), this.leaf('diagnostics.vmNginxLogs', 'conn2flow.vm.logsNginx', 'output'));
+        }
         diagnostics.push(this.leaf('diagnostics.aiSync', 'conn2flow.ai.sync', 'extensions'), this.leaf('diagnostics.syncAll', 'conn2flow.ai.syncAllRepos', 'repo-clone'));
         const docsConfig = [
+            this.leaf('docs.search', 'conn2flow.docs.search', 'search'),
             this.leaf('docs.index', 'conn2flow.docs.openIndex', 'library'),
             this.leaf('docs.panel', 'conn2flow.docs.openDevToolsGuide', 'dashboard'),
             this.leaf('docs.cli', 'conn2flow.docs.openDevGuide', 'book'),

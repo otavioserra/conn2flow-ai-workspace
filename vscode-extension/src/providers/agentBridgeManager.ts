@@ -158,7 +158,7 @@ export class AgentBridgeManager {
     });
 
     await vscode.env.clipboard.writeText(fullPrompt);
-    vscode.window.showInformationMessage(LocalizationManager.t('agents.promptCopied'));
+    vscode.window.setStatusBarMessage(LocalizationManager.t('agents.promptCopied'), 3000);
   }
 
   public static async recordTerminalHandoff(openMarkdownFile: (file: string) => Promise<void>): Promise<void> {

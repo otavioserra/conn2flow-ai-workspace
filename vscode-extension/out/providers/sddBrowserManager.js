@@ -11,7 +11,7 @@ class SddBrowserManager {
         const sddRoot = sddScopeManager_1.SddScopeManager.getActiveSddRoot();
         const scopeLabel = sddScopeManager_1.SddScopeManager.getScopeLabel();
         if (!sddRoot || !fs.existsSync(sddRoot)) {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
+            vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
             return;
         }
         const targetDir = path.join(sddRoot, subDir);
@@ -30,7 +30,7 @@ class SddBrowserManager {
             }
         }
         if (foundFiles.size === 0) {
-            vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }));
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }), 3000);
             return;
         }
         // Ordena os arquivos em ordem decrescente (ex: req-145 antes de req-144)

@@ -138,7 +138,7 @@ class AgentBridgeManager {
             content: active.content
         });
         await vscode.env.clipboard.writeText(fullPrompt);
-        vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('agents.promptCopied'));
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('agents.promptCopied'), 3000);
     }
     static async recordTerminalHandoff(openMarkdownFile) {
         const sddRoot = sddScopeManager_1.SddScopeManager.getActiveSddRoot();

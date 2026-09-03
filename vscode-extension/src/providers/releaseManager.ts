@@ -126,8 +126,9 @@ export class ReleaseManager {
       this.permission = classifyViewerPermission(this.viewerPermission);
       this.repositoryUrl = typeof info.url === 'string' ? info.url : undefined;
       if (!silent && this.permission === 'allowed') {
-        vscode.window.showInformationMessage(
-          LocalizationManager.t('release.permissionAllowed', { permission: this.viewerPermission })
+        vscode.window.setStatusBarMessage(
+          LocalizationManager.t('release.permissionAllowed', { permission: this.viewerPermission }),
+          3000
         );
       } else if (!silent) {
         vscode.window.showWarningMessage(
@@ -304,8 +305,9 @@ export class ReleaseManager {
     const resultMessage = diagnostics.gate.canExecute
       ? LocalizationManager.t('release.executeReady')
       : LocalizationManager.t('release.executionBlocked', { blockers: diagnostics.gate.blockers.join(', ') });
-    vscode.window.showInformationMessage(
-      `${LocalizationManager.t('release.draftSaved')} ${resultMessage}`
+    vscode.window.setStatusBarMessage(
+      `${LocalizationManager.t('release.draftSaved')} ${resultMessage}`,
+      3000
     );
 
     if (diagnostics.dirtyFiles.length > 0) {
@@ -416,11 +418,10 @@ export class ReleaseManager {
       await this.context?.workspaceState.update(this.draftKey(product), undefined);
       this.executionGates.delete(product);
       onChanged?.();
-      const open = await vscode.window.showInformationMessage(
+      vscode.window.setStatusBarMessage(
         LocalizationManager.t('release.completed', { product: definition.label }),
-        LocalizationManager.t('release.openActions')
+        3000
       );
-      if (open) await this.openActions();
     }
   }
 

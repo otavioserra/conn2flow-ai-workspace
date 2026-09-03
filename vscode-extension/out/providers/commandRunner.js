@@ -92,7 +92,7 @@ class CommandRunner {
                 taskDisposable?.dispose();
                 const succeeded = exitCode === 0;
                 if (succeeded && request.notifySuccess !== false) {
-                    vscode.window.showInformationMessage(localizationManager_1.LocalizationManager.t('command.succeeded', { label: request.label }));
+                    vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('command.succeeded', { label: request.label }), 3000);
                 }
                 else if (!succeeded) {
                     vscode.window.showErrorMessage(localizationManager_1.LocalizationManager.t('command.failed', {

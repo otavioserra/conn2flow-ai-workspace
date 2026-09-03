@@ -65,3 +65,14 @@ export function isTargetMpePreview(tab: PreviewTabDescriptor, targetPath: string
     normalizePreviewPath(tab.uriPath) === normalizePreviewPath(targetPath)
   );
 }
+
+export function shouldRedirectMarkdownSourceToPreview(
+  candidatePath: string,
+  managedPreviewPath: string | undefined,
+  viewMode: string,
+  navigationInProgress = false
+): boolean {
+  if (navigationInProgress || viewMode !== 'preview' || !managedPreviewPath) return false;
+  if (!candidatePath.toLocaleLowerCase('en-US').endsWith('.md')) return false;
+  return normalizePreviewPath(candidatePath) !== normalizePreviewPath(managedPreviewPath);
+}

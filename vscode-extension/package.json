@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
@@ -261,6 +261,24 @@
         "icon": "$(trash)"
       },
       {
+        "command": "conn2flow.vm.logsPhp",
+        "title": "%command.conn2flow.vm.logsPhp%",
+        "category": "Conn2Flow VM",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "conn2flow.vm.logsNginx",
+        "title": "%command.conn2flow.vm.logsNginx%",
+        "category": "Conn2Flow VM",
+        "icon": "$(output)"
+      },
+      {
+        "command": "conn2flow.vm.diagnostics",
+        "title": "%command.conn2flow.vm.diagnostics%",
+        "category": "Conn2Flow VM",
+        "icon": "$(vm)"
+      },
+      {
         "command": "conn2flow.manager.updateAll",
         "title": "%command.conn2flow.manager.updateAll%",
         "category": "Conn2Flow Manager",
@@ -445,6 +463,12 @@
         "title": "%command.conn2flow.docs.openDevToolsGuide%",
         "category": "Conn2Flow Docs",
         "icon": "$(dashboard)"
+      },
+      {
+        "command": "conn2flow.docs.search",
+        "title": "%command.conn2flow.docs.search%",
+        "category": "Conn2Flow Docs",
+        "icon": "$(search)"
       },
       {
         "command": "conn2flow.docs.openIndex",
@@ -635,7 +659,9 @@
     "compile": "tsc -p ./",
     "test": "npm run compile && node --test test/**/*.test.cjs",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "version:bump": "node scripts/bump-version.cjs",
+    "version:bump:dry-run": "node scripts/bump-version.cjs --dry-run",
+    "package": "npm run version:bump && vsce package"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

@@ -14,7 +14,7 @@ export class SddBrowserManager {
     const scopeLabel = SddScopeManager.getScopeLabel();
 
     if (!sddRoot || !fs.existsSync(sddRoot)) {
-      vscode.window.showInformationMessage(LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
+      vscode.window.showWarningMessage(LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
       return;
     }
 
@@ -35,7 +35,7 @@ export class SddBrowserManager {
     }
 
     if (foundFiles.size === 0) {
-      vscode.window.showInformationMessage(LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('sdd.noFiles', { directory: subDir, scope: scopeLabel }), 3000);
       return;
     }
 

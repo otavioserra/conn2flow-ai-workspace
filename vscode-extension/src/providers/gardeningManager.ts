@@ -150,8 +150,9 @@ export class GardeningManager {
     const sizeKb = (health.sizeBytes / 1024).toFixed(1);
 
     if (health.status === 'healthy') {
-      vscode.window.showInformationMessage(
-        LocalizationManager.t('gardening.noPruneHealthy', { sizeKb, lineCount: health.lineCount })
+      vscode.window.setStatusBarMessage(
+        LocalizationManager.t('gardening.noPruneHealthy', { sizeKb, lineCount: health.lineCount }),
+        3000
       );
       return;
     }
