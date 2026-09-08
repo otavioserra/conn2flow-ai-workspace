@@ -41,7 +41,7 @@ test('comando de log VM valida SSH e limita leitura a 100 linhas', () => {
 
   const command = buildVmLogCommand(connection, 'php-error.log');
   assert.match(command, /BatchMode=yes/);
-  assert.match(command, /tail -n 100/);
+  assert.match(command, /sudo tail -n 100/);
   assert.match(command, /\/logs\/php-error\.log/);
   assert.equal(normalizeVmConnection({ user: 'x;whoami', host: 'host', port: 22, targetPath: '/srv/app' }), undefined);
   assert.equal(normalizeVmConnection({ user: '-option', host: 'host', port: 22, targetPath: '/srv/app' }), undefined);

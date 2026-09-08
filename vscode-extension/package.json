@@ -657,7 +657,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "test": "npm run compile && node --test test/**/*.test.cjs",
+    "test": "npm run compile && node --test test/",
     "watch": "tsc -watch -p ./",
     "version:bump": "node scripts/bump-version.cjs",
     "version:bump:dry-run": "node scripts/bump-version.cjs --dry-run",

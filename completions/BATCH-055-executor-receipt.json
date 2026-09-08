@@ -1,0 +1,13 @@
+{
+  "receiptId": "rec_batch_055_executor_20260903",
+  "batchId": "BATCH-055",
+  "taskId": "task-local-executor-batch-055",
+  "reqId": "REQ-053",
+  "role": "executor",
+  "status": "success",
+  "timestamp": "2026-09-03T15:21:51.597Z",
+  "logSize": 2048,
+  "acknowledgement": "BATCH-055 implemented and validated by the local SDD Executor in supervised dual-agent mode; awaiting human review.",
+  "summary": "Logs VM com sudo, sincronização do CLI, rebuild SSH em modo duplo, Tailwind global com NODE_PATH e asserções SSH portáveis entre Windows e Linux.",
+  "logs": "Modo supervisionado. Extensão: npm test 114/114. Core focado: 54/54 testes e 171 asserções. Core completo: 1158/1158 testes e 7730 asserções, com 4 skips e 2 depreciações preexistentes. Linux PHP 8.3: ProjectSshPublicPathReq050Test 17/17 e 51 asserções. php -l e bash -n limpos. Simulação do css:rebuild remoto exibiu os ramos ./c2f, c2f global e fallback PHP em lab.conn2flow.local sem abrir SSH. O Core foi integrado externamente no commit 13814708; este Executor não realizou commit, push, deploy ou mutação remota. Efeito colateral de schema-metadata.json restaurado; mudanças concorrentes de admin-cron/BATCH-167 preservadas. Gate SDD final: 10 requisições, 10 batches e zero links relativos órfãos; batch-045.md arquivado pelo comando oficial."
+}

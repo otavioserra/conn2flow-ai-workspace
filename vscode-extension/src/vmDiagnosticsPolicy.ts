@@ -36,7 +36,7 @@ export function buildVmLogCommand(connection: VmConnection, logName: VmLogName):
   if (!normalized) throw new Error('Invalid VM SSH configuration.');
 
   const remoteLog = `${normalized.targetPath}/logs/${logName}`;
-  return `ssh -o BatchMode=yes -o ConnectTimeout=15 -p ${normalized.port} "${normalized.user}@${normalized.host}" "tail -n 100 -- '${remoteLog}'"`;
+  return `ssh -o BatchMode=yes -o ConnectTimeout=15 -p ${normalized.port} "${normalized.user}@${normalized.host}" "sudo tail -n 100 -- '${remoteLog}'"`;
 }
 
 export function describeVmConnection(connection: VmConnection | undefined): string | undefined {
