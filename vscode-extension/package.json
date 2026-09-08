@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
