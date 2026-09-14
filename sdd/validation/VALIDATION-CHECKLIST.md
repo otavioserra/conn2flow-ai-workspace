@@ -1204,7 +1204,10 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 
 - [ ] Poda de `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` reduzindo seu tamanho de 52.36 KB para a faixa de 20-30 KB (< 35 KB).
 - [ ] Confirmação de que nenhum arquivo `MEMORIA-*.md` do ecossistema ultrapassa o teto de 50 KB.
-- [ ] Testes unitários da extensão (`npm test`) e Core 100% verdes.
+- [ ] Empacotamento do VSIX oficial `conn2flow-tools-1.1.1.vsix` atualizado.
+- [ ] Workflows de release no GitHub Actions (`release-gestor.yml`) confirmados com status `success`.
+- [ ] Testes unitários da extensão (`npm test`, 114/114) e Core 100% verdes.
 - [ ] Gate SDD sem links órfãos e janela da regra dos 10 ativa.
 - [ ] Recibo emitido em `completions/BATCH-056-executor-receipt.json`.
+
 
