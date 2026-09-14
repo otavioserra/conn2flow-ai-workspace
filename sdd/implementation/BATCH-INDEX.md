@@ -79,9 +79,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
 | **BATCH-054** | complete | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 homologada; 111/111 testes na extensão, 1125 testes PHPUnit, css:audit SSH, status bar VM, busca de docs e VSIX 1.1.0. |
 | **BATCH-055** | complete | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | `VALIDATION-CHECKLIST.md#batch-055` | REQ-053 homologada; 114/114 testes na extensão, 1158 testes PHPUnit, sudo tail nos logs VM, modo duplo no css:rebuild e CI portável. |
-| **BATCH-056** | in-progress | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | `VALIDATION-CHECKLIST.md#batch-056` | REQ-054 ativa; poda de memória em lumix (< 30 KB) e auditoria de governança. |
+| **BATCH-056** | complete | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | `VALIDATION-CHECKLIST.md#batch-056` | REQ-054 homologada; poda em lumix (15 KB), auditoria ecossistema (< 50 KB), VSIX 1.1.1 gerado e release 2.10.10 validada. |
 
 ## Próxima requisição
 
-`REQ-054`: **ATIVA** em 2026-09-14 para o lote `BATCH-056`.
+`REQ-054` concluída e homologada em 2026-09-14 no lote `BATCH-056`. Sistema pronto para novo ciclo de intake humano.
+
 

@@ -68,10 +68,10 @@ test('notificações rotineiras não usam showInformationMessage', () => {
 test('manifesto inicia em 1.1.0 e empacotamento aciona bump patch automático', () => {
   const manifest = require('../package.json');
   const lock = require('../package-lock.json');
-  assert.equal(manifest.version, '1.1.0');
+  assert.equal(manifest.version, '1.1.1');
   assert.equal(lock.version, manifest.version);
   assert.equal(lock.packages[''].version, manifest.version);
-  assert.equal(nextPatchVersion(manifest.version), '1.1.1');
+  assert.equal(nextPatchVersion(manifest.version), '1.1.2');
   assert.match(manifest.scripts.package, /version:bump/);
   assert.match(manifest.scripts['version:bump:dry-run'], /--dry-run/);
 });
