@@ -1223,5 +1223,20 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-056-executor-receipt.json`.
 
+---
+
+## BATCH-057: Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] `c2f-shell-and-windows-traps/SKILL.md` atualizado na matriz com `MSYS_NO_PATHCONV=1` para `rsync`.
+- [ ] `c2f-javascript-ajax/SKILL.md` atualizado na matriz com cobertura CSRF para `XMLHttpRequest` cru.
+- [ ] Espelhamento completo das 39 skills em `.claude/skills/`, `.gemini/skills/` e `.codex/skills/` na matriz central.
+- [ ] Distribuição e sincronização das 39 skills para os 4 satélites (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`), incluindo as 3 skills da Tríade SDD.
+- [ ] Auditoria de integridade por hash criptográfico confirmando zero divergência em todo o ecossistema.
+- [ ] Gate SDD sem links órfãos e janela de 10 requisições/batches ativos respeitada.
+- [ ] Recibo emitido em `completions/BATCH-057-executor-receipt.json`.
+
+
 
 

@@ -1,17 +1,16 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-054.md](req-054.md)
-* **Status**: `HOMOLOGATED`
-* **Lote Relacionado**: `BATCH-056`
+* **Ponteiro Ativo**: [req-055.md](req-055.md)
+* **Status**: `READY_FOR_EXECUTION`
+* **Lote Relacionado**: `BATCH-057`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Homologação**: 2026-09-14
-* **Lote Anterior Concluído**: [req-053.md](req-053.md) (`BATCH-055`)
+* **Data de Entrada**: 2026-09-17
+* **Lote Anterior Concluído**: [req-054.md](req-054.md) (`BATCH-056`)
 
-## 🎯 Objetivo Operacional do Lote BATCH-056
+## 🎯 Objetivo Operacional do Lote BATCH-057
 
-Executar rodada de Memory Gardening e higienização de governança SDD:
-1. Podar e compactar `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` reduzindo seu tamanho de 53.62 KB para 15.02 KB (redução de 72%) seguindo o protocolo `sdd-memory-gardening`.
-2. Validar que nenhum repositório do ecossistema Conn2Flow ultrapasse o teto de 50 KB em arquivos `MEMORIA-*.md`.
-3. Empacotar o VSIX oficial `conn2flow-tools-1.1.1.vsix` e validar a suíte de testes da extensão (114/114 testes).
-4. Confirmar a integridade da esteira de release `gestor-v2.10.10` no GitHub Actions (status SUCCESS).
+Consolidação canônica e sincronização das 39 skills em todos os 5 repositórios:
+1. Consolidar na matriz central (`conn2flow-ai-workspace`) as melhorias de `c2f-shell-and-windows-traps` (`MSYS_NO_PATHCONV=1` no rsync) e `c2f-javascript-ajax` (CSRF em `XMLHttpRequest` cru).
+2. Distribuir e espelhar as 39 skills oficiais para os 5 repositórios (`conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `lumix`, `transformamp`), incluindo as 3 skills da Tríade SDD.
+3. Auditar a igualdade de hash garantindo zero divergência em todo o ecossistema.
