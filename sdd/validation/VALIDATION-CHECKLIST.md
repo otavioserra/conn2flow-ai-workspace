@@ -911,7 +911,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - **Paridade de catálogos**: `localizationCatalog.test.cjs` continua verde (paridade estrita `en`/`ptBR`), `packageNls.test.cjs` continua verde (88 chaves em cada arquivo NLS) e o novo teste de sincronismo exige igualdade byte a byte dos dois templates entre `package.nls.*` e o catálogo de runtime.
 - **Saída real verificada**: prompt renderizado com `Projeto: conn2flow-ai-workspace`, `Caminho Raiz: c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`, `Raiz SDD: ...\sdd` e link `[req-044.md](...\sdd\human-requests\CURRENT.md)`; instrução `/goal` iniciando com `[Projeto: ... | Raiz: ... | Entrada: ...]`.
 - **Recibo MCP Hub**: `completions/BATCH-046-executor-receipt.json` com `role: "executor"`, `req_id: "REQ-044"` e `task_id: "task-1788262915507-xglp9"`.
-- **Detalhamento do lote**: [batch-046.md](../implementation/batch-046.md).
+- **Detalhamento do lote**: [batch-046.md](../implementation/archive/batch-046.md).
 
 ### 3. Revisão Técnica
 
@@ -936,7 +936,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - `cd vscode-extension && npm test`: 76/76 testes aprovados, compilação TypeScript limpa.
 - `Core: php cli/c2f.php ai:sync`: 36/36 skills verificadas nos 5 kits.
 - Recibo do Executor: `completions/BATCH-047-executor-receipt.json` (`rec_1788275223806`).
-- Detalhamento do lote: [batch-047.md](../implementation/batch-047.md).
+- Detalhamento do lote: [batch-047.md](../implementation/archive/batch-047.md).
 
 ### 3. Revisão Técnica
 
@@ -1229,13 +1229,30 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] `c2f-shell-and-windows-traps/SKILL.md` atualizado na matriz com `MSYS_NO_PATHCONV=1` para `rsync`.
-- [ ] `c2f-javascript-ajax/SKILL.md` atualizado na matriz com cobertura CSRF para `XMLHttpRequest` cru.
-- [ ] Espelhamento completo das 39 skills em `.claude/skills/`, `.gemini/skills/` e `.codex/skills/` na matriz central.
-- [ ] Distribuição e sincronização das 39 skills para os 4 satélites (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`), incluindo as 3 skills da Tríade SDD.
-- [ ] Auditoria de integridade por hash criptográfico confirmando zero divergência em todo o ecossistema.
-- [ ] Gate SDD sem links órfãos e janela de 10 requisições/batches ativos respeitada.
-- [ ] Recibo emitido em `completions/BATCH-057-executor-receipt.json`.
+- [x] `c2f-shell-and-windows-traps/SKILL.md` atualizado na matriz com `MSYS_NO_PATHCONV=1` para `rsync`.
+- [x] `c2f-javascript-ajax/SKILL.md` atualizado na matriz com cobertura CSRF para `XMLHttpRequest` cru.
+- [x] Espelhamento completo das 39 skills em `.claude/skills/`, `.gemini/skills/` e `.codex/skills/` na matriz central.
+- [x] Distribuição e sincronização das 39 skills para os 4 satélites (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`), incluindo as 3 skills da Tríade SDD.
+- [x] Auditoria de integridade por hash criptográfico confirmando zero divergência em todo o ecossistema.
+- [x] Gate SDD sem links órfãos e janela de 10 requisições/batches ativos respeitada.
+- [x] Recibo emitido em `completions/BATCH-057-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. Auditoria MD5 recursiva: **15 kits**, **585 cópias oficiais**, `divergences=0`; todas as cópias
+   contêm 39/39 skills e a Tríade SDD completa.
+2. Validação estrutural: **39/39 skills** com `SKILL.md`, frontmatter, `name` coerente e
+   `description`; zero erros.
+3. Testes focados do Core: `npx vitest run tests/Unit/JS/global-csrf.test.js
+   tests/Unit/JS/global-auth-redirect.test.js`, **20/20 aprovados**.
+4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos.
+5. Detalhamento operacional: [batch-057.md](../implementation/batch-057.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-057.md](review-057.md) emitido com parecer **APPROVED** em 2026-09-17.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-057-executor-receipt.json`.
 
 
 
