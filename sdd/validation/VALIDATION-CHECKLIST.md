@@ -1257,3 +1257,32 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 
 
 
+
+---
+
+## BATCH-058: Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios
+
+### 1. Checklist de Aceite Técnico
+
+- [x] `c2f-shell-and-windows-traps/SKILL.md` atualizado na matriz com as Armadilhas 7 (cwRsync/SSH dup failed), 8 (sequências ANSI no CLI) e 9 (cd antes de sudo no HestiaCP).
+- [x] Espelhamento completo das 39 skills em `.claude/skills/`, `.gemini/skills/`, `.codex/skills/`, `.cursor/skills/` e `.github/skills/` na matriz central.
+- [x] Distribuição e sincronização das 39 skills para os 4 satélites (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`).
+- [x] Preservação integral de 35 skills locais/privadas nos satélites.
+- [x] Auditoria de integridade por hash criptográfico confirmando zero divergência em 975 arquivos verificados.
+- [x] Suíte de testes `npm test` aprovada com 114/114 testes verdes.
+- [x] Gate SDD sem links órfãos e janela de 10 requisições/batches ativos respeitada (arquivado `batch-048.md`).
+- [x] Recibo emitido em `completions/BATCH-058-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. Auditoria MD5 recursiva: **25 kits**, **975 cópias oficiais**, `divergences=0`; todas as cópias contêm 39/39 skills perfeitamente idênticas.
+2. Testes unitários: `npm test` em `vscode-extension/`, **114/114 testes aprovados** (180ms).
+3. Preservação: 35 skills privadas/locais intactas nos 4 satélites.
+4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos; `batch-048.md` arquivado.
+5. Detalhamento operacional: [batch-058.md](../implementation/batch-058.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-058.md](review-058.md) emitido com parecer **APPROVED** em 2026-09-18.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-058-executor-receipt.json`.

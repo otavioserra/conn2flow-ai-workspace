@@ -1,0 +1,60 @@
+{
+  "batch": "BATCH-058",
+  "request": "req-056",
+  "executor": "Antigravity (c2f-executor-agent)",
+  "model": "gemini-2.5-pro",
+  "timestamp": "2026-09-18T13:04:00-03:00",
+  "status": "READY_FOR_REVIEW",
+  "deliverables": [
+    {
+      "task": "c2f-shell-and-windows-traps/SKILL.md — Expand to 9 traps",
+      "result": "PASS",
+      "details": "Added Trap 7 (rsync dup() cwRsync/SSH mismatch), Trap 8 (ANSI sequences in CLI output), Trap 9 (cd before sudo -u in HestiaCP). Skill expanded from 139 to 210 lines."
+    },
+    {
+      "task": "Mirror 39 skills in workspace central (5 kits)",
+      "result": "PASS",
+      "details": "156 skill copies mirrored from .claude/skills/ to .gemini/, .codex/, .cursor/, .github/ in conn2flow-ai-workspace."
+    },
+    {
+      "task": "Propagate to 4 satellites (5 kits each)",
+      "result": "PASS",
+      "details": "780 canonical skill copies propagated to conn2flow, conn2flow-site, lumix, transformamp. 35 local/private skills preserved intact."
+    },
+    {
+      "task": "MD5 cryptographic audit",
+      "result": "PASS",
+      "details": "975 SKILL.md files checked (39 skills × 5 kits × 5 repos), 0 divergences found."
+    },
+    {
+      "task": "npm test (vscode-extension)",
+      "result": "PASS",
+      "details": "114/114 tests passed in 180.54 ms. Exit code 0."
+    }
+  ],
+  "files_modified": [
+    "conn2flow-ai-workspace/.claude/skills/c2f-shell-and-windows-traps/SKILL.md",
+    "conn2flow-ai-workspace/.gemini/skills/c2f-shell-and-windows-traps/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-shell-and-windows-traps/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-shell-and-windows-traps/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-shell-and-windows-traps/SKILL.md",
+    "conn2flow-ai-workspace/sdd/implementation/batch-058.md",
+    "conn2flow-ai-workspace/sdd/human-requests/CURRENT.md"
+  ],
+  "propagated_repositories": [
+    "conn2flow (5 kits × 39 skills)",
+    "conn2flow-site (5 kits × 39 skills)",
+    "lumix (5 kits × 39 skills)",
+    "transformamp (5 kits × 39 skills)"
+  ],
+  "criteria_met": {
+    "9_traps_complete": true,
+    "39_skills_mirrored_workspace": true,
+    "39_skills_propagated_satellites": true,
+    "local_skills_preserved": true,
+    "md5_zero_divergences": true,
+    "npm_test_114_pass": true,
+    "batch_record_created": true,
+    "receipt_emitted": true
+  }
+}
