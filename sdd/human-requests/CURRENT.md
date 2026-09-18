@@ -1,16 +1,16 @@
-# CURRENT ACTIVE REQUEST
+﻿# CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-055.md](req-055.md)
-* **Status**: `HOMOLOGATED`
-* **Lote Relacionado**: `BATCH-057`
+* **Ponteiro Ativo**: [req-056.md](req-056.md)
+* **Status**: `APPROVED`
+* **Lote Relacionado**: `BATCH-058`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Homologação**: 2026-09-17
-* **Lote Anterior Concluído**: [req-054.md](req-054.md) (`BATCH-056`)
+* **Data de Entrada**: 2026-09-18
+* **Lote Anterior Concluído**: [req-055.md](req-055.md) (`BATCH-057`)
 
-## 🎯 Objetivo Operacional do Lote BATCH-057
+## 🎯 Objetivo Operacional do Lote BATCH-058
 
-Consolidação canônica e sincronização das 39 skills em todos os 5 repositórios:
-1. Consolidar na matriz central (`conn2flow-ai-workspace`) as melhorias de `c2f-shell-and-windows-traps` (`MSYS_NO_PATHCONV=1` no rsync) e `c2f-javascript-ajax` (CSRF em `XMLHttpRequest` cru).
-2. Distribuir e espelhar as 39 skills oficiais para os 5 repositórios (`conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `lumix`, `transformamp`), incluindo as 3 skills da Tríade SDD.
-3. Auditar a igualdade de hash garantindo zero divergência em 585 cópias verificadas em 15 kits.
+Incorporação canônica das 3 novas armadilhas de shell/Windows e sincronização integral nos 5 repositórios:
+1. **Consolidação na Matriz Central (`conn2flow-ai-workspace`)**: Atualizar `c2f-shell-and-windows-traps/SKILL.md` com as Armadilhas 7 (`rsync: dup() in/out/err failed` e pareamento cwRsync/SSH), 8 (sequências ANSI no Tailwind CLI) e 9 (`cd` antes de `sudo -u` no HestiaCP).
+2. **Propagação Global**: Espelhar as 39 skills oficiais em todas as pastas de kit (`.claude/skills/`, `.gemini/skills/`, `.codex/skills/`, `.cursor/skills/` e `.github/skills/`) nos 5 repositórios (`conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `lumix`, `transformamp`).
+3. **Auditoria MD5 & Preservação**: Verificar paridade com zero divergências nas 39 skills canônicas e preservar skills privadas/locais de satélites.
