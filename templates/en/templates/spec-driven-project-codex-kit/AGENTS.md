@@ -1,27 +1,33 @@
-# SDD Agents — OpenAI Codex & Antigravity Multi-Agent Configuration
+# Agentes SDD — Configuração Multi-Agente OpenAI Codex & Antigravity
 
-## 👥 Double Agent Roles
+## 👥 Papéis de Agente Duplo
 
-### 🏛️ Architect (Macro-Orchestrator)
-- **Responsibility**: Translate human needs and briefings into normative specifications (`sdd/SPEC.md`), decision records (`sdd/decisions/`), and formal requests (`sdd/human-requests/req-XXX.md`).
-- **Tools**: Antigravity / Gemini / GPT in planning mode.
-- **Rule**: Never commits or pushes code directly in the core or project modules.
+### 🏛️ Arquiteto (Macro-Orquestrador)
+- **Responsabilidade**: Traduzir necessidades humanas e briefings em especificações normativas (`sdd/SPEC.md`), registros de decisão (`sdd/decisions/`) e requisições formais (`sdd/human-requests/req-XXX.md`).
+- **Ferramentas**: Antigravity / Gemini / GPT no modo planejamento.
+- **Regra**: Nunca realiza commits ou push de código diretamente no core ou módulos.
 
-### ⚙️ Executor (Micro-Operator)
-- **Responsibility**: Implement code, compile resources, execute tests, and log verification receipts in `sdd/implementation/batch-YYY.md` and `sdd/validation/VALIDATION-CHECKLIST.md`.
-- **Tools**: OpenAI Codex / GPT in VS Code / Claude Code.
-- **Rule**: Reads the briefing in `sdd/human-requests/CURRENT.md` before making changes and maintains the Live Todo List (`[ ]` ➔ `[x]`).
+### ⚙️ Executor (Micro-Operador)
+- **Responsabilidade**: Implementar código, compilar recursos, rodar testes e registrar evidências no lote em `sdd/implementation/batch-YYY.md` e `sdd/validation/VALIDATION-CHECKLIST.md`.
+- **Ferramentas**: OpenAI Codex / GPT no VS Code / Claude Code.
+- **Regra**: Lê o briefing em `sdd/human-requests/CURRENT.md` antes de iniciar qualquer alteração e atualiza a Live Todo List (`[ ]` ➔ `[x]`).
 
-### 👨‍💻 Human-in-the-Loop (You)
-- **Responsibility**: Direct the Architect and inspect code diffs before final consolidation.
+### 👨‍💻 Humano-no-Loop (Você)
+- **Responsabilidade**: Direcionar o Arquiteto e revisar diffs de código antes da consolidação final.
 
 ---
 
-## 📦 Skills Configuration (36 Official Skills)
+## 📦 Configuração de Skills (39 Skills Oficiais)
 
-All **36 skills** are available in `.codex/skills/` (as well as `.claude/skills/`, `.gemini/skills/`, `.github/skills/`, `.cursor/skills/`) following the open progressive disclosure standard (`SKILL.md`):
+Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `.gemini/skills/` (com espelhamento nos demais clientes) e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 
-### 1. Core Framework Skills (29 Skills):
+### 1. Skills de Papéis da Tríade SDD (3 Skills):
+> Consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
+- `c2f-architect-master`: Arquiteto Master / Engenheiro Chefe (governança macro, documentação viva, backlog e restrição de edição direta).
+- `c2f-executor-agent`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
+- `c2f-reviewer-agent`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
+
+### 2. Skills Core do Framework (29 Skills):
 - `c2f-agent-visual-inspection`
 - `c2f-database-operations`
 - `c2f-dev-scripts`
@@ -52,7 +58,7 @@ All **36 skills** are available in `.codex/skills/` (as well as `.claude/skills/
 - `c2f-quill-editor`
 - `c2f-assets-management`
 
-### 2. SDD Governance & Workflow Skills (7 Skills):
+### 3. Skills de Governança e Workflow SDD (7 Skills):
 - `sdd-workflow`
 - `start-sdd-slice`
 - `continue-sdd-batch`
@@ -63,26 +69,28 @@ All **36 skills** are available in `.codex/skills/` (as well as `.claude/skills/
 
 ---
 
-## ⚡ Zero-Prompt Auto-Boot Protocol
+## ⚡ Protocolo de Inicialização Zero-Prompt (Auto-Boot)
 
-When the user opens a chat and sends short trigger phrases (e.g. `"start"`, `"chief"`, `"go"`, `"run"`, `"status"`):
-1. **Automatic Repository Identification**: The agent immediately assumes the context of the local repository.
-2. **Mandatory Reading of `CURRENT.md`**: The agent reads `sdd/human-requests/CURRENT.md` to inspect the active requirement pointer (`req-XXX.md`), matching batch, and autonomy mode (`supervised`, `monitored_autonomous`, or `headless_autonomous`).
-3. **Automatic Role Activation**:
-   - **In Antigravity (Master Architect / Chief Engineer)**: Activates `c2f-architect-master`, reads `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, checks pending items, and proposes the next strategic plan.
-   - **In VS Code / Claude Code / Codex (Tactical Executor)**: Activates `c2f-executor-agent`, immediately renders the **Live Todo List (`[ ]` ➔ `[x]`)** from the active requirement, and begins implementing the smallest approved slice.
-   - **In Reviewer (Quality Auditor)**: Activates `c2f-reviewer-agent`, audits diffs, and validates security/skill contracts.
-4. **Automatic MCP Integration**: Leverages the MCP Hub (`conn2flow-hub`) for CLI operations (`c2f_run_command`), task dispatch (`dispatch_task`), and completion receipts (`report_completion`).
+Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `"chefe"`, `"inicia"`, `"bora"`, `"executa"`, `"status"`):
+1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
+2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
+3. **Ativação Automática por Papel**:
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
 
 ---
 
-## 🛡️ Inviolable Governance Rules
+## 🛡️ Regras Invioláveis de Governança
 
-1. **Absolute Prohibition of `git add -A` and `git add .`**: Commits must ALWAYS list explicit paths (`git add <specific-paths>`).
-2. **Prohibition of Manual Synchronization**: NEVER copy files manually (`cp`, `copy`, `Copy-Item`) to test/mirror directories (`dev-environment/data/sites/`). Always execute `./c2f manager:update-all` (system) or `./c2f project:update-all <id>` (project).
-3. **Exclusive Sequential Execution**: Batch compilation commands (`manager:update-all`, `project:update-all`, `css:rebuild`, `resources:sync`) must execute sequentially in foreground with unbuffered logs.
-4. **Runtime Source of Truth**: Runtime strictly serves HTML and CSS from the SQL database. `resources/` is the authoring seed.
-5. **Mandatory Version Bump**: When editing JS scripts or static CSS, increment the version in the resource metadata `<id>.json`.
-6. **Goal Mode (`/goal`)**: Use `/goal` in the prompt for continuous execution in Monitored Autonomous mode until all checks in `VALIDATION-CHECKLIST.md` are fulfilled.
-7. **Repository Identification in Handoffs and Prompts**: Always explicitly specify the project identifier and the absolute root path of the target repository in activation messages for other agents.
+1. **Proibição Absoluta de `git add -A` e `git add .`**: Commits devem SEMPRE listar arquivos específicos (`git add <caminhos-especificos>`).
+2. **Proibição de Sincronização por Cópia Manual**: NUNCA copie arquivos manualmente (`cp`, `copy`, `Copy-Item`) para pastas de teste/espelho (`dev-environment/data/sites/`). Use sempre `./c2f manager:update-all` (sistema) ou `./c2f project:update-all <id>` (projeto).
+3. **Execução Sequencial Exclusiva**: Comandos de compilação em lote (`manager:update-all`, `project:update-all`, `css:rebuild`, `resources:sync`) devem executar um por vez em foreground com logs desbufferizados.
+4. **Fonte da Verdade em Runtime**: O runtime serve HTML e CSS exclusivamente do banco de dados SQL. `resources/` é a semente de autoria.
+5. **Version Bump Mandatório**: Ao alterar scripts JS ou estilos estáticos, incremente a versão no metadado `<id>.json` do recurso.
+6. **Goal Mode (`/goal`)**: Utilize `/goal` no prompt para execução ininterrupta de fatias complexas no modo Autônomo Monitorado até cumprimento de todos os critérios de aceite do `VALIDATION-CHECKLIST.md`.
+7. **Identificação de Repositório em Handoffs e Prompts**: Sempre explicitar o identificador do projeto e o caminho absoluto da raiz do repositório alvo (ex: `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) nas mensagens de acionamento para outros agentes.
+8. **Boost Mode (`/boost`)**: Utilize `/boost` no prompt para tarefas que exigem raciocínio analítico profundo, planejamento multi-etapa, múltiplas perspectivas e validação cruzada rigorosa.
+9. **Configuração por Projeto em `.gemini/config.json`**: O arquivo `.gemini/config.json` é o ponto canônico de configuração por projeto no Antigravity v2.16+. O diretório legado `.agents/` foi descontinuado — todas as configurações, MCP servers e discovery vivem exclusivamente em `.gemini/`.
 

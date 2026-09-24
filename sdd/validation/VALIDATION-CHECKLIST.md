@@ -1286,3 +1286,31 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [x] Auditoria do Revisor Técnico: [review-058.md](review-058.md) emitido com parecer **APPROVED** em 2026-09-18.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-058-executor-receipt.json`.
+
+---
+
+## BATCH-059: Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+
+
+### 1. Checklist de Aceite Técnico
+
+- [x] `.agents/mcp_config.json` migrado para `.gemini/mcp_config.json` e diretório `.agents/` removido.
+- [x] Arquivo canônico `.gemini/config.json` criado e padronizado nos 5 repositórios (`conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `lumix`, `transformamp`).
+- [x] `GEMINI.md` e `AGENTS.md` atualizados incorporando a regra de `.gemini/config.json` e o slash command `/boost`.
+- [x] Templates em `templates/` atualizados com `.gemini/config.json` e documentação atualizada.
+- [x] Suíte de testes `npm test` aprovada com 114/114 testes verdes.
+- [x] Gate SDD sem links órfãos e janela de 10 requisições/batches ativos respeitada (arquivado `batch-049.md`).
+- [x] Recibo emitido em `completions/BATCH-059-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. Migração de arquivos: `.agents/mcp_config.json` → `.gemini/mcp_config.json` ativo; `.agents/` removido.
+2. Configuração nos 5 repositórios: `.gemini/config.json` presente e válido em todos os 5 repositórios.
+3. Testes unitários: `npm test` em `vscode-extension/`, **114/114 testes aprovados** (180ms).
+4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos; `batch-049.md` arquivado.
+5. Detalhamento operacional: [batch-059.md](../implementation/batch-059.md).
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: [review-059.md](review-059.md) emitido com parecer **APPROVED** em 2026-09-24.
+- [x] Homologação executiva concluída pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-059-executor-receipt.json`.

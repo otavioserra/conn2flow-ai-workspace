@@ -1,0 +1,70 @@
+{
+  "batch": "BATCH-059",
+  "request": "req-057",
+  "executor": "Antigravity (c2f-executor-agent)",
+  "model": "gemini-2.5-pro",
+  "timestamp": "2026-09-24T11:27:00-03:00",
+  "status": "READY_FOR_REVIEW",
+  "deliverables": [
+    {
+      "task": "Migrate .agents/mcp_config.json to .gemini/mcp_config.json",
+      "result": "PASS",
+      "details": "MCP config migrated to .gemini/mcp_config.json with simplified mcpServers-only format. Legacy .agents/ directory removed from workspace and conn2flow."
+    },
+    {
+      "task": "Create .gemini/config.json in all 5 repositories",
+      "result": "PASS",
+      "details": "Canonical project config created with project metadata, discovery paths, and preferences in conn2flow-ai-workspace, conn2flow, conn2flow-site, lumix, transformamp."
+    },
+    {
+      "task": "Update GEMINI.md and AGENTS.md",
+      "result": "PASS",
+      "details": "GEMINI.md: added config.json section and /boost. AGENTS.md: added rules 8 (/boost) and 9 (.gemini/config.json). Propagated to all 4 satellites and 4 template kits."
+    },
+    {
+      "task": "Update templates with config.json",
+      "result": "PASS",
+      "details": "2 gemini-kit templates (pt-br, en) received .gemini/config.json. GEMINI.md and AGENTS.md updated in applicable template kits."
+    },
+    {
+      "task": "npm test (vscode-extension)",
+      "result": "PASS",
+      "details": "114/114 tests passed in 168.16 ms. Exit code 0."
+    }
+  ],
+  "files_created": [
+    "conn2flow-ai-workspace/.gemini/mcp_config.json",
+    "conn2flow-ai-workspace/.gemini/config.json",
+    "conn2flow/.gemini/config.json",
+    "conn2flow-site/.gemini/config.json",
+    "lumix/.gemini/config.json",
+    "transformamp/.gemini/config.json"
+  ],
+  "files_modified": [
+    "conn2flow-ai-workspace/GEMINI.md",
+    "conn2flow-ai-workspace/AGENTS.md",
+    "conn2flow/GEMINI.md",
+    "conn2flow/AGENTS.md",
+    "conn2flow-site/GEMINI.md",
+    "conn2flow-site/AGENTS.md",
+    "lumix/GEMINI.md",
+    "lumix/AGENTS.md",
+    "transformamp/GEMINI.md",
+    "transformamp/AGENTS.md"
+  ],
+  "files_removed": [
+    "conn2flow-ai-workspace/.agents/mcp_config.json",
+    "conn2flow/.agents/"
+  ],
+  "criteria_met": {
+    "mcp_migrated": true,
+    "agents_dir_removed": true,
+    "config_json_all_repos": true,
+    "gemini_md_updated": true,
+    "agents_md_updated": true,
+    "templates_updated": true,
+    "npm_test_114_pass": true,
+    "batch_record_created": true,
+    "receipt_emitted": true
+  }
+}

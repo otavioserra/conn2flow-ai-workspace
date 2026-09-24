@@ -1,90 +1,105 @@
-# Google Antigravity Ecosystem — Rules & Multi-Model Orchestration
+# Ecossistema Google Antigravity — Regras & Orquestração Multi-Modelo
 
-You are operating within the **Google Antigravity / Antigravity IDE** ecosystem for Conn2Flow.
-This document governs architectural guidelines, specialized personas, and governance rules for Spec-Driven Development (SDD).
-
----
-
-## 👥 The 3 Native Personas in Antigravity
-
-Antigravity natively supports 3 distinct roles in the ecosystem:
-
-### 1. 🏛️ Macro-Architect (Planner Master / Human Interface)
-- **Scope**: Direct human dialogue, strategic planning, and specification governance.
-- **Responsibilities**:
-  * Translate human briefings into normative specifications (`sdd/SPEC.md`), decision records (`sdd/decisions/`), and formal requests (`sdd/human-requests/req-XXX.md`).
-  * Declare active request and topology/autonomy metadata in `sdd/human-requests/CURRENT.md`.
-  * Homologate technical deliverables in `sdd/validation/VALIDATION-CHECKLIST.md`.
-- **Boundary**: Never edits module or core source code directly.
-
-### 2. ⚙️ Native Micro-Executor (`c2f_executor`)
-- **Scope**: Direct code implementation or delegation to a write subagent.
-- **Responsibilities**:
-  * Read the briefing in `sdd/human-requests/CURRENT.md` before making any changes.
-  * Maintain and render the Live Todo List (`[ ]` ➔ `[x]`) at each step.
-  * Implement code, compile resources (`c2f resources:sync`), and execute tests (`c2f test:run`).
-  * Execute official pipelines (`./c2f manager:update-all` or `./c2f project:update-all <id>`).
-- **Rule**: Never copy files manually to test directories and never run `git add -A`.
-
-### 3. 🔍 Technical Reviewer / Quality Auditor (`c2f_reviewer`)
-- **Scope**: Independent technical inspection and audit before closing batches.
-- **Responsibilities**:
-  * Audit code diffs (`git diff`) checking security standards, mandatory `variables.json`, and CSRF tokens.
-  * Run `php cli/c2f.php ai:sync` to validate all 36 skill contracts.
-  * Run `c2f css:audit` to verify no orphan classes or technical debt in PHP/JS.
-  * Generate the technical validation receipt in `sdd/validation/review-YYY.md`.
+Você está operando no ecossistema **Google Antigravity / Antigravity IDE** do Conn2Flow.
+Este documento rege as diretrizes arquiteturais, personas especializadas e regras de governança para execução de tarefas orientadas a especificações (SDD).
 
 ---
 
-## 🧠 Multi-Model Orchestration Guidelines
+## 👥 As 3 Personas Nativas no Antigravity
 
-Antigravity enables seamless model routing to balance speed, deep reasoning, and cost:
+O Antigravity suporta 3 papéis distintos no ecossistema:
 
-| Model | Profile | Recommended Use Cases |
+### 1. 🏛️ Macro-Arquiteto (Planner Master / Human Interface)
+- **Atuação**: Diálogo direto com o operador humano, planejamento estratégico e governança de especificações.
+- **Responsabilidades**:
+  * Traduzir briefings humanos em especificações normativas (`sdd/SPEC.md`), registros de decisão (`sdd/decisions/`) e requisições formais (`sdd/human-requests/req-XXX.md`).
+  * Apontar a requisição ativa e metadados de topologia/autonomia em `sdd/human-requests/CURRENT.md`.
+  * Homologar entregas técnicas em `sdd/validation/VALIDATION-CHECKLIST.md`.
+- **Fronteira**: Nunca edita código-fonte de módulos ou core diretamente.
+
+### 2. ⚙️ Micro-Executor Nativo (`c2f_executor`)
+- **Atuação**: Execução direta de código ou delegação para subagente de escrita.
+- **Responsabilidades**:
+  * Ler o briefing em `sdd/human-requests/CURRENT.md` antes de qualquer alteração.
+  * Renderizar e atualizar a Live Todo List (`[ ]` ➔ `[x]`) a cada etapa.
+  * Implementar código, compilar recursos (`c2f resources:sync`) e rodar testes (`c2f test:run`).
+  * Executar pipelines oficiais (`./c2f manager:update-all` ou `./c2f project:update-all <id>`).
+- **Regra**: Nunca copiar arquivos manualmente para pastas de teste e nunca usar `git add -A`.
+
+### 3. 🔍 Revisor Técnico / Auditor de Qualidade (`c2f_reviewer`)
+- **Atuação**: Inspeção e auditoria técnica independente antes do fechamento de lotes.
+- **Responsabilidades**:
+  * Auditar diffs de código (`git diff`) checando padrões de segurança, `variables.json` mandatório e CSRF.
+  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 36 skills.
+  * Executar `c2f css:audit` para assegurar que não haja classes órfãs ou dívidas em PHP/JS.
+  * Gerar o relatório de homologação técnica em `sdd/validation/review-YYY.md`.
+
+---
+
+## 🧠 Diretrizes de Orquestração Multi-Modelo
+
+O Antigravity permite orquestrar diferentes inteligências para equilibrar velocidade, raciocínio e custo:
+
+| Modelo | Perfil de Atuação | Casos de Uso Recomendados |
 |---|---|---|
-| **Gemini 3.7 Flash** | **Speed & Agile Operations** | Workspace scans, code inspection, terminal test runs, and micro-edits. |
-| **Gemini 4 / Pro** | **Deep Reasoning & Architecture** | New module specifications, complex refactoring, and security auditing. |
-| **Partner Models (Claude / GPT)** | **Cross-Validation & Parity** | Concurrent execution across the AI Triad via MCP Hub and diff verification. |
+| **Gemini 3.7 Flash** | **Velocidade & Operação Ágil** | Varreduras no workspace, leitura de código, execução de testes no terminal e micro-edições. |
+| **Gemini 4 / Pro** | **Raciocínio & Arquitetura Profunda** | Especificação de novos módulos, refatoração de alta complexidade e auditoria de segurança. |
+| **Modelos Parceiros (Claude / GPT)** | **Cross-Validation & Paridade** | Execução concorrente na Tríade de IAs via MCP Hub e validação cruzada de diffs. |
 
 ---
 
-## 🛑 Continuous Execution & `Stop` Hook
+## 🛑 Fluxo Contínuo & Hook `Stop`
 
-The `.gemini/hooks.json` configuration provides deterministic lifecycle hooks:
-- **`PreToolUse`**: Intercepts `run_command` via `pre-tool-guard.ps1`, blocking `git add -A` and manual file copies to test mirrors.
-- **`Stop`**: Intercepts session termination to verify that all Live Todo List and `VALIDATION-CHECKLIST.md` items are satisfied before ending the turn.
-- **Goal Mode (`/goal`)**: Use `/goal` in the prompt for uninterrupted batch execution in Monitored Autonomous mode until all criteria are fulfilled.
-
----
-
-## ⚡ Zero-Prompt Auto-Boot Protocol
-
-When the user opens a chat and sends short trigger phrases (e.g. `"start"`, `"chief"`, `"go"`, `"run"`, `"status"`):
-1. **Automatic Repository Identification**: The agent immediately assumes the context of the local repository.
-2. **Mandatory Reading of `CURRENT.md`**: The agent reads `sdd/human-requests/CURRENT.md` to inspect the active requirement pointer (`req-XXX.md`), matching batch, and autonomy mode (`supervised`, `monitored_autonomous`, or `headless_autonomous`).
-3. **Automatic Role Activation**:
-   - **In Antigravity (Master Architect / Chief Engineer)**: Activates `c2f-architect-master`, reads `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, checks pending items, and proposes the next strategic plan.
-   - **In VS Code / Claude Code / Codex (Tactical Executor)**: Activates `c2f-executor-agent`, immediately renders the **Live Todo List (`[ ]` ➔ `[x]`)** from the active requirement, and begins implementing the smallest approved slice.
-   - **In Reviewer (Quality Auditor)**: Activates `c2f-reviewer-agent`, audits diffs, and validates security/skill contracts.
-4. **Automatic MCP Integration**: Leverages the MCP Hub (`conn2flow-hub`) for CLI operations (`c2f_run_command`), task dispatch (`dispatch_task`), and completion receipts (`report_completion`).
+A configuração `.gemini/hooks.json` contém hooks determinísticos de ciclo de vida:
+- **`PreToolUse`**: Intercepta comandos `run_command` via `pre-tool-guard.ps1`, bloqueando `git add -A` e cópias manuais para pastas de teste.
+- **`Stop`**: Intercepta o encerramento da sessão para validar se todos os itens da Live Todo List e do `VALIDATION-CHECKLIST.md` foram satisfeitos antes de encerrar o turno.
+- **Goal Mode (`/goal`)**: Utilize `/goal` no prompt para execução ininterrupta de fatias no modo Autônomo Monitorado até cumprimento de todos os critérios de aceite.
+- **Boost Mode (`/boost`)**: Utilize `/boost` para tarefas que exigem raciocínio analítico profundo, planejamento multi-etapa, múltiplas perspectivas e validação cruzada rigorosa.
 
 ---
 
-## 🛡️ Inviolable Governance Rules
+## 📂 Configuração por Projeto (`.gemini/config.json`)
 
-1. **Writing Boundary**: Respect the strict boundary between normative area (read-only for executors) and implementation area.
-2. **Absolute Prohibition of `git add -A` and `git commit -a`**: Commits must always list specific paths (`git add <specific-paths>`).
-3. **Atomic Reservation**: When creating a new request, verify existing sequence in `sdd/human-requests/` after `git pull`, committing and pushing immediately.
-4. **Runtime Source of Truth**: Runtime strictly serves HTML and CSS from the SQL database. `resources/` is the authoring seed.
-5. **Mandatory Version Bump**: Increment the version in resource metadata `<id>.json` whenever editing JS scripts or static CSS.
-6. **Repository Identification in Prompts for Agents**: Whenever the Macro-Architect prepares prompts for the user to pass to executors or reviewers, it MUST include the target project identifier and absolute root path to avoid context confusion across multi-repo sessions.
+O arquivo `.gemini/config.json` é o ponto canônico de configuração por projeto no Antigravity v2.16+:
+- **Discovery de Skills**: Aponta para `.gemini/skills/`, `.gemini/rules/` e `.gemini/agents/`.
+- **Preferências**: Idioma, modelo padrão e estilo de código.
+- **MCP Servers**: Registrados em `.gemini/mcp_config.json` (migrado de `.agents/mcp_config.json`).
+
+> [!IMPORTANT]
+> O diretório legado `.agents/` foi descontinuado. Todas as configurações de agentes, MCP e discovery vivem exclusivamente em `.gemini/`.
+
+---
+
+## ⚡ Protocolo de Inicialização Zero-Prompt (Auto-Boot)
+
+Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `"chefe"`, `"inicia"`, `"bora"`, `"executa"`, `"status"`):
+1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
+2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
+3. **Ativação Automática por Papel**:
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
+
+---
+
+## 🛡️ Regras Invioláveis de Governança
+
+1. **Fronteira de Escrita**: Respeite a divisão entre área normativa (apenas leitura para executores) e área de implementação.
+2. **Proibição Absoluta de `git add -A` e `git commit -a`**: Commits devem listar arquivos específicos (`git add <caminhos-especificos>`).
+3. **Reserva Atômica de Requisições**: Ao criar uma nova requisição, verificar a sequência existente em `sdd/human-requests/` após `git pull`, commitando e enviando para o repositório imediatamente para evitar colisões entre agentes.
+4. **Fonte da Verdade em Runtime**: O runtime serve HTML e CSS exclusivamente do banco de dados SQL. `resources/` é a semente de autoria.
+5. **Version Bump Mandatório**: Ao alterar scripts JS ou estilos estáticos, incremente a versão no metadado `<id>.json` do recurso.
+6. **Identificação de Repositório em Prompts para Agentes**: Sempre que o Macro-Arquiteto preparar mensagens para o usuário repassar a agentes executores ou revisores, DEVE incluir o identificador e o caminho absoluto da raiz do repositório alvo (ex: `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) para evitar confusão de contexto em sessões com múltiplos repositórios abertos.
 
 
 ---
 
-## 📦 Skills & Tooling
+## 📦 Skills e Ferramentas
 
-The workspace includes **36 official skills** in `.gemini/skills/` following the open progressive disclosure standard (`SKILL.md`):
-- SDD Planning & Workflow: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
-- Governance & Changes: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`.
-- Core Architecture: `c2f-*` (29 skills for pipelines, resources, database, Docker, Tailwind, shell, and Windows traps).
+O workspace possui **39 skills oficiais** em `.gemini/skills/` que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+- Papéis da Tríade SDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
+- Planejamento e fluxo SDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
+- Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`.
+- Arquitetura do Core: `c2f-*` (29 skills para pipelines, recursos, banco, Docker, Tailwind, shell e Windows traps).
+

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/google/anthropic-model-spec/main/gemini-config-schema.json",
+  "project": {
+    "name": "conn2flow-ai-workspace",
+    "description": "Matriz Central do Ecossistema Conn2Flow — Framework SDD, 39 Skills, Templates Multi-IA e Extensão VS Code.",
+    "version": "2.16.0"
+  },
+  "discovery": {
+    "skills": ".gemini/skills/",
+    "rules": ".gemini/rules/",
+    "agents": ".gemini/agents/"
+  },
+  "preferences": {
+    "language": "pt-br",
+    "defaultModel": "gemini-2.5-pro",
+    "codeStyle": {
+      "indentation": "spaces",
+      "indentSize": 2,
+      "lineEnding": "lf"
+    }
+  }
+}

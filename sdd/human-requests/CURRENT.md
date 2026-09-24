@@ -1,11 +1,11 @@
 ﻿# CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-057.md](req-057.md)
-* **Status**: `APPROVED`
+* **Status**: `HOMOLOGATED`
 * **Lote Relacionado**: `BATCH-059`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-09-24
+* **Data de Homologação**: 2026-09-24
 * **Lote Anterior Concluído**: [req-056.md](req-056.md) (`BATCH-058`)
 
 ## 🎯 Objetivo Operacional do Lote BATCH-059

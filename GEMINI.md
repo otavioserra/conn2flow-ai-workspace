@@ -54,6 +54,19 @@ A configuração `.gemini/hooks.json` contém hooks determinísticos de ciclo de
 - **`PreToolUse`**: Intercepta comandos `run_command` via `pre-tool-guard.ps1`, bloqueando `git add -A` e cópias manuais para pastas de teste.
 - **`Stop`**: Intercepta o encerramento da sessão para validar se todos os itens da Live Todo List e do `VALIDATION-CHECKLIST.md` foram satisfeitos antes de encerrar o turno.
 - **Goal Mode (`/goal`)**: Utilize `/goal` no prompt para execução ininterrupta de fatias no modo Autônomo Monitorado até cumprimento de todos os critérios de aceite.
+- **Boost Mode (`/boost`)**: Utilize `/boost` para tarefas que exigem raciocínio analítico profundo, planejamento multi-etapa, múltiplas perspectivas e validação cruzada rigorosa.
+
+---
+
+## 📂 Configuração por Projeto (`.gemini/config.json`)
+
+O arquivo `.gemini/config.json` é o ponto canônico de configuração por projeto no Antigravity v2.16+:
+- **Discovery de Skills**: Aponta para `.gemini/skills/`, `.gemini/rules/` e `.gemini/agents/`.
+- **Preferências**: Idioma, modelo padrão e estilo de código.
+- **MCP Servers**: Registrados em `.gemini/mcp_config.json` (migrado de `.agents/mcp_config.json`).
+
+> [!IMPORTANT]
+> O diretório legado `.agents/` foi descontinuado. Todas as configurações de agentes, MCP e discovery vivem exclusivamente em `.gemini/`.
 
 ---
 
