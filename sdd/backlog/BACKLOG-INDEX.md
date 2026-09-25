@@ -8,6 +8,8 @@
 | [FEAT-002](FEAT-002-self-healing-ci-cd-loop.md) | CI/CD | `ICEBOX` | Esteira de CI/CD com Loop de Auto-Cura (Self-Healing Tests) | Criar pipeline de compilação no GitHub Actions | 2026-08-18 |
 | [ARCH-004](ARCH-004-resilient-multi-model-provider-pool-and-failover.md) | Arquitetura | `ICEBOX` | Failover Multi-Modelo Resiliente & Pool de Provedores de IA | Aguardar planejamento / promoção futura | 2026-08-31 |
 | [ARCH-005](ARCH-005-shared-batch-execution-stream-and-blackboard.md) | Arquitetura | `ICEBOX` | Sessão Compartilhada de Lote (Blackboard & Stream) | Aguardar planejamento / promoção futura | 2026-08-31 |
+| [FEAT-014](FEAT-014-programa-documentacao-core-e-site.md) | Documentação | `PROMOTED` | Programa de Documentação: correção no Core + `/docs/` no Conn2Flow Site (parser MD → recursos Tailwind, rotina `docs:audit`, skill) | Fase 1 entregue; seguir com as ondas de correção via skill `c2f-documentation` | 2026-09-25 |
+| [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) | Arquitetura | `ICEBOX` | Atualização automática dos kits de IA nas instalações (manifesto + lockfile + `c2f ai:kit`) | Aguardar fase 1 do FEAT-014 | 2026-09-25 |
 
 ---
 

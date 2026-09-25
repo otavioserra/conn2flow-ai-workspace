@@ -1,17 +1,13 @@
-﻿# CURRENT ACTIVE REQUEST
+# CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-057.md](req-057.md)
+* **Ponteiro Ativo**: [req-058.md](req-058.md)
 * **Status**: `HOMOLOGATED`
-* **Lote Relacionado**: `BATCH-059`
+* **Lote Relacionado**: `BATCH-060`
 * **Topologia de Agentes**: `dupla`
-* **Nível de Autonomia**: `supervisionado`
-* **Data de Homologação**: 2026-09-24
-* **Lote Anterior Concluído**: [req-056.md](req-056.md) (`BATCH-058`)
+* **Nível de Autonomia**: `autonomo_monitorado`
+* **Data de Homologação**: 2026-09-25
+* **Lote Anterior Concluído**: [req-057.md](req-057.md) (`BATCH-059`)
 
-## 🎯 Objetivo Operacional do Lote BATCH-059
+## 🎯 Objetivo Operacional do Lote BATCH-060
 
-Migração da governança de configurações para `.gemini/config.json` e alinhamento ao Google Antigravity v2.16+:
-1. **Migração do MCP e Eliminação de `.agents/`**: Mover `.agents/mcp_config.json` para `.gemini/mcp_config.json` e remover o diretório legado `.agents/`.
-2. **Criação de `.gemini/config.json`**: Padronizar o arquivo de configuração por projeto no workspace central e satélites.
-3. **Atualização de Documentação e Governança**: Atualizar `GEMINI.md`, `AGENTS.md` e templates com `.gemini/config.json`, comando `/boost` e novas diretrizes do ecossistema.
-4. **Propagação nos 5 Repositórios**: Sincronizar as atualizações em `conn2flow`, `conn2flow-site`, `lumix`, `transformamp` e `conn2flow-ai-workspace`.
+Skill canônica `c2f-documentation` (FEAT-014) replicada nos 19 pontos da Matriz e propagada aos 5 kits de `conn2flow`, `conn2flow-site`, `transformamp` e `lumix`; `ai:sync` do Core exigindo 37 skills.

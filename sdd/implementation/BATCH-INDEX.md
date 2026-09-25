@@ -1,4 +1,4 @@
-﻿# Batch Index
+# Batch Index
 
 Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-workspace`.
 
@@ -31,7 +31,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-057** | complete | Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | `VALIDATION-CHECKLIST.md#batch-057` | REQ-055 homologada; 39 skills sincronizadas em 15 kits, 585 cópias MD5 idênticas, Tríade SDD e traps consolidadas. |
 | **BATCH-058** | complete | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058.md](batch-058.md) | REQ-056 homologada; 975 cópias verificadas com MD5 idêntico nos 5 repositórios e 5 kits, 114/114 testes aprovados. |
 | **BATCH-059** | complete | Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [batch-059.md](batch-059.md) | REQ-057 homologada; `.agents/` removido, `.gemini/config.json` padronizado nos 5 repositórios e templates, `GEMINI.md`/`AGENTS.md` atualizados com `/boost`. |
+| **BATCH-060** | complete | Skill canônica `c2f-documentation` e propagação aos kits (FEAT-014) | [batch-060.md](batch-060.md) | REQ-058 homologada; 39 cópias com hash idêntico, `ai:sync` 37/37 no Core; lumix sem commit. |
 
 ## Próxima requisição
 
-`REQ-057` concluída e homologada em 2026-09-24 no lote `BATCH-059`. Sistema pronto para novo ciclo de intake humano.
+`REQ-058` concluída e homologada em 2026-09-25 no lote `BATCH-060`. Sistema pronto para novo ciclo de intake humano.
