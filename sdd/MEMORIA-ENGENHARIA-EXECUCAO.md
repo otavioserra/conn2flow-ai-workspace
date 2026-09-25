@@ -4,12 +4,14 @@
 >
 > **Último lote concluído:** [BATCH-049 — Modernização dos Tetos de Memory Gardening](implementation/batch-049.md)
 >
-> **Lotes atuais:** [BATCH-050](implementation/batch-050.md), [BATCH-051](implementation/batch-051.md) e [BATCH-052](implementation/batch-052.md) `ready-for-review`; aguardam revisão do Humano-no-Loop.
+> **Lotes atuais:** [BATCH-050](implementation/archive/batch-050.md), [BATCH-051](implementation/batch-051.md) e [BATCH-052](implementation/batch-052.md) `ready-for-review`; aguardam revisão do Humano-no-Loop.
 
 >
 > **Política**: manter somente fatos recentes e acionáveis; é proibido podar abaixo de 50 KB / 200 linhas. Emitir alerta preventivo nesse patamar, podar obrigatoriamente apenas ao atingir 75 KB / 300 linhas e mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes. Detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
 
 ## Atividades recentes
+
+- **2026-09-25 — REQ-058 / BATCH-060 (FEAT-014):** skill `c2f-documentation` criada e copiada de forma cirúrgica (só a pasta) para 19 pontos da Matriz e os 5 kits dos 4 satélites; `ai:sync` do Core passou a 37 skills. `sync-all-repos.ps1` foi evitado de propósito: os instaladores também migram estrutura SDD dos satélites. `lumix` recebeu os arquivos sem commit. Na Matriz, `.cursor/skills` da raiz é gitignored.
 
 - **2026-09-02 — REQ-048 a REQ-050 / BATCH-050 a BATCH-052:** entregues em sequencia no mesmo turno. (1) Novo comando `c2f ai:archive-sdd` no Core aplica a Regra dos 10 Ativos e reescreve links; faxina nos 5 repositorios arquivou 295 arquivos, reescreveu 321 links e derrubou os orfaos de 218 para 7. (2) Extensao passou a persistir escopo, projeto alvo, topologia e autonomia em `settings.json`, com o prompt do executor refletindo a topologia ativa. (3) Core ganhou `SshRemoteTransport`, `assets:publish --project` com rsync para a VM e `css:rebuild` remoto. Validacao: extensao 98/98, PHPUnit 1113/1113, Vitest 408/408, `ai:sync` 36/36. Nenhum commit, push, deploy, release ou comando remoto.
 
