@@ -35,7 +35,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
+| **BATCH-062** | ready-for-intake | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 aprovada; criação de c2f-payment-gateways, atualização de 11 skills e propagação nos 25 kits. |
 
 ## Próxima requisição
 
-`REQ-059` concluída e homologada em 2026-09-28 no lote `BATCH-061`. Sistema pronto para novo ciclo de intake humano.
+`REQ-060` aprovada, lote `BATCH-062` pronto para execução tática.
