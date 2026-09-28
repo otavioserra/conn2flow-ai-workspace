@@ -13,7 +13,7 @@ user-invocable: false
 
 ---
 
-## ⛔ As 6 Armadilhas Críticas
+## ⛔ As 11 Armadilhas Críticas
 
 ### 1. Conversão Automática de Caminhos no Git Bash (MSYS Path Conversion)
 
@@ -29,6 +29,17 @@ docker exec conn2flow-app php C:/Program Files/Git/var/www/html/script.php
 **Solução Obrigatória**: Prefixar TODOS os comandos `docker exec` com a variável de ambiente `MSYS_NO_PATHCONV=1`:
 ```bash
 MSYS_NO_PATHCONV=1 docker exec conn2flow-app php /var/www/html/script.php
+```
+
+O mesmo mecanismo quebra transportes SSH com `rsync`. O MSYS2 converte uma origem local como
+`/c/Users/...` para `C:/Users/...`; como o `rsync` interpreta `C:` como especificação de host, um
+destino `usuario@host:/caminho` faz ambos os lados parecerem remotos e produz
+`The source and destination cannot both be remote`.
+
+**Solução obrigatória para rsync**: toda invocação deve usar `MSYS_NO_PATHCONV=1`, diretamente ou
+por helper compartilhado:
+```bash
+MSYS_NO_PATHCONV=1 rsync -avu "/c/Users/.../origem/" "usuario@host:/destino/"
 ```
 
 > [!WARNING]
@@ -125,3 +136,154 @@ curl --form-string "_gestor-atualizar=1" \
 1. **Execução Sequencial Exclusiva**: NUNCA execute dois comandos de compilação ou pipeline em paralelo no mesmo container. Execute um de cada vez, aguardando o término (`exit code 0`).
 2. **Foreground Obrigatório**: Mantenha os comandos rodando em foreground com saída direta no terminal.
 3. **Sem Buffer / Expor Warnings**: Não use redirecionamentos cegos (`> /dev/null 2>&1`). Se um warning do PHP for disparado (ex: `Undefined variable`, `ArgumentCountError`), ele DEVE aparecer no terminal para resolução imediata.
+
+---
+
+### 7. `rsync: dup() in/out/err failed` — Pareamento de Runtimes cwRsync/SSH
+
+**Problema**: O `rsync` 3.4.x do pacote cwRsync (runtime Cygwin) usa pipes Win32 nativos. Quando o `ssh.exe` invocado vem do Git Bash (runtime MSYS2), os descritores não são compatíveis e o processo morre com:
+```
+rsync: dup() in/out/err failed
+rsync error: error in IPC code (code 14) at pipe.c(...)
+```
+O exit code 12 não produz mensagem legível sem `-v`.
+
+**Solução Obrigatória**:
+1. **Pareamento mandatório de runtimes**: Use o `ssh.exe` do próprio pacote cwRsync (`C:\cwrsync\bin\ssh.exe`), nunca o do Git Bash.
+2. **`-e` com flags SSH explícitas**: `-e "C:/cwrsync/bin/ssh.exe -T -i <chave>"`. A flag `-T` bloqueia pseudo-TTY (o protocolo binário do rsync não funciona com PTY).
+3. **`MSYS_NO_PATHCONV=1`** continua obrigatório (mesma razão da Armadilha 1).
+4. **Caminhos locais**: Converter para `/cygdrive/c/...` (formato Cygwin), nunca `/c/...` (MSYS2).
+
+```bash
+MSYS_NO_PATHCONV=1 rsync -avz \
+  -e "C:/cwrsync/bin/ssh.exe -T -i $HOME/.ssh/id_ed25519" \
+  "/cygdrive/c/Users/otavi/projeto/src/" \
+  "usuario@host:/opt/projeto/src/"
+```
+
+> [!WARNING]
+> O erro `dup()` aparece SOMENTE com o `ssh.exe` errado. A mensagem não menciona SSH — o diagnóstico natural é culpar o rsync ou as permissões.
+
+---
+
+### 8. Sequências ANSI em Saídas de Utilitários CLI (Cores Quebram Parsers)
+
+**Problema**: Utilitários multiplataforma (Tailwind CLI, Vite, ESBuild) emitem sequências de cor ANSI mesmo quando capturados por `proc_open()`, `exec()` ou backticks. A saída de versão:
+```
+tailwindcss \x1b[34mv4.3.3\x1b[39m
+```
+quebra comparadores de versão (`version_compare()`, `semver.satisfies()`) e asserções em testes.
+
+**Solução Obrigatória**:
+1. **Variáveis de ambiente**: Definir `NO_COLOR=1` e/ou `FORCE_COLOR=0` antes de invocar o processo.
+2. **Higienização mandatória** antes de qualquer parsing ou comparação de versão:
+```php
+$limpo = preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $saida_bruta);
+```
+```javascript
+const limpo = saidaBruta.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');
+```
+3. **Asserts/testes**: Sempre higienizar ANTES de comparar, nunca confiar que a saída é texto puro.
+
+> [!WARNING]
+> A contaminação é **invisível** no terminal (que renderiza as cores) mas **quebradora** em strings capturadas. `"v4.3.3" !== "\x1b[34mv4.3.3\x1b[39m"` falha sem mensagem explicativa.
+
+---
+
+### 9. `cd` Antes de `sudo -u` em Tenants SSH Restritos (HestiaCP e Similares)
+
+**Problema**: Em servidores multi-tenant (HestiaCP, cPanel, Plesk) com diretórios home em modo `750` ou `700`, o usuário SSH de deploy não tem permissão para entrar no diretório do tenant antes da elevação de privilégios:
+```bash
+# ❌ FALHA — cd executa como o usuário SSH, que não tem acesso a /home/tenant/
+cd /home/tenant/web/dominio.com && sudo -u tenant php artisan migrate
+```
+
+**Solução Obrigatória**: Encapsular a troca de diretório e o comando na mesma shell elevada:
+```bash
+# ✅ CORRETO — cd e php executam ambos como `tenant`
+sudo -u tenant sh -c 'cd /home/tenant/web/dominio.com && php artisan migrate'
+```
+
+> [!WARNING]
+> O erro é `Permission denied` no `cd`, não no `sudo`. O diagnóstico natural é culpar a configuração do sudo, mas o problema está na ordem das operações.
+
+---
+
+### 10. Colapso de Barra Invertida em Heredoc no Git Bash (MSYS2)
+
+**Problema**: No Git Bash (MSYS2), heredocs em scripts Bash ou invocações inline colapsam barras invertidas duplas (`\\`) em simples (`\`). Isso corrompe silenciosamente caminhos Windows, expressões regulares e constantes PHP como `DIRECTORY_SEPARATOR`.
+
+Exemplo do problema:
+```bash
+# ❌ No Git Bash, o heredoc colapsa \\ para \
+cat <<'EOF' > script.php
+$sep = DIRECTORY_SEPARATOR;  // OK
+$caminho = "C:\\Users\\otavi";  // Vira "C:\Users\otavi" (errado)
+EOF
+```
+
+**Solução Obrigatória**:
+1. **Para caminhos PHP**: Use `DIRECTORY_SEPARATOR` em vez de barras invertidas literais:
+```php
+// ✅ CORRETO — portável e imune ao heredoc
+$caminho = 'C:' . DIRECTORY_SEPARATOR . 'Users' . DIRECTORY_SEPARATOR . 'otavi';
+```
+
+2. **Para scripts gerados**: Use `printf` ou `echo` com escape explícito em vez de heredoc:
+```bash
+# ✅ CORRETO — printf preserva as barras
+printf '%s\n' '$caminho = "C:\\\\Users\\\\otavi";' > script.php
+```
+
+3. **Para heredocs inevitáveis**: Use substituição `sed` pós-geração:
+```bash
+cat <<'EOF' > temp.php
+$caminho = "C:__SEP__Users__SEP__otavi";
+EOF
+sed -i 's/__SEP__/\\\\/g' temp.php
+```
+
+> [!WARNING]
+> O colapso é **silencioso** — o arquivo é gerado sem erro, mas o conteúdo está corrompido. Caminhos como `C:\Users` funcionam no Windows mas diferem do esperado `C:\\Users` no código-fonte PHP.
+
+---
+
+### 11. Timeout e Travamento de `grep -rn` na Raiz de Repositórios no Windows
+
+**Problema**: Executar `grep -rn` (busca recursiva) a partir da raiz de um repositório no Windows/Git Bash pode causar:
+- **Timeout** por varredura de `node_modules/`, `.git/`, `vendor/` e outros diretórios pesados.
+- **Travamento completo** do terminal quando o volume de arquivos excede limites de I/O do MSYS2.
+- **Consumo excessivo de memória** com buffers de saída não drenados.
+
+**Solução Obrigatória**:
+1. **Sempre excluir diretórios pesados** com `--exclude-dir`:
+```bash
+# ✅ CORRETO — exclui diretórios que causam timeout
+grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor,dist,build} .
+```
+
+2. **Limitar a profundidade e escopo**:
+```bash
+# ✅ CORRETO — buscar em diretório específico
+grep -rn 'padrão' src/
+grep -rn 'padrão' modulos/meu-modulo/
+```
+
+3. **Usar alternativas otimizadas** quando disponíveis:
+```bash
+# ✅ ripgrep (rg) respeita .gitignore automaticamente
+rg 'padrão' .
+
+# ✅ findstr no PowerShell (nativo Windows)
+Get-ChildItem -Recurse -Include *.php | Select-String 'padrão'
+```
+
+4. **Timeout defensivo** para scripts automatizados:
+```bash
+# ✅ Limitar tempo de execução
+timeout 30 grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor} .
+```
+
+> [!CAUTION]
+> NUNCA execute `grep -rn` na raiz de repositórios com `node_modules` ou `.git` grandes. No Windows, o MSYS2 não tem kill automático por timeout — o processo pode travar indefinidamente.
+

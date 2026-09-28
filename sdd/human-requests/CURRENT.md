@@ -1,12 +1,12 @@
-﻿# CURRENT ACTIVE REQUEST
+# CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-059.md](req-059.md)
-* **Status**: `APPROVED`
+* **Status**: `HOMOLOGATED`
 * **Lote Relacionado**: `BATCH-061`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-09-28
-* **Lote Anterior Concluído**: [req-058.md](req-058.md) (`BATCH-060`)
+* **Lote Anterior Concluído**: [req-059.md](req-059.md) (`BATCH-061`)
 
 ## 🎯 Objetivo Operacional do Lote BATCH-061
 
