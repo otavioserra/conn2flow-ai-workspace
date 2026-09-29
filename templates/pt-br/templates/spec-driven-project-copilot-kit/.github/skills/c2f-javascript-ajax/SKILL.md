@@ -19,6 +19,21 @@ No núcleo do framework (`gestor.php`), o modo AJAX só é ativado quando a requ
 * **Com `ajax: 'sim'`**: O Gestor popula `$_GESTOR['ajax'] = 'sim'`, lê `$_GESTOR['ajax-opcao']` (a partir do campo `ajaxOpcao`) e **desativa a exigência de token CSRF síncrono de formulário HTML**.
 * **Sem `ajax: 'sim'`**: O Gestor assume que se trata de uma submissão de formulário HTML tradicional, exige `$_GESTOR['token']` e **rejeita a requisição imediatamente com 403 Forbidden (`{"status":"error","message":"Token CSRF inválido ou ausente."}`)**.
 
+### Cobertura automática de CSRF e 401 pelo `global.js`
+
+`gestor/assets/global/global.js` injeta `X-CSRF-Token` em requisições mutáveis (`POST`, `PUT`, `PATCH`, `DELETE`) de **mesma origem** em TODOS os canais — não escreva o cabeçalho à mão:
+
+| Canal | Mecanismo |
+| --- | --- |
+| `$.ajax` | `jQuery.ajaxPrefilter` |
+| `fetch` | envelope de `window.fetch` |
+| Formulários | listener de `submit` em captura + envelope de `HTMLFormElement.prototype.submit` + handler delegado do jQuery |
+| **`XMLHttpRequest` cru** (req-163) | envelope de `XMLHttpRequest.prototype.open` / `setRequestHeader` / `send` (guarda `__c2fCsrf`) |
+
+- **Uploads com barra de progresso**: `fetch` não expõe `upload.onprogress`; use `new XMLHttpRequest()` normalmente — o token entra sozinho. Antes da req-163 esse caminho voltava **403** com o usuário logado.
+- Token definido manualmente (`xhr.setRequestHeader('X-CSRF-Token', ...)`, em qualquer caixa) **não é duplicado nem sobrescrito**. `GET` e cross-origin nunca recebem o token.
+- Resposta **401** com `X-Gestor-Auth-Redirect` redireciona para o login em `$.ajax`, `fetch` e `XMLHttpRequest`. Ainda assim trate o 401 no seu handler para destravar dimmers/spinners.
+
 ---
 
 ## 🏆 2. Padrão Canônico Frontend em JavaScript Vanilla (Gold Standard)
@@ -230,6 +245,50 @@ ajax.successCallback = function (response) {
 };
 $.ajax(ajax);
 ```
+
+---
+
+## 5. Armadilha de Injeção de Scripts no `<head>` (`gestor_pagina_javascript_incluir`)
+
+A função PHP `gestor_pagina_javascript_incluir()` injeta os scripts dos módulos no elemento `<head>` da página HTML. Isso significa que o script é **executado antes do `<body>` ser parseado**.
+
+### 5.1 Proibição de Consultas Diretas ao DOM na Raiz do Script
+
+```javascript
+// ❌ ERRADO — DOM ainda não foi parseado, retorna null
+var form = document.getElementById('form-checkout');
+form.addEventListener('submit', handler); // TypeError: null
+
+// ✅ CORRETO — aguardar DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('form-checkout');
+    form.addEventListener('submit', handler);
+});
+```
+
+### 5.2 Preferência por Delegação de Eventos
+
+Para elementos que podem ser inseridos dinamicamente (widgets, componentes AJAX), use **delegação de eventos** no `document`:
+
+```javascript
+// ✅ CORRETO — delegação funciona mesmo para elementos futuros
+document.addEventListener('click', function(e) {
+    if (e.target.matches('.btn-adicionar-carrinho')) {
+        adicionarAoCarrinho(e.target.dataset.produtoId);
+    }
+});
+
+// ✅ CORRETO — submit com delegação
+document.addEventListener('submit', function(e) {
+    if (e.target.matches('#form-checkout')) {
+        e.preventDefault();
+        processarCheckout(e.target);
+    }
+});
+```
+
+> [!WARNING]
+> Sem `DOMContentLoaded` ou delegação, o formulário será submetido nativamente (POST síncrono) em vez de ser interceptado via AJAX, causando recarregamento completo da página e perda de estado.
 
 ---
 

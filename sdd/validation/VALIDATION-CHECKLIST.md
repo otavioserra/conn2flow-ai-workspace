@@ -1,4 +1,4 @@
-﻿# Validation Checklist
+# Validation Checklist
 
 Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de testes empÃ­ricos de validaÃ§Ã£o para os lotes funcionais ativos.
 
@@ -322,3 +322,56 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 2. Auditoria MD5: 1.000/1.000 correspondências de hash canônico em todos os 25 kits dos 5 repositórios.
 3. Testes da extensão: `npm test` em `vscode-extension/`, 114/114 testes aprovados (187ms).
 4. Detalhamento operacional: [batch-061.md](../implementation/batch-061.md).
+
+---
+
+## BATCH-062: Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways
+
+### 1. Checklist de Aceite Técnico
+
+- [x] Criação da nova skill canônica `c2f-payment-gateways/SKILL.md` contendo os 8 padrões arquiteturais de segurança para gateways de pagamento (autoridade do servidor, HMAC com salt, prova de posse, captura no backend, webhooks idempotentes, SDK condicional, fallback seguro e dublês de testes sem credenciais).
+- [x] Atualização de `c2f-gestor-functions/SKILL.md`: §12 Sessão em páginas públicas (`without_permission: true`) exigindo `isset($_COOKIE)` defensivo.
+- [x] Atualização de `c2f-javascript-ajax/SKILL.md`: §5 Injeção de scripts no `<head>` via `gestor_pagina_javascript_incluir()`, `DOMContentLoaded` obrigatório e delegação de eventos.
+- [x] Atualização de `c2f-interface-v2-architecture/SKILL.md`: §4 Variantes Tailwind no painel administrativo e restrição da listagem em Fomantic (BL-026).
+- [x] Atualização de `c2f-tailwind-css-architecture/SKILL.md`: Registro formal de `tailwind_sources` e `tailwind_sources_reason` no `<id>.json` e `<template>` inerte para o core.
+- [x] Atualização de `c2f-database-operations/SKILL.md`: §4 Limpeza de migrações Phinx renumeradas no destino para prevenção de erro `Duplicate migration`.
+- [x] Atualização de `c2f-project-pipeline-and-tasks/SKILL.md`: §6 Expurgo de registros órfãos via `deletar` e páginas semente; §7 Diagnóstico de estouro de memória no deploy via API (`1024M`).
+- [x] Atualização de `c2f-json-resources-sync/SKILL.md`: Preservação de barras escapadas (`\/`) em JSON de módulos por Python, `ensure_ascii=False` e quebras nativas.
+- [x] Atualização de `c2f-shell-and-windows-traps/SKILL.md`: Armadilha 12 sobre perda de escapes de barra por `json.dumps()` no Python.
+- [x] Atualização de `c2f-projects-system/SKILL.md`: §5 Regras de indexação do sitemap e exclusão automática de rotas de checkout/transacionais.
+- [x] Atualização de `c2f-documentation-governance/SKILL.md`: §4 Fluxo mandatório pós-alteração de código em 5 etapas (`docs:audit`, `verified_at`, `docs:extract`, `docs:build`).
+- [x] Atualização de `c2f-agent-visual-inspection/SKILL.md`: Roteiro de validação E2E em ambientes com acesso remoto restrito (read-only, 8 etapas).
+- [x] Atualização de `c2f-reviewer-agent/SKILL.md`: Checklist de auditoria para integração de módulos concorrentes.
+- [x] Espelhamento da nova skill e das 12 atualizações nos 4 kits centrais (`.claude`, `.codex`, `.cursor`, `.github`) e 14 templates bilíngues (494 arquivos propagados).
+- [x] Propagação para todos os 20 diretórios de kit dos 4 satélites (`conn2flow`, `lumix`, `conn2flow-site`, `transformamp`).
+- [x] Auditoria criptográfica MD5 atestando **1.025 / 1.025 correspondências** (zero divergências) em todas as 41 skills canônicas nos 25 kits.
+- [x] Preservação integral de todas as 35 skills locais/privadas nos repositórios satélites (8 no lumix, 8 no conn2flow-site, 19 no transformamp).
+- [x] Suíte de testes `npm test` da extensão: **114/114 testes aprovados** (0 fail, 184ms).
+- [x] Relatório `sdd/implementation/batch-062.md` criado e recibo emitido em `completions/BATCH-062-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. **Auditoria Criptográfica MD5**: Execução do script `audit_md5_full.py`:
+   - 41 skills canônicas carregadas.
+   - 1.025 arquivos verificados nos 25 kits (5 repositórios).
+   - 1.025 correspondências de hash MD5 exato (normalização LF/CRLF).
+   - 0 divergências e 0 arquivos faltantes.
+   - Veredito: `PASSED (ZERO DIVERGENCES)`.
+2. **Preservação de Skills Locais**:
+   - `lumix`: 8 skills locais preservadas.
+   - `conn2flow-site`: 8 skills locais preservadas.
+   - `transformamp`: 19 skills locais preservadas.
+3. **Testes Unitários da Extensão**:
+   - Execução de `npm test` no diretório `vscode-extension/`:
+   - 114 subtestes executados, 114 aprovados, 0 falhas, duração 184ms.
+4. **Detalhamento Operacional**:
+   - Registro de lote completo em [batch-062.md](../implementation/batch-062.md).
+   - Recibo emitido em `completions/BATCH-062-executor-receipt.json`.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-062.md](review-062.md) (APPROVED).
+- [x] Homologação executiva pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-062-executor-receipt.json`.
+
+
