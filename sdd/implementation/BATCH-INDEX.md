@@ -23,25 +23,24 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-051** | Preferências de workspace e prompt SDD | [batch-051](archive/batch-051.md) |
 | **BATCH-052** | Publicação SSH de projetos | [batch-052](archive/batch-052.md) |
 | **BATCH-053** | Loading, resiliência VM e busca de docs | [batch-053](archive/batch-053.md) |
+| **BATCH-054** | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | [batch-054](archive/batch-054.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-054** | complete | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 homologada; 111/111 testes na extensão, 1125 testes PHPUnit, css:audit SSH, status bar VM, busca de docs e VSIX 1.1.0. |
 | **BATCH-055** | complete | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | `VALIDATION-CHECKLIST.md#batch-055` | REQ-053 homologada; 114/114 testes na extensão, 1158 testes PHPUnit, sudo tail nos logs VM, modo duplo no css:rebuild e CI portável. |
 | **BATCH-056** | complete | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | `VALIDATION-CHECKLIST.md#batch-056` | REQ-054 homologada; poda em lumix (15 KB), auditoria ecossistema (< 50 KB), VSIX 1.1.1 gerado e release 2.10.10 validada. |
 | **BATCH-057** | complete | Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | `VALIDATION-CHECKLIST.md#batch-057` | REQ-055 homologada; 39 skills sincronizadas em 15 kits, 585 cópias MD5 idênticas, Tríade SDD e traps consolidadas. |
 | **BATCH-058** | complete | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058.md](batch-058.md) | REQ-056 homologada; 975 cópias verificadas com MD5 idêntico nos 5 repositórios e 5 kits, 114/114 testes aprovados. |
 | **BATCH-059** | complete | Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [batch-059.md](batch-059.md) | REQ-057 homologada; `.agents/` removido, `.gemini/config.json` padronizado nos 5 repositórios e templates, `GEMINI.md`/`AGENTS.md` atualizados com `/boost`. |
 | **BATCH-060** | complete | Skill canônica `c2f-documentation` e propagação aos kits (FEAT-014) | [batch-060.md](batch-060.md) | REQ-058 homologada; 39 cópias com hash idêntico, `ai:sync` 37/37 no Core; lumix sem commit. |
-
-
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
 | **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
-| **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061; revisado e corrigido (choques sem versão nova/sem arquivo); `npm test` 124/124; contrato validado de ponta a ponta contra o CLI e o tenant; homologação visual humana pendente. |
+| **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061 homologada; 124/124 npm test, contrato validado contra CLI/tenant, revisão técnica aprovada (review-063.md). |
+| **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do agente executor. |
 
 ## Requisição ativa
 
-`REQ-061` está em implementação no lote `BATCH-063`; a próxima requisição depende do aceite humano.
+`REQ-062` formalizada e pronta para execução no lote `BATCH-064`.
 

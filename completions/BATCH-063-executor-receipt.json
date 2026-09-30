@@ -1,0 +1,46 @@
+{
+  "batch": "BATCH-063",
+  "request": "req-061",
+  "executor": "GitHub Copilot & Core Agent (req-198/199)",
+  "timestamp": "2026-09-30T17:15:00-03:00",
+  "status": "COMPLETED",
+  "deliverables": [
+    {
+      "task": "Typed parsing of update:conflicts and update:resolve JSON",
+      "result": "PASS",
+      "details": "Implemented in projectConflictsPolicy.ts with support for numeric IDs, empty action arrays ([] from PHP), and graceful {ok:false, erro} handling."
+    },
+    {
+      "task": "VS Code Tree Access to Delivery Conflicts by Project",
+      "result": "PASS",
+      "details": "Added conflict nodes under Projects section for each project registered in devProjects."
+    },
+    {
+      "task": "Side-by-side diff and merge resolution editor",
+      "result": "PASS",
+      "details": "vscode.diff opened for active vs incoming versions; merged file exposed when merge is supported; QuickPick restricted strictly to CLI actions with --local support."
+    },
+    {
+      "task": "Tolerance for deletion and database conflict modes",
+      "result": "PASS",
+      "details": "Reviewer fixed edge cases: conflicts without new version (file deletion) and database record conflicts (db:<tabela>?<chave>) now resolve cleanly without requiring missing local files."
+    },
+    {
+      "task": "VS Code Extension Tests (npm test)",
+      "result": "PASS",
+      "details": "124/124 tests passed (0 fail, 0 skip, 190.67ms). Exit code 0."
+    }
+  ],
+  "criteria_met": {
+    "project_conflicts_tree_added": true,
+    "side_by_side_diff_supported": true,
+    "typed_cli_contract_validated": true,
+    "deletion_and_db_conflicts_handled": true,
+    "php_empty_array_tolerated": true,
+    "workspace_trust_enforced": true,
+    "nls_localization_ptbr_en": true,
+    "npm_test_124_pass": true,
+    "batch_record_created": true,
+    "receipt_emitted": true
+  }
+}
