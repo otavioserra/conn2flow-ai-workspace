@@ -1,14 +1,18 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-060.md](req-060.md)
-* **Status**: `HOMOLOGATED`
-* **Lote Relacionado**: `BATCH-062`
+* **Ponteiro Ativo**: [req-061.md](req-061.md)
+* **Status**: `READY` (delegada a agente executor; revisão pelo agente da req-198/199 do core)
+* **Lote Relacionado**: `BATCH-063`
 * **Topologia de Agentes**: `dupla`
-* **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-09-28
-* **Lote Anterior Concluído**: [req-060.md](req-060.md) (`BATCH-062`)
+* **Nível de Autonomia**: `supervisionado` (commit e push na branch `feat/req-061`)
+* **Data de Entrada**: 2026-09-30
+* **Lote Anterior Concluído**: [req-060.md](req-060.md) (`BATCH-062`, `HOMOLOGATED`)
 
-## 🎯 Objetivo Operacional do Lote BATCH-062
+## 🎯 Objetivo Operacional do Lote BATCH-063
+
+Choques das entregas na extensão do VS Code: listar por projeto, abrir o diff lado a lado e enviar a decisão (sobrescrever, manter, mesclar), tudo pelo CLI do core (`c2f update:conflicts` / `update:resolve` com `--json`). Especificação no handoff do core citado na [req-061](req-061.md).
+
+## 🎯 Objetivo do Lote Anterior (BATCH-062)
 
 Incorporação canônica dos aprendizados de e-commerce nas skills e criação da skill `c2f-payment-gateways`:
 1. **Criação da Skill Canônica `c2f-payment-gateways`**: Definir os 8 padrões arquiteturais de gateways de pagamento seguro (autoridade estrita do servidor, token HMAC, prova de posse na API, captura no backend, webhooks minimalistas e idempotentes, SDK condicional, fallback seguro e dublês de testes).
