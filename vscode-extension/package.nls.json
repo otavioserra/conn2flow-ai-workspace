@@ -67,6 +67,7 @@
   "command.conn2flow.projects.deployWithSelect": "Select Project to Deploy",
   "command.conn2flow.projects.updateAllTarget": "Update Target Project",
   "command.conn2flow.projects.updateAllWithSelect": "Select Project to Update",
+  "command.conn2flow.projects.listConflicts": "Review Delivery Conflicts",
   "command.conn2flow.projects.addNew": "Register Project in Environment",
   "command.conn2flow.projects.scaffoldProject": "Create Satellite Project",
   "command.conn2flow.projects.cloneRepository": "Clone Official Repositories",

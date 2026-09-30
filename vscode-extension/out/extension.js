@@ -22,6 +22,7 @@ const workspaceLocator_1 = require("./providers/workspaceLocator");
 const backlogManager_1 = require("./providers/backlogManager");
 const releaseManager_1 = require("./providers/releaseManager");
 const hubTaskWatcher_1 = require("./providers/hubTaskWatcher");
+const projectConflictsManager_1 = require("./providers/projectConflictsManager");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 const documentationSearchPolicy_1 = require("./documentationSearchPolicy");
 const vmDiagnosticsPolicy_1 = require("./vmDiagnosticsPolicy");
@@ -471,6 +472,8 @@ function activate(context) {
         if (sel) {
             await projectsManager_1.ProjectsManager.setTargetProject(sel.id, refreshAll);
         }
+    }), vscode.commands.registerCommand('conn2flow.projects.listConflicts', async (projectId) => {
+        await projectConflictsManager_1.ProjectConflictsManager.openForProject(projectId, refreshAll);
     }), vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)

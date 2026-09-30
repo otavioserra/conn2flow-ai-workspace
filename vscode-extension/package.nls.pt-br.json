@@ -67,6 +67,7 @@
   "command.conn2flow.projects.deployWithSelect": "📤 Deploy Escolhendo Projeto...",
   "command.conn2flow.projects.updateAllTarget": "🔄 Update All Projeto Alvo",
   "command.conn2flow.projects.updateAllWithSelect": "📋 Update All Escolhendo Projeto...",
+  "command.conn2flow.projects.listConflicts": "⚠️ Revisar Choques de Entrega",
   "command.conn2flow.projects.addNew": "➕ Cadastrar Novo Projeto no Environment",
   "command.conn2flow.projects.scaffoldProject": "🆕 Provisionar Novo Projeto Satélite",
   "command.conn2flow.projects.cloneRepository": "📥 Clonar Repositórios Oficiais",

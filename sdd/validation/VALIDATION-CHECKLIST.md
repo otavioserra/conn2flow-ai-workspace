@@ -99,7 +99,7 @@ apenas após o reload. Os normalizadores passaram a aceitar aliases e a escrita 
 8. Gate SDD final: `ai:archive-sdd --keep=10 --repair-links --dry-run` confirmou 10 requisições,
    10 batches e **zero links relativos órfãos** no `conn2flow-ai-workspace`.
 
-Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
+Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md).
 
 ### 3. Revisão Técnica
 
@@ -373,5 +373,27 @@ Detalhamento operacional: [batch-053.md](../implementation/batch-053.md).
 - [x] Auditoria do Revisor Técnico: parecer emitido em [review-062.md](review-062.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-062-executor-receipt.json`.
+
+---
+
+## BATCH-063 — Choques das Entregas na Extensão do VS Code (REQ-061, 2026-09-30)
+
+### 1. Checklist de Aceite Técnico
+
+- [x] A árvore oferece acesso aos choques por projeto definido em `devProjects`.
+- [x] O parser aceita IDs numéricos observados no JSON real, tolera `acoes: []` e apresenta claramente `{ok:false, erro}`.
+- [x] O diff abre as versões no ar e recebida; o editor mesclado é exigido/aberto somente quando `mesclar` está entre as ações oferecidas.
+- [x] QuickPick limita decisões às `acoes` do CLI; a mescla confirma salvamento e pergunta sobre `--local`.
+- [x] Execução do CLI é bloqueada sem Workspace Trust e os textos/tooltips estão localizados em PT-BR e EN.
+- [x] `npm test`: **122/122 aprovados**, 0 falhas e 0 skips; `get_errors` e `git diff --check` limpos.
+- [ ] Fluxo interativo completo no VS Code (detalhe, diff e resolução) ainda sem validação ao vivo.
+
+### 2. Evidências de Validação
+
+1. `npm test` em `vscode-extension/` recompilou TypeScript e aprovou **122/122 testes** (0 falhas, 0 skips).
+2. Testes focados de política, cobertura de comando, NLS e tooltips: **20/20 aprovados**.
+3. Smoke somente de leitura `update:conflicts project-test --todos --json`: sucesso, nove registros, IDs numéricos e um choque pendente com ações `manter` e `mesclar`.
+4. Não foi executado `update:conflicts <projeto> <id>` porque baixa arquivos para `temp/conflicts` no worktree do Core. `update:resolve` não foi executado porque altera o tenant de teste; a inspeção visual do VS Code permanece pendente.
+5. Nenhuma alteração no Core, commit, push, deploy ou VSIX.
 
 

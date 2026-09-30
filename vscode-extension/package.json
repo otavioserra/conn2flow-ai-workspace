@@ -345,6 +345,12 @@
         "icon": "$(list-ordered)"
       },
       {
+        "command": "conn2flow.projects.listConflicts",
+        "title": "%command.conn2flow.projects.listConflicts%",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(warning)"
+      },
+      {
         "command": "conn2flow.projects.addNew",
         "title": "%command.conn2flow.projects.addNew%",
         "category": "Conn2Flow Projetos",
