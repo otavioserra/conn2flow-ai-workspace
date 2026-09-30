@@ -73,14 +73,22 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     this.refresh();
   }
 
-  private leaf(key: TranslationKey, command: string, icon: string, values: Record<string, string> = {}): Conn2FlowTreeItem {
+  private leaf(
+    key: TranslationKey,
+    command: string,
+    icon: string,
+    values: Record<string, string> = {},
+    commandArgs?: unknown[]
+  ): Conn2FlowTreeItem {
     const label = LocalizationManager.t(key, values);
     return new Conn2FlowTreeItem(
       label,
       vscode.TreeItemCollapsibleState.None,
       command,
       icon,
-      `**${label}**\n\n${LocalizationManager.t(treeTooltipKey(key), values)}`
+      `**${label}**\n\n${LocalizationManager.t(treeTooltipKey(key), values)}`,
+      undefined,
+      commandArgs
     );
   }
 
@@ -190,6 +198,15 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     projects.push(this.leaf('projects.register', 'conn2flow.projects.registerExisting', 'plus'));
     projects.push(this.leaf('projects.clone', 'conn2flow.projects.cloneMissing', 'repo-clone'));
     projects.push(this.leaf('projects.syncTemplate', 'conn2flow.projects.syncTemplate', 'diff-added'));
+    projects.push(...ProjectsManager.getProjectsList().map(project =>
+      this.leaf(
+        'projects.conflictsFor',
+        'conn2flow.projects.listConflicts',
+        'warning',
+        { project: project.name },
+        [project.id]
+      )
+    ));
 
     const diagnostics: Conn2FlowTreeItem[] = [];
     if (!ProjectsManager.isTargetVm()) {

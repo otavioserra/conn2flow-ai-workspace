@@ -18,6 +18,7 @@ import { WorkspaceLocator } from './providers/workspaceLocator';
 import { BacklogManager } from './providers/backlogManager';
 import { ReleaseManager } from './providers/releaseManager';
 import { HubTaskWatcher } from './providers/hubTaskWatcher';
+import { ProjectConflictsManager } from './providers/projectConflictsManager';
 import {
   getPreviewCloseReason,
   isTargetMpePreview,
@@ -220,96 +221,96 @@ export function activate(context: vscode.ExtensionContext) {
 
     const uri = vscode.Uri.file(resolvedFullPath);
 
+    try {
+      const viewMode = SddViewModeManager.mode;
+
+      // Garante que o MPE esteja ativo se instalado
+      const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
+      if (mpe && !mpe.isActive) {
         try {
-          const viewMode = SddViewModeManager.mode;
-
-          // Garante que o MPE esteja ativo se instalado
-          const mpe = vscode.extensions.getExtension('shd101wyy.markdown-preview-enhanced');
-          if (mpe && !mpe.isActive) {
-            try {
-              await mpe.activate();
-            } catch {
-              // continua
-            }
-          }
-
-          // 1. Modo Apenas Renderizado (Preview direto via Custom Editor MPE)
-          if (viewMode === 'preview') {
-            if (mpe) {
-              try {
-                // Fecha somente o preview que uma chamada anterior desta extensão registrou.
-                // Previews MPE abertos manualmente nunca são adotados implicitamente.
-                await runPreviewLifecycle({
-                  closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
-
-                  openPreview: async () => {
-                    await vscode.commands.executeCommand(
-                      'vscode.openWith',
-                      uri,
-                      MPE_VIEW_TYPE,
-                      vscode.ViewColumn.Active
-                    );
-                  },
-                  waitUntilPreviewIsActive: () => waitForMpePreview(uri),
-
-                // Remove somente a fonte do documento solicitado, preservando o foco.
-                  closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
-                });
-
-                // Revela explicitamente o Custom Editor depois da limpeza para garantir foco.
-                managedMpePreviewPath = uri.fsPath;
-                await context.workspaceState.update(managedPreviewStateKey, managedMpePreviewPath);
-                return;
-              } catch {
-                // fallback para preview nativo
-              }
-            }
-            try {
-              await runPreviewLifecycle({
-                closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
-                openPreview: async () => {
-                  await vscode.commands.executeCommand('markdown.showPreview', uri, vscode.ViewColumn.Active);
-                },
-                waitUntilPreviewIsActive: waitForNativePreview,
-                closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
-              });
-              return;
-            } catch {
-              // fallback
-            }
-            return;
-          }
-
-          // 2. Modo Apenas Código-Fonte (Editor normal)
-          if (viewMode === 'code') {
-            const doc = await vscode.workspace.openTextDocument(uri);
-            await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-            return;
-          }
-
-          // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview MPE na direita)
-          const doc = await vscode.workspace.openTextDocument(uri);
-          await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
-
-          if (mpe) {
-            try {
-              await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
-              return;
-            } catch {
-              // fallback para nativo
-            }
-          }
-
-          try {
-            await vscode.commands.executeCommand('markdown.showPreviewToSide');
-          } catch {
-            // documento já aberto na tela
-          }
-          return;
-        } catch (err: any) {
-          vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
-          return;
+          await mpe.activate();
+        } catch {
+          // continua
         }
+      }
+
+      // 1. Modo Apenas Renderizado (Preview direto via Custom Editor MPE)
+      if (viewMode === 'preview') {
+        if (mpe) {
+          try {
+            // Fecha somente o preview que uma chamada anterior desta extensão registrou.
+            // Previews MPE abertos manualmente nunca são adotados implicitamente.
+            await runPreviewLifecycle({
+              closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
+
+              openPreview: async () => {
+                await vscode.commands.executeCommand(
+                  'vscode.openWith',
+                  uri,
+                  MPE_VIEW_TYPE,
+                  vscode.ViewColumn.Active
+                );
+              },
+              waitUntilPreviewIsActive: () => waitForMpePreview(uri),
+
+              // Remove somente a fonte do documento solicitado, preservando o foco.
+              closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
+            });
+
+            // Revela explicitamente o Custom Editor depois da limpeza para garantir foco.
+            managedMpePreviewPath = uri.fsPath;
+            await context.workspaceState.update(managedPreviewStateKey, managedMpePreviewPath);
+            return;
+          } catch {
+            // fallback para preview nativo
+          }
+        }
+        try {
+          await runPreviewLifecycle({
+            closePreviousManagedPreview: () => closeAllManagedPreviews(uri),
+            openPreview: async () => {
+              await vscode.commands.executeCommand('markdown.showPreview', uri, vscode.ViewColumn.Active);
+            },
+            waitUntilPreviewIsActive: waitForNativePreview,
+            closeTargetSource: () => closeTabsForPreview(uri, new Set(['target-source']))
+          });
+          return;
+        } catch {
+          // fallback
+        }
+        return;
+      }
+
+      // 2. Modo Apenas Código-Fonte (Editor normal)
+      if (viewMode === 'code') {
+        const doc = await vscode.workspace.openTextDocument(uri);
+        await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+        return;
+      }
+
+      // 3. Modo Ambos Lado a Lado (Código na esquerda + Preview MPE na direita)
+      const doc = await vscode.workspace.openTextDocument(uri);
+      await vscode.window.showTextDocument(doc, { preview: false, viewColumn: vscode.ViewColumn.One });
+
+      if (mpe) {
+        try {
+          await vscode.commands.executeCommand('markdown-preview-enhanced.openPreviewToTheSide', uri);
+          return;
+        } catch {
+          // fallback para nativo
+        }
+      }
+
+      try {
+        await vscode.commands.executeCommand('markdown.showPreviewToSide');
+      } catch {
+        // documento já aberto na tela
+      }
+      return;
+    } catch (err: any) {
+      vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+      return;
+    }
   };
 
   let managedPreviewNavigationInProgress = false;
@@ -588,6 +589,9 @@ export function activate(context: vscode.ExtensionContext) {
         await ProjectsManager.setTargetProject(sel.id, refreshAll);
       }
     }),
+    vscode.commands.registerCommand('conn2flow.projects.listConflicts', async (projectId?: string) => {
+      await ProjectConflictsManager.openForProject(projectId, refreshAll);
+    }),
     vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
       const target = ProjectsManager.getTargetProject();
       if (!target) return void vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
@@ -849,4 +853,4 @@ function updateStatusBar() {
   }
 }
 
-export function deactivate() {}
+export function deactivate() { }

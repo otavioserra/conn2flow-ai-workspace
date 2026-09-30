@@ -15,16 +15,19 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 - **BATCH-000 a BATCH-003**: onboarding, reorganização bilíngue e otimizações iniciais; detalhes nos arquivos do lote e em `validation/archive/validation-001-003.md`.
 - **BATCH-006 a BATCH-032**: lotes concluídos; detalhes preservados em [sdd/implementation/archive/](archive/) e no histórico Git.
 
+| Batch | Resumo | Registro arquivado |
+| --- | --- | --- |
+| **BATCH-004** | Integração MCP para agentes locais | [batch-004](archive/batch-004-mcp-integration.md) |
+| **BATCH-005** | Governança SDD em CI/CD | [batch-005](archive/batch-005-sdd-governance-ci.md) |
+| **BATCH-050** | Regra dos 10 ativos e comando de arquivamento | [batch-050](archive/batch-050.md) |
+| **BATCH-051** | Preferências de workspace e prompt SDD | [batch-051](archive/batch-051.md) |
+| **BATCH-052** | Publicação SSH de projetos | [batch-052](archive/batch-052.md) |
+| **BATCH-053** | Loading, resiliência VM e busca de docs | [batch-053](archive/batch-053.md) |
+
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-004** | ready-for-intake | Integração e protocolo MCP para agentes locais | [batch-004-mcp-integration.md](archive/batch-004-mcp-integration.md) | Reservado; ainda sem intake ativo. |
-| **BATCH-005** | ready-for-intake | Validador de governança SDD em CI/CD | [batch-005-sdd-governance-ci.md](archive/batch-005-sdd-governance-ci.md) | Reservado; ainda sem intake ativo. |
-| **BATCH-050** | complete | Regra dos 10 Ativos na Raiz SDD, Integridade de Links nos Índices e Comando CLI ai:archive-sdd | `VALIDATION-CHECKLIST.md#batch-050` | REQ-048 homologada; comando CLI ai:archive-sdd, movimentação para archive/ e integridade de links. |
-| **BATCH-051** | complete | Persistência Externa em settings.json e Sincronização Dinâmica do Prompt e CURRENT.md | `VALIDATION-CHECKLIST.md#batch-051` | REQ-049 homologada; 98/98 testes, workspacePreferencesPolicy e sincronismo dinâmico de topologia. |
-| **BATCH-052** | complete | Suporte a ssh_public_path e Execução SSH Automática no Pipeline Multiprojeto | `VALIDATION-CHECKLIST.md#batch-052` | REQ-050 homologada; 17/17 testes PHPUnit, publicação remota de assets e css:rebuild via SSH. |
-| **BATCH-053** | complete | Sincronização de Skills nos Satélites e Poda SDD | `VALIDATION-CHECKLIST.md#batch-053` | REQ-051 homologada; sincronização completa de skills e poda de memória. |
 | **BATCH-054** | complete | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | `VALIDATION-CHECKLIST.md#batch-054` | REQ-052 homologada; 111/111 testes na extensão, 1125 testes PHPUnit, css:audit SSH, status bar VM, busca de docs e VSIX 1.1.0. |
 | **BATCH-055** | complete | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | `VALIDATION-CHECKLIST.md#batch-055` | REQ-053 homologada; 114/114 testes na extensão, 1158 testes PHPUnit, sudo tail nos logs VM, modo duplo no css:rebuild e CI portável. |
 | **BATCH-056** | complete | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | `VALIDATION-CHECKLIST.md#batch-056` | REQ-054 homologada; poda em lumix (15 KB), auditoria ecossistema (< 50 KB), VSIX 1.1.1 gerado e release 2.10.10 validada. |
@@ -36,8 +39,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
 | **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
+| **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061; revisado e corrigido (choques sem versão nova/sem arquivo); `npm test` 124/124; contrato validado de ponta a ponta contra o CLI e o tenant; homologação visual humana pendente. |
 
-## Próxima requisição
+## Requisição ativa
 
-`REQ-060` concluída e homologada em 2026-09-29 no lote `BATCH-062`. Sistema pronto para novo ciclo de intake humano.
+`REQ-061` está em implementação no lote `BATCH-063`; a próxima requisição depende do aceite humano.
 

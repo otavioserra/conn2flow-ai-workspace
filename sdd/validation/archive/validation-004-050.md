@@ -881,7 +881,7 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 
 ### 3. Revisão Técnica
 
-- [x] [REVIEW-045](review-045.md): parecer final `APPROVED` em 2026-08-31; 54/54 testes da extensão, 2/2 do MCP Hub, recibo executor correlacionado e escopo de `docs.skills` formalizado.
+- [x] [REVIEW-045](../review-045.md): parecer final `APPROVED` em 2026-08-31; 54/54 testes da extensão, 2/2 do MCP Hub, recibo executor correlacionado e escopo de `docs.skills` formalizado.
 - [x] Encerramento da revisão: `MEMORIA-ENGENHARIA-EXECUCAO.md` medida em 1.975 bytes e 32 linhas; não requer poda.
 
 ---
@@ -905,11 +905,11 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 - **Paridade de catálogos**: `localizationCatalog.test.cjs` continua verde (paridade estrita `en`/`ptBR`), `packageNls.test.cjs` continua verde (88 chaves em cada arquivo NLS) e o novo teste de sincronismo exige igualdade byte a byte dos dois templates entre `package.nls.*` e o catálogo de runtime.
 - **Saída real verificada**: prompt renderizado com `Projeto: conn2flow-ai-workspace`, `Caminho Raiz: c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`, `Raiz SDD: ...\sdd` e link `[req-044.md](...\sdd\human-requests\CURRENT.md)`; instrução `/goal` iniciando com `[Projeto: ... | Raiz: ... | Entrada: ...]`.
 - **Recibo MCP Hub**: `completions/BATCH-046-executor-receipt.json` com `role: "executor"`, `req_id: "REQ-044"` e `task_id: "task-1788262915507-xglp9"`.
-- **Detalhamento do lote**: [batch-046.md](../implementation/archive/batch-046.md).
+- **Detalhamento do lote**: [batch-046.md](../../implementation/archive/batch-046.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-046.md](review-046.md) emitido com parecer **APPROVED** em 2026-09-01 (66/66 testes, módulo puro agentPromptPolicy, interpolação bilíngue e caminho absoluto no link).
+- [x] Auditoria do Revisor Técnico: [review-046.md](../review-046.md) emitido com parecer **APPROVED** em 2026-09-01 (66/66 testes, módulo puro agentPromptPolicy, interpolação bilíngue e caminho absoluto no link).
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
 
@@ -930,11 +930,11 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 - `cd vscode-extension && npm test`: 76/76 testes aprovados, compilação TypeScript limpa.
 - `Core: php cli/c2f.php ai:sync`: 36/36 skills verificadas nos 5 kits.
 - Recibo do Executor: `completions/BATCH-047-executor-receipt.json` (`rec_1788275223806`).
-- Detalhamento do lote: [batch-047.md](../implementation/archive/batch-047.md).
+- Detalhamento do lote: [batch-047.md](../../implementation/archive/batch-047.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-047.md](review-047.md) emitido com parecer **APPROVED** em 2026-09-01.
+- [x] Auditoria do Revisor Técnico: [review-047.md](../review-047.md) emitido com parecer **APPROVED** em 2026-09-01.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
 ---
@@ -956,11 +956,11 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 * `test/treeTooltipPolicy.test.cjs`: confirma tooltip rico localizado para todos os nós nativos, `MarkdownString` no provider e ausência de `docs.marketplace`/`agents.selectMode` em `docsConfig`.
 * `cd vscode-extension && npx @vscode/vsce package --no-dependencies`: VSIX `conn2flow-tools-1.0.0.vsix` gerado com 69 arquivos (168,63 KB), com prepublish TypeScript limpo.
 * Recibo do executor: `completions/BATCH-048-executor-receipt.json`.
-* Detalhamento do lote: [batch-048.md](../implementation/batch-048.md).
+* Detalhamento do lote: [batch-048.md](../../implementation/archive/batch-048.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-048.md](review-048.md) emitido com parecer **APPROVED** em 2026-09-01.
+- [x] Auditoria do Revisor Técnico: [review-048.md](../review-048.md) emitido com parecer **APPROVED** em 2026-09-01.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
 ---
@@ -983,7 +983,7 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 4. **Governança:** a auditoria dos documentos ativos confirmou os limites 50 KB / 200 linhas, 75 KB / 300 linhas e ~25 KB, sem residuos operacionais obsoletos nos alvos normativos; contratos em PT-BR e ingles foram verificados com suas respectivas redacoes equivalentes.
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-049.md](review-049.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Auditoria do Revisor Técnico: [review-049.md](../review-049.md) emitido com parecer **APPROVED** em 2026-09-02.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
 ---
@@ -1023,7 +1023,7 @@ repositórios — reportados em vez de silenciados: `BL-011-*`, `BL-012-*`, `BAT
 `BATCH-131.md`, `BATCH-135.md` e `../implementation/batch-047.md` no `conn2flow`; e
 `### 4. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-050.md](review-050.md) emitido com parecer **APPROVED** em 2026-09-02.
+- [x] Auditoria do Revisor Técnico: [review-050.md](../review-050.md) emitido com parecer **APPROVED** em 2026-09-02.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 
 ---

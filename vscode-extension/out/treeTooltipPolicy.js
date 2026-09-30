@@ -8,7 +8,7 @@ exports.treeTooltipKeys = [
     'agents.launchClaude', 'agents.copyPrompt', 'agents.recordHandoff', 'agents.prepareReview',
     'sdd.selectScope', 'sdd.viewMode', 'sdd.openCurrent', 'sdd.openSpec', 'sdd.openChecklist', 'sdd.browseRequests', 'sdd.browseBatches', 'sdd.browseBacklog', 'sdd.browseDecisions', 'sdd.browseHandoffs', 'sdd.autoGardening', 'sdd.runGardening', 'sdd.createGardening',
     'core.updateAll', 'core.syncResources', 'core.cssRebuild', 'core.cssAudit', 'release.verify', 'release.manager', 'release.installer', 'release.executeManager', 'release.executeInstaller', 'release.openActions',
-    'projects.setTarget', 'projects.updateAll', 'projects.syncCore', 'projects.syncFiles', 'projects.deploy', 'projects.updateSelect', 'projects.deploySelect', 'projects.scaffold', 'projects.register', 'projects.clone', 'projects.syncTemplate',
+    'projects.setTarget', 'projects.updateAll', 'projects.syncCore', 'projects.syncFiles', 'projects.deploy', 'projects.updateSelect', 'projects.deploySelect', 'projects.scaffold', 'projects.register', 'projects.clone', 'projects.syncTemplate', 'projects.conflictsFor',
     'diagnostics.dockerStatus', 'diagnostics.apacheLogs', 'diagnostics.phpLogs', 'diagnostics.truncatePhp', 'diagnostics.aiSync', 'diagnostics.syncAll',
     'docs.index', 'docs.panel', 'docs.cli', 'docs.orchestration', 'docs.architecture', 'docs.skills', 'docs.roadmap', 'custom.edit'
 ];

@@ -2,14 +2,16 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Último lote concluído:** [BATCH-049 — Modernização dos Tetos de Memory Gardening](implementation/batch-049.md)
+> **Último lote concluído:** [BATCH-062 — Criação da skill c2f-payment-gateways](implementation/batch-062.md)
 >
-> **Lotes atuais:** [BATCH-050](implementation/archive/batch-050.md), [BATCH-051](implementation/batch-051.md) e [BATCH-052](implementation/batch-052.md) `ready-for-review`; aguardam revisão do Humano-no-Loop.
+> **Lote atual:** [BATCH-063](implementation/batch-063.md) `in-progress`; aguarda validação interativa E2E e publicação autorizada da branch.
 
 >
 > **Política**: manter somente fatos recentes e acionáveis; é proibido podar abaixo de 50 KB / 200 linhas. Emitir alerta preventivo nesse patamar, podar obrigatoriamente apenas ao atingir 75 KB / 300 linhas e mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes. Detalhes históricos permanecem recuperáveis nos lotes, validações e Git.
 
 ## Atividades recentes
+
+- **2026-09-30 — REQ-061 / BATCH-063:** integração de choques das entregas na extensão VS Code; `npm test` 122/122 e testes focados 20/20. O fluxo E2E e a publicação da branch permanecem pendentes no modo supervisionado; detalhe/resolução não foram executados porque baixam artefatos e alteram o tenant. O arquivador oficial aplicou a janela 10/10, reparou 14 links anteriormente órfãos e o gate final confirmou zero links quebrados.
 
 - **2026-09-25 — REQ-058 / BATCH-060 (FEAT-014):** skill `c2f-documentation` criada e copiada de forma cirúrgica (só a pasta) para 19 pontos da Matriz e os 5 kits dos 4 satélites; `ai:sync` do Core passou a 37 skills. `sync-all-repos.ps1` foi evitado de propósito: os instaladores também migram estrutura SDD dos satélites. `lumix` recebeu os arquivos sem commit. Na Matriz, `.cursor/skills` da raiz é gitignored.
 

@@ -67,9 +67,9 @@ class Conn2FlowTreeProvider {
         ]);
         this.refresh();
     }
-    leaf(key, command, icon, values = {}) {
+    leaf(key, command, icon, values = {}, commandArgs) {
         const label = localizationManager_1.LocalizationManager.t(key, values);
-        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, `**${label}**\n\n${localizationManager_1.LocalizationManager.t((0, treeTooltipPolicy_1.treeTooltipKey)(key), values)}`);
+        return new Conn2FlowTreeItem(label, vscode.TreeItemCollapsibleState.None, command, icon, `**${label}**\n\n${localizationManager_1.LocalizationManager.t((0, treeTooltipPolicy_1.treeTooltipKey)(key), values)}`, undefined, commandArgs);
     }
     section(key, id, icon, children, primary = false) {
         const label = localizationManager_1.LocalizationManager.t(key);
@@ -151,6 +151,7 @@ class Conn2FlowTreeProvider {
         projects.push(this.leaf('projects.register', 'conn2flow.projects.registerExisting', 'plus'));
         projects.push(this.leaf('projects.clone', 'conn2flow.projects.cloneMissing', 'repo-clone'));
         projects.push(this.leaf('projects.syncTemplate', 'conn2flow.projects.syncTemplate', 'diff-added'));
+        projects.push(...projectsManager_1.ProjectsManager.getProjectsList().map(project => this.leaf('projects.conflictsFor', 'conn2flow.projects.listConflicts', 'warning', { project: project.name }, [project.id])));
         const diagnostics = [];
         if (!projectsManager_1.ProjectsManager.isTargetVm()) {
             diagnostics.push(this.leaf('diagnostics.dockerStatus', 'conn2flow.docker.status', 'pulse'), this.leaf('diagnostics.apacheLogs', 'conn2flow.docker.logsApache', logFollowManager_1.LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output'), this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', logFollowManager_1.LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'), this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash'));
