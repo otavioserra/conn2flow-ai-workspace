@@ -1,16 +1,17 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-062.md](req-062.md)
+* **Ponteiro Ativo**: [req-063.md](req-063.md)
 * **Status**: `APPROVED` (aprovada para execução pelo agente executor)
-* **Lote Relacionado**: `BATCH-064`
+* **Lote Relacionado**: `BATCH-065`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado` (execução na branch main ou branch tática)
-* **Data de Entrada**: 2026-09-30
+* **Data de Entrada**: 2026-10-01
 * **Lote Anterior Concluído**: [req-061.md](req-061.md) (`BATCH-063`, `HOMOLOGATED`)
+* **Requisição Pendente de Publicação**: [req-062.md](req-062.md) (`BATCH-064`, pronta para release v1.1.2)
 
-## 🎯 Objetivo Operacional do Lote BATCH-064
+## 🎯 Objetivo Operacional do Lote BATCH-065
 
-Fix de empacotamento vsce para compatibilidade com Node 20.14 (`@vscode/vsce@2.24.0`), version bump para v1.1.2 no `package.json` e `package-lock.json`, geração do artefato `.vsix`, atualização de changelog e documentação do fluxo de publicação no Microsoft Visual Studio Marketplace.
+Integração do Chrome DevTools MCP Server (`chrome-devtools-mcp`) no ecossistema Conn2Flow, configuração no `.gemini/mcp_config.json`, criação de script de inicialização e sandbox com perfil temporário isolado, atualização das skills centrais `c2f-agent-visual-inspection` e `c2f-javascript-ajax`, e propagação consistente nos 25 kits dos 5 repositórios com auditoria MD5.
 
 ## 🎯 Objetivo do Lote Anterior (BATCH-063)
 

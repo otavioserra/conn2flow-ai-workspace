@@ -10,7 +10,7 @@
 | [ARCH-005](ARCH-005-shared-batch-execution-stream-and-blackboard.md) | Arquitetura | `ICEBOX` | Sessão Compartilhada de Lote (Blackboard & Stream) | Aguardar planejamento / promoção futura | 2026-08-31 |
 | [FEAT-014](FEAT-014-programa-documentacao-core-e-site.md) | Documentação | `PROMOTED` | Programa de Documentação: correção no Core + `/docs/` no Conn2Flow Site (parser MD → recursos Tailwind, rotina `docs:audit`, skill) | Fase 1 entregue; seguir com as ondas de correção via skill `c2f-documentation` | 2026-09-25 |
 | [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) | Arquitetura | `ICEBOX` | Atualização automática dos kits de IA nas instalações (manifesto + lockfile + `c2f ai:kit`) | Aguardar fase 1 do FEAT-014 | 2026-09-25 |
-| [ARCH-008](ARCH-008-chrome-devtools-mcp-agent-runtime-inspection.md) | Arquitetura / MCP | `ICEBOX` | Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | Aguardar validação humana e promoção futura | 2026-10-01 |
+| [ARCH-008](ARCH-008-chrome-devtools-mcp-agent-runtime-inspection.md) | Arquitetura / MCP | `PROMOTED` | Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | Promovido para REQ-063 / BATCH-065 | 2026-10-01 |
 
 ---
 

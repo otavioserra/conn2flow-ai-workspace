@@ -1,6 +1,6 @@
 # ARCH-008 — Chrome DevTools MCP Server para Inspeção e Depuração em Tempo Real do Runtime PHP/JS
 
-* **Status**: `ICEBOX` — registrado para análise e planejamento futuro; aguardando promoção formal via intake humano.
+* **Status**: `PROMOTED` — promovido para [REQ-063](../human-requests/req-063.md) (`BATCH-065`) em 2026-10-01 pelo Humano-no-Loop.
 * **Tipo**: Arquitetura de IA / Infraestrutura MCP / Depuração de Runtime
 * **Autor**: Macro-Arquiteto (provocado por análise do Humano-no-Loop)
 * **Data de Criação**: 2026-10-01

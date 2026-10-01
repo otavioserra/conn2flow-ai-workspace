@@ -402,5 +402,34 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-063-executor-receipt.json`.
 
+---
+
+## BATCH-064 — Fix vsce, Bump v1.1.2 e Publicação no Marketplace (REQ-062)
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Ajuste no `package.json` fixando `@vscode/vsce@2.24.0` para compatibilidade com Node 20.14.
+- [ ] Version bump para 1.1.2 no `package.json` e `package-lock.json`.
+- [ ] Atualização do `CHANGELOG.md` documentando as novidades da v1.1.2.
+- [ ] Suíte de testes `npm test` verde (124/124 testes).
+- [ ] Geração do pacote `conn2flow-tools-1.1.2.vsix` via `npm run package`.
+- [ ] Publicação no Microsoft Visual Studio Marketplace.
+
+---
+
+## BATCH-065 — Integração do Chrome DevTools MCP Server (REQ-063)
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Configuração canônica do servidor `chrome-devtools` no `.gemini/mcp_config.json`.
+- [ ] Criação do script de bootstrap e sandbox de perfil isolado `scripts/mcp/launch-devtools-chrome.ps1`.
+- [ ] Atualização da skill `c2f-agent-visual-inspection` com diretrizes de inspeção ativa, capturas de tela e nós do DOM.
+- [ ] Atualização da skill `c2f-javascript-ajax` com diretrizes de depuração de tráfego assíncrono e console traces.
+- [ ] Propagação consistente para os 25 kits dos 5 repositórios do ecossistema.
+- [ ] Auditoria de paridade MD5 com 100% de conformidade.
+- [ ] Suíte de testes `npm test` verde.
+- [ ] Relatório operacional `batch-065.md` e checklist preenchido.
+
+
 
 

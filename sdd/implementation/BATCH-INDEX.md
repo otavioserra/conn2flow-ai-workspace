@@ -24,12 +24,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-052** | Publicação SSH de projetos | [batch-052](archive/batch-052.md) |
 | **BATCH-053** | Loading, resiliência VM e busca de docs | [batch-053](archive/batch-053.md) |
 | **BATCH-054** | SSH no css:audit, Confirmação Remota em VM, Saneamento de Notificações, Status Bar VM e Busca de Docs | [batch-054](archive/batch-054.md) |
+| **BATCH-055** | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | [batch-055](archive/batch-055.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-055** | complete | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | `VALIDATION-CHECKLIST.md#batch-055` | REQ-053 homologada; 114/114 testes na extensão, 1158 testes PHPUnit, sudo tail nos logs VM, modo duplo no css:rebuild e CI portável. |
 | **BATCH-056** | complete | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | `VALIDATION-CHECKLIST.md#batch-056` | REQ-054 homologada; poda em lumix (15 KB), auditoria ecossistema (< 50 KB), VSIX 1.1.1 gerado e release 2.10.10 validada. |
 | **BATCH-057** | complete | Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | `VALIDATION-CHECKLIST.md#batch-057` | REQ-055 homologada; 39 skills sincronizadas em 15 kits, 585 cópias MD5 idênticas, Tríade SDD e traps consolidadas. |
 | **BATCH-058** | complete | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058.md](batch-058.md) | REQ-056 homologada; 975 cópias verificadas com MD5 idêntico nos 5 repositórios e 5 kits, 114/114 testes aprovados. |
@@ -38,9 +38,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
 | **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
 | **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061 homologada; 124/124 npm test, contrato validado contra CLI/tenant, revisão técnica aprovada (review-063.md). |
-| **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do agente executor. |
+| **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
+| **BATCH-065** | ready-for-intake | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | `VALIDATION-CHECKLIST.md#batch-065` | REQ-063 formalizada; prioridade ativa para execução. |
 
 ## Requisição ativa
 
-`REQ-062` formalizada e pronta para execução no lote `BATCH-064`.
+`REQ-063` formalizada e prioritária para execução no lote `BATCH-065`.
 
