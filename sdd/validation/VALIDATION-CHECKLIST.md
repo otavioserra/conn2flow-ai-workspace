@@ -423,6 +423,7 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 
 - [ ] Configuração canônica do servidor `chrome-devtools` no `.gemini/mcp_config.json`.
 - [ ] Criação do script de bootstrap e sandbox de perfil isolado `scripts/mcp/launch-devtools-chrome.ps1`.
+- [ ] Varredura e revisão em todo o catálogo das 41 skills canônicas, mapeando e enriquecendo skills candidatas (`c2f-tailwind-css-architecture`, `c2f-interface-v2-architecture`, `c2f-quill-editor`, `c2f-preview-modals-system`, `c2f-reviewer-agent`, `c2f-shell-and-windows-traps`).
 - [ ] Atualização da skill `c2f-agent-visual-inspection` com diretrizes de inspeção ativa, capturas de tela e nós do DOM.
 - [ ] Atualização da skill `c2f-javascript-ajax` com diretrizes de depuração de tráfego assíncrono e console traces.
 - [ ] Propagação consistente para os 25 kits dos 5 repositórios do ecossistema.
