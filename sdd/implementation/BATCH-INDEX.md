@@ -39,9 +39,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
 | **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061 homologada; 124/124 npm test, contrato validado contra CLI/tenant, revisão técnica aprovada (review-063.md). |
 | **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
-| **BATCH-065** | ready-for-intake | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | `VALIDATION-CHECKLIST.md#batch-065` | REQ-063 formalizada; prioridade ativa para execução. |
+| **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
 
 ## Requisição ativa
 
-`REQ-063` formalizada e prioritária para execução no lote `BATCH-065`.
+`REQ-063` concluída e homologada no lote `BATCH-065`. Próxima requisição na fila: `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code).
+
 

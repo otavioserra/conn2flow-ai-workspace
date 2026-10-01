@@ -1,0 +1,84 @@
+{
+  "batch": "BATCH-065",
+  "request": "req-063",
+  "project": "conn2flow-ai-workspace",
+  "repository_root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace",
+  "executor": "OpenAI Codex",
+  "timestamp": "2026-10-01T16:23:28-03:00",
+  "status": "READY_FOR_REVIEW",
+  "autonomy": "supervisionado",
+  "deliverables": [
+    {
+      "task": "MCP configuration in 25 kits and 14 bilingual templates",
+      "result": "PASS",
+      "details": "Exact canonical npx command and arguments. Native JSON/TOML formats per client; existing Hub servers and other settings preserved."
+    },
+    {
+      "task": "Isolated Chrome launcher",
+      "result": "PASS",
+      "details": "TEMP sandbox, loopback CDP port 9222, real headless launch, occupied port/profile rejection, syntax validation and cleanup. Visible branch flags verified by intercepting process creation."
+    },
+    {
+      "task": "Critical scan of 41 canonical skills",
+      "result": "PASS",
+      "details": "Seven skills enriched; rationale for all 41 in batch-065.md. c2f-quill-editor is absent; editor checks incorporated into c2f-agent-visual-inspection."
+    },
+    {
+      "task": "Global MD5 parity and local skill preservation",
+      "result": "PASS",
+      "details": "1025/1025 canonical copies and 98 updated template copies match. 44 local files, including references, retain SHA-256 hashes. Fifteen existing CRLF-only mismatches normalized without changing text. Audit rerun is idempotent."
+    },
+    {
+      "task": "Real MCP browser integration smoke",
+      "result": "PASS",
+      "details": "Node v22.23.3 temporary runtime, MCP 1.10.1 and Chrome 154.0.8037.58. Handshake, 30 tools, local fixture navigation, snapshot, click, modal, DOM measurement, screenshot, console stack trace and AJAX HTTP 200/CSRF header inspected."
+    },
+    {
+      "task": "VS Code extension npm test",
+      "result": "PASS",
+      "details": "124/124 tests, 0 fail/skip/cancelled, TypeScript compile PASS, exit 0, test duration 238.6059 ms. Generated out artifacts restored to previous bytes."
+    },
+    {
+      "task": "SDD operational records",
+      "result": "PASS",
+      "details": "batch-065.md, BATCH-INDEX.md, VALIDATION-CHECKLIST.md and executor receipt prepared for independent review."
+    }
+  ],
+  "criteria_met": {
+    "canonical_mcp_config": true,
+    "launcher_verified": true,
+    "catalog_41_scanned": true,
+    "primary_and_candidate_skills_updated": true,
+    "kits_25_propagated": true,
+    "md5_1025_of_1025": true,
+    "local_skills_preserved": true,
+    "mcp_runtime_smoke": true,
+    "npm_test_124_pass": true,
+    "batch_record_created": true,
+    "validation_checklist_updated": true,
+    "receipt_emitted": true
+  },
+  "evidence": [
+    "sdd/implementation/batch-065.md",
+    "completions/BATCH-065-md5-audit.json",
+    "completions/BATCH-065-launcher-smoke.json",
+    "completions/BATCH-065-mcp-smoke.json",
+    "completions/BATCH-065-sandbox-smoke.png"
+  ],
+  "operational_prerequisites": [
+    {
+      "requirement": "Compatible Node runtime in MCP client's PATH",
+      "current_host": "v20.14.0",
+      "package_engine": "^20.19.0 || ^22.12.0 || >=23",
+      "validation_runtime": "v22.23.3 via npm exec",
+      "host_ready": false,
+      "details": "Direct canonical command cannot start on Node 20.14. No global Node upgrade or client reload was performed."
+    }
+  ],
+  "limitations": [
+    "Smoke exercises a synthetic loopback fixture, not authenticated Gestor module acceptance.",
+    "Visible mode process arguments were checked without opening an interactive window.",
+    "MCP Hub tools were not exposed in this session; completion receipt emitted to disk."
+  ],
+  "git": { "commit": false, "push": false, "deploy": false, "staging": false }
+}

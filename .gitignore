@@ -5,7 +5,9 @@ temp-images/
 # Editor / System files
 .vscode/*
 !.vscode/tasks.json
+!.vscode/mcp.json
 .cursor/*
+!.cursor/mcp.json
 .idea/
 .DS_Store
 Thumbs.db

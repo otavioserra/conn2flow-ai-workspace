@@ -1,0 +1,14 @@
+{
+    "batch":  "BATCH-065",
+    "status":  "PASS",
+    "browser":  "Chrome/154.0.8037.58",
+    "headless":  true,
+    "profilePath":  "C:\\Users\\otavi\\AppData\\Local\\Temp\\conn2flow-chrome-sandbox",
+    "endpoint":  "http://127.0.0.1:9222",
+    "guards":  [
+                   "occupied",
+                   "profile is already in use"
+               ],
+    "syntax":  "PASS",
+    "visibleArguments":  "PASS (process creation intercepted)"
+}

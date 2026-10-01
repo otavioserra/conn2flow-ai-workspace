@@ -1,0 +1,437 @@
+{
+  "batch": "BATCH-065",
+  "timestamp": "2026-10-01T19:24:30.886Z",
+  "mode": "apply",
+  "canonicalSkills": 41,
+  "kits": 25,
+  "expected": 1025,
+  "matched": 1025,
+  "mismatches": [],
+  "perKit": [
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".gemini",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".claude",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".cursor",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".codex",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".github",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".gemini",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".claude",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".cursor",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".codex",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".github",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-site",
+      "kit": ".gemini",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-site",
+      "kit": ".claude",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-site",
+      "kit": ".cursor",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-site",
+      "kit": ".codex",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "conn2flow-site",
+      "kit": ".github",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "lumix",
+      "kit": ".gemini",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "lumix",
+      "kit": ".claude",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "lumix",
+      "kit": ".cursor",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "lumix",
+      "kit": ".codex",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "lumix",
+      "kit": ".github",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "transformamp",
+      "kit": ".gemini",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "transformamp",
+      "kit": ".claude",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "transformamp",
+      "kit": ".cursor",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "transformamp",
+      "kit": ".codex",
+      "matched": 41,
+      "expected": 41
+    },
+    {
+      "repo": "transformamp",
+      "kit": ".github",
+      "matched": 41,
+      "expected": 41
+    }
+  ],
+  "canonicalMD5": {
+    "c2f-agent-visual-inspection": "0c4048c1ed09ba01b570008cbfaa782e",
+    "c2f-architect-master": "ad4d9bb1833f935940cb4c60c223d355",
+    "c2f-database-operations": "f1924e55c99a07a3d779dfa3c4117a41",
+    "c2f-database-testing": "85fb905d716cc14d0d540dd7a611224f",
+    "c2f-dev-scripts": "dfa364a9985b01d962cfd0b8a8746abf",
+    "c2f-docker-environment": "55756a27ffa0a7aaa06c9c946583997f",
+    "c2f-documentation": "422a306982e81413b7d5d2ce9b5c6884",
+    "c2f-documentation-governance": "97e3b6a90a3d44a0984292ffc46ffe07",
+    "c2f-environment-configuration": "0fd3a54d0ae37aa017639721398bb8ff",
+    "c2f-executor-agent": "98fa2fe703b86652d706a4bbe4f11965",
+    "c2f-gd-image-safety": "da336a26bc7190d206a0124fdad15c87",
+    "c2f-gestor-functions": "5846423edf69faaaf67285f45a8e4d5f",
+    "c2f-global-variables": "75f621f7e74aa2918baf0914600c5a04",
+    "c2f-hooks-system": "cc50898ed97c27c932c6d3f8bb0f8027",
+    "c2f-html-css-pages-and-components": "dd9b50654c8609ccb84316f0eca9fae7",
+    "c2f-interface-v2-architecture": "64e208034a3661d81d5f2dc24e14785b",
+    "c2f-javascript-ajax": "3f08ac3615b2c320fa14070d1fed99ee",
+    "c2f-json-resources-sync": "f6a0e6a8da5ca6e3e15ecb382d083aa7",
+    "c2f-modelo-templates": "48a36da31b119816999fc1b54b39715a",
+    "c2f-module-crud-scaffolding": "be1a148393b278348431760e5df92458",
+    "c2f-multilingual-system": "a13d8b89324a6f48bae59ea6ba0c566f",
+    "c2f-mysql-utf8-emoji-encoding": "7222ca99ef3e2304937cafdbf6de5aba",
+    "c2f-payment-gateways": "dfaa7c4c1a513cb81ff04c30c2fc7a95",
+    "c2f-plugin-architecture": "a2bf251dda479f6de8f120786a7e8a6a",
+    "c2f-preview-modals-system": "8590de3378a9a260abcc7691ce86a936",
+    "c2f-project-pipeline-and-tasks": "28669a1f09edf03b2d3d113cb6ed38c6",
+    "c2f-projects-system": "0b8935dcbc4dc4ac8e3a1f988171eb47",
+    "c2f-resources-system": "db6fe894d230f4ffd19708c387d3b6bf",
+    "c2f-reviewer-agent": "d2c0e378037ac59c4d82ecef984be98c",
+    "c2f-shell-and-windows-traps": "a9ad7242d94f36a785cf4016cf48e90e",
+    "c2f-system-tasks": "ec0257e47b06a53b0f649a9d2e04f098",
+    "c2f-tailwind-css-architecture": "5a176efed34280b90afdfbb8f7299ac9",
+    "c2f-variables-system": "4ed4e1944af1164e4bc428776399cb68",
+    "c2f-widget-development": "ab30e6da7f9dd5d1f09c15931f95e2a4",
+    "continue-sdd-batch": "0b8e5bd585c28b09fed9f09513c0ea2f",
+    "project-validation": "a34120e9e42fc597dbabf3764436da71",
+    "raise-spec-change": "ff91b0750e851d77b5061940b53517c5",
+    "review-current-batch": "79653a7035e117264f89acf4f3684ce2",
+    "sdd-memory-gardening": "20a7756e4d517502de4876ca9157b199",
+    "sdd-workflow": "84a799acec2dbb09d2c599e7bc3e6b8e",
+    "start-sdd-slice": "15d80952b3c9e50513a856dedfc9043d"
+  },
+  "updatedSkills": [
+    "c2f-agent-visual-inspection",
+    "c2f-javascript-ajax",
+    "c2f-tailwind-css-architecture",
+    "c2f-interface-v2-architecture",
+    "c2f-preview-modals-system",
+    "c2f-reviewer-agent",
+    "c2f-shell-and-windows-traps"
+  ],
+  "templates": 14,
+  "templateMismatches": [],
+  "normalizedLineEndingFiles": [],
+  "plannedFiles": [
+    "conn2flow-ai-workspace/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow/.gemini/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-site/.gemini/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-site/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-site/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-site/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-site/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "lumix/.gemini/skills/c2f-agent-visual-inspection/SKILL.md",
+    "lumix/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "lumix/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "lumix/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "lumix/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "transformamp/.gemini/skills/c2f-agent-visual-inspection/SKILL.md",
+    "transformamp/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "transformamp/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "transformamp/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "transformamp/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-claude-kit/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-copilot-kit/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/private-project-claude-kit/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/private-project-copilot-kit/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/spec-driven-project-claude-kit/.claude/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/spec-driven-project-codex-kit/.codex/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/spec-driven-project-copilot-kit/.github/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-agent-visual-inspection/SKILL.md",
+    "conn2flow-ai-workspace/templates/en/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-agent-visual-inspection/SKILL.md"
+  ],
+  "preservedLocalFiles": [
+    {
+      "file": "conn2flow-site/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "conn2flow-site/.claude/skills/conn2flow-site-social-publisher/SKILL.md",
+      "sha256": "576dbec682bcf76f49138b9d5e39ce68849354c5c741d40de6e1eb0b07e206a3"
+    },
+    {
+      "file": "conn2flow-site/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "conn2flow-site/.cursor/skills/conn2flow-site-social-publisher/SKILL.md",
+      "sha256": "a4b2a9c589d54603a6deed765133ad9ecd05d08f8d88b9ca018eb15be2b16eb7"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "sha256": "a9521e8d685826d3cb09a53ef3587dda0b28831756078bb014baca3404e8e847"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "sha256": "fe8d8793594db8da7436284a77ba0e632ac984190746346923255de03d1d3bc0"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/SKILL.md",
+      "sha256": "8c635eb43e9612c58a8eb82a588130907c58e6ee4668ba6e78b62965fc871210"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/local-validation/SKILL.md",
+      "sha256": "4e3ed5e5fc6462bb60534eac33530e3538ffb253a7d73553f1251c30319c5db3"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/private-project-context/SKILL.md",
+      "sha256": "b09a544d96fcaceb5c9f7ea44fbe31095aa16ac76aa92c3425597731f38918df"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/project-sdd-context/references/escopo-local.md",
+      "sha256": "e5bb9f3b58c5624293093a6a00ca65ae879ff23785c82e73b8b2b23714044ef2"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/project-sdd-context/SKILL.md",
+      "sha256": "fa01c952f7dbe2d9c7cf1090abb802ed3ebcee2418fb4b2fd8d5ec1dccb95625"
+    },
+    {
+      "file": "lumix/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "lumix/.claude/skills/lumix-fastapi-backend/SKILL.md",
+      "sha256": "7c04de7d49fe7415ba487718f9c81fccca70b0b939dbb51c97d6a5e8898000b0"
+    },
+    {
+      "file": "lumix/.claude/skills/lumix-tailwind-v4/SKILL.md",
+      "sha256": "62c3dc80e7ff13534f0d2f1e8a0edfdb0b5caa1ce9328a2ee23919cc2f9b3636"
+    },
+    {
+      "file": "lumix/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "lumix/.cursor/skills/lumix-fastapi-backend/SKILL.md",
+      "sha256": "f4d4e1f718251e942948c27f7303c0be481633614647a15a6cbd031a04cee01f"
+    },
+    {
+      "file": "lumix/.cursor/skills/lumix-tailwind-v4/SKILL.md",
+      "sha256": "2c3360c45bf8e5477d56bccd726dabd79707ae9adec8a3a1069f52a3cb37a721"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "sha256": "d00ad05e470e668ffd6239115786fd49d05d57639c9c59034f211962ed01b8c4"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "sha256": "707dae191acf1b3add6ae4a11ef1a61fb1e1f22f876c09f1f2d3a9197044cc14"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/SKILL.md",
+      "sha256": "d6f941b8a7df5f37360655fd648fffd8fb987dbd5469f3dd28c9edbc32271b99"
+    },
+    {
+      "file": "lumix/.github/skills/project-sdd-context/references/escopo-local.md",
+      "sha256": "29d26672640c5dc264dd1c89e677718097e324a40aafe60507bdf96d2e60f193"
+    },
+    {
+      "file": "lumix/.github/skills/project-sdd-context/SKILL.md",
+      "sha256": "e062efa7328a56dd9ae53fed42ed2d1cb40cde83b24570165a67a248020b509d"
+    },
+    {
+      "file": "transformamp/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "transformamp/.claude/skills/continue-private-work/SKILL.md",
+      "sha256": "7365483ee7ebb9a0b46f308ab5d7b1e5fd4716f5510319e11165f34211c1b7d8"
+    },
+    {
+      "file": "transformamp/.claude/skills/gestor-module-integration/SKILL.md",
+      "sha256": "974c2d3fa8854de94999621d0289311ffd3d35cdbaf666575290b60aee8c8a29"
+    },
+    {
+      "file": "transformamp/.claude/skills/local-tests/SKILL.md",
+      "sha256": "27cde1ada6fce7f3dea5cc2dd2c182449848e23fcc061c1c516fd2f364a0c5f9"
+    },
+    {
+      "file": "transformamp/.claude/skills/local-validation/SKILL.md",
+      "sha256": "dbf458d25a1ba92140ceb3fe4d65ca0ee92d2dc426d3475329b4a2c257e60c8a"
+    },
+    {
+      "file": "transformamp/.claude/skills/private-project-context/SKILL.md",
+      "sha256": "31675062d19ef4169ac114723cbfd43ae1d19f6bda328a52b2d0713ea8b3793f"
+    },
+    {
+      "file": "transformamp/.claude/skills/private-project-kickoff/SKILL.md",
+      "sha256": "3dbd35aadfde69be2e5837117334b03e722657f2fa2a6defb2bc30a99be87a23"
+    },
+    {
+      "file": "transformamp/.claude/skills/project-sdd-context/SKILL.md",
+      "sha256": "01996b861a12e9defece6ceb8446986f501c995df654dd4eaef1504d205d1420"
+    },
+    {
+      "file": "transformamp/.claude/skills/review-private-work/SKILL.md",
+      "sha256": "4677aaea76a339161dba3b8b10dfd3db542e7b94fcc950f68e9109a508f0a00f"
+    },
+    {
+      "file": "transformamp/.claude/skills/transformamp-theme-scoping/SKILL.md",
+      "sha256": "cf967545f474b650e3e81755a6bafdb305ea238ea4474d2b91e490a2fcaf1f26"
+    },
+    {
+      "file": "transformamp/.claude/skills/transformamp-wp-etl/SKILL.md",
+      "sha256": "4f000a85bcf034afb8f2f27fe4c1163e4083ff29ccb3259df2af92a09c1b6495"
+    },
+    {
+      "file": "transformamp/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "transformamp/.cursor/skills/transformamp-theme-scoping/SKILL.md",
+      "sha256": "1cca2d4c7de88c2d4ee86e3b5a4f2b553a72d79f0a24711dc1b02d37325df623"
+    },
+    {
+      "file": "transformamp/.cursor/skills/transformamp-wp-etl/SKILL.md",
+      "sha256": "0128ab17e76c6d2114e0ba8e455828f94ae1631a38e3639ae9caa030a2fb4b79"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "sha256": "75de580d34824784833a8ddab77596c885b1ede5e0c18559915dce04c7fa612a"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "sha256": "fa5134b1ad3e82cf8e8c643fc743c43e7c623236194f64ecd029cd5b85cd971d"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/SKILL.md",
+      "sha256": "69c740a6062fdcead601b6bce18fcc8abc93ca4dc8be707a3625776861115105"
+    },
+    {
+      "file": "transformamp/.github/skills/local-tests/SKILL.md",
+      "sha256": "7441bbe387af60394ee7f3ea941efe5f91e5238790499a2ddaad075ddffc75af"
+    },
+    {
+      "file": "transformamp/.github/skills/local-validation/SKILL.md",
+      "sha256": "ef20d45695f255de82868e545c19b1ece3d0926c948d07c5dd0f8f09a11c7108"
+    },
+    {
+      "file": "transformamp/.github/skills/private-project-context/SKILL.md",
+      "sha256": "d849b25cdd6d2e0439d97a425acd5bdf367e4d9c695cfcc619818d92dbd18e45"
+    },
+    {
+      "file": "transformamp/.github/skills/project-sdd-context/references/escopo-local.md",
+      "sha256": "e203bb06a968e8007dde7560891e58ca588365f65b886c8debaf31f7086ea993"
+    },
+    {
+      "file": "transformamp/.github/skills/project-sdd-context/SKILL.md",
+      "sha256": "11bc1c9c8761460c5d1331311668dca395357347d1a75e1307df8d5390ebe6a1"
+    }
+  ],
+  "localChanges": [],
+  "status": "PASS"
+}

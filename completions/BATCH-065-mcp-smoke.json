@@ -1,0 +1,66 @@
+{
+  "batch": "BATCH-065",
+  "status": "PASS",
+  "timestamp": "2026-10-01T19:23:28.406Z",
+  "node": "v22.23.3",
+  "mcpVersion": "1.10.1",
+  "toolCount": 30,
+  "fixtureUrl": "http://127.0.0.1:59417/",
+  "observations": [
+    {
+      "tool": "list_pages",
+      "passed": true
+    },
+    {
+      "tool": "select_page",
+      "passed": true
+    },
+    {
+      "tool": "navigate_page",
+      "passed": true
+    },
+    {
+      "tool": "take_snapshot",
+      "passed": true
+    },
+    {
+      "tool": "click",
+      "passed": true
+    },
+    {
+      "tool": "take_snapshot",
+      "passed": true
+    },
+    {
+      "tool": "evaluate_script",
+      "passed": true
+    },
+    {
+      "tool": "take_screenshot",
+      "passed": true
+    },
+    {
+      "tool": "list_console_messages",
+      "passed": true
+    },
+    {
+      "tool": "get_console_message",
+      "passed": true
+    },
+    {
+      "tool": "list_network_requests",
+      "passed": true
+    },
+    {
+      "tool": "get_network_request",
+      "passed": true
+    }
+  ],
+  "consoleStackTraceObserved": true,
+  "ajaxStatus": 200,
+  "csrfHeaderObserved": true,
+  "modalOpened": true,
+  "domMeasured": true,
+  "screenshot": "completions/BATCH-065-sandbox-smoke.png",
+  "scope": "Local synthetic fixture; no Gestor module homologation"
+}

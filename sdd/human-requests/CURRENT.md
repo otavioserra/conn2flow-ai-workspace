@@ -1,18 +1,17 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-063.md](req-063.md)
-* **Status**: `APPROVED` (aprovada para execução pelo agente executor)
-* **Lote Relacionado**: `BATCH-065`
+* **Ponteiro Ativo**: [req-062.md](req-062.md)
+* **Status**: `APPROVED` (aprovada para execução do release pelo executor/humano)
+* **Lote Relacionado**: `BATCH-064`
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado` (execução na branch main ou branch tática)
-* **Data de Entrada**: 2026-10-01
-* **Lote Anterior Concluído**: [req-061.md](req-061.md) (`BATCH-063`, `HOMOLOGATED`)
-* **Requisição Pendente de Publicação**: [req-062.md](req-062.md) (`BATCH-064`, pronta para release v1.1.2)
+* **Data de Entrada**: 2026-09-30
+* **Lote Anterior Concluído**: [req-063.md](req-063.md) (`BATCH-065`, `HOMOLOGATED`)
 
-## 🎯 Objetivo Operacional do Lote BATCH-065
+## 🎯 Objetivo Operacional do Lote BATCH-064
 
-Integração do Chrome DevTools MCP Server (`chrome-devtools-mcp`) no ecossistema Conn2Flow, configuração no `.gemini/mcp_config.json`, criação de script de inicialização e sandbox com perfil temporário isolado, atualização das skills centrais `c2f-agent-visual-inspection` e `c2f-javascript-ajax`, e propagação consistente nos 25 kits dos 5 repositórios com auditoria MD5.
+Fix de empacotamento vsce para compatibilidade com Node 20.14 (`@vscode/vsce@2.24.0`), version bump para v1.1.2 no `package.json` e `package-lock.json`, geração do artefato `.vsix`, atualização de changelog e documentação do fluxo de publicação no Microsoft Visual Studio Marketplace.
 
-## 🎯 Objetivo do Lote Anterior (BATCH-063)
+## 🎯 Objetivo do Lote Anterior (BATCH-065)
 
-Choques das entregas na extensão do VS Code: listar por projeto, abrir o diff lado a lado e enviar a decisão (sobrescrever, manter, mesclar), tudo pelo CLI do core (`c2f update:conflicts` / `update:resolve` com `--json`). Revisado, corrigido para remoções e banco de dados, e validado com 124/124 testes.
+Integração do Chrome DevTools MCP Server (`chrome-devtools-mcp`) no ecossistema Conn2Flow, configuração nos 25 kits e 14 templates, script de sandbox e launcher isolado, varredura das 41 skills com enriquecimento de 7 skills canônicas, 100% de paridade MD5 (1.025/1.025 arquivos) e suíte de testes 124/124 aprovada.

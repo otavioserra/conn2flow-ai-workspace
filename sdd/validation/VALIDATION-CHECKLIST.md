@@ -421,15 +421,31 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Configuração canônica do servidor `chrome-devtools` no `.gemini/mcp_config.json`.
-- [ ] Criação do script de bootstrap e sandbox de perfil isolado `scripts/mcp/launch-devtools-chrome.ps1`.
-- [ ] Varredura e revisão em todo o catálogo das 41 skills canônicas, mapeando e enriquecendo skills candidatas (`c2f-tailwind-css-architecture`, `c2f-interface-v2-architecture`, `c2f-quill-editor`, `c2f-preview-modals-system`, `c2f-reviewer-agent`, `c2f-shell-and-windows-traps`).
-- [ ] Atualização da skill `c2f-agent-visual-inspection` com diretrizes de inspeção ativa, capturas de tela e nós do DOM.
-- [ ] Atualização da skill `c2f-javascript-ajax` com diretrizes de depuração de tráfego assíncrono e console traces.
-- [ ] Propagação consistente para os 25 kits dos 5 repositórios do ecossistema.
-- [ ] Auditoria de paridade MD5 com 100% de conformidade.
-- [ ] Suíte de testes `npm test` verde.
-- [ ] Relatório operacional `batch-065.md` e checklist preenchido.
+- [x] Configuração canônica do servidor `chrome-devtools` no `.gemini/mcp_config.json`.
+- [x] Criação do script de bootstrap e sandbox de perfil isolado `scripts/mcp/launch-devtools-chrome.ps1`.
+- [x] Varredura e revisão das 41 skills canônicas, com racional por skill no lote: sete atualizadas; `c2f-quill-editor` ausente, verificações de editor incorporadas à inspeção visual.
+- [x] Atualização da skill `c2f-agent-visual-inspection` com inspeção ativa, screenshot/snapshot, DOM, layout e modais.
+- [x] Atualização da skill `c2f-javascript-ajax` com rede, console traces, headers e CSRF.
+- [x] Propagação consistente para os 25 kits dos 5 repositórios e 14 templates PT-BR/EN.
+- [x] Auditoria MD5: **1.025/1.025**, zero divergências; **44 arquivos locais** preservados por SHA-256.
+- [x] `npm test` da extensão: **124/124**, zero falhas/skips, compilação TypeScript limpa, exit 0.
+- [x] [Relatório operacional](../implementation/batch-065.md), checklist e [recibo](../../completions/BATCH-065-executor-receipt.json) emitidos.
+
+### 2. Evidências e alcance
+
+- [Auditoria MD5](../../completions/BATCH-065-md5-audit.json): 41 skills × 25 kits, 14 templates; segunda execução em modo auditoria sem mudanças planejadas.
+- [Lançador](../../completions/BATCH-065-launcher-smoke.json): Chrome 154, CDP loopback, perfil TEMP, guardas porta/perfil ocupados, modo headless real e flags visíveis por interceptação de Start-Process; teardown liberou 9222.
+- [Smoke MCP](../../completions/BATCH-065-mcp-smoke.json): handshake com Node 22.23.3/MCP 1.10.1, 30 ferramentas, navegação, modal, DOM, [screenshot](../../completions/BATCH-065-sandbox-smoke.png), console com trace e rede AJAX HTTP 200 com header CSRF de fixture. Teste sintético local, sem homologação de telas específicas do Gestor.
+- Comando reproduzível: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/mcp/verify-devtools.ps1`. Sintaxe CJS/PowerShell e diff sem erros.
+- **Pré-requisito de ativação:** Node do host é 20.14.0 e o pacote requer `^20.19.0 || ^22.12.0 || >=23`. A configuração exata foi preservada; validação feita com Node 22 temporário via npm exec. Uso normal no cliente exige Node compatível no PATH e reload do servidor MCP; isso não foi simulado como concluído.
+- Status: `ready-for-review`; revisão independente e aceite permanecem no fluxo SDD.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-065.md](review-065.md) (APPROVED).
+- [x] Homologação executiva pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-065-executor-receipt.json`.
+
 
 
 
