@@ -29,3 +29,13 @@ Use this skill when a task requires validating the current batch.
 - The agent **MUST** execute autonomous inspection tools (`c2f page:inspect`, `c2f auth:cookie`), unit tests (`c2f db:test`), or test suites before considering an item validated.
 - Marking checklist items as "awaiting operator visual check" out of convenience is **strictly prohibited**.
 - The only acceptable exception is when a feature strictly requires external production infrastructure inaccessible locally (e.g. external payment gateway without sandbox/mock). In these rare cases, the agent must document the exact technical blocker and the partial local tests conducted in `VALIDATION-CHECKLIST.md`.
+
+---
+
+## 🔁 Validation that proves what it claims
+
+- **A test that cannot fail is not evidence.** After writing a check, confirm it fails on the old state: a test that only compares the title passes with a stale body.
+- **Exercise the path, not the shortcut.** If the log says `SKIP`, the rule did not run. Force the execution before saying it works.
+- **Before and after.** A change that touches data in an environment is validated with a snapshot of the tables before and another after.
+- **Name what was not checked.** Inherited text you kept without verifying against the code goes in the report as "kept, not checked".
+- **An environment failure is called by its name.** "1 failure, CRLF line endings in the environment, recorded in batch X" instead of "green suite".

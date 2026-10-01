@@ -8,6 +8,8 @@
 * **Data de Entrada**: 2026-09-30
 * **Lote Anterior Concluído**: [req-063.md](req-063.md) (`BATCH-065`, `HOMOLOGATED`)
 
+> **Em paralelo (2026-10-01)**: [req-064.md](req-064.md) (`BATCH-066`, lições nas skills) implementada e `ready-for-review`. O ponteiro ativo continua na REQ-062.
+
 ## 🎯 Objetivo Operacional do Lote BATCH-064
 
 Fix de empacotamento vsce para compatibilidade com Node 20.14 (`@vscode/vsce@2.24.0`), version bump para v1.1.2 no `package.json` e `package-lock.json`, geração do artefato `.vsix`, atualização de changelog e documentação do fluxo de publicação no Microsoft Visual Studio Marketplace.

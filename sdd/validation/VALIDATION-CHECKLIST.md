@@ -446,7 +446,14 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-065-executor-receipt.json`.
 
+## BATCH-066 — Lições de 2026-10-01 nas skills (REQ-064)
 
+- [x] Sete skills canônicas com as seções novas; segunda execução do script das lições não altera nada.
+- [x] `node scripts/skills/sync-skills.cjs` em auditoria: `PASS`, 39 alvos, 1.550 cópias iguais, 21 traduções, 0 divergentes.
+- [x] 59 skills locais dos satélites preservadas; nenhuma alterada.
+- [x] Traduções dos templates em inglês não sobrescritas; bloco novo de `project-validation` acrescentado em inglês nas sete cópias.
+- [x] `php cli/c2f.php ai:sync` no core sem erro novo.
+- [ ] Aceite humano.
+- [ ] Commit das cópias em `lumix` e `transformamp` (do operador).
 
-
-
+Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-skills-audit.json](../../completions/BATCH-066-skills-audit.json).

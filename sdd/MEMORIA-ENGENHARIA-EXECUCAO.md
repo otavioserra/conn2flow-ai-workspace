@@ -11,6 +11,8 @@
 
 ## Atividades recentes
 
+- **2026-10-01 — REQ-064 / BATCH-066:** sete skills ganharam as lições de um dia com dois agentes em três repositórios (pipeline de 8 etapas, saída 0 não prova conteúdo, um deploy por vez, árvore compartilhada, validação que prova, texto público). Propagador genérico em `scripts/skills/sync-skills.cjs`: sem argumentos audita, `--apply <skills>` propaga. **Três skills dos templates em inglês são traduções** (`translated.json`): não sobrescrever; o bloco novo entra à mão em inglês. `glob` do Python não casa pasta iniciada por ponto (`.claude`): listar os kits pelo nome.
+
 - **2026-09-30 — REQ-061 / BATCH-063:** integração de choques das entregas na extensão VS Code; `npm test` 122/122 e testes focados 20/20. O fluxo E2E e a publicação da branch permanecem pendentes no modo supervisionado; detalhe/resolução não foram executados porque baixam artefatos e alteram o tenant. O arquivador oficial aplicou a janela 10/10, reparou 14 links anteriormente órfãos e o gate final confirmou zero links quebrados.
 
 - **2026-09-25 — REQ-058 / BATCH-060 (FEAT-014):** skill `c2f-documentation` criada e copiada de forma cirúrgica (só a pasta) para 19 pontos da Matriz e os 5 kits dos 4 satélites; `ai:sync` do Core passou a 37 skills. `sync-all-repos.ps1` foi evitado de propósito: os instaladores também migram estrutura SDD dos satélites. `lumix` recebeu os arquivos sem commit. Na Matriz, `.cursor/skills` da raiz é gitignored.
