@@ -97,9 +97,9 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 ## 📦 Skills e Ferramentas
 
-O workspace possui **39 skills oficiais** em `.gemini/skills/` que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+O workspace possui **43 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 - Papéis da Tríade SDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
 - Planejamento e fluxo SDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
-- Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`.
-- Arquitetura do Core: `c2f-*` (29 skills para pipelines, recursos, banco, Docker, Tailwind, shell e Windows traps).
+- Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`, `review-current-batch`.
+- Arquitetura, Core e Módulos: `c2f-*` (33 skills para pipelines, recursos, banco, Docker, Tailwind, visual assets, widgets, shell e Windows traps).
 

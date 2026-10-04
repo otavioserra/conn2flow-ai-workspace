@@ -464,14 +464,33 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Incorporação canônica de `c2f-module-visual-assets` em `.gemini/skills/` e nos kits da matriz (`.claude`, `.cursor`, `.codex`, `.github`).
-- [ ] Importação canônica de `c2f-tailwind-module-migration` do Core para a matriz, totalizando 43 skills canônicas.
-- [ ] Limpeza do YAML frontmatter duplicado e caracteres corrompidos em `c2f-module-crud-scaffolding`, adicionando a regra mandatória de capas via `c2f-module-visual-assets` e `manifest.json`.
-- [ ] Atualização de `c2f-widget-development` com contrato de grid modular (dimensões dinâmicas width/height, drag-resize) e endpoint AJAX `ajaxOpcao: 'widget-render'`.
-- [ ] Inclusão da Armadilha 17 em `c2f-shell-and-windows-traps` e alinhamento em `c2f-tailwind-css-architecture` (binários locais em `node_modules/.bin/`).
-- [ ] Atualização do catálogo oficial de skills em `AGENTS.md` e `GEMINI.md` para 43 skills.
-- [ ] Propagação consistente via `node scripts/skills/sync-skills.cjs --apply --all` para os 25 kits dos 5 repositórios e 14 templates.
-- [ ] Auditoria MD5: relatório `BATCH-067-skills-audit.json` com status `PASS` e zero divergências nas 43 skills.
-- [ ] Preservação de 100% das skills locais exclusivas dos satélites (`lumix`, `conn2flow-site`, `transformamp`).
-- [ ] Suíte de testes `npm test` da extensão do VS Code verde (124/124 testes).
-- [ ] Emissão do relatório `batch-067.md` e recibo `completions/BATCH-067-executor-receipt.json`.
+- [x] Incorporação canônica de `c2f-module-visual-assets` em `.gemini/skills/` e nos kits da matriz (`.claude`, `.cursor`, `.codex`, `.github`).
+- [x] Importação canônica de `c2f-tailwind-module-migration` do Core para a matriz, totalizando 43 skills canônicas.
+- [x] Limpeza do YAML frontmatter duplicado e caracteres corrompidos em `c2f-module-crud-scaffolding`, adicionando a regra mandatória de capas via `c2f-module-visual-assets` e `manifest.json`.
+- [x] Atualização de `c2f-widget-development` com contrato de grid modular (dimensões dinâmicas width/height, drag-resize) e endpoint AJAX `ajaxOpcao: 'widget-render'`.
+- [x] Inclusão da Armadilha 17 em `c2f-shell-and-windows-traps` e alinhamento em `c2f-tailwind-css-architecture` (binários locais em `node_modules/.bin/`).
+- [x] Atualização do catálogo oficial de skills em `AGENTS.md` e `GEMINI.md` para 43 skills.
+- [x] Propagação consistente via `node scripts/skills/sync-skills.cjs --apply --all` para os 25 kits dos 5 repositórios e 14 templates.
+- [x] Auditoria MD5: relatório `BATCH-067-skills-audit.json` com status `PASS` e zero divergências nas 43 skills.
+- [x] Preservação de 100% das skills locais exclusivas dos satélites (`lumix`, `conn2flow-site`, `transformamp`).
+- [x] Suíte de testes `npm test` da extensão do VS Code verde (124/124 testes).
+- [x] Emissão do relatório `batch-067.md` e recibo `completions/BATCH-067-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. **Auditoria Determinística MD5**: `node scripts/skills/sync-skills.cjs --report completions/BATCH-067-skills-audit.json` gerou status `PASS`:
+   - 43 skills canônicas auditadas nos 39 alvos de kits da matriz, satélites e templates.
+   - 1.628 arquivos idênticos com hash canônico correspondente.
+   - 21 arquivos de traduções em inglês preservados.
+   - 0 arquivos divergentes.
+   - 60 skills locais dos repositórios satélites (`lumix`, `conn2flow-site`, `transformamp`) 100% preservadas sem alterações.
+2. **Suíte de Testes da Extensão VS Code**: Execução de `npm test` em `vscode-extension/`:
+   - 124 testes executados e aprovados (0 falhas, 0 skips, duração 200ms).
+3. **Detalhamento Operacional**: Registro em [batch-067.md](../implementation/batch-067.md) e recibo em `completions/BATCH-067-executor-receipt.json`.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-067.md](review-067.md) (APPROVED).
+- [x] Homologação executiva pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-067-executor-receipt.json`.
+

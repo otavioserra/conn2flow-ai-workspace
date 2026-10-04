@@ -17,9 +17,9 @@
 
 ---
 
-## 📦 Configuração de Skills (39 Skills Oficiais)
+## 📦 Configuração de Skills (43 Skills Oficiais)
 
-Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `.gemini/skills/` (com espelhamento nos demais clientes) e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+Todas as **43 skills** do framework estão disponíveis em `.claude/skills/`, `.gemini/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/` e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 
 ### 1. Skills de Papéis da Tríade SDD (3 Skills):
 > Consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
@@ -27,24 +27,29 @@ Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `
 - `c2f-executor-agent`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
 - `c2f-reviewer-agent`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
 
-### 2. Skills Core do Framework (29 Skills):
+### 2. Skills Core, Módulos e Infraestrutura (33 Skills):
 - `c2f-agent-visual-inspection`
 - `c2f-database-operations`
+- `c2f-database-testing`
 - `c2f-dev-scripts`
 - `c2f-docker-environment`
+- `c2f-documentation`
 - `c2f-documentation-governance`
 - `c2f-environment-configuration`
-- `c2f-file-system-operations`
+- `c2f-gd-image-safety`
 - `c2f-gestor-functions`
 - `c2f-global-variables`
 - `c2f-hooks-system`
 - `c2f-html-css-pages-and-components`
 - `c2f-interface-v2-architecture`
 - `c2f-javascript-ajax`
-- `c2f-layout-engine-architecture`
+- `c2f-json-resources-sync`
 - `c2f-modelo-templates`
 - `c2f-module-crud-scaffolding`
+- `c2f-module-visual-assets`
 - `c2f-multilingual-system`
+- `c2f-mysql-utf8-emoji-encoding`
+- `c2f-payment-gateways`
 - `c2f-plugin-architecture`
 - `c2f-preview-modals-system`
 - `c2f-project-pipeline-and-tasks`
@@ -53,10 +58,9 @@ Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `
 - `c2f-shell-and-windows-traps`
 - `c2f-system-tasks`
 - `c2f-tailwind-css-architecture`
+- `c2f-tailwind-module-migration`
 - `c2f-variables-system`
-- `c2f-widgets-system`
-- `c2f-quill-editor`
-- `c2f-assets-management`
+- `c2f-widget-development`
 
 ### 3. Skills de Governança e Workflow SDD (7 Skills):
 - `sdd-workflow`

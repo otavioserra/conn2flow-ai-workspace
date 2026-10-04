@@ -41,8 +41,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
 | **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
 | **BATCH-066** | ready-for-review | Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | [batch-066.md](batch-066.md) | REQ-064; sete skills com acréscimos; propagador genérico `scripts/skills/sync-skills.cjs`; 1.550 cópias iguais e 21 traduções preservadas |
-| **BATCH-067** | ready-for-intake | Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | [batch-067.md](batch-067.md) | REQ-065 aprovada; canonização de 2 novas skills (43 canônicas), limpeza de frontmatter, Armadilha 17, contrato de widgets e propagação com 100% MD5. |
+| **BATCH-067** | complete | Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | [batch-067.md](batch-067.md) | REQ-065 homologada; 43 skills canônicas, limpeza de frontmatter, Armadilha 17, contrato de widgets, propagação PASS, 124/124 npm test e review-067.md aprovado. |
 
 ## Requisição ativa
 
-`REQ-065` (`BATCH-067`, 43 skills canônicas, visual assets, migração Tailwind e Armadilha 17) aprovada e pronta para execução. Lotes em espera: `REQ-064` (`BATCH-066`, pronta para revisão) e `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code).
+`REQ-065` (`BATCH-067`, 43 skills canônicas) concluída e homologada. Lotes na fila/espera: `REQ-064` (`BATCH-066`, pronta para revisão / aceite humano) e `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code).
+
