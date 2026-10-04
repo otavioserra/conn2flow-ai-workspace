@@ -457,3 +457,21 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 - [ ] Commit das cópias em `lumix` e `transformamp` (do operador).
 
 Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-skills-audit.json](../../completions/BATCH-066-skills-audit.json).
+
+---
+
+## BATCH-067 — Canonização de Novas Skills, Widgets, Armadilha 17 e Propagação Global (REQ-065)
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Incorporação canônica de `c2f-module-visual-assets` em `.gemini/skills/` e nos kits da matriz (`.claude`, `.cursor`, `.codex`, `.github`).
+- [ ] Importação canônica de `c2f-tailwind-module-migration` do Core para a matriz, totalizando 43 skills canônicas.
+- [ ] Limpeza do YAML frontmatter duplicado e caracteres corrompidos em `c2f-module-crud-scaffolding`, adicionando a regra mandatória de capas via `c2f-module-visual-assets` e `manifest.json`.
+- [ ] Atualização de `c2f-widget-development` com contrato de grid modular (dimensões dinâmicas width/height, drag-resize) e endpoint AJAX `ajaxOpcao: 'widget-render'`.
+- [ ] Inclusão da Armadilha 17 em `c2f-shell-and-windows-traps` e alinhamento em `c2f-tailwind-css-architecture` (binários locais em `node_modules/.bin/`).
+- [ ] Atualização do catálogo oficial de skills em `AGENTS.md` e `GEMINI.md` para 43 skills.
+- [ ] Propagação consistente via `node scripts/skills/sync-skills.cjs --apply --all` para os 25 kits dos 5 repositórios e 14 templates.
+- [ ] Auditoria MD5: relatório `BATCH-067-skills-audit.json` com status `PASS` e zero divergências nas 43 skills.
+- [ ] Preservação de 100% das skills locais exclusivas dos satélites (`lumix`, `conn2flow-site`, `transformamp`).
+- [ ] Suíte de testes `npm test` da extensão do VS Code verde (124/124 testes).
+- [ ] Emissão do relatório `batch-067.md` e recibo `completions/BATCH-067-executor-receipt.json`.

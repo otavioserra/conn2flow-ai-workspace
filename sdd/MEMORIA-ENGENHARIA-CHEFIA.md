@@ -50,5 +50,5 @@
 
 ## 🔒 Restrições Técnicas
 
-* Paridade estrita de 32 skills em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`).
+* Paridade estrita de 43 skills canônicas em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, `.codex/skills/`).
 * Não criar pastas soltas fora do padrão estabelecido.
