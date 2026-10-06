@@ -275,3 +275,21 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-067-executor-receipt.json`.
 
+---
+
+## BATCH-068 — Memory Gardening Global do Ecossistema SDD e Limpeza de Sobras Locais (REQ-066)
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Poda e arquivamento de dumps JSON gigantes no Core (`req240-browser-results.json` e `req225-inventory.json`).
+- [ ] Arquivamento de decisões antigas (`DEC-116` a `DEC-122`) em `conn2flow/sdd/decisions/archive/decisions-114-122.md`, mantendo exatamente 10 decisões ativas no `DECISION-LOG.md`.
+- [ ] Arquivamento de 33 lotes antigos no Core em `conn2flow/sdd/validation/archive/validation-176-239.md`, mantendo exatamente 10 lotes ativos no `VALIDATION-CHECKLIST.md`.
+- [ ] Aplicação da janela 10/10 no Core: arquivamento de `req-230.md`/`req-231.md` e `BATCH-236.md`/`BATCH-237.md`.
+- [ ] Arquivamento de 34 lotes antigos no Site em `conn2flow-site/sdd/validation/archive/validation-037-090.md`, mantendo exatamente 10 lotes ativos no `VALIDATION-CHECKLIST.md`.
+- [ ] Reestruturação e saneamento do `BATCH-INDEX.md` no Site para a tabela canônica com 10 lotes ativos.
+- [ ] Desvinculação e remoção da worktree temporária integrada `conn2flow-req240` via `git worktree remove` e `prune`.
+- [ ] Desvinculação e remoção da worktree temporária integrada `conn2flow-site-req106` via `git worktree remove` e `prune`.
+- [ ] Exclusão dos arquivos residuais `*.precompiled.css.bak-*` soltos no `conn2flow-site`.
+- [ ] Suíte `npm test` da extensão do VS Code verde (124/124 testes).
+- [ ] Emissão do relatório `batch-068.md` e recibo `completions/BATCH-068-executor-receipt.json`.
+

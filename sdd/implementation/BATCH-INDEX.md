@@ -27,12 +27,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-055** | Logs VM com sudo, Sincronização do CLI, Rebuild SSH Duplo, Tailwind Global e Asserções Portáveis | [batch-055](archive/batch-055.md) |
 | **BATCH-056** | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | [batch-056](archive/batch-056.md) |
 | **BATCH-057** | Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | [batch-057](archive/batch-057.md) |
+| **BATCH-058** | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058](archive/batch-058.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-058** | complete | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058.md](batch-058.md) | REQ-056 homologada; 975 cópias verificadas com MD5 idêntico nos 5 repositórios e 5 kits, 114/114 testes aprovados. |
 | **BATCH-059** | complete | Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [batch-059.md](batch-059.md) | REQ-057 homologada; `.agents/` removido, `.gemini/config.json` padronizado nos 5 repositórios e templates, `GEMINI.md`/`AGENTS.md` atualizados com `/boost`. |
 | **BATCH-060** | complete | Skill canônica `c2f-documentation` e propagação aos kits (FEAT-014) | [batch-060.md](batch-060.md) | REQ-058 homologada; 39 cópias com hash idêntico, `ai:sync` 37/37 no Core; lumix sem commit. |
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
@@ -42,8 +42,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
 | **BATCH-066** | ready-for-review | Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | [batch-066.md](batch-066.md) | REQ-064; sete skills com acréscimos; propagador genérico `scripts/skills/sync-skills.cjs`; 1.550 cópias iguais e 21 traduções preservadas |
 | **BATCH-067** | complete | Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | [batch-067.md](batch-067.md) | REQ-065 homologada; 43 skills canônicas, limpeza de frontmatter, Armadilha 17, contrato de widgets, propagação PASS, 124/124 npm test e review-067.md aprovado. |
+| **BATCH-068** | ready-for-intake | Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais | [batch-068.md](batch-068.md) | REQ-066 formalizada; poda de dumps JSON no Core, saneamento de DECISION-LOG e VALIDATION-CHECKLIST no Core e Site, remoção de worktrees mescladas e arquivos .bak. |
 
 ## Requisição ativa
 
-`REQ-065` (`BATCH-067`, 43 skills canônicas) concluída e homologada. Lotes na fila/espera: `REQ-064` (`BATCH-066`, pronta para revisão / aceite humano) e `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code).
-
+`REQ-066` (`BATCH-068`, Memory Gardening global do ecossistema e remoção de sobras locais) aprovada e pronta para execução. Lotes em espera: `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code) e `REQ-064` (`BATCH-066`, lições de pipeline nas skills).
