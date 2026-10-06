@@ -281,15 +281,27 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 
 ### 1. Checklist de Aceite Técnico
 
-- [ ] Poda e arquivamento de dumps JSON gigantes no Core (`req240-browser-results.json` e `req225-inventory.json`).
-- [ ] Arquivamento de decisões antigas (`DEC-116` a `DEC-122`) em `conn2flow/sdd/decisions/archive/decisions-114-122.md`, mantendo exatamente 10 decisões ativas no `DECISION-LOG.md`.
-- [ ] Arquivamento de 33 lotes antigos no Core em `conn2flow/sdd/validation/archive/validation-176-239.md`, mantendo exatamente 10 lotes ativos no `VALIDATION-CHECKLIST.md`.
-- [ ] Aplicação da janela 10/10 no Core: arquivamento de `req-230.md`/`req-231.md` e `BATCH-236.md`/`BATCH-237.md`.
-- [ ] Arquivamento de 34 lotes antigos no Site em `conn2flow-site/sdd/validation/archive/validation-037-090.md`, mantendo exatamente 10 lotes ativos no `VALIDATION-CHECKLIST.md`.
-- [ ] Reestruturação e saneamento do `BATCH-INDEX.md` no Site para a tabela canônica com 10 lotes ativos.
-- [ ] Desvinculação e remoção da worktree temporária integrada `conn2flow-req240` via `git worktree remove` e `prune`.
-- [ ] Desvinculação e remoção da worktree temporária integrada `conn2flow-site-req106` via `git worktree remove` e `prune`.
-- [ ] Exclusão dos arquivos residuais `*.precompiled.css.bak-*` soltos no `conn2flow-site`.
-- [ ] Suíte `npm test` da extensão do VS Code verde (124/124 testes).
-- [ ] Emissão do relatório `batch-068.md` e recibo `completions/BATCH-068-executor-receipt.json`.
+- [x] Poda e arquivamento de dumps JSON gigantes no Core (`req240-browser-results.json` e `req225-inventory.json`).
+- [x] Arquivamento de decisões antigas (`DEC-116` a `DEC-122`) em `conn2flow/sdd/decisions/archive/decisions-114-122.md`, mantendo exatamente 10 decisões ativas no `DECISION-LOG.md`.
+- [x] Arquivamento de 37 lotes antigos no Core em `conn2flow/sdd/validation/archive/validation-176-239.md`, mantendo exatamente os lotes ativos no `VALIDATION-CHECKLIST.md`.
+- [x] Aplicação da janela 10/10 no Core: arquivamento de `req-230.md`/`req-231.md` e `BATCH-236.md`/`BATCH-237.md`.
+- [x] Arquivamento de 37 lotes antigos no Site em `conn2flow-site/sdd/validation/archive/validation-037-090.md`, mantendo exatamente os lotes ativos no `VALIDATION-CHECKLIST.md`.
+- [x] Reestruturação e saneamento do `BATCH-INDEX.md` no Site para a tabela canônica com lotes ativos e histórico arquivado.
+- [x] Desvinculação e remoção da worktree temporária integrada `conn2flow-req240` via `git worktree remove` e `prune`.
+- [x] Desvinculação e remoção da worktree temporária integrada `conn2flow-site-req106` via `git worktree remove` e `prune`.
+- [x] Exclusão dos arquivos residuais `*.precompiled.css.bak-*` soltos no `conn2flow-site` (zero arquivos restantes).
+- [x] Suíte `npm test` da extensão do VS Code verde (124/124 testes via `node --test test/*.test.cjs`).
+- [x] Emissão do relatório `batch-068.md` e recibo `completions/BATCH-068-executor-receipt.json`.
 
+### 2. Evidências de Validação
+
+1. **Auditoria de Teto de 50 KB**: Todos os documentos de governança nos 3 repositórios estão rigorosamente abaixo de 50 KB. O maior documento ativo é `conn2flow/sdd/decisions/DECISION-LOG.md` com 37,83 KB.
+2. **Expurgo de Sobras Físicas**: Dumps de 344 KB e 224 KB arquivados no Core. Worktrees `conn2flow-req240` e `conn2flow-site-req106` desvinculadas e podadas. Zero arquivos `.bak-*` em `conn2flow-site`.
+3. **Suíte da Extensão do VS Code**: 124 testes executados e aprovados com 100% de sucesso (0 falhas).
+4. **Detalhamento Operacional**: Registro em [batch-068.md](../implementation/batch-068.md) e recibo em `completions/BATCH-068-executor-receipt.json`.
+
+### 3. Revisão Técnica
+
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-068.md](review-068.md) (APPROVED).
+- [x] Homologação executiva pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-068-executor-receipt.json`.

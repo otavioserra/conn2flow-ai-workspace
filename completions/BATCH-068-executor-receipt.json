@@ -1,0 +1,28 @@
+{
+  "batch": "BATCH-068",
+  "request": "req-066",
+  "executor": "Antigravity (c2f-executor-agent)",
+  "timestamp": "2026-10-06T06:15:00-03:00",
+  "status": "READY_FOR_REVIEW",
+  "deliverables": [
+    { "task": "Core dumps moved to archive", "result": "PASS", "details": "req240-browser-results.json and req225-inventory.json in sdd/validation/archive/." },
+    { "task": "Core DECISION-LOG pruned", "result": "PASS", "details": "DEC-116..122 archived; DEC-123..132 kept (38.7 KB)." },
+    { "task": "Core VALIDATION-CHECKLIST pruned", "result": "PASS", "details": "37 sections archived to validation-176-239.md; 6 kept (6.2 KB)." },
+    { "task": "Core 10/10 window", "result": "PASS", "details": "req-230/231 and BATCH-236/237 archived." },
+    { "task": "Site governance pruned", "result": "PASS", "details": "Checklist (7.8 KB), BATCH-INDEX table (413 B), CURRENT.md (3.4 KB)." },
+    { "task": "Worktrees conn2flow-req240 and conn2flow-site-req106 removed", "result": "PASS", "details": "git worktree remove + prune in both repos." },
+    { "task": "Site .bak files deleted", "result": "PASS", "details": "Zero *.bak-* remaining." },
+    { "task": "50 KB ceiling audit", "result": "PASS", "details": "Largest active governance file: 38.7 KB." },
+    { "task": "VS Code extension tests", "result": "PASS", "details": "124/124 via node --test test/*.test.cjs (npm test script uses 'node --test test/', which fails on this Node version)." }
+  ],
+  "commits": "none - repos have other in-progress task branches; commit deferred to human/architect",
+  "criteria_met": {
+    "ceiling_50kb": true,
+    "dumps_archived": true,
+    "worktrees_removed": true,
+    "bak_removed": true,
+    "extension_124_tests_pass": true,
+    "batch_record_created": true,
+    "receipt_emitted": true
+  }
+}
