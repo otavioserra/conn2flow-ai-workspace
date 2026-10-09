@@ -70,3 +70,5 @@ Navegação hierárquica; leia o resumo antes do documento integral.
 | req-055 | REQ-055 — Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | Durante a evolução de fatias recentes no Core (`conn2flow`), melhorias críticas foram introduzidas em skills pelos agentes locais (como a blindagem de `MSYS_NO_PATHCONV=1` no rsync | [req-055.md](req-055.md) | APPROVED |
 | req-056 | req-056.md | ﻿# REQ-056 — Incorporação Canônica das Armadilhas 7, 8 e 9 de Shell/Windows e Sincronização Global nos 5 Repositórios | [req-056.md](req-056.md) | APPROVED |
 | req-057 | req-057.md | ﻿# REQ-057 — Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [req-057.md](req-057.md) | APPROVED |
+| req-058 | req-058.md | REQ-058 — Skill Canônica `c2f-documentation` e Propagação aos Kits (FEAT-014) | [req-058.md](req-058.md) | HOMOLOGATED |
+| req-059 | req-059.md | REQ-059 — Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização em Skills | [req-059.md](req-059.md) | HOMOLOGATED |

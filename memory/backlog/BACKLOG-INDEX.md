@@ -12,10 +12,11 @@
 | [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) | Arquitetura | `ICEBOX` | Atualização automática dos kits de IA nas instalações (manifesto + lockfile + `c2f ai:kit`) | Aguardar fase 1 do FEAT-014 | 2026-09-25 |
 | [ARCH-008](ARCH-008-chrome-devtools-mcp-agent-runtime-inspection.md) | Arquitetura / MCP | `PROMOTED` | Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | Promovido para REQ-063 / BATCH-065 | 2026-10-01 |
 | [ARCH-009](ARCH-009-mdd-architecture-transition.md) | Arquitetura / MDD | `PROMOTED` | Transição Arquitetural SDD ➔ MDD (Memory Driven Development) e Nomenclatura Global em Inglês | Promovido para REQ-067 / BATCH-069 | 2026-10-09 |
-| [ARCH-010](ARCH-010-mdd-client-cli-daemon.md) | Ferramenta / CLI | `ICEBOX` | MDD Client CLI & Daemon (Python) — Gerenciamento Local de Memória, Injeção e Telemetria | Aguardar base física da REQ-067 | 2026-10-09 |
-| [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md) | Hub / Auto-Evolução | `ICEBOX` | MDD Hub & Documentation Watcher (Python) — Motor de Auto-Evolução e Scraping de Modelos de IA | Aguardar ARCH-010 | 2026-10-09 |
+| [ARCH-010](ARCH-010-mdd-client-cli-daemon.md) | Ferramenta / CLI | `PROMOTED` | MDD Client CLI & Daemon (Python) — Gerenciamento Local de Memória, Injeção e Telemetria | Promovido para REQ-069 / BATCH-071 | 2026-10-09 |
+| [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md) | Hub / Auto-Evolução | `PROMOTED` | MDD Hub & Documentation Watcher (Python) — Motor de Auto-Evolução e Scraping de Modelos de IA | Promovido para REQ-069 / BATCH-071 | 2026-10-09 |
 | [ARCH-012](ARCH-012-hierarchical-dual-tier-memory-archiving.md) | Arquitetura / Contexto | `PROMOTED` | Sistema Hierárquico de index.md e Compactação Dual de Memória (Compacted vs Original) | Promovido para REQ-067 / BATCH-069 | 2026-10-09 |
 | [ARCH-013](ARCH-013-vector-database-and-nosql-memory-evolution.md) | Arquitetura / Futuro | `ICEBOX` | Evolução para Banco de Dados Vetorial & NoSQL para Codebases de Hiperescala | Pesquisa futura após MDD Client/Hub | 2026-10-09 |
+| [ARCH-014](ARCH-014-vscode-extension-mdd-client-hub-integration.md) | Extensão VS Code | `ICEBOX` | Integração da Extensão VS Code com MDD Client e Hub (Modo Dev e Modo Cliente) | Aguardar implementação do MDD Client/Hub | 2026-10-09 |
 
 ---
 
