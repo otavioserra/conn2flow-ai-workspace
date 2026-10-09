@@ -1,9 +1,9 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-069.md](req-069.md) (Aplicações Python MDD Client & Hub)
-* **Status**: `APPROVED` (pronta para execução pelo Agente Python)
-* **Lote Relacionado**: `BATCH-071`
-* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja e homologa; Executor implementa em Python)
+* **Ponteiro Ativo**: [req-071.md](req-071.md) (Padronização das Memórias 03 e 04, Integração com raw/ e Boilerplates) & [req-069.md](req-069.md) (Aplicações Python MDD Client & Hub)
+* **Status**: `APPROVED` (prontas para execução por agentes de implementação)
+* **Lotes Relacionados**: `BATCH-073` e `BATCH-071`
+* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja e homologa; Executores implementam)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-09
 * **Frentes Concluídas Recentemente / Em Espera**:
@@ -14,8 +14,12 @@
 
 ---
 
-## 🎯 Objetivo Operacional do Lote Ativo (BATCH-071 / REQ-069)
+## 🎯 Objetivo Operacional das Frentes Ativas
 
-Implementação modular em Python 3.11+ em `tools/`:
-1. `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon) para injeção universal e governança de memória em qualquer projeto.
-2. `tools/mdd-hub/`: Hub API (FastAPI) e Documentation Watcher para auto-evolução contínua com 3 modos de autonomia (`headless`, `monitored`, `reviewer`).
+1. **Frente Imediata (BATCH-073 / REQ-071)**:
+   Padronização nominal para `03-memory-engineering-chief.md` e `04-memory-engineering-execution.md` na raiz de `memory/`, integração com `memory/raw/` para histórico e podas, propagação nos 7 repositórios satélites e atualização dos boilerplates e skeletons em `templates/`.
+
+2. **Frente Python (BATCH-071 / REQ-069)**:
+   Implementação modular em Python 3.11+ em `tools/`:
+   - `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon).
+   - `tools/mdd-hub/`: Hub API (FastAPI) e Documentation Watcher para auto-evolução contínua.

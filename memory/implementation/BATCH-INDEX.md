@@ -32,12 +32,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-060** | Skill canônica `c2f-documentation` e propagação aos kits | [batch-060](archive/batch-060.md) |
 | **BATCH-061** | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização em Skills | [batch-061](archive/batch-061.md) |
 | **BATCH-062** | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062](archive/batch-062.md) |
+| **BATCH-063** | Choques das entregas na extensão do VS Code | [batch-063](archive/batch-063.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061 homologada; 124/124 npm test, contrato validado contra CLI/tenant, revisão técnica aprovada (review-063.md). |
 | **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
 | **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
 | **BATCH-066** | ready-for-review | Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | [batch-066.md](batch-066.md) | REQ-064; sete skills com acréscimos; propagador genérico `scripts/skills/sync-skills.cjs`; 1.550 cópias iguais e 21 traduções preservadas |
@@ -47,7 +47,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-070** | complete | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 homologada; migração nos 7 satélites, Tríade 00, 01, 02 e 44 skills, review-070.md aprovado. |
 | **BATCH-071** | ready-for-intake | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
 | **BATCH-072** | complete | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 homologada; 23 docs, 11 pares, 252 links PASS, 44 skills, review-072.md aprovado. |
+| **BATCH-073** | ready-for-intake | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
 
 ## Requisição ativa
 
-`REQ-069` (`BATCH-071`, Aplicações Python MDD Client & Hub) ativa para desenvolvimento. Lotes `BATCH-067`, `BATCH-068`, `BATCH-069`, `BATCH-070` e `BATCH-072` homologados com sucesso. Em espera: `REQ-062` (`BATCH-064`, release da extensão) e `REQ-064` (`BATCH-066`, lições de pipeline).
+`REQ-071` (`BATCH-073`, Padronização das Memórias 03 e 04) e `REQ-069` (`BATCH-071`, Aplicações Python MDD Client & Hub) aprovadas para execução. Lotes `BATCH-067`, `BATCH-068`, `BATCH-069`, `BATCH-070` e `BATCH-072` homologados com sucesso. Em espera: `REQ-062` (`BATCH-064`, release da extensão) e `REQ-064` (`BATCH-066`, lições de pipeline).
