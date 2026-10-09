@@ -98,7 +98,19 @@ Para evitar a necessidade de refatorar centenas de arquivos históricos já exis
   - O link relativo e o nome do arquivo são mapeados normalmente.
   - O processo é 100% tolerante a falhas, garantindo **zero breaking changes** com arquivos antigos.
 
-#### E. Nova Skill Canônica
+#### E. CLI de Mutação Atômica de Metadados e Índices (`memory:set` / `memory:meta`)
+Em vez de um agente de IA precisar abrir o arquivo, fazer regex ou substituição manual de texto e depois abrir o `index.md` para alterar a tabela (processo lento e propenso a falhas de formatação):
+1. **Comando de Mutação Rápida**:
+   - PHP Core: `c2f memory:set <alvo> --status=<novo_status> [--campo=<valor>]` (ex: `c2f memory:set req-072 --status=IN-PROGRESS`).
+   - Python MDD: `mdd meta set <alvo> <campo> <valor>`.
+2. **Atualização Atômica**:
+   - O comando lê o cabeçalho YAML frontmatter do arquivo alvo (ou o injeta caso não exista).
+   - Atualiza a variável solicitada (`status`, `summary_short`, `title`, etc.) ou cria variáveis customizadas arbitrárias (`tags`, `priority`, `assignee`, etc.).
+   - Salva o arquivo e **automaticamente re-sincroniza o `index.md`** da pasta correspondente em tempo real.
+3. **Comando de Leitura Rápida**:
+   - `c2f memory:get <alvo> [campo]` (retorna o valor ou o bloco de metadados em JSON para fácil consumo por scripts e ferramentas).
+
+#### F. Nova Skill Canônica
 - Criar a **45ª Skill**: `c2f-mdd-indexing-and-handoffs` em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`).
 
 ---

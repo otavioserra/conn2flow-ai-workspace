@@ -31,10 +31,11 @@ summary_medium: Rastreamento detalhado das etapas de scaffold de human-reviews/,
   - [ ] 2.1 Criar `.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md` com padrão de frontmatter, regras de indexação e handoffs
   - [ ] 2.2 Espelhar a skill canônica em `.claude/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/`
   - [ ] 2.3 Atualizar a contagem oficial de skills no ecossistema (de 44 para **45 skills**)
-- [ ] **3. Ferramentas de Auto-Cura de Índices (`c2f memory:index` & `mdd index`)**:
+- [ ] **3. Ferramentas de Auto-Cura e Mutação via CLI (`c2f memory:index`, `c2f memory:set`, `mdd meta`)**:
   - [ ] 3.1 Especificar e prototipar parser com extração YAML e fallback gracioso para arquivos antigos sem cabeçalho
-  - [ ] 3.2 Implementar comando `memory:index` no CLI Core (`conn2flow/cli`)
-  - [ ] 3.3 Integrar rotina de indexação no módulo `indexer` do Python MDD Client (`tools/mdd-client`)
+  - [ ] 3.2 Implementar comando de auto-cura `memory:index` no CLI Core (`conn2flow/cli`)
+  - [ ] 3.3 Implementar comandos de mutação atômica `memory:set` e `memory:get` no CLI Core com re-sincronização instantânea do `index.md`
+  - [ ] 3.4 Integrar rotinas de indexação e mutação de metadados (`mdd index` e `mdd meta set/get`) no Python MDD Client (`tools/mdd-client`)
 - [ ] **4. Governança, Políticas e Boilerplates**:
   - [ ] 4.1 Atualizar `memory/01-general-memory.md` com a inclusão de `human-reviews/` e a Trava Tripla
   - [ ] 4.2 Atualizar `memory/02-policy.md` com os protocolos formais de handoff (topologias `solo`, `dupla`, `triade` e autonomias)
