@@ -14,6 +14,14 @@ Thumbs.db
 
 # Environments and caches
 .venv/
+.venv-mdd/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.coverage*
+htmlcov/
+tools/*/build/
+tools/*/dist/
 node_modules/
 .env*
 !README-PT-BR.md
