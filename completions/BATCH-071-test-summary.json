@@ -1,0 +1,21 @@
+{
+  "tests": 61,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "coverage": {
+    "covered_lines": 876,
+    "num_statements": 901,
+    "percent_covered": 97.2253052164262,
+    "percent_covered_display": "97",
+    "missing_lines": 25,
+    "excluded_lines": 0,
+    "percent_statements_covered": 97.2253052164262,
+    "percent_statements_covered_display": "97"
+  },
+  "code_commit": "d052f32",
+  "warning": "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias",
+  "lint": "PASS",
+  "pip_check": "PASS",
+  "node_syntax": "PASS"
+}
