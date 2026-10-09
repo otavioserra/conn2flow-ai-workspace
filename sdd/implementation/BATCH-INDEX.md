@@ -28,12 +28,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-056** | Memory Gardening do Ecossistema SDD e Validação de Publicação de Release | [batch-056](archive/batch-056.md) |
 | **BATCH-057** | Consolidação Canônica e Sincronização Global das 39 Skills nos 5 Repositórios | [batch-057](archive/batch-057.md) |
 | **BATCH-058** | Incorporação Canônica das Armadilhas 7, 8 e 9 e Sincronização Global nos 5 Repositórios | [batch-058](archive/batch-058.md) |
+| **BATCH-059** | Migração de Configurações para .gemini/config.json e Antigravity v2.16+ | [batch-059](archive/batch-059.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-059** | complete | Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [batch-059.md](batch-059.md) | REQ-057 homologada; `.agents/` removido, `.gemini/config.json` padronizado nos 5 repositórios e templates, `GEMINI.md`/`AGENTS.md` atualizados com `/boost`. |
 | **BATCH-060** | complete | Skill canônica `c2f-documentation` e propagação aos kits (FEAT-014) | [batch-060.md](batch-060.md) | REQ-058 homologada; 39 cópias com hash idêntico, `ai:sync` 37/37 no Core; lumix sem commit. |
 | **BATCH-061** | complete | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills | [batch-061.md](batch-061.md) | REQ-059 homologada; 10/10 arquivos podados (<50KB), 5 skills cristalizadas, 1.000 arquivos auditados com zero divergências MD5, 114/114 npm test. |
 | **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
@@ -43,7 +43,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-066** | ready-for-review | Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | [batch-066.md](batch-066.md) | REQ-064; sete skills com acréscimos; propagador genérico `scripts/skills/sync-skills.cjs`; 1.550 cópias iguais e 21 traduções preservadas |
 | **BATCH-067** | complete | Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | [batch-067.md](batch-067.md) | REQ-065 homologada; 43 skills canônicas, limpeza de frontmatter, Armadilha 17, contrato de widgets, propagação PASS, 124/124 npm test e review-067.md aprovado. |
 | **BATCH-068** | complete | Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais | [batch-068.md](batch-068.md) | REQ-066 homologada; dumps gigantes podados no Core, DECISION-LOG e VALIDATION-CHECKLIST saneados (<50KB), worktrees e backups .bak removidos, 124/124 npm test, review-068.md aprovado. |
+| **BATCH-069** | ready-for-intake | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](batch-069.md) | REQ-067 formalizada; transição estrutural de sdd para memory, tríade de fundação, novas pastas reports e raw, 44ª skill canônica c2f-ai-features e armadilhas 18 e 19. |
 
 ## Requisição ativa
 
-`REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code e testes locais) aprovada e ativa. Lotes em espera: `REQ-064` (`BATCH-066`, lições de pipeline nas skills, `ready-for-review`). `REQ-066` (`BATCH-068`) homologada com sucesso.
+`REQ-067` (`BATCH-069`, Fundação Estrutural do MDD e Incorporação das Lições do BL-028) aprovada e ativa. Lotes em espera: `REQ-062` (`BATCH-064`, release v1.1.2 da extensão do VS Code) e `REQ-064` (`BATCH-066`, lições de pipeline nas skills, `ready-for-review`).

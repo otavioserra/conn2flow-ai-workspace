@@ -305,3 +305,35 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Auditoria do Revisor Técnico: parecer emitido em [review-068.md](review-068.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-068-executor-receipt.json`.
+
+---
+
+## BATCH-069 — Fundação Estrutural do MDD, Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 (REQ-067)
+
+### 1. Checklist de Aceite Técnico
+
+- [ ] Renomeação da raiz de governança de `sdd/` para `memory/` via `git mv`.
+- [ ] Criação dos 3 arquivos de fundação na raiz de `memory/`: `00-baseline-architecture.md`, `01-general-memory.md` e `02-policy.md`.
+- [ ] Criação das novas pastas `memory/reports/` (com `BL-028` importado) e `memory/raw/` com suas estruturas internas.
+- [ ] Provisionamento da estrutura hierárquica com `index.md` e subpastas `archive/compacted/` e `archive/original/` em todas as subpastas de `memory/`.
+- [ ] Criação da 44ª skill canônica `c2f-ai-features` cobrindo os 8 pilares de IA no Conn2Flow Pro.
+- [ ] Inclusão da Armadilha 18 (Junctions e `git worktree remove`) e Armadilha 19 (`iconv //TRANSLIT`) em `c2f-shell-and-windows-traps`.
+- [ ] Atualização das skills correlatas (`sdd-memory-gardening`, `c2f-tailwind-css-architecture`, `c2f-tailwind-module-migration`, `c2f-executor-agent`, `project-validation`, `c2f-documentation`, `sdd-workflow`).
+- [ ] Atualização do catálogo em `AGENTS.md` e `GEMINI.md` para refletir o paradigma MDD e as 44 skills.
+- [ ] Propagação determinística via `node scripts/skills/sync-skills.cjs --apply --all` com status `PASS` nos 39 alvos de kits e templates.
+- [ ] Preservação de 100% das 60 skills locais dos repositórios satélites (`lumix`, `conn2flow-site`, `transformamp`).
+- [ ] Suíte `npm test` da extensão do VS Code verde (124/124 testes).
+- [ ] Emissão do relatório `memory/implementation/batch-069.md` e recibo `completions/BATCH-069-executor-receipt.json`.
+
+### 2. Evidências de Validação
+
+1. **Auditoria de Estrutura MDD**: `memory/` ativa e funcional com tríade raiz e todas as pastas com `index.md`.
+2. **Auditoria Determinística MD5**: Relatório `completions/BATCH-069-skills-audit.json` com status `PASS` nas 44 skills.
+3. **Suíte da Extensão do VS Code**: 124 testes aprovados sem regressões.
+4. **Detalhamento Operacional**: Registro em `memory/implementation/batch-069.md` e recibo em `completions/BATCH-069-executor-receipt.json`.
+
+### 3. Revisão Técnica
+
+- [ ] Auditoria do Revisor Técnico: parecer emitido em `memory/validation/review-069.md`.
+- [ ] Homologação executiva pelo Macro-Arquiteto.
+- Recibo: `completions/BATCH-069-executor-receipt.json`.

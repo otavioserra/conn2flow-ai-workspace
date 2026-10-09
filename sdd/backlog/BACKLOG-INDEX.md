@@ -11,6 +11,11 @@
 | [FEAT-014](FEAT-014-programa-documentacao-core-e-site.md) | Documentação | `PROMOTED` | Programa de Documentação: correção no Core + `/docs/` no Conn2Flow Site (parser MD → recursos Tailwind, rotina `docs:audit`, skill) | Fase 1 entregue; seguir com as ondas de correção via skill `c2f-documentation` | 2026-09-25 |
 | [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) | Arquitetura | `ICEBOX` | Atualização automática dos kits de IA nas instalações (manifesto + lockfile + `c2f ai:kit`) | Aguardar fase 1 do FEAT-014 | 2026-09-25 |
 | [ARCH-008](ARCH-008-chrome-devtools-mcp-agent-runtime-inspection.md) | Arquitetura / MCP | `PROMOTED` | Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | Promovido para REQ-063 / BATCH-065 | 2026-10-01 |
+| [ARCH-009](ARCH-009-mdd-architecture-transition.md) | Arquitetura / MDD | `PROMOTED` | Transição Arquitetural SDD ➔ MDD (Memory Driven Development) e Nomenclatura Global em Inglês | Promovido para REQ-067 / BATCH-069 | 2026-10-09 |
+| [ARCH-010](ARCH-010-mdd-client-cli-daemon.md) | Ferramenta / CLI | `ICEBOX` | MDD Client CLI & Daemon (Python) — Gerenciamento Local de Memória, Injeção e Telemetria | Aguardar base física da REQ-067 | 2026-10-09 |
+| [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md) | Hub / Auto-Evolução | `ICEBOX` | MDD Hub & Documentation Watcher (Python) — Motor de Auto-Evolução e Scraping de Modelos de IA | Aguardar ARCH-010 | 2026-10-09 |
+| [ARCH-012](ARCH-012-hierarchical-dual-tier-memory-archiving.md) | Arquitetura / Contexto | `PROMOTED` | Sistema Hierárquico de index.md e Compactação Dual de Memória (Compacted vs Original) | Promovido para REQ-067 / BATCH-069 | 2026-10-09 |
+| [ARCH-013](ARCH-013-vector-database-and-nosql-memory-evolution.md) | Arquitetura / Futuro | `ICEBOX` | Evolução para Banco de Dados Vetorial & NoSQL para Codebases de Hiperescala | Pesquisa futura após MDD Client/Hub | 2026-10-09 |
 
 ---
 
