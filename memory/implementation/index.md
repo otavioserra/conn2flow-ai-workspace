@@ -2,7 +2,6 @@
 
 | ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| BATCH-065 | BATCH-065 — Integração do Chrome DevTools MCP Server | A configuração canônica mantém exatamente `npx -y chrome-devtools-mcp@latest --allow-unrestricted-paths`. O lançador ... | [source](<batch-065.md>) | ready-for-review |
 | BATCH-066 | BATCH-066 — Lições de 2026-10-01 nas skills | Tudo foi acrescentado ao fim de cada skill, com título próprio. Na skill de pipeline, os três pontos que diziam "6 et... | [source](<batch-066.md>) | ready-for-review |
 | BATCH-067 | BATCH-067 — Canonização de Novas Skills, Contrato Modular de Widgets, Armadilha 17 e Propagação Global (43 Skills) | O ecossistema oficial de IA expande formalmente de 41 para **43 skills canônicas**: | [source](<batch-067.md>) | ready-for-review |
 | BATCH-068 | BATCH-068 — Memory Gardening Global (req-066) |  | [source](<batch-068.md>) | ready-for-review` (alterações aplicadas no working tree, **sem commit**) |
@@ -12,6 +11,7 @@
 | BATCH-072 | BATCH-072 — Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em `docs/` |  | [source](<batch-072.md>) | ready-for-review |
 | BATCH-073 | BATCH-073 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates |  | [source](<batch-073.md>) | ready-for-intake |
 | BATCH-074 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Live Todo List para implementação das 3 travas de governança do ARCH-015 / REQ-072 | [source](<batch-074.md>) | complete |
+| BATCH-075 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Live Todo List para merge de feat/req-071 e feat/req-072, testes e consolidação na main | [source](<batch-075.md>) | ready-for-intake |
 
 ## Directories
 

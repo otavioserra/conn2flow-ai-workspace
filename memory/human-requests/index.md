@@ -2,7 +2,6 @@
 
 | ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| REQ-063 | REQ-063 — Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | Integrar o servidor oficial **Chrome DevTools MCP (`chrome-devtools-mcp`)** à infraestrutura de IA e agentes do Conn2... | [source](<req-063.md>) | APPROVED` (aprovada pelo Humano-no-Loop como prioridade imediata) |
 | REQ-064 | REQ-064 — Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | Levar para as skills o que um dia inteiro de trabalho em três repositórios (`conn2flow`, `conn2flow-site`, com outro ... | [source](<req-064.md>) | APPROVED` (pedida e autorizada pelo Humano no chat em 2026-10-01: "cria essa requisição… e já implementa") |
 | REQ-065 | REQ-065 — Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | Consolidar o catálogo canônico de IA do ecossistema Conn2Flow, expandindo oficialmente de 41 para **43 skills canônic... | [source](<req-065.md>) | HOMOLOGATED` (implementada no BATCH-067 e homologada pelo Macro-Arquiteto em 2026-10-04) |
 | REQ-066 | REQ-066 — Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais (Worktrees e Arquivos .bak) | Executar um ciclo completo de **Memory Gardening &amp; SDD Hygiene** no ecossistema Conn2Flow, eliminando arquivos monstr... | [source](<req-066.md>) | HOMOLOGATED` (homologado pelo Macro-Arquiteto em 2026-10-06 via &#91;review-068.md&#93;(../validation/review-068.md)) |
@@ -12,6 +11,7 @@
 | REQ-070 | REQ-070 — Revamp da Documentação Pública: Modernização dos READMEs Raiz (EN / PT-BR), Descentralização para `docs/` e Consolidação das Camadas MDD | O `conn2flow-ai-workspace` passou por um salto evolutivo monumental: | [source](<req-070.md>) | HOMOLOGATED` (homologado pelo Macro-Arquiteto em 2026-10-09 via &#91;review-072.md&#93;(../validation/review-072.md)) |
 | REQ-071 | REQ-071 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates | Durante a transição inicial para o paradigma **Memory-Driven Development (MDD)**, a Tríade Fundamental da raiz (`00-b... | [source](<req-071.md>) | APPROVED` (aprovada pelo Engenheiro Chefe para execução imediata) |
 | REQ-072 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Template estruturado de cabeçalho, auto-cura de índices via CLI (PHP/Python), handoffs adaptáveis e criação de memory/human-reviews/ | [source](<req-072.md>) | HOMOLOGATED |
+| REQ-073 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Merge ordenado de feat/req-071 e feat/req-072, unificação das memórias 03/04 com a Trava Tripla e consolidação na main | [source](<req-073.md>) | APPROVED |
 
 ## Directories
 

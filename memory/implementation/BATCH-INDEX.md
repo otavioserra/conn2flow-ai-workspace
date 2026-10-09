@@ -49,7 +49,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-072** | complete | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 homologada; 23 docs, 11 pares, 252 links PASS, 44 skills, review-072.md aprovado. |
 | **BATCH-073** | ready-for-intake | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
 | **BATCH-074** | complete | Implementação da Trava Tripla MDD: Metadata Header com Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | [batch-074.md](batch-074.md) | REQ-072 homologada em rev-074.md; cabeçalho YAML frontmatter, auto-cura/mutação via CLI (PHP/Python) com fallback, 45ª skill c2f-mdd-indexing-and-handoffs, pasta human-reviews/ |
+| **BATCH-075** | ready-for-intake | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | [batch-075.md](batch-075.md) | REQ-073 aprovada; merge de feat/req-071 em feat/req-072, testes 100% verde (pytest e VS Code) e merge final na branch main |
 
 ## Requisição ativa
 
-Lotes `BATCH-067`, `BATCH-068`, `BATCH-069`, `BATCH-070`, `BATCH-072` e `BATCH-074` homologados com sucesso. Frentes prontas para consolidação e merge: `REQ-071` (`BATCH-073`, Memórias 03 e 04) e `REQ-069` (`BATCH-071`, Python MDD Client & Hub). Em espera: `REQ-062` (`BATCH-064`, release da extensão).
+`REQ-073` (`BATCH-075`, Consolidação Harmônica e Merge na main) aprovada para execução. Lotes `BATCH-067` a `BATCH-074` homologados com sucesso.

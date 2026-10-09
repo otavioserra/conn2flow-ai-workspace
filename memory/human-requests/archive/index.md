@@ -75,3 +75,4 @@ Navegação hierárquica; leia o resumo antes do documento integral.
 | req-060 | req-060.md | REQ-060 — Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [req-060.md](req-060.md) | HOMOLOGATED |
 | req-061 | req-061.md | REQ-061 — Choques das entregas na extensão do VS Code (diff e decisão por arquivo) | [req-061.md](req-061.md) | HOMOLOGATED |
 | req-062 | req-062.md | REQ-062 — Preparação de Release, Bump v1.1.2 e Empacotamento VSIX do Conn2Flow Dev Tools | [req-062.md](req-062.md) | APPROVED |
+| req-063 | req-063.md | REQ-063 — Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [req-063.md](req-063.md) | HOMOLOGATED |
