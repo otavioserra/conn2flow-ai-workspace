@@ -12,11 +12,11 @@
 
 - [x] Ler `CURRENT.md` e `req-054.md` para entender o escopo
 - [x] Ler a skill `sdd-memory-gardening` para o protocolo canônico
-- [x] Ler `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` na íntegra (742 linhas, 53.620 bytes)
-- [x] Ler `lumix/sdd/MEMORIA-ENGENHARIA-CHEFIA.md` (47 linhas, 4.706 bytes — saudável)
+- [x] Ler `lumix/sdd/04-memory-engineering-execution.md` na íntegra (742 linhas, 53.620 bytes)
+- [x] Ler `lumix/sdd/03-memory-engineering-chief.md` (47 linhas, 4.706 bytes — saudável)
 - [x] Classificar seções: manter recentes, compactar homologados, promover regras universais
 - [x] Criar `lumix/sdd/archive/MEMORIA-EXECUCAO-pre-batch-056.md` com o conteúdo original
-- [x] Reescrever `MEMORIA-ENGENHARIA-EXECUCAO.md` (~25 KB alvo)
+- [x] Reescrever `04-memory-engineering-execution.md` (~25 KB alvo)
 - [x] Validar tamanho final: **15.028 bytes (14.7 KB)**, 136 linhas — ✅ dentro da faixa alvo
 - [x] Verificar conformidade dos demais repositórios — nenhum `MEMORIA-*.md` ativo > 50 KB
 - [x] Rodar `npm test` na extensão VS Code: **114/114 passed** ✅
@@ -31,13 +31,13 @@
 
 | Arquivo | Bytes | Linhas | Status |
 |---|---|---|---|
-| `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | 53.620 | 742 | ⚠️ ACIMA DO TETO (50 KB) |
-| `lumix/sdd/MEMORIA-ENGENHARIA-CHEFIA.md` | 4.706 | 47 | ✅ Saudável |
-| `conn2flow/MEMORIA-ENGENHARIA-EXECUCAO.md` | ~22 KB | — | ✅ Saudável |
-| `conn2flow/MEMORIA-ENGENHARIA-CHEFIA.md` | ~10 KB | — | ✅ Saudável |
+| `lumix/sdd/04-memory-engineering-execution.md` | 53.620 | 742 | ⚠️ ACIMA DO TETO (50 KB) |
+| `lumix/sdd/03-memory-engineering-chief.md` | 4.706 | 47 | ✅ Saudável |
+| `conn2flow/04-memory-engineering-execution.md` | ~22 KB | — | ✅ Saudável |
+| `conn2flow/03-memory-engineering-chief.md` | ~10 KB | — | ✅ Saudável |
 | `conn2flow-ai-workspace/MEMORIA-*.md` | ~8 KB + ~4 KB | — | ✅ Saudável |
-| `transformamp/MEMORIA-ENGENHARIA-EXECUCAO.md` | ~6.56 KB | — | ✅ Saudável |
-| `conn2flow-site/MEMORIA-ENGENHARIA-EXECUCAO.md` | ~18.27 KB | — | ✅ Saudável |
+| `transformamp/04-memory-engineering-execution.md` | ~6.56 KB | — | ✅ Saudável |
+| `conn2flow-site/04-memory-engineering-execution.md` | ~18.27 KB | — | ✅ Saudável |
 
 ---
 
@@ -79,14 +79,14 @@ conn2flow-tools-1.1.1.vsix (79 files, 186.54 KB)
 
 ### Auditoria de MEMORIA-*.md (ecossistema completo)
 ```
-conn2flow-ai-workspace | MEMORIA-ENGENHARIA-CHEFIA.md  | 4.07 KB  | OK
-conn2flow-ai-workspace | MEMORIA-ENGENHARIA-EXECUCAO.md | 8.03 KB  | OK
-conn2flow               | MEMORIA-ENGENHARIA-CHEFIA.md  | 10.85 KB | OK
-conn2flow               | MEMORIA-ENGENHARIA-EXECUCAO.md | 22.68 KB | OK
-lumix                   | MEMORIA-ENGENHARIA-CHEFIA.md  | 4.60 KB  | OK
-lumix                   | MEMORIA-ENGENHARIA-EXECUCAO.md | 14.68 KB | OK
-transformamp            | MEMORIA-ENGENHARIA-EXECUCAO.md | 6.56 KB  | OK
-conn2flow-site          | MEMORIA-ENGENHARIA-EXECUCAO.md | 18.27 KB | OK
+conn2flow-ai-workspace | 03-memory-engineering-chief.md  | 4.07 KB  | OK
+conn2flow-ai-workspace | 04-memory-engineering-execution.md | 8.03 KB  | OK
+conn2flow               | 03-memory-engineering-chief.md  | 10.85 KB | OK
+conn2flow               | 04-memory-engineering-execution.md | 22.68 KB | OK
+lumix                   | 03-memory-engineering-chief.md  | 4.60 KB  | OK
+lumix                   | 04-memory-engineering-execution.md | 14.68 KB | OK
+transformamp            | 04-memory-engineering-execution.md | 6.56 KB  | OK
+conn2flow-site          | 04-memory-engineering-execution.md | 18.27 KB | OK
 ```
 
 ### Correção de teste

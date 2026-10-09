@@ -34,8 +34,10 @@ class GardeningManager {
         if (!sddRoot) {
             return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: 'Memória não encontrada' };
         }
-        const memPath = path.join(sddRoot, 'MEMORIA-ENGENHARIA-EXECUCAO.md');
-        if (!fs.existsSync(memPath)) {
+        const memPath = ['04-memory-engineering-execution.md', 'MEMORIA-ENGENHARIA-EXECUCAO.md', 'ENGINEERING-MEMORY-EXECUTION.md']
+            .map(name => path.join(sddRoot, name))
+            .find(candidate => fs.existsSync(candidate));
+        if (!memPath) {
             return { sizeBytes: 0, lineCount: 0, status: 'notFound', label: 'Memória não encontrada' };
         }
         try {
@@ -133,7 +135,7 @@ class GardeningManager {
         const templateContent = `# Requisição Humana req-${padNum}: SDD Memory Gardening & Higienização
 
 ## 🎯 Objetivo
-Executar poda, destilação e higienização periódica da memória de execução (\`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md\`) conforme as diretrizes da skill oficial \`sdd-memory-gardening\`.
+Executar poda, destilação e higienização periódica da memória de execução (\`${health.filePath}\`) conforme as diretrizes da skill oficial \`sdd-memory-gardening\`.
 - **Escopo**: ${scopeLabel}
 - **Status Atual da Memória**: ${health.sizeBytes} bytes (~${sizeKb} KB) / ${health.lineCount} linhas
 - **Faixa Saudável (Poda Proibida)**: abaixo de 50 KB / 200 linhas.
@@ -142,7 +144,7 @@ Executar poda, destilação e higienização periódica da memória de execuçã
 - **Meta de Poda**: Reduzir para ~25 KB preservando as 20 a 25 tarefas mais recentes.
 
 ## 📋 Checklist de Ações do Executor
-- [ ] 1. Ler a memória de execução completa (\`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md\`).
+- [ ] 1. Ler a memória de execução completa (\`${health.filePath}\`).
 - [ ] 2. Preservar as 20 a 25 tarefas mais recentes e pendências ativas.
 - [ ] 3. Destilar regras arquiteturais recorrentes para as skills Core ou documento normativo correspondente.
 - [ ] 4. Nunca alterar ou remover diretrizes de governança da Chefia sem instrução humana explícita.

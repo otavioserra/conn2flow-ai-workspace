@@ -64,7 +64,7 @@ function Install-EngineeringMemories {
     if (-not (Test-Path -LiteralPath $targetSdd)) { return }
 
     Get-ChildItem -LiteralPath $boilerplateRoot -File | Where-Object {
-        $_.Name -match 'MEMORIA-ENGENHARIA|ENGINEERING-MEMORY'
+        $_.Name -match '^(03-memory-engineering-chief|04-memory-engineering-execution)\.md$'
     } | ForEach-Object {
         $targetPath = Join-Path $targetSdd $_.Name
         if (Test-Path -LiteralPath $targetPath) {

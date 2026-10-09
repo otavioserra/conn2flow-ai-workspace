@@ -3,8 +3,8 @@
 - Treat `sdd/README.md` and numbered sdd documents as the normative source of truth.
 - Before editing code or SDD files, read `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the current batch, `sdd/validation/VALIDATION-CHECKLIST.md`, and `sdd/decisions/DECISION-LOG.md`.
 - Treat `sdd/human-requests/` solely as human intake. If a request is provided as a Markdown path or folder, read that material first and classify it into the correct SDD artifact.
-- **Engineering Memories**: At the start of each session, mandatorily read `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` and `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` to align context before making any changes.
-- **Execution Memory Maintenance**: At the end of each task, update `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` with new findings, resolved bugs, and environment quirks. Never modify `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` without explicit human instruction.
+- **Engineering Memories**: At the start of each session, mandatorily read `sdd/03-memory-engineering-chief.md` and `sdd/04-memory-engineering-execution.md` to align context before making any changes.
+- **Execution Memory Maintenance**: At the end of each task, update `sdd/04-memory-engineering-execution.md` with new findings, resolved bugs, and environment quirks. Never modify `sdd/03-memory-engineering-chief.md` without explicit human instruction.
 - Classify the request early: change request, batch implementation, review, or validation.
 - Do not rewrite numbered SDD files for minor review feedback.
 - Edit numbered SDD files only when requirements, contracts, acceptance criteria, or approved decisions actually change.

@@ -47,7 +47,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-070** | complete | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 homologada; migração nos 7 satélites, Tríade 00, 01, 02 e 44 skills, review-070.md aprovado. |
 | **BATCH-071** | ready-for-review | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
 | **BATCH-072** | complete | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 homologada; 23 docs, 11 pares, 252 links PASS, 44 skills, review-072.md aprovado. |
-| **BATCH-073** | ready-for-intake | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
+| **BATCH-073** | ready-for-review | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
 
 ## Requisição ativa
 

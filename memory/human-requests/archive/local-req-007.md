@@ -37,7 +37,7 @@ Executar o instalador do Claude Kit a partir do workspace `conn2flow-ai-workspac
     ```
 *   Isso fará com que o instalador:
     - Crie as pastas `archive/` ausentes em `sdd/decisions/`, `sdd/human-requests/`, `sdd/implementation/` e `sdd/validation/`, injetando os respectivos `README.md` explicativos.
-    - Crie os templates das Memórias de Engenharia: `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` e `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md`.
+    - Crie os templates das Memórias de Engenharia: `sdd/03-memory-engineering-chief.md` e `sdd/04-memory-engineering-execution.md`.
     - Sobrescreva o `CLAUDE.md` do repositório `transformamp` atualizando as diretrizes de IA para apontarem para a nova pasta `sdd/` e ativando as políticas de otimização de contexto e memórias de engenharia.
 
 ### C. Alinhamento de Otimização de Contexto (Saneamento Inicial)
@@ -51,7 +51,7 @@ Se o histórico migrado de `DECISION-LOG.md`, `BATCH-INDEX.md` ou `VALIDATION-CH
 O Engenheiro Executor deverá validar:
 *   [ ] A pasta `project/` foi completamente removida.
 *   [ ] A pasta `sdd/` existe na raiz do repositório com as especificações migradas (`sdd/SPEC.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`).
-*   [ ] As memórias de engenharia (`MEMORIA-ENGENHARIA-CHEFIA.md` e `MEMORIA-ENGENHARIA-EXECUCAO.md`) existem em `sdd/`.
+*   [ ] As memórias de engenharia (`03-memory-engineering-chief.md` e `04-memory-engineering-execution.md`) existem em `sdd/`.
 *   [ ] As subpastas `archive/` com os respectivos `README.md` de apoio foram provisionadas em todas as 4 seções.
 *   [ ] O arquivo `CLAUDE.md` na raiz foi atualizado com as novas regras do kit.
 *   [ ] `git status` no repositório `transformamp` mostra a movimentação e criação dos arquivos de forma limpa.

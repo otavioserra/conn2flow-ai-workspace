@@ -98,7 +98,7 @@ install_engineering_memories() {
     local target_sdd="$target_root/sdd"
     [[ -d "$target_sdd" ]] || return 0
 
-    for memory_file in "$boilerplate_root"/MEMORIA-ENGENHARIA-*.md "$boilerplate_root"/ENGINEERING-MEMORY-*.md; do
+    for memory_file in "$boilerplate_root"/03-memory-engineering-chief.md "$boilerplate_root"/04-memory-engineering-execution.md; do
         [[ -f "$memory_file" ]] || continue
         local target_path="$target_sdd/$(basename "$memory_file")"
         if [[ -e "$target_path" ]]; then

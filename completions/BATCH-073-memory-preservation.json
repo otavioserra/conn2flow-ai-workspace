@@ -1,0 +1,179 @@
+[
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "340d4a780ff073626c3f1f5c0f38c2ef1cc6e3cc871f3c6c7c2c26171581daa1",
+    "sha256_after": "74ae7c417c7cd84241f989085e5242bbee9fe9f22ba86f39ccfa2376d5d08521",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "dc5aba5d648fa6820cf131652a82f7a7c8985d87212a124b1ae712eb4abc3292",
+    "sha256_after": "5026260c0033e4ddcc9c5cc0b7cc909d654fd7e2df530c4f886175601d1013cc",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "8c645b0aec3a537c7ca4c15213826bb207dd2d5660936227bdcdc3b0c518460a",
+    "sha256_after": "69c3778f2079ed0074f97b91d9e574cf376bfc714b7f00caf17e34fea1ade9d6",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "0d4cb5a01fa018fa391ad84c4f9fa5ffa663bb9c1159865321810dff9ee407fe",
+    "sha256_after": "165849c99c9baba0a614e1860e512c5bbd42a7f5525aef11daa220c27a9c0f80",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-site",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "ed49bb93179c6fbac6ab6168514bdc930ea74a09867472f3672e332c8b0c893d",
+    "sha256_after": "016bbc107d18a87fb3f8f1a73d98ebcd3b3ff893f65a1001237f8bb4a4829ec8",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-site",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "dbe3573c0597f1eaf17414a44e7e28a0d29c9534294a9c4b4eb2baa7c6f28f7d",
+    "sha256_after": "9c31b734bb716613ded06f692dda96fa76f90917e5dfac1d4ba3a20182c4c4c3",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-nexus",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "0e67a2530aa843b50d642120d65450117da1005e4f10ffadab4db96bef8aca24",
+    "sha256_after": "68dc10ef59eb1bff172213e9a3538c34dcad064d4ef81fe6fc38e736841fc322",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-nexus",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "63d26ed722d745cb4c64fc2f361a10e6de3966ba9170c57c4a8bb992e2713e1e",
+    "sha256_after": "2172ec6c0f8996609537831ba5ceb58ac790e08f83e136792377c5a1002feee8",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-app",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "0e67a2530aa843b50d642120d65450117da1005e4f10ffadab4db96bef8aca24",
+    "sha256_after": "68dc10ef59eb1bff172213e9a3538c34dcad064d4ef81fe6fc38e736841fc322",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-app",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "72a0a9d6bdadc4aaf35a0775d123499fcad3572f906d0dff993192ac70f32f4f",
+    "sha256_after": "b0b90e5f95389978f1f45ddab7e6b7e9d1253f385b4383f97aeac957241df205",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "lumix",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "fe6a824cbbe9816a5d4ae9d45471a0dd2a9d0222908117af9f69d72369b05eab",
+    "sha256_after": "d5898b34c42f37b64bfb602668c8c27f6238b8c05f4f23ec4a0269aa58c02388",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "lumix",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "6972450d7f8fc1a686c35c5da8bac929eb2af2f2e76a4e1b5b469612ccc0aa83",
+    "sha256_after": "25797722981c2609b221adf4d820e2a934b29b1016800104ebdeb96b7166a2a1",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "transformamp",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "6bc3d4a4b6a503e0178616f3c126263592024e7a53a06c24757005b1d89e6baf",
+    "sha256_after": "ea209734396602abbd96fa1283dd5b7a5275afd6e126ff589e1d28a9ecac2493",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "transformamp",
+    "old": "memory/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "memory/04-memory-engineering-execution.md",
+    "sha256_before": "6118ad81bf2c84befd39cfc9841f9bfd1ebd8ec3c2db1372cdb5ea40c110ea58",
+    "sha256_after": "6bb53b56395cbae447302d60c896d58d983f6b552cada769ab7ed410c574f530",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-mkt",
+    "old": "memory/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "memory/03-memory-engineering-chief.md",
+    "sha256_before": "a6440635ce7f4806815bd283184ad82627635110342c08522b9a14cff5484d96",
+    "sha256_after": "bdc280b4c95a0bc97884af6feb2d0cb666f6c106e4b1fb46f98330ea1c64de77",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-mkt",
+    "new": "memory/04-memory-engineering-execution.md",
+    "action": "create-missing-memory",
+    "old_file_absent_at_intake": true
+  },
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "templates/en/sdd-boilerplate/sdd/ENGINEERING-MEMORY-CHIEF.md",
+    "new": "templates/en/sdd-boilerplate/sdd/03-memory-engineering-chief.md",
+    "sha256_before": "83bc40f907d053d685af32919b01c5b1a3a3717740dba61a94284ca1e88dd93e",
+    "sha256_after": "8a3c2de99a4c484504e2a5832a18e65d01d50f8faa2b2a5c196b5b2a1c5a6b4b",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "templates/en/sdd-boilerplate/sdd/ENGINEERING-MEMORY-EXECUTION.md",
+    "new": "templates/en/sdd-boilerplate/sdd/04-memory-engineering-execution.md",
+    "sha256_before": "9ee2384e8ca12217783583f7b5746e823c6397575de4880e69424f899846f626",
+    "sha256_after": "dd9699afbf6cc52db9d58fe64548bcaa7040272d939cd3ff67b4c6a42a0c177f",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "templates/pt-br/sdd-boilerplate/sdd/MEMORIA-ENGENHARIA-CHEFIA.md",
+    "new": "templates/pt-br/sdd-boilerplate/sdd/03-memory-engineering-chief.md",
+    "sha256_before": "0e67a2530aa843b50d642120d65450117da1005e4f10ffadab4db96bef8aca24",
+    "sha256_after": "68dc10ef59eb1bff172213e9a3538c34dcad064d4ef81fe6fc38e736841fc322",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  },
+  {
+    "repo": "conn2flow-ai-workspace",
+    "old": "templates/pt-br/sdd-boilerplate/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "new": "templates/pt-br/sdd-boilerplate/sdd/04-memory-engineering-execution.md",
+    "sha256_before": "99944818b9f294c15b99ef567c1f6f301fd8d00d229707cf1f3ba61759e90735",
+    "sha256_after": "f120518e43be6a41a0cb4b9563c1175ddd344b40e4edd4626732fcab81a7c353",
+    "rename_bytes_equal": true,
+    "historical_body_preserved_except_filename_references": true
+  }
+]

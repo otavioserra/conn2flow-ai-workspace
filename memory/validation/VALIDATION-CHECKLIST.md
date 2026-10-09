@@ -83,7 +83,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
   - `conn2flow-ai-workspace`: `VALIDATION-CHECKLIST.md` podado de 82.29 KB para 17.98 KB (arquivado `validation-004-050.md`).
   - `conn2flow`: `DECISION-LOG.md` podado de 113.71 KB para 47.71 KB; `BATCH-INDEX.md` podado de 102.01 KB para 6.11 KB; `VALIDATION-CHECKLIST.md` mantido em 11.17 KB; `CURRENT.md` podado de 44.10 KB para 4.95 KB.
   - `lumix`: `VALIDATION-CHECKLIST.md` podado de 128.65 KB para 9.39 KB; `BATCH-INDEX.md` podado de 83.59 KB para 6.66 KB.
-  - `conn2flow-site`: `VALIDATION-CHECKLIST.md` podado de 71.34 KB para 19.70 KB; `MEMORIA-ENGENHARIA-EXECUCAO.md` podado de 30.04 KB para 13.86 KB.
+  - `conn2flow-site`: `VALIDATION-CHECKLIST.md` podado de 71.34 KB para 19.70 KB; `04-memory-engineering-execution.md` podado de 30.04 KB para 13.86 KB.
   - `transformamp`: `DECISION-LOG.md` podado de 49.04 KB para 22.21 KB.
   - Meta atingida: 10/10 arquivos abaixo de 50 KB (9/10 abaixo de 25 KB).
 - [x] Atualização de `c2f-database-operations/SKILL.md`: `JSON_MERGE_PATCH`, proteção RFC 7396 (`null`), validação com `JSON_VALID()` e prevenção de race conditions.
@@ -390,3 +390,19 @@ Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejad
 
 Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
+
+
+## BATCH-073: Canonical Engineering Memories (REQ-071)
+
+- [x] 19 memórias existentes renomeadas via git mv, sem perda de registros; execução 04 inexistente no conn2flow-mkt inicializada e exceção registrada.
+- [x] Matriz e sete satélites com os documentos raiz 00–04 e referências de IA atualizadas.
+- [x] Política e mecânica conectadas a raw/active/ e raw/archive/, sem poda neste lote.
+- [x] Quatro boilerplates en/pt-br completos e indexados; mdd init cria cinco arquivos sem sobrescrever existentes.
+- [x] Compilação da extensão PASS, 124/124 testes PASS; seis cenários adicionais de descoberta da memória PASS.
+- [x] MDD Client pytest 32/32 PASS; Ruff check e formato PASS.
+- [x] Quatro skills selecionadas sem divergências, skills locais intactas; 84 divergências globais fora do lote comprovadas no baseline.
+- [x] Nenhum link novo quebrado; links historicamente órfãos registrados no relatório de validação.
+- [x] Commits com staging explícito; seis satélites com push confirmado, conn2flow-mkt sem remote e commit local.
+- [x] Relatório, recibo e índices atualizados para ready-for-review; homologação independente não atribuída.
+
+Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073.md).

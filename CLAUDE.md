@@ -3,8 +3,8 @@
 - Trate `sdd/README.md` e os sdd numerados como fonte normativa.
 - Antes de editar código ou sdd, leia `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, o batch atual, `sdd/validation/VALIDATION-CHECKLIST.md` e `sdd/decisions/DECISION-LOG.md`.
 - Use `sdd/human-requests/` apenas como intake humano não normativo. Se a demanda vier como caminho de arquivo Markdown ou como a própria pasta, leia esse material primeiro e depois classifique a demanda no artefato SDD correto.
-- **Memórias de Engenharia**: No início de cada sessão, leia obrigatoriamente `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` e `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` para alinhar contexto antes de qualquer alteração.
-- **Manutenção da Memória de Execução**: Ao término de cada tarefa, atualize `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` com novos aprendizados, bugs resolvidos e particularidades do ambiente. Nunca modifique `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` sem instrução explícita do usuário humano.
+- **Memórias de Engenharia**: No início de cada sessão, leia obrigatoriamente `sdd/03-memory-engineering-chief.md` e `sdd/04-memory-engineering-execution.md` para alinhar contexto antes de qualquer alteração.
+- **Manutenção da Memória de Execução**: Ao término de cada tarefa, atualize `sdd/04-memory-engineering-execution.md` com novos aprendizados, bugs resolvidos e particularidades do ambiente. Nunca modifique `sdd/03-memory-engineering-chief.md` sem instrução explícita do usuário humano.
 - Classifique a demanda cedo: change request, implementação de batch, review ou validação.
 - Não reescreva os sdd numerados para comentários pequenos de review.
 - Edite sdd numerados apenas quando requisito, contrato, critério de aceite ou decisão aprovada realmente mudar.
@@ -40,7 +40,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
    - **No VS Code / Claude Code (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
-   - **No Antigravity (Arquiteto Master)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` e propõe o próximo plano.
+   - **No Antigravity (Arquiteto Master)**: Ativa `c2f-architect-master`, lê `sdd/03-memory-engineering-chief.md` e propõe o próximo plano.
    - **No Revisor**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
 

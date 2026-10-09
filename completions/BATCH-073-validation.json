@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "preserved_existing_memories": 19,
+  "created_missing_memories": 1,
+  "repositories": 8,
+  "boilerplates": 4,
+  "selected_skills": [
+    "c2f-architect-master",
+    "c2f-executor-agent",
+    "sdd-workflow",
+    "sdd-memory-gardening"
+  ],
+  "selected_skills_divergences": 0,
+  "local_skills_changed": 0,
+  "newly_broken_links": [],
+  "unresolved_legacy_links_outside_rename_scope": [
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "templates/pt-br/templates/spec-driven-project-gemini-kit/GEMINI.md",
+      "target": "sdd/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "templates/en/templates/spec-driven-project-codex-kit/AGENTS.md",
+      "target": "sdd/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-004-050.md",
+      "target": "{currentPath}"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-004-050.md",
+      "target": "' + CURRENT_PATH + '"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-004-050.md",
+      "target": "...\\sdd\\human-requests\\CURRENT.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/VALIDATION-CHECKLIST.md",
+      "target": "../implementation/batch-058.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/VALIDATION-CHECKLIST.md",
+      "target": "../implementation/batch-059.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/VALIDATION-CHECKLIST.md",
+      "target": "../implementation/batch-061.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/VALIDATION-CHECKLIST.md",
+      "target": "../implementation/batch-062.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/VALIDATION-CHECKLIST.md",
+      "target": "../implementation/batch-063.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/implementation/archive/batch-056.md",
+      "target": "../human-requests/req-054.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/04-memory-engineering-execution.md",
+      "target": "implementation/batch-062.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/04-memory-engineering-execution.md",
+      "target": "implementation/batch-063.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/04-memory-engineering-execution.md",
+      "target": "{currentPath}"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "templates/en/templates/spec-driven-project-gemini-kit/GEMINI.md",
+      "target": "sdd/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/implementation/archive/batch-046.md",
+      "target": "{currentPath}"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/implementation/archive/batch-046.md",
+      "target": "abs>/CURRENT.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/implementation/archive/batch-061.md",
+      "target": "../human-requests/req-059.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "templates/pt-br/templates/spec-driven-project-codex-kit/AGENTS.md",
+      "target": "sdd/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-051-057.md",
+      "target": "../implementation/archive/batch-053.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-051-057.md",
+      "target": "../implementation/archive/batch-054.md"
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "source": "memory/validation/archive/validation-051-057.md",
+      "target": "../implementation/archive/batch-057.md"
+    },
+    {
+      "repo": "conn2flow",
+      "source": "GEMINI.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow",
+      "source": "AGENTS.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-site",
+      "source": "GEMINI.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "conn2flow-site",
+      "source": "AGENTS.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "memory/validation/archive/VALIDATION-CHECKLIST-162-219.md",
+      "target": "archive/VALIDATION-CHECKLIST-139-148.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "memory/validation/archive/VALIDATION-CHECKLIST-162-219.md",
+      "target": "archive/VALIDATION-CHECKLIST-156-161.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "memory/validation/archive/VALIDATION-CHECKLIST-162-219.md",
+      "target": "archive/VALIDATION-CHECKLIST-149-155.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "memory/validation/archive/VALIDATION-CHECKLIST-162-219.md",
+      "target": "../implementation/BATCH-209-new-kvm4-provision-and-restore.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "GEMINI.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "lumix",
+      "source": "AGENTS.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "transformamp",
+      "source": "GEMINI.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    },
+    {
+      "repo": "transformamp",
+      "source": "AGENTS.md",
+      "target": "memory/process/STARTER-PROMPTS.md"
+    }
+  ],
+  "global_skills_audit_status": "FAIL",
+  "global_skills_divergences_outside_scope": 84
+}

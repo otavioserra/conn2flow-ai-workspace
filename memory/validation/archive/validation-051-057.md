@@ -170,7 +170,7 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 
 ### 1. Checklist de Aceite Técnico
 
-- [x] Poda de `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` reduzindo seu tamanho de 52.36 KB para a faixa de 20-30 KB (< 35 KB).
+- [x] Poda de `lumix/sdd/04-memory-engineering-execution.md` reduzindo seu tamanho de 52.36 KB para a faixa de 20-30 KB (< 35 KB).
 - [x] Confirmação de que nenhum arquivo `MEMORIA-*.md` do ecossistema ultrapassa o teto de 50 KB.
 - [x] Empacotamento do VSIX oficial `conn2flow-tools-1.1.1.vsix` atualizado.
 - [x] Workflows de release no GitHub Actions (`release-gestor.yml`) confirmados com status `success`.
@@ -180,7 +180,7 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 
 ### 2. Evidências de Validação
 
-1. `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` reduzido de 53.620 bytes para 15.028 bytes (-72%); original arquivado em `lumix/sdd/archive/MEMORIA-EXECUCAO-pre-batch-056.md`.
+1. `lumix/sdd/04-memory-engineering-execution.md` reduzido de 53.620 bytes para 15.028 bytes (-72%); original arquivado em `lumix/sdd/archive/MEMORIA-EXECUCAO-pre-batch-056.md`.
 2. Auditoria ecossistema: 100% dos arquivos `MEMORIA-*.md` ativos abaixo de 50 KB.
 3. Extensão VS Code: `npm test` aprovou 114/114 testes e gerou `conn2flow-tools-1.1.1.vsix` (79 arquivos, 186.54 KB).
 4. GitHub Actions Core: run `gestor-v2.10.10` com status `success`.

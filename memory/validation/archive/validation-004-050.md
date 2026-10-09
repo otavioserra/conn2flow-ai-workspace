@@ -204,7 +204,7 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 
 ### 1. Checklist de Aceite Técnico
 
-- [x] Atualização da linha de política em `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` e nos boilerplates/templates, conforme os limites vigentes naquele lote.
+- [x] Atualização da linha de política em `sdd/04-memory-engineering-execution.md` e nos boilerplates/templates, conforme os limites vigentes naquele lote.
 - [x] Atualização de `sdd-workflow/SKILL.md` em todos os templates e masters com o **Protocolo de Reserva Atômica** de `req-XXX.md` e a separação das camadas de memória (Git vs Agente).
 - [x] Atualização de `project-validation/SKILL.md` com a regra anti-hábito de "Pendente do Operador" (obrigatoriedade de validação via `c2f page:inspect` / `c2f auth:cookie`).
 - [x] Atualização de `sdd/SPEC.md` incorporando a governança de reserva atômica de requisições, divisão de memórias e autoridade do código/SPEC sobre memórias passadas.
@@ -882,7 +882,7 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 ### 3. Revisão Técnica
 
 - [x] [REVIEW-045](../review-045.md): parecer final `APPROVED` em 2026-08-31; 54/54 testes da extensão, 2/2 do MCP Hub, recibo executor correlacionado e escopo de `docs.skills` formalizado.
-- [x] Encerramento da revisão: `MEMORIA-ENGENHARIA-EXECUCAO.md` medida em 1.975 bytes e 32 linhas; não requer poda.
+- [x] Encerramento da revisão: `04-memory-engineering-execution.md` medida em 1.975 bytes e 32 linhas; não requer poda.
 
 ---
 
@@ -971,7 +971,7 @@ Archived on 2026-09-28 as part of BATCH-061 (SDD Ecosystem Pruning).
 
 - [x] Skill `sdd-memory-gardening` atualizada removendo o gatilho incondicional ao final de sessão.
 - [x] Regra `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas` adicionada em todas as cópias da skill e templates.
-- [x] Resíduos da politica legada eliminados de `MEMORIA-ENGENHARIA-CHEFIA.md`, `MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
+- [x] Resíduos da politica legada eliminados de `03-memory-engineering-chief.md`, `04-memory-engineering-execution.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md` em todos os repositórios.
 - [x] `gardeningManager.ts` e `localizationCatalog.ts` na extensão atualizados para 50 KB / 75 KB / ~25 KB.
 - [x] `npm test` na extensão e `php cli/c2f.php ai:sync` no Core validados com sucesso.
 

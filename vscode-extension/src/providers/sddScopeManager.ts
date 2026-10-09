@@ -110,10 +110,8 @@ export class SddScopeManager {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (workspaceFolders) {
       for (const f of workspaceFolders) {
-        if (path.basename(f.uri.fsPath).toLowerCase() === 'conn2flow-ai-workspace') {
-          const memory = path.join(f.uri.fsPath, 'memory');
-          if (fs.existsSync(memory)) return memory;
-        }
+        const memory = path.join(f.uri.fsPath, 'memory');
+        if (fs.existsSync(memory)) return memory;
         const s = path.join(f.uri.fsPath, 'sdd');
         if (fs.existsSync(s)) return s;
       }
@@ -189,8 +187,8 @@ export class SddScopeManager {
       workspaceFolders.map(folder => folder.uri.fsPath),
       repoName
     );
-    // REQ-067: a matriz migrou; os satélites continuam usando sdd/.
-    if (repoName === 'conn2flow-ai-workspace') {
+    // Prefer canonical MDD memory directories; preserve legacy SDD discovery.
+    {
       for (const candidate of candidates) {
         const memory = path.join(path.dirname(candidate), 'memory');
         if (fs.existsSync(memory)) return memory;
@@ -224,6 +222,8 @@ export class SddScopeManager {
     }
 
     for (const c of candidates) {
+      const memory = path.join(path.dirname(c), 'memory');
+      if (fs.existsSync(memory)) return memory;
       if (fs.existsSync(c)) {
         return c;
       }

@@ -88,10 +88,10 @@ Auditoria: nenhum satélite mantém `sdd/`; tríade, `reports/` e `raw/active|ar
 
 ### Pendências e achados (fora do escopo autorizado, não corrigidos)
 
-1. **conn2flow-mkt sem remote**: commit local feito; falta `git remote add` + push (decisão humana). Edições em andamento de terceiros (`memory/MEMORIA-ENGENHARIA-CHEFIA.md`, `memory/PENDING-HUMAN-ACTIONS.md`, `req-003-...`) ficaram fora do commit e permanecem na árvore; `human-requests/index.md` já lista o req-003 ainda não versionado.
+1. **conn2flow-mkt sem remote**: commit local feito; falta `git remote add` + push (decisão humana). Edições em andamento de terceiros (`memory/03-memory-engineering-chief.md`, `memory/PENDING-HUMAN-ACTIONS.md`, `req-003-...`) ficaram fora do commit e permanecem na árvore; `human-requests/index.md` já lista o req-003 ainda não versionado.
 2. **Código do core ainda lê `sdd/`**: `cli/src/Support/Docs/SddSource.php:17`, `DocsBuilder.php` (prefixo `sdd/`), `AiArchiveSddCommand`, `AiPruneMemoriesCommand` e testes (`DocsSddReq184Test`, `DocsReq188Test` etc.). `docs:build` com `sdd.enabled` passa a emitir "sdd/: fonte não encontrada". O conn2flow-site publica páginas `docs-sdd-*` geradas dessa fonte.
 3. **Extensão VS Code**: `repositoryLocator.ts` e `agentPromptPolicy.ts` ainda descobrem satélites por `sdd/`.
 4. **Skills canônicas** ainda citam `sdd/` (e a skill local `nexus-validation`, preservada, também); `ai:sync` do core exige o bloco "Gatilho Obrigatório" ausente em 3 skills canônicas.
 5. **Outras worktrees/branches** do conn2flow (conn2flow-req*) ainda têm `sdd/`; renames serão resolvidos no merge.
 6. conn2flow-nexus e conn2flow-app só tinham kits `.claude`/`.github`; mkt só `.gemini`. Sincronizei apenas nos kits existentes.
-7. Memória de execução (`MEMORIA-ENGENHARIA-EXECUCAO.md`) dos satélites não foi atualizada neste lote.
+7. Memória de execução (`04-memory-engineering-execution.md`) dos satélites não foi atualizada neste lote.

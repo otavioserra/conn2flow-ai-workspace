@@ -20,7 +20,7 @@
      * `lumix/sdd/validation/VALIDATION-CHECKLIST.md`: 128.65 KB ➔ 9.39 KB.
      * `lumix/sdd/implementation/BATCH-INDEX.md`: 83.59 KB ➔ 6.66 KB.
      * `conn2flow-site/sdd/validation/VALIDATION-CHECKLIST.md`: 71.34 KB ➔ 19.70 KB.
-     * `conn2flow-site/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md`: 30.04 KB ➔ 13.86 KB.
+     * `conn2flow-site/sdd/04-memory-engineering-execution.md`: 30.04 KB ➔ 13.86 KB.
      * `transformamp/sdd/decisions/DECISION-LOG.md`: 49.04 KB ➔ 22.21 KB.
    - Todos os arquivos do ecossistema SDD agora estão estritamente dentro dos limites operacionais.
 

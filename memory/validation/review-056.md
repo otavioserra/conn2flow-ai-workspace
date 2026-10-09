@@ -11,7 +11,7 @@
 ## 1. Escopo Auditado
 
 1. **Memory Gardening em `lumix` (`conn2flow-site`)**:
-   - `lumix/sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` podado com sucesso de **53.620 bytes** (742 linhas) para **15.028 bytes** (136 linhas) — **redução de 72%**, bem abaixo do teto de 35 KB (faixa alvo 20-30 KB).
+   - `lumix/sdd/04-memory-engineering-execution.md` podado com sucesso de **53.620 bytes** (742 linhas) para **15.028 bytes** (136 linhas) — **redução de 72%**, bem abaixo do teto de 35 KB (faixa alvo 20-30 KB).
    - Backup integral da memória anterior preservado em `lumix/sdd/archive/MEMORIA-EXECUCAO-pre-batch-056.md`.
    - 10 lotes homologados antigos compactados em sínteses objetivas (*Causa ➔ Solução ➔ Guarda*).
    - Lições universais e armadilhas do Gestor preservadas na íntegra.

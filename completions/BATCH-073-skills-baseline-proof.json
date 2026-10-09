@@ -1,0 +1,506 @@
+[
+  {
+    "onde": "conn2flow/.gemini",
+    "skill": "c2f-ai-features",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.gemini",
+    "skill": "c2f-modelo-templates",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.gemini",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-agent-visual-inspection",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-ai-features",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-database-operations",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-dev-scripts",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-docker-environment",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-documentation",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-documentation-governance",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-environment-configuration",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-gestor-functions",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-global-variables",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-hooks-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-html-css-pages-and-components",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-interface-v2-architecture",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-javascript-ajax",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-modelo-templates",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-module-crud-scaffolding",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-multilingual-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-payment-gateways",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-plugin-architecture",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-preview-modals-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-project-pipeline-and-tasks",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-projects-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-resources-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-reviewer-agent",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-shell-and-windows-traps",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-system-tasks",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "c2f-variables-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "continue-sdd-batch",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "project-validation",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "raise-spec-change",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "review-current-batch",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.claude",
+    "skill": "start-sdd-slice",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.cursor",
+    "skill": "c2f-ai-features",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.cursor",
+    "skill": "c2f-modelo-templates",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.cursor",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.codex",
+    "skill": "c2f-ai-features",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.codex",
+    "skill": "c2f-modelo-templates",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.codex",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.github",
+    "skill": "c2f-ai-features",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.github",
+    "skill": "c2f-modelo-templates",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "conn2flow/.github",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "conte\u00c3\u00bado diferente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-agent-visual-inspection",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-ai-features",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-database-operations",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-database-testing",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-dev-scripts",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-docker-environment",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-documentation",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-documentation-governance",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-environment-configuration",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-gd-image-safety",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-gestor-functions",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-global-variables",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-hooks-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-html-css-pages-and-components",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-interface-v2-architecture",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-javascript-ajax",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-json-resources-sync",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-modelo-templates",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-module-crud-scaffolding",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-module-visual-assets",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-multilingual-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-mysql-utf8-emoji-encoding",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-payment-gateways",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-plugin-architecture",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-preview-modals-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-project-pipeline-and-tasks",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-projects-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-resources-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-reviewer-agent",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-shell-and-windows-traps",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-system-tasks",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-tailwind-module-migration",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-variables-system",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "c2f-widget-development",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "continue-sdd-batch",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "project-validation",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "raise-spec-change",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "review-current-batch",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  },
+  {
+    "onde": "lumix/.claude",
+    "skill": "start-sdd-slice",
+    "motivo": "ausente",
+    "confirmed_in_committed_baseline": true
+  }
+]

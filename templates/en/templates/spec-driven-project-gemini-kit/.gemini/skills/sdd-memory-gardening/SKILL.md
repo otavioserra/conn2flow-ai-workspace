@@ -9,7 +9,7 @@ user-invocable: false
 > 🚫 DO NOT PRUNE when execution memory is below 50 KB or 200 lines. Ignore this skill at the end of a session while the file remains healthy.
 
 # ⚡ Mandatory Trigger
-- **TRIGGER**: When `ENGINEERING-MEMORY-EXECUTION.md` or `MEMORIA-ENGENHARIA-EXECUCAO.md` reaches 50 KB or 200 lines (preventive warning). Pruning becomes mandatory at 75 KB or 300 lines.
+- **TRIGGER**: When `04-memory-engineering-execution.md` or `04-memory-engineering-execution.md` reaches 50 KB or 200 lines (preventive warning). Pruning becomes mandatory at 75 KB or 300 lines.
 - **SKIP ONLY IF**: The file is below 50 KB and 200 lines. Ending a session or completing a batch never triggers this skill by itself.
 - **CONSEQUENCE OF IGNORING**: Agent cognitive degradation from context bloat, increased inference costs, and loss of critical guidelines.
 
