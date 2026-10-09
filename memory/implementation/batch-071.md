@@ -78,3 +78,14 @@
 - Armazenamento do Hub usa um worker e locks de arquivo, não banco distribuído. Daemon roda em foreground para hospedagem por gerenciador de serviços; serviço persistente do sistema não foi instalado.
 - PR é preparada em manifesto; publicação remota da aplicação só envia branch se solicitada. Publicação do próprio lote ocorre na branch de trabalho; nenhuma PR hospedada, merge, deploy de produção, PyPI ou integração ARCH-014 foi executada.
 - Revisão independente e homologação permanecem sob responsabilidade da Tríade. MCP Hub não disponibilizou ferramentas de CLI/recibo nesta sessão; comandos locais e recibo versionado são as evidências.
+
+
+## Retomada via gh e preparação da PR — 2026-10-09
+
+- [PR #1](https://github.com/otavioserra/conn2flow-ai-workspace/pull/1) aberta contra main a pedido do usuário, com gh autenticado.
+- Branch de revisão: `feat/req-069-applications`, criada a partir de origin/main, contendo somente commits deste lote. Formalização da REQ-071 / BATCH-073 excluída; conflito de índice resolvido mantendo os demais registros da main. A branch local anterior foi preservada, sem force push.
+- Primeira CI real: Linux/Python 3.11 e 3.12 aprovados; Windows/3.11 falhou ao comparar caminho curto RUNNER~1 com caminho completo; Windows/3.12 foi cancelado pelo fail-fast. [Execução inicial](https://github.com/otavioserra/conn2flow-ai-workspace/actions/runs/37954668561).
+- Correção: contenção compara caminhos canônicos; inspeção de links continua na cadeia fornecida. Dois testes de regressão exercitam GetShortPathNameW no Windows e grafia equivalente no Linux.
+- Revalidação local: **63 testes aprovados**, zero falhas/erros/skips, cobertura **97,23%**, lint aprovado. [JUnit da retomada](../../completions/BATCH-071-followup-pytest.xml).
+- CI da branch de revisão e da PR iniciadas; os resultados finais devem ser consultados nos checks da PR. Este registro substitui a limitação anterior de CI nunca observada, sem presumir aprovação da execução ainda em andamento.
+- Commits na PR: `afd5ac0` (implementação), `223155c` (docs/evidências), `4187547` (correção Windows). Sem merge ou homologação automática.

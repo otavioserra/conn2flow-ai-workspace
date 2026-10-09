@@ -4,10 +4,10 @@
   "request": "REQ-069",
   "batch": "BATCH-071",
   "status": "ready-for-review",
-  "branch": "feat/req-069",
-  "code_commit": "d052f32",
+  "branch": "feat/req-069-applications",
+  "code_commit": "afd5ac0",
   "tests": {
-    "tests": 61,
+    "tests": 63,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
@@ -21,7 +21,7 @@
       "percent_statements_covered": 97.2253052164262,
       "percent_statements_covered_display": "97"
     },
-    "code_commit": "d052f32",
+    "code_commit": "4187547",
     "warning": "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias",
     "lint": "PASS",
     "pip_check": "PASS",
@@ -30,12 +30,15 @@
   "evidence": [
     "completions/BATCH-071-pytest.xml",
     "completions/BATCH-071-test-summary.json",
-    "completions/BATCH-071-smoke.json"
+    "completions/BATCH-071-smoke.json",
+    "completions/BATCH-071-followup-pytest.xml"
   ],
   "remaining": [
     "independent review",
     "architect homologation"
   ],
   "production_deploy": false,
-  "hosted_pr_created": false
+  "hosted_pr_created": false,
+  "pr_url": "https://github.com/otavioserra/conn2flow-ai-workspace/pull/1",
+  "fix_commit": "4187547"
 }

@@ -96,6 +96,6 @@ python -m ruff check tools
 python tools/verify_mdd.py --output temp/mdd-smoke.json --live-docs
 ```
 
-61 tests passed with 97.23% coverage on Windows/Python 3.12.4: initialization, retention, local preservation, API, real HTTP submission, parsing, retries and three evolution modes with real Git. All 11 CLI checks and live collection of seven sources passed. See [evidence](../../completions/BATCH-071-smoke.json) and [implementation record](../../memory/implementation/batch-071.md). One Starlette/AnyIO deprecation warning remains, without failures. CI is configured for Windows/Linux and Python 3.11/3.12; remote execution is not part of this local evidence.
+63 tests passed with 97.23% coverage on Windows/Python 3.12.4: initialization, retention, local preservation, API, real HTTP submission, parsing, retries and three evolution modes with real Git. All 11 CLI checks and live collection of seven sources passed. See [evidence](../../completions/BATCH-071-smoke.json) and [implementation record](../../memory/implementation/batch-071.md). One Starlette/AnyIO deprecation warning remains, without failures. CI is configured for Windows/Linux and Python 3.11/3.12; remote results are tracked by the [PR checks](https://github.com/otavioserra/conn2flow-ai-workspace/pull/1).
 
 The extension's dual integration [ARCH-014](../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md) remains future work. No extension changes/publication, merge, deployment or PyPI publication occurred.

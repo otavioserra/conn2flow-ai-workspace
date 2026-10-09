@@ -390,3 +390,5 @@ Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejad
 
 Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
+
+Retomada BATCH-071: 63/63 testes locais após correção de aliases Windows 8.3; [PR #1](https://github.com/otavioserra/conn2flow-ai-workspace/pull/1) aberta na branch isolada feat/req-069-applications. Resultado remoto acompanhado nos checks; detalhes no lote.
