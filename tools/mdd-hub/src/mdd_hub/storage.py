@@ -11,10 +11,11 @@ from pathlib import Path
 def safe(root: Path, path: Path) -> Path:
     root = root.resolve()
     absolute = Path(os.path.abspath(path))
-    if not absolute.is_relative_to(root) or not absolute.resolve().is_relative_to(root):
+    # Canonicalize Windows 8.3 aliases before comparing containment.
+    if not absolute.resolve().is_relative_to(root):
         raise ValueError("Storage path escapes configured root")
     for node in (absolute, *absolute.parents):
-        if node == root:
+        if node.resolve() == root:
             break
         if node.is_symlink() or getattr(os.path, "isjunction", lambda _: False)(node):
             raise ValueError("Storage cannot traverse a linked path")
