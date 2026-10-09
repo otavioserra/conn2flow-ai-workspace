@@ -11,7 +11,7 @@
 | BATCH-072 | BATCH-072 — Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em `docs/` |  | [source](<batch-072.md>) | ready-for-review |
 | BATCH-073 | BATCH-073 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates | Cada staging listou caminhos de arquivos explicitamente; nenhuma operação `git add .`, `git add -A` ou commit de alte... | [source](<batch-073.md>) | ready-for-review |
 | BATCH-074 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Live Todo List para implementação das 3 travas de governança do ARCH-015 / REQ-072 | [source](<batch-074.md>) | complete |
-| BATCH-075 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Live Todo List para merge de feat/req-071 e feat/req-072, testes e consolidação na main | [source](<batch-075.md>) | in-progress |
+| BATCH-075 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Consolidação MDD integrada e publicada na main da matriz e do Core, com testes verdes e worktrees removidas | [source](<batch-075.md>) | complete |
 
 ## Directories
 

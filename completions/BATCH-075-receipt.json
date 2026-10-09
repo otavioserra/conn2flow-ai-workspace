@@ -1,0 +1,46 @@
+{
+  "id": "BATCH-075",
+  "request": "REQ-073",
+  "date": "2026-10-09",
+  "status": "complete",
+  "technical_status": "PASS",
+  "human_homologation": "pending; not signed by Executor",
+  "topology": "dupla / triade",
+  "autonomy": "autonomo_monitorado",
+  "repositories": [
+    {
+      "project": "conn2flow-ai-workspace",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace",
+      "branch": "main",
+      "integration_head": "b2b85bb7d78cd106fe9fe63b33ef150c2737a5cd",
+      "origin_main_confirmed": "b2b85bb7d78cd106fe9fe63b33ef150c2737a5cd"
+    },
+    {
+      "project": "conn2flow",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow",
+      "branch": "main",
+      "integration_head": "d8d0298bf80ffe1600c66510bdc2a0492aa987cc",
+      "origin_main_confirmed": "d8d0298bf80ffe1600c66510bdc2a0492aa987cc"
+    }
+  ],
+  "evidence": [
+    "BATCH-075-pytest.xml",
+    "BATCH-075-extension.log",
+    "BATCH-075-test-summary.json",
+    "BATCH-075-artifact-audit.json",
+    "BATCH-075-worktree-audit.json",
+    "BATCH-075-worktree-cleanup.json"
+  ],
+  "independent_review": "memory/human-reviews/rev-075.md (RECOMMEND-APPROVAL)",
+  "handoff": {
+    "next_role": "Macro-Arquiteto / humano",
+    "action": "Conferir relatório e REV-075; somente humano identificado assina homologação.",
+    "mcp_hub": "unavailable; local independent reviewer and persistent receipt used"
+  },
+  "preserved_local_changes": [
+    ".gemini/skills/c2f-ai-features/SKILL.md",
+    ".gemini/skills/c2f-modelo-templates/SKILL.md",
+    ".gemini/skills/c2f-module-visual-assets/SKILL.md",
+    "Core output/ (untracked)"
+  ]
+}

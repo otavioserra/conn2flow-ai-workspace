@@ -424,3 +424,19 @@ Evidências: [lote](../implementation/batch-074.md), [JUnit](../../completions/B
 Limites: auditoria global FAIL/52 divergências nas três skills alheias preservadas; nova skill PASS. Sem MCP Hub remoto, Linux, banco/UI/deploy/CI remoto ou suíte PHP integral do produto. YAML escalar documentado; crash entre arquivos requer indexação. Starlette/AnyIO emite aviso de depreciação. Gerador legado de init/compact mantido; pendências humanas não auto-arquivadas.
 
 REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histórico ready-for-review do relatório BATCH-073 foi preservado.
+
+
+## BATCH-075 — Consolidação harmônica (REQ-073, 2026-10-09)
+
+- [x] Nove conflitos resolvidos; 45 skills, 00–04, raw, CLI e Trava Tripla preservados.
+- [x] Quatro skeletons completos e inbox human-reviews descobrível nos routers.
+- [x] Auto-cura raiz e hierárquica executada via CLI Python.
+- [x] Python 111/111, extensão 124/124, compilação TypeScript e lint PHP 33/33 PASS.
+- [x] Ruff, pip check, diff check e preservação de memórias/CLI PASS.
+- [x] Revisão independente RECOMMEND-APPROVAL; dois P2 corrigidos.
+- [x] Main matriz/Core integrada por fast-forward, push origin main confirmado.
+- [x] Nove worktrees removidas sem força e dependências principais preservadas.
+- [x] Relatório e recibo persistentes, staging por caminhos específicos.
+- [ ] Homologação humana identificada do BATCH-075.
+
+Evidências e limites: [lote](../implementation/batch-075.md), [resumo](../../completions/BATCH-075-test-summary.json), [recibo](../../completions/BATCH-075-receipt.json), [REV-075](../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.

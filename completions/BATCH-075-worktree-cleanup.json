@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "removed": [
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\temp\\mdd-pr-review",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-ai-workspace",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-app",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-mkt",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-nexus",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-site",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\lumix",
+    "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\transformamp"
+  ],
+  "dependency_checks": [
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\lumix\\node_modules",
+      "before": 27,
+      "after": 27,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\transformamp\\node_modules",
+      "before": 23,
+      "after": 23,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site\\vendor",
+      "before": 10,
+      "after": 10,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor",
+      "before": 10,
+      "after": 10,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules",
+      "before": 79,
+      "after": 79,
+      "status": "PASS"
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site\\node_modules",
+      "before": 72,
+      "after": 72,
+      "status": "PASS"
+    }
+  ],
+  "branches_preserved": true,
+  "force_used": false,
+  "policy_rejection": "Grouped PowerShell removal rejected (blocked by policy); individual git worktree remove calls accepted and successful."
+}

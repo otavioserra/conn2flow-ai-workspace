@@ -30,3 +30,8 @@ Unificar em definitivo as branches de desenvolvimento MDD na branch `main`:
    Implementação modular em Python 3.11+ em `tools/`:
    - `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon).
    - `tools/mdd-hub/`: Hub API (FastAPI) e Documentation Watcher para auto-evolução contínua.
+
+
+## Entrega técnica BATCH-075 — 2026-10-09
+
+Consolidação REQ-073 concluída e publicada na main da matriz e do Core; nove worktrees de entrega removidas. Python 111/111, extensão 124/124 e lint PHP 33/33 PASS. [Lote](../implementation/batch-075.md), [REV-075](../human-reviews/rev-075.md) RECOMMEND-APPROVAL e [recibo](../../completions/BATCH-075-receipt.json). Ponteiro REQ-073 preservado para homologação humana identificada; nenhuma nova requisição iniciada.
