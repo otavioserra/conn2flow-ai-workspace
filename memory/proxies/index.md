@@ -1,7 +1,8 @@
 # Index — proxies
 
-Referências externas
-
-| ID | Título | Resumo Executivo | Link Relativo | Status |
+| ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| archive | archive | Nó de navegação | [archive](archive/index.md) | indexed |
+
+## Directories
+
+- [archive](<archive/index.md>)

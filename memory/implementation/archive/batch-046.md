@@ -32,7 +32,7 @@
 
 3. **Espelho NLS dos templates de prompt**: `package.nls.json` e `package.nls.pt-br.json` continham apenas as 86 chaves de manifesto (`%command.*%`, `extension.*`, `config.*`); os templates de prompt existiam somente em `localizationCatalog.ts`. Para cumprir a REQ-044 §2 sem criar chaves inertes, os dois templates foram espelhados nos dois arquivos NLS **e** um teste de sincronismo passou a exigir igualdade byte a byte com o catálogo de runtime.
 
-4. **Nova chave `agents.handoffInitial`**: o template inicial de `CURRENT-HANDOFF.md` era uma string PT-BR hardcoded dentro do TypeScript, violando a diretriz de proibição de strings literais da `MEMORIA-ENGENHARIA-CHEFIA.md` §5. A injeção do cabeçalho (REQ-044 §1.3) foi feita movendo o template para o catálogo nos dois idiomas.
+4. **Nova chave `agents.handoffInitial`**: o template inicial de `CURRENT-HANDOFF.md` era uma string PT-BR hardcoded dentro do TypeScript, violando a diretriz de proibição de strings literais da `03-memory-engineering-chief.md` §5. A injeção do cabeçalho (REQ-044 §1.3) foi feita movendo o template para o catálogo nos dois idiomas.
 
 ## Evidências
 
@@ -92,7 +92,7 @@ Você é o Executor SDD do Conn2Flow. Implemente a requisição ativa aprovada [
 | `sdd/implementation/BATCH-INDEX.md` | alterado |
 | `sdd/validation/VALIDATION-CHECKLIST.md` | alterado |
 | `sdd/human-requests/CURRENT.md` | alterado |
-| `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | alterado |
+| `sdd/04-memory-engineering-execution.md` | alterado |
 | `completions/BATCH-046-executor-receipt.json` | novo (recibo) |
 | `completions/BATCH-046-receipt.json` | novo (recibo canônico) |
 | `tasks/REQ-044.json` | alterado pelo Hub (status `completed`) |

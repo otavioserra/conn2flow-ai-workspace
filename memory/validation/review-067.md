@@ -14,7 +14,7 @@
 ### 1.1 Expansão do Catálogo Canônico para 43 Skills Oficiais
 - [x] `c2f-module-visual-assets`: Incorporada e espelhada nos 5 kits da matriz (`.gemini`, `.claude`, `.cursor`, `.codex`, `.github`), com Design System V3.0, prompt canônico 3D isométrico, restrições negativas e especificações WebP (1024x1024, <120KB).
 - [x] `c2f-tailwind-module-migration`: Importada do Core (`conn2flow`) para os 5 kits da matriz, formalizando o checklist passo a passo e armadilhas da migração de módulos administrativos para Tailwind CSS v4.
-- [x] Catálogo oficial atualizado formalmente em `AGENTS.md`, `GEMINI.md` e `MEMORIA-ENGENHARIA-CHEFIA.md` (3 Tríade SDD, 33 Core/Módulos/Infra, 7 Governança/Workflow).
+- [x] Catálogo oficial atualizado formalmente em `AGENTS.md`, `GEMINI.md` e `03-memory-engineering-chief.md` (3 Tríade SDD, 33 Core/Módulos/Infra, 7 Governança/Workflow).
 
 ### 1.2 Higienização e Enriquecimento de Skills Existentes
 - [x] `c2f-module-crud-scaffolding`: Frontmatter duplicado e BOM residual (`\ufeff---`) completamente eliminados. Todo o mojibake UTF-8 (acentuação e caracteres de árvore box-drawing) normalizado. Seção `1.1 Identidade Visual e Capa Obrigatória` vinculando `c2f-module-visual-assets` e registro no `manifest.json` adicionada.

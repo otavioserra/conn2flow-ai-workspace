@@ -1,6 +1,4 @@
-# Index — human-reviews/archive/original
+# Index — original
 
-Fichas originais de revisões humanas preservadas na íntegra.
-
-| ID | Título | Resumo Executivo | Link Relativo | Status |
+| ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |

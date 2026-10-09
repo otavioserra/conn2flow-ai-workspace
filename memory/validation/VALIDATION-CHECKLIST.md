@@ -83,7 +83,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
   - `conn2flow-ai-workspace`: `VALIDATION-CHECKLIST.md` podado de 82.29 KB para 17.98 KB (arquivado `validation-004-050.md`).
   - `conn2flow`: `DECISION-LOG.md` podado de 113.71 KB para 47.71 KB; `BATCH-INDEX.md` podado de 102.01 KB para 6.11 KB; `VALIDATION-CHECKLIST.md` mantido em 11.17 KB; `CURRENT.md` podado de 44.10 KB para 4.95 KB.
   - `lumix`: `VALIDATION-CHECKLIST.md` podado de 128.65 KB para 9.39 KB; `BATCH-INDEX.md` podado de 83.59 KB para 6.66 KB.
-  - `conn2flow-site`: `VALIDATION-CHECKLIST.md` podado de 71.34 KB para 19.70 KB; `MEMORIA-ENGENHARIA-EXECUCAO.md` podado de 30.04 KB para 13.86 KB.
+  - `conn2flow-site`: `VALIDATION-CHECKLIST.md` podado de 71.34 KB para 19.70 KB; `04-memory-engineering-execution.md` podado de 30.04 KB para 13.86 KB.
   - `transformamp`: `DECISION-LOG.md` podado de 49.04 KB para 22.21 KB.
   - Meta atingida: 10/10 arquivos abaixo de 50 KB (9/10 abaixo de 25 KB).
 - [x] Atualização de `c2f-database-operations/SKILL.md`: `JSON_MERGE_PATCH`, proteção RFC 7396 (`null`), validação com `JSON_VALID()` e prevenção de race conditions.
@@ -392,6 +392,21 @@ Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/B
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
 
 
+## BATCH-073: Canonical Engineering Memories (REQ-071)
+
+- [x] 19 memórias existentes renomeadas via git mv, sem perda de registros; execução 04 inexistente no conn2flow-mkt inicializada e exceção registrada.
+- [x] Matriz e sete satélites com os documentos raiz 00–04 e referências de IA atualizadas.
+- [x] Política e mecânica conectadas a raw/active/ e raw/archive/, sem poda neste lote.
+- [x] Quatro boilerplates en/pt-br completos e indexados; mdd init cria cinco arquivos sem sobrescrever existentes.
+- [x] Compilação da extensão PASS, 124/124 testes PASS; seis cenários adicionais de descoberta da memória PASS.
+- [x] MDD Client pytest 32/32 PASS; Ruff check e formato PASS.
+- [x] Quatro skills selecionadas sem divergências, skills locais intactas; 84 divergências globais fora do lote comprovadas no baseline.
+- [x] Nenhum link novo quebrado; links historicamente órfãos registrados no relatório de validação.
+- [x] Commits com staging explícito; seis satélites com push confirmado, conn2flow-mkt sem remote e commit local.
+- [x] Relatório, recibo e índices atualizados para ready-for-review; homologação independente não atribuída.
+
+Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073.md).
+
 ## BATCH-074 — Trava Tripla MDD (REQ-072, 2026-10-09)
 
 - [x] CLI PHP memory:index/set/get e Typer mdd index/meta set/get registrados, com API reutilizável.
@@ -402,8 +417,10 @@ Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. A
 - [x] Inbox matriz, skeletons EN/PT, três fichas-modelo, políticas e handoffs solo/dupla/triade × três autonomias.
 - [x] Auditoria independente dos defeitos reproduzidos; regressões corrigidas e probes/48 testes reexecutados pelo Revisor.
 - [x] Commits com caminhos específicos e recibo persistente.
-- [ ] Homologação humana identificada.
+- [x] Homologação humana identificada: Otávio, 2026-10-09, [REV-074](../human-reviews/rev-074.md).
 
 Evidências: [lote](../implementation/batch-074.md), [JUnit](../../completions/BATCH-074-pytest.xml), [resumo](../../completions/BATCH-074-test-summary.json), [artefatos](../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../completions/BATCH-074-skills-audit.json), [recibo](../../completions/BATCH-074-receipt.json), [revisão](../human-reviews/rev-074.md).
 
 Limites: auditoria global FAIL/52 divergências nas três skills alheias preservadas; nova skill PASS. Sem MCP Hub remoto, Linux, banco/UI/deploy/CI remoto ou suíte PHP integral do produto. YAML escalar documentado; crash entre arquivos requer indexação. Starlette/AnyIO emite aviso de depreciação. Gerador legado de init/compact mantido; pendências humanas não auto-arquivadas.
+
+REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histórico ready-for-review do relatório BATCH-073 foi preservado.

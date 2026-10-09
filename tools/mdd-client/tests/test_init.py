@@ -10,7 +10,11 @@ from typer.testing import CliRunner
 @pytest.mark.parametrize("kind", ["software", "mobile", "general"])
 def test_init_complete_and_idempotent(tmp_path, kind):
     project = tmp_path / "project"
-    assert len(init(project, kind)) == 4
+    assert len(init(project, kind)) == 6
+    for name in ("03-memory-engineering-chief.md", "04-memory-engineering-execution.md"):
+        assert (project / "memory" / name).is_file()
+    for node in ("raw/active", "raw/archive/original", "raw/archive/compacted"):
+        assert (project / "memory" / node / "index.md").is_file()
     assert kind in (project / "memory/00-baseline-architecture.md").read_text()
     for area in AREAS:
         for node in (area, f"{area}/archive", f"{area}/archive/original", f"{area}/archive/compacted"):

@@ -57,7 +57,7 @@
 | `.claude/`, `.gemini/`, `.codex/`, `.github/skills/c2f-dev-scripts` e `c2f-html-css-pages-and-components` | Skills atualizadas |
 | `templates/{en,pt-br}/templates/*-kit/**/skills/{c2f-dev-scripts,c2f-html-css-pages-and-components}/SKILL.md` | Propagação nos 14 kits |
 | `cli/CLAUDE.md` + `templates/{en,pt-br}/templates/spec-driven-project-claude-kit/cli/CLAUDE.md` | Contrato CLI corrigido |
-| `sdd/implementation/batch-047.md`, `BATCH-INDEX.md`, `sdd/validation/VALIDATION-CHECKLIST.md`, `sdd/human-requests/CURRENT.md`, `sdd/handoffs/CURRENT-HANDOFF.md`, `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | Governança SDD |
+| `sdd/implementation/batch-047.md`, `BATCH-INDEX.md`, `sdd/validation/VALIDATION-CHECKLIST.md`, `sdd/human-requests/CURRENT.md`, `sdd/handoffs/CURRENT-HANDOFF.md`, `sdd/04-memory-engineering-execution.md` | Governança SDD |
 
 ### `conn2flow` (Core)
 
@@ -200,7 +200,7 @@ README. Com a versão resolvendo, a checagem passou a rodar e revelou que:
 
 Consequência prática: o gate `documentation-outdated` continuará bloqueando a **execução** da release do instalador
 até que os READMEs sejam sincronizados. Como a alteração muda URLs de download voltadas ao usuário final e a
-manutenção de `README.md` / `README-PT-BR.md` é responsabilidade do Arquiteto (`MEMORIA-ENGENHARIA-CHEFIA.md` §1),
+manutenção de `README.md` / `README-PT-BR.md` é responsabilidade do Arquiteto (`03-memory-engineering-chief.md` §1),
 **nada foi alterado nesses arquivos**. Fica registrado para decisão do Humano-no-Loop.
 
 ## Ambiguidades e decisões discutíveis (para arbitragem do Arquiteto)
@@ -227,4 +227,4 @@ defensáveis. Nenhum deles é bloqueante para a revisão, mas todos podem gerar 
 1. **Conferência visual do painel (resíduo do critério de aceite 2)**: os valores do formulário já foram validados headless no Teste 9 (`2.1.0` → `2.1.1` → `instalador-v2.1.1`, `canPrepare: true`). Resta apenas instalar o VSIX regenerado e confirmar a pintura do painel no VS Code — única parte que exige a janela da IDE.
 2. **Sincronizar os READMEs do Core com `instalador-v2.1.0`** (ver *Achado fora do escopo*). Sem isso o gate `documentation-outdated` seguirá bloqueando a execução da release do instalador. Não alterado por decisão de escopo.
 3. **Nenhum commit, push, deploy ou release foi executado** (modo `supervisionado`).
-4. **Observação de governança (fora do escopo da REQ-045)**: `sdd/validation/VALIDATION-CHECKLIST.md` está com ~62 KB e o `BATCH-INDEX.md` com 17 lotes ativos, acima do teto de 10 itens da `MEMORIA-ENGENHARIA-CHEFIA.md` §4. O arquivamento não foi solicitado nesta requisição e não foi executado por conta própria.
+4. **Observação de governança (fora do escopo da REQ-045)**: `sdd/validation/VALIDATION-CHECKLIST.md` está com ~62 KB e o `BATCH-INDEX.md` com 17 lotes ativos, acima do teto de 10 itens da `03-memory-engineering-chief.md` §4. O arquivamento não foi solicitado nesta requisição e não foi executado por conta própria.

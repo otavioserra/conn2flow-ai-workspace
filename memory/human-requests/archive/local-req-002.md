@@ -13,11 +13,11 @@ Além disso, existem repositórios legados (como o Lumix/Photon) que utilizam a 
 Criar arquivos base nos dois idiomas para separar as responsabilidades:
 
 1.  **Em Português (`pt-br/sdd-boilerplate/sdd/`)**:
-    *   [NEW] `MEMORIA-ENGENHARIA-CHEFIA.md`: Reservada ao Engenheiro Chefe Humano. Contém preferências de design, restrições e regras de negócio. (Apenas leitura para executores).
-    *   [NEW] `MEMORIA-ENGENHARIA-EXECUCAO.md`: Reservada aos agentes de execução IA. Contém aprendizados do compilador, hacks locais e bugs resolvidos. (Escrita e leitura para executores).
+    *   [NEW] `03-memory-engineering-chief.md`: Reservada ao Engenheiro Chefe Humano. Contém preferências de design, restrições e regras de negócio. (Apenas leitura para executores).
+    *   [NEW] `04-memory-engineering-execution.md`: Reservada aos agentes de execução IA. Contém aprendizados do compilador, hacks locais e bugs resolvidos. (Escrita e leitura para executores).
 2.  **Em Inglês (`en/sdd-boilerplate/sdd/`)**:
-    *   [NEW] `ENGINEERING-MEMORY-CHIEF.md`
-    *   [NEW] `ENGINEERING-MEMORY-EXECUTION.md`
+    *   [NEW] `03-memory-engineering-chief.md`
+    *   [NEW] `04-memory-engineering-execution.md`
 
 *(Nota: Insira um pequeno texto de introdução/placeholders em cada um dos arquivos descrevendo o propósito de cada um, para guiar o usuário e as IAs).*
 

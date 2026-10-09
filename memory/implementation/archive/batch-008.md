@@ -25,5 +25,5 @@ Propagação automatizada e versionamento do acervo completo de **21 Skills de E
 ---
 
 ## 🛡️ Verificação de Governança SDD
-- **Estrutura SDD Preservada**: Os diretórios `sdd/` existentes e os arquivos de governança (`MEMORIA-ENGENHARIA-CHEFIA.md` e `MEMORIA-ENGENHARIA-EXECUCAO.md`) foram preservados sem qualquer sobrescrita.
+- **Estrutura SDD Preservada**: Os diretórios `sdd/` existentes e os arquivos de governança (`03-memory-engineering-chief.md` e `04-memory-engineering-execution.md`) foram preservados sem qualquer sobrescrita.
 - **Pronto para Consumo de IA**: Qualquer agente (Claude, Cursor, Gemini, Copilot) que operar em qualquer um dos 4 repositórios possui inteligência contextual nativa sobre recursos, banco de dados, hooks, templates, rotas e governança de documentação.

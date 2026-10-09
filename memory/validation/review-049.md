@@ -13,7 +13,7 @@
 - Skill `sdd-memory-gardening` e arquivos de governança em 5 repositórios: `conn2flow-ai-workspace`, `conn2flow` (Core), `conn2flow-site`, `lumix` e `transformamp`.
 - Inclusão da regra de bloqueio: `🚫 PROIBIDO PODAR se a memória de execução estiver abaixo de 50 KB ou 200 linhas`.
 - Recalibragem de tetos: 50 KB (alerta) / 75 KB (teto mandatório) / ~25 KB (alvo pós-poda com 20 a 25 tarefas recentes).
-- Remoção completa de resíduos obsoletos de `5 KB / 50 linhas` em `MEMORIA-ENGENHARIA-CHEFIA.md` (linha 25), `MEMORIA-ENGENHARIA-EXECUCAO.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md`.
+- Remoção completa de resíduos obsoletos de `5 KB / 50 linhas` em `03-memory-engineering-chief.md` (linha 25), `04-memory-engineering-execution.md`, `SPEC.md` e `MEMORY-GARDENING-GUIDELINES.md`.
 - Extensão VS Code: `gardeningPolicy.ts`, `gardeningManager.ts` e `localizationCatalog.ts` (84/84 testes `npm test` PASS).
 - Integridade de skills no Core: `php cli/c2f.php ai:sync` ➔ **36/36 skills verificadas**.
 - Recibo MCP `completions/BATCH-049-executor-receipt.json` (`rec_1788359424195`).

@@ -2,7 +2,7 @@
 
 - Treat `sdd/README.md` and numbered specifications as normative sources of truth.
 - Read `sdd/README.md`, `sdd/process/00-START-HERE.md`, `sdd/process/01-WORKFLOW.md`, `sdd/implementation/BATCH-INDEX.md`, the active batch, and `sdd/validation/VALIDATION-CHECKLIST.md` before editing code.
-- Engineering Memories: read `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` and `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` at session start.
+- Engineering Memories: read `sdd/03-memory-engineering-chief.md` and `sdd/04-memory-engineering-execution.md` at session start.
 
 ## MANDATORY Skills by Workflow Milestone
 

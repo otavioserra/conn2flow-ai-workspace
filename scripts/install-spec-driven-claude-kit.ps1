@@ -222,7 +222,7 @@ function Install-EngineeringMemories {
     }
 
     $memoryFiles = Get-ChildItem -LiteralPath $BoilerplateRoot -File | Where-Object {
-        $_.Name -match 'MEMORIA-ENGENHARIA|ENGINEERING-MEMORY'
+        $_.Name -match '^(03-memory-engineering-chief|04-memory-engineering-execution)\.md$'
     }
 
     foreach ($file in $memoryFiles) {

@@ -11,7 +11,7 @@
 ## 🎯 Contexto e Motivação
 
 1. **Divergência de Skills nos Satélites**: As skills `c2f-dev-scripts` e `c2f-html-css-pages-and-components` foram atualizadas e propagadas no AI Workspace e no Core, mas os repositórios satélites (`conn2flow-site`, `lumix`, `transformamp`) permanecem com os hashes anteriores até execução do instalador de kit.
-2. **Poda e Jardinagem de Memória SDD**: O arquivo `sdd/validation/VALIDATION-CHECKLIST.md` atingiu ~62 KB e o `sdd/implementation/BATCH-INDEX.md` acumula 18 lotes ativos, excedendo a recomendação de teto de 10 lotes ativos da `MEMORIA-ENGENHARIA-CHEFIA.md` §4.
+2. **Poda e Jardinagem de Memória SDD**: O arquivo `sdd/validation/VALIDATION-CHECKLIST.md` atingiu ~62 KB e o `sdd/implementation/BATCH-INDEX.md` acumula 18 lotes ativos, excedendo a recomendação de teto de 10 lotes ativos da `03-memory-engineering-chief.md` §4.
 
 ---
 

@@ -27,7 +27,7 @@ Fundação MDD aprovada pela REQ-067 / BATCH-069, 2026-10-09.
 
 A matriz governa kits, memória e ferramentas. O core conn2flow contém gestor/, bibliotecas PHP, recursos e CLI do produto. conn2flow-site é o projeto do site; lumix e transformamp mantêm skills locais. A sincronização de skills alcança 25 kits e 14 templates (39 alvos), sem apagar skills exclusivas ou sobrescrever traduções declaradas.
 
-Somente a matriz migrou para memory/. Satélites, boilerplates e descoberta SDD da extensão permanecem no contrato existente nesta onda. ARCH-010 (Client CLI Daemon) e ARCH-011 (Hub/Watcher) são trabalho futuro, sem implementação neste lote.
+A matriz e os sete satélites usam memory/ com os cinco documentos numerados 00–04. Boilerplates MDD usam memory/; os instaladores SDD permanecem compatíveis com sdd/ e os nomes numerados. ARCH-010 (Client CLI Daemon) e ARCH-011 (Hub/Watcher) são trabalho futuro, sem implementação neste lote.
 
 ## Autoridade e preservação
 

@@ -11,19 +11,19 @@ Além disso, os instaladores serão equipados com capacidade de detecção e mig
 
 ### 1. Templates de Memórias de Engenharia (Boilerplates)
 - [x] Criar templates em Português sob `pt-br/sdd-boilerplate/sdd/`:
-  - [x] `MEMORIA-ENGENHARIA-CHEFIA.md`: Destinado ao Engenheiro Chefe Humano. Contém preferências de estilo, convenções de código, restrições e notas de negócio.
-  - [x] `MEMORIA-ENGENHARIA-EXECUCAO.md`: Destinado ao Executor IA. Contém aprendizados do compilador, hacks de banco de dados locais, notas de bugs resolvidos e lições aprendidas em código.
+  - [x] `03-memory-engineering-chief.md`: Destinado ao Engenheiro Chefe Humano. Contém preferências de estilo, convenções de código, restrições e notas de negócio.
+  - [x] `04-memory-engineering-execution.md`: Destinado ao Executor IA. Contém aprendizados do compilador, hacks de banco de dados locais, notas de bugs resolvidos e lições aprendidas em código.
 - [x] Criar templates correspondentes em Inglês sob `en/sdd-boilerplate/sdd/`:
-  - [x] `ENGINEERING-MEMORY-CHIEF.md`.
-  - [x] `ENGINEERING-MEMORY-EXECUTION.md`.
+  - [x] `03-memory-engineering-chief.md`.
+  - [x] `04-memory-engineering-execution.md`.
 
 ### 2. Atualização das Regras de IA nos Kits
 - [x] Nos templates em Português (`pt-br/templates/spec-driven-*`):
   - [x] Atualizar `CLAUDE.md`, `.claude/rules/sdd.md`, `.github/copilot-instructions.md` e `.github/instructions/project-sdd.instructions.md`.
-  - [x] Regra de Leitura: Incluir a leitura obrigatória de `sdd/MEMORIA-ENGENHARIA-CHEFIA.md` e `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` na inicialização de qualquer sessão de IA.
-  - [x] Regra de Escrita: Instruir o Executor IA a popular/atualizar a `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` com novos aprendizados e erros resolvidos ao término de cada tarefa para manter a persistência entre sessões.
+  - [x] Regra de Leitura: Incluir a leitura obrigatória de `sdd/03-memory-engineering-chief.md` e `sdd/04-memory-engineering-execution.md` na inicialização de qualquer sessão de IA.
+  - [x] Regra de Escrita: Instruir o Executor IA a popular/atualizar a `sdd/04-memory-engineering-execution.md` com novos aprendizados e erros resolvidos ao término de cada tarefa para manter a persistência entre sessões.
 - [x] Nos templates em Inglês (`en/templates/spec-driven-*`):
-  - [x] Atualizar arquivos equivalentes para exigir a leitura e escrita de `sdd/ENGINEERING-MEMORY-CHIEF.md` e `sdd/ENGINEERING-MEMORY-EXECUTION.md`.
+  - [x] Atualizar arquivos equivalentes para exigir a leitura e escrita de `sdd/03-memory-engineering-chief.md` e `sdd/04-memory-engineering-execution.md`.
 
 ### 3. Atualização dos Instaladores em `scripts/` (Com Migrador Automático)
 - [x] Atualizar os scripts de instalação de kits SDD para:
@@ -40,5 +40,5 @@ Além disso, os instaladores serão equipados com capacidade de detecção e mig
 Todos os testes foram executados com sucesso em ambiente de simulação (`temp/test-batch-002.ps1`):
 1. **Migração Legada**: Estrutura antiga `project/atlas-fotobiomodulacao/` foi detectada, migrada para `sdd/`, diretório vazio `project/` removido, memórias instaladas e referências atualizadas com sucesso.
 2. **Repo Novo**: Instalação limpa criou `sdd/` contendo ambos os arquivos de memória.
-3. **Não-Sobrescrita**: Instalação sobre `sdd/` existente preservou arquivo `MEMORIA-ENGENHARIA-CHEFIA.md` que possuía conteúdo customizado e instalou a memória de execução que faltava.
-4. **Idioma Inglês**: Flag `-Language en` instalou corretamente os arquivos `ENGINEERING-MEMORY-CHIEF.md` e `ENGINEERING-MEMORY-EXECUTION.md`.
+3. **Não-Sobrescrita**: Instalação sobre `sdd/` existente preservou arquivo `03-memory-engineering-chief.md` que possuía conteúdo customizado e instalou a memória de execução que faltava.
+4. **Idioma Inglês**: Flag `-Language en` instalou corretamente os arquivos `03-memory-engineering-chief.md` e `04-memory-engineering-execution.md`.

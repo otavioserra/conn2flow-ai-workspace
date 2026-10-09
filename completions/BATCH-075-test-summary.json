@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "python": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "111",
+    "time": "66.194",
+    "timestamp": "2026-10-09T16:35:49.482267-03:00",
+    "hostname": "Conn2Flow-Home"
+  },
+  "extension": {
+    "tests": 124,
+    "pass": 124,
+    "failures": 0,
+    "skipped": 0,
+    "compile": "PASS",
+    "log": "BATCH-075-extension.log"
+  },
+  "php_lint": {
+    "status": "PASS",
+    "files": [
+      "cli/src/Commands/AiArchiveSddCommand.php",
+      "cli/src/Commands/AiPruneMemoriesCommand.php",
+      "cli/src/Commands/AiSyncCommand.php",
+      "cli/src/Commands/AssetsPublishCommand.php",
+      "cli/src/Commands/MemoryGetCommand.php",
+      "cli/src/Commands/MemoryIndexCommand.php",
+      "cli/src/Commands/MemorySetCommand.php",
+      "cli/src/Console/Application.php",
+      "cli/src/Support/Docs/SddSource.php",
+      "cli/src/Support/Memory/Indexer.php",
+      "gestor-instalador/src/Installer.php",
+      "gestor/bibliotecas/comunicacao.php",
+      "gestor/bibliotecas/formulario.php",
+      "gestor/bibliotecas/pagamentos.php",
+      "gestor/bibliotecas/stripe.php",
+      "gestor/controladores/plataforma-gateways/plataforma-gateways.php",
+      "memory/validation/req225-inventory.php",
+      "memory/validation/req227-covers-test.php",
+      "memory/validation/req227-render-covers.php",
+      "memory/validation/req228-topbar-test.php",
+      "memory/validation/req236-source-inventory.php",
+      "memory/validation/req238-code-hashes.php",
+      "memory/validation/req239-cache-regression.php",
+      "memory/validation/req239-code-hashes.php",
+      "tests/Fixtures/req265-payments.php",
+      "tests/Unit/PHP/DocsSddReq184Test.php",
+      "tests/Unit/PHP/InstallerPublicAccessReq264Test.php",
+      "tests/Unit/PHP/MemoryDualReq266Test.php",
+      "tests/Unit/PHP/PainelTailwindDriftReq225Test.php",
+      "tests/Unit/PHP/PaymentsReq265Test.php",
+      "tests/Unit/PHP/ProjectAssetsReq264Test.php",
+      "tests/Unit/PHP/TemplatesMiniaturasReq256Test.php",
+      "cli/c2f.php"
+    ]
+  },
+  "ruff": "PASS",
+  "pip_check": "PASS",
+  "warning": "Starlette/AnyIO BlockingPortal deprecation",
+  "index_command": "temp/req072-venv/Scripts/python.exe -m mdd_client.cli index memory/; followed by index (all existing indexes)"
+}

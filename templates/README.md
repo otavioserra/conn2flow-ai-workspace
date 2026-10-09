@@ -36,3 +36,7 @@ Use os scripts automatizados na pasta `scripts/`:
 # Exemplo para injetar o kit Claude em um projeto:
 .\scripts\install-spec-driven-claude-kit.ps1 -TargetRepoPath "C:\caminho\meu-projeto" -Language "pt-br" -Force
 ```
+
+## Canonical MDD scaffolds (REQ-071)
+
+Both languages provide `mdd-boilerplate/memory/` with the five root documents 00–04, hierarchical indexes, backlog, decisions, human-requests, implementation, reports, validation and raw/active plus raw/archive. The existing `sdd-boilerplate/sdd/` remains the installer compatibility scaffold and receives the same numbered filenames and folders. `mdd init` creates the five documents directly without overwriting existing content.

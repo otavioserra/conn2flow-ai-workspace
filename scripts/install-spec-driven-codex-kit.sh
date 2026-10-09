@@ -66,7 +66,7 @@ fi
 
 # Install engineering memories
 if [[ -d "$TARGET_ROOT/sdd" ]]; then
-    for mem in "$BOILERPLATE_ROOT"/MEMORIA-ENGENHARIA-* "$BOILERPLATE_ROOT"/ENGINEERING-MEMORY-*; do
+    for mem in "$BOILERPLATE_ROOT"/03-memory-engineering-chief.md "$BOILERPLATE_ROOT"/04-memory-engineering-execution.md; do
         [[ -f "$mem" ]] || continue
         local_name="$(basename "$mem")"
         if [[ -f "$TARGET_ROOT/sdd/$local_name" ]]; then

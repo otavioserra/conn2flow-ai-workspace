@@ -1,0 +1,59 @@
+{
+  "targets": [
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\temp\\mdd-pr-review",
+      "status": "",
+      "head": "8db6d002a39c8b95e9ac30c8ee2d4b420901b835",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow",
+      "status": "",
+      "head": "db5cc26577aa7c9af3f2f27fc56b8ff66ba2d370",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-ai-workspace",
+      "status": "",
+      "head": "b2b73ef2e0269934e292af5a36313a33423594ff",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-app",
+      "status": "",
+      "head": "ad0ee14a3b5bf66eb63d09727a66d2df110fc2ab",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-mkt",
+      "status": "",
+      "head": "48f99e10b6e0d3d4953d7dbe46308e2d1bfe8086",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-nexus",
+      "status": "",
+      "head": "2a28d927e0f5b288b7bc3a7ed2da0e4989866154",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\conn2flow-site",
+      "status": "",
+      "head": "dc14829b8bc5f9af07e6625fd5deb4578e75ff0e",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\lumix",
+      "status": "",
+      "head": "2f87805dd4a1a03b599b0301fd64bf2eda709a90",
+      "links": []
+    },
+    {
+      "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\req-071-worktrees\\transformamp",
+      "status": "",
+      "head": "3ec608c11bf04fe30eb1b97057508e11e2f86754",
+      "links": []
+    }
+  ],
+  "references": []
+}

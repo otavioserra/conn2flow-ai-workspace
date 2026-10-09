@@ -1,0 +1,105 @@
+{
+  "canonical_skills": 45,
+  "skeletons": [
+    {
+      "root": "templates\\en\\mdd-boilerplate\\memory",
+      "files": [
+        "00-baseline-architecture.md",
+        "01-general-memory.md",
+        "02-policy.md",
+        "03-memory-engineering-chief.md",
+        "04-memory-engineering-execution.md",
+        "human-reviews/index.md",
+        "human-reviews/archive/index.md",
+        "human-reviews/archive/original/index.md",
+        "human-reviews/archive/compacted/index.md",
+        "raw/active/index.md",
+        "raw/archive/original/index.md",
+        "raw/archive/compacted/index.md"
+      ],
+      "status": "PASS"
+    },
+    {
+      "root": "templates\\en\\sdd-boilerplate\\sdd",
+      "files": [
+        "00-baseline-architecture.md",
+        "01-general-memory.md",
+        "02-policy.md",
+        "03-memory-engineering-chief.md",
+        "04-memory-engineering-execution.md",
+        "human-reviews/index.md",
+        "human-reviews/archive/index.md",
+        "human-reviews/archive/original/index.md",
+        "human-reviews/archive/compacted/index.md",
+        "raw/active/index.md",
+        "raw/archive/original/index.md",
+        "raw/archive/compacted/index.md"
+      ],
+      "status": "PASS"
+    },
+    {
+      "root": "templates\\pt-br\\mdd-boilerplate\\memory",
+      "files": [
+        "00-baseline-architecture.md",
+        "01-general-memory.md",
+        "02-policy.md",
+        "03-memory-engineering-chief.md",
+        "04-memory-engineering-execution.md",
+        "human-reviews/index.md",
+        "human-reviews/archive/index.md",
+        "human-reviews/archive/original/index.md",
+        "human-reviews/archive/compacted/index.md",
+        "raw/active/index.md",
+        "raw/archive/original/index.md",
+        "raw/archive/compacted/index.md"
+      ],
+      "status": "PASS"
+    },
+    {
+      "root": "templates\\pt-br\\sdd-boilerplate\\sdd",
+      "files": [
+        "00-baseline-architecture.md",
+        "01-general-memory.md",
+        "02-policy.md",
+        "03-memory-engineering-chief.md",
+        "04-memory-engineering-execution.md",
+        "human-reviews/index.md",
+        "human-reviews/archive/index.md",
+        "human-reviews/archive/original/index.md",
+        "human-reviews/archive/compacted/index.md",
+        "raw/active/index.md",
+        "raw/archive/original/index.md",
+        "raw/archive/compacted/index.md"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "cli_preserved": [
+    {
+      "path": "tools/mdd-client/src/mdd_client/core/indexer.py",
+      "sha256": "0807f37832817f618e4a8ffe45177d189530832de062cd13475cb86ad5045106",
+      "branch": "feat/req-072",
+      "status": "PASS"
+    },
+    {
+      "path": "tools/mdd-client/src/mdd_client/cli.py",
+      "sha256": "70114b732dc6840c668028d52d7d08314f61f79c5abcc4d970d1e4d5dc7a94df",
+      "branch": "feat/req-072",
+      "status": "PASS"
+    }
+  ],
+  "engineering_memories_preserved": [
+    {
+      "path": "memory/03-memory-engineering-chief.md",
+      "sha256": "74ae7c417c7cd84241f989085e5242bbee9fe9f22ba86f39ccfa2376d5d08521",
+      "branch": "feat/req-071",
+      "status": "PASS"
+    },
+    {
+      "path": "memory/04-memory-engineering-execution.md",
+      "sha256": "5026260c0033e4ddcc9c5cc0b7cc909d654fd7e2df530c4f886175601d1013cc",
+      "branch": "feat/req-071",
+      "status": "PASS"
+    }
+  ]
+}

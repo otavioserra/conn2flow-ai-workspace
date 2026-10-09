@@ -46,6 +46,24 @@ Os SLAs são eventos do ciclo, sem duração numérica inventada. Dúvidas de co
 
 Modo de autonomia não amplia o escopo nem autoriza produção. git add exige caminhos específicos; skills só são propagadas pelo scripts/skills/sync-skills.cjs. Pipelines de recursos executam sequencialmente, com locks e logs. Skills privadas dos satélites são preservadas integralmente.
 
+## Cinco documentos raiz canônicos
+
+| Arquivo | Finalidade |
+| --- | --- |
+| [00-baseline-architecture.md](00-baseline-architecture.md) | Arquitetura e roteamento de contexto |
+| [01-general-memory.md](01-general-memory.md) | Mecânica e ciclo de vida da memória |
+| [02-policy.md](02-policy.md) | Governança e política dos agentes |
+| [03-memory-engineering-chief.md](03-memory-engineering-chief.md) | Diretrizes e diário estratégico da Chefia |
+| [04-memory-engineering-execution.md](04-memory-engineering-execution.md) | Sessões de execução e aprendizados técnicos datados |
+
+A numeração padroniza os nomes; o histórico pode permanecer multilíngue. SPEC.md e index.md são infraestrutura de apoio.
+
+## Observações raw e arquivo da execução
+
+Use [raw/active/](raw/active/index.md) para scratchpads temporários, logs observáveis e sínteses compartilháveis de decisões, sem segredos ou transcrições de raciocínio privado. Observações raw não têm autoridade normativa.
+
+A memória de execução tem teto preventivo de 50 KiB e alerta crítico em 75 KiB. Planeje manutenção em 50 KiB; nunca pode memória saudável apenas para fechar sessão. Quando a manutenção autorizada for necessária, preserve o original integral em [raw/archive/original/](raw/archive/original/index.md) e uma síntese rastreável em [raw/archive/compacted/](raw/archive/compacted/index.md) antes de reduzir o ativo a cerca de 25 KiB, com os 20–25 registros mais recentes e todas as pendências. Repare links e atualize os índices hierárquicos na mesma operação. Este lote somente renomeia os históricos existentes, sem poda.
+
 ## Trava Tripla e handoffs — ARCH-015 / REQ-072, 2026-10-09
 
 1. Artefatos novos têm frontmatter canônico com id, title, status, date, author, target_repo, summary_short e summary_medium. index.md é derivado, regenerável com fallback legado tolerante, e não fonte normativa. A [skill #45](../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md) define o formato escalar e a API PHP/Python.

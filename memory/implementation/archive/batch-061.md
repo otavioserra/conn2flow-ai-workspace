@@ -41,7 +41,7 @@
 | **lumix** | `sdd/validation/VALIDATION-CHECKLIST.md` | 128.65 KB | **9.39 KB** | -93% | `archive/VALIDATION-CHECKLIST-162-219.md` |
 | **lumix** | `sdd/implementation/BATCH-INDEX.md` | 83.59 KB | **6.66 KB** | -92% | `archive/BATCH-INDEX-162-220.md` |
 | **conn2flow-site** | `sdd/validation/VALIDATION-CHECKLIST.md` | 71.34 KB | **19.70 KB** | -72% | `archive/validation-004-036.md` |
-| **conn2flow-site** | `sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` | 30.04 KB | **13.86 KB** | -54% | `archive/MEMORIA-ENGENHARIA-EXECUCAO-025-033.md` |
+| **conn2flow-site** | `sdd/04-memory-engineering-execution.md` | 30.04 KB | **13.86 KB** | -54% | `archive/MEMORIA-ENGENHARIA-EXECUCAO-025-033.md` |
 | **transformamp** | `sdd/decisions/DECISION-LOG.md` | 49.04 KB | **22.21 KB** | -55% | `archive/DECISION-LOG-017-039.md` |
 
 > **Resultado**: 100% dos arquivos do ecossistema estão abaixo do teto de 50 KB, sendo 9 de 10 abaixo de 25 KB. Zero perda de informação histórica.

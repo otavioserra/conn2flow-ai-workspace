@@ -1,7 +1,7 @@
 ---
 id: BATCH-075
 title: Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main
-status: ready-for-intake
+status: in-progress
 date: 2026-10-09
 author: architect
 target_repo: conn2flow-ai-workspace
@@ -15,7 +15,7 @@ summary_medium: Rastreamento detalhado da resolução de conflitos de governanç
 - **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
 - **Raiz Core**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
 - **Requisição**: [REQ-073](../human-requests/req-073.md)
-- **Status**: `ready-for-intake`
+- **Status**: `in-progress`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
 
@@ -24,10 +24,10 @@ summary_medium: Rastreamento detalhado da resolução de conflitos de governanç
 ## 📋 Live Todo List
 
 - [ ] **1. Resolução de Conflitos e Fusão das Branches**:
-  - [ ] 1.1 Iniciar merge de `feat/req-071` em `feat/req-072`
-  - [ ] 1.2 Reconciliar `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` (preservar 45 skills e memórias 00 a 04)
-  - [ ] 1.3 Reconciliar `memory/01-general-memory.md` e `memory/02-policy.md` (unir Trava Tripla com regras das memórias 03/04)
-  - [ ] 1.4 Reconciliar `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `templates/`
+  - [x] 1.1 Iniciar merge de `feat/req-071` em `feat/req-072`
+  - [x] 1.2 Reconciliar `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` (preservar 45 skills e memórias 00 a 04)
+  - [x] 1.3 Reconciliar `memory/01-general-memory.md` e `memory/02-policy.md` (unir Trava Tripla com regras das memórias 03/04)
+  - [x] 1.4 Reconciliar `BATCH-INDEX.md`, `VALIDATION-CHECKLIST.md` e `templates/`
   - [ ] 1.5 Concluir commit de merge em `feat/req-072`
 - [ ] **2. Validação e Testes Automatizados**:
   - [ ] 2.1 Executar auto-cura de índices via CLI `mdd index memory/`

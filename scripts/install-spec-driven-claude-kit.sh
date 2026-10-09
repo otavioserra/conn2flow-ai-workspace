@@ -273,7 +273,7 @@ install_engineering_memories() {
         return 0
     fi
 
-    for memory_file in "$boilerplate_root"/MEMORIA-ENGENHARIA-*.md "$boilerplate_root"/ENGINEERING-MEMORY-*.md; do
+    for memory_file in "$boilerplate_root"/03-memory-engineering-chief.md "$boilerplate_root"/04-memory-engineering-execution.md; do
         [[ ! -f "$memory_file" ]] && continue
         local filename="$(basename "$memory_file")"
         local target_path="$target_sdd/$filename"

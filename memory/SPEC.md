@@ -64,11 +64,11 @@ Para evitar perda de contexto e necessidade de repetições lógicas entre sess�
 
 ### Estrutura de Arquivos nos Boilerplates:
 *   **Em Português (`pt-br/sdd-boilerplate/sdd/`)**:
-    - `MEMORIA-ENGENHARIA-CHEFIA.md`: Documenta orientações de estilo, convenções de código, restrições e notas de negócio ditadas pelo Engenheiro Chefe Humano. (Apenas leitura para os executores).
-    - `MEMORIA-ENGENHARIA-EXECUCAO.md`: Documenta notas de dependências locais, aprendizados do compilador, hacks locais de banco de dados e bugs resolvidos. (Leitura e escrita para os executores).
+    - `03-memory-engineering-chief.md`: Documenta orientações de estilo, convenções de código, restrições e notas de negócio ditadas pelo Engenheiro Chefe Humano. (Apenas leitura para os executores).
+    - `04-memory-engineering-execution.md`: Documenta notas de dependências locais, aprendizados do compilador, hacks locais de banco de dados e bugs resolvidos. (Leitura e escrita para os executores).
 *   **Em Inglês (`en/sdd-boilerplate/sdd/`)**:
-    - `ENGINEERING-MEMORY-CHIEF.md`: Correspondente à memória de Chefia em Inglês.
-    - `ENGINEERING-MEMORY-EXECUTION.md`: Correspondente à memória de Execução em Inglês.
+    - `03-memory-engineering-chief.md`: Correspondente à memória de Chefia em Inglês.
+    - `04-memory-engineering-execution.md`: Correspondente à memória de Execução em Inglês.
 
 ### Integração nas Instruções do Agente:
 As regras nos templates de kits de IA (`CLAUDE.md`, `.claude/rules/sdd.md`, `.github/copilot-instructions.md` etc.) devem instruir explicitamente os agentes a:
@@ -232,7 +232,7 @@ Para eliminar a necessidade de intervenção humana em validações visuais e de
 ## 14. Governança de Memórias, Validação e Autoridade Técnica
 
 ### A. Divisão Canônica de Camadas de Memória:
-* **Memória do Repositório (`sdd/MEMORIA-ENGENHARIA-EXECUCAO.md` — Git Compartilhado)**:
+* **Memória do Repositório (`sdd/04-memory-engineering-execution.md` — Git Compartilhado)**:
   - Fatos técnicos objetivos do software: bugs resolvidos no core, hacks de build/banco, nuances de CSS/compilação, comandos CLI e lições aprendidas. Visível a todos os agentes e desenvolvedores.
 * **Memória Privada da Ferramenta de IA (Local)**:
   - Preferências subjetivas de interação do operador (estilo de resposta, atalhos de prompt, idioma preferido).

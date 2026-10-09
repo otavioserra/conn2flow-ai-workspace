@@ -1,6 +1,4 @@
-# Index — human-reviews/archive/compacted
+# Index — compacted
 
-Resumos executivos consolidados de revisões humanas arquivadas.
-
-| ID | Título | Resumo Executivo | Link Relativo | Status |
+| ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |

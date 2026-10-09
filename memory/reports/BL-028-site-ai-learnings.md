@@ -5,7 +5,7 @@
 - **Criado em**: 2026-10-08
 - **Origem**: Humano, no chat ("relatório final do AI Workspace… para o agente atualizar as skills e melhorar o ambiente")
 - **Para quem**: o agente que mantém as skills em `.claude/skills/` e os documentos de processo do SDD. Não pede código de produto.
-- **De onde vem**: sete requisições no site (REQ-113 a REQ-119) e três no core (REQ-260 a REQ-262), em 2026-10-07. Os relatórios de lote são BATCH-107 a 113 do site e BATCH-269 a 271 do core; as lições brutas estão nas duas `MEMORIA-ENGENHARIA-EXECUCAO.md`.
+- **De onde vem**: sete requisições no site (REQ-113 a REQ-119) e três no core (REQ-260 a REQ-262), em 2026-10-07. Os relatórios de lote são BATCH-107 a 113 do site e BATCH-269 a 271 do core; as lições brutas estão nas duas `04-memory-engineering-execution.md`.
 
 ---
 

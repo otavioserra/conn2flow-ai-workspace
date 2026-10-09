@@ -1,9 +1,9 @@
-# Index — human-reviews/archive
+# Index — archive
 
-Navegação hierárquica do arquivo de homologações humanas
-
-| ID | Título | Resumo Executivo | Link Relativo | Status |
+| ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| compacted | compacted | Nó de navegação | [compacted](compacted/index.md) | archived |
-| original | original | Nó de navegação | [original](original/index.md) | archived |
-| README.md | Arquivo de Human Reviews | Documento de introdução e regras do arquivo | [README.md](README.md) | archived |
+
+## Directories
+
+- [compacted](<compacted/index.md>)
+- [original](<original/index.md>)
