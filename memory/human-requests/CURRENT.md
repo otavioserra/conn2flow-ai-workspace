@@ -1,12 +1,13 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-073.md](req-073.md) (Consolidação Harmônica das Branches MDD, Resolução de Conflitos e Unificação na main)
-* **Status**: `HOMOLOGATED` (homologada pelo Engenheiro Chefe em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
-* **Lote Relacionado**: `BATCH-075`
-* **Topologia de Agentes**: `dupla` / `triade` (Macro-Arquiteto planeja e homologa; Executor consolida e testa; Revisor audita)
+* **Ponteiro Ativo**: [req-074.md](req-074.md) (Servidor MCP Nativo no Daemon Python, Transição Visual SDD ➔ MDD na Extensão VS Code e Migração Estrutural do conn2flow-home)
+* **Status**: `APPROVED` (aprovada pelo Engenheiro Chefe para execução imediata)
+* **Lote Relacionado**: `BATCH-076`
+* **Topologia de Agentes**: `triade` (Macro-Arquiteto planeja; Executor implementa; Revisor audita; Humano homologa)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-09
 * **Frentes Homologadas no Ciclo**:
+  - [req-073.md](req-073.md) (`BATCH-075`, Consolidação Harmônica das Branches MDD na main, `HOMOLOGATED` em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
   - [req-072.md](req-072.md) (`BATCH-074`, Trava Tripla MDD, CLI de Mutação Atômica, 45ª Skill e Human Reviews, `HOMOLOGATED` em 2026-10-09 via [rev-074.md](../human-reviews/rev-074.md))
   - [req-071.md](req-071.md) (`BATCH-073`, Padronização das Memórias 03 e 04 em Inglês e Boilerplates, concluída nos 8 repositórios)
   - [req-069.md](req-069.md) (`BATCH-071`, Aplicações Python MDD Client CLI/Daemon e MDD Hub, concluída em tools/)
@@ -18,20 +19,9 @@
 
 ---
 
-## 🎯 Objetivo Operacional da Frente Ativa (BATCH-075 / REQ-073)
+## 🎯 Objetivo Operacional da Frente Ativa (BATCH-076 / REQ-074)
 
-Unificar em definitivo as branches de desenvolvimento MDD na branch `main`:
-1. Fusão limpa de `feat/req-071` (Memórias 03/04 nos 8 repositórios) com `feat/req-072` (Trava Tripla, CLI e human-reviews).
-2. Reconciliação dos arquivos de governança preservando a totalidade dos escopos (memórias 00-04, 45 skills, regras de poda e caixa human-reviews).
-3. Execução das suítes de teste (pytest 111/111, extensão 124/124, lint PHP) e regeneração dos índices via CLI `mdd index memory/`.
-4. Merge final na `main` de `conn2flow-ai-workspace` e `conn2flow`, push e desmontagem segura de worktrees temporárias.
-
-3. **Frente Python (BATCH-071 / REQ-069)**:
-   Implementação modular em Python 3.11+ em `tools/`:
-   - `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon).
-   - `tools/mdd-hub/`: Hub API (FastAPI) e Documentation Watcher para auto-evolução contínua.
-
-
-## Entrega técnica BATCH-075 — 2026-10-09
-
-Consolidação REQ-073 concluída e publicada na main da matriz e do Core; nove worktrees de entrega removidas. Python 111/111, extensão 124/124 e lint PHP 33/33 PASS. [Lote](../implementation/batch-075.md), [REV-075](../human-reviews/rev-075.md) RECOMMEND-APPROVAL e [recibo](../../completions/BATCH-075-receipt.json). **HOMOLOGADO formalmente por Otávio (Engenheiro Chefe) em 2026-10-09 via [REV-075](../human-reviews/rev-075.md)**. Pronta para preparação do próximo ciclo.
+1. **Servidor MCP no Daemon Python (`tools/mdd-client`)**: Implementar o servidor MCP nativo expondo ferramentas de status, init, sync, index, meta, compact, report e inbox humana, integrando ao comando `mdd daemon --mcp` e `mdd mcp`.
+2. **Extensão VS Code como UI Bridge (`vscode-extension`)**: Renomear rótulos e comandos legados de SDD para MDD (`MDD Explorer`), priorizar descoberta de `memory/` e refinar o resolvedor de choques com opções de customização intencional.
+3. **Migração Estrutural do `conn2flow-home`**: Migrar `sdd/` para `memory/`, renomear memórias raiz (03 e 04), criar `raw/` e `human-reviews/` e rodar `mdd index` preservando 100% dos contratos de rede e dual-GPU.
+4. **Validação & Auditoria Independente**: Suítes de teste Python (>= 95% cobertura) e Extensão verdes, auditoria independente via `c2f-reviewer-agent` em `rev-076.md` e preparação para homologação humana final.
