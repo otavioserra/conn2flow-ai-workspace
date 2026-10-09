@@ -11,8 +11,9 @@ summary_medium: Rastreamento detalhado das etapas de scaffold de human-reviews/,
 
 # BATCH-074 — Implementação da Trava Tripla MDD: Metadata Header com Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica `memory/human-reviews/`
 
-- **Projeto**: `conn2flow-ai-workspace` (Matriz Central)
-- **Raiz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
+- **Projeto**: Multi-Repositório: `conn2flow-ai-workspace` (Matriz / Ferramental Python) e `conn2flow` (Core Oficial / CLI PHP)
+- **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
+- **Raiz Core**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
 - **Requisição**: [REQ-072](../human-requests/req-072.md)
 - **Épico**: [ARCH-015](../backlog/ARCH-015-headless-triad-mechanics-and-human-reviews.md)
 - **Status**: `ready-for-intake`
