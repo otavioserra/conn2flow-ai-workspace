@@ -1,32 +1,21 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: 
-  - [req-068.md](req-068.md) (Frente 1: Migração MDD Satélites)
-  - [req-069.md](req-069.md) (Frente 2: Python MDD Client & Hub)
-  - [req-070.md](req-070.md) (Frente 3: Revamp da Documentação Pública e READMEs)
-* **Status**: `APPROVED` (aprovadas para execução paralela por agentes de implementação)
-* **Lotes Relacionados**: `BATCH-070`, `BATCH-071` e `BATCH-072`
-* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja e homologa; Executores implementam)
+* **Ponteiro Ativo**: [req-069.md](req-069.md) (Aplicações Python MDD Client & Hub)
+* **Status**: `APPROVED` (pronta para execução pelo Agente Python)
+* **Lote Relacionado**: `BATCH-071`
+* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja e homologa; Executor implementa em Python)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-09
-* **Frentes em Execução / Espera**:
-  - [req-068.md](req-068.md) (`BATCH-070`, Migração Estrutural MDD nos 7 Repositórios Satélites, `APPROVED`)
-  - [req-069.md](req-069.md) (`BATCH-071`, Implementação das Aplicações Python MDD Client & Hub, `APPROVED`)
-  - [req-070.md](req-070.md) (`BATCH-072`, Revamp da Documentação Pública, READMEs Raiz e docs/, `APPROVED`)
-  - [req-062.md](req-062.md) (`BATCH-064`, Testes locais e release v1.1.2 da extensão VS Code, em espera de homologação humana)
-  - [req-067.md](req-067.md) (`BATCH-069`, Fundação Estrutural MDD na Matriz, `HOMOLOGATED` e PUSH realizado)
+* **Frentes Concluídas Recentemente / Em Espera**:
+  - [req-070.md](req-070.md) (`BATCH-072`, Revamp da Documentação Pública, READMEs Raiz e docs/, `HOMOLOGATED` em 2026-10-09)
+  - [req-068.md](req-068.md) (`BATCH-070`, Migração Estrutural MDD nos 7 Repositórios Satélites, `HOMOLOGATED` em 2026-10-09)
+  - [req-067.md](req-067.md) (`BATCH-069`, Fundação Estrutural MDD na Matriz, `HOMOLOGATED` em 2026-10-09)
+  - [req-062.md](req-062.md) (`BATCH-064`, Testes locais e release v1.1.2 da extensão VS Code, em espera de testes locais pelo humano)
 
 ---
 
-## 🎯 Objetivo Operacional das Frentes Ativas
+## 🎯 Objetivo Operacional do Lote Ativo (BATCH-071 / REQ-069)
 
-1. **Frente 1 (BATCH-070 / REQ-068)**:
-   Migração de `sdd/` para `memory/`, injeção da Tríade Fundamental (00, 01, 02), `index.md` hierárquico e 44 skills canônicas em todos os 7 repositórios satélites (`conn2flow`, `conn2flow-site`, `conn2flow-nexus`, `conn2flow-app`, `lumix`, `transformamp`, `conn2flow-mkt`).
-
-2. **Frente 2 (BATCH-071 / REQ-069)**:
-   Implementação das duas aplicações em Python 3.11+ em `tools/`:
-   - `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon).
-   - `tools/mdd-hub/`: Hub API e Documentation Watcher com os 3 modos de autonomia (`headless`, `monitored`, `reviewer`).
-
-3. **Frente 3 (BATCH-072 / REQ-070)**:
-   Revamp da documentação pública e modernização dos READMEs da raiz (`README.md` e `README-PT-BR.md`), descentralizando o conteúdo denso para `docs/` e criando os novos guias de Especificação do MDD e do Ecossistema Python.
+Implementação modular em Python 3.11+ em `tools/`:
+1. `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon) para injeção universal e governança de memória em qualquer projeto.
+2. `tools/mdd-hub/`: Hub API (FastAPI) e Documentation Watcher para auto-evolução contínua com 3 modos de autonomia (`headless`, `monitored`, `reviewer`).

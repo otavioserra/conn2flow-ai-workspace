@@ -348,6 +348,18 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - Recibo: `completions/BATCH-069-executor-receipt.json`.
 
 
+## BATCH-070 — Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites (REQ-068, 2026-10-09)
+
+- [x] Migração de `sdd/` para `memory/` via `git mv` nos 7 satélites (`conn2flow`, `conn2flow-site`, `conn2flow-nexus`, `conn2flow-app`, `lumix`, `transformamp`, `conn2flow-mkt`).
+- [x] Injeção e adaptação da Tríade Fundamental (`00-baseline-architecture.md`, `01-general-memory.md`, `02-policy.md`) em todos os repositórios.
+- [x] Provisionamento da árvore hierárquica de `index.md`, `memory/reports/` e `memory/raw/active|archive`.
+- [x] Sincronização das 44 skills canônicas nos kits existentes, preservando integralmente 100% das 36 skills locais.
+- [x] Commits atômicos sem `git add .` e push executado nos 6 repositórios com remote (`conn2flow-mkt` mantido local).
+- [x] Suíte de testes da extensão do VS Code verde (124/124 testes aprovados).
+- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-070.md](review-070.md) (APPROVED).
+
+---
+
 ## BATCH-072 — Revamp da documentação pública (REQ-070, 2026-10-09)
 
 - [x] READMEs EN/PT-BR executivos, cada um abaixo de 10 KB, com Mermaid, três passos, guias e sugestões de metadados GitHub.
@@ -357,6 +369,6 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Verificador falsificável: 5/5 mutações detectadas em fixture temporária, incluindo o README antigo do HEAD.
 - [x] Paridade temática revisada; sintaxe CJS e diff sem erros.
 - [x] [Relatório](../implementation/batch-072.md), [auditoria](../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../completions/BATCH-072-executor-receipt.json) registrados.
-- [ ] Revisão técnica independente e homologação do Arquiteto/humano.
+- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-072.md](review-072.md) (APPROVED).
 
-Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega ready-for-review.
+Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega homologada.
