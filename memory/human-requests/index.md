@@ -11,7 +11,7 @@
 | REQ-069 | REQ-069 — Implementação das Aplicações em Python do Ecossistema MDD: MDD Client CLI &amp; Daemon (ARCH-010) e MDD Hub &amp; Documentation Watcher (ARCH-011) | O ecossistema **Memory-Driven Development (MDD)** do Conn2Flow necessita de ferramental automatizado nativo para gara... | [source](<req-069.md>) | APPROVED` (aprovada pelo Engenheiro Chefe para desenvolvimento imediato) |
 | REQ-070 | REQ-070 — Revamp da Documentação Pública: Modernização dos READMEs Raiz (EN / PT-BR), Descentralização para `docs/` e Consolidação das Camadas MDD | O `conn2flow-ai-workspace` passou por um salto evolutivo monumental: | [source](<req-070.md>) | HOMOLOGATED` (homologado pelo Macro-Arquiteto em 2026-10-09 via &#91;review-072.md&#93;(../validation/review-072.md)) |
 | REQ-071 | REQ-071 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates | Durante a transição inicial para o paradigma **Memory-Driven Development (MDD)**, a Tríade Fundamental da raiz (`00-b... | [source](<req-071.md>) | APPROVED` (aprovada pelo Engenheiro Chefe para execução imediata) |
-| REQ-072 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Template estruturado de cabeçalho, auto-cura de índices via CLI (PHP/Python), handoffs adaptáveis e criação de memory/human-reviews/ | [source](<req-072.md>) | APPROVED |
+| REQ-072 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Template estruturado de cabeçalho, auto-cura de índices via CLI (PHP/Python), handoffs adaptáveis e criação de memory/human-reviews/ | [source](<req-072.md>) | HOMOLOGATED |
 
 ## Directories
 

@@ -6,9 +6,10 @@
 * **Topologia de Agentes**: `triade` / `dupla` (Macro-Arquiteto planeja e homologa; Executores implementam; Revisor audita)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-09
-* **Estado Técnico BATCH-074**: entrega implementada e validada; Revisor Independente recomenda aprovação em [rev-074.md](../human-reviews/rev-074.md). Homologação humana pendente, sem reexecutar implementação concluída. [Recibo](../../completions/BATCH-074-receipt.json).
+* **Estado BATCH-074 / REQ-072**: `HOMOLOGATED` em 2026-10-09 pelo Engenheiro Chefe via [rev-074.md](../human-reviews/rev-074.md) após auditoria independente. Lote pronto para merge.
 * **Contrato de Handoff**: REQ-072 / ARCH-015. `solo`: auto-revisão do Executor; `dupla`: retorno ao Macro-Arquiteto; `triade`: recibo e Revisor Independente com ficha em `memory/human-reviews/`. `supervisionado` aguarda input humano em cada transição; `autonomo_monitorado` mantém Live Todo e aciona próximo papel autorizado; `autonomo_headless` persiste despacho e recibos. Nenhum modo simula homologação humana. Detalhes em [02-policy.md](../02-policy.md).
 * **Frentes Concluídas Recentemente / Em Espera**:
+  - [req-072.md](req-072.md) (`BATCH-074`, Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Human Reviews, `HOMOLOGATED` em 2026-10-09)
   - [req-070.md](req-070.md) (`BATCH-072`, Revamp da Documentação Pública, READMEs Raiz e docs/, `HOMOLOGATED` em 2026-10-09)
   - [req-068.md](req-068.md) (`BATCH-070`, Migração Estrutural MDD nos 7 Repositórios Satélites, `HOMOLOGATED` em 2026-10-09)
   - [req-067.md](req-067.md) (`BATCH-069`, Fundação Estrutural MDD na Matriz, `HOMOLOGATED` em 2026-10-09)
