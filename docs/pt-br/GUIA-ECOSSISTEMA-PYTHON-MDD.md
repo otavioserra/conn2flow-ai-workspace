@@ -1,78 +1,101 @@
 ---
-verified_at: 2afd000
+verified_at: d052f32
 sources:
-  - ../../memory/human-requests/req-069.md
-  - ../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md
-  - ../../mcp-hub/src/server.ts
-  - ../../vscode-extension/src/providers/hubTaskWatcher.ts
+  - ../../tools/mdd-client/pyproject.toml
+  - ../../tools/mdd-client/src/mdd_client/cli.py
+  - ../../tools/mdd-client/src/mdd_client/memory.py
+  - ../../tools/mdd-hub/src/mdd_hub/api.py
+  - ../../tools/mdd-hub/src/mdd_hub/watcher.py
+  - ../../tools/mdd-hub/src/mdd_hub/evolution.py
 ---
-
 
 # Guia do ecossistema Python MDD
 
-[English](../en/MDD-PYTHON-ECOSYSTEM-GUIDE.md) · [Índice da documentação](README.md)
+[English](../en/MDD-PYTHON-ECOSYSTEM-GUIDE.md) · [Índice](README.md)
 
-## Disponibilidade e pré-requisitos
+## Disponibilidade e instalação
 
-O ecossistema Python está **aprovado para implementação**, descrito na [REQ-069](../../memory/human-requests/req-069.md). Na conferência, tools/mdd-client/ e tools/mdd-hub/ não existem neste checkout. Comandos e rotas abaixo são a interface solicitada, não instruções de instalação testadas. Este guia não afirma nome de pacote publicado, comando pip install, entrada do servidor, esquema de autenticação ou flag adicional.
+O MDD Client e o MDD Hub estão implementados em Python 3.11+, em dois pacotes independentes. O Client organiza a memória de projetos; o Hub recebe relatórios e acompanha documentação oficial de IA. A instalação é pelo código-fonte; não há publicação no PyPI.
 
-O alvo é **Python 3.11+**, dois pacotes independentes com pyproject.toml e suítes pytest. O Client prevê Typer/Rich; o Hub prevê FastAPI/Uvicorn/AsyncIO. Confira --help, metadados dos pacotes e testes entregues antes de executar exemplos. Hoje, use o [guia do sincronizador de skills existente e MCP](GUIA-RAPIDO-CLI-E-MCP.md).
+Na raiz deste repositório, crie e ative um ambiente virtual e instale os pacotes:
 
-## MDD Client: seis comandos
+```sh
+python -m venv .venv
+# Windows: .venv\Scripts\Activate.ps1
+# Linux/macOS: source .venv/bin/activate
+python -m pip install -e "tools/mdd-client[test]" -e "tools/mdd-hub[test]"
+mdd --help
+mdd-hub --help
+```
 
-| Interface solicitada | Finalidade e resultado esperado |
-| --- | --- |
-| mdd init [caminho] [--type software|mobile|general] | Provisionar memory/, os três arquivos de fundação, índices hierárquicos, reports/, raw/ e arquivos duais; kits opcionais de agentes foram solicitados, ainda sem flag definida |
-| mdd sync | Sincronizar deterministicamente as 44 skills canônicas e regras locais a partir da matriz, preservando arquivos locais exclusivos |
-| mdd compact | Auditar memória ativa, aplicar janela de 10 itens e teto de 50 KB, preservar originais, criar sínteses e atualizar índices |
-| mdd status | Mostrar painel Rich no terminal com saúde da memória, arquivos próximos dos limites e conformidade |
-| mdd report | Coletar métricas de atrito e logs de execução em memory/reports/; opcionalmente enviar pela API do Hub |
-| mdd daemon | Vigiar memória assincronamente e emitir alertas de poda; mdd watch também foi solicitado, mas não foi verificado como alias implementado |
+Node.js é necessário para sincronizar skills pelo propagador oficial. Git com identidade de commit é necessário para o modo headless. Consulte o [manual completo](../../tools/README.md) para opções, configuração e limitações.
 
-### Primeira sessão prevista
-
-Após instalar o Client entregue, confira sua ajuda antes de usar esta sequência:
+## Como usar o Client
 
 ```sh
 mdd init ./my-project --type software
-# Continue a partir do diretório do projeto inicializado.
-mdd status
-mdd sync
+mdd sync --path ./my-project --matrix /path/to/conn2flow-ai-workspace
+mdd status --path ./my-project
+mdd compact --path ./my-project
+mdd compact --path ./my-project --apply
+mdd report --path ./my-project --log build.log
+mdd watch --path ./my-project --once
 ```
 
-Confirme a seleção da matriz e a preservação local antes de sincronizar. Use status para identificar trabalho elegível de retenção antes de compactar; não pode memória saudável ao fechar a sessão. Consulte a [especificação de memória](ESPECIFICACAO-FRAMEWORK-MDD.md) sobre preservação de originais e reparo de links. A interface para selecionar matriz, Hub ou agendamento do daemon deve vir do código entregue; este guia não a inventa.
-
-## MDD Hub e API
-
-O Hub previsto recebe relatórios do Client e consolida lições em memory/reports/. Ele é distinto do MCP Hub TypeScript implementado em mcp-hub/.
-
-| Rota solicitada | Responsabilidade |
+| Comando | Comportamento |
 | --- | --- |
-| POST /api/v1/reports | Ingerir relatórios do Client |
-| GET /api/v1/status | Expor telemetria e status do ecossistema |
+| `init` | Cria a tríade 00/01/02, todas as áreas de memória, índices e arquivos duais. Aceita software/mobile/general; `--kits` instala skills e regras nos cinco kits. Preserva documentos e configurações existentes. |
+| `sync` | Sincroniza 44 skills e regras canônicas; preserva skills/regras exclusivas e configurações locais. Usa `--matrix`, `MDD_MATRIX` ou o checkout fonte. `--audit` verifica sem propagar. |
+| `compact` | Audita por padrão; `--apply` aplica janela de dez, teto de 50 KiB e router de 30 KiB. Preserva bytes originais, produz extratos estruturais e partes completas, repara links e atualiza índices. Chefia e documentos selecionados por CURRENT ficam protegidos. |
+| `status` | Mostra painel Rich ou `--json`; retorna código 1 para memória não conforme. |
+| `report` | Exporta saúde e contadores de erros/avisos/timeouts para JSON; não inclui texto bruto dos logs. `--hub URL` envia o relatório salvo. |
+| `daemon` / `watch` | Serviço assíncrono em foreground; emite JSON quando a saúde muda. Aceita `--interval` e `--once`; Ctrl+C encerra. Um gerenciador de serviços pode hospedá-lo em background. |
 
-Schemas de requisição/resposta, mecanismos de persistência, controle de acesso e argumentos de inicialização Uvicorn aguardam conferência da implementação. Não substitua rotas HTTP por nomes de ferramentas MCP.
+Documentos saudáveis permanecem intactos. Originais arquivados conservam os bytes e a base relativa registrada; sínteses são extratos de navegação, não resumos semânticos aprovados. Referências inline, definições Markdown e URIs de arquivo internas são reparadas. Sintaxe aninhada e anchors HTML personalizados exigem revisão. Locks exclusivos impedem mutações concorrentes; um lock abandonado exige inspeção antes de remoção explícita.
 
-## Documentation Watcher e autoscrapers de IA
+## Hub e API
 
-O watcher assíncrono pretende acompanhar referências oficiais de Gemini/Antigravity, Claude Code/MCP SDK, OpenAI Codex, Kimi e Cursor. Deve extrair mudanças estruturadas, como flags de CLI, ferramentas, armadilhas de shell e parâmetros, com procedência. Isso descreve o escopo solicitado de monitoramento, não afirma recursos atuais dos fornecedores.
+```sh
+mdd-hub serve --root ./hub-project --port 8765
+mdd report --path ./my-project --hub http://127.0.0.1:8765
+mdd-hub serve --root ./hub-project --watch-docs --mode reviewer
+```
 
-Material detectado é conhecimento candidato. Código e política aprovada continuam autoritativos; um resultado do scraper não torna uma nova regra executável. Listas de fontes permitidas, periodicidade, deduplicação e extração devem ser documentadas pela implementação entregue.
+O servidor usa loopback por padrão. `MDD_HUB_TOKEN` habilita autenticação Bearer nos dois processos; bind externo exige token pela CLI. Para acesso remoto, configure HTTPS em um proxy. O [schema da API](../../tools/mdd-hub/src/mdd_hub/models.py) define versão 1, UUID, projeto, data com timezone, saúde, contadores não negativos e lições limitadas. `/docs` apresenta a referência interativa.
 
-## Três modos de evolução do Hub
+| Rota | Resultado |
+| --- | --- |
+| `POST /api/v1/reports` | 201 para ingestão nova, 200 para retry idêntico, 409 para reutilização conflitante de ID, 422 para schema inválido, 413 acima de 256 KiB e 401 sem credencial válida. |
+| `GET /api/v1/status` | Contagens de relatórios/projetos, relatórios não conformes e estado/erros do watcher. |
 
-| Modo | Comportamento solicitado | Saída |
-| --- | --- | --- |
-| headless / totalmente_autonomo | Preparar melhorias de documentação em branch Git dedicada, com commit atômico e preparação de PR | Branch de proposta rastreável; sem merge ou deploy de produção implícitos |
-| monitored / autonomo_com_report | Atualizar documentação/skills e relatar imediatamente o trabalho | Relatório executivo em memory/reports/ |
-| reviewer / supervisionado | Enfileirar mudanças detectadas para aprovação da Chefia de Engenharia | Inbox proposta em memory/raw/inbox/ |
+Relatórios persistem em `memory/reports/clients/`; `consolidated.json` agrega atritos e recorrência de lições. A implantação usa um worker e armazenamento em arquivos com locks, sem banco distribuído. O MCP Hub TypeScript existente é outro serviço.
 
-São **modos de evolução do Hub**. O valor reviewer não é o papel do agente Revisor nem um modo aceito por dispatch_task no MCP Hub atual. A autonomia do workflow usa supervised/monitored/headless; o MCP usa supervised/live_autonomous/headless_autonomous. Consulte o [guia da tríade](ARQUITETURA-AGENTE-DUPLO.md).
+## Watcher e modos de evolução
 
-## Daemon, validação e integração VS Code
+```sh
+mdd-hub watch --root ./hub-project --mode reviewer --once
+mdd-hub watch --root ./hub-project --mode monitored --interval 3600
+mdd-hub watch --root ./hub-project --mode headless --once
+```
 
-O daemon deve oferecer observação contínua leve; um alerta não autoriza por si só edições ou transmissão externa. Relatórios evitam credenciais e conteúdo bruto desnecessário. Condições de parada e agendamento ainda precisam ser conferidos no código.
+As [sete fontes configuráveis](../../tools/mdd-hub/src/mdd_hub/sources.py) cobrem Gemini, Antigravity, Claude Code, MCP SDK, Codex, Kimi e Cursor. `--sources arquivo.yaml` substitui a lista HTTPS. O primeiro ciclo cria baseline; ciclos seguintes extraem flags adicionadas/removidas, comandos, parâmetros e notas de shell. A extração é heurística e limitada, com indicador de truncamento. Snapshots normalizados ficam em `memory/raw/archive/watcher-state/`; falhas de coleta/evolução não avançam o checkpoint. Há três coletas simultâneas, timeout de 20 segundos e limite de 2 MiB por resposta.
 
-A validação solicitada na REQ-069 cobre inicialização em diretórios temporários, retenção, preservação de arquivos locais, ingestão/status da API e parsing do watcher com mocks. Este lote documental não certifica a execução desses testes Python.
+| Modo e alias | Saída |
+| --- | --- |
+| `reviewer` / `supervisionado` | Observações enfileiradas em `memory/raw/inbox/` para revisão humana. |
+| `monitored` / `autonomo_com_report` | Referências documentais em `memory/proxies/ai-updates/` e relatório executivo imediato. |
+| `headless` / `totalmente_autonomo` | Branch dedicada, worktree isolada, commit com caminhos explícitos e manifesto de preparação de PR. `--publish` também envia a branch ao origin. |
 
-A integração dual prevista no VS Code separa controles de memória do cliente da governança do Hub para desenvolvedores. ARCH-014 continua incubada; o HubTaskWatcher existente apenas observa arquivos de tarefas e recibos MCP. Consulte o [guia do painel](GUIA-PAINEL-DEV-TOOLS-VSCODE.md).
+O manifesto inclui branch, commit, título e corpo; não cria PR hospedada no GitHub. Nenhum modo executa instruções coletadas nem promove observações automaticamente para políticas/skills normativas. Falhas de commit conservam a worktree para recuperação; branches incompletas são rejeitadas em retries. A branch e o stage do usuário permanecem preservados.
+
+## Validação e integração VS Code
+
+```sh
+python -m pytest tools/mdd-client/tests tools/mdd-hub/tests tools/tests --cov=mdd_client --cov=mdd_hub --cov-fail-under=95
+python -m ruff check tools
+python tools/verify_mdd.py --output temp/mdd-smoke.json --live-docs
+```
+
+Foram executados 63 testes com sucesso e 97,23% de cobertura em Windows/Python 3.12.4: inicialização, retenção, preservação local, API, envio HTTP real, parsing, retries e três modos de evolução com Git real. Os 11 checks de CLI e a coleta real das sete fontes passaram. Consulte [evidências](../../completions/BATCH-071-smoke.json) e [lote](../../memory/implementation/batch-071.md). Há um aviso de depreciação Starlette/AnyIO, sem falhas. A CI está configurada para Windows/Linux e Python 3.11/3.12; os resultados remotos são acompanhados nos [checks da PR](https://github.com/otavioserra/conn2flow-ai-workspace/pull/1).
+
+A integração dual da extensão [ARCH-014](../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md) permanece futura. Não houve alteração ou publicação da extensão, merge, deploy ou publicação PyPI.

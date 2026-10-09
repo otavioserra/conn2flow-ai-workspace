@@ -372,3 +372,23 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-072.md](review-072.md) (APPROVED).
 
 Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega homologada.
+
+
+## BATCH-071 — Aplicações Python MDD Client e Hub (REQ-069, 2026-10-09)
+
+- [x] Dois pacotes Python >=3.11 instaláveis separadamente, com entrypoints mdd/mdd-hub.
+- [x] Init idempotente com tríade, índices e kits; sync oficial de 44 skills/regras preservando exclusivas.
+- [x] Regra dos dez, históricos agregados, limites 50/30 KiB, original íntegro, síntese estrutural, partes completas e reparo de links.
+- [x] Dashboard, relatório agregado e envio HTTP real, daemon/watch assíncronos e parada controlada.
+- [x] API: ingestão, autenticação, schema, limites, deduplicação, conflito, persistência e consolidação.
+- [x] Watcher: parsing, baseline, mudanças, checkpoint, retries e sete fontes reais coletadas.
+- [x] Reviewer/monitored/headless, Git real isolado, preservação do stage e falhas de commit/publicação.
+- [x] 61/61 pytest, zero falhas/erros/skips; cobertura global 97,23%; lint, pip check, sintaxe CJS e diff limpos.
+- [x] 11 checks CLI, gramática Python 3.11 dos 15 módulos e CI Windows/Linux configurada.
+- [x] Manual, guias bilíngues, lote e recibo versionados com stage de caminhos explícitos.
+- [ ] Parecer técnico independente e homologação executiva.
+
+Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
+Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
+
+Retomada BATCH-071: 63/63 testes locais após correção de aliases Windows 8.3; [PR #1](https://github.com/otavioserra/conn2flow-ai-workspace/pull/1) aberta na branch isolada feat/req-069-applications. Resultado remoto acompanhado nos checks; detalhes no lote.
