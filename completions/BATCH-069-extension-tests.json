@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "tests": 124,
+  "passed": 124,
+  "failed": 0,
+  "exit_code": 0,
+  "command": "node --test \"test/*.test.cjs\"",
+  "log": "BATCH-069-extension-tests.log"
+}

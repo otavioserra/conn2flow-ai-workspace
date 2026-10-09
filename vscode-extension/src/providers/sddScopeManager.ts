@@ -85,7 +85,7 @@ export class SddScopeManager {
       scopes.push({
         id: 'ai-workspace',
         label: '📚 AI Workspace Hub',
-        description: 'conn2flow-ai-workspace/sdd',
+        description: `conn2flow-ai-workspace/${path.basename(aiSdd)}`,
         sddPath: aiSdd
       });
     }
@@ -110,6 +110,10 @@ export class SddScopeManager {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (workspaceFolders) {
       for (const f of workspaceFolders) {
+        if (path.basename(f.uri.fsPath).toLowerCase() === 'conn2flow-ai-workspace') {
+          const memory = path.join(f.uri.fsPath, 'memory');
+          if (fs.existsSync(memory)) return memory;
+        }
         const s = path.join(f.uri.fsPath, 'sdd');
         if (fs.existsSync(s)) return s;
       }
@@ -120,7 +124,7 @@ export class SddScopeManager {
   public static resolveSddFile(relativePathInSdd: string): string | undefined {
     const sddRoot = this.getActiveSddRoot();
     if (sddRoot) {
-      const cleanRel = relativePathInSdd.replace(/^sdd[/\\]/, '');
+      const cleanRel = relativePathInSdd.replace(/^(?:sdd|memory)[/\\]/, '');
       const full = path.join(sddRoot, cleanRel);
       if (fs.existsSync(full)) {
         return full;
@@ -185,6 +189,13 @@ export class SddScopeManager {
       workspaceFolders.map(folder => folder.uri.fsPath),
       repoName
     );
+    // REQ-067: a matriz migrou; os satélites continuam usando sdd/.
+    if (repoName === 'conn2flow-ai-workspace') {
+      for (const candidate of candidates) {
+        const memory = path.join(path.dirname(candidate), 'memory');
+        if (fs.existsSync(memory)) return memory;
+      }
+    }
     for (const candidate of candidates) {
       if (fs.existsSync(candidate)) {
         return candidate;

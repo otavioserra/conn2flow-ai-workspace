@@ -1,7 +1,7 @@
 # Ecossistema Google Antigravity — Regras & Orquestração Multi-Modelo
 
 Você está operando no ecossistema **Google Antigravity / Antigravity IDE** do Conn2Flow.
-Este documento rege as diretrizes arquiteturais, personas especializadas e regras de governança para execução de tarefas orientadas a especificações (SDD).
+Este documento rege as diretrizes arquiteturais, personas especializadas e regras de governança para execução de tarefas orientadas à memória persistente (MDD — Memory Driven Development).
 
 ---
 
@@ -12,15 +12,15 @@ O Antigravity suporta 3 papéis distintos no ecossistema:
 ### 1. 🏛️ Macro-Arquiteto (Planner Master / Human Interface)
 - **Atuação**: Diálogo direto com o operador humano, planejamento estratégico e governança de especificações.
 - **Responsabilidades**:
-  * Traduzir briefings humanos em especificações normativas (`sdd/SPEC.md`), registros de decisão (`sdd/decisions/`) e requisições formais (`sdd/human-requests/req-XXX.md`).
-  * Apontar a requisição ativa e metadados de topologia/autonomia em `sdd/human-requests/CURRENT.md`.
-  * Homologar entregas técnicas em `sdd/validation/VALIDATION-CHECKLIST.md`.
+  * Traduzir briefings humanos em especificações normativas (`memory/SPEC.md`), registros de decisão (`memory/decisions/`) e requisições formais (`memory/human-requests/req-XXX.md`).
+  * Apontar a requisição ativa e metadados de topologia/autonomia em `memory/human-requests/CURRENT.md`.
+  * Homologar entregas técnicas em `memory/validation/VALIDATION-CHECKLIST.md`.
 - **Fronteira**: Nunca edita código-fonte de módulos ou core diretamente.
 
 ### 2. ⚙️ Micro-Executor Nativo (`c2f_executor`)
 - **Atuação**: Execução direta de código ou delegação para subagente de escrita.
 - **Responsabilidades**:
-  * Ler o briefing em `sdd/human-requests/CURRENT.md` antes de qualquer alteração.
+  * Ler o briefing em `memory/human-requests/CURRENT.md` antes de qualquer alteração.
   * Renderizar e atualizar a Live Todo List (`[ ]` ➔ `[x]`) a cada etapa.
   * Implementar código, compilar recursos (`c2f resources:sync`) e rodar testes (`c2f test:run`).
   * Executar pipelines oficiais (`./c2f manager:update-all` ou `./c2f project:update-all <id>`).
@@ -30,9 +30,9 @@ O Antigravity suporta 3 papéis distintos no ecossistema:
 - **Atuação**: Inspeção e auditoria técnica independente antes do fechamento de lotes.
 - **Responsabilidades**:
   * Auditar diffs de código (`git diff`) checando padrões de segurança, `variables.json` mandatório e CSRF.
-  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 36 skills.
+  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 44 skills.
   * Executar `c2f css:audit` para assegurar que não haja classes órfãs ou dívidas em PHP/JS.
-  * Gerar o relatório de homologação técnica em `sdd/validation/review-YYY.md`.
+  * Gerar o relatório de homologação técnica em `memory/validation/review-YYY.md`.
 
 ---
 
@@ -74,9 +74,9 @@ O arquivo `.gemini/config.json` é o ponto canônico de configuração por proje
 
 Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `"chefe"`, `"inicia"`, `"bora"`, `"executa"`, `"status"`):
 1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
-2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
+2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `memory/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
-   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `memory/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
    - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
    - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
@@ -87,7 +87,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 1. **Fronteira de Escrita**: Respeite a divisão entre área normativa (apenas leitura para executores) e área de implementação.
 2. **Proibição Absoluta de `git add -A` e `git commit -a`**: Commits devem listar arquivos específicos (`git add <caminhos-especificos>`).
-3. **Reserva Atômica de Requisições**: Ao criar uma nova requisição, verificar a sequência existente em `sdd/human-requests/` após `git pull`, commitando e enviando para o repositório imediatamente para evitar colisões entre agentes.
+3. **Reserva Atômica de Requisições**: Ao criar uma nova requisição, verificar a sequência existente em `memory/human-requests/` após `git pull`, commitando e enviando para o repositório imediatamente para evitar colisões entre agentes.
 4. **Fonte da Verdade em Runtime**: O runtime serve HTML e CSS exclusivamente do banco de dados SQL. `resources/` é a semente de autoria.
 5. **Version Bump Mandatório**: Ao alterar scripts JS ou estilos estáticos, incremente a versão no metadado `<id>.json` do recurso.
 6. **Identificação de Repositório em Prompts para Agentes**: Sempre que o Macro-Arquiteto preparar mensagens para o usuário repassar a agentes executores ou revisores, DEVE incluir o identificador e o caminho absoluto da raiz do repositório alvo (ex: `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`) para evitar confusão de contexto em sessões com múltiplos repositórios abertos.
@@ -97,9 +97,13 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 ## 📦 Skills e Ferramentas
 
-O workspace possui **43 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
-- Papéis da Tríade SDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
-- Planejamento e fluxo SDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
+O workspace possui **44 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+- Papéis da Tríade MDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
+- Planejamento e fluxo MDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
 - Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`, `review-current-batch`.
-- Arquitetura, Core e Módulos: `c2f-*` (33 skills para pipelines, recursos, banco, Docker, Tailwind, visual assets, widgets, shell e Windows traps).
+- Arquitetura, Core e Módulos: `c2f-*` (34 skills para pipelines, recursos, banco, Docker, Tailwind, visual assets, widgets, shell e Windows traps).
 
+
+## Fundação MDD (Memory Driven Development)
+
+Na matriz, leia memory/00-baseline-architecture.md, memory/01-general-memory.md e memory/02-policy.md; use index.md antes de documentos densos. São quatro camadas: episódica, semântica/normativa, procedural e raw, com arquivamento dual compacted/original. Satélites e boilerplates conservam sdd/ nesta onda. A nova skill c2f-ai-features integra os 8 pilares de IA do Conn2Flow Pro.

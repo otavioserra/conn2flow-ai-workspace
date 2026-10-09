@@ -1,0 +1,234 @@
+{
+  "status": "PASS",
+  "files": 45,
+  "satellite_skills_sha256": 36,
+  "all_local_skills_md5": 60,
+  "note": "O sincronizador oficial conta 36 skills locais nos satélites e 24 nos templates, total 60. Snapshot independente cobre todos os arquivos das 36 skills dos três satélites.",
+  "entries": [
+    {
+      "file": "lumix/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "lumix/.claude/skills/lumix-fastapi-backend/SKILL.md",
+      "before_sha256": "7c04de7d49fe7415ba487718f9c81fccca70b0b939dbb51c97d6a5e8898000b0",
+      "after_sha256": "7c04de7d49fe7415ba487718f9c81fccca70b0b939dbb51c97d6a5e8898000b0"
+    },
+    {
+      "file": "lumix/.claude/skills/lumix-tailwind-v4/SKILL.md",
+      "before_sha256": "62c3dc80e7ff13534f0d2f1e8a0edfdb0b5caa1ce9328a2ee23919cc2f9b3636",
+      "after_sha256": "62c3dc80e7ff13534f0d2f1e8a0edfdb0b5caa1ce9328a2ee23919cc2f9b3636"
+    },
+    {
+      "file": "lumix/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "lumix/.cursor/skills/lumix-fastapi-backend/SKILL.md",
+      "before_sha256": "f4d4e1f718251e942948c27f7303c0be481633614647a15a6cbd031a04cee01f",
+      "after_sha256": "f4d4e1f718251e942948c27f7303c0be481633614647a15a6cbd031a04cee01f"
+    },
+    {
+      "file": "lumix/.cursor/skills/lumix-tailwind-v4/SKILL.md",
+      "before_sha256": "2c3360c45bf8e5477d56bccd726dabd79707ae9adec8a3a1069f52a3cb37a721",
+      "after_sha256": "2c3360c45bf8e5477d56bccd726dabd79707ae9adec8a3a1069f52a3cb37a721"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "before_sha256": "d00ad05e470e668ffd6239115786fd49d05d57639c9c59034f211962ed01b8c4",
+      "after_sha256": "d00ad05e470e668ffd6239115786fd49d05d57639c9c59034f211962ed01b8c4"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "before_sha256": "707dae191acf1b3add6ae4a11ef1a61fb1e1f22f876c09f1f2d3a9197044cc14",
+      "after_sha256": "707dae191acf1b3add6ae4a11ef1a61fb1e1f22f876c09f1f2d3a9197044cc14"
+    },
+    {
+      "file": "lumix/.github/skills/gestor-module-integration/SKILL.md",
+      "before_sha256": "d6f941b8a7df5f37360655fd648fffd8fb987dbd5469f3dd28c9edbc32271b99",
+      "after_sha256": "d6f941b8a7df5f37360655fd648fffd8fb987dbd5469f3dd28c9edbc32271b99"
+    },
+    {
+      "file": "lumix/.github/skills/project-sdd-context/references/escopo-local.md",
+      "before_sha256": "29d26672640c5dc264dd1c89e677718097e324a40aafe60507bdf96d2e60f193",
+      "after_sha256": "29d26672640c5dc264dd1c89e677718097e324a40aafe60507bdf96d2e60f193"
+    },
+    {
+      "file": "lumix/.github/skills/project-sdd-context/SKILL.md",
+      "before_sha256": "e062efa7328a56dd9ae53fed42ed2d1cb40cde83b24570165a67a248020b509d",
+      "after_sha256": "e062efa7328a56dd9ae53fed42ed2d1cb40cde83b24570165a67a248020b509d"
+    },
+    {
+      "file": "conn2flow-site/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "conn2flow-site/.claude/skills/conn2flow-site-modulo-distribuido/SKILL.md",
+      "before_sha256": "acd8348cef466aa9da5fcc2c44c624228d80baf5641ba0670972bb8650b358a3",
+      "after_sha256": "acd8348cef466aa9da5fcc2c44c624228d80baf5641ba0670972bb8650b358a3"
+    },
+    {
+      "file": "conn2flow-site/.claude/skills/conn2flow-site-social-publisher/SKILL.md",
+      "before_sha256": "576dbec682bcf76f49138b9d5e39ce68849354c5c741d40de6e1eb0b07e206a3",
+      "after_sha256": "576dbec682bcf76f49138b9d5e39ce68849354c5c741d40de6e1eb0b07e206a3"
+    },
+    {
+      "file": "conn2flow-site/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "conn2flow-site/.cursor/skills/conn2flow-site-social-publisher/SKILL.md",
+      "before_sha256": "a4b2a9c589d54603a6deed765133ad9ecd05d08f8d88b9ca018eb15be2b16eb7",
+      "after_sha256": "a4b2a9c589d54603a6deed765133ad9ecd05d08f8d88b9ca018eb15be2b16eb7"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "before_sha256": "a9521e8d685826d3cb09a53ef3587dda0b28831756078bb014baca3404e8e847",
+      "after_sha256": "a9521e8d685826d3cb09a53ef3587dda0b28831756078bb014baca3404e8e847"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "before_sha256": "fe8d8793594db8da7436284a77ba0e632ac984190746346923255de03d1d3bc0",
+      "after_sha256": "fe8d8793594db8da7436284a77ba0e632ac984190746346923255de03d1d3bc0"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/gestor-module-integration/SKILL.md",
+      "before_sha256": "8c635eb43e9612c58a8eb82a588130907c58e6ee4668ba6e78b62965fc871210",
+      "after_sha256": "8c635eb43e9612c58a8eb82a588130907c58e6ee4668ba6e78b62965fc871210"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/local-validation/SKILL.md",
+      "before_sha256": "4e3ed5e5fc6462bb60534eac33530e3538ffb253a7d73553f1251c30319c5db3",
+      "after_sha256": "4e3ed5e5fc6462bb60534eac33530e3538ffb253a7d73553f1251c30319c5db3"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/private-project-context/SKILL.md",
+      "before_sha256": "b09a544d96fcaceb5c9f7ea44fbe31095aa16ac76aa92c3425597731f38918df",
+      "after_sha256": "b09a544d96fcaceb5c9f7ea44fbe31095aa16ac76aa92c3425597731f38918df"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/project-sdd-context/references/escopo-local.md",
+      "before_sha256": "e5bb9f3b58c5624293093a6a00ca65ae879ff23785c82e73b8b2b23714044ef2",
+      "after_sha256": "e5bb9f3b58c5624293093a6a00ca65ae879ff23785c82e73b8b2b23714044ef2"
+    },
+    {
+      "file": "conn2flow-site/.github/skills/project-sdd-context/SKILL.md",
+      "before_sha256": "fa01c952f7dbe2d9c7cf1090abb802ed3ebcee2418fb4b2fd8d5ec1dccb95625",
+      "after_sha256": "fa01c952f7dbe2d9c7cf1090abb802ed3ebcee2418fb4b2fd8d5ec1dccb95625"
+    },
+    {
+      "file": "transformamp/.claude/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "transformamp/.claude/skills/continue-private-work/SKILL.md",
+      "before_sha256": "7365483ee7ebb9a0b46f308ab5d7b1e5fd4716f5510319e11165f34211c1b7d8",
+      "after_sha256": "7365483ee7ebb9a0b46f308ab5d7b1e5fd4716f5510319e11165f34211c1b7d8"
+    },
+    {
+      "file": "transformamp/.claude/skills/gestor-module-integration/SKILL.md",
+      "before_sha256": "974c2d3fa8854de94999621d0289311ffd3d35cdbaf666575290b60aee8c8a29",
+      "after_sha256": "974c2d3fa8854de94999621d0289311ffd3d35cdbaf666575290b60aee8c8a29"
+    },
+    {
+      "file": "transformamp/.claude/skills/local-tests/SKILL.md",
+      "before_sha256": "27cde1ada6fce7f3dea5cc2dd2c182449848e23fcc061c1c516fd2f364a0c5f9",
+      "after_sha256": "27cde1ada6fce7f3dea5cc2dd2c182449848e23fcc061c1c516fd2f364a0c5f9"
+    },
+    {
+      "file": "transformamp/.claude/skills/local-validation/SKILL.md",
+      "before_sha256": "dbf458d25a1ba92140ceb3fe4d65ca0ee92d2dc426d3475329b4a2c257e60c8a",
+      "after_sha256": "dbf458d25a1ba92140ceb3fe4d65ca0ee92d2dc426d3475329b4a2c257e60c8a"
+    },
+    {
+      "file": "transformamp/.claude/skills/private-project-context/SKILL.md",
+      "before_sha256": "31675062d19ef4169ac114723cbfd43ae1d19f6bda328a52b2d0713ea8b3793f",
+      "after_sha256": "31675062d19ef4169ac114723cbfd43ae1d19f6bda328a52b2d0713ea8b3793f"
+    },
+    {
+      "file": "transformamp/.claude/skills/private-project-kickoff/SKILL.md",
+      "before_sha256": "3dbd35aadfde69be2e5837117334b03e722657f2fa2a6defb2bc30a99be87a23",
+      "after_sha256": "3dbd35aadfde69be2e5837117334b03e722657f2fa2a6defb2bc30a99be87a23"
+    },
+    {
+      "file": "transformamp/.claude/skills/project-sdd-context/SKILL.md",
+      "before_sha256": "01996b861a12e9defece6ceb8446986f501c995df654dd4eaef1504d205d1420",
+      "after_sha256": "01996b861a12e9defece6ceb8446986f501c995df654dd4eaef1504d205d1420"
+    },
+    {
+      "file": "transformamp/.claude/skills/review-private-work/SKILL.md",
+      "before_sha256": "4677aaea76a339161dba3b8b10dfd3db542e7b94fcc950f68e9109a508f0a00f",
+      "after_sha256": "4677aaea76a339161dba3b8b10dfd3db542e7b94fcc950f68e9109a508f0a00f"
+    },
+    {
+      "file": "transformamp/.claude/skills/transformamp-theme-scoping/SKILL.md",
+      "before_sha256": "cf967545f474b650e3e81755a6bafdb305ea238ea4474d2b91e490a2fcaf1f26",
+      "after_sha256": "cf967545f474b650e3e81755a6bafdb305ea238ea4474d2b91e490a2fcaf1f26"
+    },
+    {
+      "file": "transformamp/.claude/skills/transformamp-wp-etl/SKILL.md",
+      "before_sha256": "4f000a85bcf034afb8f2f27fe4c1163e4083ff29ccb3259df2af92a09c1b6495",
+      "after_sha256": "4f000a85bcf034afb8f2f27fe4c1163e4083ff29ccb3259df2af92a09c1b6495"
+    },
+    {
+      "file": "transformamp/.cursor/skills/c2f-vscode-tasks/SKILL.md",
+      "before_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292",
+      "after_sha256": "c2ab46dd582e590608bb12746ec18e2acd5f4653e8d4a66aa97b194e994b6292"
+    },
+    {
+      "file": "transformamp/.cursor/skills/transformamp-theme-scoping/SKILL.md",
+      "before_sha256": "1cca2d4c7de88c2d4ee86e3b5a4f2b553a72d79f0a24711dc1b02d37325df623",
+      "after_sha256": "1cca2d4c7de88c2d4ee86e3b5a4f2b553a72d79f0a24711dc1b02d37325df623"
+    },
+    {
+      "file": "transformamp/.cursor/skills/transformamp-wp-etl/SKILL.md",
+      "before_sha256": "0128ab17e76c6d2114e0ba8e455828f94ae1631a38e3639ae9caa030a2fb4b79",
+      "after_sha256": "0128ab17e76c6d2114e0ba8e455828f94ae1631a38e3639ae9caa030a2fb4b79"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/references/checklist-integracao.md",
+      "before_sha256": "75de580d34824784833a8ddab77596c885b1ede5e0c18559915dce04c7fa612a",
+      "after_sha256": "75de580d34824784833a8ddab77596c885b1ede5e0c18559915dce04c7fa612a"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/references/leituras-minimas.md",
+      "before_sha256": "fa5134b1ad3e82cf8e8c643fc743c43e7c623236194f64ecd029cd5b85cd971d",
+      "after_sha256": "fa5134b1ad3e82cf8e8c643fc743c43e7c623236194f64ecd029cd5b85cd971d"
+    },
+    {
+      "file": "transformamp/.github/skills/gestor-module-integration/SKILL.md",
+      "before_sha256": "69c740a6062fdcead601b6bce18fcc8abc93ca4dc8be707a3625776861115105",
+      "after_sha256": "69c740a6062fdcead601b6bce18fcc8abc93ca4dc8be707a3625776861115105"
+    },
+    {
+      "file": "transformamp/.github/skills/local-tests/SKILL.md",
+      "before_sha256": "7441bbe387af60394ee7f3ea941efe5f91e5238790499a2ddaad075ddffc75af",
+      "after_sha256": "7441bbe387af60394ee7f3ea941efe5f91e5238790499a2ddaad075ddffc75af"
+    },
+    {
+      "file": "transformamp/.github/skills/local-validation/SKILL.md",
+      "before_sha256": "ef20d45695f255de82868e545c19b1ece3d0926c948d07c5dd0f8f09a11c7108",
+      "after_sha256": "ef20d45695f255de82868e545c19b1ece3d0926c948d07c5dd0f8f09a11c7108"
+    },
+    {
+      "file": "transformamp/.github/skills/private-project-context/SKILL.md",
+      "before_sha256": "d849b25cdd6d2e0439d97a425acd5bdf367e4d9c695cfcc619818d92dbd18e45",
+      "after_sha256": "d849b25cdd6d2e0439d97a425acd5bdf367e4d9c695cfcc619818d92dbd18e45"
+    },
+    {
+      "file": "transformamp/.github/skills/project-sdd-context/references/escopo-local.md",
+      "before_sha256": "e203bb06a968e8007dde7560891e58ca588365f65b886c8debaf31f7086ea993",
+      "after_sha256": "e203bb06a968e8007dde7560891e58ca588365f65b886c8debaf31f7086ea993"
+    },
+    {
+      "file": "transformamp/.github/skills/project-sdd-context/SKILL.md",
+      "before_sha256": "11bc1c9c8761460c5d1331311668dca395357347d1a75e1307df8d5390ebe6a1",
+      "after_sha256": "11bc1c9c8761460c5d1331311668dca395357347d1a75e1307df8d5390ebe6a1"
+    }
+  ]
+}

@@ -1,33 +1,34 @@
-# Agentes SDD — Configuração Multi-Agente OpenAI Codex & Antigravity
+# Agentes MDD — Configuração Multi-Agente OpenAI Codex & Antigravity
 
 ## 👥 Papéis de Agente Duplo
 
 ### 🏛️ Arquiteto (Macro-Orquestrador)
-- **Responsabilidade**: Traduzir necessidades humanas e briefings em especificações normativas (`sdd/SPEC.md`), registros de decisão (`sdd/decisions/`) e requisições formais (`sdd/human-requests/req-XXX.md`).
+- **Responsabilidade**: Traduzir necessidades humanas e briefings em especificações normativas (`memory/SPEC.md`), registros de decisão (`memory/decisions/`) e requisições formais (`memory/human-requests/req-XXX.md`).
 - **Ferramentas**: Antigravity / Gemini / GPT no modo planejamento.
 - **Regra**: Nunca realiza commits ou push de código diretamente no core ou módulos.
 
 ### ⚙️ Executor (Micro-Operador)
-- **Responsabilidade**: Implementar código, compilar recursos, rodar testes e registrar evidências no lote em `sdd/implementation/batch-YYY.md` e `sdd/validation/VALIDATION-CHECKLIST.md`.
+- **Responsabilidade**: Implementar código, compilar recursos, rodar testes e registrar evidências no lote em `memory/implementation/batch-YYY.md` e `memory/validation/VALIDATION-CHECKLIST.md`.
 - **Ferramentas**: OpenAI Codex / GPT no VS Code / Claude Code.
-- **Regra**: Lê o briefing em `sdd/human-requests/CURRENT.md` antes de iniciar qualquer alteração e atualiza a Live Todo List (`[ ]` ➔ `[x]`).
+- **Regra**: Lê o briefing em `memory/human-requests/CURRENT.md` antes de iniciar qualquer alteração e atualiza a Live Todo List (`[ ]` ➔ `[x]`).
 
 ### 👨‍💻 Humano-no-Loop (Você)
 - **Responsabilidade**: Direcionar o Arquiteto e revisar diffs de código antes da consolidação final.
 
 ---
 
-## 📦 Configuração de Skills (43 Skills Oficiais)
+## 📦 Configuração de Skills (44 Skills Oficiais)
 
-Todas as **43 skills** do framework estão disponíveis em `.claude/skills/`, `.gemini/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/` e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+Todas as **44 skills** do framework estão disponíveis em `.claude/skills/`, `.gemini/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/` e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 
-### 1. Skills de Papéis da Tríade SDD (3 Skills):
-> Consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
+### 1. Skills de Papéis da Tríade MDD (3 Skills):
+> Consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
 - `c2f-architect-master`: Arquiteto Master / Engenheiro Chefe (governança macro, documentação viva, backlog e restrição de edição direta).
 - `c2f-executor-agent`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
 - `c2f-reviewer-agent`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
 
-### 2. Skills Core, Módulos e Infraestrutura (33 Skills):
+### 2. Skills Core, Módulos e Infraestrutura (34 Skills):
+- `c2f-ai-features`
 - `c2f-agent-visual-inspection`
 - `c2f-database-operations`
 - `c2f-database-testing`
@@ -62,7 +63,7 @@ Todas as **43 skills** do framework estão disponíveis em `.claude/skills/`, `.
 - `c2f-variables-system`
 - `c2f-widget-development`
 
-### 3. Skills de Governança e Workflow SDD (7 Skills):
+### 3. Skills de Governança e Workflow MDD (7 Skills):
 - `sdd-workflow`
 - `start-sdd-slice`
 - `continue-sdd-batch`
@@ -77,9 +78,9 @@ Todas as **43 skills** do framework estão disponíveis em `.claude/skills/`, `.
 
 Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `"chefe"`, `"inicia"`, `"bora"`, `"executa"`, `"status"`):
 1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
-2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
+2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `memory/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
-   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `memory/MEMORIA-ENGENHARIA-CHEFIA.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
    - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
    - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
@@ -98,3 +99,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 8. **Boost Mode (`/boost`)**: Utilize `/boost` no prompt para tarefas que exigem raciocínio analítico profundo, planejamento multi-etapa, múltiplas perspectivas e validação cruzada rigorosa.
 9. **Configuração por Projeto em `.gemini/config.json`**: O arquivo `.gemini/config.json` é o ponto canônico de configuração por projeto no Antigravity v2.16+. O diretório legado `.agents/` foi descontinuado — todas as configurações, MCP servers e discovery vivem exclusivamente em `.gemini/`.
 
+
+## Fundação MDD (Memory Driven Development)
+
+Na matriz, leia memory/00-baseline-architecture.md, memory/01-general-memory.md e memory/02-policy.md; use index.md antes de documentos densos. São quatro camadas: episódica, semântica/normativa, procedural e raw, com arquivamento dual compacted/original. Satélites e boilerplates conservam sdd/ nesta onda. A nova skill c2f-ai-features integra os 8 pilares de IA do Conn2Flow Pro.

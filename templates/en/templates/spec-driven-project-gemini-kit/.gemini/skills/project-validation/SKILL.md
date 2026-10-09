@@ -39,3 +39,11 @@ Use this skill when a task requires validating the current batch.
 - **Before and after.** A change that touches data in an environment is validated with a snapshot of the tables before and another after.
 - **Name what was not checked.** Inherited text you kept without verifying against the code goes in the report as "kept, not checked".
 - **An environment failure is called by its name.** "1 failure, CRLF line endings in the environment, recorded in batch X" instead of "green suite".
+
+## AI responses and realistic fixtures (BL-028)
+
+Inspect the masked request and read the actual response; HTTP 200 and check counts do not prove content quality. Derive assertions from the documented source, avoiding arbitrary keywords or bans on legitimate partial answers. Keep raw generated text out of permanent telemetry.
+
+Use fixtures with navigation outside main, an email-shaped username, an unknown route returning 200, and an editor created after the hook. Exercise permissions, hostile input, missing provider/credits and timeout. Database doubles must reproduce expression keys and comma splitting. Create data through the tested interface, clean it in finally and verify deletion even after failures. Report every skip and inspect screenshots. Without a reachable provider, label mock coverage and the unexercised real path.
+
+Reports include defects fixed before delivery, what was not exercised, and known limitations.

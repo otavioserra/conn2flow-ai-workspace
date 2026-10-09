@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "renamed_tracked_files": 219,
+  "preserved_files": 231,
+  "documents_updated": [
+    "00-baseline-architecture.md",
+    "human-requests/archive/local-req-005.md",
+    "human-requests/archive/local-req-006.md",
+    "human-requests/CURRENT.md",
+    "human-requests/README.md",
+    "implementation/archive/batch-046.md",
+    "implementation/archive/local-batch-005-context-optimization.md",
+    "implementation/archive/local-batch-006-rollout-archiving.md",
+    "implementation/BATCH-INDEX.md",
+    "process/00-START-HERE.md",
+    "process/01-WORKFLOW.md",
+    "process/STARTER-PROMPTS.md",
+    "README.md",
+    "validation/review-061.md",
+    "validation/VALIDATION-CHECKLIST.md"
+  ],
+  "foundation_bytes": {
+    "00-baseline-architecture.md": 2789,
+    "01-general-memory.md": 2550,
+    "02-policy.md": 3932
+  },
+  "indexes": 50,
+  "broken_index_links": [],
+  "bl028_sha256": "19a4e0017b442a9d6ef75d4d5e43f24d103ff0f0e3d2284e548b795fd1a974fc"
+}

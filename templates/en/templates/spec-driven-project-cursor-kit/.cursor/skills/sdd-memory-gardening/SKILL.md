@@ -46,3 +46,14 @@ The command exits with code 1 while any orphaned relative link remains under `sd
 8. Rewrite memory targeting approximately 25 KB.
 9. Validate frontmatter, skill discovery, and recoverable Git history.
 10. Record final metrics and validation evidence in the batch checklist.
+
+## MDD: safe worktree maintenance
+
+Worktree maintenance is independent of memory pruning. Never prune healthy memory at session end. The matrix uses memory/ and a 50 KB active-document ceiling; satellites still use sdd/. Do not assume ai:archive-sdd supports memory/.
+
+1. Inventory worktrees and absolute roots; protect the main tree and environment/pipeline source trees.
+2. Fetch refs and verify no commits outside origin/main, no real staged or unstaged changes (ignore CR at EOL), and no untracked files. Report pending work; never force removal.
+3. On Windows inspect junctions and incoming links. Validate literal targets first. Use CMD end to end to list links with dir /AL and unlink each junction with rmdir WITHOUT /S. Repoint incoming dependencies first; never compose deletion across shells.
+4. Confirm links are gone, then git worktree remove the verified literal path; preserve trees Git refuses to remove.
+5. Check vendor/node_modules in surviving trees, delete only integrated local branches with git branch -d (never -D), then prune metadata.
+6. Record removed/preserved trees and integrity checks. Fast-forward a clean main tree only when authorized; never merge divergent work automatically.

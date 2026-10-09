@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "matrix_root": "memory",
+  "satellite_root": "sdd",
+  "legacy_prefix": true,
+  "mdd_prefix": true
+}

@@ -109,7 +109,7 @@ test('precedência de leitura: settings vence workspaceState, que vence a infer�
 });
 
 test('CURRENT.md real do repositório é lido com a topologia declarada', () => {
-  const currentPath = path.resolve(__dirname, '..', '..', 'sdd', 'human-requests', 'CURRENT.md');
+  const currentPath = path.resolve(__dirname, '..', '..', 'memory', 'human-requests', 'CURRENT.md');
   const content = fs.readFileSync(currentPath, 'utf8');
   const parsed = parseModesFromCurrentMarkdown(content);
 

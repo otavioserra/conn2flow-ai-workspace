@@ -1,0 +1,297 @@
+{
+  "gerado_em": "2026-10-09T13:10:39.494Z",
+  "modo": "audit",
+  "skills_canonicas": 44,
+  "selecionadas": [],
+  "alvos": 39,
+  "iguais": 1653,
+  "traduzidas": 21,
+  "divergentes": [],
+  "escritos": [],
+  "skills_locais_preservadas": 60,
+  "skills_locais_alteradas": [],
+  "md5": {
+    "c2f-agent-visual-inspection": "a5fa114299376a35a00845ad64c10eb2",
+    "c2f-ai-features": "9ed7a7943707bfb21e36f9ac5bd91f72",
+    "c2f-architect-master": "ad4d9bb1833f935940cb4c60c223d355",
+    "c2f-database-operations": "9245cece9e533f4df55529fac094d6c3",
+    "c2f-database-testing": "85fb905d716cc14d0d540dd7a611224f",
+    "c2f-dev-scripts": "dfa364a9985b01d962cfd0b8a8746abf",
+    "c2f-docker-environment": "55756a27ffa0a7aaa06c9c946583997f",
+    "c2f-documentation": "228e1fd9bb04e17c69cea689701e1850",
+    "c2f-documentation-governance": "97e3b6a90a3d44a0984292ffc46ffe07",
+    "c2f-environment-configuration": "0fd3a54d0ae37aa017639721398bb8ff",
+    "c2f-executor-agent": "8230a50eeeace27ced6f46bc1e408d48",
+    "c2f-gd-image-safety": "da336a26bc7190d206a0124fdad15c87",
+    "c2f-gestor-functions": "5846423edf69faaaf67285f45a8e4d5f",
+    "c2f-global-variables": "75f621f7e74aa2918baf0914600c5a04",
+    "c2f-hooks-system": "cc50898ed97c27c932c6d3f8bb0f8027",
+    "c2f-html-css-pages-and-components": "dd9b50654c8609ccb84316f0eca9fae7",
+    "c2f-interface-v2-architecture": "64e208034a3661d81d5f2dc24e14785b",
+    "c2f-javascript-ajax": "3f08ac3615b2c320fa14070d1fed99ee",
+    "c2f-json-resources-sync": "f6a0e6a8da5ca6e3e15ecb382d083aa7",
+    "c2f-modelo-templates": "48a36da31b119816999fc1b54b39715a",
+    "c2f-module-crud-scaffolding": "311446e2d018267f6fab31eddd048284",
+    "c2f-module-visual-assets": "2a5e61ca2a7323ef48edb73c2ccf02b8",
+    "c2f-multilingual-system": "a13d8b89324a6f48bae59ea6ba0c566f",
+    "c2f-mysql-utf8-emoji-encoding": "7222ca99ef3e2304937cafdbf6de5aba",
+    "c2f-payment-gateways": "dfaa7c4c1a513cb81ff04c30c2fc7a95",
+    "c2f-plugin-architecture": "a2bf251dda479f6de8f120786a7e8a6a",
+    "c2f-preview-modals-system": "8590de3378a9a260abcc7691ce86a936",
+    "c2f-project-pipeline-and-tasks": "d00f9e6b4117c29edb9ed6f164fe295c",
+    "c2f-projects-system": "0b8935dcbc4dc4ac8e3a1f988171eb47",
+    "c2f-resources-system": "db6fe894d230f4ffd19708c387d3b6bf",
+    "c2f-reviewer-agent": "d2c0e378037ac59c4d82ecef984be98c",
+    "c2f-shell-and-windows-traps": "b943421dd1846ca2c8270ea564dfb591",
+    "c2f-system-tasks": "ec0257e47b06a53b0f649a9d2e04f098",
+    "c2f-tailwind-css-architecture": "ff378b07c85153a9175fd4a8f3da51bc",
+    "c2f-tailwind-module-migration": "10b3adb98e7b83192e9a33768b0391de",
+    "c2f-variables-system": "4ed4e1944af1164e4bc428776399cb68",
+    "c2f-widget-development": "d6b824a6c8162af22871a9d07390ea77",
+    "continue-sdd-batch": "0b8e5bd585c28b09fed9f09513c0ea2f",
+    "project-validation": "f686e355b5cc1ad0f6f39a8b4e0040fa",
+    "raise-spec-change": "ff91b0750e851d77b5061940b53517c5",
+    "review-current-batch": "79653a7035e117264f89acf4f3684ce2",
+    "sdd-memory-gardening": "23e98ae86554a30a09b0638d6edd3383",
+    "sdd-workflow": "adb7c27304e90fd2aa049a021bb03c6f",
+    "start-sdd-slice": "15d80952b3c9e50513a856dedfc9043d"
+  },
+  "status": "PASS",
+  "targets": [
+    {
+      "target": "conn2flow-ai-workspace/.gemini",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-ai-workspace/.claude",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-ai-workspace/.cursor",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-ai-workspace/.codex",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-ai-workspace/.github",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow/.gemini",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow/.claude",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow/.cursor",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow/.codex",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow/.github",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-site/.gemini",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-site/.claude",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-site/.cursor",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-site/.codex",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "conn2flow-site/.github",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "lumix/.gemini",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "lumix/.claude",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "lumix/.cursor",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "lumix/.codex",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "lumix/.github",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "transformamp/.gemini",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "transformamp/.claude",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "transformamp/.cursor",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "transformamp/.codex",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "transformamp/.github",
+      "status": "PASS",
+      "equal": 44,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/private-project-claude-kit/.claude",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/private-project-copilot-kit/.github",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/spec-driven-project-claude-kit/.claude",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/spec-driven-project-codex-kit/.codex",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/spec-driven-project-copilot-kit/.github",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/spec-driven-project-cursor-kit/.cursor",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/pt-br/spec-driven-project-gemini-kit/.gemini",
+      "status": "PASS",
+      "equal": 41,
+      "translated": 0
+    },
+    {
+      "target": "templates/en/private-project-claude-kit/.claude",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/private-project-copilot-kit/.github",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/spec-driven-project-claude-kit/.claude",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/spec-driven-project-codex-kit/.codex",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/spec-driven-project-copilot-kit/.github",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/spec-driven-project-cursor-kit/.cursor",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    },
+    {
+      "target": "templates/en/spec-driven-project-gemini-kit/.gemini",
+      "status": "PASS",
+      "equal": 38,
+      "translated": 3
+    }
+  ],
+  "local_sha256_evidence": "BATCH-069-preservation-audit.json"
+}
