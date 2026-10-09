@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "tested_at": "2026-10-09T15:45:01.327415+00:00",
+  "python": "3.12.4",
+  "platform": "Windows",
+  "versions": {
+    "mdd-client": "0.1.0",
+    "mdd-hub": "0.1.0",
+    "typer": "0.27.3",
+    "rich": "14.3.4",
+    "fastapi": "0.143.0",
+    "starlette": "0.52.1",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1",
+    "pytest": "9.1.1"
+  },
+  "cli_checks": [
+    {
+      "module": "mdd_client.cli",
+      "command": "--help",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_hub.cli",
+      "command": "--help",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "init",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "status",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "sync",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "compact",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "compact",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "report",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "daemon",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_client.cli",
+      "command": "watch",
+      "exit_code": 0
+    },
+    {
+      "module": "mdd_hub.cli",
+      "command": "watch",
+      "exit_code": 0
+    }
+  ],
+  "canonical_skills": 44,
+  "kits": 5,
+  "archive_count": 2,
+  "python311_syntax_files": 15,
+  "live_sources": [
+    {
+      "source": "antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "digest": "23014003337735a5d472b2c792ff8b7436584b9ba5307cd0185363c32d0a89df",
+      "normalized_characters": 306025,
+      "baseline": true
+    },
+    {
+      "source": "claude-code",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
+      "digest": "b03dffe3d71443865f853e178ff0f221efeda46f73fc3e4ef2d32d6cbe43ccc7",
+      "normalized_characters": 973481,
+      "baseline": true
+    },
+    {
+      "source": "codex",
+      "url": "https://developers.openai.com/codex/changelog/",
+      "digest": "9cd5eb8846c484ae1dc53d86cf3b45e5b3394b009d4099d21c045914bbd6cce7",
+      "normalized_characters": 103252,
+      "baseline": true
+    },
+    {
+      "source": "cursor",
+      "url": "https://cursor.com/changelog",
+      "digest": "29a049944aae6d2e1aaca6a5ae6c86590496eaa3ab917c552863f3f2c8f653f7",
+      "normalized_characters": 18227,
+      "baseline": true
+    },
+    {
+      "source": "gemini",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "digest": "d4017039e9c3f1a032c4063b1c0cd33c62788dec8555003816a33f6beaa6aa5b",
+      "normalized_characters": 43608,
+      "baseline": true
+    },
+    {
+      "source": "kimi",
+      "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-cli/main/CHANGELOG.md",
+      "digest": "f59426b6d877bdd121137a4180a6a8325463a22f11c8257368bd787e5d5bc79d",
+      "normalized_characters": 105471,
+      "baseline": true
+    },
+    {
+      "source": "mcp-sdk",
+      "url": "https://github.com/modelcontextprotocol/python-sdk/releases",
+      "digest": "bace155619799ce312670790748b968bf8425c72d726ed97c95e7d3627a5ae87",
+      "normalized_characters": 35068,
+      "baseline": true
+    }
+  ]
+}
