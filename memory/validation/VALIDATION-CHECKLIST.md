@@ -437,6 +437,6 @@ REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histó
 - [x] Main matriz/Core integrada por fast-forward, push origin main confirmado.
 - [x] Nove worktrees removidas sem força e dependências principais preservadas.
 - [x] Relatório e recibo persistentes, staging por caminhos específicos.
-- [ ] Homologação humana identificada do BATCH-075.
+- [x] Homologação humana identificada do BATCH-075 (Otávio, 2026-10-09, [REV-075](../human-reviews/rev-075.md)).
 
 Evidências e limites: [lote](../implementation/batch-075.md), [resumo](../../completions/BATCH-075-test-summary.json), [recibo](../../completions/BATCH-075-receipt.json), [REV-075](../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.

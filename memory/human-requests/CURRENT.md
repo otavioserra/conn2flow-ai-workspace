@@ -1,7 +1,7 @@
 # CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-073.md](req-073.md) (Consolidação Harmônica das Branches MDD, Resolução de Conflitos e Unificação na main)
-* **Status**: `APPROVED` (aprovada pelo Engenheiro Chefe para execução imediata)
+* **Status**: `HOMOLOGATED` (homologada pelo Engenheiro Chefe em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
 * **Lote Relacionado**: `BATCH-075`
 * **Topologia de Agentes**: `dupla` / `triade` (Macro-Arquiteto planeja e homologa; Executor consolida e testa; Revisor audita)
 * **Nível de Autonomia**: `autonomo_monitorado`
@@ -34,4 +34,4 @@ Unificar em definitivo as branches de desenvolvimento MDD na branch `main`:
 
 ## Entrega técnica BATCH-075 — 2026-10-09
 
-Consolidação REQ-073 concluída e publicada na main da matriz e do Core; nove worktrees de entrega removidas. Python 111/111, extensão 124/124 e lint PHP 33/33 PASS. [Lote](../implementation/batch-075.md), [REV-075](../human-reviews/rev-075.md) RECOMMEND-APPROVAL e [recibo](../../completions/BATCH-075-receipt.json). Ponteiro REQ-073 preservado para homologação humana identificada; nenhuma nova requisição iniciada.
+Consolidação REQ-073 concluída e publicada na main da matriz e do Core; nove worktrees de entrega removidas. Python 111/111, extensão 124/124 e lint PHP 33/33 PASS. [Lote](../implementation/batch-075.md), [REV-075](../human-reviews/rev-075.md) RECOMMEND-APPROVAL e [recibo](../../completions/BATCH-075-receipt.json). **HOMOLOGADO formalmente por Otávio (Engenheiro Chefe) em 2026-10-09 via [REV-075](../human-reviews/rev-075.md)**. Pronta para preparação do próximo ciclo.
