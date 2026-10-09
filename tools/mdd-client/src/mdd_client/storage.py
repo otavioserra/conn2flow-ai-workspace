@@ -10,10 +10,12 @@ from pathlib import Path
 def contained(root: Path, path: Path) -> Path:
     root = root.resolve()
     absolute = Path(os.path.abspath(path))
-    if not absolute.is_relative_to(root) or not absolute.resolve().is_relative_to(root):
+    # Windows may expose the same directory through its 8.3 alias (RUNNER~1).
+    # Compare canonical paths; retain the supplied chain for link inspection.
+    if not absolute.resolve().is_relative_to(root):
         raise ValueError(f"Path escapes project: {path}")
     for node in (absolute, *absolute.parents):
-        if node == root:
+        if node.resolve() == root:
             break
         if node.is_symlink() or getattr(os.path, "isjunction", lambda _: False)(node):
             raise ValueError(f"Linked path is not writable: {node}")
