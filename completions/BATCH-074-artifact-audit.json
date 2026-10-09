@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "canonical_count": 45,
+  "copies": [
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".gemini",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".claude",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".cursor",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".codex",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow-ai-workspace",
+      "kit": ".github",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".gemini",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".claude",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".cursor",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".codex",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    },
+    {
+      "repo": "conn2flow",
+      "kit": ".github",
+      "sha256": "01e7541dea3dc83d93ae7f86f0ecf9826f960c9dc83f0dc04db8461fdc2ab31a",
+      "matches": true
+    }
+  ],
+  "structural_files": [
+    "memory\\human-reviews\\README.md",
+    "memory\\human-reviews\\index.md",
+    "memory\\human-reviews\\archive\\index.md",
+    "memory\\human-reviews\\archive\\compacted\\index.md",
+    "memory\\human-reviews\\archive\\original\\index.md",
+    "templates\\en\\sdd-boilerplate\\sdd\\human-reviews\\README.md",
+    "templates\\en\\sdd-boilerplate\\sdd\\human-reviews\\index.md",
+    "templates\\en\\sdd-boilerplate\\sdd\\human-reviews\\archive\\index.md",
+    "templates\\en\\sdd-boilerplate\\sdd\\human-reviews\\archive\\compacted\\index.md",
+    "templates\\en\\sdd-boilerplate\\sdd\\human-reviews\\archive\\original\\index.md",
+    "templates\\pt-br\\sdd-boilerplate\\sdd\\human-reviews\\README.md",
+    "templates\\pt-br\\sdd-boilerplate\\sdd\\human-reviews\\index.md",
+    "templates\\pt-br\\sdd-boilerplate\\sdd\\human-reviews\\archive\\index.md",
+    "templates\\pt-br\\sdd-boilerplate\\sdd\\human-reviews\\archive\\compacted\\index.md",
+    "templates\\pt-br\\sdd-boilerplate\\sdd\\human-reviews\\archive\\original\\index.md",
+    "templates\\rev-example.template.md",
+    "templates\\en\\rev-example.template.md",
+    "templates\\pt-br\\rev-example.template.md"
+  ],
+  "index_links_checked": 11,
+  "catalogs": [
+    {
+      "path": "docs\\en\\SKILLS-CATALOG.md",
+      "count": 45
+    },
+    {
+      "path": "docs\\pt-br\\CATALOGO-DE-SKILLS.md",
+      "count": 45
+    }
+  ],
+  "core_ai_sync": {
+    "exit_code": 0,
+    "stdout": "\n╔════════════════════════════════════════════════╗\n║  Conn2Flow — AI Skills & Kits Synchronization  ║\n╚════════════════════════════════════════════════╝\n\n ℹ INFO  Validating 45 Skills and Contract blocks across active kits...\n┌──────────────────┬──────────────┬─────────────────┬─────────────────┬────────────┐\n│ AI Kit Directory │ Total Skills │ Required Skills │ Valid Contracts │ Status     │\n├──────────────────┼──────────────┼─────────────────┼─────────────────┼────────────┤\n│ .claude/skills   │ 45           │ 45/45           │ 45              │ ✔ Complete │\n│ .cursor/skills   │ 45           │ 45/45           │ 45              │ ✔ Complete │\n│ .gemini/skills   │ 45           │ 45/45           │ 45              │ ✔ Complete │\n│ .github/skills   │ 45           │ 45/45           │ 45              │ ✔ Complete │\n│ .codex/skills    │ 45           │ 45/45           │ 45              │ ✔ Complete │\n└──────────────────┴──────────────┴─────────────────┴─────────────────┴────────────┘\n\n ✔ SUCCESS  All 45 skills verified successfully across all active AI toolkits!\n"
+  },
+  "global_sync": {
+    "status": "FAIL",
+    "divergences": 52,
+    "skills": [
+      "c2f-ai-features",
+      "c2f-modelo-templates",
+      "c2f-module-visual-assets"
+    ],
+    "note": "Three canonical skills were modified before REQ-072; their contents and mirrors were preserved."
+  }
+}

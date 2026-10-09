@@ -1,8 +1,9 @@
 # Index — human-reviews
 
-Caixa de Entrada Oficial de Homologações Humanas (Revisões Técnicas da Tríade)
-
-| ID | Título | Resumo Executivo | Link Relativo | Status |
+| ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| archive | archive | Nó de navegação | [archive](archive/index.md) | indexed |
-| README.md | Human Reviews | Documento de introdução e regras da pasta | [README.md](README.md) | indexed |
+| REV-074 | Revisão independente da Trava Tripla MDD — BATCH-074 | Paridade PHP/Python e governança revisadas; findings corrigidos, com recomendação técnica de aprovação. | [source](<rev-074.md>) | awaiting-human-homologation |
+
+## Directories
+
+- [archive](<archive/index.md>)

@@ -1,5 +1,5 @@
 ---
-verified_at: 2afd000
+verified_at: 1e26ae63
 sources:
   - ../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md
   - ../../.gemini/skills/c2f-ai-features/SKILL.md

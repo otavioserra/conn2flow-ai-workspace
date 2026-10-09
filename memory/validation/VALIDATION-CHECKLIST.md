@@ -390,3 +390,20 @@ Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejad
 
 Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
+
+
+## BATCH-074 — Trava Tripla MDD (REQ-072, 2026-10-09)
+
+- [x] CLI PHP memory:index/set/get e Typer mdd index/meta set/get registrados, com API reutilizável.
+- [x] 111/111 pytest, incluindo 48 testes de paridade com PHP real e PyYAML; zero falhas/skips.
+- [x] 124/124 testes VS Code e compilação TypeScript; arquivos de teste enumerados explicitamente para Node 24.
+- [x] Ruff, pip check, PHP lint, diff check e skill quick_validate UTF-8.
+- [x] 45 canônicas e dez espelhos idênticos da nova skill; c2f ai:sync 45/45 nos cinco kits do core.
+- [x] Inbox matriz, skeletons EN/PT, três fichas-modelo, políticas e handoffs solo/dupla/triade × três autonomias.
+- [x] Auditoria independente dos defeitos reproduzidos; regressões corrigidas e probes/48 testes reexecutados pelo Revisor.
+- [x] Commits com caminhos específicos e recibo persistente.
+- [ ] Homologação humana identificada.
+
+Evidências: [lote](../implementation/batch-074.md), [JUnit](../../completions/BATCH-074-pytest.xml), [resumo](../../completions/BATCH-074-test-summary.json), [artefatos](../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../completions/BATCH-074-skills-audit.json), [recibo](../../completions/BATCH-074-receipt.json), [revisão](../human-reviews/rev-074.md).
+
+Limites: auditoria global FAIL/52 divergências nas três skills alheias preservadas; nova skill PASS. Sem MCP Hub remoto, Linux, banco/UI/deploy/CI remoto ou suíte PHP integral do produto. YAML escalar documentado; crash entre arquivos requer indexação. Starlette/AnyIO emite aviso de depreciação. Gerador legado de init/compact mantido; pendências humanas não auto-arquivadas.
