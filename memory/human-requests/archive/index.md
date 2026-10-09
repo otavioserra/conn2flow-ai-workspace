@@ -74,3 +74,4 @@ Navegação hierárquica; leia o resumo antes do documento integral.
 | req-059 | req-059.md | REQ-059 — Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização em Skills | [req-059.md](req-059.md) | HOMOLOGATED |
 | req-060 | req-060.md | REQ-060 — Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [req-060.md](req-060.md) | HOMOLOGATED |
 | req-061 | req-061.md | REQ-061 — Choques das entregas na extensão do VS Code (diff e decisão por arquivo) | [req-061.md](req-061.md) | HOMOLOGATED |
+| req-062 | req-062.md | REQ-062 — Preparação de Release, Bump v1.1.2 e Empacotamento VSIX do Conn2Flow Dev Tools | [req-062.md](req-062.md) | APPROVED |
