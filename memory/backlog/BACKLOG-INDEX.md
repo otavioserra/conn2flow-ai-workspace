@@ -16,8 +16,8 @@
 | [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md) | Hub / Auto-Evolução | `PROMOTED` | MDD Hub & Documentation Watcher (Python) — Motor de Auto-Evolução e Scraping de Modelos de IA | Promovido para REQ-069 / BATCH-071 | 2026-10-09 |
 | [ARCH-012](ARCH-012-hierarchical-dual-tier-memory-archiving.md) | Arquitetura / Contexto | `PROMOTED` | Sistema Hierárquico de index.md e Compactação Dual de Memória (Compacted vs Original) | Promovido para REQ-067 / BATCH-069 | 2026-10-09 |
 | [ARCH-013](ARCH-013-vector-database-and-nosql-memory-evolution.md) | Arquitetura / Futuro | `ICEBOX` | Evolução para Banco de Dados Vetorial & NoSQL para Codebases de Hiperescala | Pesquisa futura após MDD Client/Hub | 2026-10-09 |
-| [ARCH-014](ARCH-014-vscode-extension-mdd-client-hub-integration.md) | Extensão VS Code | `ICEBOX` | Integração da Extensão VS Code com MDD Client e Hub (Modo Dev e Modo Cliente) | Aguardar implementação do MDD Client/Hub | 2026-10-09 |
-| [ARCH-015](ARCH-015-headless-triad-mechanics-and-human-reviews.md) | Arquitetura / Governança | `PROMOTED` | Mecânica de Tríade Autônoma Headless, Trava Tripla de Governança e Human Reviews | Promovido para REQ-072 / BATCH-074 | 2026-10-09 |
+| [ARCH-014](ARCH-014-vscode-extension-mdd-client-hub-integration.md) | Extensão VS Code | `PROMOTED` | Integração da Extensão VS Code com MDD Client e Hub (Modo Dev e Modo Cliente) | Preparar REQ-074 / BATCH-076 | 2026-10-09 |
+| [ARCH-015](ARCH-015-headless-triad-mechanics-and-human-reviews.md) | Arquitetura / Governança | `PROMOTED` | Mecânica de Tríade Autônoma Headless, Trava Tripla de Governança e Human Reviews | Homologado em REQ-072 / BATCH-074 | 2026-10-09 |
 
 ---
 

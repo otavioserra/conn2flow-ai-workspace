@@ -1,7 +1,18 @@
+---
+id: ARCH-014
+title: Integração da Extensão VS Code com MDD Client e MDD Hub — Suporte Dual a Modo Desenvolvedor e Modo Cliente
+status: PROMOTED
+date: 2026-10-09
+author: architect
+target_repo: conn2flow-ai-workspace
+summary_short: Integração da extensão VS Code com CLI Python e Hub: botões 1-click para mdd index/meta e painel dual client/developer
+summary_medium: Conecta a interface gráfica Conn2Flow Dev Tools aos comandos CLI do MDD Client e API do Hub, oferecendo modo público para clientes e modo avançado para desenvolvedores.
+---
+
 # ARCH-014: Integração da Extensão VS Code com MDD Client e MDD Hub — Suporte Dual a Modo Desenvolvedor e Modo Cliente
 
 - **Tipo**: Interface / Extensão VS Code / Arquitetura
-- **Status**: `ICEBOX` (aguarda implementação do MDD Client ARCH-010 e MDD Hub ARCH-011)
+- **Status**: `PROMOTED` (promovido para planejamento da próxima requisição de implementação em 2026-10-09)
 - **Origem**: Humano-no-Loop (Engenheiro Chefe)
 - **Data de Criação**: 2026-10-09
 
