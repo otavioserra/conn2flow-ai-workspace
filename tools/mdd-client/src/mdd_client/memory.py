@@ -15,6 +15,7 @@ AREAS = (
     "decisions",
     "handoffs",
     "human-requests",
+    "human-reviews",
     "implementation",
     "reports",
     "proxies",

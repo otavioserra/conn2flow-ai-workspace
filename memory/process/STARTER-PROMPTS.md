@@ -63,3 +63,22 @@ Caso um chat tenha sido interrompido ou travado, você nunca precisa reexplicar 
 Ative a skill c2f-architect-master. Você é o Engenheiro Chefe no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
 Retome o trabalho a partir do estado registrado em memory/human-requests/CURRENT.md e me informe o status atual para seguirmos.
 ```
+
+
+## Handoff adaptável — REQ-072
+
+Para todo acionamento, preencher o contrato abaixo e aplicar a matriz em memory/02-policy.md. No modo supervisionado, apresentar o prompt e aguardar input humano antes da transição. Em triade monitored, o Executor pode acionar Revisor Independente; em dupla, devolver ao Macro-Arquiteto; em solo, auto-revisar.
+
+```text
+Papel: Revisor Independente (ou Macro-Arquiteto conforme topologia).
+Projeto Matriz: conn2flow-ai-workspace
+Raiz Matriz: C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace
+Projeto Core: conn2flow
+Raiz Core: C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow
+Requisição: REQ-072 | Lote: BATCH-074
+Topologia: triade | Autonomia: autonomo_monitorado
+Escopo: auditar somente a entrega da REQ-072 nos dois repositórios.
+Evidências: memory/implementation/batch-074.md, memory/validation/VALIDATION-CHECKLIST.md e completions/BATCH-074-receipt.json na matriz.
+Próxima ação: revisar diffs e testes, emitir parecer em memory/human-reviews/rev-XXX.md; manter assinatura humana vazia.
+Pendências e estado técnico: preencher conforme resultados reais do lote.
+```

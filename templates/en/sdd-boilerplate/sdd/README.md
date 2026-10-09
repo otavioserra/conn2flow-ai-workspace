@@ -25,3 +25,9 @@ This directory defines the local Spec-Driven Development governance for the proj
 - `BATCH-000`: SDD boilerplate installed.
 - `BATCH-001`: first functional batch waiting for classification.
 - Active pointer: `sdd/human-requests/CURRENT.md`.
+
+## MDD metadata and handoffs
+
+New governance documents start with scalar YAML frontmatter: id, title, status, date (YYYY-MM-DD), author, target_repo, summary_short (30–140 characters), summary_medium (two or three lines). Quote strings; escape multiline values. Use the language-specific rev-example.template.md under templates/. Legacy documents remain readable through title/first-paragraph fallback.
+
+The human-reviews/ inbox holds ten active reviews plus README/index, with dual original/compacted archives. Handoffs include project, absolute root, REQ, BATCH, topology, autonomy, scope, evidence and next action. solo: self-review; dupla: return to Architect; triade: receipt then Independent Reviewer. supervisionado waits for human input at every role transition; autonomo_monitorado shows Live Todo and triggers authorized transitions; autonomo_headless persists dispatch and receipts. Only humans sign homologation. These legacy kits retain sdd/ until an authorized migration to memory/.

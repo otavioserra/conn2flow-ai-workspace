@@ -1,11 +1,12 @@
 ---
 verified_at: 2afd000
 sources:
+  - ../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md
   - ../../.gemini/skills/c2f-ai-features/SKILL.md
   - ../../scripts/skills/sync-skills.cjs
 ---
 
-# Catalog of 44 canonical skills
+# Catalog of 45 canonical skills
 
 [Português](../pt-br/CATALOGO-DE-SKILLS.md) · [Documentation index](README.md)
 
@@ -58,10 +59,11 @@ The canonical source is .gemini/skills/. The .claude/, .cursor/, .codex/ and .gi
 | [`c2f-variables-system`](../../.gemini/skills/c2f-variables-system/SKILL.md) | Configurable localized labels, messages and user-facing text. |
 | [`c2f-widget-development`](../../.gemini/skills/c2f-widget-development/SKILL.md) | Widget renderers, scope isolation and modular grids. |
 
-## Governance and workflow — 7 skills
+## Governance and workflow — 8 skills
 
 | Skill | When to use |
 | --- | --- |
+| [`c2f-mdd-indexing-and-handoffs`](../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md) | Memory frontmatter, atomic metadata mutation, derived indexes and topology/autonomy handoffs. |
 | [`sdd-workflow`](../../.gemini/skills/sdd-workflow/SKILL.md) | Classify changes and follow memory governance and authority. |
 | [`start-sdd-slice`](../../.gemini/skills/start-sdd-slice/SKILL.md) | Start an approved bounded request with acceptance criteria. |
 | [`continue-sdd-batch`](../../.gemini/skills/continue-sdd-batch/SKILL.md) | Resume the current batch without repeating completed stages. |
@@ -92,4 +94,4 @@ node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 
 Run from the matrix root. The first command audits without writing; the second propagates the named skill to configured targets. The script preserves exclusive local skills and declared template translations; --apply --all propagates the full catalog. mdd sync is the planned Python Client equivalent, without implementation in this checkout.
 
-The total was checked against the 44 canonical folders containing SKILL.md. Synchronization counts and targets come from the script rather than historical guide numbers. See the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md).
+The total was checked against the 45 canonical folders containing SKILL.md. Synchronization counts and targets come from the script rather than historical guide numbers. See the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md).

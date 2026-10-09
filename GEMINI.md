@@ -30,7 +30,7 @@ O Antigravity suporta 3 papéis distintos no ecossistema:
 - **Atuação**: Inspeção e auditoria técnica independente antes do fechamento de lotes.
 - **Responsabilidades**:
   * Auditar diffs de código (`git diff`) checando padrões de segurança, `variables.json` mandatório e CSRF.
-  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 44 skills.
+  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 45 skills.
   * Executar `c2f css:audit` para assegurar que não haja classes órfãs ou dívidas em PHP/JS.
   * Gerar o relatório de homologação técnica em `memory/validation/review-YYY.md`.
 
@@ -97,7 +97,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 ## 📦 Skills e Ferramentas
 
-O workspace possui **44 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+O workspace possui **45 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 - Papéis da Tríade MDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
 - Planejamento e fluxo MDD: `sdd-workflow`, `start-sdd-slice`, `continue-sdd-batch`.
 - Mudanças e Governança: `raise-spec-change`, `sdd-memory-gardening`, `project-validation`, `review-current-batch`.
@@ -107,3 +107,10 @@ O workspace possui **44 skills oficiais** em `.gemini/skills/` (com espelhamento
 ## Fundação MDD (Memory Driven Development)
 
 Na matriz, leia memory/00-baseline-architecture.md, memory/01-general-memory.md e memory/02-policy.md; use index.md antes de documentos densos. São quatro camadas: episódica, semântica/normativa, procedural e raw, com arquivamento dual compacted/original. Satélites e boilerplates conservam sdd/ nesta onda. A nova skill c2f-ai-features integra os 8 pilares de IA do Conn2Flow Pro.
+
+
+## Trava Tripla MDD — REQ-072 / ARCH-015
+
+Leia `c2f-mdd-indexing-and-handoffs` antes de criar metadados, regenerar índices ou transferir o lote. Novos artefatos usam YAML frontmatter; `memory:index/set/get` no core e `mdd index/meta set/meta get` no Client mantêm o índice derivado. A fonte canônica contém **45 skills** (3 papéis, 34 de core e 8 de governança).
+
+Handoffs incluem projeto, raiz absoluta, REQ, BATCH, escopo, evidências, pendências, topologia e autonomia. `solo`: auto-revisão; `dupla`: retorno ao Macro-Arquiteto; `triade`: recibo e Revisor Independente com ficha em memory/human-reviews/. `supervisionado`: aguardar input humano em cada transição; `autonomo_monitorado`: Live Todo e acionamento autorizado; `autonomo_headless`: despacho/recibos persistentes. Somente humano assina homologação. Detalhes em memory/02-policy.md; dez fichas ativas, arquivos duais compacted/original.

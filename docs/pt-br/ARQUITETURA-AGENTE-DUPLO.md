@@ -25,7 +25,7 @@ O nome histórico do arquivo foi mantido para preservar links existentes. MDD es
 | Revisor | Inspecionar diffs e fontes vigentes, relatar findings por gravidade com evidências, emitir parecer independente | Não declara PASS em verificações não executadas; revisar não homologa por si só |
 | Humano | Direcionar prioridades, autorizar escopo e revisar consolidação | Mantém o gate de aprovação exigido pelo workflow selecionado |
 
-Os procedimentos dos papéis são [Arquiteto](../../.gemini/skills/c2f-architect-master/SKILL.md), [Executor](../../.gemini/skills/c2f-executor-agent/SKILL.md) e [Revisor](../../.gemini/skills/c2f-reviewer-agent/SKILL.md). O [catálogo](CATALOGO-DE-SKILLS.md) de 44 skills explica os procedimentos por tarefa.
+Os procedimentos dos papéis são [Arquiteto](../../.gemini/skills/c2f-architect-master/SKILL.md), [Executor](../../.gemini/skills/c2f-executor-agent/SKILL.md) e [Revisor](../../.gemini/skills/c2f-reviewer-agent/SKILL.md). O [catálogo](CATALOGO-DE-SKILLS.md) de 45 skills explica os procedimentos por tarefa.
 
 ## Memória compartilhada e ciclo de vida
 

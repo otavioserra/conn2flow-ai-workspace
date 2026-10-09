@@ -17,9 +17,9 @@
 
 ---
 
-## 📦 Configuração de Skills (44 Skills Oficiais)
+## 📦 Configuração de Skills (45 Skills Oficiais)
 
-Todas as **44 skills** do framework estão disponíveis em `.claude/skills/`, `.gemini/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/` e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+Todas as **45 skills** do framework estão disponíveis em `.claude/skills/`, `.gemini/skills/`, `.cursor/skills/`, `.codex/skills/` e `.github/skills/` e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 
 ### 1. Skills de Papéis da Tríade MDD (3 Skills):
 > Consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
@@ -63,7 +63,8 @@ Todas as **44 skills** do framework estão disponíveis em `.claude/skills/`, `.
 - `c2f-variables-system`
 - `c2f-widget-development`
 
-### 3. Skills de Governança e Workflow MDD (7 Skills):
+### 3. Skills de Governança e Workflow MDD (8 Skills):
+- `c2f-mdd-indexing-and-handoffs`
 - `sdd-workflow`
 - `start-sdd-slice`
 - `continue-sdd-batch`
@@ -103,3 +104,10 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 ## Fundação MDD (Memory Driven Development)
 
 Na matriz, leia memory/00-baseline-architecture.md, memory/01-general-memory.md e memory/02-policy.md; use index.md antes de documentos densos. São quatro camadas: episódica, semântica/normativa, procedural e raw, com arquivamento dual compacted/original. Satélites e boilerplates conservam sdd/ nesta onda. A nova skill c2f-ai-features integra os 8 pilares de IA do Conn2Flow Pro.
+
+
+## Trava Tripla MDD — REQ-072 / ARCH-015
+
+Leia `c2f-mdd-indexing-and-handoffs` antes de criar metadados, regenerar índices ou transferir o lote. Novos artefatos usam YAML frontmatter; `memory:index/set/get` no core e `mdd index/meta set/meta get` no Client mantêm o índice derivado. A fonte canônica contém **45 skills** (3 papéis, 34 de core e 8 de governança).
+
+Handoffs incluem projeto, raiz absoluta, REQ, BATCH, escopo, evidências, pendências, topologia e autonomia. `solo`: auto-revisão; `dupla`: retorno ao Macro-Arquiteto; `triade`: recibo e Revisor Independente com ficha em memory/human-reviews/. `supervisionado`: aguardar input humano em cada transição; `autonomo_monitorado`: Live Todo e acionamento autorizado; `autonomo_headless`: despacho/recibos persistentes. Somente humano assina homologação. Detalhes em memory/02-policy.md; dez fichas ativas, arquivos duais compacted/original.

@@ -25,3 +25,9 @@ Este diretório define a governança local de Spec-Driven Development do projeto
 - `BATCH-000`: boilerplate SDD instalado.
 - `BATCH-001`: primeiro batch funcional aguardando classificação.
 - Ponteiro ativo: `sdd/human-requests/CURRENT.md`.
+
+## Metadados e handoffs MDD
+
+Documentos novos começam com YAML escalar: id, title, status, date (YYYY-MM-DD), author, target_repo, summary_short (30–140 caracteres), summary_medium (duas ou três linhas). Use aspas e escape quebras de linha; modelo rev-example.template.md no idioma em templates/. Fallback por título/primeiro parágrafo mantém legados legíveis.
+
+A inbox human-reviews/ mantém dez fichas ativas mais README/index e arquivos duais original/compacted. Handoffs incluem projeto, raiz absoluta, REQ, BATCH, topologia, autonomia, escopo, evidências e próximo passo. solo: auto-revisão; dupla: retorno ao Arquiteto; triade: recibo e Revisor Independente. supervisionado aguarda humano em cada transição; autonomo_monitorado mostra Live Todo e aciona transições autorizadas; autonomo_headless persiste despacho e recibos. Somente humano homologa. Kits legados mantêm sdd/ até migração autorizada para memory/.

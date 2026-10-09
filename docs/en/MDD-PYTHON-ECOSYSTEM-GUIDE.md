@@ -45,7 +45,7 @@ mdd watch --path ./my-project --once
 | Command | Behavior |
 | --- | --- |
 | `init` | Creates the 00/01/02 triad, all memory areas, indexes and dual archives. Accepts software/mobile/general; `--kits` installs skills and rules into five kits. Preserves existing documents and configuration. |
-| `sync` | Synchronizes 44 canonical skills and rules; preserves exclusive local skills/rules and configuration. Uses `--matrix`, `MDD_MATRIX` or the source checkout. `--audit` checks without propagating. |
+| `sync` | Synchronizes 45 canonical skills and rules; preserves exclusive local skills/rules and configuration. Uses `--matrix`, `MDD_MATRIX` or the source checkout. `--audit` checks without propagating. |
 | `compact` | Audits by default; `--apply` enforces the ten-item window, 50 KiB ceiling and 30 KiB router. Preserves original bytes, produces structural extracts and complete parts, repairs links and updates indexes. Chief memory and CURRENT-selected documents are protected. |
 | `status` | Displays a Rich dashboard or `--json`; returns exit 1 for noncompliant memory. |
 | `report` | Exports health and error/warning/timeout counters as JSON; includes no raw log text. `--hub URL` submits the saved report. |

@@ -15,7 +15,7 @@ Fundação MDD aprovada pela REQ-067 / BATCH-069, 2026-10-09.
 | Área | Responsabilidade | Entrada |
 | --- | --- | --- |
 | memory/ | Governança persistente da matriz; contratos, episódios, relatórios e índices | [índice](index.md) |
-| .gemini/skills/ | Fonte canônica de 44 skills procedurais | [Executor](../.gemini/skills/c2f-executor-agent/SKILL.md) |
+| .gemini/skills/ | Fonte canônica de 45 skills procedurais | [Executor](../.gemini/skills/c2f-executor-agent/SKILL.md) |
 | .claude/, .cursor/, .codex/, .github/ | Kits espelhados pelo sincronizador oficial | [sincronizador](../scripts/skills/sync-skills.cjs) |
 | templates/pt-br/ e templates/en/ | Kits e boilerplates bilíngues para instalações; legado SDD preservado | [templates](../templates/README.md) |
 | scripts/ | Instaladores, sync-back e propagação determinística de skills | [scripts](../scripts/) |

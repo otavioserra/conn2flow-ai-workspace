@@ -14,7 +14,7 @@ sources:
 
 ## Fundação entregue
 
-A matriz possui memory/, política de quatro camadas, índices hierárquicos, nós de arquivo dual e **44 skills canônicas**, incluindo c2f-ai-features. O MCP Hub TypeScript implementa execução de comandos, registros de tarefas, recibos e eventos de sessão. O painel VS Code suporta controles de topologia/autonomia, escopo de repositório, observação de tarefas e choques de entrega.
+A matriz possui memory/, política de quatro camadas, índices hierárquicos, nós de arquivo dual e **45 skills canônicas**, incluindo c2f-ai-features. O MCP Hub TypeScript implementa execução de comandos, registros de tarefas, recibos e eventos de sessão. O painel VS Code suporta controles de topologia/autonomia, escopo de repositório, observação de tarefas e choques de entrega.
 
 ## Frentes aprovadas
 
@@ -31,4 +31,4 @@ ARCH-014 propõe acesso dual Cliente/Desenvolvedor no VS Code após os component
 
 ## Trilha de aprendizado
 
-Comece pela [especificação de memória](ESPECIFICACAO-FRAMEWORK-MDD.md), aprenda a [tríade](ARQUITETURA-AGENTE-DUPLO.md) e os [44 procedimentos](CATALOGO-DE-SKILLS.md), depois use o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md) e o [guia do painel](GUIA-PAINEL-DEV-TOOLS-VSCODE.md). O [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) separa interfaces aprovadas de ferramentas disponíveis. Ensine especificações, consulta, evidências e revisão antes de automação sem acompanhamento.
+Comece pela [especificação de memória](ESPECIFICACAO-FRAMEWORK-MDD.md), aprenda a [tríade](ARQUITETURA-AGENTE-DUPLO.md) e os [45 procedimentos](CATALOGO-DE-SKILLS.md), depois use o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md) e o [guia do painel](GUIA-PAINEL-DEV-TOOLS-VSCODE.md). O [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) separa interfaces aprovadas de ferramentas disponíveis. Ensine especificações, consulta, evidências e revisão antes de automação sem acompanhamento.

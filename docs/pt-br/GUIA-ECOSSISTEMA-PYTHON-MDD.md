@@ -45,7 +45,7 @@ mdd watch --path ./my-project --once
 | Comando | Comportamento |
 | --- | --- |
 | `init` | Cria a tríade 00/01/02, todas as áreas de memória, índices e arquivos duais. Aceita software/mobile/general; `--kits` instala skills e regras nos cinco kits. Preserva documentos e configurações existentes. |
-| `sync` | Sincroniza 44 skills e regras canônicas; preserva skills/regras exclusivas e configurações locais. Usa `--matrix`, `MDD_MATRIX` ou o checkout fonte. `--audit` verifica sem propagar. |
+| `sync` | Sincroniza 45 skills e regras canônicas; preserva skills/regras exclusivas e configurações locais. Usa `--matrix`, `MDD_MATRIX` ou o checkout fonte. `--audit` verifica sem propagar. |
 | `compact` | Audita por padrão; `--apply` aplica janela de dez, teto de 50 KiB e router de 30 KiB. Preserva bytes originais, produz extratos estruturais e partes completas, repara links e atualiza índices. Chefia e documentos selecionados por CURRENT ficam protegidos. |
 | `status` | Mostra painel Rich ou `--json`; retorna código 1 para memória não conforme. |
 | `report` | Exporta saúde e contadores de erros/avisos/timeouts para JSON; não inclui texto bruto dos logs. `--hub URL` envia o relatório salvo. |

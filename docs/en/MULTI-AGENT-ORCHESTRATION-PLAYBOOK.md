@@ -18,7 +18,7 @@ The human defines the need. The Architect reads current source and memory, defin
 
 ## Execute with visible evidence
 
-The Executor reads CURRENT, the request, batch and checklist; selects the relevant procedures from the **44-skill catalog**; displays the Live Todo List; and implements the smallest approved slice. Update progress after meaningful steps, run appropriate checks and record concrete results and limitations.
+The Executor reads CURRENT, the request, batch and checklist; selects the relevant procedures from the **45-skill catalog**; displays the Live Todo List; and implements the smallest approved slice. Update progress after meaningful steps, run appropriate checks and record concrete results and limitations.
 
 ```text
 Project: <repository identifier>

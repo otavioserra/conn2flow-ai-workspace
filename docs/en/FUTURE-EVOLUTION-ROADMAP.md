@@ -14,7 +14,7 @@ sources:
 
 ## Delivered foundation
 
-The matrix has memory/, four-layer policy, hierarchical indexes, dual archive nodes and **44 canonical skills**, including c2f-ai-features. The TypeScript MCP Hub implements command execution, task records, receipts and session events. The VS Code panel supports topology/autonomy controls, repository scope, task observation and delivery conflicts.
+The matrix has memory/, four-layer policy, hierarchical indexes, dual archive nodes and **45 canonical skills**, including c2f-ai-features. The TypeScript MCP Hub implements command execution, task records, receipts and session events. The VS Code panel supports topology/autonomy controls, repository scope, task observation and delivery conflicts.
 
 ## Approved workstreams
 
@@ -31,4 +31,4 @@ ARCH-014 proposes dual Client/Developer VS Code access after the Python componen
 
 ## Learning path
 
-Start with the [memory specification](MDD-FRAMEWORK-SPECIFICATION.md), learn the [triad](DOUBLE-AGENT-ARCHITECTURE.md) and [44 procedures](SKILLS-CATALOG.md), then use the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md) and [panel guide](VSCODE-DEV-TOOLS-PANEL-GUIDE.md). The [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) separates approved interfaces from available tools. Teach specifications, retrieval, evidence and review before unattended automation.
+Start with the [memory specification](MDD-FRAMEWORK-SPECIFICATION.md), learn the [triad](DOUBLE-AGENT-ARCHITECTURE.md) and [45 procedures](SKILLS-CATALOG.md), then use the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md) and [panel guide](VSCODE-DEV-TOOLS-PANEL-GUIDE.md). The [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) separates approved interfaces from available tools. Teach specifications, retrieval, evidence and review before unattended automation.

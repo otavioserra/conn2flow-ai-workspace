@@ -15,11 +15,14 @@ from rich.table import Table
 from . import daemon as monitoring
 from . import memory
 from . import report as reporting
+from .core import indexer
 from .sync import find_matrix, install_kits
 from .sync import sync as synchronize
 
 app = typer.Typer(no_args_is_help=True, help="Manage project memory and agent skills.")
 console = Console()
+meta_app = typer.Typer(no_args_is_help=True, help="Read and mutate memory frontmatter.")
+app.add_typer(meta_app, name="meta")
 
 
 def guarded(function):
@@ -108,6 +111,34 @@ def report(path: Path = typer.Option(Path(".")), log: list[Path] = typer.Option(
 def watch(path: Path = typer.Option(Path(".")), interval: float = 30, once: bool = False):
     """Monitor memory continuously; Ctrl+C stops; --once performs one cycle."""
     asyncio.run(monitoring.watch(path.resolve(), interval, once, lambda data: typer.echo(json.dumps(data))))
+
+
+@app.command("index")
+@guarded
+def index(target_path: str | None = typer.Argument(None), path: Path = typer.Option(Path("."), "--path")):
+    """Rebuild indexes; omitted target scans existing memory indexes."""
+    for target in indexer.index(path, target_path):
+        typer.echo(str(target))
+
+
+@meta_app.command("get")
+@guarded
+def meta_get(
+    target: str,
+    field: str | None = typer.Argument(None),
+    path: Path = typer.Option(Path("."), "--path"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """Read a document by path or unique ID; no field returns JSON."""
+    value = indexer.get(path, target, field)
+    typer.echo(json.dumps(value, ensure_ascii=False) if as_json or isinstance(value, dict) else value)
+
+
+@meta_app.command("set")
+@guarded
+def meta_set(target: str, field: str, value: str, path: Path = typer.Option(Path("."), "--path")):
+    """Atomically update a field and rebuild its directory index."""
+    typer.echo(str(indexer.set_metadata(path, target, {field: value})))
 
 
 def main():

@@ -11,7 +11,7 @@ Start with the framework and triad, then choose a tool guide. The two language t
 | [Memory mechanics and retention](MDD-FRAMEWORK-SPECIFICATION.md) | Four layers, 10 active items, 50 KB and archives. |
 | [Python Client and Hub](MDD-PYTHON-ECOSYSTEM-GUIDE.md) | Planned commands and evolution modes. |
 | [Architect, Executor, Reviewer](DOUBLE-AGENT-ARCHITECTURE.md) | Responsibilities and independent review. |
-| [44 canonical skills](SKILLS-CATALOG.md) | When to load each procedure. |
+| [45 canonical skills](SKILLS-CATALOG.md) | When to load each procedure. |
 | [Core CLI and MCP](QUICKSTART-CLI-AND-MCP.md) | Available tools and configuration. |
 | [VS Code panel](VSCODE-DEV-TOOLS-PANEL-GUIDE.md) | Controls, conflicts and planned dual integration. |
 | [Multi-agent workflow](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) | From briefing to verifiable receipt. |

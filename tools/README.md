@@ -32,6 +32,10 @@ mdd compact --path ./my-project --apply
 mdd report --path ./my-project --log build.log
 mdd daemon --path ./my-project --interval 30
 mdd watch --path ./my-project --once
+mdd index --path ./my-project
+mdd index human-requests --path ./my-project
+mdd meta set req-001 status IN-PROGRESS --path ./my-project
+mdd meta get req-001 status --json --path ./my-project
 ```
 
 `init` accepts `software`, `mobile` and `general`, preserves existing documents, and provisions the foundation triad plus all memory areas and archive indexes. `--kits` installs canonical skills and rules into `.gemini`, `.claude`, `.cursor`, `.codex` and `.github`. Existing configuration files and exclusive local skills/rules remain intact. Canonical names are updated from the matrix. Sync delegates to `scripts/skills/sync-skills.cjs --target`; it does not propagate to other repositories or templates. Matrix selection uses `--matrix`, then `MDD_MATRIX`, then the source checkout when installed editably.
@@ -47,6 +51,8 @@ Mutation commands use an exclusive `memory/.mdd.lock`; they refuse symlinks/junc
 `daemon` and `watch` are aliases. They run a foreground asynchronous service, emit JSON when health changes, stop with Ctrl+C (exit 130), and support `--once`. They neither compact memory nor upload reports automatically. Use an OS service manager to host them in the background.
 
 ## Hub API
+
+Metadata/index commands share the PHP Core contract (`c2f memory:index/set/get --repo=PATH`). Indexing reads scalar YAML and falls back to legacy headings/prose without altering documents. Set preserves the body, updates string metadata and immediately rebuilds the local index. Per-file replacements are atomic; failure to write the index rolls back the document. A process crash between replacements requires index regeneration. Unsupported or malformed frontmatter is refused for mutation. The reusable API is `mdd_client.core.indexer`; init now also provisions human-reviews archive indexes. Pending human reviews are not automatically archived by compact.
 
 ```sh
 mdd-hub serve --root ./hub-project --port 8765

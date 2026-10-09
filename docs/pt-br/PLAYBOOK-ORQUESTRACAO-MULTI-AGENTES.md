@@ -18,7 +18,7 @@ O humano define a necessidade. O Arquiteto lê código e memória vigentes, defi
 
 ## Execute com evidências visíveis
 
-O Executor lê CURRENT, requisição, lote e checklist; seleciona procedimentos pertinentes no **catálogo de 44 skills**; mostra Live Todo List; e implementa o menor slice aprovado. Atualize progresso após etapas relevantes, execute verificações apropriadas e registre resultados concretos e limitações.
+O Executor lê CURRENT, requisição, lote e checklist; seleciona procedimentos pertinentes no **catálogo de 45 skills**; mostra Live Todo List; e implementa o menor slice aprovado. Atualize progresso após etapas relevantes, execute verificações apropriadas e registre resultados concretos e limitações.
 
 ```text
 Projeto: <identificador do repositório>

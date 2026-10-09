@@ -11,7 +11,7 @@ Comece pelo framework e pela tríade, depois escolha um guia de ferramenta. As d
 | [Mecânica de memória e retenção](ESPECIFICACAO-FRAMEWORK-MDD.md) | Quatro camadas, 10 ativos, 50 KB e arquivos. |
 | [Client e Hub em Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) | Comandos previstos e modos de evolução. |
 | [Arquiteto, Executor, Revisor](ARQUITETURA-AGENTE-DUPLO.md) | Responsabilidades e revisão independente. |
-| [44 skills canônicas](CATALOGO-DE-SKILLS.md) | Quando carregar cada procedimento. |
+| [45 skills canônicas](CATALOGO-DE-SKILLS.md) | Quando carregar cada procedimento. |
 | [CLI Core e MCP](GUIA-RAPIDO-CLI-E-MCP.md) | Ferramentas disponíveis e configuração. |
 | [Painel VS Code](GUIA-PAINEL-DEV-TOOLS-VSCODE.md) | Controles, choques e integração dual prevista. |
 | [Fluxo multiagente](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) | Do briefing ao recibo verificável. |
