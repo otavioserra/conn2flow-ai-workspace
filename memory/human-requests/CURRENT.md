@@ -1,14 +1,18 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-068.md](req-068.md) (Frente 1: Satélites) & [req-069.md](req-069.md) (Frente 2: Python MDD Client & Hub)
+* **Ponteiro Ativo**: 
+  - [req-068.md](req-068.md) (Frente 1: Migração MDD Satélites)
+  - [req-069.md](req-069.md) (Frente 2: Python MDD Client & Hub)
+  - [req-070.md](req-070.md) (Frente 3: Revamp da Documentação Pública e READMEs)
 * **Status**: `APPROVED` (aprovadas para execução paralela por agentes de implementação)
-* **Lotes Relacionados**: `BATCH-070` e `BATCH-071`
+* **Lotes Relacionados**: `BATCH-070`, `BATCH-071` e `BATCH-072`
 * **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja e homologa; Executores implementam)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-09
 * **Frentes em Execução / Espera**:
   - [req-068.md](req-068.md) (`BATCH-070`, Migração Estrutural MDD nos 7 Repositórios Satélites, `APPROVED`)
   - [req-069.md](req-069.md) (`BATCH-071`, Implementação das Aplicações Python MDD Client & Hub, `APPROVED`)
+  - [req-070.md](req-070.md) (`BATCH-072`, Revamp da Documentação Pública, READMEs Raiz e docs/, `APPROVED`)
   - [req-062.md](req-062.md) (`BATCH-064`, Testes locais e release v1.1.2 da extensão VS Code, em espera de homologação humana)
   - [req-067.md](req-067.md) (`BATCH-069`, Fundação Estrutural MDD na Matriz, `HOMOLOGATED` e PUSH realizado)
 
@@ -23,3 +27,6 @@
    Implementação das duas aplicações em Python 3.11+ em `tools/`:
    - `tools/mdd-client/`: CLI `mdd` (init, sync, compact, status, report, daemon).
    - `tools/mdd-hub/`: Hub API e Documentation Watcher com os 3 modos de autonomia (`headless`, `monitored`, `reviewer`).
+
+3. **Frente 3 (BATCH-072 / REQ-070)**:
+   Revamp da documentação pública e modernização dos READMEs da raiz (`README.md` e `README-PT-BR.md`), descentralizando o conteúdo denso para `docs/` e criando os novos guias de Especificação do MDD e do Ecossistema Python.

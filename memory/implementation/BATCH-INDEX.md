@@ -31,12 +31,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-059** | Migração de Configurações para .gemini/config.json e Antigravity v2.16+ | [batch-059](archive/batch-059.md) |
 | **BATCH-060** | Skill canônica `c2f-documentation` e propagação aos kits | [batch-060](archive/batch-060.md) |
 | **BATCH-061** | Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização em Skills | [batch-061](archive/batch-061.md) |
+| **BATCH-062** | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062](archive/batch-062.md) |
 
 ## Lotes ativos e recentes
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-062** | complete | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062.md](batch-062.md) | REQ-060 homologada; criação de c2f-payment-gateways (41 skills canônicas), 12 skills atualizadas, 494 arquivos propagados, 1.025/1.025 MD5 verde, 114/114 npm test. |
 | **BATCH-063** | complete | Choques das entregas na extensão do VS Code | [batch-063.md](batch-063.md) | REQ-061 homologada; 124/124 npm test, contrato validado contra CLI/tenant, revisão técnica aprovada (review-063.md). |
 | **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
 | **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
@@ -46,7 +46,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-069** | complete | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](batch-069.md) | REQ-067 homologada; fundação MDD (00, 01, 02), 50 índices, 44 skills (c2f-ai-features), Armadilhas 18 e 19, 39 alvos PASS, 124/124 testes, review-069.md aprovado. |
 | **BATCH-070** | ready-for-intake | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 aprovada; migração de sdd/ para memory/, Tríade 00, 01, 02 e 44 skills nos 7 repositórios satélites |
 | **BATCH-071** | ready-for-intake | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
+| **BATCH-072** | ready-for-intake | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 aprovada; modernização dos READMEs da raiz (EN/PT-BR) e criação de especificações modulares em docs/ |
 
 ## Requisição ativa
 
-`REQ-068` (`BATCH-070`, Satélites MDD) e `REQ-069` (`BATCH-071`, Aplicações Python MDD Client & Hub) aprovadas para execução. Em espera: `REQ-062` (`BATCH-064`, release da extensão) e `REQ-064` (`BATCH-066`, lições de pipeline). Lote `BATCH-069` homologado e commitado/push.
+`REQ-068` (`BATCH-070`, Satélites MDD), `REQ-069` (`BATCH-071`, Aplicações Python MDD Client & Hub) e `REQ-070` (`BATCH-072`, Revamp da Documentação Pública) aprovadas para execução. Em espera: `REQ-062` (`BATCH-064`, release da extensão) e `REQ-064` (`BATCH-066`, lições de pipeline). Lote `BATCH-069` homologado e commitado/push.

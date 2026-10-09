@@ -5,7 +5,6 @@ Lotes e evidências
 | ID | Título | Resumo Executivo | Link Relativo | Status |
 | --- | --- | --- | --- | --- |
 | archive | archive | Nó de navegação | [archive](archive/index.md) | indexed |
-| batch-062 | BATCH-062 — Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | A skill canônica `c2f-payment-gateways/SKILL.md` consolida os 8 padrões arquiteturais de segurança para gateways de pagamento (Stripe, PayPal, etc.): | [batch-062.md](batch-062.md) | complete |
 | batch-063 | BATCH-063 — Choques das Entregas na Extensão do VS Code | 1. `projectConflictsPolicy.ts` valida as respostas, normaliza IDs numéricos e monta argumentos sem interpolação de shell. | [batch-063.md](batch-063.md) | complete |
 | batch-065 | BATCH-065 — Integração do Chrome DevTools MCP Server | A configuração canônica mantém exatamente `npx -y chrome-devtools-mcp@latest --allow-unrestricted-paths`. O lançador é auxiliar: para conectar à instância sandbox, acrescentar `--b | [batch-065.md](batch-065.md) | complete |
 | batch-066 | BATCH-066 — Lições de 2026-10-01 nas skills | Tudo foi acrescentado ao fim de cada skill, com título próprio. Na skill de pipeline, os três pontos que diziam "6 etapas" passaram a apontar para a Regra #8. | [batch-066.md](batch-066.md) | ready-for-review |
@@ -14,4 +13,5 @@ Lotes e evidências
 | batch-069 | BATCH-069 — Fundação MDD e lições do BL-028 | Migração comprovada por 219 renames R100 no índice Git. Snapshot independente confirma a presença dos 231 arquivos físicos anteriores (incluindo 12 arquivos locais ignorados), sem  | [batch-069.md](batch-069.md) | complete |
 | batch-070 | BATCH-070 — Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites | Migração estrutural de sdd/ para memory/, Tríade 00, 01, 02 e 44 skills em conn2flow, conn2flow-site, conn2flow-nexus, conn2flow-app, lumix, transformamp, conn2flow-mkt | [batch-070.md](batch-070.md) | ready-for-intake |
 | batch-071 | BATCH-071 — Aplicações Python MDD Client CLI & Daemon e MDD Hub & Documentation Watcher | Implementação modular em Python 3.11+ em tools/mdd-client (CLI Typer/Rich) e tools/mdd-hub (FastAPI/Scraper) | [batch-071.md](batch-071.md) | ready-for-intake |
+| batch-072 | BATCH-072 — Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | Modernização dos READMEs da raiz (EN/PT-BR), criação de especificações em docs/ e atualização de guias e catálogos | [batch-072.md](batch-072.md) | ready-for-intake |
 | BATCH-INDEX.md | Batch Index | Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-workspace`. | [BATCH-INDEX.md](BATCH-INDEX.md) | indexed |

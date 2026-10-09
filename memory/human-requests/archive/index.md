@@ -72,3 +72,4 @@ Navegação hierárquica; leia o resumo antes do documento integral.
 | req-057 | req-057.md | ﻿# REQ-057 — Migração da Governança de Configurações para `.gemini/config.json` e Aderência ao Antigravity v2.16+ | [req-057.md](req-057.md) | APPROVED |
 | req-058 | req-058.md | REQ-058 — Skill Canônica `c2f-documentation` e Propagação aos Kits (FEAT-014) | [req-058.md](req-058.md) | HOMOLOGATED |
 | req-059 | req-059.md | REQ-059 — Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização em Skills | [req-059.md](req-059.md) | HOMOLOGATED |
+| req-060 | req-060.md | REQ-060 — Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [req-060.md](req-060.md) | HOMOLOGATED |
