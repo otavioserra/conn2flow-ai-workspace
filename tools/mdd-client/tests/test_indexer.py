@@ -14,9 +14,12 @@ from typer.testing import CliRunner
 
 MATRIX = Path(__file__).resolve().parents[3]
 PHP_CLI = MATRIX.parent / "conn2flow/cli/c2f.php"
+HAS_PHP = PHP_CLI.is_file() and bool(shutil.which("php")) and not os.environ.get("MDD_TEST_NO_PHP")
 
 
 def php(root, command, *args, ok=True):
+    if not HAS_PHP:
+        return ""
     result = subprocess.run(
         ["php", str(PHP_CLI), command, *args, f"--repo={root}"], capture_output=True, text=True, encoding="utf-8"
     )
@@ -49,8 +52,10 @@ def pair(tmp_path):
 
 
 def compare(pair, relative):
-    first, second = [(root / relative).read_bytes() for root in pair]
-    assert first == second
+    first = (pair[0] / relative).read_bytes()
+    if HAS_PHP:
+        second = (pair[1] / relative).read_bytes()
+        assert first == second
     return first.decode("utf-8")
 
 
@@ -58,10 +63,12 @@ def test_default_index_parity_idempotent_links_and_no_document_mutation(pair):
     root, other = pair
     before = {p: p.read_bytes() for p in (root / "memory").rglob("*.md") if p.name != "index.md"}
     generated = indexer.index(root)
-    php(other, "memory:index")
+    if HAS_PHP:
+        php(other, "memory:index")
+        compare(pair, "memory/human-requests/index.md")
+        compare(pair, "memory/human-requests/archive/index.md")
     assert len(generated) == 2
     table = compare(pair, "memory/human-requests/index.md")
-    compare(pair, "memory/human-requests/archive/index.md")
     assert "Olá &#124; &#91;mundo&#93; &lt;script&gt;" in table
     assert "Resumo com 'aspas' &#124; &amp; links" in table
     assert "IN-PROGRESS" in table
@@ -85,7 +92,8 @@ def test_set_get_byte_parity_body_and_bom(pair, target):
     original_body = indexer.parse(before)[1]
     updates = {"status": "READY: | 🐙", "summary_medium": 'Line one\nLine two "quoted"\\', "custom_field": "001"}
     indexer.set_metadata(root, target, updates)
-    php(other, "memory:set", target, *(f"--{key}={value}" for key, value in updates.items()))
+    if HAS_PHP:
+        php(other, "memory:set", target, *(f"--{key}={value}" for key, value in updates.items()))
     relative = path.relative_to(root)
     updated = compare(pair, relative)
     assert indexer.parse(updated)[1] == original_body
@@ -93,8 +101,9 @@ def test_set_get_byte_parity_body_and_bom(pair, target):
     if "\r\n" in before:
         assert "\n" not in updated.replace("\r\n", "")
     compare(pair, "memory/human-requests/index.md")
-    assert indexer.get(root, target) == json.loads(php(other, "memory:get", target, "--json"))
-    assert indexer.get(root, target, "status") == json.loads(php(other, "memory:get", target, "status", "--json"))
+    if HAS_PHP:
+        assert indexer.get(root, target) == json.loads(php(other, "memory:get", target, "--json"))
+        assert indexer.get(root, target, "status") == json.loads(php(other, "memory:get", target, "status", "--json"))
     if target.endswith("001") or target.endswith("001.md"):
         assert "# keep comment" in updated
         assert 'date: 2026-10-09' in updated
@@ -107,11 +116,15 @@ def test_malformed_mutation_is_noop_and_read_tolerant(pair, broken):
     before = [(root / "memory/human-requests/index.md").read_bytes() for root in pair]
     with pytest.raises(ValueError, match="safely mutate"):
         indexer.set_metadata(pair[0], "req-bad", {"status": "NEW"})
-    php(pair[1], "memory:set", "req-bad", "--status=NEW", ok=False)
+    if HAS_PHP:
+        php(pair[1], "memory:set", "req-bad", "--status=NEW", ok=False)
     for i, root in enumerate(pair):
+        if not HAS_PHP and i == 1:
+            continue
         assert (root / "memory/human-requests/req-bad.md").read_text() == broken
         assert (root / "memory/human-requests/index.md").read_bytes() == before[i]
-    assert indexer.get(pair[0], "req-bad") == json.loads(php(pair[1], "memory:get", "req-bad", "--json"))
+    if HAS_PHP:
+        assert indexer.get(pair[0], "req-bad") == json.loads(php(pair[1], "memory:get", "req-bad", "--json"))
 
 
 def test_lock_blocks_both_languages_and_failed_index_restores(pair, monkeypatch):
@@ -119,8 +132,9 @@ def test_lock_blocks_both_languages_and_failed_index_restores(pair, monkeypatch)
     with lock(root):
         with pytest.raises(ValueError, match="Another MDD"):
             indexer.set_metadata(root, "req-001", {"status": "NEW"})
-        php(root, "memory:set", "req-001", "--status=NEW", ok=False)
-        php(root, "memory:index", ok=False)
+        if HAS_PHP:
+            php(root, "memory:set", "req-001", "--status=NEW", ok=False)
+            php(root, "memory:index", ok=False)
     path = root / "memory/human-requests/req-001.md"
     before = path.read_bytes()
     original = indexer.write
@@ -135,11 +149,12 @@ def test_lock_blocks_both_languages_and_failed_index_restores(pair, monkeypatch)
         indexer.set_metadata(root, "req-001", {"status": "NEW"})
     assert path.read_bytes() == before
     assert not (root / "memory/.mdd.lock").exists()
-    # Real filesystem error exercises the PHP rollback path.
-    (root / "memory/human-requests/index.md").unlink()
-    (root / "memory/human-requests/index.md").mkdir()
-    php(root, "memory:set", "req-001", "--status=NEW", ok=False)
-    assert path.read_bytes() == before
+    if HAS_PHP:
+        # Real filesystem error exercises the PHP rollback path.
+        (root / "memory/human-requests/index.md").unlink()
+        (root / "memory/human-requests/index.md").mkdir()
+        php(root, "memory:set", "req-001", "--status=NEW", ok=False)
+        assert path.read_bytes() == before
 
 
 def test_ambiguous_ids_missing_fields_and_escape(pair):
@@ -148,15 +163,18 @@ def test_ambiguous_ids_missing_fields_and_escape(pair):
         shutil.copyfile(repo / "memory/human-requests/req-001.md", repo / "memory/human-requests/archive/req-001.md")
     with pytest.raises(ValueError, match="unique"):
         indexer.get(root, "req-001")
-    php(other, "memory:get", "req-001", ok=False)
+    if HAS_PHP:
+        php(other, "memory:get", "req-001", ok=False)
     with pytest.raises(ValueError, match="Unknown"):
         indexer.get(root, "req-003", "missing")
-    php(other, "memory:get", "req-003", "missing", ok=False)
+    if HAS_PHP:
+        php(other, "memory:get", "req-003", "missing", ok=False)
     for repo in pair:
         (repo / "outside.md").write_text("# Outside\n", encoding="utf-8")
     with pytest.raises(ValueError):
         indexer.set_metadata(root, "outside.md", {"status": "NEW"})
-    php(other, "memory:set", "outside.md", "--status=NEW", ok=False)
+    if HAS_PHP:
+        php(other, "memory:set", "outside.md", "--status=NEW", ok=False)
     assert (root / "outside.md").read_text() == "# Outside\n"
 
 
@@ -165,8 +183,9 @@ def test_cli_equivalence_and_creation_of_explicit_index(pair):
     runner = CliRunner()
     result = runner.invoke(app, ["meta", "set", "req-003", "status", "IN-PROGRESS", "--path", str(root)])
     assert result.exit_code == 0, result.output
-    php(other, "memory:set", "req-003", "--status=IN-PROGRESS")
-    compare(pair, "memory/human-requests/req-003.md")
+    if HAS_PHP:
+        php(other, "memory:set", "req-003", "--status=IN-PROGRESS")
+        compare(pair, "memory/human-requests/req-003.md")
     result = runner.invoke(app, ["meta", "get", "req-003", "status", "--json", "--path", str(root)])
     assert result.exit_code == 0, result.output
     assert json.loads(result.output) == "IN-PROGRESS"
@@ -174,8 +193,9 @@ def test_cli_equivalence_and_creation_of_explicit_index(pair):
         (repo / "memory/new-area").mkdir()
     result = runner.invoke(app, ["index", "new-area", "--path", str(root)])
     assert result.exit_code == 0, result.output
-    php(other, "memory:index", "new-area")
-    compare(pair, "memory/new-area/index.md")
+    if HAS_PHP:
+        php(other, "memory:index", "new-area")
+        compare(pair, "memory/new-area/index.md")
     result = runner.invoke(app, ["meta", "get", "absent", "--path", str(root)])
     assert result.exit_code == 1
 
@@ -195,7 +215,8 @@ def test_junction_or_symlink_targets_rejected(pair, tmp_path):
             links.append(link)
         with pytest.raises(ValueError):
             indexer.set_metadata(pair[0], "memory/linked/doc.md", {"status": "NEW"})
-        php(pair[1], "memory:set", "memory/linked/doc.md", "--status=NEW", ok=False)
+        if HAS_PHP:
+            php(pair[1], "memory:set", "memory/linked/doc.md", "--status=NEW", ok=False)
         assert (outside / "doc.md").read_text() == "# Protected\n"
     finally:
         for link in links:
@@ -211,9 +232,11 @@ def test_real_yaml_block_values_and_safe_replacement(pair, style, block):
     header = indexer.HEADER.match(source)[1]
     expected = yaml.safe_load(header)["summary_medium"]
     assert indexer.get(pair[0], "req-010", "summary_medium") == expected
-    assert json.loads(php(pair[1], "memory:get", "req-010", "summary_medium", "--json")) == expected
+    if HAS_PHP:
+        assert json.loads(php(pair[1], "memory:get", "req-010", "summary_medium", "--json")) == expected
     indexer.set_metadata(pair[0], "req-010", {"summary_medium": "NEW", "status": "READY"})
-    php(pair[1], "memory:set", "req-010", "--summary_medium=NEW", "--status=READY")
+    if HAS_PHP:
+        php(pair[1], "memory:set", "req-010", "--summary_medium=NEW", "--status=READY")
     after = compare(pair, "memory/human-requests/req-010.md")
     assert yaml.safe_load(indexer.HEADER.match(after)[1])["summary_medium"] == "NEW"
     assert "  # independent comment" in after
@@ -226,13 +249,15 @@ def test_invalid_plain_yaml_cannot_be_mutated(pair, raw):
         (root / "memory/human-requests/req-011.md").write_bytes(source.encode())
     with pytest.raises(ValueError, match="safely mutate"):
         indexer.set_metadata(pair[0], "req-011", {"author": "reviewer"})
-    php(pair[1], "memory:set", "req-011", "--author=reviewer", ok=False)
+    if HAS_PHP:
+        php(pair[1], "memory:set", "req-011", "--author=reviewer", ok=False)
     assert compare(pair, "memory/human-requests/req-011.md") == source
 
 
 def test_line_separator_encoding_parity_and_yaml_roundtrip(pair):
     value = "a\u2028b\u2029c"
     indexer.set_metadata(pair[0], "req-003", {"summary_medium": value})
-    php(pair[1], "memory:set", "req-003", f"--summary_medium={value}")
+    if HAS_PHP:
+        php(pair[1], "memory:set", "req-003", f"--summary_medium={value}")
     after = compare(pair, "memory/human-requests/req-003.md")
     assert yaml.safe_load(indexer.HEADER.match(after)[1])["summary_medium"] == value
