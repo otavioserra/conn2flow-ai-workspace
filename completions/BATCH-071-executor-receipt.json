@@ -1,0 +1,41 @@
+{
+  "project": "conn2flow-ai-workspace",
+  "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace",
+  "request": "REQ-069",
+  "batch": "BATCH-071",
+  "status": "ready-for-review",
+  "branch": "feat/req-069",
+  "code_commit": "d052f32",
+  "tests": {
+    "tests": 61,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "coverage": {
+      "covered_lines": 876,
+      "num_statements": 901,
+      "percent_covered": 97.2253052164262,
+      "percent_covered_display": "97",
+      "missing_lines": 25,
+      "excluded_lines": 0,
+      "percent_statements_covered": 97.2253052164262,
+      "percent_statements_covered_display": "97"
+    },
+    "code_commit": "d052f32",
+    "warning": "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias",
+    "lint": "PASS",
+    "pip_check": "PASS",
+    "node_syntax": "PASS"
+  },
+  "evidence": [
+    "completions/BATCH-071-pytest.xml",
+    "completions/BATCH-071-test-summary.json",
+    "completions/BATCH-071-smoke.json"
+  ],
+  "remaining": [
+    "independent review",
+    "architect homologation"
+  ],
+  "production_deploy": false,
+  "hosted_pr_created": false
+}
