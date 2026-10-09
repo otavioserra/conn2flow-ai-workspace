@@ -346,3 +346,17 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Auditoria do Revisor Técnico: parecer emitido em [review-069.md](review-069.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-069-executor-receipt.json`.
+
+
+## BATCH-072 — Revamp da documentação pública (REQ-070, 2026-10-09)
+
+- [x] READMEs EN/PT-BR executivos, cada um abaixo de 10 KB, com Mermaid, três passos, guias e sugestões de metadados GitHub.
+- [x] Pares do framework MDD e do ecossistema Python criados; guias existentes atualizados para tríade, 44 skills, oito pilares, CLI/MCP e estado de v1.1.2/integração dual.
+- [x] Router e índices de idioma atualizados; par EN do guia de publicação criado.
+- [x] Auditoria executada: 23 documentos, 11 pares estruturais, 252 links relativos, 80 fontes existentes, catálogos 44/44 e READMEs de 5.089/5.394 bytes.
+- [x] Verificador falsificável: 5/5 mutações detectadas em fixture temporária, incluindo o README antigo do HEAD.
+- [x] Paridade temática revisada; sintaxe CJS e diff sem erros.
+- [x] [Relatório](../implementation/batch-072.md), [auditoria](../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../completions/BATCH-072-executor-receipt.json) registrados.
+- [ ] Revisão técnica independente e homologação do Arquiteto/humano.
+
+Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega ready-for-review.

@@ -1,0 +1,68 @@
+{
+  "batch_id": "BATCH-072",
+  "req_id": "REQ-070",
+  "project": "conn2flow-ai-workspace",
+  "role": "executor",
+  "status": "success",
+  "delivery_state": "ready-for-review",
+  "verified_source_commit": "2afd000",
+  "summary": "Revamp bilíngue da documentação pública e READMEs; estado real de Python, extensão e integração dual explicitado.",
+  "evidence": {
+    "audit": "completions/BATCH-072-docs-audit.json",
+    "negative_checks": "completions/BATCH-072-validator-negative-checks.json",
+    "batch": "memory/implementation/batch-072.md",
+    "validator": "scripts/docs/validate-public-docs.cjs"
+  },
+  "metrics": {
+    "documents": 23,
+    "bilingual_pairs": 11,
+    "relative_links": 252,
+    "source_paths": 80,
+    "canonical_skills": 44,
+    "readme_bytes": {
+      "README.md": 5089,
+      "README-PT-BR.md": 5394
+    },
+    "negative_checks": 5
+  },
+  "limitations": [
+    "Python packages absent at verification; requested interfaces documented.",
+    "Extension manifest 1.1.1; release 1.1.2 target, dual integration planned.",
+    "Legacy MCP setup helper writes .agents/; no implementation change.",
+    "No product tests, Mermaid rendering, external link checks, deployment or publication.",
+    "Independent review and homologation remain separate."
+  ],
+  "files": [
+    "README.md",
+    "README-PT-BR.md",
+    "docs/en/MDD-FRAMEWORK-SPECIFICATION.md",
+    "docs/pt-br/ESPECIFICACAO-FRAMEWORK-MDD.md",
+    "docs/en/MDD-PYTHON-ECOSYSTEM-GUIDE.md",
+    "docs/pt-br/GUIA-ECOSSISTEMA-PYTHON-MDD.md",
+    "docs/en/DOUBLE-AGENT-ARCHITECTURE.md",
+    "docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md",
+    "docs/en/SKILLS-CATALOG.md",
+    "docs/pt-br/CATALOGO-DE-SKILLS.md",
+    "docs/en/QUICKSTART-CLI-AND-MCP.md",
+    "docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md",
+    "docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md",
+    "docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md",
+    "docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md",
+    "docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md",
+    "docs/en/FUTURE-EVOLUTION-ROADMAP.md",
+    "docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md",
+    "docs/en/VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md",
+    "docs/pt-br/GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md",
+    "docs/en/README.md",
+    "docs/pt-br/README.md",
+    "docs/README.md",
+    "memory/implementation/batch-072.md",
+    "scripts/docs/validate-public-docs.cjs",
+    "completions/BATCH-072-docs-audit.json",
+    "completions/BATCH-072-validator-negative-checks.json",
+    "completions/BATCH-072-executor-receipt.json",
+    "memory/implementation/index.md",
+    "memory/implementation/BATCH-INDEX.md",
+    "memory/validation/VALIDATION-CHECKLIST.md"
+  ]
+}

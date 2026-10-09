@@ -1,71 +1,95 @@
-# 🧩 Catálogo de Skills — Conn2Flow AI Workspace
-
-Este catálogo lista as **36 Skills** (29 Core Skills do Framework + 7 SDD Workflow Skills) padronizadas e sincronizadas universalmente entre **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)** e **OpenAI Codex (`.codex/skills/`)**.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../.gemini/skills/c2f-ai-features/SKILL.md
+  - ../../scripts/skills/sync-skills.cjs
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 29 Skills
+# Catálogo de 44 skills canônicas
 
-| Skill | Gatilho & Propósito Principal |
-| :--- | :--- |
-| **`c2f-agent-visual-inspection`** | **[NOVA]** Ciclo de vida de 5 etapas para inspeção visual e runtime autônomo no Docker (`project:sync-core`, `env:set development`, `auth:cookie` com bypass de sanitização HTML, `page:inspect` e tear down com `env:set production`). Elimina dependência de validação manual do operador. |
-| **`c2f-module-crud-scaffolding`** | **[NOVA]** Guia e scaffold canônico para criação de novos módulos CRUD baseado no padrão `modulos-grupos`. |
-| **`c2f-variables-system`** | **[NOVA]** Governança de textos, mensagens de erro, alertas de warning e i18n via `variables.json`. Proíbe strings hardcoded. |
-| **`c2f-environment-configuration`** | **[NOVA]** Gestão de credenciais sensíveis e templates `.env` via `config.php` e `$_CONFIG`, e governança da flag `HTML_SANITIZE`. |
-| **`c2f-resources-system`** | Compilação declarativa de 11 tipos de recursos (`layouts`, `pages`, `components`, `templates`, etc.), tabelas dinâmicas e regra mandatória de Version Bump. |
-| **`c2f-global-variables`** | Guia de superglobais `$_GESTOR` (runtime), `$_CONFIG` (sistema), `$_BANCO` (conexão) e `$_ENV` (infra). |
-| **`c2f-database-operations`** | Operações seguras com a biblioteca de banco (`banco_select`, `banco_insert_name`, `banco_update`, `banco_escape_field`). |
-| **`c2f-database-migrations`** | Criação e execução de migrações determinísticas com Phinx (`db/migrations/`). |
-| **`c2f-database-schema`** | Metadados de schema e sincronização declarativa via `schema-metadata.json`. |
-| **`c2f-module-structure`** | Anatomia e ciclo de vida de módulos no diretório `gestor/modulos/`. |
-| **`c2f-module-configuration`** | Telas e tabelas de configuração interna de módulos. |
-| **`c2f-html-css-pages-and-components`** | Proibição de arquivos estáticos soltos fora de `resources/`, regra de 2 níveis do `HTML_SANITIZE` (público vs admin/Live Editor) e marcação de seções (`data-id`, `data-title`). |
-| **`c2f-system-tasks`** | Execução de rotinas do sistema, scripts bash e automações de infraestrutura. |
-| **`c2f-auth-system`** | Autenticação, 2FA, sessões seguras e tokens JWT. |
-| **`c2f-access-control`** | Perfis de usuário, permissões modulares e controle de acesso hierárquico. |
-| **`c2f-form-processing`** | Processamento de formulários, validação CSRF e sanitização de dados. |
-| **`c2f-api-endpoints`** | Construção de endpoints REST, respostas JSON e contratos de API. |
-| **`c2f-javascript-ajax`** | **[ATUALIZADA]** Contrato canônico de integração AJAX no Gestor (Vanilla Fetch, `URLSearchParams`, `FormData`), prevenção de erro 403 Forbidden por CSRF (`ajax: 'sim'`), lifecycle PHP e regra de Version Bump. |
-| **`c2f-crawlers-and-bots`** | Detecção de robôs, scrapers e crawlers de redes sociais (OpenGraph). |
-| **`c2f-cookie-management`** | Manipulação de cookies com hashing e conformidade com LGPD/GDPR. |
-| **`c2f-tailwind-css-architecture`** | **[ATUALIZADA]** Governança do Tailwind CSS v4, separação Autoria vs Derivado (`html`/`css` = autoria, `css_precompiled`/`css_compiled` = derivado), instrumentos `c2f css:audit` e `c2f css:rebuild`, classificação de `tailwind_sources` em PHP/JS como dívida técnica. |
-| **`c2f-library-system`** | Inclusão dinâmica e versionamento de bibliotecas do gestor (`gestor_incluir_biblioteca`). |
-| **`c2f-url-routing`** | Resolução de URLs canônicas, rotas dinâmicas e reescrita de caminhos. |
-| **`c2f-i18n-translations`** | Tradução e internacionalização de interfaces e dicionários (`__t()`). |
-| **`c2f-file-system-operations`** | Uploads seguros, manipulação de arquivos e caminhos absolutos do sistema. |
-| **`c2f-log-system`** | Gravação de logs unificados em disco (`log_disco()`) e depuração. |
-| **`c2f-shell-and-windows-traps`** | **[NOVA]** Blindagem contra as 6 armadilhas de Windows/Git Bash/Docker: conversão de caminhos MSYS, `curl` com `<`, heredocs Python com bytes de controle, asserts silenciosos, formulários `multipart/form-data` com gatilhos ocultos e paralelismo concorrente em comandos de compilação em lote. |
-| **`c2f-project-pipeline-and-tasks`** | **[NOVA]** Regra mandatória Pipeline ≠ Cópia de Arquivo (6 etapas para projetos e 4 para o sistema finalizando com `css:rebuild` contra o estado híbrido), autoridade de `devProjects.<id>.local` em `environment.json`, fonte da verdade em runtime e regra de execução sequencial exclusiva em lote. |
+[English](../en/SKILLS-CATALOG.md) · [Índice da documentação](README.md)
 
----
+A fonte canônica é .gemini/skills/. Os kits .claude/, .cursor/, .codex/ e .github/ recebem os espelhos pelo sincronizador oficial. Carregue somente as skills pertinentes à tarefa e leia o SKILL.md completo antes da operação correspondente. Nomes legados sdd-* são preservados como identificadores; a matriz usa memory/.
 
-## 🚦 2. SDD Workflow Skills (`sdd-*`) — 7 Skills
+## Papéis da tríade — 3 skills
 
-| Skill | Propósito no Fluxo de Desenvolvimento | Marco de Ativação |
-| :--- | :--- | :--- |
-| **`start-sdd-slice`** / **`sdd-classify-intent`** | Classifica a intenção e inicializa o contexto operacional da fatia. | 🟢 **Início de Tarefa** |
-| **`sdd-workflow`** | Guia passo a passo de desenvolvimento guiado por especificações. | 🟢 **Início de Tarefa** |
-| **`sdd-update-spec`** | Atualiza a especificação viva (`sdd/SPEC.md`) com rastreabilidade. | ⚙️ **Durante a Edição** |
-| **`sdd-record-decision`** | Registra decisões arquiteturais formais em `sdd/decisions/DECISION-LOG.md`. | ⚙️ **Durante a Edição** |
-| **`sdd-plan-batch`** | Divide requisitos complexos em lotes atômicos e executáveis. | ⚙️ **Durante a Edição** |
-| **`project-validation`** / **`sdd-validate-acceptance`** | Valida critérios de aceite, executa testes e audita requisitos. | 🏁 **Fechamento & Validação** |
-| **`review-current-batch`** / **`sdd-log-implementation`** | Registra o diário de implementação e evidências em `batch-YYY.md`. | 🏁 **Fechamento & Validação** |
-| **`sdd-memory-gardening`** | Poda e arquivamento idempotente de memórias de execução. | 🏁 **Fechamento & Validação** |
-| **`raise-spec-change`** / **`sdd-process-change-request`** | Processa solicitações formais de mudança de escopo (`CR-XXX.md`). | ⚠️ **Mudança Normativa** |
+| Skill | Quando usar |
+| --- | --- |
+| [`c2f-architect-master`](../../.gemini/skills/c2f-architect-master/SKILL.md) | Especificações aprovadas, decisões, briefings e homologação. |
+| [`c2f-executor-agent`](../../.gemini/skills/c2f-executor-agent/SKILL.md) | Implementação aprovada, Live Todo List, verificações e recibos. |
+| [`c2f-reviewer-agent`](../../.gemini/skills/c2f-reviewer-agent/SKILL.md) | Auditoria independente findings-first e conferência de evidências. |
 
----
+## Core, módulos e infraestrutura — 34 skills
 
-## ⚡ 3. O Padrão de Contrato de Execução (`TRIGGER` & `SKIP`)
+| Skill | Quando usar |
+| --- | --- |
+| [`c2f-ai-features`](../../.gemini/skills/c2f-ai-features/SKILL.md) | Integração de IA do Conn2Flow Pro pelos oito pilares abaixo. |
+| [`c2f-agent-visual-inspection`](../../.gemini/skills/c2f-agent-visual-inspection/SKILL.md) | Inspeção autônoma de telas, console, animações e rotas autenticadas. |
+| [`c2f-database-operations`](../../.gemini/skills/c2f-database-operations/SKILL.md) | SQL, CRUD via banco.php e migrações Phinx. |
+| [`c2f-database-testing`](../../.gemini/skills/c2f-database-testing/SKILL.md) | Testes isolados SQLite/MySQL e fixtures realistas de banco. |
+| [`c2f-dev-scripts`](../../.gemini/skills/c2f-dev-scripts/SKILL.md) | Scripts do projeto, caminhos CLI e ambientes de execução. |
+| [`c2f-docker-environment`](../../.gemini/skills/c2f-docker-environment/SKILL.md) | Operações em containers, portas e dados locais sincronizados. |
+| [`c2f-documentation`](../../.gemini/skills/c2f-documentation/SKILL.md) | Docs bilíngues derivadas do código, metadados e pipeline de publicação. |
+| [`c2f-documentation-governance`](../../.gemini/skills/c2f-documentation-governance/SKILL.md) | Conferir documentação técnica na fonte autoritativa. |
+| [`c2f-environment-configuration`](../../.gemini/skills/c2f-environment-configuration/SKILL.md) | Credenciais, variáveis de ambiente e configuração central. |
+| [`c2f-gd-image-safety`](../../.gemini/skills/c2f-gd-image-safety/SKILL.md) | Suporte a formatos, memória e integridade de imagens no PHP GD. |
+| [`c2f-gestor-functions`](../../.gemini/skills/c2f-gestor-functions/SKILL.md) | Layouts, sessões, redirecionamentos e funções de gestor.php. |
+| [`c2f-global-variables`](../../.gemini/skills/c2f-global-variables/SKILL.md) | Acesso seguro às globais de roteamento, configuração e banco. |
+| [`c2f-hooks-system`](../../.gemini/skills/c2f-hooks-system/SKILL.md) | Actions, filters registrados e parâmetros de extensibilidade. |
+| [`c2f-html-css-pages-and-components`](../../.gemini/skills/c2f-html-css-pages-and-components/SKILL.md) | Autoria de telas e componentes no sistema de recursos. |
+| [`c2f-interface-v2-architecture`](../../.gemini/skills/c2f-interface-v2-architecture/SKILL.md) | Modais administrativos, cards, breadcrumbs e layout responsivo. |
+| [`c2f-javascript-ajax`](../../.gemini/skills/c2f-javascript-ajax/SKILL.md) | AJAX com CSRF, fetch, multipart e envelopes JSON. |
+| [`c2f-json-resources-sync`](../../.gemini/skills/c2f-json-resources-sync/SKILL.md) | Compilação Data.json, checksums e sincronização de recursos. |
+| [`c2f-modelo-templates`](../../.gemini/skills/c2f-modelo-templates/SKILL.md) | Templates modelo e suas convenções de renderização. |
+| [`c2f-module-crud-scaffolding`](../../.gemini/skills/c2f-module-crud-scaffolding/SKILL.md) | Módulos administrativos canônicos, CRUD e histórico de auditoria. |
+| [`c2f-module-visual-assets`](../../.gemini/skills/c2f-module-visual-assets/SKILL.md) | Capas, thumbnails de módulos e prompts visuais canônicos. |
+| [`c2f-multilingual-system`](../../.gemini/skills/c2f-multilingual-system/SKILL.md) | Isolamento de idiomas, rotas internacionais e consultas. |
+| [`c2f-mysql-utf8-emoji-encoding`](../../.gemini/skills/c2f-mysql-utf8-emoji-encoding/SKILL.md) | Persistência MySQL de emojis e caracteres Unicode especiais. |
+| [`c2f-payment-gateways`](../../.gemini/skills/c2f-payment-gateways/SKILL.md) | Autoridade de pagamentos, webhooks idempotentes e testes sem credenciais. |
+| [`c2f-plugin-architecture`](../../.gemini/skills/c2f-plugin-architecture/SKILL.md) | Empacotamento, instalação, tabelas e remoção limpa de plugins. |
+| [`c2f-preview-modals-system`](../../.gemini/skills/c2f-preview-modals-system/SKILL.md) | Prévias ao vivo no editor, isolamento de iframe e CSP. |
+| [`c2f-project-pipeline-and-tasks`](../../.gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md) | Pipelines sequenciais de sincronização, builds, testes e deploy. |
+| [`c2f-projects-system`](../../.gemini/skills/c2f-projects-system/SKILL.md) | Sobreposições de projeto, isolamento de tenants e deploy. |
+| [`c2f-resources-system`](../../.gemini/skills/c2f-resources-system/SKILL.md) | Tipos de recursos nativos, vínculos, builds e invalidação de cache. |
+| [`c2f-shell-and-windows-traps`](../../.gemini/skills/c2f-shell-and-windows-traps/SKILL.md) | Escapes PowerShell/Git Bash, MSYS, junctions e binários de ferramentas. |
+| [`c2f-system-tasks`](../../.gemini/skills/c2f-system-tasks/SKILL.md) | Jobs de background, tarefas agendadas, workers e prevenção de loops. |
+| [`c2f-tailwind-css-architecture`](../../.gemini/skills/c2f-tailwind-css-architecture/SKILL.md) | Cascata Tailwind v4, CSS derivado do banco e integridade de build. |
+| [`c2f-tailwind-module-migration`](../../.gemini/skills/c2f-tailwind-module-migration/SKILL.md) | Migração de módulos Fomantic para Tailwind e compatibilidade do JS legado. |
+| [`c2f-variables-system`](../../.gemini/skills/c2f-variables-system/SKILL.md) | Rótulos, mensagens e textos de interface localizados e configuráveis. |
+| [`c2f-widget-development`](../../.gemini/skills/c2f-widget-development/SKILL.md) | Renderizadores de widgets, isolamento de escopo e grids modulares. |
 
-Todas as 36 skills implementam uma cláusula contratual no topo do arquivo para garantir ativação determinística pelos modelos de linguagem:
+## Governança e workflow — 7 skills
 
-```markdown
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Ação operacional exata que obriga a leitura prévia da skill.
-- **SKIP APENAS SE**: Condição estrita de isenção de leitura (ex: investigação sem edição).
-- **CONSEQUÊNCIA DE IGNORAR**: Risco técnico de falha silenciosa, regressão ou rejeição de commit.
+| Skill | Quando usar |
+| --- | --- |
+| [`sdd-workflow`](../../.gemini/skills/sdd-workflow/SKILL.md) | Classificar mudanças e seguir governança e autoridade da memória. |
+| [`start-sdd-slice`](../../.gemini/skills/start-sdd-slice/SKILL.md) | Iniciar requisição aprovada delimitada com critérios de aceite. |
+| [`continue-sdd-batch`](../../.gemini/skills/continue-sdd-batch/SKILL.md) | Retomar o lote atual sem repetir etapas concluídas. |
+| [`raise-spec-change`](../../.gemini/skills/raise-spec-change/SKILL.md) | Propor alterações normativas por change requests aprovadas. |
+| [`review-current-batch`](../../.gemini/skills/review-current-batch/SKILL.md) | Revisar evidências e diffs antes de aprovação humana ou PR. |
+| [`project-validation`](../../.gemini/skills/project-validation/SKILL.md) | Executar verificações capazes de detectar regressões reais e declarar limites. |
+| [`sdd-memory-gardening`](../../.gemini/skills/sdd-memory-gardening/SKILL.md) | Manutenção por limiares, preservação de memória e reparo de links. |
+
+## c2f-ai-features: oito pilares de IA do Conn2Flow Pro
+
+1. **Provedor unificado** — Use a camada compartilhada de provedores; módulos não duplicam adaptadores HTTP.
+2. **Créditos pelos hooks** — Autorize e contabilize por hooks registrados; não debite duas vezes nem presuma cobrança por hooks ausentes.
+3. **Modos editáveis, segurança fixa** — Mantenha instruções de escrita configuráveis e permissões, limites e sanitização fixos.
+4. **Isolamento de dados** — Envolva contexto mínimo autorizado em delimitadores de dados, trate injeção de delimitadores e valide a saída.
+5. **Renderização segura** — Use nós de texto ou whitelist testada; nunca renderize resposta não sanitizada como HTML cru.
+6. **Telemetria sem conteúdo bruto** — Registre metadados permitidos, tokens e status, sem prompts, texto gerado ou segredos.
+7. **Degradação graciosa** — Exercite ausência de provedor, créditos insuficientes, recusa, timeout e falhas mantendo ações independentes utilizáveis.
+8. **Dados sensíveis e banco** — Exclua senhas/hashes, masque identidades e libere a conexão MySQL antes de espera HTTP longa.
+
+Estes são procedimentos da skill canônica, não uma certificação de cada módulo do Pro. Confira a biblioteca e os módulos reais antes de integrar; valide pedido mascarado, resposta, permissões e falhas. Sem provedor acessível, declare testes com dublês e não atribua homologação de resposta real.
+
+## Sincronização e preservação
+
+```sh
+node scripts/skills/sync-skills.cjs
+node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 ```
 
-### Frontmatter com Gatilho de Ação:
-As descrições no cabeçalho YAML seguem o padrão operacional direto:
-`"LEIA ANTES de [Ação Observável]. Se não ler: [Consequência invisível/Erro em produção]."`
+Execute na raiz da matriz. O primeiro comando audita sem escrever; o segundo propaga a skill nomeada para os alvos configurados. O script preserva skills locais exclusivas e traduções declaradas de templates; --apply --all é reservado à propagação de todo o catálogo. mdd sync é o equivalente previsto no Client Python, ainda sem implementação neste checkout.
+
+O total foi conferido nas 44 pastas canônicas com SKILL.md. Contagens e alvos de sincronização vêm do script, não de números históricos nos guias. Consulte o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md).

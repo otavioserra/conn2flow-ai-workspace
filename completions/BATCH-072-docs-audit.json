@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "files": 23,
+  "pairs": [
+    {
+      "en": "README.md",
+      "pt": "README-PT-BR.md",
+      "matched": true,
+      "elements": 22
+    },
+    {
+      "en": "docs/en/MDD-FRAMEWORK-SPECIFICATION.md",
+      "pt": "docs/pt-br/ESPECIFICACAO-FRAMEWORK-MDD.md",
+      "matched": true,
+      "elements": 23
+    },
+    {
+      "en": "docs/en/MDD-PYTHON-ECOSYSTEM-GUIDE.md",
+      "pt": "docs/pt-br/GUIA-ECOSSISTEMA-PYTHON-MDD.md",
+      "matched": true,
+      "elements": 26
+    },
+    {
+      "en": "docs/en/DOUBLE-AGENT-ARCHITECTURE.md",
+      "pt": "docs/pt-br/ARQUITETURA-AGENTE-DUPLO.md",
+      "matched": true,
+      "elements": 17
+    },
+    {
+      "en": "docs/en/SKILLS-CATALOG.md",
+      "pt": "docs/pt-br/CATALOGO-DE-SKILLS.md",
+      "matched": true,
+      "elements": 65
+    },
+    {
+      "en": "docs/en/QUICKSTART-CLI-AND-MCP.md",
+      "pt": "docs/pt-br/GUIA-RAPIDO-CLI-E-MCP.md",
+      "matched": true,
+      "elements": 23
+    },
+    {
+      "en": "docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md",
+      "pt": "docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md",
+      "matched": true,
+      "elements": 23
+    },
+    {
+      "en": "docs/en/MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md",
+      "pt": "docs/pt-br/PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md",
+      "matched": true,
+      "elements": 7
+    },
+    {
+      "en": "docs/en/FUTURE-EVOLUTION-ROADMAP.md",
+      "pt": "docs/pt-br/ROTEIRO-EVOLUCAO-FUTURA.md",
+      "matched": true,
+      "elements": 11
+    },
+    {
+      "en": "docs/en/VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md",
+      "pt": "docs/pt-br/GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md",
+      "matched": true,
+      "elements": 7
+    },
+    {
+      "en": "docs/en/README.md",
+      "pt": "docs/pt-br/README.md",
+      "matched": true,
+      "elements": 14
+    }
+  ],
+  "relativeLinks": 252,
+  "sourcePaths": 80,
+  "canonicalSkills": 44,
+  "readmeBytes": {
+    "README.md": 5089,
+    "README-PT-BR.md": 5394
+  },
+  "failures": []
+}

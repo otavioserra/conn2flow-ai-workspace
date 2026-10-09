@@ -1,67 +1,95 @@
-# 🧩 Skills Catalog — Conn2Flow AI Workspace
-
-This catalog lists the **36 Skills** (29 Core Framework Skills + 7 SDD Workflow Skills) standardized and universally synchronized across **Claude Code (`.claude/skills/`)**, **Cursor IDE (`.cursor/skills/`)**, **GitHub Copilot (`.github/skills/`)**, **Gemini Antigravity (`.gemini/skills/`)**, and **OpenAI Codex (`.codex/skills/`)**.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../.gemini/skills/c2f-ai-features/SKILL.md
+  - ../../scripts/skills/sync-skills.cjs
 ---
 
-## 🛠️ 1. Core Framework Skills (`c2f-*`) — 29 Skills
+# Catalog of 44 canonical skills
 
-| Skill | Trigger & Core Purpose |
-| :--- | :--- |
-| **`c2f-agent-visual-inspection`** | **[NEW]** 5-stage lifecycle for autonomous visual and runtime inspection in Docker (`project:sync-core`, `env:set development`, `auth:cookie` with HTML sanitization bypass, `page:inspect`, and tear down via `env:set production`). Eliminates reliance on manual operator checks. |
-| **`c2f-module-crud-scaffolding`** | **[NEW]** Canonical guide and scaffolding for new CRUD modules based on the `modulos-grupos` pattern. |
-| **`c2f-variables-system`** | **[NEW]** Governance for interface copy, error messages, alerts, and i18n via `variables.json`. Prohibits hardcoded strings. |
-| **`c2f-environment-configuration`** | **[NEW]** Management of sensitive credentials and `.env` templates via `config.php` and `$_CONFIG`, and `HTML_SANITIZE` flag governance. |
-| **`c2f-resources-system`** | Declarative compilation of 11 resource types (`layouts`, `pages`, `components`, `templates`, etc.), dynamic tables, and mandatory Version Bump rule. |
-| **`c2f-global-variables`** | Guide to superglobals `$_GESTOR` (runtime), `$_CONFIG` (system), `$_BANCO` (database), and `$_ENV` (infra). |
-| **`c2f-database-operations`** | Safe database operations via helper libraries (`banco_select`, `banco_insert_name`, `banco_update`, `banco_escape_field`). |
-| **`c2f-database-migrations`** | Deterministic database migrations using Phinx (`db/migrations/`). |
-| **`c2f-database-schema`** | Schema metadata and declarative synchronization via `schema-metadata.json`. |
-| **`c2f-module-structure`** | Anatomy and lifecycle of modules in `gestor/modulos/`. |
-| **`c2f-module-configuration`** | Internal configuration screens and tables for modules. |
-| **`c2f-html-css-pages-and-components`** | Prohibition of loose static files outside `resources/`, 2-tier `HTML_SANITIZE` delivery rule (public vs admin/Live Editor), and section metadata (`data-id`, `data-title`). |
-| **`c2f-system-tasks`** | Execution of system routines, bash scripts, and infrastructure automations. |
-| **`c2f-auth-system`** | User authentication, 2FA, secure sessions, and JWT tokens. |
-| **`c2f-access-control`** | User profiles, modular permissions, and hierarchical role-based access control. |
-| **`c2f-form-processing`** | Form handling, CSRF token validation, and input sanitization. |
-| **`c2f-api-endpoints`** | Building REST endpoints, JSON responses, and API contracts. |
-| **`c2f-javascript-ajax`** | **[UPDATED]** Canonical Gestor AJAX integration contract (Vanilla Fetch, `URLSearchParams`, `FormData`), CSRF 403 Forbidden prevention (`ajax: 'sim'`), PHP lifecycle, and Version Bump rule. |
-| **`c2f-crawlers-and-bots`** | Detecting search bots, scrapers, and social media crawlers (OpenGraph). |
-| **`c2f-cookie-management`** | Cookie manipulation with hashing and LGPD/GDPR compliance. |
-| **`c2f-tailwind-css-architecture`** | **[UPDATED]** Tailwind CSS v4 governance, Authorship vs Derived separation (`html`/`css` = authorship, `css_precompiled`/`css_compiled` = derived), `c2f css:audit` and `c2f css:rebuild` instrumentation, `tailwind_sources` in PHP/JS classified as technical debt. |
-| **`c2f-library-system`** | Dynamic inclusion and versioning of system libraries (`gestor_incluir_biblioteca`). |
-| **`c2f-url-routing`** | Canonical URL resolution, dynamic routing, and URL rewrites. |
-| **`c2f-i18n-translations`** | Translation and internationalization of interfaces and dictionaries (`__t()`). |
-| **`c2f-file-system-operations`** | Secure uploads, file system operations, and absolute path resolution. |
-| **`c2f-log-system`** | Unified disk logging (`log_disco()`) and runtime debugging. |
-| **`c2f-shell-and-windows-traps`** | **[NEW]** Protection against the 6 Windows/Git Bash/Docker traps: MSYS path conversion, `curl` with `<`, Python heredocs with control bytes, silent asserts, `multipart/form-data` forms with hidden triggers, and concurrent batch parallelism swallowing PHP warnings. |
-| **`c2f-project-pipeline-and-tasks`** | **[NEW]** Mandatory Pipeline ≠ File Copy rule (6 stages for projects and 4 for system with mandatory closing `css:rebuild` against hybrid state), `devProjects.<id>.local` declarative authority in `environment.json`, runtime source of truth, and sequential execution rule. |
+[Português](../pt-br/CATALOGO-DE-SKILLS.md) · [Documentation index](README.md)
 
----
+The canonical source is .gemini/skills/. The .claude/, .cursor/, .codex/ and .github/ kits receive mirrors through the official synchronizer. Load only task-relevant skills and read the full SKILL.md before the corresponding operation. Legacy sdd-* names remain identifiers; the matrix uses memory/.
 
-## 🚦 2. SDD Workflow Skills (`sdd-*`) — 7 Skills
+## Triad roles — 3 skills
 
-| Skill | Purpose in Development Lifecycle | Activation Milestone |
-| :--- | :--- | :--- |
-| **`start-sdd-slice`** / **`sdd-classify-intent`** | Classifies human intent and initializes slice operational context. | 🟢 **Task Initiation** |
-| **`sdd-workflow`** | Step-by-step guide for Spec-Driven Development. | 🟢 **Task Initiation** |
-| **`sdd-update-spec`** | Updates living technical specifications (`sdd/SPEC.md`). | ⚙️ **During Execution** |
-| **`sdd-record-decision`** | Records formal architectural decisions in `sdd/decisions/DECISION-LOG.md`. | ⚙️ **During Execution** |
-| **`sdd-plan-batch`** | Decomposes complex requirements into atomic, executable batches. | ⚙️ **During Execution** |
-| **`project-validation`** / **`sdd-validate-acceptance`** | Validates acceptance criteria, executes test suites, and audits specs. | 🏁 **Review & Validation** |
-| **`review-current-batch`** / **`sdd-log-implementation`** | Logs implementation receipts and test evidence in `batch-YYY.md`. | 🏁 **Review & Validation** |
-| **`sdd-memory-gardening`** | Idempotent pruning and archiving of operational memories. | 🏁 **Review & Validation** |
-| **`raise-spec-change`** / **`sdd-process-change-request`** | Processes formal scope change requests (`CR-XXX.md`). | ⚠️ **Normative Change** |
+| Skill | When to use |
+| --- | --- |
+| [`c2f-architect-master`](../../.gemini/skills/c2f-architect-master/SKILL.md) | Approved specifications, decisions, briefs and homologation. |
+| [`c2f-executor-agent`](../../.gemini/skills/c2f-executor-agent/SKILL.md) | Approved implementation, Live Todo List, checks and receipts. |
+| [`c2f-reviewer-agent`](../../.gemini/skills/c2f-reviewer-agent/SKILL.md) | Independent findings-first audit and evidence verification. |
 
----
+## Core, modules and infrastructure — 34 skills
 
-## ⚡ 3. The Execution Contract Pattern (`TRIGGER` & `SKIP`)
+| Skill | When to use |
+| --- | --- |
+| [`c2f-ai-features`](../../.gemini/skills/c2f-ai-features/SKILL.md) | Conn2Flow Pro AI integration under the eight pillars below. |
+| [`c2f-agent-visual-inspection`](../../.gemini/skills/c2f-agent-visual-inspection/SKILL.md) | Autonomous screen, console, animation and authenticated-route inspection. |
+| [`c2f-database-operations`](../../.gemini/skills/c2f-database-operations/SKILL.md) | SQL, banco.php CRUD and Phinx migrations. |
+| [`c2f-database-testing`](../../.gemini/skills/c2f-database-testing/SKILL.md) | Isolated SQLite/MySQL tests and realistic database fixtures. |
+| [`c2f-dev-scripts`](../../.gemini/skills/c2f-dev-scripts/SKILL.md) | Project scripts, CLI paths and execution environments. |
+| [`c2f-docker-environment`](../../.gemini/skills/c2f-docker-environment/SKILL.md) | Container operations, ports and synchronized local data. |
+| [`c2f-documentation`](../../.gemini/skills/c2f-documentation/SKILL.md) | Code-derived bilingual docs, metadata and publication pipeline. |
+| [`c2f-documentation-governance`](../../.gemini/skills/c2f-documentation-governance/SKILL.md) | Verify technical documentation against authoritative source. |
+| [`c2f-environment-configuration`](../../.gemini/skills/c2f-environment-configuration/SKILL.md) | Credentials, environment variables and central configuration. |
+| [`c2f-gd-image-safety`](../../.gemini/skills/c2f-gd-image-safety/SKILL.md) | PHP GD format support, memory and image integrity. |
+| [`c2f-gestor-functions`](../../.gemini/skills/c2f-gestor-functions/SKILL.md) | Layouts, sessions, redirects and gestor.php core helpers. |
+| [`c2f-global-variables`](../../.gemini/skills/c2f-global-variables/SKILL.md) | Safe access to routing, configuration and database globals. |
+| [`c2f-hooks-system`](../../.gemini/skills/c2f-hooks-system/SKILL.md) | Registered actions, filters and extension parameters. |
+| [`c2f-html-css-pages-and-components`](../../.gemini/skills/c2f-html-css-pages-and-components/SKILL.md) | Author screens and components in the resource system. |
+| [`c2f-interface-v2-architecture`](../../.gemini/skills/c2f-interface-v2-architecture/SKILL.md) | Administrative modals, cards, breadcrumbs and responsive layout. |
+| [`c2f-javascript-ajax`](../../.gemini/skills/c2f-javascript-ajax/SKILL.md) | CSRF-aware AJAX, fetch, multipart and JSON envelopes. |
+| [`c2f-json-resources-sync`](../../.gemini/skills/c2f-json-resources-sync/SKILL.md) | Data.json compilation, checksums and resource synchronization. |
+| [`c2f-modelo-templates`](../../.gemini/skills/c2f-modelo-templates/SKILL.md) | Modelo templates and their rendering conventions. |
+| [`c2f-module-crud-scaffolding`](../../.gemini/skills/c2f-module-crud-scaffolding/SKILL.md) | Canonical administrative modules, CRUD and audit history. |
+| [`c2f-module-visual-assets`](../../.gemini/skills/c2f-module-visual-assets/SKILL.md) | Module covers, thumbnails and canonical visual prompts. |
+| [`c2f-multilingual-system`](../../.gemini/skills/c2f-multilingual-system/SKILL.md) | Language isolation, international routes and queries. |
+| [`c2f-mysql-utf8-emoji-encoding`](../../.gemini/skills/c2f-mysql-utf8-emoji-encoding/SKILL.md) | MySQL persistence of emoji and special Unicode characters. |
+| [`c2f-payment-gateways`](../../.gemini/skills/c2f-payment-gateways/SKILL.md) | Payment authority, idempotent webhooks and credential-free tests. |
+| [`c2f-plugin-architecture`](../../.gemini/skills/c2f-plugin-architecture/SKILL.md) | Plugin packaging, installation, tables and clean removal. |
+| [`c2f-preview-modals-system`](../../.gemini/skills/c2f-preview-modals-system/SKILL.md) | Live editor previews, iframe isolation and CSP. |
+| [`c2f-project-pipeline-and-tasks`](../../.gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md) | Sequential synchronization, builds, tests and deployment pipelines. |
+| [`c2f-projects-system`](../../.gemini/skills/c2f-projects-system/SKILL.md) | Project overlays, tenant isolation and project deployment. |
+| [`c2f-resources-system`](../../.gemini/skills/c2f-resources-system/SKILL.md) | Native resource types, bindings, builds and cache invalidation. |
+| [`c2f-shell-and-windows-traps`](../../.gemini/skills/c2f-shell-and-windows-traps/SKILL.md) | PowerShell/Git Bash escaping, MSYS, junctions and tool binaries. |
+| [`c2f-system-tasks`](../../.gemini/skills/c2f-system-tasks/SKILL.md) | Background jobs, scheduled tasks, workers and loop prevention. |
+| [`c2f-tailwind-css-architecture`](../../.gemini/skills/c2f-tailwind-css-architecture/SKILL.md) | Tailwind v4 cascade, database-derived CSS and build integrity. |
+| [`c2f-tailwind-module-migration`](../../.gemini/skills/c2f-tailwind-module-migration/SKILL.md) | Fomantic-to-Tailwind module migration and legacy JS compatibility. |
+| [`c2f-variables-system`](../../.gemini/skills/c2f-variables-system/SKILL.md) | Configurable localized labels, messages and user-facing text. |
+| [`c2f-widget-development`](../../.gemini/skills/c2f-widget-development/SKILL.md) | Widget renderers, scope isolation and modular grids. |
 
-All 36 skills enforce a mandatory contract clause at the top of the file to ensure deterministic model activation:
+## Governance and workflow — 7 skills
 
-```markdown
-# ⚡ Mandatory Trigger
-- **TRIGGER**: Exact observable action requiring prior reading of this skill.
-- **SKIP ONLY IF**: Strict exemption condition (e.g., read-only investigation).
-- **CONSEQUENCE OF IGNORING**: High technical risk of silent regression or rejected pull requests.
+| Skill | When to use |
+| --- | --- |
+| [`sdd-workflow`](../../.gemini/skills/sdd-workflow/SKILL.md) | Classify changes and follow memory governance and authority. |
+| [`start-sdd-slice`](../../.gemini/skills/start-sdd-slice/SKILL.md) | Start an approved bounded request with acceptance criteria. |
+| [`continue-sdd-batch`](../../.gemini/skills/continue-sdd-batch/SKILL.md) | Resume the current batch without repeating completed stages. |
+| [`raise-spec-change`](../../.gemini/skills/raise-spec-change/SKILL.md) | Propose normative changes through approved change requests. |
+| [`review-current-batch`](../../.gemini/skills/review-current-batch/SKILL.md) | Review evidence and diffs before human approval or a PR. |
+| [`project-validation`](../../.gemini/skills/project-validation/SKILL.md) | Run checks capable of detecting real regressions and state limits. |
+| [`sdd-memory-gardening`](../../.gemini/skills/sdd-memory-gardening/SKILL.md) | Threshold-driven memory maintenance, preservation and link repair. |
+
+## c2f-ai-features: eight Conn2Flow Pro AI pillars
+
+1. **Unified provider** — Use the shared provider layer; modules do not duplicate HTTP adapters.
+2. **Credits through hooks** — Authorize and account through registered hooks; do not debit twice or assume absent hooks enforce billing.
+3. **Editable modes, fixed security** — Keep writing instructions configurable while permissions, limits and sanitization remain fixed.
+4. **Data isolation** — Wrap minimal authorized context in data delimiters, handle delimiter injection and validate output.
+5. **Safe rendering** — Use text nodes or a tested allowlist; never render an unsanitized response as raw HTML.
+6. **Telemetry without raw content** — Record permitted metadata, tokens and status, without prompts, generated text or secrets.
+7. **Graceful degradation** — Exercise unavailable providers, insufficient credits, refusals, timeouts and failures while keeping independent actions usable.
+8. **Sensitive data and database** — Exclude passwords/hashes, mask identities and release the MySQL connection before a long HTTP wait.
+
+These are procedures from the canonical skill, not certification of every Pro module. Inspect the actual provider library and modules before integration; validate masked requests, responses, permissions and failures. Without an accessible provider, state that tests use doubles and do not claim real-response homologation.
+
+## Synchronization and preservation
+
+```sh
+node scripts/skills/sync-skills.cjs
+node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 ```
+
+Run from the matrix root. The first command audits without writing; the second propagates the named skill to configured targets. The script preserves exclusive local skills and declared template translations; --apply --all propagates the full catalog. mdd sync is the planned Python Client equivalent, without implementation in this checkout.
+
+The total was checked against the 44 canonical folders containing SKILL.md. Synchronization counts and targets come from the script rather than historical guide numbers. See the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md).

@@ -1,38 +1,23 @@
-# 📚 Central de Documentação Técnica (Português) — Conn2Flow AI Workspace
+# Documentação MDD Conn2Flow
 
-Bem-vindo à documentação técnica em Português do Brasil da infraestrutura, governança e metodologia de agentes de Inteligência Artificial do Conn2Flow.
+[English](../en/README.md) · [Visão do repositório](../../README-PT-BR.md)
 
----
+Comece pelo framework e pela tríade, depois escolha um guia de ferramenta. As duas árvores de idioma cobrem os mesmos assuntos e apontam uma para a outra.
 
-## 🧭 Índice de Manuais
+## Guias
 
-0. **[Painel Conn2Flow Dev Tools](GUIA-PAINEL-DEV-TOOLS-VSCODE.md)**:
-   - Execução segura, interface bilíngue, escopos SDD, backlog e releases guiados.
+| Guia | Conteúdo |
+| --- | --- |
+| [Mecânica de memória e retenção](ESPECIFICACAO-FRAMEWORK-MDD.md) | Quatro camadas, 10 ativos, 50 KB e arquivos. |
+| [Client e Hub em Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) | Comandos previstos e modos de evolução. |
+| [Arquiteto, Executor, Revisor](ARQUITETURA-AGENTE-DUPLO.md) | Responsabilidades e revisão independente. |
+| [44 skills canônicas](CATALOGO-DE-SKILLS.md) | Quando carregar cada procedimento. |
+| [CLI Core e MCP](GUIA-RAPIDO-CLI-E-MCP.md) | Ferramentas disponíveis e configuração. |
+| [Painel VS Code](GUIA-PAINEL-DEV-TOOLS-VSCODE.md) | Controles, choques e integração dual prevista. |
+| [Fluxo multiagente](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md) | Do briefing ao recibo verificável. |
+| [Roteiro e estado das entregas](ROTEIRO-EVOLUCAO-FUTURA.md) | Implementado, aprovado e incubado. |
+| [Empacotamento e publicação da extensão](GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md) | Manifesto, pacote e verificações locais. |
 
-1. **[Guia Rápido do Core CLI, MCP Hub & Worktrees](GUIA-RAPIDO-CLI-E-MCP.md)**:
-   - Comandos multiplataforma do CLI `c2f` (Git Bash, PowerShell, CMD).
-   - Como subir o Servidor MCP Hub no Docker com auto-start.
-   - Como criar Git Worktrees para execução de múltiplos agentes concorrentes.
+## Fontes verificadas e disponibilidade
 
-2. **[Playbook de Orquestração Multi-Agentes & Alternância entre IDEs](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md)**:
-   - Como despachar tarefas automaticamente via MCP Hub sem copiar e colar prompts.
-   - Como alternar dinamicamente entre Claude Code, Cursor, Copilot e Antigravity sem perda de contexto.
-   - Como executar diretamente com subagentes locais no Antigravity.
-   - O espectro dos 3 níveis de autonomia na prática.
-
-3. **[Arquitetura de Agente Duplo (Double Agent SDD)](ARQUITETURA-AGENTE-DUPLO.md)**:
-   - Divisão de responsabilidades entre o Macro-Arquiteto (Antigravity/Gemini) e os Micro-Executores (Claude Code, Cursor, Copilot).
-   - Regras de fronteira de escrita (Ping-Pong Boundary), memória de engenharia e ciclo de vida do SDD.
-
-4. **[Catálogo Completo de Skills](CATALOGO-DE-SKILLS.md)**:
-   - Detalhamento das 26 Core Skills do Framework (`c2f-*`) e das 7 SDD Workflow Skills.
-   - Gatilhos de ativação, regras mandatórias e convenções de código.
-
-5. **[Roteiro de Evolução Futura & Backlog Estratégico](ROTEIRO-EVOLUCAO-FUTURA.md)**:
-   - Centralização de Skills via Servidor MCP (*Model Context Protocol*).
-   - Esteira de CI/CD com loop de auto-cura (*Self-Healing Tests*).
-   - Diretrizes para o Curso de IA (do Leigo ao Avançado).
-
----
-
-🌐 *Looking for English documentation? Access the [English Documentation Hub](../en/README.md).*
+Código vigente e política de memória aprovada sustentam as descrições técnicas. Cada guia lista fontes e commit usados na conferência. Comandos do Client/Hub Python descrevem trabalho aprovado cujos pacotes estão ausentes na conferência; a integração dual VS Code continua planejada. O manifesto da extensão é 1.1.1 com alvo v1.1.2. Confira novamente as fontes após mudanças nesses componentes.

@@ -1,41 +1,34 @@
-# 🚀 Future Evolution Roadmap & AI Innovations
-
-This document outlines the strategic long-term vision of the **Conn2Flow AI Workspace**, detailing incubated architecture backlog initiatives and educational expansion plans.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../memory/human-requests/CURRENT.md
+  - ../../memory/backlog/BACKLOG-INDEX.md
+  - ../../vscode-extension/package.json
+  - ../../mcp-hub/src/server.ts
 ---
 
-## 🔮 1. Strategic Architecture Backlog
 
-### A. Skills Centralization & Inter-Agent Bridge via MCP Server (`ARCH-002`) — ✅ COMPLETED (BATCH-015)
-* **Delivered**: Node.js/TypeScript MCP Server in `mcp-hub/` running via Docker (`conn2flow-mcp-hub`), Dual-Mode support (Supervised/Headless), and endpoints `c2f_run_command`, `dispatch_task`, `report_completion`.
+# MDD evolution roadmap
 
-### B. Native PHP 8.2+ OOP Core CLI (`FEAT-003`) — ✅ COMPLETED (BATCH-015)
-* **Delivered**: `/cli` subsystem in `conn2flow` core with root wrappers `./c2f` and `./c2f.ps1`, integrating `resources:sync`, `ai:sync`, `module:create`, `docker:*`, and `db:*`.
+[Português](../pt-br/ROTEIRO-EVOLUCAO-FUTURA.md) · [Documentation index](README.md)
 
-### C. Git Autonomy & Concurrent Worktrees (`ARCH-003`) — ✅ COMPLETED (BATCH-015)
-* **Delivered**: `scripts/git/create-agent-worktree.ps1` and `.sh` utilities for automated provisioning of isolated working trees under `worktrees/feat-req-XXX`.
+## Delivered foundation
 
-### D. Self-Healing CI/CD Pipeline Loop (`FEAT-002`) — 🧊 ICEBOX
-* **Problem**: PR errors require manual developer intervention to run tests and fix resource compilation discrepancies.
-* **Solution**: A GitHub Action workflow executing migrations, resource compilation, and PHPUnit test harnesses. On failure, an autonomous subagent is dispatched to diagnose logs, refactor code, and push fixes before final human review.
+The matrix has memory/, four-layer policy, hierarchical indexes, dual archive nodes and **44 canonical skills**, including c2f-ai-features. The TypeScript MCP Hub implements command execution, task records, receipts and session events. The VS Code panel supports topology/autonomy controls, repository scope, task observation and delivery conflicts.
 
-### E. Semantic Template Refactoring (`ARCH-001`) — 🧊 ICEBOX
-* Rename `gestor/autenticacoes.exemplo/` to `gestor/autenticacoes.template/`, standardizing authentication templates across the framework.
+## Approved workstreams
 
----
+| Workstream | Target | Verified state |
+| --- | --- | --- |
+| REQ-068 / BATCH-070 | MDD migration in seven satellites | Separate approved workstream; completion is not asserted by this guide |
+| REQ-069 / BATCH-071 | Python MDD Client and Hub | Approved; tools/ packages absent at verification |
+| REQ-070 / BATCH-072 | Public bilingual docs and concise READMEs | Documentation scope of this revision |
+| REQ-062 / BATCH-064 | Extension release v1.1.2 | Manifest currently 1.1.1; publication not asserted |
 
-## 🎓 2. Educational Strategy: The AI Engineering Course
+## Incubated architecture
 
-The Conn2Flow ecosystem provides the live codebase for hands-on AI engineering education:
+ARCH-014 proposes dual Client/Developer VS Code access after the Python components. ARCH-013 explores vector/NoSQL memory for larger codebases. These backlog proposals do not authorize implementation. Dates and vendor capabilities are not promised here; follow [CURRENT](../../memory/human-requests/CURRENT.md) and the [backlog index](../../memory/backlog/BACKLOG-INDEX.md).
 
-1. **Foundational Module (Mindset & Chats)**:
-   - AI Chat landscape (ChatGPT, Claude, Gemini, Copilot).
-   - Why simple copy-pasting fails in production (The Architect & The Builder metaphor).
+## Learning path
 
-2. **Intermediate Module (Spec-Driven Development)**:
-   - Structuring repositories with SDD (specifications, decisions, atomic requests).
-   - Preventing file hallucinations and maintaining Git control.
-
-3. **Advanced Module (Double Agent Architecture & Skills)**:
-   - Orchestration using Google Antigravity and execution subagents (Claude Code / Cursor).
-   - Designing declarative Skills to teach custom proprietary frameworks to AI models.
+Start with the [memory specification](MDD-FRAMEWORK-SPECIFICATION.md), learn the [triad](DOUBLE-AGENT-ARCHITECTURE.md) and [44 procedures](SKILLS-CATALOG.md), then use the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md) and [panel guide](VSCODE-DEV-TOOLS-PANEL-GUIDE.md). The [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) separates approved interfaces from available tools. Teach specifications, retrieval, evidence and review before unattended automation.

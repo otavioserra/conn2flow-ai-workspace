@@ -1,90 +1,88 @@
-# 🚀 Guia Rápido: Core CLI (`c2f`), MCP Hub & Worktrees
-
-Este guia prático ensina como utilizar as três ferramentas da **Tríade de Orquestração** do Conn2Flow: o CLI Nativo `c2f`, o Servidor MCP `conn2flow-mcp-hub` e os utilitários de `Git Worktrees`.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../scripts/skills/sync-skills.cjs
+  - ../../scripts/install-spec-driven-codex-kit.ps1
+  - ../../scripts/setup-mcp-connectors.ps1
+  - ../../mcp-hub/src/server.ts
+  - ../../mcp-hub/src/tools/dispatchTask.ts
+  - ../../mcp-hub/src/tools/c2fCommand.ts
 ---
 
-## 🛠️ 1. Como Executar o Core CLI (`c2f`)
 
-O `c2f` é o ponto de entrada unificado para todas as operações do repositório `conn2flow`.
+# Guia rápido: CLI Core, MDD e MCP
 
-### 💻 Como chamar no seu terminal:
+[English](../en/QUICKSTART-CLI-AND-MCP.md) · [Índice da documentação](README.md)
 
-* **No Git Bash (Linux/Windows)**:
-  ```bash
-  ./c2f <comando> [argumentos]
-  # Exemplo:
-  ./c2f help
-  ./c2f resources:sync
-  ```
-* **No PowerShell (Windows)**:
-  ```powershell
-  .\c2f.ps1 <comando> [argumentos]
-  # Exemplo:
-  .\c2f.ps1 db:test
-  ```
-* **No Prompt de Comando (CMD Windows)**:
-  ```cmd
-  c2f <comando> [argumentos]
-  ```
+## Escolha o repositório e a ferramenta
 
-### 📋 Principais Comandos Disponíveis:
+| Ferramenta | Repositório | Finalidade | Disponibilidade |
+| --- | --- | --- | --- |
+| c2f | Core conn2flow | Recursos do produto, ambiente e pipelines de projeto | Implementado no repositório separado do Core |
+| Sincronizador de skills | conn2flow-ai-workspace | Auditar/propagar skills canônicas | Implementado |
+| MCP conn2flow-hub | conn2flow-ai-workspace/mcp-hub | Rodar comandos Core, enfileirar tarefas e registrar recibos | Implementado em TypeScript |
+| mdd / MDD Hub | Previstos tools/mdd-client e tools/mdd-hub | Memória local e evolução documental | Aprovados; pacotes ausentes neste checkout |
 
-| Comando | Descrição |
-| :--- | :--- |
-| `resources:sync` | Sincroniza e compila os 11 tipos de recursos no banco de dados. |
-| `manager:update-all` | Pipeline completo do sistema (4 etapas: Core → Resources → Files → DB & CSS Rebuild). |
-| `project:update-all <id>` | Pipeline completo do projeto (6 etapas: Core → DB → Resources → Files → DB → CSS Rebuild). |
-| `css:audit` | Audita procedência (`css_source_hash`), cobertura e classes embutidas em PHP/JS. |
-| `css:rebuild [--url=...]` | Reconstrói o CSS derivado contra o HTML do banco e da página renderizada. |
-| `page:inspect <url>` | Executa inspeção headless (estilos computados, animações, console errors, screenshot). |
-| `auth:cookie [--project=...]` | Gera tokens JWT de sessão e cookie jar em `temp/agent-cookies.txt`. |
-| `db:test` | Executa a suíte de testes de integração e banco. |
-| `module:create <nome>` | Cria o scaffold canônico de um novo módulo CRUD. |
-| `ai:sync` | Valida e audita todas as 36 skills e instruções nos 5 kits de IA. |
-| `ai:mcp-setup` | Injeta os conectores do MCP Hub no Claude, Cursor e VS Code. |
-| `ai:prune-memories` | Executa a rotina de poda idempotente de memórias do SDD. |
-| `docker:status` | Exibe o status de saúde dos containers da stack. |
+## CLI Core
 
----
+Na raiz do Core, comece pela ajuda. Seus comandos não rodam pela pasta cli/ deste workspace.
 
-## ⚡ 2. Como Subir e Conectar o Servidor MCP Hub
-
-O servidor MCP (`conn2flow-mcp-hub`) conecta o Arquiteto aos Executores com persistência e mensageria assíncrona.
-
-### Passo 1: Subir o Container Docker
-Na pasta `mcp-hub/` do workspace:
-```bash
-docker compose up -d --build
-```
-*O container roda com `restart: unless-stopped` e `healthcheck` integrado.*
-
-### Passo 2: Conectar as IAs com 1 Clique
-No PowerShell ou terminal do workspace:
-```powershell
-.\scripts\setup-mcp-connectors.ps1
-
-# Ou diretamente pelo CLI:
-.\c2f.ps1 ai:mcp-setup
+```sh
+./c2f help
+./c2f resources:sync
+./c2f manager:update-all
+./c2f project:update-all <id>
 ```
 
-#### 🎮 Modos de Operação do MCP (Espectro de 3 Níveis):
-1. **Modo 1 (`supervised` — Supervisionado)**: Sessão interativa com revisão de diffs e parada pré-commit.
-2. **Modo 2 (`live_autonomous` — Autônomo Monitorado)**: Sessão visual no chat executando a esteira completa (código, compilação, testes, deploy em testes locais e commit) com **Live Todo List** em tempo real na tela.
-3. **Modo 3 (`headless_autonomous` — Autônomo Headless)**: Execução 100% silenciosa em segundo plano via Git Worktree/Docker com entrega de relatório final.
+No PowerShell, use `.\c2f.ps1 help`; diretamente em PHP, use `php cli/c2f.php help`. Os exemplos de pipeline exigem ambiente de teste configurado e as skills pertinentes do Core. Rode pipelines de recursos e atualização um por vez em foreground com logs visíveis; nunca os substitua por cópia de arquivos para espelhos de teste. Confirme o alvo antes de operar projetos.
 
----
+## Skills canônicas e novos projetos
 
-## 🌲 3. Como Criar Git Worktrees para Agentes Paralelos
+Na raiz da matriz, use:
 
-Para permitir que múltiplos agentes trabalhem simultaneamente em diferentes tarefas sem colidir branches na árvore principal:
+```sh
+node scripts/skills/sync-skills.cjs
+node scripts/skills/sync-skills.cjs --apply c2f-ai-features
+```
+
+O padrão é auditoria sem escrita. Aplicar uma skill nomeada escreve nos kits configurados e preserva skills locais exclusivas e traduções declaradas. O instalador Codex existente aceita TargetRepoPath e Language:
 
 ```powershell
-# No PowerShell:
-.\scripts\git\create-agent-worktree.ps1 -RepoPath "C:\caminho\conn2flow" -BranchName "feat-novo-modulo"
-
-# No Bash / Linux:
-./scripts/git/create-agent-worktree.sh /caminho/conn2flow feat-novo-modulo
+.\scripts\install-spec-driven-codex-kit.ps1 -TargetRepoPath "C:\projects\my-project" -Language pt-br
 ```
 
-*O script cria uma pasta isolada sob `worktrees/` com a nova branch provisionada.*
+Esse instalador ainda provisiona sdd/ e preserva uma pasta SDD existente. Ele não implementa mdd init nem comprova que um satélite migrou.
+
+## CLI Python prevista
+
+Os seis comandos solicitados são mdd init, sync, compact, status, report e daemon. A interface inicial é `mdd init [caminho] [--type software|mobile|general]`. Não instale um pacote presumido nem deduza opções. Consulte interface e estado da entrega no [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md).
+
+## Configuração do MCP Hub
+
+O [servidor Hub](../../mcp-hub/src/server.ts) usa JSON-RPC por stdin/stdout. Instale/compile em mcp-hub/ com npm ci e npm run build, depois configure o cliente para iniciar Node com caminho absoluto para mcp-hub/dist/index.js. O repositório também fornece configuração Docker Compose; Docker é opcional para o conector Node local.
+
+```json
+{
+  "mcpServers": {
+    "conn2flow-hub": {
+      "command": "node",
+      "args": ["C:/projects/conn2flow-ai-workspace/mcp-hub/dist/index.js"]
+    }
+  }
+}
+```
+
+Essa é a estrutura de conector usada pelo injector do repositório; confira o formato de configuração do cliente alvo antes de aplicar. O setup-mcp-connectors.ps1 atual também escreve uma entrada legada .agents/mcp_config.json. A matriz agora exige configuração em .gemini/; não trate a entrada legada como canônica. Esta alteração documental mantém o helper e registra a divergência.
+
+## Ferramentas, modos e evidências
+
+| Ferramenta | Entrada obrigatória | Resultado |
+| --- | --- | --- |
+| c2f_run_command | command; args e repoPath absoluto opcionais | exitCode, stdout, stderr, duração e success do CLI Core |
+| dispatch_task | repo, req_id, prompt; mode opcional | Registro JSON de tarefa em tasks/ |
+| report_completion | batch_id, status (success/failed), logs | Recibo de conclusão; task_id/req_id/role opcionais correlacionam o trabalho |
+| log_session_event | batch_id, agent_id, role, summary | Evento de timeline de sessão compartilhada |
+
+dispatch_task aceita **supervised**, **live_autonomous** e **headless_autonomous**; o padrão é supervised. Ele grava o registro da fila, sem iniciar daemon Python ou executar um lote autonomamente. O watcher VS Code observa alterações em tarefas e recibos. Inclua projeto alvo, raiz absoluta, requisição, lote, escopo e condições de parada nos prompts.
+
+Os modos headless/monitored/reviewer de evolução do Hub Python previsto são outra interface. Um recibo de sucesso descreve verificações executadas; não substitui revisão independente nem homologação humana. Consulte o [playbook do workflow](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md).

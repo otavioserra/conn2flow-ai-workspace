@@ -1,84 +1,66 @@
-# 🏛️ Arquitetura de Agente Duplo (Double Agent SDD Framework)
-
-A engenharia de software com Inteligência Artificial em bases corporativas falha quando um único modelo tenta atuar simultaneamente como planejador estratégico e executor de código. 
-
-O **Modelo de Agente Duplo com Desenvolvimento Guiado por Especificações (SDD)** resolve esse problema dividindo a inteligência em dois papéis complementares sobre uma fonte única de verdade no Git (`sdd/`).
-
+---
+verified_at: 2afd000
+sources:
+  - ../../memory/02-policy.md
+  - ../../.gemini/skills/c2f-architect-master/SKILL.md
+  - ../../.gemini/skills/c2f-executor-agent/SKILL.md
+  - ../../.gemini/skills/c2f-reviewer-agent/SKILL.md
+  - ../../mcp-hub/src/server.ts
+  - ../../vscode-extension/src/providers/modesManager.ts
 ---
 
-## 👥 1. Os Dois Papéis Fundamentais
+
+# Arquitetura da Tríade MDD
+
+[English](../en/DOUBLE-AGENT-ARCHITECTURE.md) · [Índice da documentação](README.md)
+
+O nome histórico do arquivo foi mantido para preservar links existentes. MDD estende o modelo original Arquiteto/Executor com um Revisor independente e memória persistente em quatro camadas.
+
+## Responsabilidades e limites
+
+| Papel | Trabalho obrigatório | Limite |
+| --- | --- | --- |
+| Arquiteto | Definir especificações aprovadas, decisões, escopo, aceite e autonomia; homologar após revisão | Não implementa nem commita código do Core/módulos |
+| Executor | Ler CURRENT e a requisição, mostrar Live Todo List, implementar o slice aprovado, validar, registrar evidências no lote/checklist e emitir recibo | Não inventa aprovação, altera contratos fora do escopo ou faz deploy de produção implícito |
+| Revisor | Inspecionar diffs e fontes vigentes, relatar findings por gravidade com evidências, emitir parecer independente | Não declara PASS em verificações não executadas; revisar não homologa por si só |
+| Humano | Direcionar prioridades, autorizar escopo e revisar consolidação | Mantém o gate de aprovação exigido pelo workflow selecionado |
+
+Os procedimentos dos papéis são [Arquiteto](../../.gemini/skills/c2f-architect-master/SKILL.md), [Executor](../../.gemini/skills/c2f-executor-agent/SKILL.md) e [Revisor](../../.gemini/skills/c2f-reviewer-agent/SKILL.md). O [catálogo](CATALOGO-DE-SKILLS.md) de 44 skills explica os procedimentos por tarefa.
+
+## Memória compartilhada e ciclo de vida
 
 ```mermaid
-flowchart TD
-    Human["👨‍💻 Engenheiro Chefe Humano"] -->|Ideias & Decisões| Architect["🏛️ Macro-Arquiteto (Antigravity / Gemini 3.7 Flash)"]
-    Architect -->|Especificações & Requisições (sdd/)| SingleTruth[("📁 Repositório Local (Git / SDD)")]
-    SingleTruth -->|Consumo de Tarefas Atômicas| Executor["⚡ Micro-Executores (Claude Code / Cursor / Copilot)"]
-    Executor -->|Código Limpo, Testes & Logs| Codebase[("💻 Código-Fonte & Testes")]
-    Codebase -->|Evidências & Validação| Human
+flowchart TB
+  H["Humano: direção e aprovação"] --> A["Arquiteto"]
+  A --> E["Executor"]
+  E --> R["Revisor"]
+  R --> H
+  A <--> M["memory/: 4 camadas, índices, arquivo dual"]
+  E <--> M
+  R <--> M
+  V["VS Code"] --> E
+  C["MDD Client CLI / Daemon"] -.-> M
+  U["MDD Hub / Watcher"] -.-> C
 ```
 
-### 🧠 A. O Macro-Arquiteto (Antigravity / Gemini 3.7 Flash)
-* **Escopo**: Alto nível de abstração, planejamento de negócio, design de sistema, governança de dados e **documentação viva**.
-* **Entradas**: Áudios, anotações soltas, ideias de novas funcionalidades, regras de negócio do usuário e relatórios de encerramento de lote dos executores.
-* **Saídas**: Artefatos formais no SDD e Documentação Externa:
-  - `sdd/SPEC.md`: Especificação técnica viva do projeto.
-  - `sdd/decisions/DECISION-LOG.md`: Registro de decisões arquiteturais.
-  - `sdd/human-requests/req-XXX.md`: Requisições atômicas e prontas para execução.
-  - `README.md` & `README-PT-BR.md`: Documentação viva do workspace sincronizada a cada lote.
-  - `docs/`: Manuais aprofundados de arquitetura, catálogo de skills e visão futura.
-* **Regra de Ouro**: O Arquiteto **nunca edita arquivos de código-fonte diretamente**. Ao auditar o trabalho do Executor, ele faz uma **inspeção de diff em alto nível** (resumo de arquivos tocados, componentes e testes), sem se afogar em código miúdo, mantendo seu foco puramente estratégico.
+Consulte primeiro o router da fundação, CURRENT e o índice pertinente. Evidência episódica registra execução; memória semântica registra conhecimento aprovado; skills fornecem procedimentos; notas raw continuam não normativas. A [especificação do framework](ESPECIFICACAO-FRAMEWORK-MDD.md) explica retenção e arquivos duais.
 
-### ⚡ B. Os Micro-Executores (Claude Code / Cursor / Copilot)
-* **Escopo**: Baixo nível de abstração, implementação tática, edição de arquivos, execução de comandos e testes unitários.
-* **Entradas**: Requisições atômicas (`req-XXX.md`), skills de governança (`c2f-*`) e memórias de execução.
-* **Saídas**: Modificações de código, compilação de dados de recursos (`*Data.json`), migrações Phinx e relatórios de encerramento de lote (`sdd/implementation/batch-YYY.md`).
-* **Regra de Ouro**: O Executor **nunca altera as especificações ou decisões arquiteturais**. Qualquer divergência encontrada deve gerar uma Solicitação de Mudança (`CR-XXX.md`).
+A sequência operacional é **briefing → lote aprovado → execução e verificações → revisão independente → homologação humana/do Arquiteto**. Itens de backlog não autorizam execução até promoção explícita para requisição aprovada. Conflitos de contrato voltam pela governança de change requests.
 
----
+## Topologia e autonomia são separadas
 
-## 🎭 1.1 Topologias Suportadas (Duplo Agente vs. Tríade de Agentes)
+O painel suporta topologias dupla e tríade. O modo duplo combina revisão com o Arquiteto; a tríade atribui um Revisor distinto. Nenhuma topologia altera o escopo aprovado.
 
-O framework suporta duas topologias oficiais, alternáveis visualmente pela **Extensão do VS Code (`conn2flow-tools`)** ou pelo cabeçalho do `sdd/human-requests/CURRENT.md`:
+| Workflow | Alias no CURRENT | Modo atual de despacho MCP | Significado |
+| --- | --- | --- | --- |
+| supervised | supervisionado | supervised | Implementar e verificar; humano aprova consolidação |
+| monitored | autonomo_monitorado | live_autonomous | Progredir continuamente com Live Todo List visível e evidências |
+| headless | autonomo_headless | headless_autonomous | Trabalho em background autorizado, com recibos e condições de parada |
 
-```
-                    ┌─────────────────────────────────────────────────────────────┐
-                    │                    TOPOLOGIAS DE AGENTES                    │
-                    └─────────────────────────────────────────────────────────────┘
-                                   │                               │
-                [👥 MODO DUPLO AGENTE]             [🏛️ MODO TRÍADE DE AGENTES]
-                (Ágil / Didático / Iniciante)      (Enterprise / Rigor Máximo / QA)
-                         │                                         │
-        Humano ➔ Arquiteto ➔ Executor ➔ Humano   Humano ➔ Arquiteto ➔ Executor ➔ Revisor ➔ Arquiteto ➔ Humano
-```
+O Hub Python previsto usa headless/monitored/reviewer para evolução documental. Esses nomes não devem ser enviados sem conversão para dispatch_task do MCP. O modo autônomo não autoriza produção nem amplia escopo.
 
-1. **Topologia 👥 Duplo Agente (Arquiteto + Executor)**:
-   - **Objetivo**: Máxima agilidade, ideal para aprendizado de novos desenvolvedores, prototipação rápida e tarefas do dia a dia.
-   - **Fluxo**: O Arquiteto planeja e gera a requisição (`req-XXX.md`), o Executor implementa e entrega o lote, e o Arquiteto audita em alto nível para o Humano.
+## Handoffs e consolidação
 
-2. **Topologia 🏛️ Tríade de Agentes (Arquiteto + Executor + Revisor Técnico)**:
-   - **Objetivo**: Padrão corporativo para código de produção crítico, eliminando o "viés de confirmação" do executor.
-   - **Papel do Revisor (QA Inspector)**: Um agente com perfil hipercrítico que **não escreve código novo**; ele analisa diffs, variáveis não declaradas, ausência de internacionalização em `variables.json`, roda `c2f ai:sync` e `c2f css:audit`, e emite um relatório técnico de validação (`review-YYY.md`). Se houver falhas, solicita alterações antes da consolidação do Arquiteto.
+Todo handoff informa projeto, raiz absoluta do repositório, REQ, BATCH, estado atual, evidências e próxima ação. Use memory/ na matriz; resolva a raiz real de governança de cada satélite sem presumir migração concluída.
 
-## 🛡️ 2. Pilares de Sustentação da Metodologia
-
-1. **Fronteira de Escrita (Ping-Pong Boundary)**: O Arquiteto e o Executor possuem permissões rígidas sobre quais pastas do repositório podem modificar.
-2. **O Arquiteto como Guardião da Documentação**: A documentação viva (`READMEs` e `docs/`) é redigida e atualizada pelo Arquiteto ao fechar cada lote, garantindo visão sistêmica e eliminando documentações desatualizadas.
-3. **Colheita de Habilidades (Skill Harvesting)**: Quando um executor comete um erro ou descobre uma convenção de framework, a regra é extraída e transformada em uma Skill atômica sob demanda (`.claude/skills/`, etc.), em vez de inflar os prompts de sistema.
-4. **Poda de Memória Idempotente (Memory Gardening)**: A poda é proibida abaixo de 50 KB / 200 linhas. O alerta ocorre nesse patamar, o teto obrigatório é 75 KB / 300 linhas e o alvo pós-poda é ~25 KB, preservando 20 a 25 tarefas recentes. Encerrar sessão ou batch não aciona gardening.
-5. **Intake Gate no Backlog (`sdd/backlog/`)**: Ideias em incubação (`ICEBOX` e `IN-DISCUSSION`) são blindadas contra leitura precipitada de agentes executores até promoção humana explícita.
-6. **A Tríade da Orquestração Moderna**:
-   - **`c2f` (Core CLI)**: Ponto de entrada nativo em PHP 8.2+ OOP no core para execução de recursos, banco, Docker e IA.
-   - **`conn2flow-mcp-hub` (Docker)**: Servidor MCP local para mensageria assíncrona entre o Arquiteto e os Executores nos modos Supervisionado e Headless.
-   - **`Git Worktrees`**: Provisionamento automático de branches e diretórios isolados permitindo que múltiplos agentes trabalhem concorrentemente sem conflitos de working tree.
-7. **Espectro de 3 Níveis de Autonomia de IA**:
-   - **Nível 1 (`SUPERVISIONADO` — Padrão Mandatório)**: O agente não realiza commits nem deploys automáticos; o desenvolvedor inspeciona os diffs no chat do VS Code antes de consolidar.
-   - **Nível 2 (`AUTÔNOMO MONITORADO` — Live Autopilot / Glass-Box)**: O agente executa toda a esteira de código, testes (`c2f db:test`), **deploy exclusivamente no ambiente de testes local** e commit/push na branch, exibindo a **Live Todo List (`[ ]` ➔ `[x]`)** e o progresso em tempo real na tela para acompanhamento do desenvolvedor.
-   - **Nível 3 (`AUTÔNOMO HEADLESS` — Background Silencioso / Black-Box)**: O agente roda em segundo plano isolado via MCP Hub em uma Git Worktree dedicada sem abrir janelas, emitindo notificação de conclusão apenas ao finalizar com sucesso.
-   - ⛔ **Regra Inviolável de Segurança**: Em qualquer nível autônomo, **é estritamente proibido realizar deploy automático em ambiente de produção**.
-8. **Protocolo de Reserva Atômica para Criação de `req-XXX.md`**: Qualquer agente (Arquiteto ou Executor) está formalmente autorizado a criar novos arquivos `req-XXX.md` quando instruído pelo operador humano ou ao levantar uma necessidade técnica, desde que execute `git pull`, reler atomicamente `sdd/human-requests/` e commitar/pushar imediatamente para travar a numeração contra agentes concorrentes.
-9. **Princípio da Autoridade do Código e da SPEC**: Configurações vigentes (`.env`, `settings.json`), schemas e especificações normativas (`sdd/SPEC.md`) têm autoridade absoluta sobre anotações de memórias passadas. Se uma restrição mudar no projeto, a anotação antiga em memória deve ser invalidada e alinhada imediatamente.
-10. **Rotina de Varredura Periódica das Documentações Oficiais de IA (Living Infrastructure)**: De tempos em tempos, o Arquiteto executa uma rotina proativa de leitura e varredura nos índices de documentação viva dos 3 grandes ecossistemas de IA adotados:
-    - **Anthropic Claude Code**: `https://code.claude.com/docs/llms.txt`
-    - **OpenAI Codex**: `https://developers.openai.com/codex/llms.txt`
-    - **Google Antigravity (AGY)**: `https://antigravity.google/docs` e suas subdocumentações embutidas (`agy-customizations`).
-    Essa rotina garante a identificação precoce de novas capacidades nativas (hooks, worktrees, autoVerify, canais MCP, formatos de skills e sandboxing), incorporando-as aos templates e aos 5 repositórios para manter a infraestrutura de agentes do Conn2Flow permanentemente no estado da arte mundial.
+Commite somente arquivos nomeados. Pipelines de recursos rodam sequencialmente pelos comandos CLI oficiais; nunca copie arquivos para espelhos de teste. O Revisor informa gravidade, impacto concreto e evidência reproduzível antes da consolidação final. Mantenha limitações e verificações não executadas visíveis no relatório do lote.

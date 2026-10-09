@@ -46,7 +46,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-069** | complete | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](batch-069.md) | REQ-067 homologada; fundação MDD (00, 01, 02), 50 índices, 44 skills (c2f-ai-features), Armadilhas 18 e 19, 39 alvos PASS, 124/124 testes, review-069.md aprovado. |
 | **BATCH-070** | ready-for-intake | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 aprovada; migração de sdd/ para memory/, Tríade 00, 01, 02 e 44 skills nos 7 repositórios satélites |
 | **BATCH-071** | ready-for-intake | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
-| **BATCH-072** | ready-for-intake | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 aprovada; modernização dos READMEs da raiz (EN/PT-BR) e criação de especificações modulares em docs/ |
+| **BATCH-072** | ready-for-review | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 implementada; 23 docs, 11 pares, 252 links PASS, 44 skills; Python/release distinguidos do estado disponível |
 
 ## Requisição ativa
 

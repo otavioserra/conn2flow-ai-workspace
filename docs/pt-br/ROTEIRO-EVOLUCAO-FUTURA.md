@@ -1,41 +1,34 @@
-# 🚀 Roteiro de Evolução Futura & Inovações em IA
-
-Este documento compila a visão estratégica de longo prazo do **Conn2Flow AI Workspace**, detalhando as iniciativas técnicas incubadas no backlog e as diretrizes para expansão educacional.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../memory/human-requests/CURRENT.md
+  - ../../memory/backlog/BACKLOG-INDEX.md
+  - ../../vscode-extension/package.json
+  - ../../mcp-hub/src/server.ts
 ---
 
-## 🔮 1. Iniciativas de Arquitetura no Backlog
 
-### A. Centralização de Skills & Ponte Inter-Agentes via Servidor MCP (`ARCH-002`) — ✅ ENTREGUE (BATCH-015)
-* **Implementado**: Servidor MCP Node.js/TypeScript em `mcp-hub/` com container Docker (`conn2flow-mcp-hub`), suporte Dual-Mode (Supervisionado/Headless) e endpoints `c2f_run_command`, `dispatch_task`, `report_completion`.
+# Roteiro de evolução MDD
 
-### B. CLI Nativo em PHP 8.2+ OOP no Core do Conn2Flow (`FEAT-003`) — ✅ ENTREGUE (BATCH-015)
-* **Implementado**: Subsistema `/cli` no core `conn2flow` com executáveis de raiz `./c2f` e `./c2f.ps1`, integrando comandos `resources:sync`, `ai:sync`, `module:create`, `docker:*` e `db:*`.
+[English](../en/FUTURE-EVOLUTION-ROADMAP.md) · [Índice da documentação](README.md)
 
-### C. Modos de Autonomia de Git & Worktrees Concorrentes (`ARCH-003`) — ✅ ENTREGUE (BATCH-015)
-* **Implementado**: Utilitários `scripts/git/create-agent-worktree.ps1` e `.sh` para provisionamento isolado de worktrees concorrentes sob `worktrees/feat-req-XXX`.
+## Fundação entregue
 
-### D. Esteira CI/CD com Loop de Auto-Cura (`FEAT-002`) — 🧊 ICEBOX
-* **Problema**: Erros em PRs precisam de intervenção manual do desenvolvedor para rodar testes e corrigir falhas de compilação de dados de recursos.
-* **Solução**: Um GitHub Action que executa as migrações, a compilação (`atualizacao-dados-recursos.php`) e a suíte de testes. Em caso de falha, um subagente é invocado automaticamente com os logs para corrigir o código e reaplicar o commit antes da revisão humana.
+A matriz possui memory/, política de quatro camadas, índices hierárquicos, nós de arquivo dual e **44 skills canônicas**, incluindo c2f-ai-features. O MCP Hub TypeScript implementa execução de comandos, registros de tarefas, recibos e eventos de sessão. O painel VS Code suporta controles de topologia/autonomia, escopo de repositório, observação de tarefas e choques de entrega.
 
-### E. Refatoração Semântica de Templates (`ARCH-001`) — 🧊 ICEBOX
-* Renomear a pasta física `gestor/autenticacoes.exemplo/` para `gestor/autenticacoes.template/`, alinhando a nomenclatura de autenticações ao padrão conceitual de templates do sistema.
+## Frentes aprovadas
 
----
+| Frente | Alvo | Estado verificado |
+| --- | --- | --- |
+| REQ-068 / BATCH-070 | Migração MDD de sete satélites | Frente aprovada separada; este guia não afirma sua conclusão |
+| REQ-069 / BATCH-071 | MDD Client e Hub Python | Aprovados; pacotes tools/ ausentes na conferência |
+| REQ-070 / BATCH-072 | Docs públicas bilíngues e READMEs concisos | Escopo documental desta revisão |
+| REQ-062 / BATCH-064 | Release v1.1.2 da extensão | Manifesto atual 1.1.1; sem afirmar publicação |
 
-## 🎓 2. Estratégia Educacional: O Curso de IA (Do Leigo ao Avançado)
+## Arquitetura incubada
 
-O ecossistema Conn2Flow serve como a base prática viva para o treinamento de engenharia com IA:
+ARCH-014 propõe acesso dual Cliente/Desenvolvedor no VS Code após os componentes Python. ARCH-013 explora memória vetorial/NoSQL para codebases maiores. Essas propostas de backlog não autorizam implementação. Não há promessa de datas ou recursos de fornecedores; acompanhe [CURRENT](../../memory/human-requests/CURRENT.md) e o [índice de backlog](../../memory/backlog/BACKLOG-INDEX.md).
 
-1. **Módulo Básico (Mentalidade & Chats)**:
-   - Apresentação do ecossistema de chats (ChatGPT, Claude, Gemini, Copilot).
-   - Por que o modelo de "copiar e colar do chat" falha em projetos sérios (a metáfora do Arquiteto e do Construtor).
+## Trilha de aprendizado
 
-2. **Módulo Intermediário (Metodologia SDD)**:
-   - Como estruturar um repositório com SDD (especificações, decisões, requisições).
-   - Como evitar alucinações de arquivos e manter o controle do Git.
-
-3. **Módulo Avançado (Agente Duplo & Skills)**:
-   - Orquestração com Google Antigravity e subagentes executores (Claude Code / Cursor).
-   - Como criar Skills declarativas para ensinar qualquer framework para a IA.
+Comece pela [especificação de memória](ESPECIFICACAO-FRAMEWORK-MDD.md), aprenda a [tríade](ARQUITETURA-AGENTE-DUPLO.md) e os [44 procedimentos](CATALOGO-DE-SKILLS.md), depois use o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md) e o [guia do painel](GUIA-PAINEL-DEV-TOOLS-VSCODE.md). O [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) separa interfaces aprovadas de ferramentas disponíveis. Ensine especificações, consulta, evidências e revisão antes de automação sem acompanhamento.

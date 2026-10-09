@@ -1,38 +1,23 @@
-# 📚 Technical Documentation Hub (English) — Conn2Flow AI Workspace
+# Conn2Flow MDD documentation
 
-Welcome to the English technical documentation for Conn2Flow's AI infrastructure, governance, and multi-agent methodology.
+[Português](../pt-br/README.md) · [Repository overview](../../README.md)
 
----
+Start with the framework and triad, then choose a tool guide. The two language trees cover the same topics and link to each other.
 
-## 🧭 Documentation Index
+## Guides
 
-0. **[VS Code Dev Tools Panel](VSCODE-DEV-TOOLS-PANEL-GUIDE.md)**:
-   - Safe command execution, bilingual UI, SDD scopes, backlog and guided releases.
+| Guide | Contents |
+| --- | --- |
+| [Memory mechanics and retention](MDD-FRAMEWORK-SPECIFICATION.md) | Four layers, 10 active items, 50 KB and archives. |
+| [Python Client and Hub](MDD-PYTHON-ECOSYSTEM-GUIDE.md) | Planned commands and evolution modes. |
+| [Architect, Executor, Reviewer](DOUBLE-AGENT-ARCHITECTURE.md) | Responsibilities and independent review. |
+| [44 canonical skills](SKILLS-CATALOG.md) | When to load each procedure. |
+| [Core CLI and MCP](QUICKSTART-CLI-AND-MCP.md) | Available tools and configuration. |
+| [VS Code panel](VSCODE-DEV-TOOLS-PANEL-GUIDE.md) | Controls, conflicts and planned dual integration. |
+| [Multi-agent workflow](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md) | From briefing to verifiable receipt. |
+| [Roadmap and delivery status](FUTURE-EVOLUTION-ROADMAP.md) | Implemented, approved and incubated. |
+| [Extension packaging and publishing](VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md) | Manifest, package and local checks. |
 
-1. **[Core CLI, MCP Hub & Worktrees Quickstart](QUICKSTART-CLI-AND-MCP.md)**:
-   - Cross-platform `c2f` CLI commands (Git Bash, PowerShell, Windows CMD).
-   - Starting the Dockerized MCP Hub with auto-restart.
-   - Creating Git Worktrees for concurrent agent workflows.
+## Verified sources and availability
 
-2. **[Multi-Agent & IDE Orchestration Playbook](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md)**:
-   - Automated MCP task dispatching without manual copy-pasting.
-   - Seamlessly switching between Claude Code, Cursor, Copilot, and Antigravity.
-   - Direct execution with visible native subagents.
-   - The 3-Tier Autonomy Spectrum in practice.
-
-3. **[Double Agent Architecture](DOUBLE-AGENT-ARCHITECTURE.md)**:
-   - Role separation between Macro-Architect (Antigravity/Gemini) and Micro-Executors (Claude, Cursor, Copilot).
-   - Write boundaries, memory governance, and the SDD lifecycle.
-
-4. **[Complete Skills Catalog](SKILLS-CATALOG.md)**:
-   - Detailed guide for all 26 Core Framework Skills (`c2f-*`) and 7 SDD Workflow Skills.
-   - Deterministic triggers, contract clauses, and coding conventions.
-
-5. **[Future Evolution Roadmap & AI Backlog](FUTURE-EVOLUTION-ROADMAP.md)**:
-   - Skills centralization via MCP (*Model Context Protocol*).
-   - Self-healing CI/CD pipeline loops.
-   - Educational curriculum structure (Beginner to Advanced).
-
----
-
-🌐 *Procurando a documentação em Português? Acesse a [Central de Documentação em Português](../pt-br/README.md).*
+Current code and approved memory policy support the technical descriptions. Each guide lists the sources and commit used for verification. Python Client/Hub commands describe approved work whose packages are absent at verification; dual VS Code integration remains planned. The extension manifest is 1.1.1 with a v1.1.2 target. Recheck source after these components change.

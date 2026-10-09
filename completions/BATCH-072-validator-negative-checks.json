@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "fixtureSmoke": "PASS",
+  "cases": [
+    {
+      "name": "Original HEAD README rejected",
+      "detected": true,
+      "failures": [
+        "Structural parity: README.md / README-PT-BR.md",
+        "README exceeds 10 KB: README.md (20266)"
+      ]
+    },
+    {
+      "name": "Broken local link rejected",
+      "detected": true,
+      "failures": [
+        "Broken link: docs/en/README.md -> MISSING.md"
+      ]
+    },
+    {
+      "name": "Missing canonical catalog row rejected",
+      "detected": true,
+      "failures": [
+        "Structural parity: docs/en/SKILLS-CATALOG.md / docs/pt-br/CATALOGO-DE-SKILLS.md",
+        "Catalog differs from canonical set: docs/en/SKILLS-CATALOG.md"
+      ]
+    },
+    {
+      "name": "Divergent heading structure rejected",
+      "detected": true,
+      "failures": [
+        "Structural parity: docs/en/README.md / docs/pt-br/README.md"
+      ]
+    },
+    {
+      "name": "Unclosed Markdown fence rejected",
+      "detected": true,
+      "failures": [
+        "Unclosed fence: docs/en/README.md / docs/pt-br/README.md",
+        "Structural parity: docs/en/README.md / docs/pt-br/README.md"
+      ]
+    }
+  ]
+}

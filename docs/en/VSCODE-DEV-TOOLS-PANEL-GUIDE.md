@@ -1,42 +1,69 @@
-# Conn2Flow Dev Tools Panel v2 — Operational Guide
+---
+verified_at: 2afd000
+sources:
+  - ../../vscode-extension/package.json
+  - ../../vscode-extension/src/providers/conn2flowTreeProvider.ts
+  - ../../vscode-extension/src/providers/sddScopeManager.ts
+  - ../../vscode-extension/src/providers/projectConflictsManager.ts
+  - ../../vscode-extension/src/providers/commandRunner.ts
+  - ../../vscode-extension/src/providers/hubTaskWatcher.ts
+  - ../../vscode-extension/src/providers/releaseManager.ts
+  - ../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md
+---
 
-This guide documents the current `conn2flow-tools` extension. Code in `vscode-extension/src/` is authoritative if it differs from this document.
+
+# Conn2Flow Dev Tools panel: current behavior and v1.1.2 target
+
+[Português](../pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md) · [Documentation index](README.md)
+
+## Version and delivery state
+
+The [extension manifest](../../vscode-extension/package.json) currently declares **v1.1.1**. **v1.1.2** is the release target in REQ-062; this guide does not claim a published release. Panel v2 is the interface design name, not the extension package version. The planned Python dual integration is ARCH-014 and remains ICEBOX.
+
+## How to use
+
+1. Install a built VSIX and open the repository in VS Code. Select the intended repository scope and target project in Main Controls.
+2. Choose language, topology and autonomy. Open CURRENT, its approved request, SPEC and validation before starting work.
+3. Use Copy Executor Prompt or Start Claude Code (/goal) for the approved slice; follow task output, checks and receipts. Prepare Architect Review opens the handoff and Source Control, without committing or pushing.
+
+Command execution depends on Workspace Trust where required. Missing repository context or an unconfigured project target must be resolved before contextual operations.
 
 ## Panel tree
 
-The tree uses progressive disclosure and persists expansion state. **🎛️ Main Controls** is expanded by default; the other sections begin collapsed. Every native node shows a rich hover tooltip describing its purpose, when to use it, and its workspace or environment impact.
+| Section | Contents |
+| --- | --- |
+| Main Controls | Repository scope, target, language, topology, autonomy, HubTaskWatcher |
+| SDD & Planning | Agent bridge, CURRENT, SPEC, checks, requests, batches, backlog, decisions, handoffs and gardening |
+| Core & Releases | Core pipelines and guarded release preparation/execution |
+| Projects & Test Environment | Project targeting, updates, scaffolding and delivery conflicts |
+| Environment & Diagnostics | Docker, logs, CSS and skill synchronization |
+| Documentation & Settings | Guides and configuration |
 
-1. **🎛️ Main Controls**: SDD scope, target project, language, topology, autonomy, and HubTaskWatcher.
-2. **📐 SDD & Planning**: agent bridge, CURRENT, SPEC, validation, requests, batches, backlog, decisions, handoffs, and Memory Gardening.
-3. **⚡ Core & Releases**: Core pipelines and guarded preparation/execution of Gestor and Gestor Installer releases.
-4. **📁 Projects & Test Environment**: targeting, updates, synchronization, scaffolding, and deployment through configured workflows.
-5. **🩺 Environment & Diagnostics**: Docker, logs, CSS, and skills synchronization.
-6. **📚 Documentation & Settings**: this v2 manual, CLI/MCP guide, SDD playbook, agent architecture, and skills catalog. The Marketplace guide and duplicate topology selector are intentionally not shown here.
+The tree uses progressive disclosure and persists expansion state. Native tooltips explain purpose and impact. Main Controls starts expanded; other sections start collapsed.
 
-## Scope, modes, and language
+## Repository scope, language and autonomy
 
-The selected SDD scope is repository-specific and persisted. Core, AI Workspace, and satellite projects never silently fall back to another repository's `sdd/`. Markdown can be shown as rendered preview, source, or side by side. The backlog browser reads `BACKLOG-INDEX.md`, reports index/file drift, and preserves the Intake Gate.
+The matrix resolves memory/. Current satellite discovery still searches sdd/; the migration workstream must update and verify each satellite. A missing document does not silently fall back to another repository's governance. Documents support preview, source or side-by-side display. Backlog navigation reads BACKLOG-INDEX and reports index/file drift; promotion prepares context rather than authorizing execution.
 
-`conn2flow.language` supports `auto`, `pt-BR`, and `en`. Runtime labels update immediately; Command Palette entries may require Reload Window. Main Controls also select the dual-agent or triad topology and the supervised, autonomous monitored, or autonomous headless workflow mode.
+conn2flow.language supports auto, pt-BR and en. Runtime labels update immediately; palette labels may need Reload Window. The panel supports dual/triad topology and supervised/monitored/headless workflow selection. These differ from the planned Python Hub evolution modes.
 
-## Safe execution
+## Delivery conflicts
 
-Commands run as dedicated VS Code tasks with an explicit working directory and only succeed after exit code `0`. Incompatible pipelines are serialized. Remote and destructive actions use a review form, custom project actions require Workspace Trust, and no contextual project command runs without an explicit target.
+Select a configured project and open its delivery conflicts. The panel lists the CLI's conflict records, opens the live/received diff when both files exist, and offers only actions returned by the CLI: sobrescrever, manter or mesclar.
 
-## Core releases in two phases
+When mesclar is available, open and edit the merged file, save it, confirm continuation and choose whether to apply to the live delivery or local test environment (--local). Removed-file conflicts can show only the live file; database-record conflicts can proceed without files. If no action is available, the panel warns and does not invent a resolution. Invalid CLI JSON, missing files and CLI failures are surfaced to the user.
 
-1. Run **🔐 Verify Release Permission** to check `gh auth status` and `viewerPermission`.
-2. With `WRITE`, `MAINTAIN`, or `ADMIN`, open **🚀 Prepare Release** for Gestor or Gestor Installer. Phase 1 collects diagnostics and saves only an editable workspace-state draft.
-3. Preflight requires the correct Core, Workspace Trust, a clean non-detached Git tree, a GitHub origin, canonical workflow and version source, an unused tag, and current release documentation.
-4. When every gate passes, **▶️ Execute Release** unlocks phase 2 and invokes `c2f manager:release` or `c2f installer:release`; this phase can produce remote Git and GitHub effects.
-5. **🐙 Open GitHub Actions** only opens the associated workflow and never starts a release.
+## Tasks, watcher and releases
 
-## Integrated AI and SDD actions
+Dedicated tasks run with an explicit directory and succeed only at exit code 0. Exclusive operations are guarded against concurrent execution. Remote/destructive actions show a review form; project actions require a valid target and the applicable trust check.
 
-In **📐 SDD & Planning**, **▶️ Start Claude Code (/goal)**, **📋 Copy Executor Prompt**, **🔗 Open Current Handoff**, and **🔍 Prepare Architect Review** derive their context from the selected SDD scope and active request. Preparing review opens the handoff and Source Control but never commits or pushes.
+HubTaskWatcher observes tasks/*.json and completions/*.json and displays dispatch/receipt state; it does not execute queued work or scrape documentation. Core release preparation stores a draft, verifies GitHub permission and preflight conditions, and only then enables the separate execution phase. This documentation batch does not execute a release.
 
-HubTaskWatcher is controlled from **🎛️ Main Controls**. When enabled, it observes MCP Hub task dispatches and executor receipts and exposes their state in the panel; it does not execute work itself. Executor prompts likewise prohibit commit, push, deploy, and release without explicit human authorization.
+## Planned dual integration
 
-## Related guides
+| Planned mode | Intended controls | State |
+| --- | --- | --- |
+| Client / general user | mdd init, status, sync, compact and report for any project | ARCH-014 proposal; no current mdd.mode setting asserted |
+| Developer / Core | Hub watcher status, scraper queue, evolution modes, approval and global synchronization | Depends on Python Hub and access checks |
 
-The CLI and MCP Quick Guide covers official commands and Hub setup. The Multi-Agent Orchestration Playbook describes architect, executor, reviewer, and MCP handoffs. The agent architecture guide defines dual-agent and triad responsibilities, while the Skills Catalog identifies the operational skills required before each kind of task.
+The proposal uses CLI subprocesses or local REST/IPC and should degrade to Client functions when Hub governance is unavailable. These are planned controls, distinct from current MCP task observation. Read the [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) and [packaging guide](VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md) before assuming availability.

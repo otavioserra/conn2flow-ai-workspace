@@ -1,90 +1,88 @@
-# 🚀 Quickstart Guide: Core CLI (`c2f`), MCP Hub & Worktrees
-
-This practical tutorial covers how to operate the three components of the **Conn2Flow AI Orchestration Triad**: the Native `c2f` CLI, the Dockerized `conn2flow-mcp-hub` MCP Server, and `Git Worktree` parallel agent utilities.
-
+---
+verified_at: 2afd000
+sources:
+  - ../../scripts/skills/sync-skills.cjs
+  - ../../scripts/install-spec-driven-codex-kit.ps1
+  - ../../scripts/setup-mcp-connectors.ps1
+  - ../../mcp-hub/src/server.ts
+  - ../../mcp-hub/src/tools/dispatchTask.ts
+  - ../../mcp-hub/src/tools/c2fCommand.ts
 ---
 
-## 🛠️ 1. Running the Core CLI (`c2f`)
 
-`c2f` is the unified, object-oriented (PHP 8.2+) entry point for all operations inside the `conn2flow` repository.
+# Quick guide: Core CLI, MDD and MCP
 
-### 💻 Command Line Usage:
+[Português](../pt-br/GUIA-RAPIDO-CLI-E-MCP.md) · [Documentation index](README.md)
 
-* **In Git Bash (Linux / Windows)**:
-  ```bash
-  ./c2f <command> [arguments]
-  # Example:
-  ./c2f help
-  ./c2f resources:sync
-  ```
-* **In PowerShell (Windows)**:
-  ```powershell
-  .\c2f.ps1 <command> [arguments]
-  # Example:
-  .\c2f.ps1 db:test
-  ```
-* **In Windows Command Prompt (CMD)**:
-  ```cmd
-  c2f <command> [arguments]
-  ```
+## Choose the repository and tool
 
-### 📋 Main Available Commands:
+| Tool | Repository | Purpose | Availability |
+| --- | --- | --- | --- |
+| c2f | conn2flow Core | Product resources, environment and project pipelines | Implemented in the separate Core repository |
+| Skills synchronizer | conn2flow-ai-workspace | Audit/propagate canonical skills | Implemented |
+| conn2flow-hub MCP | conn2flow-ai-workspace/mcp-hub | Run Core commands, queue tasks and record receipts | Implemented in TypeScript |
+| mdd / MDD Hub | Planned tools/mdd-client and tools/mdd-hub | Local memory and documentation evolution | Approved; packages absent in this checkout |
 
-| Command | Description |
-| :--- | :--- |
-| `resources:sync` | Compiles and synchronizes 11 resource types into the database. |
-| `manager:update-all` | Full system pipeline (4 stages: Core → Resources → Files → DB & CSS Rebuild). |
-| `project:update-all <id>` | Full project pipeline (6 stages: Core → DB → Resources → Files → DB → CSS Rebuild). |
-| `css:audit` | Audits provenance (`css_source_hash`), coverage, and embedded PHP/JS classes. |
-| `css:rebuild [--url=...]` | Rebuilds derived CSS from database HTML and rendered page output. |
-| `page:inspect <url>` | Headless inspection (computed styles, animations, console errors, screenshot). |
-| `auth:cookie [--project=...]` | Generates session JWT tokens and cookie jar in `temp/agent-cookies.txt`. |
-| `db:test` | Runs the automated integration and database test suite. |
-| `module:create <name>` | Scaffolds a new canonical CRUD module based on `modulos-grupos`. |
-| `ai:sync` | Validates and audits all 36 skills and instructions across the 5 AI toolkits. |
-| `ai:mcp-setup` | Registers MCP Hub connectors in Claude Desktop, Cursor, and VS Code. |
-| `ai:prune-memories` | Runs idempotent memory gardening on SDD tracking files. |
-| `docker:status` | Displays health and container status for the stack. |
+## Core CLI
 
----
+From the Core root, start with help. Its commands do not run from this workspace's cli/ folder.
 
-## ⚡ 2. Starting & Connecting the MCP Hub Server
-
-The MCP Server (`conn2flow-mcp-hub`) bridges the Macro-Architect with Micro-Executors with persistent task queues.
-
-### Step 1: Start the Docker Container
-Inside the `mcp-hub/` directory of the workspace:
-```bash
-docker compose up -d --build
-```
-*The container runs with `restart: unless-stopped` and integrated health checks.*
-
-### Step 2: 1-Click Automated Connector Setup
-Run inside PowerShell or workspace terminal:
-```powershell
-.\scripts\setup-mcp-connectors.ps1
-
-# Or directly via Core CLI:
-.\c2f.ps1 ai:mcp-setup
+```sh
+./c2f help
+./c2f resources:sync
+./c2f manager:update-all
+./c2f project:update-all <id>
 ```
 
-#### 🎮 MCP Operating Modes (3-Tier Spectrum):
-1. **Mode 1 (`supervised`)**: Interactive session with human diff review before commit.
-2. **Mode 2 (`live_autonomous`)**: Live visible session in chat running full pipeline (code, tests, local test deploy, commit) with **Live Todo List** on screen.
-3. **Mode 3 (`headless_autonomous`)**: 100% silent background execution via Git Worktree/Docker with final completion report.
+PowerShell uses `.\c2f.ps1 help`; direct PHP uses `php cli/c2f.php help`. The pipeline examples require a configured test environment and the relevant Core skills. Run resource and update pipelines one at a time in the foreground with visible logs; never replace them with file copies into test mirrors. Confirm the target before project operations.
 
----
+## Canonical skills and new projects
 
-## 🌲 3. Creating Git Worktrees for Parallel Agents
+From the matrix root, use:
 
-To allow multiple autonomous agents to work concurrently on separate features without branch collision on the main working tree:
+```sh
+node scripts/skills/sync-skills.cjs
+node scripts/skills/sync-skills.cjs --apply c2f-ai-features
+```
+
+The default is a read-only audit. Applying a named skill writes configured kits and preserves exclusive local skills and declared translations. The existing Codex installer accepts TargetRepoPath and Language:
 
 ```powershell
-# In PowerShell:
-.\scripts\git\create-agent-worktree.ps1 -RepoPath "C:\path\to\conn2flow" -BranchName "feat-new-module"
-
-# In Bash / Linux:
-./scripts/git/create-agent-worktree.sh /path/to/conn2flow feat-new-module
+.\scripts\install-spec-driven-codex-kit.ps1 -TargetRepoPath "C:\projects\my-project" -Language en
 ```
 
-*The script provisions an isolated directory under `worktrees/` with the new branch checked out.*
+That installer still provisions sdd/ and preserves an existing SDD folder. It does not implement mdd init or prove a satellite has migrated.
+
+## Planned Python CLI
+
+The six requested commands are mdd init, sync, compact, status, report and daemon. The initial interface is `mdd init [path] [--type software|mobile|general]`. Do not install an assumed package or infer options. See the [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) for the interface and delivery status.
+
+## MCP Hub setup
+
+The [Hub server](../../mcp-hub/src/server.ts) speaks JSON-RPC over stdin/stdout. Install/build from mcp-hub/ using npm ci and npm run build, then configure the client to launch Node with an absolute path to mcp-hub/dist/index.js. The repository also supplies a Docker Compose configuration; Docker is optional for the local Node connector.
+
+```json
+{
+  "mcpServers": {
+    "conn2flow-hub": {
+      "command": "node",
+      "args": ["C:/projects/conn2flow-ai-workspace/mcp-hub/dist/index.js"]
+    }
+  }
+}
+```
+
+This is the connector shape used by the repository injector; confirm the target client's configuration format before applying it. The current setup-mcp-connectors.ps1 also writes a legacy .agents/mcp_config.json entry. The matrix now requires .gemini/ configuration; do not treat that legacy entry as canonical. This documentation change leaves the helper unchanged and records the mismatch.
+
+## Tools, modes and evidence
+
+| Tool | Required input | Result |
+| --- | --- | --- |
+| c2f_run_command | command; optional args and absolute repoPath | Core CLI exitCode, stdout, stderr, duration and success |
+| dispatch_task | repo, req_id, prompt; optional mode | JSON task record in tasks/ |
+| report_completion | batch_id, status (success/failed), logs | Completion receipt; optional task_id/req_id/role correlate the work |
+| log_session_event | batch_id, agent_id, role, summary | Shared session timeline event |
+
+dispatch_task accepts **supervised**, **live_autonomous** and **headless_autonomous**; the default is supervised. It writes the queue record, rather than starting a Python daemon or autonomously executing a batch. The VS Code watcher observes task and receipt changes. Include the target project, absolute root, request, batch, scope and stop conditions in prompts.
+
+The planned Python Hub evolution modes headless/monitored/reviewer are a separate interface. A success receipt describes executed checks; it does not replace independent review or human homologation. See the [workflow playbook](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md).
