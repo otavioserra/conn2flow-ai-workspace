@@ -1,0 +1,157 @@
+{
+  "status": "INHERITED-CANONICAL-WHITESPACE",
+  "standard_git_diff_check": "flags whitespace in newly imported canonical files",
+  "policy": "Preserve canonical source bytes; do not reformat unrelated skills or claim standard check PASS",
+  "files": [
+    {
+      "path": ".claude/skills/c2f-database-operations/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".claude/skills/c2f-documentation-governance/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".claude/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".claude/skills/c2f-projects-system/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".claude/skills/c2f-reviewer-agent/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".codex/skills/c2f-database-operations/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".codex/skills/c2f-documentation-governance/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".codex/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".codex/skills/c2f-projects-system/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".codex/skills/c2f-reviewer-agent/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".cursor/skills/c2f-database-operations/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".cursor/skills/c2f-documentation-governance/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".cursor/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".cursor/skills/c2f-projects-system/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".cursor/skills/c2f-reviewer-agent/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".github/skills/c2f-database-operations/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-database-operations/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".github/skills/c2f-documentation-governance/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-documentation-governance/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".github/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-module-crud-scaffolding/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".github/skills/c2f-projects-system/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-projects-system/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    },
+    {
+      "path": ".github/skills/c2f-reviewer-agent/SKILL.md",
+      "canonical_source": ".gemini/skills/c2f-reviewer-agent/SKILL.md",
+      "source_commit": "68d09c3",
+      "unchanged_except_line_endings": true
+    }
+  ]
+}

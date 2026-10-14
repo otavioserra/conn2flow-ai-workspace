@@ -27,7 +27,7 @@ summary_medium: "REQ-075 aprovada; triade, autonomo_monitorado. Homologações v
 - [x] 3.3 Relatório e recibo preenchidos.
 - [x] 3.4 Revisor Independente e rev-077.md.
 - [ ] 3.5 Homologação humana (adiada pelo usuário).
-- [ ] Commit/push das alterações autorizadas; confirmar refs remotas.
+- [x] Commit/push das alterações autorizadas; confirmar refs remotas (home local, sem remote configurado).
 
 ## Estado inicial e autorização
 
@@ -47,12 +47,29 @@ Categoria B: skills, testes e memória. Sem deploy, CSS ou banco. Core REQ-269 v
 - VSIX 1.1.4 gerado porque prompts de backlog da extensão ainda chamavam start-sdd-slice; agora usam start-mdd-slice. Pacote e hashes verificados; não instalado/publicado.
 - Guias raiz, CODEX, agentes Claude e templates bilíngues usam nomes atuais; traduções inglesas de gardening foram migradas em inglês, sem sobrescrita pelo português. Árvores físicas de boilerplates SDD históricos preservadas; suas referências de skills são MDD.
 - Categoria B: sem deploy, banco, Docker, Tailwind ou limpeza de ambientes. [Core REQ-269/BATCH-278](../../../conn2flow/memory/implementation/BATCH-278.md) registra medição de 36s com flag vs 40s completo/cache quente; evidência herdada lida, não repetida. Picos de 10–15min não são atribuídos universalmente ao Tailwind. Manager limitado por ausência de Docker no host daquela medição, igualmente sem a flag.
-- Ruff, sintaxe Node e diff check PASS. Avisos Starlette/AnyIO e vsce DEP0190. Windows/Python 3.14; CI/Linux e avaliação visual humana não executados.
+- Ruff, sintaxe Node e diff check da matriz PASS. Home: o check tradicional de whitespace sinalizou 25 novas cópias de cinco skills com espaços finais/linha vazia já presentes no commit canônico 68d09c3; comparação dos blobs confirma conteúdo herdado sem alteração. Preservada a paridade em vez de reformatar skills fora do escopo; prova em [BATCH-077-home-whitespace.json](../../completions/BATCH-077-home-whitespace.json). Avisos Starlette/AnyIO e vsce DEP0190. Windows/Python 3.14; CI/Linux e avaliação visual humana não executados.
 - Pendências humanas detalhadas adicionadas por autorização explícita ao final de memory/03-memory-engineering-chief.md; memória saudável não podada. Assinaturas REV-076/REV-077 ficam vazias.
-- Revisão independente [REV-077](../human-reviews/rev-077.md) com RECOMMEND-APPROVAL; commit/push em andamento. MCP Hub indisponível; recibo em arquivo e ferramenta de agentes.
+- Revisão independente [REV-077](../human-reviews/rev-077.md) com RECOMMEND-APPROVAL. Consolidação e pushes autorizados concluídos; MCP Hub indisponível, com recibo em arquivo e ferramenta de agentes.
 
 ## Defeitos corrigidos antes da entrega
 
 Fonte antiga documentava arquivador legado como compatível com memory; instruções corrigidas para o cliente MDD existente, sem inventar comandos. A skill de pipeline também descrevia quatro etapas de manager e uma ordem antiga das oito etapas de project; agora segue o código verificado, com a exceção A explícita. Referências CODEX e prompts da extensão à skill antiga foram encontradas e atualizadas.
 
 Revisão corrigiu P1: a via cirúrgica de Core/banco agora inclui --core-resources para preservar dono dos seeds, como o pipeline real. P2: tabela e resumo antigos de etapas foram alinhados/removidos; o prompt de backlog usa fonte do escopo real memory/ ou sdd/, com testes em EN/PT-BR. Preservação dos reconhecimentos intencionais foi fortalecida também para propagação global; conflitos de manifestos são recusados antes de renomear diretórios.
+
+## Consolidação Git e pendências finais
+
+Somente caminhos específicos foram adicionados. Sem merge: as cinco branches conectadas permitiam push por avanço direto; a branch existente do Lumix foi preservada. [Resumo Git](../../completions/BATCH-077-git-summary.json), com commits e refs conferidas por git ls-remote:
+
+| Repositório | Branch | Commit de implementação | Push |
+| --- | --- | --- | --- |
+| conn2flow-ai-workspace | main | cc0107a | confirmado; inclui BATCH-076 e BATCH-077 |
+| conn2flow | main | 7f8edac | confirmado |
+| conn2flow-site | main | 3f663b2 | confirmado |
+| lumix | novo-chat-intelligence | 9ff52f4 | confirmado |
+| transformamp | main | 489c5f7 | confirmado |
+| conn2flow-home | main | ef71824 | local; repositório sem remote |
+
+Três skills alheias e suas cópias (c2f-ai-features, c2f-modelo-templates, c2f-module-visual-assets), além de alterações anteriores de outros repositórios, ficaram fora dos commits. A auditoria certifica paridade da working tree propagada; essas alterações anteriores continuam locais, sem serem publicadas por este lote. [Plano explícito de stage](../../completions/BATCH-077-stage-plan.json) registra os caminhos selecionados e preservados.
+
+Homologação visual permanece pendente em [03-memory-engineering-chief.md](../03-memory-engineering-chief.md), com instalação do VSIX 1.1.4, conferência de escopo, choques, skills e proporcionalidade. Fichas REV-076 e REV-077 mantêm assinaturas vazias. Não houve instalação da extensão na janela humana, deploy, banco, limpeza do Lab ou publicação no Marketplace.

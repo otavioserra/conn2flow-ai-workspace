@@ -20,5 +20,7 @@
     "human_pending":  "memory/03-memory-engineering-chief.md",
     "dispatch":  "Local independent agent; MCP Hub unavailable",
     "git_authorization":  "User authorized commit, push and merge in chat; do not sign human approval",
-    "review_verdict":  "RECOMMEND-APPROVAL"
+    "review_verdict":  "RECOMMEND-APPROVAL",
+    "git_summary":  "completions/BATCH-077-git-summary.json",
+    "git_status":  "Five implementation pushes confirmed; home committed locally without remote; human approval pending"
 }
