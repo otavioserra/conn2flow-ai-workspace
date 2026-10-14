@@ -19,6 +19,7 @@ import { BacklogManager } from './providers/backlogManager';
 import { ReleaseManager } from './providers/releaseManager';
 import { HubTaskWatcher } from './providers/hubTaskWatcher';
 import { ProjectConflictsManager } from './providers/projectConflictsManager';
+import { MddConflictsManager } from './providers/mddConflictsManager';
 import {
   getPreviewCloseReason,
   isTargetMpePreview,
@@ -481,6 +482,7 @@ export function activate(context: vscode.ExtensionContext) {
     }),
 
     // SDD Commands & Interactive Browsers
+    vscode.commands.registerCommand('conn2flow.mdd.syncConflicts', () => MddConflictsManager.open()),
     vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
       // Trocar de escopo troca o CURRENT.md de referência: recarrega os modos
       // persistidos antes de repintar a árvore (REQ-049 / BATCH-051).
@@ -833,7 +835,7 @@ function updateStatusBar() {
     }
   }
 
-  sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
+  sddStatusBarItem.text = `$(git-commit) MDD: ${activeReq}`;
   sddStatusBarItem.tooltip = LocalizationManager.t('status.sddTooltip');
   sddStatusBarItem.show();
 

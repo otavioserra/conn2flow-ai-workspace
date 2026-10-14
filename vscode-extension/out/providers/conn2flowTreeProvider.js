@@ -107,6 +107,7 @@ class Conn2FlowTreeProvider {
             this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),
             this.leaf('agents.prepareReview', 'conn2flow.bridge.notifyArchitect', 'source-control'),
             this.leaf('sdd.selectScope', 'conn2flow.sdd.selectScope', 'target'),
+            this.leaf('mdd.conflicts', 'conn2flow.mdd.syncConflicts', 'diff'),
             this.leaf('sdd.viewMode', 'conn2flow.sdd.toggleViewMode', 'split-horizontal', { mode: sddViewModeManager_1.SddViewModeManager.label }),
             this.leaf('sdd.openCurrent', 'conn2flow.sdd.openCurrent', 'file-text'),
             this.leaf('sdd.openSpec', 'conn2flow.sdd.openSpec', 'file-code'),

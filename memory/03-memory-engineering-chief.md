@@ -65,3 +65,10 @@
     2. Prioridade de descoberta da pasta `memory/`.
     3. Nova seção/ação visual de **"Choques de Skills MDD"** com opção de **"Marcar como Customização Intencional"**.
   - **Ação Final**: Assinatura formal na ficha [`memory/human-reviews/rev-076.md`](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/memory/human-reviews/rev-076.md) para fechamento definitivo do lote.
+
+- [ ] **Avaliação visual consolidada ao fim — instrução humana de 2026-10-14**:
+  - Na raiz `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`, instalar o pacote com `code.cmd --install-extension vscode-extension\conn2flow-tools-1.1.4.vsix --force`; recarregar a janela e conferir MDD Explorer, menus/rótulos e descoberta prioritária de `memory/`, mantendo fallback legado. O 1.1.4 é a versão consolidada para esta avaliação; a evidência histórica REV-076 permanece referente ao 1.1.3.
+  - Em projeto de teste, abrir **Choques de Skills MDD**, conferir motivo e hashes da matriz/local, cancelar sem alterar arquivos e depois reconhecer uma customização intencional. Rodar nova auditoria e confirmar que alteração local ou da semente reabre o choque.
+  - Conferir descoberta das quatro skills novas (`start-mdd-slice`, `continue-mdd-batch`, `mdd-workflow`, `mdd-memory-gardening`) no cliente de IA, sem entradas duplicadas dos nomes antigos.
+  - Conferir o prompt do Executor em `memory/process/STARTER-PROMPTS.md`: backend usa `--skip-css`, documentação/testes/memória não fazem deploy e alterações de HTML/CSS usam a esteira completa.
+  - Revisar os relatórios BATCH-076 e BATCH-077 e os pareceres REV-076/REV-077 quando disponíveis. Registrar observações e assinar cada ficha somente após a avaliação; nenhuma pendência acima está homologada pelo Executor.

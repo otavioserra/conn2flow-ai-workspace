@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildBacklogSourcePath = buildBacklogSourcePath;
 exports.parseBacklogIndex = parseBacklogIndex;
 exports.parseBacklogFileStatus = parseBacklogFileStatus;
 exports.hasBacklogStatusDrift = hasBacklogStatusDrift;
+const path = require("path");
+function buildBacklogSourcePath(root, file) {
+    return `${path.basename(root)}/backlog/${file}`;
+}
 function parseBacklogIndex(markdown) {
     const items = [];
     const rowPattern = /^\|\s*\[([^\]]+)\]\(([^)]+)\)\s*\|\s*([^|]+?)\s*\|\s*`?([^|`]+?)`?\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|$/gm;

@@ -1,0 +1,14 @@
+........................................................................ [ 54%]
+...........................................................              [100%]
+============================== warnings summary ===============================
+tools\.venv-req074\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace\tools\.venv-req074\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.14.8-final-0 _______________
+
+Coverage JSON written to file completions/BATCH-077-python-coverage.json
+Required test coverage of 95% reached. Total coverage: 97.17%
+131 passed, 1 warning in 78.41s (0:01:18)

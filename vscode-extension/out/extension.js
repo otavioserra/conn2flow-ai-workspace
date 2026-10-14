@@ -23,6 +23,7 @@ const backlogManager_1 = require("./providers/backlogManager");
 const releaseManager_1 = require("./providers/releaseManager");
 const hubTaskWatcher_1 = require("./providers/hubTaskWatcher");
 const projectConflictsManager_1 = require("./providers/projectConflictsManager");
+const mddConflictsManager_1 = require("./providers/mddConflictsManager");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 const documentationSearchPolicy_1 = require("./documentationSearchPolicy");
 const vmDiagnosticsPolicy_1 = require("./vmDiagnosticsPolicy");
@@ -390,7 +391,7 @@ function activate(context) {
         }
     }), 
     // SDD Commands & Interactive Browsers
-    vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
+    vscode.commands.registerCommand('conn2flow.mdd.syncConflicts', () => mddConflictsManager_1.MddConflictsManager.open()), vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
         // Trocar de escopo troca o CURRENT.md de referência: recarrega os modos
         // persistidos antes de repintar a árvore (REQ-049 / BATCH-051).
         await sddScopeManager_1.SddScopeManager.selectScope(() => {
@@ -669,7 +670,7 @@ function updateStatusBar() {
             break;
         }
     }
-    sddStatusBarItem.text = `$(git-commit) SDD: ${activeReq}`;
+    sddStatusBarItem.text = `$(git-commit) MDD: ${activeReq}`;
     sddStatusBarItem.tooltip = localizationManager_1.LocalizationManager.t('status.sddTooltip');
     sddStatusBarItem.show();
     if (projectsManager_1.ProjectsManager.isTargetVm()) {

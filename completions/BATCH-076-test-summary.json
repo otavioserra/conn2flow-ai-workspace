@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "python_tests": 125,
+  "python_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "125",
+      "time": "36.894",
+      "timestamp": "2026-10-09T17:37:37.069348-03:00",
+      "hostname": "Conn2Flow-Home"
+    }
+  ],
+  "coverage_percent": 97.01130856219709,
+  "python_311_grammar": "PASS",
+  "extension": {
+    "tests": 131,
+    "pass": 131,
+    "fail": 0,
+    "skipped": 0,
+    "compile": "PASS"
+  },
+  "vsix": {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\vscode-extension\\conn2flow-tools-1.1.3.vsix",
+    "sha256": "22ea0d003b2f369fcb2246cabebc8eff7fa332c14a5b0decc50c8b80e534e102",
+    "version": "1.1.3",
+    "contents": "PASS"
+  },
+  "home_commit": "f5a7ea4",
+  "preservation": "BATCH-076-home-preservation.json",
+  "limitations": [
+    "Windows only; CI/Linux not exercised",
+    "Human visual approval pending",
+    "No Marketplace/PyPI/push/deploy",
+    "MCP Hub unavailable; local receipt and independent agent used"
+  ],
+  "python_junit": "BATCH-076-final-pytest.xml",
+  "coverage_json": "BATCH-076-final-coverage.json",
+  "client_coverage_percent": 96.51307596513075
+}

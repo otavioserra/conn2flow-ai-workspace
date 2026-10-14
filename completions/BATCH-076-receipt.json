@@ -1,0 +1,36 @@
+{
+  "request": "REQ-074",
+  "batch": "BATCH-076",
+  "date": "2026-10-09",
+  "role": "executor",
+  "status": "ready-for-human-review",
+  "topology": "triade",
+  "autonomy": "autonomo_monitorado",
+  "projects": [
+    {
+      "id": "conn2flow-ai-workspace",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace"
+    },
+    {
+      "id": "conn2flow-home",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-home"
+    }
+  ],
+  "scope": "Native Python MCP; VS Code MDD UI Bridge/skills conflicts; home governance migration",
+  "evidence": [
+    "memory/implementation/batch-076.md",
+    "completions/BATCH-076-test-summary.json",
+    "completions/BATCH-076-home-preservation.json",
+    "completions/BATCH-076-final-pytest.xml",
+    "completions/BATCH-076-final-coverage.json",
+    "memory/human-reviews/rev-076.md"
+  ],
+  "next_role": "human",
+  "expected_review": "memory/human-reviews/rev-076.md",
+  "pending": [
+    "Human visual approval by Otávio Serra"
+  ],
+  "dispatch": "Local independent agent; no remote Hub dispatch",
+  "review": "memory/human-reviews/rev-076.md",
+  "review_verdict": "RECOMMEND-APPROVAL"
+}

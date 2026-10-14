@@ -40,7 +40,7 @@ class SddScopeManager {
         scopes.push({
             id: 'core',
             label: '🏛️ Core (Sistema)',
-            description: 'conn2flow/sdd',
+            description: `conn2flow/${coreSdd ? path.basename(coreSdd) : 'memory'}`,
             sddPath: coreSdd || ''
         });
         // 2. Projetos Satélites do environment.json
@@ -51,7 +51,7 @@ class SddScopeManager {
                 scopes.push({
                     id: `project:${proj.id}`,
                     label: `🚀 Projeto: ${proj.name}`,
-                    description: `${proj.id}/sdd`,
+                    description: `${proj.id}/${path.basename(projSdd)}`,
                     sddPath: projSdd
                 });
             }
@@ -86,6 +86,8 @@ class SddScopeManager {
                 const memory = path.join(f.uri.fsPath, 'memory');
                 if (fs.existsSync(memory))
                     return memory;
+            }
+            for (const f of workspaceFolders) {
                 const s = path.join(f.uri.fsPath, 'sdd');
                 if (fs.existsSync(s))
                     return s;
@@ -188,6 +190,8 @@ class SddScopeManager {
             const memory = path.join(path.dirname(c), 'memory');
             if (fs.existsSync(memory))
                 return memory;
+        }
+        for (const c of candidates) {
             if (fs.existsSync(c)) {
                 return c;
             }

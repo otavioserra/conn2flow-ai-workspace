@@ -23,7 +23,7 @@ class BacklogManager {
         }
         const items = (0, backlogPolicy_1.parseBacklogIndex)(fs.readFileSync(indexPath, 'utf8')).map(item => this.withFileStatus(backlogRoot, item));
         if (items.length === 0) {
-            await openFile('sdd/backlog/BACKLOG-INDEX.md');
+            await openFile((0, backlogPolicy_1.buildBacklogSourcePath)(root, 'BACKLOG-INDEX.md'));
             return;
         }
         const statuses = [...new Set(items.flatMap(item => [item.indexStatus, item.fileStatus].filter(Boolean)))].sort();
@@ -49,13 +49,13 @@ class BacklogManager {
             { label: `$(list-unordered) ${localizationManager_1.LocalizationManager.t('backlog.openIndex')}`, value: 'index' }
         ]);
         if (action?.value === 'open') {
-            await openFile(`sdd/backlog/${selected.item.fileName}`);
+            await openFile((0, backlogPolicy_1.buildBacklogSourcePath)(root, selected.item.fileName));
         }
         else if (action?.value === 'index') {
-            await openFile('sdd/backlog/BACKLOG-INDEX.md');
+            await openFile((0, backlogPolicy_1.buildBacklogSourcePath)(root, 'BACKLOG-INDEX.md'));
         }
         else if (action?.value === 'promote') {
-            await this.preparePromotion(selected.item, openFile);
+            await this.preparePromotion(selected.item, root, openFile);
         }
     }
     static withFileStatus(root, item) {
@@ -67,7 +67,7 @@ class BacklogManager {
                 : undefined
         };
     }
-    static async preparePromotion(item, openFile) {
+    static async preparePromotion(item, root, openFile) {
         const answer = await vscode.window.showWarningMessage(localizationManager_1.LocalizationManager.t('backlog.intakeGate'), { modal: true }, localizationManager_1.LocalizationManager.t('backlog.promote'));
         if (!answer)
             return;
@@ -77,10 +77,10 @@ class BacklogManager {
             status: item.fileStatus || item.indexStatus,
             title: item.title,
             action: item.nextAction,
-            file: item.fileName
+            source: (0, backlogPolicy_1.buildBacklogSourcePath)(root, item.fileName)
         });
         await vscode.env.clipboard.writeText(prompt);
-        await openFile(`sdd/backlog/${item.fileName}`);
+        await openFile((0, backlogPolicy_1.buildBacklogSourcePath)(root, item.fileName));
     }
 }
 exports.BacklogManager = BacklogManager;

@@ -13,9 +13,9 @@
 ## MANDATORY Skills by Workflow Milestone
 
 Consult the corresponding skills in `.codex/skills/` BEFORE editing code or closing batches:
-- **Task Start**: `start-sdd-slice` (new intake), `continue-sdd-batch` (resume batch), `sdd-workflow` (workflow alignment).
+- **Task Start**: `start-mdd-slice` (new intake), `continue-mdd-batch` (resume batch), `mdd-workflow` (workflow alignment).
 - **During Implementation**: invoke relevant Core Skills (`c2f-*`) for the stack being touched (database, variables, resources, layout, etc.).
-- **Closing & Validation**: `project-validation` (testing strategy), `review-current-batch` (findings-first review), `sdd-memory-gardening` (memory pruning).
+- **Closing & Validation**: `project-validation` (testing strategy), `review-current-batch` (findings-first review), `mdd-memory-gardening` (memory pruning).
 - **Normative Changes**: `raise-spec-change` (if contracts/requirements change).
 
 ## Context Optimization and Archiving

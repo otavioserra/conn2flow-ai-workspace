@@ -12,6 +12,8 @@
 | BATCH-073 | BATCH-073 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates | Cada staging listou caminhos de arquivos explicitamente; nenhuma operação `git add .`, `git add -A` ou commit de alte... | [source](<batch-073.md>) | ready-for-review |
 | BATCH-074 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Live Todo List para implementação das 3 travas de governança do ARCH-015 / REQ-072 | [source](<batch-074.md>) | complete |
 | BATCH-075 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Consolidação MDD integrada e publicada na main da matriz e do Core, com testes verdes e worktrees removidas | [source](<batch-075.md>) | complete |
+| BATCH-076 | Servidor MCP, interface MDD e migração do conn2flow-home | Execução da REQ-074: MCP nativo, extensão MDD e migração da governança local. | [source](<batch-076.md>) | ready-for-human-review |
+| BATCH-077 | Skills MDD e proporcionalidade de build | Canonização de quatro skills MDD, seleção proporcional de build e propagação segura dos kits. | [source](<batch-077.md>) | ready-for-human-review |
 
 ## Directories
 

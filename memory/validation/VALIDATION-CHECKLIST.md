@@ -1,5 +1,30 @@
 # Validation Checklist
 
+## BATCH-077 — REQ-075 (2026-10-14)
+
+- [x] Quatro skills MDD renomeadas, com caminhos/gatilhos/referências atualizados; catálogo canônico mantém 45.
+- [x] Cinco superfícies nos seis repositórios sem pastas legadas; migrador preserva auxiliares e recusa links/coexistência.
+- [x] Guias raiz, CODEX, agentes Claude e templates bilíngues atualizados; tradução inglesa de gardening preservada.
+- [x] Proporcionalidade A/B/C e --skip-css nas três skills e STARTER-PROMPTS; comandos confrontados com código Core.
+- [x] Propagação em 44 alvos e auditoria de 1.350 cópias; zero divergências, 21 traduções e 60 skills locais preservadas.
+- [x] Python 131/131 PASS, sem skips, cobertura 97,17%; extensão 133/133 PASS, compilação limpa.
+- [x] VSIX1.1.4 com prompts atualizados, pacote/hash conferidos.
+- [x] Fila humana em03-memory-engineering-chief.md atualizada com instruções específicas, sem assinatura simulada.
+- [x] Parecer independente [REV-077](../human-reviews/rev-077.md): RECOMMEND-APPROVAL; P1/P2 corrigidos e verificados.
+- [ ] Homologação humana diferida; seguir fila do Engenheiro Chefe.
+
+Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/BATCH-077-pytest.xml), [resumo](../../completions/BATCH-077-test-summary.json), [auditoria](../../completions/BATCH-077-skills-audit.json), [contratos](../../completions/BATCH-077-governance-audit.json). Benchmark da flag: Core [BATCH-278](../../../conn2flow/memory/implementation/BATCH-278.md) mediu36s contra40s/cachequente; evidência anterior conferida, não repetida neste lote de CategoriaB. Sem deploy, banco ou buildTailwind. Limites Windows/CI e avisos de depreciação registrados no lote.
+
+## BATCH-076 — REQ-074 (reposição do registro operacional)
+
+- [x] MCP stdio/SSE/daemon, UI Bridge MDD e migração home implementados.
+- [x] Python125/125PASS, cobertura97,01%; extensão131/131PASS.
+- [x] Revisão independente REV-076 RECOMMEND-APPROVAL, com finding P2 corrigido.
+- [x] Home SPEC e67arquivos preservados byte a byte na working tree; commit f5a7ea4.
+- [ ] Homologação visual de Otávio Serra, adiada explicitamente para o fim.
+
+Evidências preservadas em [batch-076.md](../implementation/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
+
 Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de testes empÃ­ricos de validaÃ§Ã£o para os lotes funcionais ativos.
 
 ## ValidaÃ§Ãµes Arquivadas

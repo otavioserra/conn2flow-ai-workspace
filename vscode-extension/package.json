@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.1.1",
+  "version": "1.1.4",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "sdd",
     "docker",
     "tailwind",
-    "ai"
+    "ai",
+    "mdd"
   ],
   "activationEvents": [],
   "capabilities": {
@@ -32,7 +33,8 @@
       "supported": "limited",
       "description": "Browsing and documentation remain available; command execution requires Workspace Trust.",
       "restrictedConfigurations": [
-        "conn2flow.githubOwner"
+        "conn2flow.githubOwner",
+        "conn2flow.mddExecutable"
       ]
     }
   },
@@ -51,7 +53,7 @@
       "conn2flow-view-container": [
         {
           "id": "conn2flow-explorer",
-          "name": "%view.title%"
+          "name": "%view.mddExplorer%"
         }
       ]
     },
@@ -137,73 +139,73 @@
       {
         "command": "conn2flow.sdd.selectScope",
         "title": "%command.conn2flow.sdd.selectScope%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(target)"
       },
       {
         "command": "conn2flow.sdd.toggleViewMode",
         "title": "%command.conn2flow.sdd.toggleViewMode%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(split-horizontal)"
       },
       {
         "command": "conn2flow.sdd.toggleAutoGardening",
         "title": "%command.conn2flow.sdd.toggleAutoGardening%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(sync)"
       },
       {
         "command": "conn2flow.sdd.runGardening",
         "title": "%command.conn2flow.sdd.runGardening%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(trash)"
       },
       {
         "command": "conn2flow.sdd.createGardeningRequest",
         "title": "%command.conn2flow.sdd.createGardeningRequest%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(diff-added)"
       },
       {
         "command": "conn2flow.sdd.openCurrent",
         "title": "%command.conn2flow.sdd.openCurrent%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(file-text)"
       },
       {
         "command": "conn2flow.sdd.openSpec",
         "title": "%command.conn2flow.sdd.openSpec%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(file-code)"
       },
       {
         "command": "conn2flow.sdd.openChecklist",
         "title": "%command.conn2flow.sdd.openChecklist%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(checklist)"
       },
       {
         "command": "conn2flow.sdd.browseRequests",
         "title": "%command.conn2flow.sdd.browseRequests%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(folder-opened)"
       },
       {
         "command": "conn2flow.sdd.browseBatches",
         "title": "%command.conn2flow.sdd.browseBatches%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(history)"
       },
       {
         "command": "conn2flow.sdd.browseDecisions",
         "title": "%command.conn2flow.sdd.browseDecisions%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(repo)"
       },
       {
         "command": "conn2flow.sdd.browseHandoffs",
         "title": "%command.conn2flow.sdd.browseHandoffs%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(repo-pull)"
       },
       {
@@ -539,7 +541,7 @@
       {
         "command": "conn2flow.sdd.browseBacklog",
         "title": "%command.conn2flow.sdd.browseBacklog%",
-        "category": "Conn2Flow SDD",
+        "category": "Conn2Flow MDD",
         "icon": "$(list-unordered)"
       },
       {
@@ -583,6 +585,12 @@
         "title": "%command.conn2flow.release.openActions%",
         "category": "Conn2Flow Release",
         "icon": "$(github-action)"
+      },
+      {
+        "command": "conn2flow.mdd.syncConflicts",
+        "title": "%command.conn2flow.mdd.syncConflicts%",
+        "category": "Conn2Flow MDD",
+        "icon": "$(diff)"
       }
     ],
     "configuration": {
@@ -637,6 +645,11 @@
           "default": "supervisionado",
           "scope": "window",
           "description": "%config.agentsAutonomy.description%"
+        },
+        "conn2flow.mddExecutable": {
+          "type": "string",
+          "default": "",
+          "description": "%config.mddExecutable.description%"
         }
       }
     },
@@ -663,7 +676,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "test": "npm run compile && node --test test/",
+    "test": "npm run compile && node --test test/*.test.cjs",
     "watch": "tsc -watch -p ./",
     "version:bump": "node scripts/bump-version.cjs",
     "version:bump:dry-run": "node scripts/bump-version.cjs --dry-run",

@@ -1,0 +1,38 @@
+{
+  "conn2flow-ai-workspace": {
+    "branch": "main",
+    "head": "68d09c3e373bdcf0c9aea478f4967510d62df54c",
+    "remote_head": "68d09c3e373bdcf0c9aea478f4967510d62df54c",
+    "relation": "fast-forward-push"
+  },
+  "conn2flow": {
+    "branch": "main",
+    "head": "1787f8571e8467582f950b1ba5e077b2d6944109",
+    "remote_head": "1787f8571e8467582f950b1ba5e077b2d6944109",
+    "relation": "fast-forward-push"
+  },
+  "conn2flow-site": {
+    "branch": "main",
+    "head": "8fe6592d1f040e151a68c4683bae146429abbafd",
+    "remote_head": "8fe6592d1f040e151a68c4683bae146429abbafd",
+    "relation": "fast-forward-push"
+  },
+  "lumix": {
+    "branch": "novo-chat-intelligence",
+    "head": "5e539a706a1366f0f21eb3bca9047302de455df6",
+    "remote_head": "5e539a706a1366f0f21eb3bca9047302de455df6",
+    "relation": "fast-forward-push"
+  },
+  "transformamp": {
+    "branch": "main",
+    "head": "9def8a4ab1d8c9284b8c8617abf4486bf2f511b1",
+    "remote_head": "9def8a4ab1d8c9284b8c8617abf4486bf2f511b1",
+    "relation": "fast-forward-push"
+  },
+  "conn2flow-home": {
+    "branch": "main",
+    "head": "f5a7ea451e2028f6bfc1c34ff57e566e767fc55f",
+    "remote_head": null,
+    "relation": "local-only-no-remote"
+  }
+}

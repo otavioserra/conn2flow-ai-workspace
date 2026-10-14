@@ -1,3 +1,9 @@
+import * as path from 'path';
+
+export function buildBacklogSourcePath(root: string, file: string): string {
+  return `${path.basename(root)}/backlog/${file}`;
+}
+
 export interface BacklogItem {
   id: string;
   fileName: string;

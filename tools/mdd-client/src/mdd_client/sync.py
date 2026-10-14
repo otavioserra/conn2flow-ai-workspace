@@ -1,5 +1,6 @@
 """Adapter to the canonical propagation pipeline (Node is required for sync)."""
 
+import hashlib
 import json
 import os
 import subprocess
@@ -9,6 +10,28 @@ from pathlib import Path
 from .storage import contained, lock, write
 
 KITS = (".gemini", ".claude", ".cursor", ".codex", ".github")
+
+
+def customize(root: Path, matrix: Path, target: str, local_sha256: str | None = None, seed_sha256: str | None = None) -> dict:
+    """Acknowledge one exact local/seed hash pair; later edits require review."""
+    root, matrix = root.resolve(), matrix.resolve()
+    destination = contained(root, root / target)
+    relative = destination.relative_to(root).parts
+    if len(relative) != 4 or relative[0] not in KITS or relative[1] != "skills" or relative[3] != "SKILL.md":
+        raise ValueError("Customization must name a kit/skills/name/SKILL.md")
+    source = contained(matrix, matrix / ".gemini/skills" / relative[2] / "SKILL.md")
+    with lock(root):
+        manifest = contained(root, root / "memory/sync-customizations.json")
+        data = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else {}
+        entry = {"local_sha256": hashlib.sha256(destination.read_bytes()).hexdigest(),
+                 "seed_sha256": hashlib.sha256(source.read_bytes()).hexdigest()}
+        if (local_sha256 is not None or seed_sha256 is not None) and entry != {
+            "local_sha256": local_sha256, "seed_sha256": seed_sha256
+        }:
+            raise ValueError("Conflict changed since audit; refresh before acknowledging")
+        data[destination.relative_to(root).as_posix()] = entry
+        write(root, manifest, json.dumps(data, indent=2) + "\n")
+        return entry
 
 
 def find_matrix(matrix: Path | None = None) -> Path:

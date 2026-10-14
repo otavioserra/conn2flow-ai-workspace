@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import {
   BacklogItem,
+  buildBacklogSourcePath,
   hasBacklogStatusDrift,
   parseBacklogFileStatus,
   parseBacklogIndex
@@ -30,7 +31,7 @@ export class BacklogManager {
       this.withFileStatus(backlogRoot, item)
     );
     if (items.length === 0) {
-      await openFile('sdd/backlog/BACKLOG-INDEX.md');
+      await openFile(buildBacklogSourcePath(root, 'BACKLOG-INDEX.md'));
       return;
     }
 
@@ -63,11 +64,11 @@ export class BacklogManager {
       { label: `$(list-unordered) ${LocalizationManager.t('backlog.openIndex')}`, value: 'index' }
     ]);
     if (action?.value === 'open') {
-      await openFile(`sdd/backlog/${selected.item.fileName}`);
+      await openFile(buildBacklogSourcePath(root, selected.item.fileName));
     } else if (action?.value === 'index') {
-      await openFile('sdd/backlog/BACKLOG-INDEX.md');
+      await openFile(buildBacklogSourcePath(root, 'BACKLOG-INDEX.md'));
     } else if (action?.value === 'promote') {
-      await this.preparePromotion(selected.item, openFile);
+      await this.preparePromotion(selected.item, root, openFile);
     }
   }
 
@@ -83,6 +84,7 @@ export class BacklogManager {
 
   private static async preparePromotion(
     item: BacklogItem,
+    root: string,
     openFile: (relativePath: string) => Promise<void>
   ): Promise<void> {
     const answer = await vscode.window.showWarningMessage(
@@ -98,9 +100,9 @@ export class BacklogManager {
       status: item.fileStatus || item.indexStatus,
       title: item.title,
       action: item.nextAction,
-      file: item.fileName
+      source: buildBacklogSourcePath(root, item.fileName)
     });
     await vscode.env.clipboard.writeText(prompt);
-    await openFile(`sdd/backlog/${item.fileName}`);
+    await openFile(buildBacklogSourcePath(root, item.fileName));
   }
 }

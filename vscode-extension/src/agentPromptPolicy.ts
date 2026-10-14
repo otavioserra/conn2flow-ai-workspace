@@ -47,7 +47,7 @@ function resolveSddRoot(input: AgentPromptIdentityInput): string {
 }
 
 function resolveRepositoryRoot(sddRoot: string, input: AgentPromptIdentityInput): string {
-  if (sddRoot && path.basename(sddRoot).toLocaleLowerCase('en-US') === SDD_DIRECTORY) {
+  if (sddRoot && ['memory', SDD_DIRECTORY].includes(path.basename(sddRoot).toLocaleLowerCase('en-US'))) {
     return path.dirname(sddRoot);
   }
   return normalize(input.workspaceRoot);

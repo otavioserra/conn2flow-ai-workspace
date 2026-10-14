@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "python": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "131",
+    "time": "78.111",
+    "timestamp": "2026-10-14T11:29:50.858755-03:00",
+    "hostname": "Conn2Flow-Home"
+  },
+  "coverage_percent": 97.17285945072697,
+  "extension": {
+    "tests": 133,
+    "pass": 133,
+    "fail": 0,
+    "skipped": 0,
+    "compile": "PASS"
+  },
+  "skills": {
+    "canonical": 45,
+    "targets": 44,
+    "equal": 1903,
+    "translations": 21,
+    "local_preserved": 60,
+    "divergent": 0
+  },
+  "vsix": {
+    "version": "1.1.4",
+    "sha256": "8054f39a4d319165e198055ed233321c758efd6728325de4964fe289e9ee1822",
+    "path": "vscode-extension/conn2flow-tools-1.1.4.vsix"
+  },
+  "benchmark": {
+    "source": "../conn2flow/memory/implementation/BATCH-278.md",
+    "executor": "Core REQ-269, not this batch",
+    "skip_css_seconds": 36,
+    "full_warm_cache_seconds": 40,
+    "manager_limit": "Docker absent in Core validation host"
+  },
+  "warnings": [
+    "Starlette/AnyIO deprecation",
+    "vsce DEP0190"
+  ],
+  "human_approval": "pending, deferred by user"
+}

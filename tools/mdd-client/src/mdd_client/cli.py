@@ -16,7 +16,7 @@ from . import daemon as monitoring
 from . import memory
 from . import report as reporting
 from .core import indexer
-from .sync import find_matrix, install_kits
+from .sync import customize, find_matrix, install_kits
 from .sync import sync as synchronize
 
 app = typer.Typer(no_args_is_help=True, help="Manage project memory and agent skills.")
@@ -58,9 +58,12 @@ def init(
 
 @app.command()
 @guarded
-def sync(matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path(".")), audit: bool = False):
+def sync(matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path(".")), audit: bool = False,
+         customization: str | None = typer.Option(None, "--customize"),
+         local_sha256: str | None = None, seed_sha256: str | None = None):
     """Synchronize canonical skills through the official pipeline."""
-    data = synchronize(path, find_matrix(matrix), audit)
+    data = ({"status": "PASS", "customization": customize(path, find_matrix(matrix), customization, local_sha256, seed_sha256)}
+            if customization else synchronize(path, find_matrix(matrix), audit))
     typer.echo(json.dumps(data, ensure_ascii=False))
     if data["status"] != "PASS":
         raise typer.Exit(1)
@@ -108,9 +111,28 @@ def report(path: Path = typer.Option(Path(".")), log: list[Path] = typer.Option(
 @app.command("watch")
 @app.command("daemon")
 @guarded
-def watch(path: Path = typer.Option(Path(".")), interval: float = 30, once: bool = False):
+def watch(
+    path: Path = typer.Option(Path(".")), interval: float = 30, once: bool = False,
+    mcp: bool = typer.Option(False, "--mcp"), transport: str = "stdio", port: int = 8765,
+):
     """Monitor memory continuously; Ctrl+C stops; --once performs one cycle."""
-    asyncio.run(monitoring.watch(path.resolve(), interval, once, lambda data: typer.echo(json.dumps(data))))
+    if mcp:
+        if once:
+            raise ValueError("--once cannot be combined with --mcp")
+        from .mcp_server import serve
+
+        asyncio.run(serve(path.resolve(), transport, port, monitor=True, interval=interval))
+    else:
+        asyncio.run(monitoring.watch(path.resolve(), interval, once, lambda data: typer.echo(json.dumps(data))))
+
+
+@app.command("mcp")
+@guarded
+def mcp(path: Path = typer.Option(Path(".")), transport: str = "stdio", port: int = 8765):
+    """Serve native MDD tools over stdio or loopback SSE."""
+    from .mcp_server import serve
+
+    asyncio.run(serve(path.resolve(), transport, port))
 
 
 @app.command("index")

@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConflictPolicyError = exports.DELIVERY_CONFLICT_ACTIONS = void 0;
+exports.resolveMddExecutable = resolveMddExecutable;
+exports.parseMemorySyncReport = parseMemorySyncReport;
+exports.buildMemorySyncArgs = buildMemorySyncArgs;
 exports.parseCliSuccess = parseCliSuccess;
 exports.buildConflictListArgs = buildConflictListArgs;
 exports.buildConflictDetailsArgs = buildConflictDetailsArgs;
@@ -8,7 +11,39 @@ exports.buildResolveConflictArgs = buildResolveConflictArgs;
 exports.parseConflictList = parseConflictList;
 exports.parseConflictDetails = parseConflictDetails;
 exports.requiredConflictFilePaths = requiredConflictFilePaths;
+const fs = require("fs");
+const path = require("path");
+function resolveMddExecutable(matrix, configured, platform = process.platform) {
+    if (configured?.trim())
+        return configured.trim();
+    for (const environment of ['.venv-mdd', '.venv']) {
+        if (!matrix)
+            break;
+        const binary = path.join(matrix, environment, ...(platform === 'win32' ? ['Scripts', 'mdd.exe'] : ['bin', 'mdd']));
+        if (fs.existsSync(binary))
+            return binary;
+    }
+    return 'mdd';
+}
 exports.DELIVERY_CONFLICT_ACTIONS = ['sobrescrever', 'manter', 'mesclar'];
+function parseMemorySyncReport(output) {
+    const data = JSON.parse(output);
+    if (!data || !['PASS', 'FAIL'].includes(data.status) || !Array.isArray(data.divergentes)) {
+        throw new ConflictPolicyError('invalid-response');
+    }
+    return data.divergentes.map((conflict) => {
+        if (typeof conflict.path !== 'string' || typeof conflict.skill !== 'string' || typeof conflict.motivo !== 'string') {
+            throw new ConflictPolicyError('invalid-response');
+        }
+        return conflict;
+    });
+}
+function buildMemorySyncArgs(root, customization, hashes) {
+    if (!root.trim() || customization === '')
+        throw new ConflictPolicyError('invalid-response');
+    return ['sync', '--path', root, ...(customization ? ['--customize', customization] : ['--audit']),
+        ...(hashes ? ['--local-sha256', hashes.local_sha256 || '', '--seed-sha256', hashes.seed_sha256 || ''] : [])];
+}
 class ConflictPolicyError extends Error {
     code;
     constructor(code) {

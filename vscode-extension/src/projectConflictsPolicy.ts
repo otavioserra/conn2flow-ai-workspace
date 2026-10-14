@@ -1,4 +1,44 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
+export function resolveMddExecutable(matrix?: string, configured?: string, platform = process.platform): string {
+    if (configured?.trim()) return configured.trim();
+    for (const environment of ['.venv-mdd', '.venv']) {
+        if (!matrix) break;
+        const binary = path.join(matrix, environment, ...(platform === 'win32' ? ['Scripts', 'mdd.exe'] : ['bin', 'mdd']));
+        if (fs.existsSync(binary)) return binary;
+    }
+    return 'mdd';
+}
+
 export const DELIVERY_CONFLICT_ACTIONS = ['sobrescrever', 'manter', 'mesclar'] as const;
+
+export interface MemorySyncConflict {
+    path: string;
+    skill: string;
+    motivo: string;
+    local_sha256?: string;
+    seed_sha256?: string;
+}
+
+export function parseMemorySyncReport(output: string): MemorySyncConflict[] {
+    const data = JSON.parse(output);
+    if (!data || !['PASS', 'FAIL'].includes(data.status) || !Array.isArray(data.divergentes)) {
+        throw new ConflictPolicyError('invalid-response');
+    }
+    return data.divergentes.map((conflict: MemorySyncConflict) => {
+        if (typeof conflict.path !== 'string' || typeof conflict.skill !== 'string' || typeof conflict.motivo !== 'string') {
+            throw new ConflictPolicyError('invalid-response');
+        }
+        return conflict;
+    });
+}
+
+export function buildMemorySyncArgs(root: string, customization?: string, hashes?: MemorySyncConflict): string[] {
+    if (!root.trim() || customization === '') throw new ConflictPolicyError('invalid-response');
+    return ['sync', '--path', root, ...(customization ? ['--customize', customization] : ['--audit']),
+        ...(hashes ? ['--local-sha256', hashes.local_sha256 || '', '--seed-sha256', hashes.seed_sha256 || ''] : [])];
+}
 
 export type DeliveryConflictAction = typeof DELIVERY_CONFLICT_ACTIONS[number];
 export type ConflictPolicyErrorCode = 'invalid-json' | 'invalid-response';

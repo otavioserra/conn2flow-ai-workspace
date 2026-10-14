@@ -33,7 +33,7 @@ export class GardeningManager {
     this._autoGardening = !this._autoGardening;
     void this.storage?.update(this.storageKey, this._autoGardening);
     const statusText = this._autoGardening ? 'ATIVADO' : 'DESATIVADO';
-    vscode.window.setStatusBarMessage(`Auto-Gardening SDD: ${statusText}`, 2500);
+    vscode.window.setStatusBarMessage(`Auto-Gardening MDD: ${statusText}`, 2500);
     if (onChanged) {
       onChanged();
     }
@@ -118,7 +118,7 @@ export class GardeningManager {
     const scopeLabel = SddScopeManager.getScopeLabel();
 
     if (!sddRoot || !fs.existsSync(sddRoot)) {
-      vscode.window.showErrorMessage(`Pasta SDD não encontrada para o escopo ${scopeLabel}.`);
+      vscode.window.showErrorMessage(LocalizationManager.t('sdd.folderMissing', { scope: scopeLabel }));
       return;
     }
 
@@ -159,7 +159,7 @@ export class GardeningManager {
       return;
     }
 
-    const templateContent = `# Requisição Humana req-${padNum}: SDD Memory Gardening & Higienização
+    const templateContent = `# Requisição Humana req-${padNum}: MDD Memory Gardening & Higienização
 
 ## 🎯 Objetivo
 Executar poda, destilação e higienização periódica da memória de execução (\`${health.filePath}\`) conforme as diretrizes da skill oficial \`sdd-memory-gardening\`.

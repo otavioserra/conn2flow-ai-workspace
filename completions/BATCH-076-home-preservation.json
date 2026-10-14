@@ -1,0 +1,499 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "before": ".gitignore",
+      "after": ".gitignore",
+      "sha256": "68BC36BF0FA1B85F2CAB5EA6AA7D31D5C0DA54CD2D4A637B3782FAB4056AA618",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "AGENTS.md",
+      "after": "AGENTS.md",
+      "sha256": "DDB809D5C3223D64B0D0E5F80F68873A193EBF4F14DB3A93E49CD0F8FDA2B9BE",
+      "byte_identical": false,
+      "authorized_reference_update": true
+    },
+    {
+      "before": "README.md",
+      "after": "README.md",
+      "sha256": "CCD0FC535DABEE3999D2CE75F8E5D2477B5F08BB5F953828EEFAB87FE2940EEB",
+      "byte_identical": false,
+      "authorized_reference_update": true
+    },
+    {
+      "before": "sdd/00-baseline-architecture.html",
+      "after": "memory/00-baseline-architecture.html",
+      "sha256": "3EB686078F1D76DA2A8D3F2BC5F19592AE4AB15F64589FEBAAB1336B7FDE24D2",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/00-baseline-architecture.md",
+      "after": "memory/00-baseline-architecture.md",
+      "sha256": "BF0D2DCE8F7068F4042979C9A8E8978C256ED25010C211008C5FF628D0C5D56F",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/05-GUIA-RESTAURACAO-WINDOWS-WIM.html",
+      "after": "memory/05-GUIA-RESTAURACAO-WINDOWS-WIM.html",
+      "sha256": "ADB1A83C795EE5717CDF526BD105930D8D9D5634734D1D036D05206CC3F5E93B",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/05-GUIA-RESTAURACAO-WINDOWS-WIM.md",
+      "after": "memory/05-GUIA-RESTAURACAO-WINDOWS-WIM.md",
+      "sha256": "B964B1F7B28D4691D8E390D812EFBE2E65C3B2B1FF8C8E0918016E23FB0F01BD",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/MEMORIA-ENGENHARIA-CHEFIA.html",
+      "after": "memory/03-memory-engineering-chief.html",
+      "sha256": "F18A32672D945B0A7047947E0D49C373B8B688E10D82A5332A06B56B1EC6C672",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/MEMORIA-ENGENHARIA-CHEFIA.md",
+      "after": "memory/03-memory-engineering-chief.md",
+      "sha256": "6F7E685C8363753A7BE533AC2B7675B7A20E46D95C2FCDC89B57E4B3FF7E360F",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/MEMORIA-ENGENHARIA-EXECUCAO.html",
+      "after": "memory/04-memory-engineering-execution.html",
+      "sha256": "98DD7CEA5DC9C4B190615BA36D19DDE4AB815F30ECE50E1C5B34F7B9B718D41E",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/MEMORIA-ENGENHARIA-EXECUCAO.md",
+      "after": "memory/04-memory-engineering-execution.md",
+      "sha256": "46E5C9A005260E49122E49EE1C7B429BAFA6CEE396899BEB20A3537973686EA2",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/PLANO-GESTAO-SENHAS-E-SEGURANCA.html",
+      "after": "memory/PLANO-GESTAO-SENHAS-E-SEGURANCA.html",
+      "sha256": "1777E88AB3FD03E5938B5EA52D3C2E108BC709FFE3D8328E60632BC14C06B5FE",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/PLANO-GESTAO-SENHAS-E-SEGURANCA.md",
+      "after": "memory/PLANO-GESTAO-SENHAS-E-SEGURANCA.md",
+      "sha256": "B01C6CAF37E98EC0AB187E9FEA9B80205E18212CC1D9FEE796CAF6FC82F5B11D",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/PLANO-IMPLEMENTACAO-IA-LOCAL.html",
+      "after": "memory/PLANO-IMPLEMENTACAO-IA-LOCAL.html",
+      "sha256": "F2A42D9331E35E196ADB4B868CC027BEB6F5051779C8CB8EC58F6B3E6B87F9B0",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/PLANO-IMPLEMENTACAO-IA-LOCAL.md",
+      "after": "memory/PLANO-IMPLEMENTACAO-IA-LOCAL.md",
+      "sha256": "5C17EAAAC78600BA33BE7C2705817FAEF8ECAE6AF5544932BF6CFED973AE4EEF",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/RELATORIO-LIMPEZA-VIDEOS-ARMAZENAMENTO.html",
+      "after": "memory/RELATORIO-LIMPEZA-VIDEOS-ARMAZENAMENTO.html",
+      "sha256": "C5A705354DF8CD3EF79AAABE313D8CF8CF3D328E719562E1A2FA7FB98ED0ABCC",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/RELATORIO-LIMPEZA-VIDEOS-ARMAZENAMENTO.md",
+      "after": "memory/RELATORIO-LIMPEZA-VIDEOS-ARMAZENAMENTO.md",
+      "sha256": "767A39010BC2CAD1D05D50CF8170A4F2FF0E8687CE215ACEB838B15515DACD03",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/SPEC.html",
+      "after": "memory/SPEC.html",
+      "sha256": "36C50273B4BAD22B0DCA4962355AC1F3D3F875935A456B6B827383B802B46CE0",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/SPEC.md",
+      "after": "memory/SPEC.md",
+      "sha256": "7023F218A2E2EC656E9CE2908DD1597B9B62EB62597DA8A5185FF16113D46BB7",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-001.html",
+      "after": "memory/change-requests/CR-001.html",
+      "sha256": "E412C7813E3613533C7CAF0C93FB276347F660FD072C3603C3929B3C6AA157A7",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-001.md",
+      "after": "memory/change-requests/CR-001.md",
+      "sha256": "D45ABE781EEF7E5574A2DDCA9221A359D106E8258B06FED81628DA0806B2BBD2",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-002.html",
+      "after": "memory/change-requests/CR-002.html",
+      "sha256": "F6243AD19C2CD28E2FB870A3074F690E3D97174A9DFC7846682818C7DC4610DF",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-002.md",
+      "after": "memory/change-requests/CR-002.md",
+      "sha256": "BA5C30803B5F45481C9EE87058F5761CFD2E496D0C1E94611C9DD01E23D4DAED",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-003.html",
+      "after": "memory/change-requests/CR-003.html",
+      "sha256": "0379015E911238AB2174453D0C85F2812CD2CE4DE9541DAE820F52A9E56CF084",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/change-requests/CR-003.md",
+      "after": "memory/change-requests/CR-003.md",
+      "sha256": "A1387B97DA4F9127BA990D0555BB6B4E0CADDCE9919B3AE7476F5A973DBF3960",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/decisions/DECISION-LOG.html",
+      "after": "memory/decisions/DECISION-LOG.html",
+      "sha256": "CFF4EFB3342950E5F36E61FB278BFF7575D79C045CC1990083F307DA386CB55E",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/decisions/DECISION-LOG.md",
+      "after": "memory/decisions/DECISION-LOG.md",
+      "sha256": "AA8BFC0E1AAC6DB91ABDB0787FB01CEC6DD0126F437FAAA789AB2425581F0CC8",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/CURRENT.html",
+      "after": "memory/human-requests/CURRENT.html",
+      "sha256": "F57E3A3CC1A4F88ACF14923D62FA0756C717F90C0E2751B23D1D0FC616819E89",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/CURRENT.md",
+      "after": "memory/human-requests/CURRENT.md",
+      "sha256": "4C99E5DB34AE9D47FA3FC7FF99DCA7E83997799FF267A7E91642F20FD3393086",
+      "byte_identical": false,
+      "authorized_reference_update": true
+    },
+    {
+      "before": "sdd/human-requests/req-001.html",
+      "after": "memory/human-requests/req-001.html",
+      "sha256": "3271A605410E6B3D50DEE70739CCBCDEE781BC99AA6AC4F85F3A6C5FC1BC0B8C",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-001.md",
+      "after": "memory/human-requests/req-001.md",
+      "sha256": "3AA5DD9FCE98EFDED10E23D7EFE0BDA98640E9F5DF95AB206285C62907252ACE",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-002.html",
+      "after": "memory/human-requests/req-002.html",
+      "sha256": "D76296A58044A71257E94376FDC1B0251DBC45F0E922B88706AAE07FD0B5515E",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-002.md",
+      "after": "memory/human-requests/req-002.md",
+      "sha256": "40B08D6A1301DDDA014D73D274D2AB7A1E62A68CFB9880390580EB759E9CC665",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-003.html",
+      "after": "memory/human-requests/req-003.html",
+      "sha256": "D04C51DC4D0D24C7FD44A3B888C687EF3E55D243F7B397050F94870440E854BD",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-003.md",
+      "after": "memory/human-requests/req-003.md",
+      "sha256": "5E1EA1E05E4D1E10824ABA034F198A964A74869D45A889B8DCA3193710D1723D",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-004.html",
+      "after": "memory/human-requests/req-004.html",
+      "sha256": "6194201A4B393764357D2A044770BFF53C78B0C24B3CC934519E093A6CE74471",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-004.md",
+      "after": "memory/human-requests/req-004.md",
+      "sha256": "C43C0EDD4921AE92955E5C0AC461475ACD34B1DCD6F437763A56DD98C1664347",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-005.html",
+      "after": "memory/human-requests/req-005.html",
+      "sha256": "6156E52B364BCD3188E95C81D7817427F9A282109C80120671E4E529036C4D05",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-005.md",
+      "after": "memory/human-requests/req-005.md",
+      "sha256": "7D62A20B2B1F89AE1C12D4B9FCDFA73522D2087D98708F2B6399BCF4E43EB010",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-006.html",
+      "after": "memory/human-requests/req-006.html",
+      "sha256": "F0297089004B960317387889B42F6E04A7EAA0D09495450020D99D17E08D0F9C",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-006.md",
+      "after": "memory/human-requests/req-006.md",
+      "sha256": "D6ED981C4F0E41EFE221F80F787B6ADA09131A2162EA3BAD2F3965F4CEE0036F",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-007.html",
+      "after": "memory/human-requests/req-007.html",
+      "sha256": "97A44D88D66D1CBCC36408F2EC3A4B368B15F4D674387CCBB659791D8A0B1367",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-007.md",
+      "after": "memory/human-requests/req-007.md",
+      "sha256": "A077DF20570EC4A0BB55E0ADD5C1981F274CA8DEF2889B649DBBFBBEB2661648",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-008.html",
+      "after": "memory/human-requests/req-008.html",
+      "sha256": "88B349D9269FF88AEB73B19A5A5A6FF9B60F3E4096913A65BF8AE43A19B5E10A",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-008.md",
+      "after": "memory/human-requests/req-008.md",
+      "sha256": "6C4663F20BD7413EB43BC1C019E1BFBAFC4F43C9A4A71DE29341CD931B9E4786",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-009.html",
+      "after": "memory/human-requests/req-009.html",
+      "sha256": "FB3C992E75AE5FCE6292724FD9F8AE60135E83D94E1A1555F922D7FB99D4C6F0",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/human-requests/req-009.md",
+      "after": "memory/human-requests/req-009.md",
+      "sha256": "5A7466A9CDE4D87E4FA9C4ACAE5E86F925EC78638A9E33EDFE34D97AD73E63B6",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/BATCH-INDEX.html",
+      "after": "memory/implementation/BATCH-INDEX.html",
+      "sha256": "C5EE131A56D6777735B3AEF11D255F75D04EE199F74DC1409BD69A173933BC87",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/BATCH-INDEX.md",
+      "after": "memory/implementation/BATCH-INDEX.md",
+      "sha256": "3C0323C950C776C263EC84424258E95ABB5CACBB5383EE2021901BDAE2DF3AF7",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-001.html",
+      "after": "memory/implementation/batch-001.html",
+      "sha256": "DB3F8726545042DDB250D9715E766571D174274E31537E8BDF045C5ABEF20F49",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-001.md",
+      "after": "memory/implementation/batch-001.md",
+      "sha256": "449393FD3975DBEEF903D8618898885CB7D1D0722AA9CEB18B392B00573E689A",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-002.html",
+      "after": "memory/implementation/batch-002.html",
+      "sha256": "9F574997C69EBDE12C9897BF51BF3AE05A6CB60709C3A16877E50B5F50FBD10C",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-002.md",
+      "after": "memory/implementation/batch-002.md",
+      "sha256": "A43DA474266CA1F4B2467E228363CD183F33F82B1F391C545C2C6E17E56F1FC0",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-003.html",
+      "after": "memory/implementation/batch-003.html",
+      "sha256": "D6D1EFD1E7D8416E65EC3E65D4F3F5F1A9D1075810A942D45931AE760B8B3FDB",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-003.md",
+      "after": "memory/implementation/batch-003.md",
+      "sha256": "CDBE8E3E7108F3A2A8104522CCBACEDAEC90C44EAE86932564077A0DEB680FCA",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-004.html",
+      "after": "memory/implementation/batch-004.html",
+      "sha256": "8BF465C5B4E2F8B7C8DDAEDB5E94C7CA899CB1FF08FCB4CA64D3E0B46997E41B",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-004.md",
+      "after": "memory/implementation/batch-004.md",
+      "sha256": "E31A6381358FFE5781E518EF82FA8A866E124455E8FE1CDD155688C2D8772993",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-005.html",
+      "after": "memory/implementation/batch-005.html",
+      "sha256": "A382447F55B46ECC12A6981B408AA1A93DC68046606E905E19EE4A5DC626BD9C",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-005.md",
+      "after": "memory/implementation/batch-005.md",
+      "sha256": "0F0860128BDB64B05BD6FFFF0B9B498939B17AFB8C8EF84CEAFA59A0EDA5199A",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-007.html",
+      "after": "memory/implementation/batch-007.html",
+      "sha256": "DD1CF4D2DAEC86873B81CC44969BC71D79C2420F2F3B94950A8FE2450F3D7069",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-007.md",
+      "after": "memory/implementation/batch-007.md",
+      "sha256": "535B5D2D063234AADA4CED8616CA9E97B872BB23FE14C0D471C0958180BF25C2",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-009.html",
+      "after": "memory/implementation/batch-009.html",
+      "sha256": "1E1E2294E4FF2E972451C5BC4CC801A8418BF9FEFE85708E1821D688C2472BED",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/implementation/batch-009.md",
+      "after": "memory/implementation/batch-009.md",
+      "sha256": "70A8A178AC09BCCE8740711BDE127CFDF78417E41943BD6E37A53D1D12B3D581",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/reports/PROPOSTA-ODONTOSFERA-COBRANCA-IA.html",
+      "after": "memory/reports/PROPOSTA-ODONTOSFERA-COBRANCA-IA.html",
+      "sha256": "760088DB0A5C0AF5ED4A3FF48B44E21598934F1ECC2F03198A1128EA5395A9CA",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/reports/PROPOSTA-ODONTOSFERA-COBRANCA-IA.md",
+      "after": "memory/reports/PROPOSTA-ODONTOSFERA-COBRANCA-IA.md",
+      "sha256": "4F51EF5EE2FCB78F3DCD4764A203192AD5EFEAB0DF552B4E8EF267368F6F94EE",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/reports/RELATORIO-EXECUTIVO-COBRANCA-IA-ODONTOSFERA.html",
+      "after": "memory/reports/RELATORIO-EXECUTIVO-COBRANCA-IA-ODONTOSFERA.html",
+      "sha256": "2950516B91D2FF094C77B459C90EE1E68735CBF86964765F77066FA4106D2187",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/reports/RELATORIO-EXECUTIVO-COBRANCA-IA-ODONTOSFERA.md",
+      "after": "memory/reports/RELATORIO-EXECUTIVO-COBRANCA-IA-ODONTOSFERA.md",
+      "sha256": "425754DA28B5D996B6FBC338356838527771ED03EE4EC467342250B8F5D591F6",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/validation/VALIDATION-CHECKLIST.html",
+      "after": "memory/validation/VALIDATION-CHECKLIST.html",
+      "sha256": "888C554DDD15A2A4DED120005D93FB86122BEE268FC5EA14457DB35930D2B76F",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/validation/VALIDATION-CHECKLIST.md",
+      "after": "memory/validation/VALIDATION-CHECKLIST.md",
+      "sha256": "1676A344CD4ABE59822785FB9F0B980F9A91957B273FC174054EE20AE3A76BFE",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    },
+    {
+      "before": "sdd/validation/evidence-batch-007-home.png",
+      "after": "memory/validation/evidence-batch-007-home.png",
+      "sha256": "DDE3DF94D0724F64CBC0A60EB30A4329BC4D8F2E644A28984D96BF84678FA531",
+      "byte_identical": true,
+      "authorized_reference_update": false
+    }
+  ],
+  "preserved": 67,
+  "total_original_files": 70,
+  "spec_sha256": "7023F218A2E2EC656E9CE2908DD1597B9B62EB62597DA8A5185FF16113D46BB7",
+  "generated_indexes": 55
+}

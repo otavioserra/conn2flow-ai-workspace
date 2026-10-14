@@ -59,13 +59,13 @@ Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `
 - `c2f-assets-management`
 
 ### 3. Skills de Governança e Workflow SDD (7 Skills):
-- `sdd-workflow`
-- `start-sdd-slice`
-- `continue-sdd-batch`
+- `mdd-workflow`
+- `start-mdd-slice`
+- `continue-mdd-batch`
 - `raise-spec-change`
 - `review-current-batch`
 - `project-validation`
-- `sdd-memory-gardening`
+- `mdd-memory-gardening`
 
 ---
 

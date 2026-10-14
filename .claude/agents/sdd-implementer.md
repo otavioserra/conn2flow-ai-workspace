@@ -3,7 +3,7 @@ name: sdd-implementer
 description: Implementador de repositório SDD. Use proactively quando o batch atual já estiver claro e o trabalho puder seguir em diffs pequenos com validação incremental.
 tools: Read, Edit, Write, Grep, Glob, Bash, Skill
 skills:
-  - sdd-workflow
+  - mdd-workflow
   - project-validation
 model: inherit
 ---

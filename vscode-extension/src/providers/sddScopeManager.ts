@@ -61,7 +61,7 @@ export class SddScopeManager {
     scopes.push({
       id: 'core',
       label: '🏛️ Core (Sistema)',
-      description: 'conn2flow/sdd',
+      description: `conn2flow/${coreSdd ? path.basename(coreSdd) : 'memory'}`,
       sddPath: coreSdd || ''
     });
 
@@ -73,7 +73,7 @@ export class SddScopeManager {
         scopes.push({
           id: `project:${proj.id}`,
           label: `🚀 Projeto: ${proj.name}`,
-          description: `${proj.id}/sdd`,
+          description: `${proj.id}/${path.basename(projSdd)}`,
           sddPath: projSdd
         });
       }
@@ -112,6 +112,8 @@ export class SddScopeManager {
       for (const f of workspaceFolders) {
         const memory = path.join(f.uri.fsPath, 'memory');
         if (fs.existsSync(memory)) return memory;
+      }
+      for (const f of workspaceFolders) {
         const s = path.join(f.uri.fsPath, 'sdd');
         if (fs.existsSync(s)) return s;
       }
@@ -224,6 +226,8 @@ export class SddScopeManager {
     for (const c of candidates) {
       const memory = path.join(path.dirname(c), 'memory');
       if (fs.existsSync(memory)) return memory;
+    }
+    for (const c of candidates) {
       if (fs.existsSync(c)) {
         return c;
       }

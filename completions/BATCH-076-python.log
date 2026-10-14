@@ -1,0 +1,36 @@
+........................................................................ [ 59%]
+..................................................                       [100%]
+============================== warnings summary ===============================
+tools\.venv-req074\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace\tools\.venv-req074\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.14.8-final-0 _______________
+
+Name                                               Stmts   Miss  Cover   Missing
+--------------------------------------------------------------------------------
+tools\mdd-client\src\mdd_client\__init__.py            1      0   100%
+tools\mdd-client\src\mdd_client\cli.py               109      7    94%   37, 55, 69, 79, 108, 167, 171
+tools\mdd-client\src\mdd_client\core\__init__.py       0      0   100%
+tools\mdd-client\src\mdd_client\core\indexer.py      220     12    95%   26, 30, 35, 49, 52, 89-90, 143, 166, 169, 186, 247
+tools\mdd-client\src\mdd_client\daemon.py             22      0   100%
+tools\mdd-client\src\mdd_client\mcp_server.py         81      0   100%
+tools\mdd-client\src\mdd_client\memory.py            236      5    98%   69, 222, 228, 258, 349
+tools\mdd-client\src\mdd_client\report.py             31      5    84%   49-53
+tools\mdd-client\src\mdd_client\storage.py            43      2    95%   21, 38
+tools\mdd-client\src\mdd_client\sync.py               60      2    97%   65, 68
+tools\mdd-hub\src\mdd_hub\__init__.py                  1      0   100%
+tools\mdd-hub\src\mdd_hub\api.py                      86      1    99%   73
+tools\mdd-hub\src\mdd_hub\cli.py                      42      3    93%   68-69, 73
+tools\mdd-hub\src\mdd_hub\evolution.py                78      2    97%   60, 126
+tools\mdd-hub\src\mdd_hub\models.py                   35      0   100%
+tools\mdd-hub\src\mdd_hub\sources.py                  24      0   100%
+tools\mdd-hub\src\mdd_hub\storage.py                  42      2    95%   21, 38
+tools\mdd-hub\src\mdd_hub\watcher.py                 127      1    99%   130
+--------------------------------------------------------------------------------
+TOTAL                                               1238     42    97%
+Coverage JSON written to file completions/BATCH-076-python-coverage.json
+Required test coverage of 95% reached. Total coverage: 96.61%
+122 passed, 1 warning in 41.47s

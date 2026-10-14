@@ -33,6 +33,8 @@ Leia memory/human-requests/CURRENT.md e o arquivo da requisição ativa.
 Renderize imediatamente a Live Todo List ([ ] -> [x]) e inicie a implementação do menor slice aprovado. 
 Regras invioláveis: proibido git add -A, proibido cópia manual de arquivos para pastas de teste e uso obrigatório de variables.json.
 
+Regra de Proporcionalidade de Build: classifique o diff. A (backend PHP/APIs/migrations sem HTML/classes/CSS alterados): testes pertinentes e, se sincronização local for necessária, project:update-all <id> --skip-css ou project:sync-core <id> --skip-css seguido de project:sync-db <id> --core-resources; sistema manager:update-all --skip-css. B (documentação/skills/testes/memória): apenas checks e testes locais, sem deploy no Lab. C (telas/templates/componentes/CSS/fontes de compilação): pipeline completo sem --skip-css. Mudanças mistas com impacto de CSS são C. Preserve locks, execução sequencial e autorizações do ambiente alvo; não prometa duração sem medição.
+
 Instrução específica desta rodada:
 [Descreva aqui ou confirme: "Execute o lote BATCH-XXX conforme os critérios de aceite"]
 ```
@@ -82,3 +84,5 @@ Evidências: memory/implementation/batch-074.md, memory/validation/VALIDATION-CH
 Próxima ação: revisar diffs e testes, emitir parecer em memory/human-reviews/rev-XXX.md; manter assinatura humana vazia.
 Pendências e estado técnico: preencher conforme resultados reais do lote.
 ```
+
+Nota de autoria: na via cirúrgica Core/banco, --core-resources preserva o dono das sementes do Core. Dados e recursos próprios do projeto exigem sua sincronização específica; não use essa flag para transferir autoria.

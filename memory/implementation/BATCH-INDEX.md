@@ -53,4 +53,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Requisição ativa
 
-`REQ-073` (`BATCH-075`, Consolidação Harmônica e Merge na main) aprovada para execução. Lotes `BATCH-067` a `BATCH-074` homologados com sucesso.
+`REQ-075` (`BATCH-077`) implementada e em revisão independente; homologação humana diferida conforme instrução de 2026-10-14.
+
+| Batch | Estado técnico | Escopo | Evidências |
+| --- | --- | --- | --- |
+| BATCH-076 | ready-for-human-review | MCP nativo, UI Bridge MDD e migração home | [batch-076.md](batch-076.md), [REV-076](../human-reviews/rev-076.md) |
+| BATCH-077 | ready-for-review | Quatro skills MDD, proporcionalidade de build e propagação segura | [batch-077.md](batch-077.md) |

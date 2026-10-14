@@ -18,7 +18,7 @@ function resolveSddRoot(input) {
     return workspaceRoot ? path.join(workspaceRoot, SDD_DIRECTORY) : '';
 }
 function resolveRepositoryRoot(sddRoot, input) {
-    if (sddRoot && path.basename(sddRoot).toLocaleLowerCase('en-US') === SDD_DIRECTORY) {
+    if (sddRoot && ['memory', SDD_DIRECTORY].includes(path.basename(sddRoot).toLocaleLowerCase('en-US'))) {
         return path.dirname(sddRoot);
     }
     return normalize(input.workspaceRoot);
