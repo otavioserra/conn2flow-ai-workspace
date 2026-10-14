@@ -50,5 +50,18 @@
 
 ## 🔒 Restrições Técnicas
 
-* Paridade estrita de 43 skills canônicas em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, `.codex/skills/`).
+* Paridade estrita de 45 skills canônicas em todos os kits (`.claude/skills/`, `.cursor/skills/`, `.github/skills/`, `.gemini/skills/`, `.codex/skills/`).
 * Não criar pastas soltas fora do padrão estabelecido.
+
+---
+
+## 📌 Fila de Pendências Ativas do Engenheiro Chefe (Humano-no-Loop)
+
+- [ ] **Homologação Visual do BATCH-076 (REQ-074)**:
+  - **Objeto**: Extensão VS Code atualizada ([`conn2flow-tools-1.1.3.vsix`](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/vscode-extension/conn2flow-tools-1.1.3.vsix)).
+  - **Validação**: Instalação local forçada via `code --install-extension vscode-extension\conn2flow-tools-1.1.3.vsix --force`.
+  - **Itens a Inspecionar**:
+    1. Painel lateral renomeado para **MDD Explorer** (em vez de SDD).
+    2. Prioridade de descoberta da pasta `memory/`.
+    3. Nova seção/ação visual de **"Choques de Skills MDD"** com opção de **"Marcar como Customização Intencional"**.
+  - **Ação Final**: Assinatura formal na ficha [`memory/human-reviews/rev-076.md`](file:///c:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace/memory/human-reviews/rev-076.md) para fechamento definitivo do lote.
