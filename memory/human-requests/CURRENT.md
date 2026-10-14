@@ -7,6 +7,7 @@
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-14
 * **Entrega anterior**: [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md), homologação visual adiada pelo humano.
+* **Intake novo**: [req-076.md](req-076.md) (`ready-for-intake`, 2026-10-14): `ai:sync` com os quatro nomes `sdd-*` antigos na lista canônica, 41/45 skills; aguarda o agente-chefe classificar.
 * **Frentes Homologadas no Ciclo**:
   - [req-073.md](req-073.md) (`BATCH-075`, Consolidação Harmônica das Branches MDD na main, `HOMOLOGATED` em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
   - [req-072.md](req-072.md) (`BATCH-074`, Trava Tripla MDD, CLI de Mutação Atômica, 45ª Skill e Human Reviews, `HOMOLOGATED` em 2026-10-09 via [rev-074.md](../human-reviews/rev-074.md))
