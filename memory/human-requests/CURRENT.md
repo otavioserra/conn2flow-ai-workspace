@@ -1,13 +1,14 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-075.md](req-075.md) (Skills MDD e proporcionalidade de build)
+* **Ponteiro Ativo**: [req-076.md](req-076.md) (Limpeza Geral do Ecossistema, Memory Gardening Global, Poda de Worktrees e Sincronização Canônica de Todos os Repositórios)
 * **Status**: `APPROVED` para execução
-* **Lote Relacionado**: `BATCH-077`
-* **Topologia de Agentes**: `triade`
+* **Lote Relacionado**: `BATCH-078`
+* **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `autonomo_monitorado`
-* **Data de Entrada**: 2026-10-14
-* **Entrega anterior**: [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md), homologação visual adiada pelo humano.
-* **Intake novo**: [req-076.md](req-076.md) (`ready-for-intake`, 2026-10-14): `ai:sync` com os quatro nomes `sdd-*` antigos na lista canônica, 41/45 skills; aguarda o agente-chefe classificar.
+* **Data de Entrada**: 2026-10-15
+* **Entregas Anteriores com Homologação Visual Pendente na Fila Humana**:
+  - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
+  - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
   - [req-073.md](req-073.md) (`BATCH-075`, Consolidação Harmônica das Branches MDD na main, `HOMOLOGATED` em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
   - [req-072.md](req-072.md) (`BATCH-074`, Trava Tripla MDD, CLI de Mutação Atômica, 45ª Skill e Human Reviews, `HOMOLOGATED` em 2026-10-09 via [rev-074.md](../human-reviews/rev-074.md))
@@ -21,9 +22,11 @@
 
 ---
 
-## Objetivo operacional — REQ-075 / BATCH-077
+## Objetivo operacional — REQ-076 / BATCH-078
 
-1. Renomear quatro skills para MDD, manter 45 canônicas e migrar as cópias sem pastas legadas.
-2. Instituir proporcionalidade A/B/C e --skip-css conforme código do Core.
-3. Propagar, testar e emitir revisão independente.
-4. Registrar homologações pendentes na fila humana, sem assinar; commit/push/merge autorizados na sessão de 2026-10-14.
+1. **Poda e Desvinculação de Worktrees**: Limpar com segurança worktrees já integradas no Core (12 worktrees) e Site (5 worktrees + pasta órfã) e podar referências com `git worktree prune`.
+2. **Memory Gardening & Regra dos 10**:
+   - Core (`conn2flow`): Podar `human-requests/` de 21 para 10 e `implementation/` de 21 para 10; podar checklist e decisões.
+   - Site (`conn2flow-site`): Podar `implementation/` de 23 para 10 e reduzir `PENDENCIAS-HUMANAS.md` de 73.2 KB para < 25 KB.
+3. **Higienização de Working Tree no Site**: Restaurar `.tailwind-build-manifest.json` e CSS pré-compilados do caminho temporário `../../conn2flow-req277/` de volta para `../../conn2flow/`.
+4. **Sincronização e Auditoria**: Rodar `git pull` em todos os repositórios, validar paridade das 45 skills via `sync-skills.cjs`, regenerar índices com `mdd index` e validar suítes de testes (Python 131/131 PASS, Extensão 133/133 PASS).
