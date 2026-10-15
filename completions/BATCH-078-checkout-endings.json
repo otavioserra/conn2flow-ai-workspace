@@ -1,0 +1,1950 @@
+{
+  "records": [
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-adicionar/3d-catalog-groups-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-clonar/3d-catalog-groups-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-editar/3d-catalog-groups-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-list/3d-catalog-groups-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-adicionar/3d-catalog-groups-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-clonar/3d-catalog-groups-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-editar/3d-catalog-groups-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-list/3d-catalog-groups-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-adicionar/3d-catalog-items-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-clonar/3d-catalog-items-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-editar/3d-catalog-items-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-list/3d-catalog-items-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-adicionar/3d-catalog-items-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-clonar/3d-catalog-items-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-editar/3d-catalog-items-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-list/3d-catalog-items-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-adicionar/3d-catalog-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-clonar/3d-catalog-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-editar/3d-catalog-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-list/3d-catalog-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-adicionar/3d-catalog-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-clonar/3d-catalog-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-editar/3d-catalog-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-list/3d-catalog-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliate-area/resources/en/pages/affiliate/affiliate.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/affiliate-area/resources/pt-br/pages/affiliate/affiliate.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-add/affiliates-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-details/affiliates-details.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-edit/affiliates-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-payouts/affiliates-payouts.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-settings/affiliates-settings.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates/affiliates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-add/affiliates-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-details/affiliates-details.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-edit/affiliates-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-payouts/affiliates-payouts.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-settings/affiliates-settings.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates/affiliates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/ai-admin/resources/en/pages/ai-admin/ai-admin.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-admin/resources/pt-br/pages/ai-admin/ai-admin.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-assistant/resources/en/pages/ai-assistant/ai-assistant.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-assistant/resources/pt-br/pages/ai-assistant/ai-assistant.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-fields/resources/en/pages/ai-fields/ai-fields.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-fields/resources/pt-br/pages/ai-fields/ai-fields.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-images/resources/en/pages/ai-images/ai-images.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/ai-images/resources/pt-br/pages/ai-images/ai-images.precompiled.css",
+      "before_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f",
+      "after_sha256": "16dd908997d2e6d2dd6b51af680f0566ee0b5569dc6b7ef1e66b52751d8604bd",
+      "head_blob": "054dfd5113714bfc4daced65956192beb95e0d39"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/en/pages/analytics-manager-pipeline/analytics-manager-pipeline.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/en/pages/analytics-manager/analytics-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/pt-br/pages/analytics-manager-pipeline/analytics-manager-pipeline.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/pt-br/pages/analytics-manager/analytics-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-buyer/checkout-buyer.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-cancelled/checkout-cancelled.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-download/checkout-download.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-error/checkout-error.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-recovery/checkout-recovery.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-success/checkout-success.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout/checkout.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-buyer/checkout-buyer.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-cancelled/checkout-cancelled.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-download/checkout-download.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-error/checkout-error.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-recovery/checkout-recovery.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-success/checkout-success.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout/checkout.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons-add/coupons-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons-edit/coupons-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons/coupons.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons-add/coupons-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons-edit/coupons-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons/coupons.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog-groups/documentation-module-3d-catalog-groups.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog-items/documentation-module-3d-catalog-items.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog/documentation-module-3d-catalog.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-affiliates/documentation-module-affiliates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-analytics-manager/documentation-module-analytics-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-coupons/documentation-module-coupons.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-documentation/documentation-module-documentation.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-gateways-pagamentos/documentation-module-gateways-pagamentos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-host-manager/documentation-module-host-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-marketplace-admin/documentation-module-marketplace-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-orders/documentation-module-orders.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-presentations/documentation-module-presentations.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-product-reviews/documentation-module-product-reviews.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-product-types/documentation-module-product-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-products-index/documentation-module-products-index.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-products/documentation-module-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-publisher-social-media/documentation-module-publisher-social-media.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-sales-reports/documentation-module-sales-reports.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-shipping-methods/documentation-module-shipping-methods.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-social-apps/documentation-module-social-apps.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-social-connections/documentation-module-social-connections.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-stripe-products/documentation-module-stripe-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-config/documentation-module-subscriptions-config.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-plans/documentation-module-subscriptions-plans.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-service-stages/documentation-module-subscriptions-service-stages.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-service-types/documentation-module-subscriptions-service-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-status/documentation-module-subscriptions-status.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions/documentation-module-subscriptions.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation/documentation.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog-groups/documentation-module-3d-catalog-groups.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog-items/documentation-module-3d-catalog-items.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog/documentation-module-3d-catalog.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-affiliates/documentation-module-affiliates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-analytics-manager/documentation-module-analytics-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-coupons/documentation-module-coupons.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-documentation/documentation-module-documentation.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-gateways-pagamentos/documentation-module-gateways-pagamentos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-host-manager/documentation-module-host-manager.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-marketplace-admin/documentation-module-marketplace-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-orders/documentation-module-orders.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-presentations/documentation-module-presentations.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-product-reviews/documentation-module-product-reviews.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-product-types/documentation-module-product-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-products-index/documentation-module-products-index.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-products/documentation-module-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-publisher-social-media/documentation-module-publisher-social-media.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-sales-reports/documentation-module-sales-reports.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-shipping-methods/documentation-module-shipping-methods.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-social-apps/documentation-module-social-apps.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-social-connections/documentation-module-social-connections.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-stripe-products/documentation-module-stripe-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-config/documentation-module-subscriptions-config.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-plans/documentation-module-subscriptions-plans.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-service-stages/documentation-module-subscriptions-service-stages.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-service-types/documentation-module-subscriptions-service-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-status/documentation-module-subscriptions-status.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions/documentation-module-subscriptions.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation/documentation.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos-adicionar/gateways-pagamentos-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos-editar/gateways-pagamentos-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos/gateways-pagamentos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos-adicionar/gateways-pagamentos-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos-editar/gateways-pagamentos-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos/gateways-pagamentos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-cpanel/host-manager-admin-cpanel.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-distribuido/host-manager-admin-distribuido.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-logs/host-manager-admin-logs.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-planos/host-manager-admin-planos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-updates/host-manager-admin-updates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-usuarios/host-manager-admin-usuarios.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin/host-manager-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-cpanel/host-manager-admin-cpanel.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-distribuido/host-manager-admin-distribuido.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-logs/host-manager-admin-logs.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-planos/host-manager-admin-planos.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-updates/host-manager-admin-updates.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-usuarios/host-manager-admin-usuarios.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin/host-manager-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-faturas/host-manager-cliente-faturas.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-hospedagem/host-manager-cliente-hospedagem.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-suporte/host-manager-cliente-suporte.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-faturas/host-manager-cliente-faturas.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-hospedagem/host-manager-cliente-hospedagem.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-suporte/host-manager-cliente-suporte.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/marketplace-admin/resources/en/pages/marketplace-admin/marketplace-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/marketplace-admin/resources/pt-br/pages/marketplace-admin/marketplace-admin.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/marketplace/resources/en/pages/marketplace/marketplace.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/marketplace/resources/pt-br/pages/marketplace/marketplace.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-buyer-form/orders-buyer-form.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-details/orders-details.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-recovery/orders-recovery.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders/orders.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-buyer-form/orders-buyer-form.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-details/orders-details.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-recovery/orders-recovery.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders/orders.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-adicionar/presentations-adicionar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-clonar/presentations-clonar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-editar/presentations-editar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations/presentations.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-adicionar/presentations-adicionar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-clonar/presentations-clonar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-editar/presentations-editar.precompiled.css",
+      "before_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef",
+      "after_sha256": "d4f018b721ecf52a8749f6337458971c7be67a09a3d5f0552c5fe197e1b18e2b",
+      "head_blob": "f72150abb7d9f892356c5044f3a94c17509bde74"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations/presentations.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/en/pages/product-reviews-settings/product-reviews-settings.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/en/pages/product-reviews/product-reviews.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/pt-br/pages/product-reviews-settings/product-reviews-settings.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/pt-br/pages/product-reviews/product-reviews.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types-add/product-types-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types-edit/product-types-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types/product-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types-add/product-types-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types-edit/product-types-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types/product-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-adicionar/products-index-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-clonar/products-index-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-editar/products-index-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index/products-index.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-adicionar/products-index-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-clonar/products-index-clonar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-editar/products-index-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index/products-index.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-add/products-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-edit/products-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-page/products-page.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-variants/products-variants.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products/products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-add/products-add.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-edit/products-edit.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-page/products-page.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-variants/products-variants.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products/products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/en/pages/publisher-social-media-configuracoes/publisher-social-media-configuracoes.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/en/pages/publisher-social-media/publisher-social-media.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/pt-br/pages/publisher-social-media-configuracoes/publisher-social-media-configuracoes.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/pt-br/pages/publisher-social-media/publisher-social-media.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/sales-reports/resources/en/pages/sales-reports/sales-reports.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/sales-reports/resources/pt-br/pages/sales-reports/sales-reports.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/shipping-methods/resources/en/pages/shipping-methods/shipping-methods.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/shipping-methods/resources/pt-br/pages/shipping-methods/shipping-methods.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/en/pages/social-apps-adicionar/social-apps-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/en/pages/social-apps-editar/social-apps-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/pt-br/pages/social-apps-adicionar/social-apps-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/pt-br/pages/social-apps-editar/social-apps-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-adicionar/social-connections-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-callback/social-connections-callback.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-editar/social-connections-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-adicionar/social-connections-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-callback/social-connections-callback.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-editar/social-connections-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/cart/cart.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/store-product/store-product.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/store/store.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/cart/cart.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/store-product/store-product.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/store/store.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products-adicionar/stripe-products-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products-editar/stripe-products-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products/stripe-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products-adicionar/stripe-products-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products-editar/stripe-products-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products/stripe-products.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-config/resources/en/pages/subscriptions-config/subscriptions-config.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-config/resources/pt-br/pages/subscriptions-config/subscriptions-config.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/en/pages/subscriptions-plans-adicionar/subscriptions-plans-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/en/pages/subscriptions-plans-editar/subscriptions-plans-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/en/pages/subscriptions-plans/subscriptions-plans.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/pt-br/pages/subscriptions-plans-adicionar/subscriptions-plans-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/pt-br/pages/subscriptions-plans-editar/subscriptions-plans-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "b20f56c73998167e137feb2a4edba5a7eb5c44b7aae1da7fbcf663bd820f7854",
+      "head_blob": "6c770786dfd64449a090b69f13f32a95f60998a0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/pt-br/pages/subscriptions-plans/subscriptions-plans.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages-adicionar/subscriptions-service-stages-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages-editar/subscriptions-service-stages-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages/subscriptions-service-stages.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages-adicionar/subscriptions-service-stages-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages-editar/subscriptions-service-stages-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages/subscriptions-service-stages.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types-adicionar/subscriptions-service-types-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types-editar/subscriptions-service-types-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types/subscriptions-service-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types-adicionar/subscriptions-service-types-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types-editar/subscriptions-service-types-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types/subscriptions-service-types.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status-adicionar/subscriptions-status-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status-editar/subscriptions-status-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status/subscriptions-status.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status-adicionar/subscriptions-status-adicionar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status-editar/subscriptions-status-editar.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status/subscriptions-status.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/contacts-success/contacts-success.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/contacts/contacts.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-checkout-error/subscription-checkout-error.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-list/subscription-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-start/subscription-start.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-view/subscription-view.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription/subscription.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/contacts-success/contacts-success.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/contacts/contacts.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-checkout-error/subscription-checkout-error.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-list/subscription-list.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-start/subscription-start.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-view/subscription-view.precompiled.css",
+      "before_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa",
+      "after_sha256": "e4b9cd5823714b46ced5b5bd803101ed3696a51fafb4ea7389a35eae5dfed493",
+      "head_blob": "179aa768f4a41c13ea4fd77b8defcd40ed9acffb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription/subscription.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription-cancel/user-subscription-cancel.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription-change/user-subscription-change.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription/user-subscription.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription-cancel/user-subscription-cancel.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription-change/user-subscription-change.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription/user-subscription.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/apresentacao-investidor-mdd/apresentacao-investidor-mdd.precompiled.css",
+      "before_sha256": "4bde38709e4dcff479ae5da9e1a2d10a928ed148a052524ade1e07bf84615f89",
+      "after_sha256": "21987ca3afb67361cf51dd640a6c16bdc7c0b0f9ed99785fde6a868aba0adeb6",
+      "head_blob": "fe7fcb50402897bde601de341c8c5faa72b28d3e"
+    },
+    {
+      "path": "gestor/resources/en/pages/codeflow-para-devs/codeflow-para-devs.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/comece-a-construir/comece-a-construir.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/conn2flow-future/conn2flow-future.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-ai-in-the-panel/news-ai-in-the-panel.precompiled.css",
+      "before_sha256": "8035dea69ec425f6f73f03f266524553e0695dc84e9b04948b0d0a86dc22c10d",
+      "after_sha256": "52435e4b229f68b23b4925fd28c41e3d0398c51b1b0f046856154de530df11f6",
+      "head_blob": "0237275b9613326c9cb2bfbe3a6e76981e1682ac"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-ai-providers-layer/news-ai-providers-layer.precompiled.css",
+      "before_sha256": "014a4c3d616dcab1531a35e15ef49541c05d6b82a12e1deb4c0dc4f2578bab09",
+      "after_sha256": "a710fbdc1a8f8c5b81d6f374a7b1205d509b1a14c4795205e66b47e85a400c4c",
+      "head_blob": "b84f3eca8cbe2f989d4cd535b7d55cd31a349ae9"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-automatic-system-updates/news-automatic-system-updates.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-board-line-3-1/news-board-line-3-1.precompiled.css",
+      "before_sha256": "2c456b0affaa0b95ca01b0ebc4534ec6362c53ca7831af7d4394ad606019fd1c",
+      "after_sha256": "d2acd6889ef5ded064c3a271871cf3655d82daffc957a152f908cfbd6bdd3732",
+      "head_blob": "371f662d09c90cbfd756751260a536e92b9c6698"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-dashboard-widgets-grid-and-board/news-dashboard-widgets-grid-and-board.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-mdd-client-mcp-and-vscode/news-mdd-client-mcp-and-vscode.precompiled.css",
+      "before_sha256": "af31ce7f5b25250a4b55330cda444b9899d3220df29023e17f238ee306be55c1",
+      "after_sha256": "88906fa92acd0423ca6463e4233cdc97642359403b251d07649b4e5f15037769",
+      "head_blob": "9c65be539ec1ec98491b9550cb5703e9d9e32401"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-memory-driven-development/news-memory-driven-development.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-pages-path-index/news-pages-path-index.precompiled.css",
+      "before_sha256": "b19b373439178907269b4563bd7b30f0c5de4dcf827f892cc69b143184fc9857",
+      "after_sha256": "591f2023b58483b4cb244aff9e1b9c6d88d13ae1f76ee03ded8a9722db97b4dc",
+      "head_blob": "d23130a470f9aaf3b3ff97950cfa4e7b226e4ea5"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-panel-tailwind-harmonized/news-panel-tailwind-harmonized.precompiled.css",
+      "before_sha256": "121b9149e1cedd463e3472162da74862762c311d6e4c0f783e0f3e2ec426de1a",
+      "after_sha256": "65ca4cf2d7694cc823d0d72a6097a65140826312768031e04d7c59c1257eb723",
+      "head_blob": "0231302fe97bc7312a1b6c2ad4efdd17f8cb3b05"
+    },
+    {
+      "path": "gestor/resources/en/pages/news-system-update-api/news-system-update-api.precompiled.css",
+      "before_sha256": "121b9149e1cedd463e3472162da74862762c311d6e4c0f783e0f3e2ec426de1a",
+      "after_sha256": "65ca4cf2d7694cc823d0d72a6097a65140826312768031e04d7c59c1257eb723",
+      "head_blob": "0231302fe97bc7312a1b6c2ad4efdd17f8cb3b05"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-agents/platform-agents.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-ai/platform-ai.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-delivery/platform-delivery.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-editor/platform-editor.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-modules/platform-modules.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-security/platform-security.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/privacy-policy/privacy-policy.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/react-mapdraw-navigator/react-mapdraw-navigator.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/en/pages/terms-of-use/terms-of-use.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/apresentacao-investidor-mdd/apresentacao-investidor-mdd.precompiled.css",
+      "before_sha256": "4bde38709e4dcff479ae5da9e1a2d10a928ed148a052524ade1e07bf84615f89",
+      "after_sha256": "21987ca3afb67361cf51dd640a6c16bdc7c0b0f9ed99785fde6a868aba0adeb6",
+      "head_blob": "fe7fcb50402897bde601de341c8c5faa72b28d3e"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/codeflow-para-devs/codeflow-para-devs.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/comece-a-construir/comece-a-construir.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/conn2flow-future/conn2flow-future.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-ai-in-the-panel/news-ai-in-the-panel.precompiled.css",
+      "before_sha256": "8035dea69ec425f6f73f03f266524553e0695dc84e9b04948b0d0a86dc22c10d",
+      "after_sha256": "52435e4b229f68b23b4925fd28c41e3d0398c51b1b0f046856154de530df11f6",
+      "head_blob": "0237275b9613326c9cb2bfbe3a6e76981e1682ac"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-ai-providers-layer/news-ai-providers-layer.precompiled.css",
+      "before_sha256": "121b9149e1cedd463e3472162da74862762c311d6e4c0f783e0f3e2ec426de1a",
+      "after_sha256": "65ca4cf2d7694cc823d0d72a6097a65140826312768031e04d7c59c1257eb723",
+      "head_blob": "0231302fe97bc7312a1b6c2ad4efdd17f8cb3b05"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-automatic-system-updates/news-automatic-system-updates.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-board-line-3-1/news-board-line-3-1.precompiled.css",
+      "before_sha256": "2c456b0affaa0b95ca01b0ebc4534ec6362c53ca7831af7d4394ad606019fd1c",
+      "after_sha256": "d2acd6889ef5ded064c3a271871cf3655d82daffc957a152f908cfbd6bdd3732",
+      "head_blob": "371f662d09c90cbfd756751260a536e92b9c6698"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-dashboard-widgets-grid-and-board/news-dashboard-widgets-grid-and-board.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-mdd-client-mcp-and-vscode/news-mdd-client-mcp-and-vscode.precompiled.css",
+      "before_sha256": "af31ce7f5b25250a4b55330cda444b9899d3220df29023e17f238ee306be55c1",
+      "after_sha256": "88906fa92acd0423ca6463e4233cdc97642359403b251d07649b4e5f15037769",
+      "head_blob": "9c65be539ec1ec98491b9550cb5703e9d9e32401"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-memory-driven-development/news-memory-driven-development.precompiled.css",
+      "before_sha256": "c55288146cc93defe49ea59be1e0c32ca405e902404a0a10f08c4a3f6c43bf27",
+      "after_sha256": "279c61e57bc86a6c86a94f9b6a222a2d676f5049cc32a3aa824c3e8500ea2eee",
+      "head_blob": "9d9ab3a1aa12eaf9877e134fecb6de5643d27ea1"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-pages-path-index/news-pages-path-index.precompiled.css",
+      "before_sha256": "bbb9998446fdc223d9933a9c5739fad88552e804d49d3d0d6873bf6a7f7dc482",
+      "after_sha256": "873c851b6c153e51be983ef8632f655b4a76d3f6a848d919d5c6cea433ef7d70",
+      "head_blob": "3d9d2ac5032660f716834e56f82a7ec4c3e181c2"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-panel-tailwind-harmonized/news-panel-tailwind-harmonized.precompiled.css",
+      "before_sha256": "121b9149e1cedd463e3472162da74862762c311d6e4c0f783e0f3e2ec426de1a",
+      "after_sha256": "65ca4cf2d7694cc823d0d72a6097a65140826312768031e04d7c59c1257eb723",
+      "head_blob": "0231302fe97bc7312a1b6c2ad4efdd17f8cb3b05"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/news-system-update-api/news-system-update-api.precompiled.css",
+      "before_sha256": "121b9149e1cedd463e3472162da74862762c311d6e4c0f783e0f3e2ec426de1a",
+      "after_sha256": "65ca4cf2d7694cc823d0d72a6097a65140826312768031e04d7c59c1257eb723",
+      "head_blob": "0231302fe97bc7312a1b6c2ad4efdd17f8cb3b05"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-agents/platform-agents.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-ai/platform-ai.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-delivery/platform-delivery.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-editor/platform-editor.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-modules/platform-modules.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-security/platform-security.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/privacy-policy/privacy-policy.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/react-mapdraw-navigator/react-mapdraw-navigator.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/terms-of-use/terms-of-use.precompiled.css",
+      "before_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb",
+      "after_sha256": "68c33d774493522003d61ccfd262ca09b5c5d9c044ddd6fa9520e855d3c39ea5",
+      "head_blob": "7348c443282a00f00fc078bee467dac7e09a8bf0"
+    }
+  ],
+  "remaining_css_status": [],
+  "stage_preserved": true
+}

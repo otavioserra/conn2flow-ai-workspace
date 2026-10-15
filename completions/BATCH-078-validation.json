@@ -1,0 +1,417 @@
+{
+  "conn2flow": {
+    "counts": {
+      "human-requests": [
+        "req-267.md",
+        "req-268.md",
+        "req-269.md",
+        "req-270.md",
+        "req-271.md",
+        "req-272.md",
+        "req-273.md",
+        "req-274.md",
+        "req-275.md",
+        "req-276.md"
+      ],
+      "implementation": [
+        "BATCH-275.md",
+        "BATCH-276.md",
+        "BATCH-277.md",
+        "BATCH-278.md",
+        "BATCH-280.md",
+        "BATCH-281.md",
+        "BATCH-282.md",
+        "BATCH-283.md",
+        "BATCH-284.md",
+        "BATCH-285.md"
+      ]
+    },
+    "governance": {
+      "human-requests/CURRENT.md": {
+        "bytes": 32841,
+        "lines": 105
+      },
+      "validation/VALIDATION-CHECKLIST.md": {
+        "bytes": 7382,
+        "lines": 129
+      },
+      "decisions/DECISION-LOG.md": {
+        "bytes": 36378,
+        "lines": 267
+      },
+      "04-memory-engineering-execution.md": {
+        "bytes": 15332,
+        "lines": 123
+      }
+    },
+    "history": {
+      "validation/VALIDATION-CHECKLIST.md": [
+        "285",
+        "282",
+        "280",
+        "278",
+        "277",
+        "275",
+        "274",
+        "273",
+        "272",
+        "276"
+      ],
+      "decisions/DECISION-LOG.md": [
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134"
+      ]
+    },
+    "archived_verified": [
+      {
+        "path": "memory/implementation/BATCH-265.md",
+        "sha256": "d0a20b11b16913454ba63bf8ddbf3f665a59b0011fae00deae0c8d4d6e27df59"
+      },
+      {
+        "path": "memory/implementation/BATCH-266.md",
+        "sha256": "23503c84fa27edf593eb677bb2d2b84489727cadca2d519fd4499efad714985f"
+      },
+      {
+        "path": "memory/implementation/BATCH-267.md",
+        "sha256": "f39d0ffaa0597eab0d06ef71a604044247a2e5218e3d70b215c653caf936a569"
+      },
+      {
+        "path": "memory/implementation/BATCH-268.md",
+        "sha256": "599ae2e70c8ca5edb7e7d5946f28d7ac198ea73a68001e156466c1c638bed99e"
+      },
+      {
+        "path": "memory/implementation/BATCH-269.md",
+        "sha256": "7b81f40e3576ad3c602e8ed15f82cdf9d606641473911ddfc66adc7f9497a943"
+      },
+      {
+        "path": "memory/implementation/BATCH-270.md",
+        "sha256": "fae09aa1301411164584b232b20de1f54ca0c956c274df9295587d0bb667a57f"
+      },
+      {
+        "path": "memory/implementation/BATCH-271.md",
+        "sha256": "1abb518c67cb6239a383e4b5d41427f25ef010d6b44bbfba023ceb106ca0410c"
+      },
+      {
+        "path": "memory/implementation/BATCH-272.md",
+        "sha256": "a6892736409b4f740075688a5eb7abbe90b4ccc49101c47b6072379fc9d2b4d0"
+      },
+      {
+        "path": "memory/implementation/BATCH-273.md",
+        "sha256": "780aa6bf6ae2559dcd4892ec5599e9fff1456db846fba82a7048a2ce9b425143"
+      },
+      {
+        "path": "memory/implementation/BATCH-274.md",
+        "sha256": "f5e7f1929c168b76b362660130f0162e839b752d27b17d08184c1b23ae94ab10"
+      },
+      {
+        "path": "memory/human-requests/req-256.md",
+        "sha256": "ce321b738913afd53f60339b8dbe0f76ee7b1eda3cc5bfd879f5662232d94447"
+      },
+      {
+        "path": "memory/human-requests/req-257.md",
+        "sha256": "ace35a32f724d8cd9a22a2d7820d448adda2fda416ea0069833c66817c01f1f5"
+      },
+      {
+        "path": "memory/human-requests/req-258.md",
+        "sha256": "601289ff4b9076bd36698c115cad377f3251533ab0b7624f40f76f6d8abef2fb"
+      },
+      {
+        "path": "memory/human-requests/req-259.md",
+        "sha256": "2a15fb0b2ca9e99219261152867153dc920b8d953fa8f5c52057e03e224fcdd2"
+      },
+      {
+        "path": "memory/human-requests/req-260.md",
+        "sha256": "ce0a20abbbaf2ded2eb99b59ca0fde27a4d538b20e7e194c90a56f225dc70947"
+      },
+      {
+        "path": "memory/human-requests/req-261.md",
+        "sha256": "8637e99f4035811cb9448111c43de94513d54c3a9e62815e6ddb94e88385b59d"
+      },
+      {
+        "path": "memory/human-requests/req-262.md",
+        "sha256": "4fb4712c65653d331e43d05da1f7cadf75adcf52700e4d90f82c2897ceef8be4"
+      },
+      {
+        "path": "memory/human-requests/req-263.md",
+        "sha256": "70cbfb5e79fa1e826f1ff7d8e566b9252544e5f958e11affe847067e4c1aeada"
+      },
+      {
+        "path": "memory/human-requests/req-264.md",
+        "sha256": "f4099190b239ad36ee9a9d8203798c1e26957b3d10c9bbc5bbfe11277a86d68d"
+      },
+      {
+        "path": "memory/human-requests/req-265.md",
+        "sha256": "5c9170cd54f1a5dae3f4b75e1b935a63d75514a090c4c5fc9dd0476ba17ef3db"
+      },
+      {
+        "path": "memory/human-requests/req-266.md",
+        "sha256": "81de7bd34f54057cfbd71601e0f20b756b35c0b3c95b31d947cb3b1736704f0b"
+      }
+    ],
+    "inherited_broken_targets": 12,
+    "active_broken_links": [
+      {
+        "source": "memory/human-requests/req-273.md",
+        "target": "memory/human-requests/[a-z0-9-]{0,61}[a-z0-9]"
+      },
+      {
+        "source": "memory/human-requests/req-273.md",
+        "target": "memory/human-requests/[a-z0-9-]{0,61}[a-z0-9]"
+      }
+    ],
+    "new_broken_links": []
+  },
+  "conn2flow-site": {
+    "counts": {
+      "human-requests": [
+        "req-001-publisher-social-media.md",
+        "req-002-correcoes-variaveis.md",
+        "req-003-workspace-social-modal.md",
+        "req-004-cache-gerados-e-ux-widget.md",
+        "req-005-arquitetura-modulos-distribuidos.md"
+      ],
+      "implementation": [
+        "BATCH-119.md",
+        "BATCH-120.md",
+        "BATCH-121.md",
+        "BATCH-122.md",
+        "BATCH-123.md",
+        "BATCH-124.md",
+        "BATCH-125.md",
+        "BATCH-126.md",
+        "BATCH-127.md",
+        "BATCH-128.md"
+      ]
+    },
+    "governance": {
+      "human-requests/CURRENT.md": {
+        "bytes": 28026,
+        "lines": 273
+      },
+      "validation/VALIDATION-CHECKLIST.md": {
+        "bytes": 9189,
+        "lines": 132
+      },
+      "decisions/DECISION-LOG.md": {
+        "bytes": 36610,
+        "lines": 454
+      },
+      "PENDENCIAS-HUMANAS.md": {
+        "bytes": 17576,
+        "lines": 294
+      },
+      "MEMORIA-ENGENHARIA-EXECUCAO.md": {
+        "bytes": 26635,
+        "lines": 191
+      }
+    },
+    "history": {
+      "validation/VALIDATION-CHECKLIST.md": [
+        "126",
+        "125",
+        "123",
+        "120",
+        "119",
+        "118",
+        "116",
+        "115",
+        "113",
+        "117"
+      ],
+      "decisions/DECISION-LOG.md": []
+    },
+    "archived_verified": [
+      {
+        "path": "memory/implementation/BATCH-106.md",
+        "sha256": "7cb3794da5894b6a1ef9b2d867ed447d026a89cf61a5af0137cd65c0be54212f"
+      },
+      {
+        "path": "memory/implementation/BATCH-107.md",
+        "sha256": "6f041692a162832a01cea5afb51c55c727aa82a0c4d59cd6b41e3be56b2d9138"
+      },
+      {
+        "path": "memory/implementation/BATCH-108.md",
+        "sha256": "e296059b714bec5bdb0c052a1f1dac8201bda8c8af0cb75b991f3a24f4823d49"
+      },
+      {
+        "path": "memory/implementation/BATCH-109.md",
+        "sha256": "c6bb3328d8cfd0c21cf257b1b201443f46929e231dfe138cfd7a4afcd4b6b5ab"
+      },
+      {
+        "path": "memory/implementation/BATCH-110.md",
+        "sha256": "b6213026d9d618d5e0a7c04350ec4f639172ab090f1434df5dda29d11eb23267"
+      },
+      {
+        "path": "memory/implementation/BATCH-111.md",
+        "sha256": "0e059a4b6a4cfbf839c0d710a5e32125b806f4211df2001eb73af70e693bbbac"
+      },
+      {
+        "path": "memory/implementation/BATCH-112.md",
+        "sha256": "394442810640356c201e7bdc946a3db83f080c1f2afa310c98f6374d4f896685"
+      },
+      {
+        "path": "memory/implementation/BATCH-113.md",
+        "sha256": "dea68495d50a45f2b7baddab46a5edffc13206ed3c8de20ed5c81e1be56ee414"
+      },
+      {
+        "path": "memory/implementation/BATCH-115.md",
+        "sha256": "24d42b7a6a1e11fd2f81292d75fc0ad27bc76b14e7265346cddd38521e4d7ffe"
+      },
+      {
+        "path": "memory/implementation/BATCH-116.md",
+        "sha256": "c019374606b5c439f0d17ec20fb63467a2744210eb79b6adfd89dd57925764de"
+      },
+      {
+        "path": "memory/implementation/BATCH-117.md",
+        "sha256": "8cd2cf34b2567166f250b10f5eff2c33261ecdf3b3f2cbc58db862a4cf9b1e2a"
+      },
+      {
+        "path": "memory/implementation/BATCH-118.md",
+        "sha256": "eb40d12239cd6e19b0ba0e37e4221c60b5578a33950013917918c0629ac8e07f"
+      }
+    ],
+    "inherited_broken_targets": 1,
+    "active_broken_links": [
+      {
+        "source": "memory/human-requests/subscriptions/req-130-correcoes-pos-homologacao-planos-privados-e-validacao-dominio.md",
+        "target": "memory/human-requests/subscriptions/[a-z0-9-]{0,61}[a-z0-9]"
+      }
+    ],
+    "new_broken_links": []
+  },
+  "conn2flow-ai-workspace": {
+    "counts": {
+      "human-requests": [
+        "req-067.md",
+        "req-068.md",
+        "req-069.md",
+        "req-070.md",
+        "req-071.md",
+        "req-072.md",
+        "req-073.md",
+        "req-074.md",
+        "req-075.md",
+        "req-076.md"
+      ],
+      "implementation": [
+        "batch-069.md",
+        "batch-070.md",
+        "batch-071.md",
+        "batch-072.md",
+        "batch-073.md",
+        "batch-074.md",
+        "batch-075.md",
+        "batch-076.md",
+        "batch-077.md",
+        "batch-078.md"
+      ]
+    },
+    "governance": {
+      "human-requests/CURRENT.md": {
+        "bytes": 3317,
+        "lines": 32
+      },
+      "validation/VALIDATION-CHECKLIST.md": {
+        "bytes": 17551,
+        "lines": 200
+      },
+      "decisions/DECISION-LOG.md": {
+        "bytes": 1254,
+        "lines": 15
+      },
+      "04-memory-engineering-execution.md": {
+        "bytes": 9630,
+        "lines": 55
+      }
+    },
+    "history": {
+      "validation/VALIDATION-CHECKLIST.md": [
+        "078",
+        "077",
+        "076",
+        "069",
+        "070",
+        "072",
+        "071",
+        "073",
+        "074",
+        "075"
+      ],
+      "decisions/DECISION-LOG.md": []
+    },
+    "archived_verified": [
+      {
+        "path": "memory/implementation/batch-066.md",
+        "sha256": "d9bcba80a4668a2c5ec2308dad362fe473eef4189e3c87c5f32fa10b26e06d35"
+      },
+      {
+        "path": "memory/implementation/batch-067.md",
+        "sha256": "7c209398f8a2441edc4a2c02b7413077ee2a68224f82b373039df77bb5f52cf9"
+      },
+      {
+        "path": "memory/implementation/batch-068.md",
+        "sha256": "f6d3d203d295bb64582cb66ba83e5b7a00c6fb55153ac411891ee394c75f37f3"
+      }
+    ],
+    "inherited_broken_targets": 14,
+    "active_broken_links": [
+      {
+        "source": "memory/04-memory-engineering-execution.md",
+        "target": "memory/implementation/batch-062.md"
+      },
+      {
+        "source": "memory/04-memory-engineering-execution.md",
+        "target": "memory/implementation/batch-063.md"
+      },
+      {
+        "source": "memory/04-memory-engineering-execution.md",
+        "target": "memory/{currentPath}"
+      },
+      {
+        "source": "memory/handoffs/CURRENT-HANDOFF.md",
+        "target": "memory/human-requests/req-055.md"
+      },
+      {
+        "source": "memory/human-requests/req-072.md",
+        "target": "memory/backlog/ARCH-015-headless-triad-mechanics-and-human-reviews.md"
+      },
+      {
+        "source": "memory/human-requests/req-072.md",
+        "target": "memory/backlog/ARCH-015-headless-triad-mechanics-and-human-reviews.md"
+      },
+      {
+        "source": "memory/implementation/batch-074.md",
+        "target": "memory/backlog/ARCH-015-headless-triad-mechanics-and-human-reviews.md"
+      },
+      {
+        "source": "memory/validation/review-046.md",
+        "target": "memory/validation/{currentPath}"
+      },
+      {
+        "source": "memory/validation/review-065.md",
+        "target": "memory/human-requests/req-063.md"
+      },
+      {
+        "source": "memory/validation/review-065.md",
+        "target": "memory/implementation/batch-065.md"
+      },
+      {
+        "source": "memory/validation/review-067.md",
+        "target": "memory/human-requests/req-065.md"
+      },
+      {
+        "source": "memory/validation/review-068.md",
+        "target": "memory/human-requests/req-066.md"
+      }
+    ],
+    "new_broken_links": []
+  }
+}

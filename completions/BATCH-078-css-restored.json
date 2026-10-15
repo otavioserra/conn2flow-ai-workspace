@@ -1,0 +1,1540 @@
+{
+  "preimage": "BATCH-078-site-css-preimage.zip",
+  "paths": [
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-adicionar/3d-catalog-groups-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-clonar/3d-catalog-groups-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-editar/3d-catalog-groups-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/en/pages/3d-catalog-groups-list/3d-catalog-groups-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-adicionar/3d-catalog-groups-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-clonar/3d-catalog-groups-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-editar/3d-catalog-groups-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-groups/resources/pt-br/pages/3d-catalog-groups-list/3d-catalog-groups-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-adicionar/3d-catalog-items-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-clonar/3d-catalog-items-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-editar/3d-catalog-items-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/en/pages/3d-catalog-items-list/3d-catalog-items-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-adicionar/3d-catalog-items-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-clonar/3d-catalog-items-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-editar/3d-catalog-items-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog-items/resources/pt-br/pages/3d-catalog-items-list/3d-catalog-items-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-adicionar/3d-catalog-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-clonar/3d-catalog-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-editar/3d-catalog-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/en/pages/3d-catalog-list/3d-catalog-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-adicionar/3d-catalog-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-clonar/3d-catalog-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-editar/3d-catalog-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/3d-catalog/resources/pt-br/pages/3d-catalog-list/3d-catalog-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliate-area/resources/en/pages/affiliate/affiliate.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/affiliate-area/resources/pt-br/pages/affiliate/affiliate.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-add/affiliates-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-details/affiliates-details.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-edit/affiliates-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-payouts/affiliates-payouts.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates-settings/affiliates-settings.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/en/pages/affiliates/affiliates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-add/affiliates-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-details/affiliates-details.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-edit/affiliates-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-payouts/affiliates-payouts.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates-settings/affiliates-settings.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/affiliates/resources/pt-br/pages/affiliates/affiliates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/ai-admin/resources/en/pages/ai-admin/ai-admin.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-admin/resources/pt-br/pages/ai-admin/ai-admin.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-agents/resources/en/pages/ai-agents/ai-agents.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-agents/resources/pt-br/pages/ai-agents/ai-agents.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-assistant/resources/en/pages/ai-assistant/ai-assistant.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-assistant/resources/pt-br/pages/ai-assistant/ai-assistant.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-fields/resources/en/pages/ai-fields/ai-fields.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-fields/resources/pt-br/pages/ai-fields/ai-fields.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-images/resources/en/pages/ai-images/ai-images.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/ai-images/resources/pt-br/pages/ai-images/ai-images.precompiled.css",
+      "before_sha256": "44b8513376ec11f999872439672a351f578a03aa4c4526a2a30a172465943555",
+      "after_sha256": "cf02a863dbd012e08c6b34f5e2a93fa8518d425705c691ef91bf9e5ae2c6779f"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/en/pages/analytics-manager-pipeline/analytics-manager-pipeline.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/en/pages/analytics-manager/analytics-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/pt-br/pages/analytics-manager-pipeline/analytics-manager-pipeline.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/analytics-manager/resources/pt-br/pages/analytics-manager/analytics-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-buyer/checkout-buyer.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-cancelled/checkout-cancelled.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-download/checkout-download.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-error/checkout-error.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-recovery/checkout-recovery.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout-success/checkout-success.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/en/pages/checkout/checkout.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-buyer/checkout-buyer.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-cancelled/checkout-cancelled.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-download/checkout-download.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-error/checkout-error.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-recovery/checkout-recovery.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout-success/checkout-success.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/checkout/resources/pt-br/pages/checkout/checkout.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons-add/coupons-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons-edit/coupons-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/en/pages/coupons/coupons.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons-add/coupons-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons-edit/coupons-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/coupons/resources/pt-br/pages/coupons/coupons.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog-groups/documentation-module-3d-catalog-groups.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog-items/documentation-module-3d-catalog-items.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-3d-catalog/documentation-module-3d-catalog.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-affiliates/documentation-module-affiliates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-analytics-manager/documentation-module-analytics-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-coupons/documentation-module-coupons.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-documentation/documentation-module-documentation.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-gateways-pagamentos/documentation-module-gateways-pagamentos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-host-manager/documentation-module-host-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-marketplace-admin/documentation-module-marketplace-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-orders/documentation-module-orders.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-presentations/documentation-module-presentations.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-product-reviews/documentation-module-product-reviews.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-product-types/documentation-module-product-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-products-index/documentation-module-products-index.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-products/documentation-module-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-publisher-social-media/documentation-module-publisher-social-media.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-sales-reports/documentation-module-sales-reports.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-shipping-methods/documentation-module-shipping-methods.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-social-apps/documentation-module-social-apps.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-social-connections/documentation-module-social-connections.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-stripe-products/documentation-module-stripe-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-config/documentation-module-subscriptions-config.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-plans/documentation-module-subscriptions-plans.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-service-stages/documentation-module-subscriptions-service-stages.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-service-types/documentation-module-subscriptions-service-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions-status/documentation-module-subscriptions-status.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation-module-subscriptions/documentation-module-subscriptions.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/en/pages/documentation/documentation.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog-groups/documentation-module-3d-catalog-groups.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog-items/documentation-module-3d-catalog-items.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-3d-catalog/documentation-module-3d-catalog.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-affiliates/documentation-module-affiliates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-analytics-manager/documentation-module-analytics-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-coupons/documentation-module-coupons.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-documentation/documentation-module-documentation.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-gateways-pagamentos/documentation-module-gateways-pagamentos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-host-manager/documentation-module-host-manager.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-marketplace-admin/documentation-module-marketplace-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-orders/documentation-module-orders.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-presentations/documentation-module-presentations.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-product-reviews/documentation-module-product-reviews.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-product-types/documentation-module-product-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-products-index/documentation-module-products-index.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-products/documentation-module-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-publisher-social-media/documentation-module-publisher-social-media.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-sales-reports/documentation-module-sales-reports.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-shipping-methods/documentation-module-shipping-methods.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-social-apps/documentation-module-social-apps.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-social-connections/documentation-module-social-connections.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-stripe-products/documentation-module-stripe-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-config/documentation-module-subscriptions-config.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-plans/documentation-module-subscriptions-plans.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-service-stages/documentation-module-subscriptions-service-stages.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-service-types/documentation-module-subscriptions-service-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions-status/documentation-module-subscriptions-status.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation-module-subscriptions/documentation-module-subscriptions.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/documentation/resources/pt-br/pages/documentation/documentation.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos-adicionar/gateways-pagamentos-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos-editar/gateways-pagamentos-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/en/pages/gateways-pagamentos/gateways-pagamentos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos-adicionar/gateways-pagamentos-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos-editar/gateways-pagamentos-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/gateways-pagamentos/resources/pt-br/pages/gateways-pagamentos/gateways-pagamentos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-cpanel/host-manager-admin-cpanel.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-distribuido/host-manager-admin-distribuido.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-logs/host-manager-admin-logs.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-planos/host-manager-admin-planos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-updates/host-manager-admin-updates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin-usuarios/host-manager-admin-usuarios.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/en/pages/host-manager-admin/host-manager-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-cpanel/host-manager-admin-cpanel.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-distribuido/host-manager-admin-distribuido.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-logs/host-manager-admin-logs.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-planos/host-manager-admin-planos.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-updates/host-manager-admin-updates.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin-usuarios/host-manager-admin-usuarios.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-manager/resources/pt-br/pages/host-manager-admin/host-manager-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-faturas/host-manager-cliente-faturas.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-hospedagem/host-manager-cliente-hospedagem.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/en/pages/host-manager-cliente-suporte/host-manager-cliente-suporte.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-faturas/host-manager-cliente-faturas.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-hospedagem/host-manager-cliente-hospedagem.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/host-user-manager/resources/pt-br/pages/host-manager-cliente-suporte/host-manager-cliente-suporte.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/marketplace-admin/resources/en/pages/marketplace-admin/marketplace-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/marketplace-admin/resources/pt-br/pages/marketplace-admin/marketplace-admin.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/marketplace/resources/en/pages/marketplace/marketplace.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/marketplace/resources/pt-br/pages/marketplace/marketplace.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/my-orders/resources/en/pages/my-orders-detail/my-orders-detail.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/modulos/my-orders/resources/en/pages/my-orders/my-orders.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/modulos/my-orders/resources/pt-br/pages/my-orders-detail/my-orders-detail.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/modulos/my-orders/resources/pt-br/pages/my-orders/my-orders.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-buyer-form/orders-buyer-form.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-details/orders-details.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders-recovery/orders-recovery.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/en/pages/orders/orders.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-buyer-form/orders-buyer-form.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-details/orders-details.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders-recovery/orders-recovery.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/orders/resources/pt-br/pages/orders/orders.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-adicionar/presentations-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-clonar/presentations-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations-editar/presentations-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/en/pages/presentations/presentations.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-adicionar/presentations-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-clonar/presentations-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations-editar/presentations-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "05c897fe60cb4b18673b1b55b72402d07457a7c96e617513d2f8dadde2f1b2ef"
+    },
+    {
+      "path": "gestor/modulos/presentations/resources/pt-br/pages/presentations/presentations.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/en/pages/product-reviews-settings/product-reviews-settings.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/en/pages/product-reviews/product-reviews.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/pt-br/pages/product-reviews-settings/product-reviews-settings.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-reviews/resources/pt-br/pages/product-reviews/product-reviews.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types-add/product-types-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types-edit/product-types-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/en/pages/product-types/product-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types-add/product-types-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types-edit/product-types-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/product-types/resources/pt-br/pages/product-types/product-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-adicionar/products-index-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-clonar/products-index-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index-editar/products-index-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/en/pages/products-index/products-index.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-adicionar/products-index-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-clonar/products-index-clonar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index-editar/products-index-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products-index/resources/pt-br/pages/products-index/products-index.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-add/products-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-edit/products-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-page/products-page.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products-variants/products-variants.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/en/pages/products/products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-add/products-add.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-edit/products-edit.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-page/products-page.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products-variants/products-variants.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/products/resources/pt-br/pages/products/products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/en/pages/publisher-social-media-configuracoes/publisher-social-media-configuracoes.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/en/pages/publisher-social-media/publisher-social-media.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/pt-br/pages/publisher-social-media-configuracoes/publisher-social-media-configuracoes.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/publisher-social-media/resources/pt-br/pages/publisher-social-media/publisher-social-media.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/sales-reports/resources/en/pages/sales-reports/sales-reports.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/sales-reports/resources/pt-br/pages/sales-reports/sales-reports.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/shipping-methods/resources/en/pages/shipping-methods/shipping-methods.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/shipping-methods/resources/pt-br/pages/shipping-methods/shipping-methods.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/en/pages/social-apps-adicionar/social-apps-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/en/pages/social-apps-editar/social-apps-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/pt-br/pages/social-apps-adicionar/social-apps-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-apps/resources/pt-br/pages/social-apps-editar/social-apps-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-adicionar/social-connections-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-callback/social-connections-callback.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/en/pages/social-connections-editar/social-connections-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-adicionar/social-connections-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-callback/social-connections-callback.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/social-connections/resources/pt-br/pages/social-connections-editar/social-connections-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/cart/cart.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/store-product/store-product.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/en/pages/store/store.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/cart/cart.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/store-product/store-product.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/store/resources/pt-br/pages/store/store.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products-adicionar/stripe-products-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products-editar/stripe-products-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/en/pages/stripe-products/stripe-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products-adicionar/stripe-products-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products-editar/stripe-products-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/stripe-products/resources/pt-br/pages/stripe-products/stripe-products.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/en/pages/subscriptions-plans/subscriptions-plans.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-plans/resources/pt-br/pages/subscriptions-plans/subscriptions-plans.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages-adicionar/subscriptions-service-stages-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages-editar/subscriptions-service-stages-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/en/pages/subscriptions-service-stages/subscriptions-service-stages.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages-adicionar/subscriptions-service-stages-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages-editar/subscriptions-service-stages-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-stages/resources/pt-br/pages/subscriptions-service-stages/subscriptions-service-stages.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types-adicionar/subscriptions-service-types-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types-editar/subscriptions-service-types-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/en/pages/subscriptions-service-types/subscriptions-service-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types-adicionar/subscriptions-service-types-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types-editar/subscriptions-service-types-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-service-types/resources/pt-br/pages/subscriptions-service-types/subscriptions-service-types.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status-adicionar/subscriptions-status-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status-editar/subscriptions-status-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/en/pages/subscriptions-status/subscriptions-status.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status-adicionar/subscriptions-status-adicionar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status-editar/subscriptions-status-editar.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions-status/resources/pt-br/pages/subscriptions-status/subscriptions-status.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/contacts-success/contacts-success.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/contacts/contacts.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-checkout-error/subscription-checkout-error.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-list/subscription-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-start/subscription-start.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription-view/subscription-view.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/en/pages/subscription/subscription.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/contacts-success/contacts-success.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/contacts/contacts.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-checkout-error/subscription-checkout-error.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-list/subscription-list.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-start/subscription-start.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription-view/subscription-view.precompiled.css",
+      "before_sha256": "d455e3209be2a8b513f36a028c0c9b7843beae6306fab2ba3ff43b4560918b0f",
+      "after_sha256": "bd739bf3f21b9cba8a2587ebfc61695478dd18871f8f6364345d28d5196ad2fa"
+    },
+    {
+      "path": "gestor/modulos/subscriptions/resources/pt-br/pages/subscription/subscription.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription-cancel/user-subscription-cancel.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription-change/user-subscription-change.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/en/pages/user-subscription/user-subscription.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription-cancel/user-subscription-cancel.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription-change/user-subscription-change.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/modulos/user-subscription/resources/pt-br/pages/user-subscription/user-subscription.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/codeflow-para-devs/codeflow-para-devs.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/comece-a-construir/comece-a-construir.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/conn2flow-future/conn2flow-future.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/pagina-raiz-do-sistema/pagina-raiz-do-sistema.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/resources/en/pages/plataforma/plataforma.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-agents/platform-agents.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-ai/platform-ai.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-delivery/platform-delivery.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-editor/platform-editor.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-modules/platform-modules.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/platform-security/platform-security.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/privacy-policy/privacy-policy.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/react-mapdraw-navigator/react-mapdraw-navigator.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/en/pages/terms-of-use/terms-of-use.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/codeflow-para-devs/codeflow-para-devs.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/comece-a-construir/comece-a-construir.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/conn2flow-future/conn2flow-future.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/pagina-raiz-do-sistema/pagina-raiz-do-sistema.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/plataforma/plataforma.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "6ef0265543422f94452bb0b4f7aee07efd8f61534880ebcccc7d1b0732ed0761"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-agents/platform-agents.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-ai/platform-ai.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-delivery/platform-delivery.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-editor/platform-editor.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-modules/platform-modules.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/platform-security/platform-security.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/privacy-policy/privacy-policy.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/react-mapdraw-navigator/react-mapdraw-navigator.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/pt-br/pages/terms-of-use/terms-of-use.precompiled.css",
+      "before_sha256": "f2b48f3d393f591088925298df1d623e30fc4ff7dd80cf629c2fc8f02a770bf7",
+      "after_sha256": "071f0266a7489d1e1587b071fe3a5866ab87f09ea868ef07de552deaa56d42fb"
+    },
+    {
+      "path": "gestor/resources/.tailwind-build-manifest.json",
+      "before_sha256": "555c57412098d4c8c5926e779811daff1ed9671852fffdc755c4305129f330a3",
+      "after_sha256": "649f3f561275e68cdff5a4a4219fb294070d87acf30dbaddc93218db1e924383"
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "before_bytes": 73201,
+  "after_bytes": 17576,
+  "original": "memory/archive/original/PENDENCIAS-HUMANAS-50a5d66a53e4.md",
+  "active_sections": [
+    {
+      "title": "REQ-245 — Atualização automática do sistema (core, aguardando revisão e homologação)",
+      "active_path": "memory/human-pending/pendencia-008.md",
+      "source_sha256": "ed79f38e28ea3290fba4cfd507fc04f60b554c354519d652c21e48c489cc7c33",
+      "open_tasks": 0
+    },
+    {
+      "title": "REQ-243 / REQ-108 — Refinamentos visuais, usabilidade e controles, rodada 2 (aguardando homologação)",
+      "active_path": "memory/human-pending/pendencia-009.md",
+      "source_sha256": "f07f9efc03facbcccf90134a98f4ffe92d05320550123f3009bee8f5bb5f816a",
+      "open_tasks": 0
+    },
+    {
+      "title": "REQ-242 / REQ-107 — Refinamentos visuais, usabilidade e controles (Integrado em `main`)",
+      "active_path": "memory/human-pending/pendencia-010.md",
+      "source_sha256": "51827ecd30f9f0ae003d100a4c2b505ed7aa3aec772a30723a77c8a106e9acc7",
+      "open_tasks": 0
+    },
+    {
+      "title": "REQ-238 — Homologação visual do painel",
+      "active_path": "memory/human-pending/pendencia-011.md",
+      "source_sha256": "306c1faca9ca0402b5e8ec258b7c0ec5a12cd600b629299a2637446a41eba90d",
+      "open_tasks": 0
+    },
+    {
+      "title": "0. Roteiro único: testar tudo de uma vez (ordem sugerida)",
+      "active_path": "memory/human-pending/pendencia-012.md",
+      "source_sha256": "d51288b1adc15a72a20a4e995f35b63c4e919b171bb94d56e8589d67c5476d7e",
+      "open_tasks": 0
+    },
+    {
+      "title": "1. Decisões que travam o próximo passo",
+      "active_path": "memory/human-pending/pendencia-013.md",
+      "source_sha256": "edbb9ec9f85420ab5033e4a75a7309aeda4350d43c68c4651b94c0b92b35d3c4",
+      "open_tasks": 0
+    },
+    {
+      "title": "2. Testes que só você consegue fazer",
+      "active_path": "memory/human-pending/pendencia-014.md",
+      "source_sha256": "9c62a2b2f9231a54d61e673ab54e3584db9b1e2d672f576a963d8a818344b885",
+      "open_tasks": 0
+    },
+    {
+      "title": "3. Ações suas fora do código",
+      "active_path": "memory/human-pending/pendencia-015.md",
+      "source_sha256": "16f3613f0160277f48bec6e1ba6304f130018e2c3743c20c1fcc56501cbe9eb5",
+      "open_tasks": 0
+    },
+    {
+      "title": "4. Revisões humanas em aberto",
+      "active_path": "memory/human-pending/pendencia-016.md",
+      "source_sha256": "8fc6cc5bd907256d9e950a61140d3cdb4a01d14facc52e471bf3a9bfb2dcf7d3",
+      "open_tasks": 0
+    },
+    {
+      "title": "5. Limites conhecidos, para você não ser surpreendido",
+      "active_path": "memory/human-pending/pendencia-017.md",
+      "source_sha256": "a897b2be74c9d5e7abe45cb873fa7bd1a4545434271670cbc4a2d241af3a4af5",
+      "open_tasks": 0
+    },
+    {
+      "title": "Integração REQ-236 / REQ-101",
+      "active_path": "memory/human-pending/pendencia-018.md",
+      "source_sha256": "2372767532b06efa3a1b1f4ce7f6fe9ff7a4c3a8af3b2b6e5e4cca7c4116829a",
+      "open_tasks": 1
+    },
+    {
+      "title": "REQ-100 — Homologação visual do e-commerce e assinaturas",
+      "active_path": "memory/human-pending/pendencia-019.md",
+      "source_sha256": "acc881e4b97df7a88e7a3e5da9204c3a5e6aea235fe63a952a2d1aba1fe973e4",
+      "open_tasks": 0
+    },
+    {
+      "title": "REQ-240 / REQ-106 — Harmonização do painel, `admin-atualizacoes` e arquivos unificados",
+      "active_path": "memory/human-pending/pendencia-020.md",
+      "source_sha256": "d8e881084f40f8ff088f070e0a85034468b4109efff9ecb21fffbc354c431902",
+      "open_tasks": 0
+    },
+    {
+      "title": "Widget de apresentação no Dashboard (2026-10-06)",
+      "active_path": "memory/human-pending/pendencia-021.md",
+      "source_sha256": "1f5c6927d2297fb88d4e68d018d4be9553696c07a0cc630b6f760b24caeadc54",
+      "open_tasks": 2
+    },
+    {
+      "title": "REQ-247 — área de widgets com permissões e layout por perfil (2026-10-06)",
+      "active_path": "memory/human-pending/pendencia-022.md",
+      "source_sha256": "e4fed00c0cdbcbb391f7e47bcd253e9510d901223c12c997697443f83f02f869",
+      "open_tasks": 7
+    },
+    {
+      "title": "REQ-248 — grade e lousa na área de widgets (2026-10-06)",
+      "active_path": "memory/human-pending/pendencia-023.md",
+      "source_sha256": "505a181c1fca3d4ec7670762c09bfc47fe8db00ff90de1de99c565162f7e29f0",
+      "open_tasks": 10
+    },
+    {
+      "title": "REQ-249 / REQ-111 — links dos widgets para fora e aba de widgets em primeiro (2026-10-06)",
+      "active_path": "memory/human-pending/pendencia-024.md",
+      "source_sha256": "ab73c7f1455841a65e8bc51354d8fc4b7d492d33c74a094b9b8ce7c4d4e6f653",
+      "open_tasks": 7
+    },
+    {
+      "title": "REQ-112 — instalação da linha 3.1 no Lab (2026-10-06)",
+      "active_path": "memory/human-pending/pendencia-025.md",
+      "source_sha256": "505ce3afa2be7de6bf0b097a767c6b478d945c9cc4d4a82ff42a709063dcba46",
+      "open_tasks": 3
+    },
+    {
+      "title": "REQ-250 — linha 3.1, fase 1 da lousa (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-026.md",
+      "source_sha256": "353933f37a8c7fc50bbb33019f7aafd5087cbcb26316c2d9c43822328c701a00",
+      "open_tasks": 7
+    },
+    {
+      "title": "REQ-251 — linha 3.1, fase 2 da lousa: lousas do sistema (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-027.md",
+      "source_sha256": "7b586c94bbf2fd3cadb92fe8fcfbb9274215e371d4b4769a842c851645664a17",
+      "open_tasks": 7
+    },
+    {
+      "title": "REQ-252 — linha 3.1, fase 3A da lousa: widget \"Lousa\" em páginas (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-028.md",
+      "source_sha256": "55e8bb06dcef7075a159bc32273955852b28504d8a9ecf0cc6809731443c7350",
+      "open_tasks": 6
+    },
+    {
+      "title": "REQ-253 — linha 3.1, fase 3B da lousa: módulo \"Páginas de Lousa\" (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-029.md",
+      "source_sha256": "4a9fef0d10b2debf8c73a31ad5ea5f3fa913bcfa71b654c0822a52874273b643",
+      "open_tasks": 5
+    },
+    {
+      "title": "REQ-254 — linha 3.1: editor HTML e clonar nas \"Páginas de Lousa\" (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-030.md",
+      "source_sha256": "3a6d2a144525309d9ea23db2c1f6a3f716ddf2d59c4e3bf481e1b909b69977af",
+      "open_tasks": 8
+    },
+    {
+      "title": "REQ-256 do core — miniaturas dos modelos (2026-10-07, linha 3.0)",
+      "active_path": "memory/human-pending/pendencia-031.md",
+      "source_sha256": "c389075339cb44a4194b42e41256ce43af0077630fe92cca8861f4f985e5589c",
+      "open_tasks": 6
+    },
+    {
+      "title": "REQ-257 do core — aba Modelos na inclusão e miniaturas em 4:3 (2026-10-07, linha 3.0)",
+      "active_path": "memory/human-pending/pendencia-032.md",
+      "source_sha256": "1d945286f6b45c76a4d1899689cecb43276f2392448d7677b07bed75e4d742be",
+      "open_tasks": 4
+    },
+    {
+      "title": "REQ-255 e REQ-258 do core — linha 3.1: modelos de página de lousa e modelos de lousa (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-033.md",
+      "source_sha256": "6166303cf764446b4b891e146963d3ca9a305d643b9588ecb64a1502c4287bd5",
+      "open_tasks": 6
+    },
+    {
+      "title": "REQ-259 do core — linha 3.1: medição da lousa publicada (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-034.md",
+      "source_sha256": "30d674149726dffc80289a21c83ff53543183bd4872f3a378b7c6170294fc45c",
+      "open_tasks": 3
+    },
+    {
+      "title": "Relatório para o AI Workspace (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-035.md",
+      "source_sha256": "9cff76f5a8187c8141d4b4929a5f5db15baaf9838782b4a893160c107018725e",
+      "open_tasks": 1
+    },
+    {
+      "title": "Valuation do slide de investimento e integração da 3.1 na 3.0 (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-036.md",
+      "source_sha256": "13bc2eeb409bef2e6bb425a0350d9a90a3bae5473610634cca05c75a47ffbedd",
+      "open_tasks": 3
+    },
+    {
+      "title": "REQ-260 do core — servidores de IA abertos a qualquer provedor (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-037.md",
+      "source_sha256": "51f0540efea57731cf3cffa66274f7ff2dc54463ee3167601a1ce28fdccfeee0",
+      "open_tasks": 6
+    },
+    {
+      "title": "REQ-113 — criador de imagens com IA no gerenciador de arquivos (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-038.md",
+      "source_sha256": "2e77b01d0f07dd316e4a7fab006a1d2b1efde82247013f7588b57a25aaaf1637",
+      "open_tasks": 9
+    },
+    {
+      "title": "REQ-114 — IA nos campos de formulário (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-039.md",
+      "source_sha256": "f747857e866b8435ff393d43cea6a2baa42016f86336c21644855ae432395be1",
+      "open_tasks": 8
+    },
+    {
+      "title": "Defeito anterior achado de passagem — Planos de Assinatura (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-040.md",
+      "source_sha256": "dbd5eadc6466bc97e084708a6b38ebe83023e2d7e39bb68c43927c75e3678c76",
+      "open_tasks": 1
+    },
+    {
+      "title": "REQ-115 — IA nos campos: Páginas e Produtos (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-041.md",
+      "source_sha256": "bf91dd03ac56d15ac69ff15e318b9543d967f5dbb659431caab28aa61923d376",
+      "open_tasks": 6
+    },
+    {
+      "title": "REQ-116 — Gestão de IA: créditos de IA por perfil (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-042.md",
+      "source_sha256": "099dfaf13a96a9755af2d87f32b9137c6da2fbccb2781af8fe39cf000e64c4bd",
+      "open_tasks": 9
+    },
+    {
+      "title": "Criador de imagens — imagem já selecionada (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-043.md",
+      "source_sha256": "af1e31c5a41b8f78f80441d1fcca4b946ae9be44068af5111a8faa2c5722a64e",
+      "open_tasks": 2
+    },
+    {
+      "title": "REQ-117 — redator com IA no editor de texto do Publicador (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-044.md",
+      "source_sha256": "ade6c598e3f7220b721bc03be836c077c7a2c89d35ec0c144361e46b5db93cab",
+      "open_tasks": 7
+    },
+    {
+      "title": "REQ-118 — assistente geral do painel (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-045.md",
+      "source_sha256": "e6712493a27d7e8000cc216988d88014d41fd8dc92cc584c3b3177e627adaeff",
+      "open_tasks": 9
+    },
+    {
+      "title": "REQ-119 — módulo de agentes de IA, com o guarda (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-046.md",
+      "source_sha256": "c012c88b7f99a6a6609be1fb34f3539986f3131d200e75ad4541da005f67f044",
+      "open_tasks": 7
+    },
+    {
+      "title": "Repositório do site: arquivo de dados perto do limite do GitHub (2026-10-07)",
+      "active_path": "memory/human-pending/pendencia-047.md",
+      "source_sha256": "ba561026f296d22bfdc7380586ae27157c9f3331549278a072a75e6ad6f87525",
+      "open_tasks": 0
+    },
+    {
+      "title": "Frente de IA pausada em 2026-10-08",
+      "active_path": "memory/human-pending/pendencia-048.md",
+      "source_sha256": "daee3eebe824a872b8cd77f5f03751cab36c2278f84fde01d041087ea557294e",
+      "open_tasks": 3
+    },
+    {
+      "title": "REQ-263 do core — site lento depois de publicar: índice em `paginas` (2026-10-08)",
+      "active_path": "memory/human-pending/pendencia-049.md",
+      "source_sha256": "c77e46fb2b55ffca5a704babb31e7eb7a319dd69eafbf2a136a75d1b234ca6b4",
+      "open_tasks": 3
+    }
+  ]
+}

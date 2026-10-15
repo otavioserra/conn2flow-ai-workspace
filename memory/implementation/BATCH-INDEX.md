@@ -38,11 +38,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
-| **BATCH-064** | ready-for-intake | Fix de empacotamento vsce, bump v1.1.2 e preparação para publicação no Marketplace | `VALIDATION-CHECKLIST.md#batch-064` | REQ-062 formalizada; aguardando execução do release da extensão. |
-| **BATCH-065** | complete | Integração do Chrome DevTools MCP Server para Inspeção em Tempo Real do Runtime PHP/JS | [batch-065.md](batch-065.md) | REQ-063 homologada; 41 skills analisadas, 7 enriquecidas, 1.025/1.025 MD5, 44 arquivos locais preservados, smoke MCP/CDP e 124/124 npm test. |
-| **BATCH-066** | ready-for-review | Lições de 2026-10-01 nas skills: pipeline, árvore compartilhada, validação e texto público | [batch-066.md](batch-066.md) | REQ-064; sete skills com acréscimos; propagador genérico `scripts/skills/sync-skills.cjs`; 1.550 cópias iguais e 21 traduções preservadas |
-| **BATCH-067** | complete | Canonização de Novas Skills (Visual Assets e Migração Tailwind), Contrato Modular de Widgets, Resolução de Binários Tailwind e Propagação Global (43 Skills) | [batch-067.md](batch-067.md) | REQ-065 homologada; 43 skills canônicas, limpeza de frontmatter, Armadilha 17, contrato de widgets, propagação PASS, 124/124 npm test e review-067.md aprovado. |
-| **BATCH-068** | complete | Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais | [batch-068.md](batch-068.md) | REQ-066 homologada; dumps gigantes podados no Core, DECISION-LOG e VALIDATION-CHECKLIST saneados (<50KB), worktrees e backups .bak removidos, 124/124 npm test, review-068.md aprovado. |
+| **BATCH-068** | complete | Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais | [batch-068.md](archive/original/batch-068.md) | REQ-066 homologada; dumps gigantes podados no Core, DECISION-LOG e VALIDATION-CHECKLIST saneados (<50KB), worktrees e backups .bak removidos, 124/124 npm test, review-068.md aprovado. |
 | **BATCH-069** | complete | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](batch-069.md) | REQ-067 homologada; fundação MDD (00, 01, 02), 50 índices, 44 skills (c2f-ai-features), Armadilhas 18 e 19, 39 alvos PASS, 124/124 testes, review-069.md aprovado. |
 | **BATCH-070** | complete | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 homologada; migração nos 7 satélites, Tríade 00, 01, 02 e 44 skills, review-070.md aprovado. |
 | **BATCH-071** | ready-for-review | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
@@ -53,9 +49,12 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Requisição ativa
 
-`REQ-075` (`BATCH-077`) implementada, revisada independentemente e consolidada com commits/pushes autorizados; homologação humana diferida conforme instrução de 2026-10-14.
+`REQ-076` (`BATCH-078`): limpeza segura executada, com preservação de trabalho não integrado, árvores sujas e repositório sem remote. Evidências no lote; homologação humana não atribuída.
 
 | Batch | Estado técnico | Escopo | Evidências |
 | --- | --- | --- | --- |
+| BATCH-078 | ready-for-human-review | Limpeza Git, arquivamento dual e saneamento de derivados do Site | [batch-078.md](batch-078.md), [REV-078](../human-reviews/rev-078.md) |
 | BATCH-076 | ready-for-human-review | MCP nativo, UI Bridge MDD e migração home | [batch-076.md](batch-076.md), [REV-076](../human-reviews/rev-076.md) |
 | BATCH-077 | ready-for-human-review | Quatro skills MDD, proporcionalidade de build e propagação segura | [batch-077.md](batch-077.md), [REV-077](../human-reviews/rev-077.md) |
+
+[Archived history](<archive/compacted/BATCH-INDEX-fe51f34e6321.md>)

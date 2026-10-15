@@ -2,7 +2,7 @@
 
 - **Projeto**: `conn2flow-ai-workspace`
 - **Requisição**: [REQ-065](../human-requests/req-065.md)
-- **Lote**: [BATCH-067](../implementation/batch-067.md)
+- **Lote**: [BATCH-067](../implementation/archive/original/batch-067.md)
 - **Revisor**: Macro-Arquiteto & Auditor Técnico
 - **Data**: 2026-10-04
 - **Veredito**: **APPROVED (Homologado)**

@@ -1,0 +1,667 @@
+[
+    {
+        "repo":  "conn2flow",
+        "branch":  "2.10.x",
+        "sha":  "e0e3ec017b8e5c0cb93715d1eb379b376501856c",
+        "exit":  0,
+        "output":  "Deleted branch 2.10.x (was e0e3ec01)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "2.9.x",
+        "sha":  "3f783e27e5b870264a8733a0212c18f9dd9816e2",
+        "exit":  0,
+        "output":  "Deleted branch 2.9.x (was 3f783e27)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "b2make-legacy",
+        "sha":  "e66146461b66ac202fef490988b4fea1081aec48",
+        "exit":  0,
+        "output":  "Deleted branch b2make-legacy (was e66146461)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-071",
+        "sha":  "db5cc26577aa7c9af3f2f27fc56b8ff66ba2d370",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-071 (was db5cc265)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-072",
+        "sha":  "d8d0298bf80ffe1600c66510bdc2a0492aa987cc",
+        "exit":  1,
+        "output":  "git : warning: not deleting branch \u0027feat/req-072\u0027 that is not yet merged to\r\nNo linha:2 caractere:774\r\n+ ... -parse $branch; $out = git -C $root branch -d -- $branch 2\u003e\u00261 | Out-S ...\r\n+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (warning: not de...t yet merged to:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n         \u0027refs/remotes/origin/feat/req-072\u0027, even though it is merged to HEAD\r\nerror: the branch \u0027feat/req-072\u0027 is not fully merged\r\nhint: If you are sure you want to delete it, run \u0027git branch -D feat/req-072\u0027\r\nhint: Disable this message with \"git config advice.forceDeleteBranch false\""
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-076",
+        "sha":  "2532eaf476dfc4962d85639c2402773d03cb0f75",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-076 (was 2532eaf4)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-130-site",
+        "sha":  "f3a6a4ab1f3e85cd8c263c2b1c912dbbda3f90bd",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-130-site (was f3a6a4ab)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-131-site",
+        "sha":  "5471d94cc42fcb9142e4b646f988c567509f7066",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-131-site (was 5471d94c)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-205",
+        "sha":  "89585dcb755066d819a9641bd32d6208977142c3",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-205 (was 89585dcb)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-226",
+        "sha":  "c080e4e93baee8c4ef63e0835cc9ab57194b7af6",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-226 (was c080e4e9)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-228",
+        "sha":  "7bbcc8638836d4f9c7865c60d32d7ebb65fca412",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-228 (was 7bbcc863)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-229",
+        "sha":  "ccb083386b68cc279df6f976bd2b8a0f700cd6ec",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-229 (was ccb08338)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-235",
+        "sha":  "3df1956eb8e72c80f0d4850911a4333e5b115494",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-235 (was 3df1956e)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-236",
+        "sha":  "a7a7bf334f5ddd74d17a4b264c13850dec632be5",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-236 (was a7a7bf33)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-237",
+        "sha":  "a26dfce8452a23f3cab6e8ae57f81d247f3bef31",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-237 (was a26dfce8)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-238",
+        "sha":  "130854157cd3805ab9659df7ff366eed6538e5c6",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-238 (was 13085415)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-239",
+        "sha":  "ee5cb51a2466d45444fe255c3c61e61712f6da58",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-239 (was ee5cb51a)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-240",
+        "sha":  "09a674c7440ec297f3ded855c2d587ea9d9a1955",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-240 (was 09a674c7)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-240-fase3",
+        "sha":  "fcaec69aee0ca2f330d0d5fc3fdee611ed8c0093",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-240-fase3 (was fcaec69a)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-243",
+        "sha":  "45265c56240db2beb274d5a7f1a6ae15d5db1f7f",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-243 (was 45265c56)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-245",
+        "sha":  "f59f8a007d183346a00d3caa54f63660a5fbffc6",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-245 (was f59f8a00)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-247",
+        "sha":  "c1bfa074cb8b270ea13730ff3ad523dc15db6ac6",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-247 (was c1bfa074)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-248",
+        "sha":  "e58d1b7efe6515a6ec5b6346bdbde2fed5683152",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-248 (was e58d1b7e)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-249",
+        "sha":  "9444fff9c3fa827c7394b6c18b5116bd1fea4209",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-249 (was 9444fff9)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-250",
+        "sha":  "84479e629b6993af143d994cff330aedacefbfc2",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-250 (was 84479e62)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-251",
+        "sha":  "47fe2d920cddc630e86185eb3fac3860ae97cbc1",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-251 (was 47fe2d92)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-252",
+        "sha":  "e8e8c42ba4774c232a652e0e613d15e13aa60a9b",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-252 (was e8e8c42b)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-253",
+        "sha":  "6d43ed54aa7e465239588da51688d557b640c7ca",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-253 (was 6d43ed54)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-254",
+        "sha":  "6f77fd3c3ab8f13d89622b34e0f8c4414e576d70",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-254 (was 6f77fd3c)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-255",
+        "sha":  "a9ae55711ef98dd5be8ad840b3e481d754821ac9",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-255 (was a9ae5571)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-258",
+        "sha":  "150fc9f3bb324add6bc551b43a1acb4aa394144d",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-258 (was 150fc9f3)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-259",
+        "sha":  "05d973225620dcdaa0eb09d4312c7dec81c615d7",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-259 (was 05d97322)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-260",
+        "sha":  "db67a10a6b442ce48a7dc5aeffef638f1990d44f",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-260 (was db67a10a)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-261",
+        "sha":  "f8be6c1605cf165d48316607c781851ffcdacea5",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-261 (was f8be6c16)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-264",
+        "sha":  "7e174e776569db22f9267ef1fe95400b14f2f571",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-264 (was 7e174e77)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-265",
+        "sha":  "ebb42756cbf5abf83a26c69786d8a57115e75320",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-265 (was ebb42756)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-266",
+        "sha":  "ebb42756cbf5abf83a26c69786d8a57115e75320",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-266 (was ebb42756)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-268",
+        "sha":  "315cfbed4deca70943fae7111a7c95be008fab70",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-268 (was 315cfbed)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-269",
+        "sha":  "b0e48a794df398262eea6d4d241809886ef00b18",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-269 (was b0e48a79)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-273",
+        "sha":  "e2bc404b29f9608e6c13cb4f88b7652e7c1fcb23",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-273 (was e2bc404b)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-274",
+        "sha":  "56b95f4a717a402f350813d4c08ca0adf2dad744",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-274 (was 56b95f4a)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-275",
+        "sha":  "c8a2f182093403edfe548ed8c671c94fec7508f0",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-275 (was c8a2f182)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "feat/req-276",
+        "sha":  "53d3616671280871668ebe30f781d9ff1412e289",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-276 (was 53d36166)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "integ/3.1-para-3.0",
+        "sha":  "1ef8abbf29f8d7115fc025ff35df403f28634bc5",
+        "exit":  0,
+        "output":  "Deleted branch integ/3.1-para-3.0 (was 1ef8abbf)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "integ/req-240",
+        "sha":  "de56639379df001e31ce549b733ad2ece2990ee0",
+        "exit":  0,
+        "output":  "Deleted branch integ/req-240 (was de566393)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "integ/req-247-main",
+        "sha":  "446b7817586993e8bfefc6e3baf23e76dbe1746a",
+        "exit":  0,
+        "output":  "Deleted branch integ/req-247-main (was 446b7817)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "integ/widget-apresentacao",
+        "sha":  "515c764ca1ed5ea57ff898c8429927e8225e9ca6",
+        "exit":  0,
+        "output":  "Deleted branch integ/widget-apresentacao (was 515c764c)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "legacy/ai-workspace-pre-docs",
+        "sha":  "5b4348abf70a98b2bd445e374586121747fa8d17",
+        "exit":  0,
+        "output":  "Deleted branch legacy/ai-workspace-pre-docs (was 5b4348ab)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "limpeza",
+        "sha":  "7a2e962a7d4168a7c4ed3bd73c5f370e7f8e82dd",
+        "exit":  1,
+        "output":  "git : warning: not deleting branch \u0027limpeza\u0027 that is not yet merged to\r\nNo linha:2 caractere:774\r\n+ ... -parse $branch; $out = git -C $root branch -d -- $branch 2\u003e\u00261 | Out-S ...\r\n+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (warning: not de...t yet merged to:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n         \u0027refs/remotes/origin/limpeza\u0027, even though it is merged to HEAD\r\nerror: the branch \u0027limpeza\u0027 is not fully merged\r\nhint: If you are sure you want to delete it, run \u0027git branch -D limpeza\u0027\r\nhint: Disable this message with \"git config advice.forceDeleteBranch false\""
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "linha-3.1",
+        "sha":  "0def10fc505bdeefebc61d4fe071649b13aa0d29",
+        "exit":  0,
+        "output":  "Deleted branch linha-3.1 (was 0def10fc)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "main_1",
+        "sha":  "16b8db520e671374c74c9ebc4a6767818e9051c3",
+        "exit":  0,
+        "output":  "Deleted branch main_1 (was 16b8db52)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "recurso/instalacao-manual-host",
+        "sha":  "e66146461b66ac202fef490988b4fea1081aec48",
+        "exit":  0,
+        "output":  "Deleted branch recurso/instalacao-manual-host (was e66146461)."
+    },
+    {
+        "repo":  "conn2flow",
+        "branch":  "recurso/sistema-de-migracoes",
+        "sha":  "c5f1e1ef5d3a53d35453e2e972dd074d4c1607fd",
+        "exit":  0,
+        "output":  "Deleted branch recurso/sistema-de-migracoes (was c5f1e1ef5)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "catalog-3d-v1.6",
+        "sha":  "79f47fc1244b6488319bfedd0ecc6254e6eb6862",
+        "exit":  0,
+        "output":  "Deleted branch catalog-3d-v1.6 (was 79f47fc1)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "catalog-3d-v1.7-alpha",
+        "sha":  "1c8a81f6f1fd3b5d2aea2e3e2828aec7b66ecf0e",
+        "exit":  0,
+        "output":  "Deleted branch catalog-3d-v1.7-alpha (was 1c8a81f6)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-053",
+        "sha":  "dae1b8881f6c199648ba607eaaf282ac74d5848e",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-053 (was dae1b888)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-054",
+        "sha":  "0a53349bcc42027e5fda3f7e8a400b35820523b6",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-054 (was 0a53349b)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-055",
+        "sha":  "e66c9e4441a9f01ecddd7ef0e9116b5d8a002b30",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-055 (was e66c9e44)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-058",
+        "sha":  "e8051effb608301b70345fdd037652f12880e57e",
+        "exit":  1,
+        "output":  "git : warning: not deleting branch \u0027feat/req-058\u0027 that is not yet merged to\r\nNo linha:2 caractere:774\r\n+ ... -parse $branch; $out = git -C $root branch -d -- $branch 2\u003e\u00261 | Out-S ...\r\n+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (warning: not de...t yet merged to:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n         \u0027refs/remotes/origin/feat/req-058\u0027, even though it is merged to HEAD\r\nerror: the branch \u0027feat/req-058\u0027 is not fully merged\r\nhint: If you are sure you want to delete it, run \u0027git branch -D feat/req-058\u0027\r\nhint: Disable this message with \"git config advice.forceDeleteBranch false\""
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-063",
+        "sha":  "c3e66ad873e13d7058538e21b18ac1f58cc281c9",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-063 (was c3e66ad8)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-065",
+        "sha":  "56bedc5ed24ff26823496699dc347efca0fc7d7a",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-065 (was 56bedc5e)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-068",
+        "sha":  "4006b14e32f83c278b250bfe1da3ebeedfd65c51",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-068 (was 4006b14e)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-069",
+        "sha":  "040f89538315c64775e3322aa3e24fd84cf07d44",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-069 (was 040f8953)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-070",
+        "sha":  "3570cf0df7470890f36b6f4f87a250b31d4bf77a",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-070 (was 3570cf0d)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-071",
+        "sha":  "f49e952d87ed88a6690998378b4d1317fd8a06f7",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-071 (was f49e952d)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-074",
+        "sha":  "a68c5dfaafaea995faaf03efa8ca36ce5b46e72c",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-074 (was a68c5dfa)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-075",
+        "sha":  "cf6170e719832945422278744681bace7a490661",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-075 (was cf6170e7)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-076",
+        "sha":  "72be78c6ecc6de171f2216b2b1936f3ef67729dd",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-076 (was 72be78c6)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-077",
+        "sha":  "3b481a41d1432d7c89c060c82df3664ac5b63bee",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-077 (was 3b481a41)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-078",
+        "sha":  "6a7d58204bbca3cc21ee90c0564e72ffbbf51e95",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-078 (was 6a7d5820)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-079",
+        "sha":  "304dfaa9bb33b650ec2ed0206d0a1845db798f52",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-079 (was 304dfaa9)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-080",
+        "sha":  "1a37b96bedd685655d8fe56b25668f8815852903",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-080 (was 1a37b96b)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-081",
+        "sha":  "09f34ee495d08c1c41df5994d14c7769b0a49bf8",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-081 (was 09f34ee4)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-085",
+        "sha":  "89ce319625bfafe0c9e618a908532f2fe09a1855",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-085 (was 89ce3196)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-086",
+        "sha":  "56684b36aa15713498523b7f76403f3e79e84683",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-086 (was 56684b36)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-105",
+        "sha":  "956831ca7cfd571af36c9d637462d1999e5e0e6a",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-105 (was 956831ca)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-106",
+        "sha":  "9023e9330ceb1777d9f92e4d709a74e4a061aee8",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-106 (was 9023e933)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-106-fase3",
+        "sha":  "5081d716ae5b7b60f0eab22aa56d15da8fe25eb2",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-106-fase3 (was 5081d716)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-108",
+        "sha":  "60835db69c23f5de0c8bf543a8a36264d4ce87e8",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-108 (was 60835db6)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-111",
+        "sha":  "7eec765f61d7806e8c32f18d7b2df95c3213547b",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-111 (was 7eec765f)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-112",
+        "sha":  "2a7f6e89778b1a81259d9a700e05e810f13f92fc",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-112 (was 2a7f6e89)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-121",
+        "sha":  "9a04d0039be075d397347abe756fe03cc4c8b92b",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-121 (was 9a04d003)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-122",
+        "sha":  "895470dfed5cecf2de8bbe172fc4f38edcb7a9ba",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-122 (was 895470df)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-124",
+        "sha":  "5a36dc1f1932ca45e658270204d2f170c128b98d",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-124 (was 5a36dc1f)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-129",
+        "sha":  "9f9419315c4dfc18f74e3025d9dcd816257d7649",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-129 (was 9f941931)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feat/req-238",
+        "sha":  "6fa8a6c46543c50907610d6a1d542c192a79ba8f",
+        "exit":  0,
+        "output":  "Deleted branch feat/req-238 (was 6fa8a6c4)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feature/3d-catalog-responsive-refinement",
+        "sha":  "ad72894bd667d796460e626633cd3c10a2937a6f",
+        "exit":  1,
+        "output":  "git : warning: not deleting branch \u0027feature/3d-catalog-responsive-refinement\u0027 that is not yet merged to\r\nNo linha:2 caractere:774\r\n+ ... -parse $branch; $out = git -C $root branch -d -- $branch 2\u003e\u00261 | Out-S ...\r\n+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (warning: not de...t yet merged to:String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n         \u0027refs/remotes/origin/feature/3d-catalog-responsive-refinement\u0027, even though it is merged to HEAD\r\nerror: the branch \u0027feature/3d-catalog-responsive-refinement\u0027 is not fully merged\r\nhint: If you are sure you want to delete it, run \u0027git branch -D feature/3d-catalog-responsive-refinement\u0027\r\nhint: Disable this message with \"git config advice.forceDeleteBranch false\""
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feature/3d-catalog-v1.6.4",
+        "sha":  "0fe59abb3b56401588f51edc9759a3e31aaf798b",
+        "exit":  0,
+        "output":  "Deleted branch feature/3d-catalog-v1.6.4 (was 0fe59abb)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "feature/3d-catalog-v1.6.7",
+        "sha":  "79f47fc1244b6488319bfedd0ecc6254e6eb6862",
+        "exit":  0,
+        "output":  "Deleted branch feature/3d-catalog-v1.6.7 (was 79f47fc1)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "fix/req-076-lab",
+        "sha":  "50637795d17792a2c53fbdc8d0762d52fe0a6721",
+        "exit":  0,
+        "output":  "Deleted branch fix/req-076-lab (was 50637795)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "fix/req-077-lab",
+        "sha":  "6aae144464d7a26c21ea01868e032c167bf75332",
+        "exit":  0,
+        "output":  "Deleted branch fix/req-077-lab (was 6aae1444)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "integ/req-106",
+        "sha":  "41996a5b6dbef0e6bae8616cffaf068b4fa7ef84",
+        "exit":  0,
+        "output":  "Deleted branch integ/req-106 (was 41996a5b)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "integ/widget-apresentacao",
+        "sha":  "f3792bc5e91f28b7065002609fae22c38a95ab69",
+        "exit":  0,
+        "output":  "Deleted branch integ/widget-apresentacao (was f3792bc5)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "social-networks-v2.1.0",
+        "sha":  "2c317c37b001df10444510d97c79ba08b3eaef2c",
+        "exit":  0,
+        "output":  "Deleted branch social-networks-v2.1.0 (was 2c317c37)."
+    },
+    {
+        "repo":  "conn2flow-site",
+        "branch":  "social-networks-v2.1_1.0",
+        "sha":  "eaa138e240e848ded0ddd723e0af850bfd8d7d3d",
+        "exit":  0,
+        "output":  "Deleted branch social-networks-v2.1_1.0 (was eaa138e2)."
+    }
+]

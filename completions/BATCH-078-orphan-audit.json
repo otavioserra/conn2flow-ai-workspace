@@ -1,0 +1,68 @@
+[
+  {
+    "path": "sdd\\ecommerce-operacao.md",
+    "blob": "bbd58abf8b764e3a7a7f8351ff7a5ffe47c8becd",
+    "normalized_blob": "18616110d11ad31fb894b93fb9f4e19092776c60",
+    "reachable_main": true
+  },
+  {
+    "path": "sdd\\ecommerce.specs.md",
+    "blob": "e2344bc85fa418d298ed7e78ccb65fd2f8e61b45",
+    "normalized_blob": "3483c423033225d7a239ef4e261ca02c0f6c5e45",
+    "reachable_main": true
+  },
+  {
+    "path": "sdd\\MEMORIA-ENGENHARIA-EXECUCAO.md",
+    "blob": "0d69d33d5645d5ddd82832b7a0d0b4783ae293bf",
+    "normalized_blob": "ef9a65392d7105d404388fa009f999610466005d",
+    "reachable_main": true
+  },
+  {
+    "path": "gestor\\bibliotecas\\affiliates.php",
+    "blob": "1157cdb3d786f15fa2391ed4a687a53503f9771b",
+    "normalized_blob": "d4d372976b5d4b068f4f482b200ae2ff161623d1",
+    "reachable_main": true
+  },
+  {
+    "path": "gestor\\modulos\\affiliate-area\\affiliate-area.php",
+    "blob": "389e72c3a047d8dd55773dcf772d583643e86701",
+    "normalized_blob": "7a6dadef49fcd9cd3b88ebd79f3e7aebf9ab708f",
+    "reachable_main": true
+  },
+  {
+    "path": "gestor\\modulos\\affiliates\\affiliates.json",
+    "blob": "c0b92e351b13b0771634a8d07381be55072a3198",
+    "normalized_blob": "a6e24e2fc413a71fbe09410fcdac70ed89974cec",
+    "reachable_main": true
+  },
+  {
+    "path": "gestor\\modulos\\affiliates\\affiliates.php",
+    "blob": "a2c5073dcb8bb28324fce021a43ca11d96a42bd7",
+    "normalized_blob": "e369866ff6908bc9122b8abb5bc1b8bc39fd2fc6",
+    "reachable_main": true
+  },
+  {
+    "path": "gestor\\modulos\\affiliates\\resources\\en\\pages\\affiliates-settings\\affiliates-settings.html",
+    "blob": "c7fce025edf865b5f9be3f59d9fa29a150f5f03f",
+    "normalized_blob": "2c998a1af2b0a11816002d8fe8cd47c45b73c537",
+    "reachable_main": false
+  },
+  {
+    "path": "gestor\\modulos\\affiliates\\resources\\pt-br\\pages\\affiliates-settings\\affiliates-settings.html",
+    "blob": "c7fce025edf865b5f9be3f59d9fa29a150f5f03f",
+    "normalized_blob": "2c998a1af2b0a11816002d8fe8cd47c45b73c537",
+    "reachable_main": false
+  },
+  {
+    "path": "sdd\\implementation\\BATCH-INDEX.md",
+    "blob": "f6e729de05335eb6bcfd207bc3c63279b3ccb42b",
+    "normalized_blob": "2e8432de159746cf9fd874b8e49deed4c7886baf",
+    "reachable_main": true
+  },
+  {
+    "path": "sdd\\validation\\VALIDATION-CHECKLIST.md",
+    "blob": "58d220d080e42a711917babc834651c7561de62d",
+    "normalized_blob": "483dc75e818290c7c7afd637cc437dc090e4508e",
+    "reachable_main": true
+  }
+]

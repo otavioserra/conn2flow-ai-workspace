@@ -1,0 +1,118 @@
+{
+  "conn2flow": {
+    "branch": "main",
+    "head": "53d3616671280871668ebe30f781d9ff1412e289",
+    "remotes": "origin",
+    "upstream_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "main_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow\nHEAD 53d3616671280871668ebe30f781d9ff1412e289\nbranch refs/heads/main\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267\nHEAD 05823079f3639262d5c76ab0a255f695f1a4738a\nbranch refs/heads/feat/req-267-covers\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267-v31\nHEAD 0def10fc505bdeefebc61d4fe071649b13aa0d29\nbranch refs/heads/feat/req-267-covers-v31\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-lab219\nHEAD 6449530163ac3f9304b6d28e8dcd6b4ebe02706c\ndetached\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req203\nHEAD d77dba43a526a7fff551c16807d202ba5161e282\nbranch refs/heads/feat/req-204\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req223\nHEAD 15c93b10c6061eba463fc766f9e6cbe7bbdcefce\nbranch refs/heads/feat/req-223\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req224\nHEAD e5dc99d39441a8fcef91783f69d9cf240a88438f\nbranch refs/heads/feat/req-224\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req225\nHEAD c6e5f7a914860f25ae288523b5b51bd8f4d0f93b\nbranch refs/heads/feat/req-225\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req232\nHEAD 6449530163ac3f9304b6d28e8dcd6b4ebe02706c\nbranch refs/heads/feat/req-232\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req243\nHEAD f8db1f501ee7d30e188c1da703230056ccc9a6f1\nbranch refs/heads/feat/req-262\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req256\nHEAD 0203d2666d8b2c8358f55ca3e5aaebe11381fff3\nbranch refs/heads/feat/req-256\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req277\nHEAD 53d3616671280871668ebe30f781d9ff1412e289\nbranch refs/heads/feat/req-277",
+    "dependencies": {
+      "vendor/autoload.php": {
+        "bytes": 771,
+        "sha256": "2183bb16a1fc87efd9076de5bec5828750f2ce5c690d9b4b1fbd9337b9c46509"
+      },
+      "node_modules/.package-lock.json": {
+        "bytes": 50674,
+        "sha256": "33427f8371a7035796f4e46f1e9aec5d6490b89b877597bcb2b3e1a06a2cc9f5"
+      }
+    }
+  },
+  "conn2flow-site": {
+    "branch": "feat/req-134",
+    "head": "22deea7b911c44f20ae2c73c35866e844b03f34e",
+    "remotes": "origin",
+    "upstream_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "main_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site\nHEAD 22deea7b911c44f20ae2c73c35866e844b03f34e\nbranch refs/heads/feat/req-134\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123\nHEAD 939ae49f55e7fd765e867c68c37373681fb1763d\nbranch refs/heads/feat/req-123-covers\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123-v31\nHEAD aee839541d2ad85dccba9bca8fa89e0d4a34fee8\nbranch refs/heads/feat/req-123-covers-v31\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req108\nHEAD aee839541d2ad85dccba9bca8fa89e0d4a34fee8\nbranch refs/heads/linha-3.1\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req221\nHEAD 8f533e8b5204b4ab98ca9da097e9dedd99cd59ab\nbranch refs/heads/feat/req-221\n\nworktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req225\nHEAD 6cabb928a864ce14eed8f736f99a1f4d3fa0ab40\nbranch refs/heads/feat/req-225",
+    "dependencies": {
+      "vendor/autoload.php": {
+        "bytes": 771,
+        "sha256": "caa20dad31ea5711aa1a3ab1daef7c0d0da888ef7b9384886d4bab44596354c4"
+      },
+      "node_modules/.package-lock.json": {
+        "bytes": 47509,
+        "sha256": "23c04656d9e91456beefbbf29a02764004d7a33cf4e8ffe638587c2c4478167a"
+      }
+    }
+  },
+  "conn2flow-ai-workspace": {
+    "branch": "main",
+    "head": "d41574d8eb9edd3fe6b80a6fbd0fc52087fdc0fe",
+    "remotes": "origin",
+    "upstream_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "main_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace\nHEAD d41574d8eb9edd3fe6b80a6fbd0fc52087fdc0fe\nbranch refs/heads/main"
+  },
+  "lumix": {
+    "branch": "novo-chat-intelligence",
+    "head": "c12688076fa6c47dcd4fcaa596099ef3987b70b4",
+    "remotes": "origin",
+    "upstream_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "main_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/lumix\nHEAD c12688076fa6c47dcd4fcaa596099ef3987b70b4\nbranch refs/heads/novo-chat-intelligence"
+  },
+  "transformamp": {
+    "branch": "main",
+    "head": "e751b02d5cfa8993ebaabc0f0c769b056ecbf416",
+    "remotes": "origin",
+    "upstream_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "main_parity": {
+      "exit": 0,
+      "out": "0\t0",
+      "err": ""
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/transformamp\nHEAD e751b02d5cfa8993ebaabc0f0c769b056ecbf416\nbranch refs/heads/main"
+  },
+  "conn2flow-home": {
+    "branch": "main",
+    "head": "168a69e198712d8852e1f0f1e482d6c070f4c3e2",
+    "remotes": "",
+    "upstream_parity": {
+      "exit": 128,
+      "out": "",
+      "err": "fatal: no upstream configured for branch 'main'"
+    },
+    "main_parity": {
+      "exit": 128,
+      "out": "",
+      "err": "fatal: ambiguous argument 'main...origin/main': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'"
+    },
+    "worktrees": "worktree C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-home\nHEAD 168a69e198712d8852e1f0f1e482d6c070f4c3e2\nbranch refs/heads/main"
+  }
+}
