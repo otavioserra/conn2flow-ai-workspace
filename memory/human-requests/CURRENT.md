@@ -1,6 +1,6 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-077.md](req-077.md) (Restrição Canônica de Worktrees, Instituição do Pipeline Padrão `project:deploy` e Banimento de `project:update-all` na Rotina de Projetos)
+* **Ponteiro Ativo**: [req-077.md](req-077.md) (Restrição Canônica de Worktrees, Pipeline Padrão `project:deploy`, Banimento de `project:update-all` na Rotina e Incorporação das Lições do Atualizador/Choques — DEC-136 / REP-002)
 * **Status**: `APPROVED` para execução
 * **Lote Relacionado**: `BATCH-079`
 * **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa e audita ➔ Humano homologa)
@@ -25,5 +25,6 @@
 
 1. **Substituição de `project:update-all` por `project:deploy <id>`**: Corrigir em `AGENTS.md`, `GEMINI.md`, prompts de agentes, hooks de guarda e skills (`c2f-project-pipeline-and-tasks`, `c2f-executor-agent`, `c2f-resources-system`) para consolidar `project:deploy` como pipeline padrão (95% dos casos) e banir `project:update-all` na rotina normal de projetos.
 2. **Nova Regra Canônica de Worktrees**: Proibir criação de worktrees por comodidade; permitir apenas sob comprovada concorrência de múltiplos agentes em paralelo, com consulta humana mandatória em caso de dúvida; e instituir expurgo obrigatório (`git worktree remove` + `prune`) ao término do lote.
-3. **Descarte Seguro de Pastas Residuais**: Auditar e desvincular as 17 pastas residuais listadas pelo Engenheiro Chefe no Core e no Site.
-4. **Propagação Canônica e Testes**: Propagar as 45 skills com `sync-skills.cjs`, regenerar índices e validar com 100% PASS em Python (131/131) e Extensão (133/133).
+3. **Incorporação das Lições do Atualizador/Choques (DEC-136 / REP-002)**: Cravar DEC-136 (nada é removido sem confirmação humana), diagnóstico de falhas HTTP de atualização, tabelas sem coluna `status` (DELETE físico) e armadilhas de shell em `c2f-shell-and-windows-traps`, `c2f-database-operations` e `c2f-executor-agent`.
+4. **Descarte Seguro de Pastas Residuais**: Auditar e desvincular as 17 pastas residuais listadas pelo Engenheiro Chefe no Core e no Site.
+5. **Propagação Canônica e Testes**: Propagar as 45 skills com `sync-skills.cjs`, regenerar índices e validar com 100% PASS em Python (131/131) e Extensão (133/133).
