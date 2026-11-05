@@ -29,7 +29,7 @@ def test_exact_customization_survives_sync_and_local_change_reopens(tmp_path):
     assert entry["local_sha256"] == hashlib.sha256(local.read_bytes()).hexdigest()
     audit = sync(tmp_path, MATRIX, True)
     assert audit["status"] == "PASS" and audit["customizadas"][0]["path"] == target
-    assert len(audit["sha256"]) == 45
+    assert len(audit["sha256"]) == 46
     assert sync(tmp_path, MATRIX)["status"] == "PASS"
     assert local.read_bytes() == b"intentional local behavior"
     customize(tmp_path, MATRIX, target)  # Existing manifest, atomic update.

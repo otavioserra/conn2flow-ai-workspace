@@ -3,6 +3,7 @@
 import asyncio
 import json
 import os
+import sqlite3
 import subprocess
 from functools import wraps
 from pathlib import Path
@@ -30,7 +31,7 @@ def guarded(function):
     def run(*args, **kwargs):
         try:
             return function(*args, **kwargs)
-        except (ValueError, OSError, subprocess.SubprocessError, httpx.HTTPError) as exc:
+        except (ValueError, OSError, sqlite3.Error, subprocess.SubprocessError, httpx.HTTPError) as exc:
             console.print(f"[red]{type(exc).__name__}: {exc}[/red]", markup=False)
             raise typer.Exit(1) from exc
         except KeyboardInterrupt:
@@ -64,8 +65,10 @@ def sync(matrix: Path | None = typer.Option(None), path: Path = typer.Option(Pat
     """Synchronize canonical skills through the official pipeline."""
     data = ({"status": "PASS", "customization": customize(path, find_matrix(matrix), customization, local_sha256, seed_sha256)}
             if customization else synchronize(path, find_matrix(matrix), audit))
+    for item in data.get("translation_drift", []):
+        typer.echo(f"[DRIFT-WARNING] Skill '{item['skill']}' em '{item['language']}' diverge da matriz PT-BR ({item['reason']}).", err=True)
     typer.echo(json.dumps(data, ensure_ascii=False))
-    if data["status"] != "PASS":
+    if data["status"] not in {"PASS", "DRIFT_WARNING"}:
         raise typer.Exit(1)
 
 
@@ -161,6 +164,70 @@ def meta_get(
 def meta_set(target: str, field: str, value: str, path: Path = typer.Option(Path("."), "--path")):
     """Atomically update a field and rebuild its directory index."""
     typer.echo(str(indexer.set_metadata(path, target, {field: value})))
+
+
+db_app = typer.Typer(no_args_is_help=True, help="SQLite/FTS5 memory storage.")
+app.add_typer(db_app, name="db")
+
+
+def _db(workspace: Path):
+    from .db import SQLiteMDDDriver
+    return SQLiteMDDDriver(workspace.resolve() / "memory" / ".mdd.sqlite")
+
+
+@db_app.command("sync")
+@guarded
+def db_sync(workspace: Path = Path("."), include_skills: bool = False):
+    from .db import sync
+    with _db(workspace) as driver:
+        typer.echo(json.dumps(sync(workspace, driver, include_skills=include_skills)))
+
+
+@db_app.command("query")
+@guarded
+def db_query(query: str, workspace: Path = Path("."), layer: str | None = None,
+             target: str | None = None, limit: int = 10, as_json: bool = typer.Option(False, "--json")):
+    with _db(workspace) as driver:
+        rows = driver.query(query, layer=layer, target=target, limit=limit)
+    typer.echo(json.dumps(rows, ensure_ascii=False) if as_json else "\n".join(f"{r['doc_id']}: {r['title']}\n{r['summary'] or ''}" for r in rows))
+
+
+@db_app.command("graph")
+@guarded
+def db_graph(doc_id: str, workspace: Path = Path("."), as_json: bool = typer.Option(False, "--json")):
+    with _db(workspace) as driver:
+        rows = driver.graph(doc_id)
+    typer.echo(json.dumps(rows) if as_json else "\n".join(f"{r['source_doc_id']} --{r['relation_type']}--> {r['target_doc_id']}" for r in rows))
+
+
+@db_app.command("learn")
+@guarded
+def db_learn(layer: str = typer.Option(...), target: str = typer.Option("global"),
+             doc_id: str = typer.Option(...), title: str = typer.Option(...),
+             summary: str = "", content: str = typer.Option(...),
+             workspace: Path = Path("."), write_md: bool = False):
+    from .db import learn
+    with _db(workspace) as driver:
+        typer.echo(learn(driver, workspace.resolve(), dict(layer=layer, target=target, doc_id=doc_id,
+                                                          title=title, summary=summary, content=content), write_md=write_md))
+
+
+@db_app.command("export")
+@guarded
+def db_export(workspace: Path = Path("."), output: Path | None = None, target: str | None = None):
+    with _db(workspace) as driver:
+        data = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in driver.export_records(target=target))
+    if output:
+        output.write_text(data, encoding="utf-8")
+    else:
+        typer.echo(data, nl=False)
+
+
+@db_app.command("import")
+@guarded
+def db_import(source: Path, workspace: Path = Path(".")):
+    with _db(workspace) as driver:
+        typer.echo(driver.import_jsonl(source.read_text(encoding="utf-8")))
 
 
 def main():

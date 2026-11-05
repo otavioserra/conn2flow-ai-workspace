@@ -41,7 +41,7 @@ def create_server(root: Path, port: int = 8765) -> FastMCP:
 
     @server.tool()
     def mdd_sync(path: str = ".", matrix: str | None = None, audit: bool = True) -> dict[str, Any]:
-        """Audit or propagate 45 skills through the canonical SHA-256 pipeline."""
+        """Audit or propagate 46 skills through the canonical SHA-256 pipeline."""
         return sync(project(path), find_matrix(Path(matrix) if matrix else None), audit)
 
     @server.tool()

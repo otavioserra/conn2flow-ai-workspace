@@ -48,8 +48,8 @@ def sync(root: Path, matrix: Path, audit: bool = False) -> dict:
     script = matrix / "scripts/skills/sync-skills.cjs"
     source = matrix / ".gemini/skills"
     skills = sorted(p for p in source.glob("*/SKILL.md") if p.is_file())
-    if len(skills) != 45 or not script.is_file():
-        raise ValueError("Matrix must contain the canonical synchronizer and exactly 45 skills")
+    if len(skills) != 46 or not script.is_file():
+        raise ValueError("Matrix must contain the canonical synchronizer and exactly 46 skills")
     for kit in KITS:
         contained(root, root / kit / "skills")
         if (root / kit / "skills").exists():
