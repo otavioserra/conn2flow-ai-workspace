@@ -1,21 +1,21 @@
 ---
 name: c2f-database-testing
-description: "LEIA ANTES de rodar ou criar testes automatizados de banco de dados (PHPUnit / SQLite / MySQL). Se não ler: testes poluem o banco principal, falham por funções MySQL não suportadas em SQLite ou mascaram regressões."
+description: "READ BEFORE writing or running automated database tests with PHPUnit, SQLite or MySQL. Prevents main-database pollution, SQLite/MySQL incompatibilities and hidden regressions."
 user-invocable: false
 ---
 
-# Testes isolados de banco Conn2Flow
+# Isolated tests of database Conn2Flow
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Escrever, executar ou debugar testes automatizados unitários ou de integração que acessam tabelas de banco de dados.
-- **SKIP APENAS SE**: Testes de unidade puros (com mocking completo) ou testes exclusivos de JavaScript (Vitest/happy-dom).
-- **CONSEQUÊNCIA DE IGNORAR**: Testes falham no CI/CD por incompatibilidade SQLite/MySQL ou poluem indevidamente a base de desenvolvimento local `conn2flow_test`.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Write, run or debugging unit or integration automated tests that access database tables.
+- **SKIP ONLY IF**: Pure unit testing (with complete mocking) or unique JavaScript (Vitest/happy-dom) tests.
+- **CONSEQUENCE OF IGNORING**: Tests fail CI/CD due to SQLite/MySQL incompatibility or unduly pollute the local development base `conn2flow_test`.
 
 ---
 
-1. Prefira SQLite em memória para funções puras, CRUD isolado e fluxos com transporte/resolvers injetáveis.
-2. Quando a semântica MySQL for indispensável, use somente o banco dedicado `conn2flow_test` no container local.
-3. Nunca rode testes destrutivos contra o banco de desenvolvimento `conn2flow`.
-4. Crie o schema mínimo necessário, isole fixtures e remova o banco/tabelas de teste ao final.
-5. Use guards de autorun para incluir controladores diretamente e injete PDO/configuração em vez de depender do bootstrap completo.
-6. Se um teste modificar manifestos ou data files versionados, restaure apenas esses efeitos colaterais fora do escopo e confirme o diff.
+1. Prefer SQLite in memory for pure functions, isolated CRUD and flow with transport/resolvers injection.
+2. When MySQL semantics are indispensable, use only the dedicated database `conn2flow_test` in the local container.
+3. Never run destructive tests against database development `conn2flow`.
+4. Create the required minimum schema, isolate fixtures and remove the database/test tables at the end.
+5. Use autorun guards to include controllers directly and inject PDO/configuration instead of relying on full bootstrap.
+6. If a test changes manifests or versioned data files, restore only these side effects out of scope and confirm diff.

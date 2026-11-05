@@ -9,23 +9,27 @@
 //   ... --target PATH                                       só os cinco kits de um cliente
 //
 // Nunca apaga nada e nunca toca em skill que não existe na matriz (skill local de um satélite).
-// Skill traduzida num template (lista em translated.json) não é sobrescrita nem comparada: a tradução é
-// mantida à mão, e o relatório a lista em `traduzidas`.
+// Traduções registradas por idioma/skill em translated.json nunca são sobrescritas.
+// A auditoria compara source_sha256 com a matriz e emite warnings não bloqueantes.
+// Após revisão: --update-translation-hash <skill> <idioma> [--translator nome].
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const acknowledgements = require('./skill-customizations.cjs');
+const translations = require('./translations.cjs');
 
 const root = path.resolve(__dirname, '../..');
 const args = process.argv.slice(2);
 const valor = (nome) => { const i = args.indexOf(nome); return i === -1 ? null : args[i + 1]; };
 const apply = args.includes('--apply');
 const todas = args.includes('--all');
-const comValor = new Set(['--report', '--repos', '--target']);
+const hashUpdate = args.indexOf('--update-translation-hash');
+const comValor = new Set(['--report', '--repos', '--target', '--translator']);
 const nomes = args.filter((a, i) => !a.startsWith('--') && !comValor.has(args[i - 1]));
 const repos = (valor('--repos') || 'conn2flow-ai-workspace,conn2flow,conn2flow-site,lumix,transformamp,conn2flow-home').split(',').filter(Boolean);
 const kits = ['.gemini', '.claude', '.cursor', '.codex', '.github'];
-const traduzidas = JSON.parse(fs.readFileSync(path.join(__dirname, 'translated.json'), 'utf8'));
+const translationFile = path.join(__dirname, 'translated.json');
+const traduzidas = translations.load(translationFile);
 const renamedSkills = {
   'start-sdd-slice': 'start-mdd-slice', 'continue-sdd-batch': 'continue-mdd-batch',
   'sdd-workflow': 'mdd-workflow', 'sdd-memory-gardening': 'mdd-memory-gardening',
@@ -39,7 +43,19 @@ const canonDir = path.join(root, '.gemini/skills');
 const canonical = new Map(fs.readdirSync(canonDir, { withFileTypes: true })
   .filter((e) => e.isDirectory() && fs.existsSync(path.join(canonDir, e.name, 'SKILL.md')))
   .map((e) => [e.name, fs.readFileSync(path.join(canonDir, e.name, 'SKILL.md'))]));
-if (canonical.size !== 45) throw new Error('O catálogo canônico deve conter exatamente 45 skills');
+if (canonical.size !== 46) throw new Error('O catálogo canônico deve conter exatamente 46 skills');
+
+// Explicit acknowledgement after content review. Never update hashes during normal sync.
+if (hashUpdate >= 0) {
+  if (apply || args.includes('--target')) throw new Error('Hash update cannot be combined with sync/apply');
+  const skill = args[hashUpdate + 1];
+  const language = args[hashUpdate + 2];
+  const entry = translations.update(translationFile, traduzidas, canonical, skill, language, valor('--translator') || 'mdd-agent');
+  console.log(JSON.stringify({ status: 'PASS', skill, language, ...entry }));
+  process.exit(0);
+}
+const translationDrift = translations.audit(traduzidas, canonical);
+for (const item of translationDrift) console.error(translations.message(item));
 
 const selecionadas = todas ? [...canonical.keys()] : nomes;
 for (const nome of selecionadas) if (!canonical.has(nome)) throw new Error(`Skill inexistente na matriz: ${nome}`);
@@ -90,13 +106,14 @@ for (const repo of target ? [] : repos) {
     if (fs.existsSync(skills) || (apply && todas)) alvos.push({ onde: `${repo}/${kit}`, skills });
   }
 }
-for (const idioma of target ? [] : ['pt-br', 'en']) {
+for (const idioma of target ? [] : fs.readdirSync(path.join(root, 'templates'), { withFileTypes: true }).filter(e => e.isDirectory()).map(e => e.name)) {
   const dir = path.join(root, 'templates', idioma, 'templates');
   if (!fs.existsSync(dir)) continue;
   for (const e of fs.readdirSync(dir, { withFileTypes: true }).filter((x) => x.isDirectory())) {
     for (const kit of kits) {
       const skills = path.join(dir, e.name, kit, 'skills');
-      if (fs.existsSync(skills)) alvos.push({ onde: `templates/${idioma}/${e.name}/${kit}`, skills, template: true, idioma });
+      if (fs.existsSync(skills)) alvos.push({ onde: `templates/${idioma}/${e.name}/${kit}`, skills, template: true, idioma,
+        fullCatalog: e.name.startsWith('spec-driven-project-') });
     }
   }
 }
@@ -163,8 +180,8 @@ if (apply) {
     for (const nome of selecionadas) {
       const destino = path.join(alvo.skills, nome, 'SKILL.md');
       // Template só recebe skill que ele já traz: um kit privado não ganha o catálogo inteiro.
-      if (alvo.template && !fs.existsSync(destino)) continue;
-      if (alvo.template && (traduzidas[alvo.idioma] || []).includes(nome)) continue;
+      if (alvo.template && !alvo.fullCatalog && !fs.existsSync(destino)) continue;
+      if (alvo.template && translations.registered(traduzidas, alvo.idioma, nome)) continue;
       const atual = ler(destino);
       if (intentional(destino, atual, canonical.get(nome))) continue;
       if (atual && atual.equals(canonical.get(nome))) continue;
@@ -193,11 +210,11 @@ for (const alvo of alvos) {
     const destination = path.join(alvo.skills, nome, 'SKILL.md');
     const atual = ler(destination);
     if (!atual) {
-      if (!alvo.template) divergentes.push({ onde: alvo.onde, skill: nome, motivo: 'ausente',
+      if (!alvo.template || alvo.fullCatalog) divergentes.push({ onde: alvo.onde, skill: nome, motivo: 'ausente',
         path: target ? path.relative(target, destination).replace(/\\/g, '/') : destination });
       continue;
     }
-    if (alvo.template && (traduzidas[alvo.idioma] || []).includes(nome)) { traducoes++; continue; }
+    if (alvo.template && translations.registered(traduzidas, alvo.idioma, nome)) { traducoes++; continue; }
     if (sha256(atual) === sha256(bytes)) iguais++;
     else if (intentional(destination, atual, bytes)) customizadas.push({ onde: alvo.onde,
       path: path.relative(path.dirname(path.dirname(alvo.skills)), destination).replace(/\\/g, '/'), skill: nome });
@@ -222,10 +239,11 @@ const relatorio = {
   renamed_skills: migrations, legacy_skills: remainingLegacySkills,
   customizations_migrated: [...customizationStates.values()].flatMap(state => state.migrations),
   rules_written: rulesWritten, rules_divergent: rulesDivergent,
-  status: divergentes.length || locaisAlteradas.length || rulesDivergent.length || remainingLegacySkills.length ? 'FAIL' : 'PASS',
+  translation_drift: translationDrift,
+  status: divergentes.length || locaisAlteradas.length || rulesDivergent.length || remainingLegacySkills.length ? 'FAIL' : translationDrift.length ? 'DRIFT_WARNING' : 'PASS',
 };
 if (valor('--report')) fs.writeFileSync(path.resolve(valor('--report')), `${JSON.stringify(relatorio, null, 2)}\n`);
 console.log(JSON.stringify({ status: relatorio.status, alvos: alvos.length, iguais, traduzidas: traducoes, divergentes: divergentes.length,
   escritos: escritos.length, locais: locais.size, locaisAlteradas: locaisAlteradas.length }));
 if (divergentes.length) console.log(JSON.stringify(divergentes.slice(0, 12)));
-if (relatorio.status !== 'PASS') process.exitCode = 1;
+if (relatorio.status === 'FAIL') process.exitCode = 1;

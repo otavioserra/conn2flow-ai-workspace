@@ -1,45 +1,45 @@
 ---
 name: c2f-system-tasks
-description: "LEIA ANTES de configurar rotinas em background, tarefas agendadas (Cron) ou workers assíncronos. Se não ler: tarefas entram em loop infinito, bloqueiam a fila do sistema ou esgotam os recursos do servidor."
+description: "READ BEFORE configuring background routines, scheduled Cron tasks or asynchronous workers. Prevents infinite loops, blocked system queues and exhausted server resources."
 user-invocable: false
 ---
 
-# Tarefas de Automação do Sistema (`c2f-system-tasks`)
+# System Automation Tasks (`c2f-system-tasks`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar ou editar scripts de tarefas agendadas, rotinas de expurgo/limpeza em background ou workers assíncronos do Gestor.
-- **SKIP APENAS SE**: Requisições HTTP síncronas convencionais controladas pelo usuário.
-- **CONSEQUÊNCIA DE IGNORAR**: Falta de trava de idempotência em execuções concorrentes de Cron, loops infinitos, estouro de timeout do PHP e degradação do servidor.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create or edit scheduled task scripts, cleanup routines/background cleaning or asynchronous Gestor workers.
+- **SKIP ONLY IF**: Requests HTTP conventional user-controlled synchronies.
+- **CONSEQUENCE OF IGNORING**: Lack of idempotence lock on competing Cron executions, infinite loops, PHP timeout burst and server degradation.
 
 ---
 
-Consulte e utilize as **Tarefas de Automação do Sistema** definidas em `.vscode/tasks.json`. Elas encapsulam scripts Bash e PHP centrais do Conn2Flow para acelerar testes, compilação, sincronizações e deploys:
+See and use **System Automation Tasks** defined in `.vscode/tasks.json`. They encapsulate central Conn2Flow Bash and PHP scripts to accelerate testing, compilation, syncing and deploys:
 
-## 1. Grupos Principais de Tarefas do Sistema
+## 1. Main System Task Groups
 
-* **📦 Docker (Gestão de Container)**:
+* **📦 Docker (Container Management)**:
   - `📦 Docker - Container Status`: `docker ps`
   - `📦 Docker - Apache Logs > Real Time`: `docker logs conn2flow-app --tail 50 --follow`
   - `📦 Docker - PHP Logs > Real Time`: `docker exec conn2flow-app bash -c "tail -f /var/log/php_errors.log"`
   - `📦 Docker - PHP Logs Truncate`: `docker exec conn2flow-app bash -c "truncate -s 0 /var/log/php_errors.log"`
 
-* **🛠️ Manager (Automação do Núcleo)**:
-  - `🛠️ Manager - Update => All - Test Environment`: Executa a sequência completa (recursos ➔ arquivos ➔ banco) no ambiente de testes.
-  - `🛠️ Manager - Synchronize => Resources - Local`: Roda a compilação de recursos (`atualizacao-dados-recursos.php`).
-  - `🛠️ Manager - Create Module`: Roda o scaffold de novo módulo (`create-new-module.sh`).
-  - `🛠️ Manager - GIT Release` / `GIT Commit`: Executa os pipelines normativos de release e commit.
+* **🛠️ Manager (Nucle Automation)**:
+  - `🛠️ Manager - Update => All - Test Environment`: Runs full sequence (resources database) in the testing environment.
+  - `🛠️ Manager - Synchronize => Resources - Local`: Build resources (`atualizacao-dados-recursos.php`).
+  - `🛠️ Manager - Create Module`: Run the scaffold new module (`create-new-module.sh`).
+  - `🛠️ Manager - GIT Release` / `GIT Commit`: Run the normative release and commit pipelines.
 
-* **🗃️ Projects (Gestão e Deploy de Projetos)**:
-  - `🗃️ Projects - Deploy Current Project`: Compacta e envia deploy via API (`deploy-project-v2.sh --contents`).
-  - `🗃️ Projects - Deploy Project -> ID`: Deploy direcionado por ID de projeto.
-  - `🗃️ Projects - Recover Current Project`: Recuperação/pull de dados do servidor (`recover-project.sh`).
-  - `🗃️ Projects - Sync Core -> ID`: Sincroniza atualizações do núcleo para o repositório do projeto.
-  - `🗃️ Projects - Update => All - Core & Project`: Pipeline completo de atualização do core e do projeto.
+* **🗃️ Projects (Management and Deploy of Projects)**:
+  - `🗃️ Projects - Deploy Current Project`: Compact and deploy via API (`deploy-project-v2.sh --contents`).
+  - `🗃️ Projects - Deploy Project -> ID`: Deploy directed by project ID.
+  - `🗃️ Projects - Recover Current Project`: Server data recovery/pull (`recover-project.sh`).
+  - `🗃️ Projects - Sync Core -> ID`: Sync core updates to the project repository.
+  - `🗃️ Projects - Update => All - Core & Project`: Full core and project update pipeline.
 
-* **🧩 Plugins (Automação de Plugins Públicos/Privados)**:
-  - Sincronização, build local, recursos e releases para plugins sob `dev-plugins/plugins/`.
+* **🧩 Plugins (Public/Private Plugin Automation)**:
+  - Synchronization, local build, features and releases for plugins under `dev-plugins/plugins/`.
 
 ---
 
-## 2. Parâmetros de Entrada (`inputs`)
-- `moduloID`, `projectID`, `contentsChoice` (Sim / Não), `commitMsg`, `tagMsg`, `releaseMode` (automatic / manual).
+## 2. Input Parameters (`inputs`)
+- `moduloID`, `projectID`, `contentsChoice` (Yes / No), `commitMsg`, `tagMsg`, `releaseMode` (automatic / manual).

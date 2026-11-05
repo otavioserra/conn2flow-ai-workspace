@@ -12,6 +12,9 @@
 | BATCH-076 | Servidor MCP, interface MDD e migração do conn2flow-home | Execução da REQ-074: MCP nativo, extensão MDD e migração da governança local. | [source](<batch-076.md>) | ready-for-human-review |
 | BATCH-077 | Skills MDD e proporcionalidade de build | Canonização de quatro skills MDD, seleção proporcional de build e propagação segura dos kits. | [source](<batch-077.md>) | ready-for-human-review |
 | BATCH-078 | Limpeza segura do ecossistema | Inventário Git, arquivamento dual das memórias e auditoria do ecossistema para a REQ-076. | [source](<batch-078.md>) | ready-for-human-review |
+| BATCH-079 | Pipeline project:deploy, restrição de worktrees e lições REP-002 | Governança validada, duas worktrees integradas removidas e quinze preservadas por decisão humana. | [source](<batch-079.md>) | ready-for-review-with-preservation |
+| BATCH-080 | Traduções EN das skills e detecção de drift por SHA-256 | 46 skills com versões EN, registro SHA-256 e avisos não bloqueantes; Python 138 e extensão 133 PASS. | [source](<batch-080.md>) | ready-for-review |
+| BATCH-081 | Implementação do Motor de Banco de Dados MDD (SQLite3 + FTS5 Local e Multi-Driver SQL) no mdd-client | Projeto: `conn2flow-ai-workspace`; raiz: `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`; requisição:... | [source](<batch-081.md>) | ready-for-review |
 
 ## Directories
 

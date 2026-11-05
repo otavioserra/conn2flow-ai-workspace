@@ -83,3 +83,10 @@ A memória de execução tem teto preventivo de 50 KiB e alerta crítico em 75 K
 | autonomo_headless | Despacha pelo mecanismo disponível e persiste recibos; para diante de contrato ou autorização ausente |
 
 Se o MCP Hub estiver indisponível, registre a limitação e use recibo persistente local, sem alegar despacho remoto. Os CLIs cooperam pelo lock memory/.mdd.lock e recusam caminhos externos ou links. Cada arquivo é substituído atomicamente; falha de índice restaura o documento. Crash entre substituições requer reconstrução do índice. Não remova lock de outro processo. Nenhuma combinação da matriz autoriza produção ou homologação fictícia.
+
+## REQ-077 — Pipeline, worktrees e preservação (DEC-136)
+
+- Projeto: `./c2f project:deploy <id>` é o padrão (95% dos casos). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` é proibido na rotina de projeto; permitido exclusivamente em lote que altera Core e projeto simultaneamente.
+- Antes de deploy, confira `git branch --show-current` e `git status --short` na origem; não publique trabalho alheio/inacabado. Confira o destino e sua autorização. Categoria B (skills/documentação/testes/memória): somente checks locais, sem deploy. Execução sequencial, foreground, logs e locks continuam obrigatórios.
+- Worktrees por conveniência são proibidas. Só criar com concorrência multi-agente comprovada no mesmo repositório; em dúvida, consultar o humano antes. Registre raiz original, caminho temporário e concorrência na requisição e lote. Ao concluir/homologar, audite trabalho único, integração na main e junctions, então `git worktree remove <caminho>` e `git worktree prune`. Nunca use força para destruir trabalho não integrado; preserve e reporte impedimentos.
+- DEC-136: manter por padrão; nada é removido (arquivo, `status='D'`, `DELETE`) sem confirmação explícita do operador humano. Retirada vira choque pendente; `--confirmar-retirada` só quando pedido pelo operador. Fonte incompleta não autoriza retirada.

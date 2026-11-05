@@ -1,38 +1,38 @@
 ---
 name: c2f-interface-v2-architecture
-description: "LEIA ANTES de renderizar modais, listas de cards, breadcrumbs ou componentes visuais do painel administrativo. Se não ler: o layout quebra no mobile, perde reatividade e conflita com a esteira de estilos v2."
+description: "READ BEFORE rendering administrative modals, card lists, breadcrumbs or visual components. Preserves mobile layout, reactivity and compatibility with the v2 styling pipeline."
 user-invocable: false
 ---
 
-# Arquitetura de Interface V2 (`gestor/bibliotecas/interface.php`)
+# V2 Interface Architecture (`gestor/bibliotecas/interface.php`)
 
-## Validação de componentes vivos com Chrome DevTools MCP
+## Validation of live components with Chrome DevTools MCP
 
-Prepare o sandbox local conforme `c2f-agent-visual-inspection`. Use `take_snapshot` para localizar controles e UIDs atualizados, abra dropdowns/abas/modais com `click` ou teclado e aguarde o estado dinâmico esperado. Valide seleção, foco, fechamento por Escape, loading e reabertura sem handlers ou nós duplicados.
+Prepare the local sandbox as per `c2f-agent-visual-inspection`. Use `take_snapshot` to locate updated controls and UIDs, open dropdowns/abas/modals with `click` or keyboard and wait for the expected dynamic state. Validate selection, focus, Escape closure, loading and reopening without handles or duplicate nodes.
 
-Com `resize_page` e `take_screenshot`, confira desktop/mobile, overlay, scroll, dimensões e ordem dos controles. Use medições de DOM somente de leitura para detectar conteúdo cortado ou invisível. Teste Fomantic/Semantic e variantes Tailwind conforme o framework real da tela, incluindo ícones Lucide. Colete console/rede pelo roteiro de `c2f-javascript-ajax` quando a interação carrega dados; não dispare exclusões reais apenas para validar um modal.
+With `resize_page` and `take_screenshot`, check desktop/mobile, overlay, scroll, dimensions and order of controls. Use read-only DOM measurements to detect cut or invisible content. Test Fomantic/Semantic and Tailwind variants according to the actual screen framework, including Lucide icons. Collect console/network by `c2f-javascript-ajax` script when the interaction loads data; do not fire actual deletions only to validate a modal.
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Desenvolver ou refatorar interfaces administrativas, formulários complexos, modais de confirmação ou listas dinâmicas do Gestor.
-- **SKIP APENAS SE**: Endpoints de API headless (JSON puro) sem renderização de interface visual.
-- **CONSEQUÊNCIA DE IGNORAR**: Inconsistência na experiência do usuário, falhas de acessibilidade/responsividade e conflitos entre frameworks CSS na administração.
-
----
-
-Consulte e aplique as seguintes convenções ao utilizar o construtor de interfaces administrativas no Conn2Flow:
-
-## 1. Padrões de Rotas CRUD V2
-
-Telas gerenciadas por `interface.php` seguem os eventos padronizados:
-* `adicionar`: Renderiza formulário de inclusão (GET) / Valida e executa INSERT no banco (POST).
-* `editar`: Renderiza formulário de edição pré-preenchido com `banco_select_campos_antes_iniciar` (GET) / Valida e executa UPDATE no banco (POST).
-* `listar`: Exibe tabela de registros com paginação e busca Semantic UI.
-* `clonar`: Duplica um registro existente (GET/POST).
-* `status`: Alterna estado do registro (`A`=Ativo, `I`=Inativo, `E`=Excluído).
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Develop or refactor administrative interfaces, complex forms, confirmation modals or dynamic Gestor lists.
+- **SKIP ONLY IF**: Headless API endpoints (pure JSON) without visual interface rendering.
+- **CONSEQUENCE OF IGNORING**: Inconsistency in user experience, accessibility/responsiveness failures and conflicts between CSS frameworks in administration.
 
 ---
 
-## 2. Emissão de Alertas e Notificações (`interface_alerta`)
+See and apply the following conventions when using the admin interface builder in Conn2Flow:
+
+## 1. Route Patterns CRUD V2
+
+Screens managed by `interface.php` follow standardized events:
+* `adicionar`: Renders inclusion form (GET) / Validate and executes INSERT on database (POST).
+* `editar`: Render pre-filled edition form with `banco_select_campos_antes_iniciar` (GET) / Validate and run UPDATE on database (POST).
+* `listar`: Displays record table with pagination and search Semantic UI.
+* `clonar`: Duplicate an existing record (GET/POST).
+* `status`: Toggle registration status (`A`=Active, `I`=Inactive, `E`=Deleted).
+
+---
+
+## 2. Alerts and Notifications (`interface_alerta`)
 
 ```php
 interface_alerta([
@@ -43,9 +43,9 @@ interface_alerta([
 
 ---
 
-## 3. Disparo Automático de Hooks Nativos
+## 3. Automatic Shooting of Native Hooks
 
-A biblioteca de interface dispara automaticamente os seguintes hooks por módulo:
+The interface library automatically triggers the following hooks per module:
 - `{modulo-id}.adicionar.pre-banco` / `{modulo-id}.adicionar.banco`
 - `{modulo-id}.editar.pre-banco` / `{modulo-id}.editar.banco`
 - `{modulo-id}.excluir.banco`
@@ -53,27 +53,27 @@ A biblioteca de interface dispara automaticamente os seguintes hooks por módulo
 
 ---
 
-## 4. Variantes Tailwind no Painel Administrativo
+## 4. Tailwind Variants in the Administrative Panel
 
-Com a ativação de `layout-administrativo-tailwind` e `framework_css: tailwindcss`, o mecanismo `interface_componente_variante()` fornece variantes `-tailwind` para:
+With the activation of `layout-administrativo-tailwind` and `framework_css: tailwindcss`, the `interface_componente_variante()` engine provides `-tailwind` variants for:
 
-| Componente | Variante Tailwind | Status |
+|Component|Tailwind Variant|Status|
 |---|---|---|
-| Formulários de **edição** | ✅ Disponível | Produção |
-| Formulários de **inclusão** (novo) | ✅ Disponível | Produção |
-| Modais (carregando, confirmação, alertas) | ✅ Disponível | Produção |
-| Botões de cabeçalho/rodapé (`interface_botoes_html`) | ✅ Disponível (ícones Lucide) | Produção |
-| **Listagem de registros** | ❌ Fomantic (`layout-administrativo-do-gestor`) | Backlog BL-026 |
+|**edition** Forms| ✅ Available|Production|
+|**inclusion** forms (new)| ✅ Available|Production|
+|Modals (loading, confirmation, alerts)| ✅ Available|Production|
+|Header/wheel buttons (`interface_botoes_html`)| ✅ Available (Lucide icons)|Production|
+|**List of records**| ❌ Fomantic (`layout-administrativo-do-gestor`)|Backlog BL-026|
 
-### 4.1 Armadilhas de Componente Tailwind
+### 4.1 Tailwind Component Traps
 
-1. **Botão de Exclusão**: O botão de exclusão em Tailwind exige a inclusão do script `gestor/assets/interface/interface-tailwind.js`, que escuta `.excluir[data-href]` e injeta o token CSRF na confirmação do modal.
-2. **Chave `tooltip`**: A chave `tooltip` ausente no array `$botoes` **deve ser inicializada** para evitar warnings de PHP (`Undefined index: tooltip`):
+1. **Delete Button**: The deletion button in Tailwind requires the inclusion of the `gestor/assets/interface/interface-tailwind.js` script, which listens to `.excluir[data-href]` and injects token CSRF in modal confirmation.
+2. **`tooltip` Key**: The missing `tooltip` key in the `$botoes` **must be initialised** array to prevent PHP warns (`Undefined index: tooltip`):
 ```php
 // ✅ Inicialização defensiva de tooltip
 $botao['tooltip'] = $botao['tooltip'] ?? '';
 ```
-3. **Ícones Lucide**: Os botões Tailwind usam ícones Lucide em vez de Fomantic/Semantic icons. Ao adicionar botões customizados, use o formato SVG inline do Lucide.
+3. **Lucide Icons**: Tailwind buttons use icons Lucide instead of Fomantic/Semantic icons. When adding custom buttons, use Lucide's SVG inline format.
 
 > [!IMPORTANT]
-> A página de **listagem de registros permanece no layout Fomantic** (`layout-administrativo-do-gestor`) até a implementação do item de backlog BL-026. Não tente forçar classes Tailwind na listagem.
+> The **list of records remains in the Fomantic layout** (`layout-administrativo-do-gestor`) page until the implementation of the BL-026 backlog item. Don't try to force Tailwind classes into the listing.

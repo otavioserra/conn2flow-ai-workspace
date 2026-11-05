@@ -1,65 +1,65 @@
 ---
 name: c2f-shell-and-windows-traps
-description: "LEIA ANTES de executar comandos Docker, cURL, scripts Python/Node de edição ou chamadas POST no ambiente Windows/Git Bash. Se não ler: caminhos corrompidos por path conversion do MSYS, uploads falhando silenciosamente, heredocs com bytes de controle, concorrência travando processos PHP e mascarando warnings e formulários rejeitados pelo Gestor."
+description: "READ BEFORE Docker, cURL, Python/Node editing scripts or POST requests in Windows/Git Bash. Prevents MSYS path conversion, silent upload failures, quoting errors, PHP concurrency issues and rejected Gestor forms."
 user-invocable: false
 ---
 
-# Armadilhas de Shell, Windows e Git Bash no Ambiente Conn2Flow
+# Shell, Windows, and Git Bash Traps in Conn2Flow Environment
 
-## Chrome DevTools MCP: perfil e processos no Windows
+## Chrome DevTools MCP: profile and processes on Windows
 
-- Use o lançador da matriz `conn2flow-ai-workspace/scripts/mcp/launch-devtools-chrome.ps1` com `-Headless` (padrão) ou `-Visible`. Ele mantém o perfil em `%TEMP%\conn2flow-chrome-sandbox`, CDP loopback e porta 9222; nunca reutilize o perfil pessoal, copie credenciais/histórico ou acrescente `--no-sandbox`.
-- Para conectar o MCP ao lançador, acrescente `--browser-url=http://127.0.0.1:9222` na sessão. Sem essa opção o servidor inicia seu próprio Chrome. Verifique `/json/version` antes de tentar conectar; porta ocupada não comprova que a instância pertence ao sandbox.
-- Em erro de porta/perfil em uso, consulte `Get-NetTCPConnection -LocalPort 9222 -State Listen` e `Get-CimInstance Win32_Process` pelo PID/propriedade `CommandLine`. Encerre apenas processos cuja linha de comando aponta para o sandbox ou o PID retornado pelo lançador. Nunca use `Stop-Process -Name chrome` ou `taskkill /IM chrome.exe`.
-- Caminhos com espaços exigem aspas no argumento `--user-data-dir`. Não apague o perfil enquanto houver processo proprietário; qualquer limpeza deve verificar caminho absoluto dentro de TEMP e recusar junctions/symlinks. O lançador não faz remoção recursiva automática.
-- Antes de usar `npx ...@latest`, confira requisitos de Node do pacote. A versão 1.10.1 exige `^20.19.0 || ^22.12.0 || >=23`; Node 20.14 falha antes do handshake. Node 22 temporário via `npm exec --yes --package=node@22 --package=chrome-devtools-mcp@latest -- chrome-devtools-mcp --help` permite diagnosticar sem alterar o Node global; configure um runtime compatível no PATH do cliente para uso persistente.
+- Use the `conn2flow-ai-workspace/scripts/mcp/launch-devtools-chrome.ps1` matrix launcher with `-Headless` (default) or `-Visible`. It maintains the profile in `%TEMP%\conn2flow-chrome-sandbox`, CDP loopback and port 9222; never reuse the personal profile, copy credentials/historical or add `--no-sandbox`.
+- To connect MCP to the launcher, add `--browser-url=http://127.0.0.1:9222` to the session. Without this option the server starts its own Chrome. Check `/json/version` before trying to connect; busy port does not prove that the instance belongs to the sandbox.
+- In port/profile error in use, see `Get-NetTCPConnection -LocalPort 9222 -State Listen` and `Get-CimInstance Win32_Process` for PID/property `CommandLine`. Close only processes whose command line points to the sandbox or PID returned by the launcher. Never use `Stop-Process -Name chrome` or `taskkill /IM chrome.exe`.
+- Paths with spaces require quotes in the argument `--user-data-dir`. Do not delete the profile while a process still owns or uses it; any cleaning should check absolute path within TEMP and refuse junctions/symlinks. The launcher does not perform automatic recursive removal.
+- Before using `npx ...@latest`, check package Node requirements. Version 1.10.1 requires `^20.19.0 || ^22.12.0 || >=23`; Node 20.14 fails before handshake. Node 22 temporary via `npm exec --yes --package=node@22 --package=chrome-devtools-mcp@latest -- chrome-devtools-mcp --help` allows you to diagnose without changing the global Node; set up a compatible runtime on the client's PATH for persistent use.
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Executar comandos Docker (`docker exec`), cURL com upload/POST, scripts Python/Node que geram arquivos, ou chamadas POST para formulários do Gestor no ambiente Windows/Git Bash.
-- **SKIP APENAS SE**: Tarefas puramente de leitura de código ou edição de arquivos sem execução de shell.
-- **CONSEQUÊNCIA DE IGNORAR**: Caminhos Linux corrompidos para `C:/Program Files/Git/...`, uploads interpretados como leitura de arquivo local, heredocs com `\b`/`\s` convertidos em bytes de controle, concorrência travando processos PHP e engolindo warnings vitais, e formulários rejeitados silenciosamente por falta de campos ocultos.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Run Docker commands (`docker exec`), upload/POST curl, Python/Node scripts that generate files, or POST calls for Gestor forms in Windows/Git Bash environment.
+- **SKIP ONLY IF**: purely code reading or editing tasks without shell execution.
+- **CONSEQUENCE OF IGNORING**: corrupt Linux paths for `C:/Program Files/Git/...`, uploaded as local file reading, heredocs with `\b`/`\s` converted into control bytes, concurrency locking PHP processes and swallowing vital warns, and silently rejected forms for lack of hidden fields.
 
 ---
 
-## ⛔ As 17 Armadilhas Críticas
+## ⛔ The 17 Critical Traps
 
-### 1. Conversão Automática de Caminhos no Git Bash (MSYS Path Conversion)
+### 1. Automatic Conversion of Paths into Git Bash (MSYS Path Conversion)
 
-**Problema**: O Git Bash no Windows converte automaticamente caminhos que começam com `/` para caminhos Windows. O comando:
+**Problem**: Git Bash on Windows automatically converts paths starting with `/` to Windows paths. Command:
 ```bash
 docker exec conn2flow-app php /var/www/html/script.php
 ```
-É silenciosamente corrompido para:
+It is silently corrupted to:
 ```bash
 docker exec conn2flow-app php C:/Program Files/Git/var/www/html/script.php
 ```
 
-**Solução Obrigatória**: Prefixar TODOS os comandos `docker exec` com a variável de ambiente `MSYS_NO_PATHCONV=1`:
+**Mandatory solution**: Prefix ALL `docker exec` commands with the `MSYS_NO_PATHCONV=1` environment variable:
 ```bash
 MSYS_NO_PATHCONV=1 docker exec conn2flow-app php /var/www/html/script.php
 ```
 
-O mesmo mecanismo quebra transportes SSH com `rsync`. O MSYS2 converte uma origem local como
-`/c/Users/...` para `C:/Users/...`; como o `rsync` interpreta `C:` como especificação de host, um
-destino `usuario@host:/caminho` faz ambos os lados parecerem remotos e produz
+The same mechanism breaks SSH transport with `rsync`. MSYS2 converts a local source as
+`/c/Users/...` for `C:/Users/...`; how `rsync` interprets `C:` as host specification, one
+`usuario@host:/caminho` destination makes both sides look remote and produces
 `The source and destination cannot both be remote`.
 
-**Solução obrigatória para rsync**: toda invocação deve usar `MSYS_NO_PATHCONV=1`, diretamente ou
-por helper compartilhado:
+**Compulsory solution for rsync**: Every invocation must use `MSYS_NO_PATHCONV=1` directly or
+by shared helper:
 ```bash
 MSYS_NO_PATHCONV=1 rsync -avu "/c/Users/.../origem/" "usuario@host:/destino/"
 ```
 
 > [!WARNING]
-> Esta armadilha é **silenciosa** — o comando executa sem erro visível, mas o caminho dentro do container está errado. O PHP simplesmente não encontra o arquivo e retorna um erro genérico.
+> This trap is **silent** — the command runs without visible error, but the path inside the container is wrong. PHP simply does not find the file and returns a generic error.
 
 ---
 
-### 2. `curl` com Caractere `<` em Valores de Formulário
+### 2. `curl` with `<` Character in Form Values
 
-**Problema**: A flag `-F "campo=<valor"` do cURL interpreta o caractere `<` como operador de leitura de arquivo local. O valor não é enviado como string — o cURL tenta abrir um arquivo chamado `valor`.
+**Problem**: The cURL `-F "campo=<valor"` flag interprets the `<` character as the local file read operator. The value is not sent as string — the cURL tries to open a file called `valor`.
 
-**Solução Obrigatória**: Usar `--form-string` em vez de `-F` para campos que podem conter `<`:
+**Mandatory solution**: Use `--form-string` instead of `-F` for fields that may contain `<`:
 ```bash
 # ❌ ERRADO — interpreta <valor como leitura de arquivo
 curl -F "html=<div>teste</div>" http://localhost/api
@@ -70,11 +70,11 @@ curl --form-string "html=<div>teste</div>" http://localhost/api
 
 ---
 
-### 3. Python Heredocs e Sequências de Escape
+### 3. Python Heredocs and Escape Sequences
 
-**Problema**: Ao gerar arquivos com conteúdo HTML/CSS/JS usando heredocs em Python, sequências como `\b` (word boundary em regex) e `\s` (whitespace) são interpretadas como bytes de controle (backspace `0x08` e escape sequences).
+**Problem**: When generating files with HTML/CSS/JS content using heredocs in Python, sequences such as `\b` (word union in regex) and `\s` (whitespace) are interpreted as bytes of control (backspace `0x08` and escaping sequences).
 
-**Solução Obrigatória**: Usar raw strings (`r"""..."""`) ou construir caracteres com `chr(92)` (backslash):
+**Mandatory solution**: Use raw strings (`r"""..."""`) or build characters with `chr(92)` (backslash):
 ```python
 # ❌ ERRADO — \b e \s viram bytes de controle
 content = """
@@ -91,14 +91,14 @@ content = r"""
 
 ---
 
-### 4. Asserts com Falha Silenciosa em Scripts Intermediários
+### 4. Silent Failure Asserts in Intermediate Scripts
 
-**Problema**: Asserts em scripts de transformação (Python, Node) que falham silenciosamente deixam arquivos de saída corrompidos pela metade. O script continua executando após o assert falhar, gerando dados parciais.
+**Problem**: Asserts in transformation scripts (Python, Node) that fail silently leave output files corrupted in half. The script continues to run after the assert fails, generating partial data.
 
-**Solução Obrigatória**:
-1. Usar `set -e` em scripts Bash (exit on first error).
-2. Em Python, usar `assert` com mensagens descritivas e verificar o resultado ANTES de gravar no disco.
-3. Validar o arquivo de saída após a geração (tamanho > 0, estrutura JSON/HTML válida).
+**Mandatory solution**:
+1. Use `set -e` in Bash scripts (exit on first error).
+2. In Python, use `assert` with descriptive messages and check the result BEFORE saving to disk.
+3. Validate output file after generation (size > 0, valid JSON/HTML structure).
 
 ```python
 # ✅ Validar ANTES de gravar
@@ -112,11 +112,11 @@ with open(output_file, 'w') as f:
 
 ---
 
-### 5. Formulários do Gestor: `multipart/form-data` com Gatilhos Ocultos
+### 5. Gestor forms: `multipart/form-data` with Hidden Triggers
 
-**Problema**: Os formulários do Gestor Conn2Flow são `multipart/form-data` e dependem de campos ocultos obrigatórios (`_gestor-atualizar`, `_gestor-registro-id`) para acionar o processamento server-side. Enviar o formulário sem esses campos resulta em rejeição silenciosa (o POST é recebido mas nenhuma atualização é executada).
+**Problem**: The Gestor Conn2Flow forms are `multipart/form-data` and depend on mandatory hidden fields (`_gestor-atualizar`, `_gestor-registro-id`) to trigger server-side processing. Send the form without these fields results in silent rejection ( POST is received but no update is executed).
 
-**Solução Obrigatória**: Sempre incluir os campos ocultos ao submeter formulários programaticamente:
+**Mandatory solution**: Always include hidden fields when submitting forms programmatically:
 ```bash
 curl --form-string "_gestor-atualizar=1" \
      --form-string "_gestor-registro-id=42" \
@@ -126,41 +126,41 @@ curl --form-string "_gestor-atualizar=1" \
      http://localhost/gestor/modulo/registro/42
 ```
 
-| Campo Oculto | Valor | Função |
+|Hidden Field|Value|Function|
 |---|---|---|
-| `_gestor-atualizar` | `1` | Sinaliza que o POST é uma atualização válida |
-| `_gestor-registro-id` | ID numérico | Identifica o registro alvo no banco |
-| `ajax` | `sim` | (Se AJAX) Previne redirecionamento e retorna JSON |
+|`_gestor-atualizar`| `1` |Signals that POST is a valid update|
+|`_gestor-registro-id`|Numeric ID|Identifies target record in database|
+|`ajax`|`sim`| (If AJAX) Prevent redirection and return JSON|
 
 ---
 
-### 6. Paralelismo Concorrente em Comandos de Compilação em Lote (Supressão de Warnings PHP)
+### 6. Parallelism Contestant in Batch Compilation Commands (PHP Warning Suppression)
 
-**Problema**: Executar múltiplos comandos pesados de compilação, sincronização ou banco simultaneamente (`css:rebuild`, `resources:sync`, `project:update-all`, `manager:update-all`, `db:migrate`) no mesmo ambiente Windows/Docker gera disputas de I/O, trava o container e mascara erros de runtime críticos. Quando executados em background ou com buffers suprimidos, warnings e notices do PHP não chegam ao terminal.
+**Problem**: Run multiple heavy build, sync or database commands simultaneously (`css:rebuild`, `resources:sync`, `project:update-all`, `manager:update-all`, `db:migrate`) in the same Windows/Docker environment generates I/O disputes, freezes the container and masks critical runtime errors. When run in background or with deleted buffers, warnings and PHP news do not reach the terminal.
 
-*Caso Real Documentado*: Um bug na assinatura de método (`$fontesExtras` sem parâmetro declarado) permaneceu invisível por horas no Core — as classes Tailwind declaradas em `tailwind_sources` eram descartadas silenciosamente e o terminal não exibia nenhum erro porque o comando rodava em segundo plano com buffer engolindo os avisos do PHP.
+==References== A method signature bug (`$fontesExtras` without declared parameter) remained invisible for hours in Core — the Tailwind classes declared in `tailwind_sources` were silently discarded and the terminal did not show any error because the command ran in the background with buffer swallowing PHP warnings.
 
-**Solução Obrigatória**:
-1. **Execução Sequencial Exclusiva**: NUNCA execute dois comandos de compilação ou pipeline em paralelo no mesmo container. Execute um de cada vez, aguardando o término (`exit code 0`).
-2. **Foreground Obrigatório**: Mantenha os comandos rodando em foreground com saída direta no terminal.
-3. **Sem Buffer / Expor Warnings**: Não use redirecionamentos cegos (`> /dev/null 2>&1`). Se um warning do PHP for disparado (ex: `Undefined variable`, `ArgumentCountError`), ele DEVE aparecer no terminal para resolução imediata.
+**Mandatory solution**:
+1. **Sequent Execution Exclusive**: NEVER run two build or pipeline commands in parallel in the same container. Run one at a time, awaiting termination (`exit code 0`).
+2. **Required Foreground**: Keep the commands running in foreground with direct output in the terminal.
+3. **No Buffer / Expo Warnings**: Do not use blind redirects (`> /dev/null 2>&1`). If a PHP warning is fired (e.g. `Undefined variable`, `ArgumentCountError`), it MUST appear in the terminal for immediate resolution.
 
 ---
 
-### 7. `rsync: dup() in/out/err failed` — Pareamento de Runtimes cwRsync/SSH
+### 7. `rsync: dup() in/out/err failed` — CwRsync/SSH Runtime Pairing
 
-**Problema**: O `rsync` 3.4.x do pacote cwRsync (runtime Cygwin) usa pipes Win32 nativos. Quando o `ssh.exe` invocado vem do Git Bash (runtime MSYS2), os descritores não são compatíveis e o processo morre com:
+**Problem**: The `rsync` 3.4.x from the cwRsync (runtime Cygwin) package uses native Win32 pipes. When the `ssh.exe` invoked comes from Git Bash (runtime MSYS2), the descriptors are not compatible and the process dies with:
 ```
 rsync: dup() in/out/err failed
 rsync error: error in IPC code (code 14) at pipe.c(...)
 ```
-O exit code 12 não produz mensagem legível sem `-v`.
+Exit code 12 does not produce a readable message without `-v`.
 
-**Solução Obrigatória**:
-1. **Pareamento mandatório de runtimes**: Use o `ssh.exe` do próprio pacote cwRsync (`C:\cwrsync\bin\ssh.exe`), nunca o do Git Bash.
-2. **`-e` com flags SSH explícitas**: `-e "C:/cwrsync/bin/ssh.exe -T -i <chave>"`. A flag `-T` bloqueia pseudo-TTY (o protocolo binário do rsync não funciona com PTY).
-3. **`MSYS_NO_PATHCONV=1`** continua obrigatório (mesma razão da Armadilha 1).
-4. **Caminhos locais**: Converter para `/cygdrive/c/...` (formato Cygwin), nunca `/c/...` (MSYS2).
+**Mandatory solution**:
+1. **Mandatory matching of runtimes**: Use the `ssh.exe` of the cwRsync (`C:\cwrsync\bin\ssh.exe`) package itself, never Git Bash.
+2. **`-e` with explicit SSH flags**: `-e "C:/cwrsync/bin/ssh.exe -T -i <chave>"`. The `-T` flag blocks pseudo-TTY (the binary rsync protocol does not work with PTY).
+3. **`MSYS_NO_PATHCONV=1`** remains mandatory (the same reason as Trap 1).
+4. **Local Paths**: Convert to `/cygdrive/c/...` (Cygwin format), never `/c/...` (MSYS2).
 
 ```bash
 MSYS_NO_PATHCONV=1 rsync -avz \
@@ -170,58 +170,58 @@ MSYS_NO_PATHCONV=1 rsync -avz \
 ```
 
 > [!WARNING]
-> O erro `dup()` aparece SOMENTE com o `ssh.exe` errado. A mensagem não menciona SSH — o diagnóstico natural é culpar o rsync ou as permissões.
+> The `dup()` error appears ONLY with the wrong `ssh.exe`. The message does not mention SSH — the natural diagnosis is to blame rsync or permissions.
 
 ---
 
-### 8. Sequências ANSI em Saídas de Utilitários CLI (Cores Quebram Parsers)
+### 8. ANSI sequences in CLI Utilities Outputs
 
-**Problema**: Utilitários multiplataforma (Tailwind CLI, Vite, ESBuild) emitem sequências de cor ANSI mesmo quando capturados por `proc_open()`, `exec()` ou backticks. A saída de versão:
+**Problem**: Multiplatform utilities (Tailwind CLI, Vite, ESBuild) emit ANSI color sequences even when captured by `proc_open()`, `exec()` or backtics. Version output:
 ```
 tailwindcss \x1b[34mv4.3.3\x1b[39m
 ```
-quebra comparadores de versão (`version_compare()`, `semver.satisfies()`) e asserções em testes.
+version comparators break (`version_compare()`, `semver.satisfies()`) and assertions in tests.
 
-**Solução Obrigatória**:
-1. **Variáveis de ambiente**: Definir `NO_COLOR=1` e/ou `FORCE_COLOR=0` antes de invocar o processo.
-2. **Higienização mandatória** antes de qualquer parsing ou comparação de versão:
+**Mandatory solution**:
+1. **Environment variables**: Set `NO_COLOR=1` and/or `FORCE_COLOR=0` before invoking the process.
+2. **Mandatory hygiene** before any parsing or version comparison:
 ```php
 $limpo = preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $saida_bruta);
 ```
 ```javascript
 const limpo = saidaBruta.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');
 ```
-3. **Asserts/testes**: Sempre higienizar ANTES de comparar, nunca confiar que a saída é texto puro.
+3. **Asserts/tests**: Always sanitize BEFORE you compare, never trust that the output is pure text.
 
 > [!WARNING]
-> A contaminação é **invisível** no terminal (que renderiza as cores) mas **quebradora** em strings capturadas. `"v4.3.3" !== "\x1b[34mv4.3.3\x1b[39m"` falha sem mensagem explicativa.
+> The contamination is **invisible** in the terminal (which renders the colors) but **breaker** in captured strings. `"v4.3.3" !== "\x1b[34mv4.3.3\x1b[39m"` fails without explanatory message.
 
 ---
 
-### 9. `cd` Antes de `sudo -u` em Tenants SSH Restritos (HestiaCP e Similares)
+### 9. `cd` Before `sudo -u` in Limited SSH Tenants (HestiaCP and Similar)
 
-**Problema**: Em servidores multi-tenant (HestiaCP, cPanel, Plesk) com diretórios home em modo `750` ou `700`, o usuário SSH de deploy não tem permissão para entrar no diretório do tenant antes da elevação de privilégios:
+**Problem**: On multi-tenant servers (HestiaCP, cPanel, Plesk) with home directories in `750` or `700` mode, the deploy SSH user is not allowed to enter the tenant directory before the privilege elevation:
 ```bash
 # ❌ FALHA — cd executa como o usuário SSH, que não tem acesso a /home/tenant/
 cd /home/tenant/web/dominio.com && sudo -u tenant php artisan migrate
 ```
 
-**Solução Obrigatória**: Encapsular a troca de diretório e o comando na mesma shell elevada:
+**Mandatory solution**: Encapsulate directory exchange and command in the same high shell:
 ```bash
 # ✅ CORRETO — cd e php executam ambos como `tenant`
 sudo -u tenant sh -c 'cd /home/tenant/web/dominio.com && php artisan migrate'
 ```
 
 > [!WARNING]
-> O erro é `Permission denied` no `cd`, não no `sudo`. O diagnóstico natural é culpar a configuração do sudo, mas o problema está na ordem das operações.
+> The error is `Permission denied` in `cd`, not `sudo`. The natural diagnosis is to blame the sudo configuration, but the problem is in order of operations.
 
 ---
 
-### 10. Colapso de Barra Invertida em Heredoc no Git Bash (MSYS2)
+### 10. Inverted Bar Collapse in Heredoc in Git Bash (MSYS2)
 
-**Problema**: No Git Bash (MSYS2), heredocs em scripts Bash ou invocações inline colapsam barras invertidas duplas (`\\`) em simples (`\`). Isso corrompe silenciosamente caminhos Windows, expressões regulares e constantes PHP como `DIRECTORY_SEPARATOR`.
+**Problem**: In Git Bash (MSYS2), heredocs in scripts Bash or inline invocations collapse double reverse bars (`\\`) in plain (`\`). This silently corrupts Windows paths, regular and constant PHP expressions like `DIRECTORY_SEPARATOR`.
 
-Exemplo do problema:
+Example of the problem:
 ```bash
 # ❌ No Git Bash, o heredoc colapsa \\ para \
 cat <<'EOF' > script.php
@@ -230,20 +230,20 @@ $caminho = "C:\\Users\\otavi";  // Vira "C:\Users\otavi" (errado)
 EOF
 ```
 
-**Solução Obrigatória**:
-1. **Para caminhos PHP**: Use `DIRECTORY_SEPARATOR` em vez de barras invertidas literais:
+**Mandatory solution**:
+1. **For PHP paths**: Use `DIRECTORY_SEPARATOR` instead of literal backslashes:
 ```php
 // ✅ CORRETO — portável e imune ao heredoc
 $caminho = 'C:' . DIRECTORY_SEPARATOR . 'Users' . DIRECTORY_SEPARATOR . 'otavi';
 ```
 
-2. **Para scripts gerados**: Use `printf` ou `echo` com escape explícito em vez de heredoc:
+2. **For generated scripts**: Use `printf` or `echo` with explicit escaping instead of heredoc:
 ```bash
 # ✅ CORRETO — printf preserva as barras
 printf '%s\n' '$caminho = "C:\\\\Users\\\\otavi";' > script.php
 ```
 
-3. **Para heredocs inevitáveis**: Use substituição `sed` pós-geração:
+3. **For inevitable heredocs**: Use post-generation `sed` replacement:
 ```bash
 cat <<'EOF' > temp.php
 $caminho = "C:__SEP__Users__SEP__otavi";
@@ -252,32 +252,32 @@ sed -i 's/__SEP__/\\\\/g' temp.php
 ```
 
 > [!WARNING]
-> O colapso é **silencioso** — o arquivo é gerado sem erro, mas o conteúdo está corrompido. Caminhos como `C:\Users` funcionam no Windows mas diferem do esperado `C:\\Users` no código-fonte PHP.
+> The collapse is **silent** — the file is generated without error, but the content is corrupted. Paths like `C:\Users` work on Windows but differ from expected `C:\\Users` in PHP source code.
 
 ---
 
-### 11. Timeout e Travamento de `grep -rn` na Raiz de Repositórios no Windows
+### 11. Timeout and Lock of `grep -rn` on Repositories Root on Windows
 
-**Problema**: Executar `grep -rn` (busca recursiva) a partir da raiz de um repositório no Windows/Git Bash pode causar:
-- **Timeout** por varredura de `node_modules/`, `.git/`, `vendor/` e outros diretórios pesados.
-- **Travamento completo** do terminal quando o volume de arquivos excede limites de I/O do MSYS2.
-- **Consumo excessivo de memória** com buffers de saída não drenados.
+**Problem**: Running `grep -rn` (recursive search) from the root of a repository in Windows/Git Bash can cause:
+- **Timeout** by `node_modules/`, `.git/`, `vendor/` and other heavy directories.
+- Terminal **Lock complete** when file volume exceeds MSYS2 I/O limits.
+- **Excessive memory consumption** with undrained output buffers.
 
-**Solução Obrigatória**:
-1. **Sempre excluir diretórios pesados** com `--exclude-dir`:
+**Mandatory solution**:
+1. **Always delete heavy directories** with `--exclude-dir`:
 ```bash
 # ✅ CORRETO — exclui diretórios que causam timeout
 grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor,dist,build} .
 ```
 
-2. **Limitar a profundidade e escopo**:
+2. **Limit depth and scope**:
 ```bash
 # ✅ CORRETO — buscar em diretório específico
 grep -rn 'padrão' src/
 grep -rn 'padrão' modulos/meu-modulo/
 ```
 
-3. **Usar alternativas otimizadas** quando disponíveis:
+3. **Use optimized alternatives** when available:
 ```bash
 # ✅ ripgrep (rg) respeita .gitignore automaticamente
 rg 'padrão' .
@@ -286,24 +286,24 @@ rg 'padrão' .
 Get-ChildItem -Recurse -Include *.php | Select-String 'padrão'
 ```
 
-4. **Timeout defensivo** para scripts automatizados:
+4. **Defensive Timeout** for automated scripts:
 ```bash
 # ✅ Limitar tempo de execução
 timeout 30 grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor} .
 ```
 
 > [!CAUTION]
-> NUNCA execute `grep -rn` na raiz de repositórios com `node_modules` ou `.git` grandes. No Windows, o MSYS2 não tem kill automático por timeout — o processo pode travar indefinidamente.
+> NEVER run `grep -rn` at the root of repositories with large `node_modules` or `.git`. On Windows, MSYS2 does not have auto kill per timeout — the process can stop indefinitely.
 
 ---
 
-### 12. Python `json.dumps()` Remove Escapes de Barra (`\/`) de JSON de Módulos PHP
+### 12. Python `json.dumps()` Remove Toolbar (`\/`) from JSON PHP Modules
 
-**Problema**: O PHP serializa JSON de módulos com escape de barra por padrão (`"products\/add\/"`). O `json.dumps()` do Python **não produz** escape de barra (`"products/add/"`), causando ruídos massivos no Git diff — todas as linhas com caminhos aparecem como alteradas, mesmo sem modificação semântica.
+**Problem**: PHP serializes JSON modules with escaping by default (`"products\/add\/"`). The `json.dumps()` of Python **does not produce** escaping bar (`"products/add/"`), causing massive noises in Git diff — all lines with paths appear as changed, even without semantic modification.
 
-**Solução Obrigatória**:
-1. **Detectar** se o arquivo original contém `\/` antes de reescrever.
-2. **Restaurar** o escape após `json.dumps()`:
+**Mandatory solution**:
+1. **Detect** if the original file contains `\/` before rewrite.
+2. **Restore** or escaping after `json.dumps()`:
 ```python
 import json
 
@@ -322,68 +322,68 @@ with open(json_path, 'w', encoding='utf-8', newline='') as f:
     f.write(output)
 ```
 
-3. **Sempre usar `ensure_ascii=False`** para preservar acentos e caracteres UTF-8.
-4. **Preservar line endings nativas** (LF vs CRLF) do arquivo original.
+3. **Always use `ensure_ascii=False`** to preserve accents and UTF-8 characters.
+4. **Preserve native line endings** (LF vs CRLF) from the original file.
 
 > [!WARNING]
-> O impacto é **estético mas destrutivo para o workflow**: centenas de linhas alteradas no diff dificultam a revisão do Auditor de Qualidade e escondem mudanças reais em meio ao ruído.
+> The impact is **aesthetic but destructive for the workflow**: hundreds of lines changed in diff make it difficult to review the Quality Auditor and hide real changes in noise.
 
 ---
 
-### 13. Heredoc com apóstrofo, crase ou barra invertida: escreva o arquivo, não o heredoc
+### 13. Heredoc with apostrophe, crash or reverse bar: write the file, not heredoc
 
-**Sintoma**: `unexpected EOF while looking for matching` ou um `assert` que falha porque `\\r\\n` virou outra coisa.
+**Symptoms**: `unexpected EOF while looking for matching` or a `assert` that fails because `\\r\\n` has become something else.
 
-Um script Python ou JavaScript com apóstrofos (`What's new`), crases ou `\r\n` dentro de um heredoc do Git Bash quebra de formas diferentes a cada caso, mesmo com o delimitador entre aspas.
+A Python or JavaScript script with apostrophes (`What's new`), crashes or `\r\n` inside a Git Bash heredoc breaks in different ways to each case, even with the quote delimiter.
 
-**Regra**: script com mais de umas dez linhas, ou com qualquer um desses caracteres, é gravado como arquivo pela ferramenta de escrita e depois executado. Heredoc só para trechos curtos e sem aspas.
+**Rule**: script with more than ten lines, or with any of these characters, is saved as file by the writing tool and then executed. Heredoc only for short cuts and no quotes.
 
 ---
 
-### 14. Argumento que começa com `/` passado a `node` ou `curl`
+### 14. Argument that starts with `/` past `node` or `curl`
 
-O Git Bash converte `/pro/` em `C:/Program Files/Git/pro/` também em argumentos de `node` e em URLs montadas com variável. Sintoma: `ERR_NAME_NOT_RESOLVED` num host como `conn2flow.localc`.
+Git Bash converts `/pro/` to `C:/Program Files/Git/pro/` also into `node` arguments and variable-mounted URLs. Symptoms: `ERR_NAME_NOT_RESOLVED` in a host like `conn2flow.localc`.
 
 ```bash
 MSYS_NO_PATHCONV=1 node validar.cjs rotulo "/,/pro/,/en/"
 MSYS_NO_PATHCONV=1 curl -sk "https://host$rota"
 ```
 
-`curl ... -o /dev/null` no Windows pode sair com código 23 mesmo com a resposta correta: confira o `%{http_code}`, não o código de saída.
+`curl ... -o /dev/null` on Windows can exit with code 23 even with the correct answer: check `%{http_code}`, not the output code.
 
 ---
 
-### 15. Repositório dentro de pasta sincronizada (OneDrive)
+### 15. Repository inside synchronized folder (OneDrive)
 
-Arquivo grande regravado com frequência (um `*Data.json` de dezenas de MB) fica bloqueado por instantes pelo sincronizador. Sintomas: `OSError: [Errno 22]` no Python, `file_put_contents` devolvendo `false` no PHP.
+Large file rerecorded frequently (a `*Data.json` of dozens of MB) is blocked for moments by the syncer. Symptoms: `OSError: [Errno 22]` in Python, `file_put_contents` returning `false` in PHP.
 
-- Toda escrita de arquivo gerado confere o resultado e tenta de novo; nunca ignore o retorno.
-- Uma falha isolada de escrita que some na segunda tentativa é isso, não um defeito do seu código. Registre e siga.
+- All generated file writing checks the result and tries again; never ignore the return.
+- An isolated writing flaw that disappears on the second attempt is this, not a defect in your code. Register and follow.
 
 ---
 
-### 16. Suíte PHP: rode no ambiente Linux
+### 16. PHP Suite: Run on Linux environment
 
-O PHP do Windows falha em testes que dependem de OpenSSL (`openssl.cnf`) e de `pdo_sqlite`. A suíte de referência roda no ambiente de teste por SSH:
+Windows PHP fails tests that depend on OpenSSL (`openssl.cnf`) and `pdo_sqlite`. The reference suite runs in the SSH test environment:
 
 ```bash
 ssh usuario@lab 'cd /mnt/c/caminho/do/repo && php vendor/bin/phpunit --configuration phpunit.xml'
 ```
 
-Checkout com fim de linha CRLF lido pelo Linux faz falhar testes que executam scripts `.sh` (`syntax error near unexpected token`). É falha do ambiente: registre como pré-existente, não como regressão. Shebang de script copiado para uma worktree precisa estar em LF.
+End of line checkout CRLF read by Linux fails tests that run scripts `.sh` (`syntax error near unexpected token`). It is a failure of the environment: register as pre-existing, not as regression. Shebang copied script for a worktree needs to be in LF.
 
 ---
 
-### 17. Desaparecimento de `npx` e Cache Volátil do NPM no Windows
+### 17. Disappearance of `npx` and NPM Volatile Cache on Windows
 
-**Problema**: No Windows/Git Bash, invocar `npx tailwindcss` ou `npx terser` pode falhar intermitentemente ou desaparecer durante compilações contínuas, disparando erros como `npx: command not found`, `npm ERR! code ENOENT` ou travamentos por resolução e download de pacotes em cache volátil de `%LOCALAPPDATA%\npm-cache`.
+**Problem**: In Windows/Git Bash, invoking `npx tailwindcss` or `npx terser` may fail intermittently or disappear during continuous compilations, triggering errors such as `npx: command not found`, `npm ERR! code ENOENT` or resolution lockings and downloading packages in `%LOCALAPPDATA%\npm-cache` volatile cache.
 
-**Causa Raiz**:
-1. O comando `npx` tenta verificar e consultar registros remotos ou temporários quando invocado genericamente, sujeitando o build a timeouts de rede ou locks de arquivo pelo antivírus/OneDrive.
-2. Problemas de resolução de caminhos no PATH do Windows fazem executáveis `npx` globais divergirem das versões fixadas no repositório.
+**Root Cause**:
+1. The `npx` command tries to verify and consult remote or temporary records when invoked generically, subjecting build to network timeouts or file locks by antivirus/OneDrive.
+2. Path resolution problems in Windows PATH make global `npx` executables diverge from the versions set in the repository.
 
-**Solução Obrigatória**:
-1. **Uso Estrito dos Binários Locais**: Sempre invoque diretamente os binários instalados no repositório em `node_modules/.bin/`:
+**Mandatory solution**:
+1. **Strict Use of Local Binarys**: Always directly invoke the binaries installed in the `node_modules/.bin/` repository:
 ```cmd
 # No Windows / PowerShell / CMD:
 .\node_modules\.bin\tailwindcss.cmd -i input.css -o output.css --minify
@@ -394,19 +394,27 @@ Checkout com fim de linha CRLF lido pelo Linux faz falhar testes que executam sc
 ./node_modules/.bin/tailwindcss -i input.css -o output.css --minify
 ./node_modules/.bin/terser script.js -o script.min.js
 ```
-2. **Nos scripts e pipelines PHP/CLI**: O framework e ferramentas devem referenciar diretamente o caminho relativo para `node_modules/.bin/tailwindcss.cmd` (no Windows) ou `node_modules/.bin/tailwindcss` (no Linux/Docker), sem intermediar chamadas através de `npx`.
+2. **In PHP/CLI scripts and pipelines**: The framework and tools should directly reference the relative path to `node_modules/.bin/tailwindcss.cmd` (on Windows) or `node_modules/.bin/tailwindcss` (on Linux/Docker), without intermediating calls via `npx`.
 
 > [!CAUTION]
-> NUNCA use `npx tailwindcss` ou `npx terser` em scripts automatizados de compilação ou rotinas repetitivas de build. Dependa estritamente das dependências locais em `node_modules/.bin/`.
+> NEVER use `npx tailwindcss` or `npx terser` in automated build scripts or build repetitive routines. It depends strictly on local dependencies in `node_modules/.bin/`.
 
-### 18. Junctions e git worktree remove (crítica)
+### 18. Junctions and git worktree remove (critical)
 
-O BL-028 registra perda de vendor e node_modules em 2026-10-08: a remoção de worktrees no Windows atravessou Directory Junctions (mklink /J) e esvaziou destinos na árvore principal. Trate qualquer remoção como insegura até conferir os reparse points e suas referências.
+The BL-028 records loss of vendor and node_modules in 2026-10-08: removal of worktrees in Windows crossed Directory Junctions (mklink /J) and emptied destinations in the main tree. Treat any removal as unsafe until you check the reparse points and its references.
 
-Antes de remover, confirme o caminho absoluto da worktree, que não é árvore principal nem origem do pipeline. Liste junctions com cmd /c "dir /AL <pasta>" (inspecione também nós internos, sem atravessar links). Confira referências de outras worktrees para dentro dela; se houver, preserve/reaponte primeiro. Desfaça cada junction individualmente com cmd /c "rmdir <pasta>\<atalho>" **sem /S**: isso remove apenas o atalho. Use caminhos literais previamente verificados e o CMD de ponta a ponta; nunca gere lista em PowerShell para executar exclusão por outro shell. Confirme que os links saíram, então execute git worktree remove. Nunca use --force para ultrapassar trabalho não integrado. Depois confira o conteúdo de vendor/node_modules nas árvores principais e nas worktrees restantes.
+Before removing, confirm the absolute path of worktree, which is neither main tree nor pipeline origin. List junctions with cmd /c "dir /AL <pasta>" (also inspect internal nodes without crossing links). Check references from other worktrees into it; if there is, preserve/repoint first. Undo each junction individually with cmd /c "rmdir <pasta>\<atalho>" **without /S**: this removes only the shortcut. Use previously checked literal paths and end-to-end CMD; never enumerate paths in PowerShell and pass deletion to another shell. Confirm that the links have left, then run git worktree remove. Never use --force to overcome unintegrated work. Then check the content of the vendor/node_modules on the main trees and the remaining worktrees.
 
-Não crie junction para outra worktree temporária; quando necessária, a referência é para a árvore principal. Confira a rotina de seis passos em mdd-memory-gardening.
+Do not create junction for another temporary worktree; when necessary, the reference is for the main tree. Check the six-step routine in mdd-memory-gardening.
 
-### 19. iconv //TRANSLIT não portável no PHP Windows
+### 19. iconv //TRANSLIT not portable in PHP Windows
 
-iconv('UTF-8', 'ASCII//TRANSLIT', $texto) pode substituir acentos por caracteres diferentes, interrogação ou retornar false conforme a plataforma. Para chaves/slugs que exigem determinismo, use tabela associativa explícita com strtr (inclua minúsculas/maiúsculas e o conjunto de caracteres aceito pelo produto), seguida de normalização controlada. Não converta falha em string vazia nem silencie warning. Exercite entrada acentuada em Windows e Linux, caracteres fora do mapa e repetibilidade; não aplique transliteração ao texto de apresentação. Preserve o comportamento de Unicode definido pelo contrato do recurso.
+iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different characters, question or return false according to the platform. For keys/slugs that require determinism, use explicit associative table with strtr (include lower case / upper case and the character set accepted by the product), followed by controlled normalization. Do not turn a failure into an empty string or silence warning. Exercise accentuated entry on Windows and Linux, characters off the map and repeatability; do not apply transliteration to the presentation text. Preserve the Unicode behavior defined by the resource contract.
+
+## 20. REP-002 — stdin, edition with assertions and CRLF
+
+- Never run `cat > arquivo;` without delimited input: wait stdin until timeout. Prefer editing tool; complex scripts should be written in file and executed later.
+- Replacements require explicit path and assertion from count expected before recording. Zero or multiple unexpected abort without writing; validate all targets before batch change.
+- CRLF files require safe editing tool or script that read bytes and consciously preserve/normalize line ends; do not apply multiline regex assuming LF.
+- `grep -c $'\r'` can produce false negative on Windows/Git Bash. Check bytes (`Path(...).read_bytes().count(b'\r\n')` or PHP `bin2hex`); zero grep output does not prove LF.
+- In Windows removal, use a single shell from end to end; check absolute paths and reparse points before deleting. Do not enumerate in PowerShell to pass deletion to CMD. Never cross junctions in cleaning.

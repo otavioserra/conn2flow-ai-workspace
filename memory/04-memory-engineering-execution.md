@@ -11,6 +11,8 @@
 
 ## Atividades recentes
 
+- **2026-11-04 — ARCH-016 (backlog `ICEBOX`, sem código):** a fila do MCP Hub não tem consumidor. `dispatch_task` grava `tasks/<REQ>.json` (8 registros de REQ-041 a REQ-051 estão parados em `dispatched` desde então), o `executionToken` nunca é verificado e o `HubTaskWatcher` da extensão só mostra 4 s de barra de status. A ideia registrada propõe dois consumidores sobre a mesma fila: canal MCP (Claude Code Channels) para o chat visível/didático e runner `claude -p` headless com transcript em `sessions/`; o spike de Channels no painel do VS Code é o gate. Foi redigida como REQ-078 e rebaixada para backlog no mesmo dia por decisão humana; REQ-078 e BATCH-080 continuam livres.
+
 - **2026-10-01 — REQ-064 / BATCH-066:** sete skills ganharam as lições de um dia com dois agentes em três repositórios (pipeline de 8 etapas, saída 0 não prova conteúdo, um deploy por vez, árvore compartilhada, validação que prova, texto público). Propagador genérico em `scripts/skills/sync-skills.cjs`: sem argumentos audita, `--apply <skills>` propaga. **Três skills dos templates em inglês são traduções** (`translated.json`): não sobrescrever; o bloco novo entra à mão em inglês. `glob` do Python não casa pasta iniciada por ponto (`.claude`): listar os kits pelo nome.
 
 - **2026-09-30 — REQ-061 / BATCH-063:** integração de choques das entregas na extensão VS Code; `npm test` 122/122 e testes focados 20/20. O fluxo E2E e a publicação da branch permanecem pendentes no modo supervisionado; detalhe/resolução não foram executados porque baixam artefatos e alteram o tenant. O arquivador oficial aplicou a janela 10/10, reparou 14 links anteriormente órfãos e o gate final confirmou zero links quebrados.

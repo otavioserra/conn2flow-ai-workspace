@@ -1,5 +1,35 @@
 # Validation Checklist
 
+## BATCH-080 — REQ-078 (2026-11-05)
+
+### Rodada 1 — tradução e drift
+
+- [x] 42 skills restantes traduzidas, três anteriores preservadas e nova skill multilíngue criada; 46 versões EN, 312 arquivos publicados.
+- [x] Registro source_sha256/translated_at/translator, warning não bloqueante no Node/Python e reconhecimento explícito após revisão.
+- [x] Nova skill nos cinco kits; contadores ajustados para 46; 44 alvos PASS, zero divergências, 85 skills locais preservadas.
+- [x] Metadados e código preservados; traduções novas validadas antes da publicação; correções editoriais da amostra independente aplicadas.
+- [x] Python 138/138 (131 anteriores + sete casos de drift) e extensão 133/133; sintaxe CJS e diff check PASS.
+- [x] Forward-test independente em fixture: baseline PASS → mutação → warning sem sobrescrita → reconhecimento explícito → PASS.
+- [x] [REV-080](../human-reviews/rev-080.md): RECOMMEND-APPROVAL, com amostragem editorial explícita e correções aplicadas.
+- [ ] Homologação humana. Revisão editorial humana integral não atribuída.
+
+Evidências e limites: [BATCH-080](../implementation/batch-080.md), [JUnit](../../completions/BATCH-080-pytest.xml), [skills](../../completions/BATCH-080-skills-audit.json), [traduções](../../completions/BATCH-080-translation-audit.json).
+
+## BATCH-079 — REQ-077 (2026-11-05)
+
+### Rodada 1 — governança
+
+- [x] Pipeline padrão project:deploy, exceção mista update-all e regra restritiva de worktrees.
+- [x] DEC-136 e lições REP-002 incorporadas; 45 skills/44 alvos PASS, zero divergências.
+- [x] Python 131/131 e extensão 133/133; evidências em [batch-079.md](../implementation/batch-079.md).
+- [x] Revisão independente acionada.
+
+### Rodada 2 — limpeza
+
+- [x] 17 alvos inventariados sem atravessar junctions.
+- [x] Rodada 3: humano determinou preservar trabalho único; duas árvores comprovadamente integradas removidas sem força, 15 preservadas, ignorados arquivados/verificados, junctions desvinculadas e prune Core executado. [Evidência](../../completions/BATCH-079-cleanup-result.json).
+- [ ] Homologação humana.
+
 ## BATCH-078 — REQ-076 (2026-10-15)
 
 - [x] Inventário de 17 worktrees secundárias, commits exclusivos, diffs, stage, não rastreados e junctions; uma remoção sem força, 16 preservadas com motivos.
@@ -198,3 +228,10 @@ Evidências e limites: [lote](../implementation/batch-075.md), [resumo](../../co
 [Archived history](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
 
 [Archived history](<archive/compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
+
+
+## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
+
+- [x] Implementação e verificações locais registradas em [lote](../implementation/batch-081.md).
+- [x] Evidências e limites explicitados; sem git commit/push.
+- [ ] Revisão e homologação humana.

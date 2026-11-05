@@ -1,36 +1,36 @@
-﻿---
+---
 name: c2f-modelo-templates
-description: "LEIA ANTES de manipular templates HTML com marcadores <!-- cel < -->, <!-- tag < --> ou modelo_var_troca(). Se nÃ£o ler: blocos inteiros somem silenciosamente da tela ou geram tags residuais nÃ£o substituÃ­das."
+description: "READ BEFORE rendering or modifying templates with modelo.php. Follow the actual placeholder, cell and replacement contracts rather than assuming generic template-engine behavior."
 user-invocable: false
 ---
 
-# ManipulaÃ§Ã£o de Modelos e CÃ©lulas (`modelo.php`)
+# Model and Cell Handling (`modelo.php`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Manipular estruturas de repetiÃ§Ã£o, cÃ©lulas condicionais ou troca de marcadores em templates HTML via biblioteca `modelo.php`.
-- **SKIP APENAS SE**: RenderizaÃ§Ã£o direta de dados sem uso do motor de templates do Gestor.
-- **CONSEQUÃŠNCIA DE IGNORAR**: `modelo_tag_val()` devolvendo vazio e apagando seÃ§Ãµes da tela sem erro explÃ­cito, marcadores crus `#[id]#` expostos ao usuÃ¡rio final ou duplicaÃ§Ã£o de blocos.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Manipulate repeat structures, conditional cells or exchange of markers in templates HTML via `modelo.php` library.
+- **SKIP ONLY IF**: Direct rendering of data without use of Gestor template engine.
+- **CONSEQUENCE OF IGNORING**: `modelo_tag_val()` returning empty and deleting sections of the screen without explicit error, `#[id]#` raw markers exposed to the end user or block duplication.
 
 ---
 
-Consulte e aplique as seguintes convenÃ§Ãµes ao utilizar as funÃ§Ãµes de modelos e processamento de templates no Conn2Flow (`gestor/bibliotecas/modelo.php`):
+See and apply the following agreements when using template functions and template processing in Conn2Flow (`gestor/bibliotecas/modelo.php`):
 
-1. **SubstituiÃ§Ã£o de VariÃ¡veis (`modelo_var_troca` / `modelo_var_troca_tudo`)**:
-   - Substituir primeira ocorrÃªncia de array de marcadores: `$modelo = modelo_var_troca($modelo, ['#nome#' => 'JoÃ£o', '#local#' => 'Conn2Flow'])`.
-   - Substituir primeira ocorrÃªncia de marcador Ãºnico: `$modelo = modelo_var_troca($modelo, '#nome#', 'Maria')`.
-   - Substituir **todas** as ocorrÃªncias: `$modelo = modelo_var_troca_tudo($modelo, $variaveis)`.
+1. **Variables Replacement (`modelo_var_troca` / `modelo_var_troca_tudo`)**:
+   - Replace first occurrence of marker array: `$modelo = modelo_var_troca($modelo, ['#nome#' => 'JoÃ£o', '#local#' => 'Conn2Flow'])`.
+   - Replace first single marker occurrence: `$modelo = modelo_var_troca($modelo, '#nome#', 'Maria')`.
+   - Replace **all** with the following: `$modelo = modelo_var_troca_tudo($modelo, $variaveis)`.
 
-2. **ExtraÃ§Ã£o e PreparaÃ§Ã£o de CÃ©lula Repetitiva com Tags de ComentÃ¡rio**:
-   - PadrÃ£o de delimitaÃ§Ã£o no modelo: `<!-- cel < --> CONTEÃšDO DA CÃ‰LULA <!-- cel > -->`.
-   - ExtraÃ§Ã£o da cÃ©lula, armazenagem em `$cel['cel']` e troca no modelo original por um marcador neutro `<!-- cel -->`:
+2. **Repetitive Cell Extraction and Preparation with Comment Tags**:
+   - Delimitation standard § in the model: `<!-- cel < --> CONTEÃšDO DA CÃ‰LULA <!-- cel > -->`.
+   - Extract from the cell, storage in `$cel['cel']` and exchange in the original model for a neutral marker `<!-- cel -->`:
      ```php
      $cel_nome = 'cel';
      $cel[$cel_nome] = modelo_tag_val($modelo_texto, '<!-- '.$cel_nome.' < -->', '<!-- '.$cel_nome.' > -->');
      $modelo_texto = modelo_tag_troca_val($modelo_texto, '<!-- '.$cel_nome.' < -->', '<!-- '.$cel_nome.' > -->', '<!-- '.$cel_nome.' -->');
      ```
 
-3. **IteraÃ§Ã£o e InjeÃ§Ã£o Progressiva de CÃ©lulas Processadas (`modelo_var_in`)**:
-   - Iterar sobre a coleÃ§Ã£o de dados e injetar cada item processado no marcador da cÃ©lula:
+3. **Iteration and Progressive Injection of Processed Cells (`modelo_var_in`)**:
+   - Iterate on the data collection and inject each processed item into the cell marker:
      ```php
      foreach ($itens as $item) {
          $cel_nome = 'cel';
@@ -42,8 +42,8 @@ Consulte e aplique as seguintes convenÃ§Ãµes ao utilizar as funÃ§Ãµes de
      $modelo_processado = modelo_var_troca($modelo_processado, '<!-- '.$cel_nome.' -->', '');
      ```
 
-4. **DeleÃ§Ã£o Condicional de CÃ©lula/Bloco (`modelo_tag_del`)**:
-   - Se a lista estiver vazia ou o bloco condicional nÃ£o dever ser exibido:
+4. **Conditional Cell/Block Element (`modelo_tag_del`)**:
+   - If the list is empty or the conditional block should not be displayed:
      ```php
      $cel_nome = 'cel';
      $modelo_texto = modelo_tag_del($modelo_texto, '<!-- '.$cel_nome.' < -->', '<!-- '.$cel_nome.' > -->');
@@ -52,9 +52,9 @@ Consulte e aplique as seguintes convenÃ§Ãµes ao utilizar as funÃ§Ãµes de
 
 ---
 
-## 5. Mockup Defensivo de Widgets (`<!-- widgets#SIG < -->`)
+## 5. Defensive Widget Mockup (`<!-- widgets#SIG < -->`)
 
-- Quando um widget pode retornar conteúdo vazio (ex: widget de listagem sem itens, widget condicional), use o **padrão de mockup defensivo** para evitar telas em branco e preservar as classes Tailwind no build:
+- When a widget can return empty content (e.g. list widget without items, conditional widget), use **defensive mockup pattern** to avoid blank screens and preserve Tailwind classes in build:
 ```html
 <!-- widgets#formulario-contato < -->
 <div class="p-6 bg-white rounded-lg shadow-md">
@@ -64,19 +64,19 @@ Consulte e aplique as seguintes convenÃ§Ãµes ao utilizar as funÃ§Ãµes de
 <!-- widgets#formulario-contato > -->
 ```
 
-- **Funcionamento**: O motor de widgets substitui o conteúdo entre os marcadores `<!-- widgets#ID < -->` e `<!-- widgets#ID > -->` pelo output real do widget. Se o widget devolver vazio, o mockup original é preservado.
-- **Benefício Duplo**:
-  1. **UX**: O usuário nunca vê uma tela em branco — o mockup serve como placeholder visual.
-  2. **Tailwind Build**: As classes CSS do mockup (`p-6`, `bg-white`, `rounded-lg`, etc.) são detectadas pelo scanner do Tailwind e incluídas no build, evitando a perda de classes que só existem no output dinâmico do widget.
+- **Operation**: The widget engine replaces the content between `<!-- widgets#ID < -->` and `<!-- widgets#ID > -->` markers with the actual widget output. If the widget returns empty, the original mockup is preserved.
+- **Double Benefit**:
+  1. **UX**: The user never sees a blank screen — the mockup serves as a visual placeholder.
+  2. **Tailwind Build**: The CSS classes of the mockup (`p-6`, `bg-white`, `rounded-lg`, etc.) are detected by the Tailwind scanner and included in the build, avoiding loss of classes that only exist in the dynamic output of the widget.
 
 > [!WARNING]
-> Sem o mockup defensivo, classes Tailwind usadas exclusivamente pelo widget podem ser eliminadas do CSS compilado, causando quebra visual quando o widget finalmente renderiza.
+> Without the defensive mockup, Tailwind classes used exclusively by the widget can be deleted from the compiled CSS, causing visual break when the widget finally renders.
 
 ---
 
-## 6. Isolamento de Fragmentos de Formulário com `<template>`
+## 6. Form Fragments Insulation with `<template>`
 
-- Fragmentos de HTML que servem como templates client-side (ex: opções de select, toggles de senha, blocos clonáveis) devem ser envolvidos em `<template>` para **não vazarem no DOM vivo**:
+- HTML fragments that serve as client-side templates (e.g. select options, password toggles, cloneable blocks) should be involved in `<template>` for **do not leak into the living DOM**:
 ```html
 <!-- ❌ ERRADO — fragmento visível no DOM, pode causar estilos indesejados -->
 <div id="opcoes-template" style="display:none">
@@ -89,13 +89,13 @@ Consulte e aplique as seguintes convenÃ§Ãµes ao utilizar as funÃ§Ãµes de
 </template>
 ```
 
-- **Razão Técnica**: O elemento `<template>` é inerte — seu conteúdo não é renderizado, scripts internos não executam, estilos não se aplicam e formulários internos não são submetidos. Isso previne:
-  - Marcadores `#[...]#` não substituídos aparecendo na tela.
-  - Elementos `<option>` fantasmas poluindo selects.
-  - Event listeners sendo acionados prematuramente.
-  - Classes CSS órfãs afetando o layout.
+- **Technical Reason**: The `<template>` element is inert — its content is not rendered, internal scripts do not run, styles do not apply and internal forms are not submitted. This prevents:
+  - `#[...]#` tags not replaced appearing on the screen.
+  - Elements `<option>` ghosts polluting selects.
+  - Event listeners being triggered prematurely.
+  - Orphaned CSS classes affecting layout.
 
-- **Acesso via JavaScript**:
+- **JavaScript access**:
 ```javascript
 const template = document.getElementById('opcoes-template');
 const clone = template.content.cloneNode(true);

@@ -1,21 +1,21 @@
 ---
 name: c2f-gd-image-safety
-description: "LEIA ANTES de manipular imagens com PHP GD (redimensionamento, conversão, thumbnails). Se não ler: o servidor entra em Fatal Error por falta de suporte a formatos (WebP/AVIF), esgota memória ou corrompe uploads."
+description: "READ BEFORE resizing, converting or generating thumbnails with PHP GD. Prevents fatal errors from unsupported WebP/AVIF formats, memory exhaustion and corrupted uploads."
 user-invocable: false
 ---
 
-# Segurança de imagens GD
+# GD Image Security
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Manipular upload, redimensionamento, recorte ou conversão de imagens usando a extensão GD do PHP.
-- **SKIP APENAS SE**: Upload de arquivos binários não-imagem (PDFs, vídeos, áudios) tratados como arquivos estáticos puros.
-- **CONSEQUÊNCIA DE IGNORAR**: Fatal Errors não capturados (`\Throwable`) em servidores sem suporte nativo a formatos específicos (WebP/AVIF) e corrupção de imagens de usuários.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Manipulate upload, resize, crop or image conversion using the PHP GD extension.
+- **SKIP ONLY IF**: Upload non-image binary files (PDFs, videos, audios) treated as pure static files.
+- **CONSEQUENCE OF IGNORING**: Fatal Uncaptured Errors (`\Throwable`) on servers without native support to specific formats (WebP/AVIF) and corruption of user images.
 
 ---
 
-- Antes de processar um formato, confirme `function_exists` tanto para a função de leitura quanto para a de escrita.
-- Não presuma suporte WebP/AVIF a partir da presença da extensão GD; valide as funções específicas ou `gd_info()`.
-- Capture `\Throwable`, não apenas `\Exception`: função GD ausente lança `\Error` e pode causar HTTP 500.
-- Se o servidor não puder gerar miniatura, degrade com segurança para o arquivo original quando o navegador suportá-lo.
-- Valide entrada, saída e destruição de recursos; nunca grave arquivo parcial sobre o original.
-- Teste explicitamente um runtime sem suporte ao formato opcional.
+- Before processing a format, confirm `function_exists` for both the read and write function.
+- Do not assume WebP/AVIF support from the presence of the GD extension; validate specific functions or `gd_info()`.
+- Capture `\Throwable`, not only `\Exception`: missing GD function launches `\Error` and can cause HTTP 500.
+- If the server cannot generate thumbnail, safely degrade to the original file when the browser supports it.
+- Validate input, output and destruction of resources; never record partial file on the original.
+- Explicitly test a runtime without optional format support.

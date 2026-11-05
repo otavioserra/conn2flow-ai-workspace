@@ -1,27 +1,27 @@
 ---
 name: raise-spec-change
-description: "LEIA ANTES de alterar qualquer regra normativa, requisito funcional ou contrato em sdd/SPEC.md. Se não ler: mudanças não autorizadas violam a governança SDD e geram retrabalho estrutural."
+description: "READ BEFORE changing normative rules, functional requirements or contracts in sdd/SPEC.md. Requires explicit change tracking to preserve SDD governance."
 user-invocable: true
 ---
 
-# Mudança normativa
+# Standard change
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Detectar que a implementação exige mudança de contrato, novo modelo de dados, alteração de requisito ou quebra de premissa em `sdd/SPEC.md`.
-- **SKIP APENAS SE**: A mudança for apenas de detalhe técnico de implementação dentro dos limites da especificação vigente.
-- **CONSEQUÊNCIA DE IGNORAR**: Violação do fluxo normativo SDD, edição ilegal de arquivos restritos da Chefia e desvio do escopo do projeto.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Detect that implementation requires contract change, new data model, requirement change or premise break in `sdd/SPEC.md`.
+- **SKIP ONLY IF**: The change is only technical implementation detail within the limits of the current specification.
+- **CONSEQUENCE OF IGNORING**: Violation of SDD normative flow, illegal editing of restricted files of the Head office and deviation of the scope of the project.
 
 ---
 
-Trate `$ARGUMENTS` como um pedido de mudança normativa.
+Treat `$ARGUMENTS` as a normative change request.
 
-## Procedimento
+## Procedure
 
-1. Carregue `mdd-workflow`.
-2. Confirme o impacto em `sdd/`, decisions, implementation e validation.
-3. Registre a mudança em `sdd/change-requests/` antes de consolidar no sdd numerado.
-4. Só implemente depois que a mudança normativa ficar explícita.
+1. Load `mdd-workflow`.
+2. Confirm impact on `sdd/`, decisions, implementation and validation.
+3. Register the change in `sdd/change-requests/` before consolidating in numbered sdd.
+4. Only implement after the normative change becomes explicit.
 
-## Pedido atual
+## Current request
 
 $ARGUMENTS

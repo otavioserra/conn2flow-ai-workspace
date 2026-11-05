@@ -1,25 +1,25 @@
 ---
 name: c2f-module-crud-scaffolding
-description: "LEIA ANTES de criar, estruturar ou refatorar novos módulos administrativos e CRUDs no Conn2Flow. Se não ler: o módulo viola o padrão canônico modulos-grupos, quebra o histórico de auditoria e falha na sincronização determinística."
+description: "READ BEFORE creating, structuring or refactoring administrative modules and CRUDs. Follows the canonical modulos-grupos pattern, audit history and deterministic synchronization."
 user-invocable: false
 ---
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar uma nova pasta em `modulos/` ou `gestor/modulos/` contendo controller `.php`, schema `.json`, script `.js` e `resources/`.
-- **SKIP APENAS SE**: Pequenos ajustes pontuais em módulos legados sem alteração de estrutura ou ciclo de vida.
-- **CONSEQUÊNCIA DE IGNORAR**: Módulos incompatíveis com o dispatcher de rotas, ausência de chave natural (`strategy: "natural_key"`), falha no snapshot de histórico (`banco_select_campos_antes_iniciar`) e perda de auditoria.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create a new folder in `modulos/` or `gestor/modulos/` containing controller `.php`, schema `.json`, script `.js` and `resources/`.
+- **SKIP ONLY IF**: Small point adjustments in legacy modules without changing structure or life cycle.
+- **CONSEQUENCE OF IGNORING**: Modules incompatible with route dispatcher, absence of natural key (`strategy: "natural_key"`), history snapshot failure (`banco_select_campos_antes_iniciar`) and audit loss.
 
 ---
 
-# Scaffolding Canônico de Módulos CRUD no Conn2Flow
+# CRUD Canon Module Scaffolding in Conn2Flow
 
-Consulte e aplique este guia arquitetural sempre que for criar ou refatorar um módulo administrativo no Conn2Flow. O módulo canônico de referência é `gestor/modulos/modulos-grupos/`.
+See and apply this architectural guide whenever you are creating or refactoring an administrative module in Conn2Flow. The reference canonical module is `gestor/modulos/modulos-grupos/`.
 
 ---
 
-## 1. Estrutura Padrão de Diretórios e Arquivos
+## 1. Default Directory and File Structure
 
-Todo módulo administrativo deve residir em `gestor/modulos/<modulo-id>/` ou `modulos/<modulo-id>/` com a seguinte composição obrigatória:
+Every administrative module shall be either `gestor/modulos/<modulo-id>/` or `modulos/<modulo-id>/` with the following mandatory composition:
 
 ```
 modulos/<modulo-id>/
@@ -40,19 +40,19 @@ modulos/<modulo-id>/
         └── variables.json                       # Variáveis e labels multilíngues en
 ```
 
-### 1.1 Identidade Visual e Capa Obrigatória (`c2f-module-visual-assets`)
+### 1.1 Visual Identity and Mandatory Cover (`c2f-module-visual-assets`)
 
-Todo novo módulo administrativo DEVE nascer com sua capa conceitual 3D padronizada, seguindo rigorosamente as diretrizes da skill `c2f-module-visual-assets`:
-- **Padrão Estético**: 3D isométrico, fundo azul meia-noite profundo, acentos ciano/violeta, vidro fosco e cerâmica suave (Design System V3.0). Sem texto, números ou logotipos.
-- **Formato e Resolução**: WebP 1024×1024 px (proporção 1:1), qualidade 90, método 6, peso máximo < 120 KB (alvo: 60 KB a 95 KB).
-- **Armazenamento Canônico**: Arquivo `gestor/assets/modulos/covers/<modulo-id>.webp` (e opcionalmente espelhado na raiz do módulo como `modulos/<modulo-id>/cover.webp`).
-- **Registro Obrigatório no Manifesto**: Toda nova capa deve ser cadastrada em `gestor/assets/modulos/covers/manifest.json` com `id`, `width`, `height`, `bytes` e hash `sha256` antes da homologação do módulo.
+All new administrative module MUST be born with its standardized 3D conceptual cover, strictly following the guidelines of skill `c2f-module-visual-assets`:
+- **Aesthetic Pattern**: 3D isometric, deep blue background midnight, cyan/violet accents, ground glass and smooth ceramic (Design System V3.0). No text, no numbers or logos.
+- **Format and Resolution**: WebP 1024×1024 px (proportion 1:1), quality 90, method 6, maximum weight < 120 KB (target: 60 KB to 95 KB).
+- **Canon Storage**: `gestor/assets/modulos/covers/<modulo-id>.webp` file (and optionally mirrored at the module root as `modulos/<modulo-id>/cover.webp`).
+- **Mandatory Register in Manifesto**: Every new cover must be registered in `gestor/assets/modulos/covers/manifest.json` with `id`, `width`, `height`, `bytes` and hash `sha256` before the human acceptance module.
 
 ---
 
-## 2. Schema Declarativo (`<modulo-id>.json`)
+## 2. Declarative Schema (`<modulo-id>.json`)
 
-O arquivo JSON define dependências de bibliotecas, mapeamento ORM/tabela e metadados de recursos:
+The JSON file defines library dependencies, ORM/table mapping and resource metadata:
 
 ```json
 {
@@ -133,9 +133,9 @@ O arquivo JSON define dependências de bibliotecas, mapeamento ORM/tabela e meta
 
 ---
 
-## 3. Anatomia do Controller PHP (`<modulo-id>.php`)
+## 3. PHP Controller Anatomy (`<modulo-id>.php`)
 
-### 3.1. Inicialização e Carregamento
+### 3.1. Initialization and Loading
 ```php
 <?php
 
@@ -145,7 +145,7 @@ $_GESTOR['modulo-id']                      = 'meu-modulo';
 $_GESTOR['modulo#'.$_GESTOR['modulo-id']] = json_decode(file_get_contents(__DIR__ . '/meu-modulo.json'), true);
 ```
 
-### 3.2. Função `_adicionar()`
+### 3.2. Function `_adicionar()`
 ```php
 function meu_modulo_adicionar(){
     global $_GESTOR;
@@ -215,7 +215,7 @@ function meu_modulo_adicionar(){
 }
 ```
 
-### 3.3. Função `_editar()`
+### 3.3. Function `_editar()`
 ```php
 function meu_modulo_editar(){
     global $_GESTOR;
@@ -348,10 +348,10 @@ function meu_modulo_editar(){
 }
 ```
 
-### 3.4. Função `_clonar()`
-Segue a mesma lógica de `_adicionar()`, recuperando os valores do registro original via `banco_select_editar()` e populando os campos no formulário.
+### 3.4. Function `_clonar()`
+It follows the same logic as `_adicionar()`, recovering the values of the original record via `banco_select_editar()` and populating the fields in the form.
 
-### 3.5. Função `_interfaces_padroes()` (Configuração da Listagem)
+### 3.5. Function `_interfaces_padroes()` (List Configuration)
 ```php
 function meu_modulo_interfaces_padroes(){
     global $_GESTOR;
@@ -427,9 +427,9 @@ meu_modulo_start();
 
 ---
 
-## 4. Regras Mandatórias de Engenharia
+## 4. Engineering Mandatory Rules
 
-1. **PROIBIDO Hardcode de Textos**: Todo e qualquer rótulo, título, tooltip ou mensagem de alerta deve vir de `gestor_variaveis(...)` (ver `c2f-variables-system`).
-2. **PROIBIDO Arquivos Estáticos Soltos**: Todas as telas devem residir no sistema de recursos em `resources/<lang>/pages/` (ver `c2f-resources-system`).
-3. **Sempre Usar Chave Natural**: Gerar slugs e IDs com `banco_identificador()` garantindo unicidade por idioma (`language = $_GESTOR['linguagem-codigo']`).
-4. **Sempre Usar Snapshot de Edição**: Toda gravação de edição DEVE iniciar com `banco_select_campos_antes_iniciar()` e registrar o log de alterações com `interface_historico_incluir()`.
+1. **Forbidden Hardcode of Texts**: Any label, title, tooltip or alert message must come from `gestor_variaveis(...)` (see `c2f-variables-system`).
+2. **No loose HTML**: All screens must reside in the `resources/<lang>/pages/` resource system (see `c2f-resources-system`).
+3. **Always Use Natural Key**: Generate slugs and IDs with `banco_identificador()` ensuring uniqueness by language (`language = $_GESTOR['linguagem-codigo']`).
+4. **Always Use Edit Snapshot**: All Edit Recording MUST start with `banco_select_campos_antes_iniciar()` and log in with `interface_historico_incluir()`.

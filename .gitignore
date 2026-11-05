@@ -34,3 +34,8 @@ sdd/**/local/
 mcp-hub/tasks/
 mcp-hub/completions/
 
+
+# Rebuildable local MDD database
+.mdd.sqlite
+.mdd.sqlite-wal
+.mdd.sqlite-shm

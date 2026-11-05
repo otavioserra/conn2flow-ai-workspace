@@ -7,6 +7,8 @@
 | REV-076 | Revisão independente do MCP nativo, UI MDD e migração home | MCP, interface MDD e preservação home conferidos; finding do painel corrigido e homologação visual pendente. | [source](<rev-076.md>) | RECOMMEND-APPROVAL |
 | REV-077 | Revisão independente das skills MDD e proporcionalidade de build | Skills MDD e testes conferidos; propriedade Core, fontes do backlog e etapas documentadas corrigidas. | [source](<rev-077.md>) | RECOMMEND-APPROVAL |
 | REV-078 | Revisão independente da limpeza segura do ecossistema | Limpeza revisada sem finding bloqueante; trabalho vivo e pendências humanas preservados. | [source](<rev-078.md>) | RECOMMEND-APPROVAL |
+| REV-079 | Revisão independente da governança de pipelines, worktrees e REP-002 | Governança revisada; duas worktrees seguras removidas e quinze preservadas conforme orientação humana. | [source](<rev-079.md>) | RECOMMEND-APPROVAL |
+| REV-080 | Revisão independente do antidrift e da skill de governança multilíngue | Forward-test isolado PASS; antidrift e reconhecimento explícito preservam traduções e registro. | [source](<rev-080.md>) | RECOMMEND-APPROVAL |
 
 ## Directories
 

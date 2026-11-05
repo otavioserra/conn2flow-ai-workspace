@@ -1,53 +1,53 @@
 ---
 name: c2f-widget-development
-description: "LEIA ANTES de desenvolver ou alterar widgets do sistema e seus renderizadores. Se não ler: widgets quebram o isolamento de escopo, duplicam IDs no DOM e falham na renderização pública."
+description: "READ BEFORE developing or modifying widgets and their renderers. Preserves scope isolation, unique DOM IDs and public rendering."
 user-invocable: false
 ---
 
-# Desenvolvimento de widgets Conn2Flow
+# Conn2Flow widget development
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar ou modificar widgets (`*.widget.php`, `*.widget.js`), tags `@[[widgets#...]]@` ou controladores de renderização de widgets.
-- **SKIP APENAS SE**: Componentes visuais estáticos que não possuem ciclo de vida autônomo de widget.
-- **CONSEQUÊNCIA DE IGNORAR**: Colisão de identificadores no DOM ao instanciar múltiplos widgets, perda de dados na injeção de parâmetros dinâmicos e quebra de renderização no site final.
-
----
-
-1. Injete CSS, head e JavaScript por `gestor_pagina_recursos_incluir([...])`; centralize a inclusão e preserve a deduplicação do helper.
-2. Não chame novamente controladores de recursos que o render do widget já inclui.
-3. No frontend envie `ajaxOpcao`; no backend trate a mesma ação em `$_GESTOR['ajax-opcao']` e evite nomes reservados pelo fechamento AJAX genérico.
-4. Para tokens de item, aceite wrappers opcionais com `/@?\[\[item#([a-zA-Z0-9_\-]+)\]\]@?/` e substitua todas as ocorrências.
-5. Mantenha blocos de repetição, vazio e controles compatíveis com o contrato do AI mode/template do widget.
-6. Valide duas renderizações na mesma página para detectar duplicação de assets, além do caminho AJAX feliz e de erro.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create or modify widgets (`*.widget.php`, `*.widget.js`), `@[[widgets#...]]@` tags or rendering widget drivers.
+- **SKIP ONLY IF**: Static visual components that do not have an autonomous widget life cycle.
+- **CONSEQUENCE OF IGNORING**: Collapse of identifiers in the DOM by instantiating multiple widgets, data loss in injecting dynamic parameters and breaking rendering on the end site.
 
 ---
 
-## 7. Contrato Modular de Grid (Dimensões Dinâmicas e Drag-and-Drop)
-
-Todo widget que participa de painéis modulares, dashboards ou layouts customizáveis deve obedecer ao **contrato de grid modular**:
-
-### 7.1 Dimensões Dinâmicas (`width` e `height`)
-- Os widgets devem ser declarados com suporte a redimensionamento em unidades de grid (colunas e linhas):
-  - `grid_w` (largura em colunas, ex: `1` a `12`).
-  - `grid_h` (altura em linhas/unidades de altura, ex: `1` a `6`).
-- **Limites Estritos de Redimensionamento**:
-  - `min_w`: largura mínima para renderização legível sem truncamento de controles.
-  - `max_w`: largura máxima permitida no container.
-  - `min_h`: altura mínima que garante exibição do conteúdo essencial sem overflow vertical quebrado.
-  - `max_h`: altura máxima recomendada para evitar distorção de proporção.
-- O HTML e CSS do widget devem utilizar containers flexíveis (`w-full h-full`) e respeitar overflow interno com scrollbars sutis (`overflow-y-auto overflow-x-hidden`) quando o conteúdo exceder a área útil.
-
-### 7.2 Drag-and-Drop e Preservação de Estado
-- Ao mover ou redimensionar widgets em um layout interativo, a biblioteca cliente emite eventos de layout.
-- O widget deve manter seletores com atributos de dados isolados (ex: `data-widget-id="<id>"`, `data-widget-instance="<hash>"`) para evitar que clones ou múltiplos widgets na mesma tela colidam event listeners ou propriedades de estilo.
+1. Inject CSS, head and JavaScript by `gestor_pagina_recursos_incluir([...])`; centralize inclusion and preserve helper deduplication.
+2. Do not call again resource controllers that render widget already includes.
+3. In the frontend send `ajaxOpcao`; in the backend treat the same action in `$_GESTOR['ajax-opcao']` and avoid names reserved by generic AJAX closure.
+4. For item tokens, accept optional wrappers with `/@?\[\[item#([a-zA-Z0-9_\-]+)\]\]@?/` and replace all occurrences.
+5. Keep repeat blocks, empty and controls compatible with the AI contract mode/ widget template.
+6. Validate two renderings on the same page to detect duplicate asset beyond the happy and error path AJAX.
 
 ---
 
-## 8. Ciclo de Vida e Re-renderização AJAX (`ajaxOpcao: 'widget-render'`)
+## 7. Modular Grid Contract (Dynamic Dimensions and Drag-and-Drop)
 
-Widgets dinâmicos que atualizam seu conteúdo assincronamente (filtros, paginação interna, polling ou atualização pós-redimensionamento) devem adotar o endpoint padronizado:
+Every widget that participates in modular panels, dashboards or customizable layouts must comply with **modular grid contract**:
 
-### 8.1 Chamada Frontend
+### 7.1 Dynamic Dimensions (`width` and `height`)
+- The widgets shall be declared with resizing support in grid units (columns and lines):
+  - `grid_w` (width in columns, e.g. `1` to `12`).
+  - `grid_h` (height in lines/height units, e.g. `1` to `6`).
+- **Resizing Strict Limits**:
+  - `min_w`: minimum width for rendering readable without truncation of controls.
+  - `max_w`: maximum width allowed in container.
+  - `min_h`: Minimum height that ensures display of essential content without broken vertical overflow.
+  - `max_h`: maximum recommended height to avoid proportion distortion.
+- The HTML and CSS of the widget must use flexible containers (`w-full h-full`) and respect internal overflow with subtle scrollbars (`overflow-y-auto overflow-x-hidden`) when the content exceeds the useful area.
+
+### 7.2 Drag-and-Drop and State Preservation
+- When moving or resizing widgets in an interactive layout, the client library issues layout events.
+- The widget must maintain selectors with isolated data attributes (e.g. `data-widget-id="<id>"`, `data-widget-instance="<hash>"`) to prevent clones or multiple widgets on the same screen colliding event listers or style properties.
+
+---
+
+## 8. Life Cycle and Re-rendering AJAX (`ajaxOpcao: 'widget-render'`)
+
+Dynamic widgets that update their content asynchronously (filters, internal pagination, polling or post-resize update) must adopt the standardized endpoint:
+
+### 8.1 Frontend Call
 ```javascript
 gestorAjax(state, 'widget-render', {
     widget_id: 'meu-widget',
@@ -67,7 +67,7 @@ gestorAjax(state, 'widget-render', {
 });
 ```
 
-### 8.2 Manipulador Backend no Módulo/Controlador
+### 8.2 Backend Manipulator in Module/Control
 ```php
 if (!empty($_GESTOR['ajax'])) {
     interface_ajax_iniciar();
@@ -103,4 +103,4 @@ if (!empty($_GESTOR['ajax'])) {
 ```
 
 > [!IMPORTANT]
-> A re-renderização via `ajaxOpcao: 'widget-render'` não deve reinjetar dependências de scripts globais (`<script>` no head) já carregadas; use `gestor_pagina_recursos_incluir()` com deduplicação nativa.
+> Re-rendering via `ajaxOpcao: 'widget-render'` should not reinject global script dependencies (`<script>` on the head) already loaded; use `gestor_pagina_recursos_incluir()` with native deduplication.

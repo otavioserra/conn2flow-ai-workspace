@@ -1,49 +1,56 @@
 ---
 name: c2f-tailwind-module-migration
-description: "LEIA ANTES de migrar um módulo do painel do Fomantic-UI para Tailwind (programa da req-219). Se não ler: o JS legado quebra só na página Tailwind, sem erro no PHP, e as responsivas se invertem."
+description: "READ BEFORE migrating a panel module from Fomantic-UI to Tailwind under req-219. Prevents legacy JavaScript breakage and inverted responsive behavior."
 user-invocable: false
 ---
 
-# Migração de módulo do painel para Tailwind (req-219, DEC-132)
+# Panel module migration to Tailwind (req-219, DEC-132)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: trocar páginas de um módulo do `layout-administrativo-do-gestor` para o `layout-administrativo-tailwind`, criar variante `-tailwind` de componente ou mexer na biblioteca de controles.
-- **SKIP APENAS SE**: o módulo já está todo em Tailwind e a mudança não toca HTML, JS de tela nem componentes.
-- **CONSEQUÊNCIA DE IGNORAR**: botão sem ação, aba que não troca, modal aberto no rodapé, `grid-cols-1` vencendo `md:grid-cols-2`, salvar com 403.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: swap pages from a `layout-administrativo-do-gestor` module to `layout-administrativo-tailwind`, create component `-tailwind` variant, or tap the control library.
+- **SKIP ONLY IF**: The module is already in Tailwind and the change does not touch HTML, screen JS or components.
+- **CONSEQUENCE OF IGNORING**: Actionless button, unchanged tab, footer open modal, `grid-cols-1` winning `md:grid-cols-2`, save with 403.
 
-## Referência viva
+## Alive reference
 
-- Implementação completa: `admin-paginas` (commits `7cf44d27` e `435fd83c`, relatório `sdd/implementation/BATCH-227.md`).
-- Módulo Tailwind nativo: `perfil-usuario`.
-- Biblioteca: cabeçalhos de `gestor/assets/interface/controles.js` e `gestor/bibliotecas/controles.php`.
-- Contrato testado: `tests/Unit/PHP/HtmlEditorTailwindReq219Test.php`. Roteiro de navegador modelo: `conn2flow-site/sdd/validation/core/req219-controles-e2e.cjs`.
+- Full implementation: `admin-paginas` (commits `7cf44d27` and `435fd83c`, `sdd/implementation/BATCH-227.md` report).
+- Native Tailwind Module: `perfil-usuario`.
+- Library: `gestor/assets/interface/controles.js` and `gestor/bibliotecas/controles.php` headers.
+- Contract tested: `tests/Unit/PHP/HtmlEditorTailwindReq219Test.php`. Model browser script: `conn2flow-site/sdd/validation/core/req219-controles-e2e.cjs`.
 
-## Passo a passo por módulo
+## Step by step per module
 
-1. **Metadados** (`<modulo>.json`, pt-br e en), em cada página migrada: `layout: layout-administrativo-tailwind`, `framework_css: tailwindcss`, `tailwind_bundle: true`, `tailwind_dependencies` (os globais do painel — `menu-principal-sistema-tailwind`, `interface-formulario-edicao-tailwind` ou `-inclusao-tailwind`, `interface-carregando/alerta/delecao-modal-tailwind`, `interface-formulario-autorizacao-provisoria-tailwind` — mais toda variante montada em runtime) e `tailwind_sources` para PHP/JS que escrevem utilities. Suba `version` da página e `versao` do módulo.
-2. **PHP da opção**: `$_GESTOR['tailwind-page-bundle'] = true;` no começo da função da opção. Sem isso os sidecars dos componentes entram depois do bundle e as responsivas se invertem.
-3. **HTML da página**: campos no padrão `c2fc-campo` / `c2fc-campo-rotulo` / `c2fc-campo-entrada`, grade com `grid grid-cols-1 gap-4 md:grid-cols-2`, chave com `c2fc-chave` (checkbox nativo + `c2fc-chave-trilho`), aviso em caixa `rounded-lg border … bg-sky-50`. Mantenha `name`, `id`, placeholders `#…#`, variáveis `@[[…]]@` e marcadores `<!-- x < -->` exatamente. `data-checked="#x#"` vira o atributo direto `#x#` (o PHP troca por `checked`). O selo de status dos metadados sai por `interface_status_selo($status)` (já aplicado em quase todos os módulos); outras peças escritas no PHP do módulo também mudam.
-4. **Componentes do módulo** montados em runtime: crie `<id>-tailwind` e escolha com `interface_componente_variante('<id>')` (guarde com `function_exists` em biblioteca que roda sem o `interface`). Registre no JSON do módulo (ou em `resources/<lang>/components.json` se for global) com `framework_css: tailwindcss`.
-5. **JS do módulo**: continua funcionando pela ponte (`dropdown`, `checkbox`, `tab`, `modal`, `dimmer`, `popup`, `form`, `transition`). Troque só o que depende de classe visual: seletores `.ui.form`, `.x.button`, `.closest('.field')`, `$.formSubmitNormal` (use `form.requestSubmit()`), `alert/confirm/prompt` (use `c2fControles.dialogo`). Código novo é JavaScript puro.
-6. **Modais na variante** nascem com `hidden`, guardam `header/content/actions` e os ganchos `approve`/`cancel`/`deny`; a ponte os leva ao `body`. Cobertura de carregamento: `ui dimmer c2fc-cobertura` (o JS legado liga `.active`).
-7. **Listagem** (página raiz): a listagem Tailwind da req-220 já está em `main`. Troque layout/bundle da raiz, ponha `interface-listar-tailwind` nas dependências e `$_GESTOR['tailwind-page-bundle'] = true;` no `case 'listar'`. Filtro próprio no topo vai em `tabela.cabecalho` como variante `-tailwind` (exemplo: `lista-pagina-ou-sistema-tailwind` do `admin-paginas`). O componente tem `id="_gestor-interface-listar"`, então o JS do módulo que liga filtros continua achando a lista.
+1. **Metadata** (`<modulo>.json`, en and en) on each migrated page: `layout: layout-administrativo-tailwind`, `framework_css: tailwindcss`, `tailwind_bundle: true`, `tailwind_dependencies` (the panel globals — `menu-principal-sistema-tailwind`, `interface-formulario-edicao-tailwind` or `-inclusao-tailwind`, `interface-carregando/alerta/delecao-modal-tailwind`, `interface-formulario-autorizacao-provisoria-tailwind` — plus all variant mounted on runtime) and `tailwind_sources` for PHP/JS writing utilities. Up page `version` and `versao` of the module.
+2. **PHP of option**: `$_GESTOR['tailwind-page-bundle'] = true;` at the beginning of the option function. Without that the sidecars of the components enter after the bundle and the responsives reverse.
+3. **Page HTML**: fields in standard `c2fc-campo` / `c2fc-campo-rotulo` / `c2fc-campo-entrada`, grid with `grid grid-cols-1 gap-4 md:grid-cols-2`, key with `c2fc-chave` (native checkbox + `c2fc-chave-trilho`), warning in box `rounded-lg border … bg-sky-50`. Keep `name`, `id`, `#…#` placeholders, `@[[…]]@` variables and `<!-- x < -->` markers exactly. `data-checked="#x#"` becomes the direct attribute `#x#` (the PHP swaps for `checked`). The status stamp of the metadata comes out by `interface_status_selo($status)` (already applied in almost all modules); other pieces written in the PHP module also change.
+4. **Module components** mounted on runtime: create `<id>-tailwind` and choose with `interface_componente_variante('<id>')` (guard with `function_exists` in library running without `interface`). Register in the JSON module (or `resources/<lang>/components.json` if global) with `framework_css: tailwindcss`.
+5. **Module JS**: continues to operate through the bridge (`dropdown`, `checkbox`, `tab`, `modal`, `dimmer`, `popup`, `form`, `transition`). Change only what depends on visual class: selectors `.ui.form`, `.x.button`, `.closest('.field')`, `$.formSubmitNormal` (use `form.requestSubmit()`), `alert/confirm/prompt` (use `c2fControles.dialogo`). New code is pure JavaScript.
+6. **Modals in the variant** are born with `hidden`, guard `header/content/actions` and the `approve`/`cancel`/`deny` hooks; the bridge leads them to the `body`. Charging coverage: `ui dimmer c2fc-cobertura` (JS legacy connects `.active`).
+7. **List** (root page): the Tailwind list of the req-220 is already in `main`. Change root layout/bundle, put `interface-listar-tailwind` on dependencies and `$_GESTOR['tailwind-page-bundle'] = true;` on `case 'listar'`. Own top filter goes on `tabela.cabecalho` as `-tailwind` variant (example: `lista-pagina-ou-sistema-tailwind` `admin-paginas`). The component has `id="_gestor-interface-listar"`, so the JS of the module that connects filters still finds the list.
 
-## Regras da casa
+## House rules
 
-- Utility do Tailwind só no HTML de recurso (é o que o compilador vê). Elemento criado por JS/PHP genérico usa classe `c2fc-*` em `controles.css`.
-- Ícones: Lucide (`<i data-lucide="nome" class="size-4">`); dentro de `<template>` não renderiza.
-- Tooltips: `data-c2f-dica` (o `data-tooltip` é CSS do Fomantic).
-- Não mexa em `controles.js`/`controles.css`/`controles.php`, `interface.php` nem `html-editor.php` fora do seu escopo: peça no relatório ao dono da req-219.
-- Comentário em recurso nunca cita placeholder (`#x#`, `@[[x]]@`): a troca pega a primeira ocorrência, dentro do comentário.
-- Pipeline: desde a req-219 a minificação é a etapa 1; uma rodada de `project:update-all` basta.
-- Validação mínima: teste PHP de contrato (variante x original, metadados, HTML sem `class="ui `), Vitest se mexer em JS, roteiro Playwright no Lab (sem asset do Fomantic no documento principal — `request.frame() === page.mainFrame()` —, salvar sem 403, 390 px sem rolagem, nenhum `.ui.modal` visível solto) e o mesmo módulo Fomantic de controle sem mudança.
-- Lab compartilhado: trave com `mkdir C:/Users/otavi/OneDrive/Documentos/GIT/.c2f-lab-lock` (falhou = outro agente usando; espere), faça `git merge origin/main` na sua branch antes do `project:update-all conn2flow-site-local` (rode 2 vezes quando mudar JS) e do roteiro, e libere com `rmdir` ao terminar.
-- Pendência humana vai para `conn2flow-site/sdd/PENDENCIAS-HUMANAS.md`, item do roteiro único da req-219.
+- Tailwind Utility only in resource HTML (this is what the compiler sees). Element created by generic JS/PHP uses `c2fc-*` class in `controles.css`.
+- Icons: Lucide (`<i data-lucide="nome" class="size-4">`); inside `<template>` not renders.
+- Tooltips: `data-c2f-dica` (`data-tooltip` is CSS of Fomantic).
+- Do not touch `controles.js`/`controles.css`/`controles.php`, `interface.php` or `html-editor.php` out of its scope: ask the owner of the req-219 to report.
+- Comment on resource never cites placeholder (`#x#`, `@[[x]]@`): the exchange takes the first occurrence, within the comment.
+- project Pipeline: a round of `project:deploy <id>`; check assets mined on delivery. `project:update-all` only for mixed batch Core + project.
+- Minimum validation: PHP contract test (original x variable, metadata, HTML without `class="ui `), Vitest move on JS, Playwright script on Lab (without Fomantic asset in the main document — `request.frame() === page.mainFrame()` —, save without 403, 390 px without scrolling, no visible `.ui.modal` loose) and the same Fomantic control module without change.
+- Shared Lab: beam with `mkdir C:/Users/otavi/OneDrive/Documentos/GIT/.c2f-lab-lock` (failed = another agent using; wait), `git merge origin/main` in your branch before `project:deploy conn2flow-site-local` (rode 2 times when changing JS) and script, and release with `rmdir` at the end.
+- Human pendency goes to `conn2flow-site/sdd/PENDENCIAS-HUMANAS.md`, item of the unique script of the req-219.
 
-## Escopo main e inicialização tardia por hooks (BL-028)
+## Main scope and late boot by hooks (BL-028)
 
-Leitura de campos/rótulos da tela fica restrita a main, pois o menu de busca também usa label. Não varra todos os labels do document para formar contexto de IA. Se não houver main, aguarde a montagem ou reporte ausência de contexto; não caia para o documento inteiro.
+Reading screen fields/labels is restricted to main, because the search menu also uses label. Do not scan all document labels to form AI context. If there is no main, wait for mounting or reporting no context; do not fall into the entire document.
 
-Script incluído por hook pode executar antes de o editor/componentes serem criados. Faça tentativa inicial após DOM pronto e observe main com MutationObserver (childList/subtree); use debounce/intervalo limitado para novas tentativas, sem loop apertado. Inicialização deve ser idempotente, impedir handlers/botões duplicados e desconectar observador/timer quando não forem mais necessários ou ao desmontar tela. Valide com editor criado depois do hook e abertura repetida.
+Script included by hook can run before the editor/components are created. Make initial attempt after DOM ready and observe main with MutationObserver (childList/subtree); use debounce/limited interval for further attempts, without tight loop. Initialization should be idempotent, prevent duplicate handles/buttons and disconnect observer/timer when no longer required or dismount screen. Validate with editor created after hook and repeated opening.
 
-A orientação histórica de duas publicações para JS não se aplica ao pipeline atual: com lock, atualize timestamps dos arquivos versionados alterados e rode project:update-all uma vez por projeto, sequencialmente. Dois projetos com a mesma origem precisam de uma rodada cada.
+The historical orientation of two JS publications does not apply to the current pipeline: with lock, update timestamps of modified versioned files and run project:deploy <id> once by project sequentially. Two projects with the same origin need a round each.
+
+## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
+
+- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
+- Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
+- DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.

@@ -1,23 +1,23 @@
 ---
 name: c2f-database-operations
-description: "LEIA ANTES de executar queries SQL, operações CRUD via banco.php ou criar migrações Phinx. Se não ler: consultas quebram por falta de escape, quebram em multi-idioma ou corrompem dados em produção."
+description: "READ BEFORE SQL queries, CRUD through banco.php or Phinx migrations. Prevents escaping errors, multilingual query failures and production data corruption."
 user-invocable: false
 ---
 
-# Operações de Banco de Dados e Migrações (`banco.php` / Phinx)
+# Database and Migration operations (`banco.php` / Phinx)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar ou modificar consultas SQL, operações CRUD (`banco_select`, `banco_insert_name`, `banco_update`, `banco_delete`) ou migrações de banco com Phinx.
-- **SKIP APENAS SE**: Tarefa puramente de frontend/CSS sem qualquer interação com banco de dados.
-- **CONSEQUÊNCIA DE IGNORAR**: Falhas silenciosas de escape (`banco_escape_field`), quebra de consultas em multi-idioma por falta de `language` ou erro de integridade/snapshot em edições.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create or modify SQL queries, CRUD operations (`banco_select`, `banco_insert_name`, `banco_update`, `banco_delete`) or migrations from database with Phinx.
+- **SKIP ONLY IF**: Purely frontend/CSS task without any interaction with database.
+- **CONSEQUENCE OF IGNORING**: Silent escaping (`banco_escape_field`), multi-language breach of queries due to lack of `language` or integrity/snapshot error in edits.
 
 ---
 
-Consulte e aplique as seguintes convenções ao realizar seleções, inserções, edições, deleções e migrações no Conn2Flow:
+See and apply the following conventions when performing selections, insertions, edits, deletions and migrations in Conn2Flow:
 
-## 1. Operações CRUD (`gestor/bibliotecas/banco.php`)
+## 1. CRUD operations (`gestor/bibliotecas/banco.php`)
 
-* **Seleção Múltipla (`banco_select_name`)**:
+* **Multiple Selection (`banco_select_name`)**:
   ```php
   $registros = banco_select_name(
       banco_campos_virgulas(['campo1', 'campo2']),
@@ -31,7 +31,7 @@ Consulte e aplique as seguintes convenções ao realizar seleções, inserções
   }
   ```
 
-* **Seleção Única (`banco_select`)**:
+* **Unique Selection (`banco_select`)**:
   ```php
   $linha = banco_select([
       'unico' => true,
@@ -41,7 +41,7 @@ Consulte e aplique as seguintes convenções ao realizar seleções, inserções
   ]);
   ```
 
-* **Inserção de Dados (`banco_insert_name`)**:
+* **Data Insertion (`banco_insert_name`)**:
   ```php
   $campos = null;
   $campos[] = ['campo_nome', 'valor_texto', false]; // Texto (com aspas)
@@ -53,26 +53,26 @@ Consulte e aplique as seguintes convenções ao realizar seleções, inserções
   banco_insert_name($campos, 'nome_da_tabela');
   ```
 
-* **Edição de Dados (`banco_update` / `banco_update_campo`)**:
-  - Verificação de integridade antes da edição: `banco_select_campos_antes_iniciar(...)`.
-  - Edição direta de campo:
+* **Data Editing (`banco_update` / `banco_update_campo`)**:
+  - Integrity check before editing: `banco_select_campos_antes_iniciar(...)`.
+  - Direct field editing:
     ```php
     banco_update_campo('status', 'I');       // Com aspas simples (texto)
     banco_update_campo('versao', 2, true);   // Sem aspas simples (numérico/função)
     banco_update_executar('tabela', "WHERE id='id-alvo'");
     ```
 
-* **Exclusão de Dados (`banco_delete`)**:
+* **Data Deletion (`banco_delete`)**:
   ```php
   banco_delete('nome_da_tabela', "WHERE id='id-alvo'");
   ```
 
 ---
 
-## 2. Migrações Phinx (`Phinx\Migration\AbstractMigration`)
+## 2. Phinx Migrations (`Phinx\Migration\AbstractMigration`)
 
-* **Nomenclatura do Arquivo**: `YYYYMMDDHHIISS_create_nome_table.php` (ex: `20260502100001_create_skeleton_table.php`).
-* **Estrutura Padrão de Tabela Conn2Flow**:
+* **File Nomenclature**: `YYYYMMDDHHIISS_create_nome_table.php` (e.g. `20260502100001_create_skeleton_table.php`).
+* **Table Standard Structure Conn2Flow**:
   ```php
   <?php
   declare(strict_types=1);
@@ -111,13 +111,13 @@ Consulte e aplique as seguintes convenções ao realizar seleções, inserções
 
 ---
 
-## 3. Concorrência e Patch Atômico em JSON (`JSON_MERGE_PATCH`)
+## 3. Concurrency and Atomic Patch on JSON (`JSON_MERGE_PATCH`)
 
-### 3.1 Proibição de Reescrita Integral de Campos JSON em Contextos Concorrentes
+### 3.1 Integral Rewriting Prohibition of JSON Fields in Competing Contexts
 
-- Em cenários com escritas concorrentes (ex: webhook de gateway de pagamento vs envio de formulário pelo usuário), **NUNCA** leia-modifique-reescreva colunas JSON inteiras como `fields_values`.
-- Isso causa **race conditions** onde um escritor sobrescreve as alterações do outro.
-- Exemplo do padrão **ERRADO**:
+- In scenarios with competing writing (e.g. payment gateway webhook vs. user submission of form), **NEVER** read-modify-rewrite entire JSON columns like `fields_values`.
+- This causes **race conditions** where one writer overwrites each other's changes.
+- Example of the **WRONG** pattern:
 ```php
 // ❌ ERRADO — Race condition entre webhook e formulário
 $dados = json_decode(banco_select(...), true);
@@ -125,9 +125,9 @@ $dados['status_pagamento'] = 'pago';
 banco_update_campo('fields_values', json_encode($dados));
 ```
 
-### 3.2 Uso Mandatório de `JSON_MERGE_PATCH` (MariaDB 11.8+ / MySQL 8+)
+### 3.2 Use `JSON_MERGE_PATCH` Mandate (MariaDB 11.8+ / MySQL 8+)
 
-- Use `JSON_MERGE_PATCH()` para atualizações parciais atômicas:
+- Use `JSON_MERGE_PATCH()` for atomic partial updates:
 ```php
 // ✅ CORRETO — Patch atômico sem race condition
 $patch = json_encode(['status_pagamento' => 'pago']);
@@ -135,13 +135,13 @@ banco_update_campo('fields_values', "JSON_MERGE_PATCH(fields_values, '$patch')",
 banco_update_executar('tabela', "WHERE id='id-alvo'");
 ```
 
-- O parâmetro `true` (sem aspas) é **CRÍTICO** pois `JSON_MERGE_PATCH()` é uma função SQL.
+- The `true` parameter (without quotation marks) is **CRITICAL** because `JSON_MERGE_PATCH()` is an SQL function.
 
-### 3.3 Armadilha do `null` no `JSON_MERGE_PATCH` (RFC 7396)
+### 3.3 `null` trap in `JSON_MERGE_PATCH` (RFC 7396)
 
-- Conforme RFC 7396, um valor `null` no patch **REMOVE a chave** do objeto alvo.
-- Isso significa que `{"campo": null}` vai **DELETAR** `campo` do JSON, NÃO definir como null.
-- **Validação Mandatória**: Sempre valide com `JSON_VALID()` antes de fazer o merge:
+- According to RFC 7396, a `null` value in the **Remove the key** patch of the target object.
+- This means that `{"campo": null}` will **DELET** `campo` from JSON, NOT set as null.
+- **Mandate Validation**: Always validate with `JSON_VALID()` before you merge:
 ```php
 // ✅ Validação defensiva antes do merge
 $patch = json_encode($dados_parciais);
@@ -150,62 +150,74 @@ if ($patch !== null && $patch !== 'null') {
 }
 ```
 
-- **Prevenção de Corrupção por NULL SQL**: Se a coluna em si for SQL `NULL` (não JSON `null`), `JSON_MERGE_PATCH(NULL, ...)` retorna `NULL`. Sempre garanta que a coluna tenha um default JSON válido (`'{}'`):
+- **Prevention of Corruption by NULL SQL**: If the column itself is SQL `NULL` (not JSON `null`), `JSON_MERGE_PATCH(NULL, ...)` returns `NULL`. Always ensure that the column has a valid JSON default (`'{}'`):
 ```sql
 ALTER TABLE tabela MODIFY fields_values JSON NOT NULL DEFAULT '{}';
 ```
 
 ---
 
-## 4. Limpeza de Migrações Phinx Renumeradas
+## 4. Phinx Renumbered Migration Cleanup
 
-### 4.1 Problema: Duplicate Migration Error
+### 4.1 Problem: Duplicate Migration Error
 
-A sincronização de arquivos do pipeline (`project:update-all`) opera em **modo aditivo** e **não remove** arquivos ausentes na origem. Quando uma migração Phinx é renumerada (ex: para resolver conflito de timestamp com outro agente), o arquivo com o nome antigo permanece no diretório de destino.
+Pipeline file synchronization (`project:update-all`) operates on **additive mode** and **does not remove** missing files at source. When a Phinx migration is renumbered (e.g. to resolve timestamp conflict with another agent), the file with the old name remains in the destination directory.
 
 ```
 ❌ Phinx aborta com erro fatal:
 "Duplicate migration - 20260915120000_create_orders_table has the same version as 20260915120000"
 ```
 
-### 4.2 Diretriz Normativa
+### 4.2 Normative Directive
 
-Ao renumerar uma migração Phinx para resolver conflito de timestamp:
+By renumbering a Phinx migration to resolve timestamp conflict:
 
-1. **Remover manualmente** o arquivo com o nome antigo do diretório de destino (`gestor/db/migrations/` no ambiente remoto ou espelho) **antes** de rodar o pipeline.
-2. Em ambientes remotos, usar SSH para deletar:
+1. **After explicit confirmation of the human, remove manually** the file with the old name of the destination directory (`gestor/db/migrations/` in remote environment or mirror) **before** to run the pipeline.
+2. In remote environments, use SSH to delete:
 ```bash
 ssh usuario@host "rm /path/to/gestor/db/migrations/YYYYMMDDHHIISS_old_name.php"
 ```
-3. No espelho local:
+3. In the local mirror:
 ```bash
 rm dev-environment/data/sites/localhost/<site>/gestor/db/migrations/YYYYMMDDHHIISS_old_name.php
 ```
 
-### 4.3 Regra de Desempate entre Agentes
+### 4.3 Rules of Dispatch between Agents
 
-Em colisões de timestamp entre migrações criadas por agentes concorrentes, a regra de desempate determina que cada agente **renumere a própria migração** para um timestamp mais recente (nunca a do outro agente).
+In timestamp collisions between migrations created by competing agents, the tie-breaker rule determines that each **renumber migration itself** agent for a more recent timestamp (never that of the other agent).
 
 > [!WARNING]
-> O erro `Duplicate migration` é **fatal** — o Phinx interrompe toda a execução de migrações, impedindo que migrações subsequentes sejam aplicadas. A limpeza manual é obrigatória.
+> The `Duplicate migration` error is **fatal** — Phinx stops all migration execution, preventing subsequent migrations from being applied. Manual cleaning is mandatory.
 
 ---
 
-## 5. Sincronização de dados no deploy: o que protege e o que apaga
+## 5. Data synchronization in the deploy: what protects and what erases
 
-O deploy não é só `INSERT`/`UPDATE`: o sincronizador aplica regras do contrato `schema-metadata.json`, e errar uma delas altera dados reais de uma instalação.
+Deploy is not only `INSERT`/`UPDATE`: Synchronizer applies rules of contract `schema-metadata.json`, and miss one of them changes actual data of an installation.
 
-| Regra | Efeito |
+|Rule|Effect|
 | --- | --- |
-| `insert_only: true` | O registro que já existe nunca é atualizado. É o que protege `usuarios`: sem isso, a semente regrava login, e-mail e senha do administrador |
-| `preserve_on_user_modified` | Campos listados não são sobrescritos quando `user_modified=1` |
-| `strategy` (`pk` ou `natural_key`) | Define o ramo de `sincronizarTabela()`. Toda proteção precisa existir nos dois |
-| Retirada por dono | O que o dono deixou de entregar vira `status='D'`; o que volta é reativado pelo manifesto |
+|`insert_only: true`|The record that already exists is never updated. It is what protects `usuarios`: without this, the seed rewrote login, e-mail and administrator password|
+|`preserve_on_user_modified`|Listed fields are not overwritten when `user_modified=1`|
+|`strategy` (`pk` or `natural_key`)|Define the branch of `sincronizarTabela()`. All protection must exist in both.|
+|Withdrawal per owner|Withdrawal turns clash pending; only human confirmation allows deactivation or DELETE (DEC-136)|
 
-### Regras de trabalho
+### Working rules
 
-- **Semente não é dado de instalação.** O que a semente cria é o estado inicial. Tudo o que o operador muda depois tem de sobreviver a um deploy.
-- **Log de sincronização não pode trazer segredo.** Coluna de senha, token ou chave é mascarada antes de ir para o log.
-- **Fotografe antes.** Consulta de leitura das tabelas de identidade e permissão antes e depois de validar uma regra de dados num ambiente; `diff` dos dois resultados.
-- **Teste os dois ramos.** Regra nova no sincronizador tem teste com `strategy: pk` e com `strategy: natural_key`.
-- **MariaDB e MySQL divergem**: `CAST(... AS JSON)` quebra no MariaDB; `JSON_QUERY` não existe no MySQL. Use `JSON_EXTRACT(x, '$')` e teste nos dois.
+- **Seed is not given from installation.** What the seed creates is the initial state. Everything the operator changes then has to survive a deploy.
+- **Synchronization log cannot bring a secret.** Password column, token or key is masked before going to log.
+- **Shoot first.** Reading query of identity tables and permission before and after validating a data rule in an environment; `diff` of the two results.
+- **Test both branches.** New rule in sync has `strategy: pk` test and `strategy: natural_key` test.
+- **MariaDB and MySQL differ**: `CAST(... AS JSON)` breaks in MariaDB; `JSON_QUERY` does not exist in MySQL. Use `JSON_EXTRACT(x, '$')` and test both.
+
+## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
+
+- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
+- Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
+- DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.
+
+## Rep-002 — Physical and Unicode withdrawal
+
+DEC-136: keep records by default; `status='D'` and `DELETE` require human confirmation. Check schema and `RECURSOS_RETIRADA ... removidos=` before proposing repair. Tables without column `status`, such as `variaveis`, suffer physical DELETE when withdrawal is confirmed: there is no logical reactivation. Validate the previous dump, restore in auxiliary database, compare PKs/status/absences and simulate before applying the authorized repair.
+clashes diff tables and columns (`atualizacoes_choques.diff`) should use `utf8mb4`, including connection, to preserve emojis and avoid INSERT rejected in MariaDB. Check recording return; do not mute errors.

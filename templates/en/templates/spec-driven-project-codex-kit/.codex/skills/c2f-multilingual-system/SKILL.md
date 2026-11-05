@@ -1,37 +1,37 @@
 ---
 name: c2f-multilingual-system
-description: "LEIA ANTES de adicionar novos idiomas, rotas i18n ou consultas multi-idioma. Se não ler: conteúdo de idiomas diferentes vaza na mesma página ou URLs internacionais quebram com erro 404."
+description: "READ BEFORE adding languages, localized routes or multilingual queries. Prevents cross-language content leakage and broken international URLs."
 user-invocable: false
 ---
 
-# Sistema Híbrido Multilíngue Conn2Flow (`CONN2FLOW-MULTILINGUAL-HYBRID-SYSTEM.md`)
+# Conn2Flow Multilingual Hybrid System (`CONN2FLOW-MULTILINGUAL-HYBRID-SYSTEM.md`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Manipular tabelas com coluna `language`, registrar rotas internacionalizadas (`/en/`, `/pt-br/`) ou gerenciar dicionários de idiomas.
-- **SKIP APENAS SE**: Módulos utilitários globais agnósticos a idioma.
-- **CONSEQUÊNCIA DE IGNORAR**: Vazamento de registros em inglês na visualização em português (e vice-versa), falha na resolução de slugs traduzidos e desindexação de SEO.
-
----
-
-Consulte e aplique as seguintes convenções ao desenvolver para suporte a múltiplos idiomas no Conn2Flow:
-
-## 1. Estrutura de Idiomas e Resolução
-
-* **Idiomas Suportados**: `pt-br` (padrão), `en`, `es`.
-* **Código de Idioma Ativo**: Acessível via `$_GESTOR['linguagem-codigo']`.
-* **Estrutura FÍSICA de Pastas**:
-  - Recursos globais: `gestor/resources/<idioma>/` (ex: `pt-br/pages/`, `en/pages/`).
-  - Recursos de módulo: `modulos/<modulo>/resources/<idioma>/`.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Manipulate tables with `language` column, register internationalized routes (`/en/`, `/pt-br/`) or manage language dictionaries.
+- **SKIP ONLY IF**: Global utility modules agnostic the language.
+- **CONSEQUENCE OF IGNORING**: Leaking of English records in the Portuguese view (and vice versa), failure in the resolution of translated slugs and SEO desigradation.
 
 ---
 
-## 2. Tabelas Relacionais e Chave Natural (`language`)
+See and apply the following conventions when developing for multiple language support in Conn2Flow:
 
-* Tabelas com suporte multilíngue possuem a coluna `language VARCHAR(10) NOT NULL DEFAULT 'pt-br'`.
-* A chave única natural é geralmente composta por `['id', 'language']` (ou `['language', 'module', 'id']`).
+## 1. Language Structure and Resolution
+
+* **Supported Languages**: `pt-br` (default), `en`, `es`.
+* **Active Language Code**: Accessible via `$_GESTOR['linguagem-codigo']`.
+* **Physical Structure of Folders**:
+  - Global resources: `gestor/resources/<idioma>/` (e.g. `pt-br/pages/`, `en/pages/`).
+  - Module resources: `modulos/<modulo>/resources/<idioma>/`.
 
 ---
 
-## 3. Ferramentas de Tradução
+## 2. Relational Tables and Natural Key (`language`)
 
-* Scripts de automação em `ai-workspace/en/scripts/translates/` para geração e sincronização de dicionários e recursos em novos idiomas.
+* Tables with multilingual support have the `language VARCHAR(10) NOT NULL DEFAULT 'pt-br'` column.
+* The natural single key is usually composed of `['id', 'language']` (or `['language', 'module', 'id']`).
+
+---
+
+## 3. Translation Tools
+
+* `ai-workspace/en/scripts/translates/` automation Scripts for generating and synchronizing dictionaries and features in new languages.

@@ -1,79 +1,79 @@
 ---
 name: c2f-global-variables
-description: "LEIA ANTES de ler ou escrever nas superglobais $_GESTOR, $_CONFIG, $_BANCO ou $_ENV. Se não ler: estado de roteamento é sobrescrito, dados de sessão são violados e respostas AJAX corrompem o envelope JSON."
+description: "READ BEFORE accessing or modifying $_GESTOR, $_CONFIG, $_BANCO or $_ENV. Prevents routing-state overwrites, session-data violations and corrupted AJAX JSON envelopes."
 user-invocable: false
 ---
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Acessar, modificar ou registrar dados nas superglobais centrais do Conn2Flow (`$_GESTOR`, `$_CONFIG`, `$_BANCO`, `$_ENV`).
-- **SKIP APENAS SE**: Funções puras que recebem todos os parâmetros por argumento sem usar estado global.
-- **CONSEQUÊNCIA DE IGNORAR**: Colisão de chaves no array global, corrupção da resposta AJAX (`$_GESTOR['ajax-resposta']`), ou desvio no fluxo de roteamento de páginas e módulos.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Access, modify or register data in the central superglobals of the Conn2Flow (`$_GESTOR`, `$_CONFIG`, `$_BANCO`, `$_ENV`).
+- **SKIP ONLY IF**: Pure functions that receive all parameters by argument without using global state.
+- **CONSEQUENCE OF IGNORING**: Key Collision in the global array, AJAX response corruption (`$_GESTOR['ajax-resposta']`), or deviation in the routing stream of pages and modules.
 
 ---
 
 ﻿---
 name: c2f-global-variables
-description: "Use ao consultar, acessar ou modificar as superglobais do Conn2Flow: $_GESTOR (runtime), $_CONFIG (configuracao central), $_BANCO (conexao DB) e $_ENV (ambiente)."
+description: "Use when consulting, accessing or modifying Conn2Flow Superglobals: $_GESTOR (runtime), $_CONFIG (central configuration), $_BANCO (DB connection) and $_ENV (environment)."
 user-invocable: false
 ---
 
-# Superglobais do Conn2Flow (`$_GESTOR`, `$_CONFIG`, `$_BANCO`, `$_ENV`)
+# Conn2Flow Superglobals (`$_GESTOR`, `$_CONFIG`, `$_BANCO`, `$_ENV`)
 
-Consulte e aplique as seguintes convenÃ§Ãµes ao acessar ou definir propriedades nas superglobais do Conn2Flow.
+See and apply the following conventions when accessing or defining properties in the Conn2Flow superglobals.
 
-## 1. `$_GESTOR` â€” Estado DinÃ¢mico do Runtime
+## 1. `$_GESTOR` — Dynamic Runtime Status
 
-Array associativo populado durante o bootstrap (`gestor/config.php`). ContÃ©m o estado volÃ¡til da requisiÃ§Ã£o atual.
+Associative array populated during bootstrap (`gestor/config.php`). It contains the volatile state of the current request.
 
-### 1.1. Roteamento e MÃ³dulo
-* `$_GESTOR['modulo-id']`: Identificador do mÃ³dulo em execuÃ§Ã£o (ex: `admin-paginas`, `produtos`).
-* `$_GESTOR['opcao']`: AÃ§Ã£o ou subpercurso ativo (ex: `adicionar`, `editar`, `listar`, `status`).
-* `$_GESTOR['tipo']`: ClassificaÃ§Ã£o secundÃ¡ria da rota (ex: `banco`, `pagina`, `parametros`).
-* `$_GESTOR['pagina']`: String contendo o HTML processado da pÃ¡gina que serÃ¡ entregue no layout.
+### 1.1. Routement and Module
+* `$_GESTOR['modulo-id']`: Module identifier in execution (e.g. `admin-paginas`, `produtos`).
+* `$_GESTOR['opcao']`: Active or sub-routine (e.g. `adicionar`, `editar`, `listar`, `status`).
+* `$_GESTOR['tipo']`: Secondary classification of the route (e.g. `banco`, `pagina`, `parametros`).
+* `$_GESTOR['pagina']`: String containing the processed HTML of the page that will be delivered in the layout.
 
-### 1.2. Caminhos e DiretÃ³rios
-* `$_GESTOR['raiz']`: URL base / domÃ­nio raiz da instalaÃ§Ã£o com barra final (ex: `https://meusite.com/`).
-* `$_GESTOR['ROOT_PATH']`: Caminho absoluto do sistema de arquivos para a raiz do servidor.
-* `$_GESTOR['modulos-path']`: Caminho absoluto para a pasta de mÃ³dulos.
-* `$_GESTOR['logs-path']`: Caminho para gravaÃ§Ã£o de arquivos de log.
-* `$_GESTOR['linguagem-codigo']`: CÃ³digo do idioma ativo (ex: `pt-br`, `en`).
+### 1.2. Paths and Directions
+* `$_GESTOR['raiz']`: Base URL / root installation domain with end bar (e.g. `https://meusite.com/`).
+* `$_GESTOR['ROOT_PATH']`: Absolute path from file system to server root.
+* `$_GESTOR['modulos-path']`: Absolute path to the module folder.
+* `$_GESTOR['logs-path']`: Path to recording §'s log files.
+* `$_GESTOR['linguagem-codigo']`: Active language code (e.g. `pt-br`, `en`).
 
-### 1.3. Respostas AJAX e JSON
-* `$_GESTOR['ajax-json']`: Array associativo retornado ao cliente em requisiÃ§Ãµes AJAX (`status => 'Ok'`, `data => [...]`, `erro => ...`).
-* `$_GESTOR['ajax-opcao']`: Identificador da aÃ§Ã£o AJAX recebida do frontend.
-* `$_GESTOR['json']`: Flag booleana indicando se o resultado da requisiÃ§Ã£o serÃ¡ entregue exclusivamente em formato JSON.
+### 1.3. AJAX and JSON Answers
+* `$_GESTOR['ajax-json']`: Associative array returned to the client in AJAX requests (`status => 'Ok'`, `data => [...]`, `erro => ...`).
+* `$_GESTOR['ajax-opcao']`: AJAX Action Identifier received from frontend.
+* `$_GESTOR['json']`: Boolean Flag indicating whether the result of the request will be delivered exclusively in JSON format.
 
-### 1.4. Estado do UsuÃ¡rio e SessÃ£o
-* `$_GESTOR['usuario-id']`: ID numÃ©rico do usuÃ¡rio autenticado na sessÃ£o atual.
-* `$_GESTOR['usuario-nome']`: Nome exibido do usuÃ¡rio autenticado.
+### 1.4. State of the User and Session
+* `$_GESTOR['usuario-id']`: Numerical user ID authenticated in the current session.
+* `$_GESTOR['usuario-nome']`: Displayed name of authenticated user.
 
 ---
 
-## 2. `$_CONFIG` â€” ConfiguraÃ§Ãµes Centrais do Sistema
+## 2. `$_CONFIG` â€» System Central Settings
 
-Array populado por `gestor/config.php` a partir de `$_ENV` e valores padrÃ£o. ContÃ©m configuraÃ§Ãµes persistentes que NÃƒO mudam entre requisiÃ§Ãµes.
+Array populated by `gestor/config.php` from `$_ENV` and standard values. Contains configuration Persistent §μes that do not change between requests.
 
-* **SessÃµes e Cookies**: `$_CONFIG['session_lifetime']`, `$_CONFIG['cookie_secure']`, `$_CONFIG['cookie_httponly']`
-* **SeguranÃ§a CSP/CORS**: `$_CONFIG['csp_policy']`, `$_CONFIG['cors_origins']`
-* **OAuth e AutenticaÃ§Ã£o**: `$_CONFIG['oauth_google_client_id']`, `$_CONFIG['oauth_google_secret']`
+* **Sessions and Cookies**: `$_CONFIG['session_lifetime']`, `$_CONFIG['cookie_secure']`, `$_CONFIG['cookie_httponly']`
+* **CSP/CORS Insurance**: `$_CONFIG['csp_policy']`, `$_CONFIG['cors_origins']`
+* **OAuth and Authentication**: `$_CONFIG['oauth_google_client_id']`, `$_CONFIG['oauth_google_secret']`
 * **Email/SMTP**: `$_CONFIG['smtp_host']`, `$_CONFIG['smtp_port']`, `$_CONFIG['smtp_user']`, `$_CONFIG['smtp_pass']`
-* **Pagamentos**: `$_CONFIG['paypal_client_id']`, `$_CONFIG['stripe_key']`
+* **Payments**: `$_CONFIG['paypal_client_id']`, `$_CONFIG['stripe_key']`
 
 ---
 
-## 3. `$_BANCO` â€” ConfiguraÃ§Ãµes de ConexÃ£o com Banco de Dados
+## 3. `$_BANCO` — Connection Settings with Database
 
-* `$_BANCO['host']`: Host do servidor MySQL.
-* `$_BANCO['nome']`: Nome do banco de dados.
-* `$_BANCO['usuario']`: UsuÃ¡rio de conexÃ£o.
-* `$_BANCO['senha']`: Senha de conexÃ£o.
-* `$_BANCO['tipo']`: Tipo de driver (`mysql`, `pgsql`).
+* `$_BANCO['host']`: MySQL server host.
+* `$_BANCO['nome']`: Name of database.
+* `$_BANCO['usuario']`: Connection user.
+* `$_BANCO['senha']`: Connection password.
+* `$_BANCO['tipo']`: Driver type (`mysql`, `pgsql`).
 
 ---
 
-## 4. `$_ENV` â€” VariÃ¡veis de Ambiente (Dotenv)
+## 4. `$_ENV` â€» Environment Variables (Dotenv)
 
-Carregadas automaticamente pelo `Dotenv` a partir de `gestor/autenticacoes/<dominio>/.env`.
+Automatically loaded by `Dotenv` from `gestor/autenticacoes/<dominio>/.env`.
 
 > [!IMPORTANT]
-> **Protocolo de Novas VariÃ¡veis de Ambiente**: Toda nova chave sensÃ­vel DEVE ser registrada no template `gestor/autenticacoes.exemplo/dominio/.env` para garantir mesclagem automÃ¡tica no deploy/update. Consulte a skill `c2f-environment-configuration` para o fluxo completo.
+> **New Environmental Variables Protocol**: All new sensitive key MUST be registered in the `gestor/autenticacoes.exemplo/dominio/.env` template to ensure automatic merge in the deploy/update. See skill `c2f-environment-configuration` for full flow.

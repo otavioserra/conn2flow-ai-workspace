@@ -1,34 +1,34 @@
 ---
 name: start-mdd-slice
-description: "LEIA ANTES de iniciar uma nova requisição humana (req-XXX.md) ou novo lote de trabalho. Se não ler: o lote inicia sem escopo delimitado, sem contrato de validação e invade limites de outros batches."
+description: "READ BEFORE starting a new human request or work batch. Establishes bounded scope, validation criteria and respect for other batches."
 user-invocable: true
 ---
 
-# Início de slice MDD
+# Start of slice MDD
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Receber uma nova requisição humana em `memory/human-requests/` ou abrir um novo `BATCH-XXX.md` em `memory/implementation/`.
-- **SKIP APENAS SE**: O batch já tiver sido iniciado anteriormente (onde o comando correto é `/continue-mdd-batch`).
-- **CONSEQUÊNCIA DE IGNORAR**: Execução sem planejamento atômico, mistura de responsabilidades entre múltiplos lotes e falta de critérios de aceite claros.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Receive a new human request in `memory/human-requests/` or open a new `BATCH-XXX.md` in `memory/implementation/`.
+- **SKIP ONLY IF**: Batch has already been started before (where the correct command is `/continue-mdd-batch`).
+- **CONSEQUENCE OF IGNORING**: Execution without atomic planning, mixing responsibilities between multiple lots and lack of clear acceptance criteria.
 
 ---
 
-Trate `$ARGUMENTS` como a demanda nova a ser classificada e executada.
+Treat `$ARGUMENTS` as the new demand to be sorted and executed.
 
-## Antes de agir
+## Before you act
 
-1. Carregue `mdd-workflow`.
-2. Identifique a âncora mais concreta da tarefa: sdd, batch, review, validation, decision, arquivo de código ou `memory/human-requests/`.
-3. Leia o contexto mínimo inicial: `memory/README.md`, `memory/process/00-START-HERE.md`, `memory/process/01-WORKFLOW.md`, `memory/implementation/BATCH-INDEX.md`, o batch atual, `memory/validation/VALIDATION-CHECKLIST.md` e `memory/decisions/DECISION-LOG.md`.
-4. Se a entrada vier de `memory/human-requests/`, leia primeiro esse intake.
+1. Load `mdd-workflow`.
+2. Identify the most concrete anchor of the task: sdd, batch, review, validation, decision, code file or `memory/human-requests/`.
+3. Read the initial minimum context: `memory/README.md`, `memory/process/00-START-HERE.md`, `memory/process/01-WORKFLOW.md`, `memory/implementation/BATCH-INDEX.md`, the current batch, `memory/validation/VALIDATION-CHECKLIST.md` and `memory/decisions/DECISION-LOG.md`.
+4. If the entry comes from `memory/human-requests/`, first read this entry.
 
-## Regra de execução
+## Implementing rule
 
-1. Classifique cedo: change request, implementação, review ou validação.
-2. Edite documentos normativos numerados apenas quando requisito, contrato, aceite ou decisão realmente mudar.
-3. Implemente o menor slice aprovado.
-4. Valide cedo com a menor checagem capaz de falsificar o batch atual.
+1. Rate early: change request, implementation, review or validation.
+2. Edit normative documents numbered only when required, contract, accepted or decision actually change.
+3. Implement the lowest approved slice.
+4. Validate early with the smallest check capable of falsifying the current batch.
 
-## Demanda atual
+## Current demand
 
 $ARGUMENTS

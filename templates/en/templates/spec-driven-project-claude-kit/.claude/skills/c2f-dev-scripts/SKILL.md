@@ -1,23 +1,23 @@
 ---
 name: c2f-dev-scripts
-description: "LEIA ANTES de rodar scripts em dev-environment/ ou ferramentas CLI do projeto. Se não ler: comandos falham por caminhos relativos errados, variáveis de ambiente ausentes ou execução fora do container Docker."
+description: "READ BEFORE running dev-environment scripts or project CLI tools. Prevents incorrect working directories, missing environment variables and execution outside the Docker container."
 user-invocable: false
 ---
 
-# Scripts de Automação e Desenvolvimento (`ai-workspace/scripts/`)
+# Automation and Development Scripts (`ai-workspace/scripts/`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Executar tarefas de automação, sincronização, geração de recursos, migrações ou testes via scripts PowerShell/Bash em `dev-environment/` ou `scripts/`.
-- **SKIP APENAS SE**: Edição manual de documentação Markdown sem execução de scripts auxiliares.
-- **CONSEQUÊNCIA DE IGNORAR**: Comandos falham por caminhos incorretos, permissões do Docker ou sobrescrita indevida de arquivos de ambiente.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Perform automation, synchronization, resource generation, migration or testing tasks via PowerShell/Bash scripts in `dev-environment/` or `scripts/`.
+- **SKIP ONLY IF**: Manual documentation editing Markdown without running auxiliary scripts.
+- **CONSEQUENCE OF IGNORING**: Commands fail by incorrect paths, Docker permissions, or improper overwriting of environment files.
 
 ---
 
-Consulte as convenções para uso e criação de scripts de desenvolvimento no Conn2Flow:
+See Conventions for use and creation of development scripts in Conn2Flow:
 
-## 1. Estrutura de Diretórios de Scripts
+## 1. Script Directory Structure
 
-Os scripts são bilíngues e vivem sob o idioma (`en/` ou `pt-br/`), nunca na raiz de `ai-workspace/`:
+The scripts are bilingual and live under the language (`en/` or `pt-br/`), never at the root of `ai-workspace/`:
 
 ```
 ai-workspace/<idioma>/scripts/
@@ -35,80 +35,80 @@ ai-workspace/<idioma>/scripts/
 
 ---
 
-## 2. Principais Scripts Utilitários Disponíveis
+## 2. Main Scripts Available Utilities
 
-* `ai-workspace/<idioma>/scripts/resources/upsert-resources.php`: CLI para criar, clonar, editar e deletar recursos com suporte a `--type`, `--id`, `--action=copy` e `--open`.
-* `ai-workspace/<idioma>/scripts/projects/deploy-project-v2.sh`: Empacotamento e deploy automatizado de projetos via API OAuth.
-* `ai-workspace/<idioma>/scripts/projects/recover-project.sh`: Recuperação/pull de dados e estrutura do servidor.
-* `ai-workspace/<idioma>/scripts/dev-environment/create-new-module.sh`: Scaffold de novos módulos.
-* `ai-workspace/<idioma>/scripts/dev-environment/create-new-installation.sh`: Setup de nova instalação local.
-* `ai-workspace/pt-br/scripts/utils/fix-tailwind-spacing.js`: Utilitário Node para correção de classes Tailwind.
+* `ai-workspace/<idioma>/scripts/resources/upsert-resources.php`: CLI to create, clone, edit and delete resources with support for `--type`, `--id`, `--action=copy` and `--open`.
+* `ai-workspace/<idioma>/scripts/projects/deploy-project-v2.sh`: Automated projects packaging and deploy via OAuth API.
+* `ai-workspace/<idioma>/scripts/projects/recover-project.sh`: Data recovery/pull and server structure.
+* `ai-workspace/<idioma>/scripts/dev-environment/create-new-module.sh`: Scaffold of new modules.
+* `ai-workspace/<idioma>/scripts/dev-environment/create-new-installation.sh`: New local installation setup.
+* `ai-workspace/pt-br/scripts/utils/fix-tailwind-spacing.js`: Node utility for Tailwind class correction.
 
 ---
 
-## 3. Contrato Canônico do Console CLI (`c2f`)
+## 3. CLI Console Canon Contract (`c2f`)
 
 > [!IMPORTANT]
-> O console `c2f` **não usa Symfony Console**. Ele tem contratos próprios em `Conn2Flow\Cli\Contracts`.
-> Nunca invente `Symfony\Component\Console\Command\Command`, `configure()`, `InputArgument`, `addOption()`
-> ou atributos `#[AsCommand]`: nada disso existe no projeto e o comando não será registrado.
+> The `c2f` **does not use Symphony Console** console. He has his own contracts at `Conn2Flow\Cli\Contracts`.
+> Never invent `Symfony\Component\Console\Command\Command`, `configure()`, `InputArgument`, `addOption()`
+> or `#[AsCommand]` attributes: none of this exists in project and the command will not be registered.
 
-Todo novo comando DEVE implementar `Conn2Flow\Cli\Contracts\CommandInterface` ou estender
-`Conn2Flow\Cli\Commands\BaseProcessCommand` (que já implementa a interface e adiciona `runShell()`).
+Every new command MUST implement `Conn2Flow\Cli\Contracts\CommandInterface` or extend
+`Conn2Flow\Cli\Commands\BaseProcessCommand` (which already implements the interface and adds `runShell()`).
 
-**Superfície obrigatória da `CommandInterface`** (`cli/src/Contracts/CommandInterface.php`):
+**Required area of `CommandInterface`** (`cli/src/Contracts/CommandInterface.php`):
 
-| Método | Retorno | Papel |
+|Method|Return|Paper|
 | --- | --- | --- |
-| `getName()` | `string` | Nome único no formato `grupo:acao` (ex.: `resources:sync`). |
-| `getDescription()` | `string` | Descrição curta exibida no `c2f help`. |
-| `getAliases()` | `array<string>` | Aliases aceitos (ex.: `['release:installer']`). |
-| `getHelp()` | `string` | Texto de uso detalhado do comando. |
-| `execute(InputInterface $input, OutputInterface $output)` | `int` | Lógica do comando. `0` = sucesso; diferente de `0` = falha. |
+|`getName()`|`string`|Single name in `grupo:acao` format (e.g. `resources:sync`).|
+|`getDescription()`|`string`|Short description displayed on `c2f help`.|
+|`getAliases()`|`array<string>`|Accepted aliases (e.g. `['release:installer']`).|
+|`getHelp()`|`string`|Detailed command usage text.|
+|`execute(InputInterface $input, OutputInterface $output)`|`int`|Logic of command. `0` = success; different from `0` = failure.|
 
-**Regras de implementação**:
+**Implementation rules**:
 
-1. **Entrada e saída pelos contratos**: leia argumentos com `$input->getArgument(<indice>, <padrao>)` e escreva com
-   `$output->title()`, `$output->info()` e `$output->error()`. Não use `$argv`, `echo` ou `print_r` direto.
-2. **Herde `BaseProcessCommand` para orquestrar processos**: ele recebe `string $rootPath` no construtor e expõe
-   `runShell(string $cmd, OutputInterface $output, ?string $cwd = null): int`, que já faz streaming de stdout,
-   captura de stderr e propagação do exit code.
-3. **Resolva caminhos a partir de `$this->rootPath`**, nunca de `getcwd()` ou de caminhos relativos ao script.
-4. **Valide argumentos antes de executar** e devolva `1` com `$output->error()` explicando o uso correto.
-5. **Declare `declare(strict_types=1);`**, use o namespace `Conn2Flow\Cli\Commands` e marque a classe como `final`.
-6. **Registre o comando** no console (`cli/src/Console/`) para que ele apareça no `c2f help`. Um comando que não
-   consta no catálogo não é executável.
+1. **Entry and exit by contracts**: read arguments with `$input->getArgument(<indice>, <padrao>)` and write with
+   `$output->title()`, `$output->info()` and `$output->error()`. Do not use direct `$argv`, `echo` or `print_r`.
+2. **Herde `BaseProcessCommand` to orchestrate processes**: it receives `string $rootPath` in the builder and exposes
+   `runShell(string $cmd, OutputInterface $output, ?string $cwd = null): int`, which already stream stdout,
+   stderr capture and spread of exit code.
+3. **Solve paths from `$this->rootPath`**, never `getcwd()` or script paths.
+4. **Validate arguments before executing** and return `1` with `$output->error()` explaining the correct use.
+5. **State `declare(strict_types=1);`**, use the `Conn2Flow\Cli\Commands` namespace and mark the class as `final`.
+6. **Log command** on the console (`cli/src/Console/`) to show up on `c2f help`. A command other than
+   is not executable in the catalogue.
 
 ---
 
-## 4. Regra Anti-Deadlock: Sondas HTTP Partem do Front-End
+## 4. Anti-Deadlock Rule: HTTP Probes From Front-End
 
 > [!WARNING]
-> **PROIBIDO disparar sonda HTTP de loopback síncrona de dentro do próprio processo PHP em modo web.**
+> **PROHIBITED to fire HTTP synchronous loopback probe from within the PHP process itself in web mode.**
 
-Em ambiente local, Docker e VPS single-pool, o PHP-FPM tem um número reduzido de workers. Se um script PHP
-que está atendendo uma requisição abre um cURL para o **próprio host**, ele ocupa um worker enquanto espera outro
-worker atender a sonda. Com o pool saturado, ninguém atende: o cURL só retorna no timeout e a requisição original
-trava. É deadlock de auto-requisição, não lentidão.
+In a local environment, Docker and VPS single-pool, PHP-FPM has a reduced number of workers. If a PHP script
+who is attending a request opens a curl for **Host itself**, it occupies a worker while waiting another
+Worker meet probe. With the pool saturated, no one answers: the curl only returns on the timeout and the original request
+Lock. It's self-requisition deadlock, not slow.
 
-**Regra normativa**:
+**Rules**:
 
-1. **Modo web**: quem executa a sonda de conectividade, rewrite ou healthcheck de URL é o **navegador**
-   (`fetch`/`XMLHttpRequest` assíncrono no JavaScript do front-end). O backend apenas **monta o plano da sonda**
-   (URL alvo, resposta esperada, snippet de configuração) e **registra o veredito** devolvido pelo cliente.
-2. **Modo CLI / headless**: aí sim o próprio PHP pode sondar, porque não há navegador e o runner não compete pelo
-   pool do PHP-FPM. Proteja com uma checagem explícita de SAPI.
-3. **Nunca** deixe a rota de diagnóstico depender do recurso que ela diagnostica. Ofereça sempre um caminho
-   determinístico alcançável pelo front-controller (ex.: `?api=rewrite-probe` além de `api/rewrite-probe`).
+1. **Web mode**: Who runs the connectivity probe, rewrite or healthcheck URL is **browser**
+   (`fetch`/`XMLHttpRequest` asynchronous in front-end JavaScript). The **mounts the probe plane** only backend
+   (Target URL, expected response, configuration snippet) and **records the verdict** returned by the client.
+2. **CLI/headless mode**: then PHP itself can scan, because there is no browser and the runner does not compete for
+   PHP-FPM pool. Protect with an explicit SAPI check.
+3. **Never** let the diagnostic route depend on the resource it diagnoses. Always offer a path
+   deterministic achievable by front-controller (e.g. `?api=rewrite-probe` plus `api/rewrite-probe`).
 
-**Implementação de referência** (sonda de rewrite do gestor instalador, REQ-027/REQ-028):
+**Reference implementation** (installer rewrite probe, REQ-027/REQ-028):
 
-* `gestor-instalador/src/InstallerGuard.php`: constantes `REWRITE_PROBE`, `REWRITE_PROBE_OK` e `API_REWRITE_PROBE`.
-* `gestor-instalador/index.php`: responde à sonda antes de sessão/trava e aceita `?api=rewrite-probe` como rota
-  determinística; o veredito chega no request como `rewrite_ok`.
-* `gestor-instalador/assets/js/installer.js`: é o **navegador** que dispara o `fetch` da sonda.
-* `gestor-instalador/src/Installer.php`: `rewriteProbeReport()` consome o veredito do cliente; `probeRewrite()`
-  aborta com `if (!InstallerGuard::isCli()) return null;` — a sonda pelo servidor só roda em CLI.
+* `gestor-instalador/src/InstallerGuard.php`: constants `REWRITE_PROBE`, `REWRITE_PROBE_OK` and `API_REWRITE_PROBE`.
+* `gestor-instalador/index.php`: responds to probe before session/lock and accepts `?api=rewrite-probe` as route
+  deterministic; the verdict arrives in the request as `rewrite_ok`.
+* `gestor-instalador/assets/js/installer.js`: It is the **browser** that fires the `fetch` of the probe.
+* `gestor-instalador/src/Installer.php`: `rewriteProbeReport()` consumes the customer verdict; `probeRewrite()`
+  abort with `if (!InstallerGuard::isCli()) return null;` — the server probe only runs on CLI.
 
 ```php
 // Padrão obrigatório para qualquer sonda HTTP no servidor.
@@ -123,13 +123,13 @@ private function probeSelf($url)
 
 ---
 
-## 5. Diretrizes para Criar Novos Scripts de Desenvolvimento
+## 5. Guidelines for Creating New Development Scripts
 
-1. **Parâmetros Flexíveis**: Suporte a flags explícitas (`--project=ID`, `--lang=pt-br`, `--force`) e fallbacks seguros para execução interativa se os argumentos omitirem parâmetros requeridos.
-2. **Idempotência e Segurança**: Scripts de atualização/sincronização devem ser idempotentes (poder rodar múltiplas vezes sem corromper dados).
-3. **Logs e Retorno**: Emita saída colorida/formatada no console (`echo -e "\033[0;32mOK...\033[0m"`) e verifique códigos de saída HTTP ou status de comandos.
-4. **Modo `--dry-run`**: scripts que mutam arquivos versionados (ex.: bump de versão em release) devem oferecer
-   `--dry-run`, calculando e imprimindo o resultado sem escrever em disco, para que os gates de release possam
-   pré-validar tags e documentação antes da mutação.
-5. **Staging Git explícito**: scripts que commitam DEVEM listar os caminhos (`git add -- "$ARQUIVO"`). `git add .`
-   e `git add -A` são proibidos: arrastam trabalho concorrente de outros agentes para o commit.
+1. **Flexible Parameters**: Support for explicit flags (`--project=ID`, `--lang=pt-br`, `--force`) and secure fallbacks for interactive execution if arguments omit required parameters.
+2. **Idepotence and Security**: Update/sync scripts should be idempotent (can run multiple times without corrupting data).
+3. **Logs and Return**: Emulate color/formatted output on the console (`echo -e "\033[0;32mOK...\033[0m"`) and check HTTP output codes or command status.
+4. **`--dry-run` Mode**: scripts that mutate versioned files (e.g. release version boom) should offer
+   `--dry-run`, calculating and printing the result without writing to disk, so release gates can
+   pre-validate tags and documentation before mutation.
+5. **Explicit Git Staging**: scripts that commit MUST list the paths (`git add -- "$ARQUIVO"`). `git add .`
+   and `git add -A` are prohibited: they drag work concurrent from other agents to commit.

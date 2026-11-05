@@ -1,46 +1,46 @@
 ---
 name: c2f-javascript-ajax
-description: "LEIA OBRIGATORIAMENTE antes de escrever chamadas AJAX, requisições fetch, uploads multipart ou manipuladores backend de AJAX no Gestor. Previne erros 403 Forbidden por CSRF, envelopes JSON quebrados e travamento de UI."
+description: "MANDATORY READ before AJAX calls, fetch requests, multipart uploads or Gestor AJAX backend handlers. Prevents CSRF 403 errors, invalid JSON envelopes and stuck interfaces."
 user-invocable: false
 ---
 
-# Governança e Arquitetura de Integração AJAX no Gestor Conn2Flow
+# Governance and Integration Architecture AJAX in Gestor Conn2Flow
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Escrever, editar ou migrar código JavaScript frontend (Vanilla Fetch, jQuery) ou endpoints PHP de backend que realizam comunicação assíncrona (AJAX) em módulos do Gestor.
-- **SKIP APENAS SE**: Scripts utilitários puramente visuais locais (ex: animações CSS simples sem chamadas de rede).
-- **CONSEQUÊNCIA DE IGNORAR**: Erros 403 Forbidden (Token CSRF inválido ou ausente) por não ativar o modo AJAX do núcleo, envelopes JSON quebrados, travamento de dimmers/spinners e falhas silenciosas de sessão (401).
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Write, edit or migrate frontend JavaScript code (Vanilla Fetch, jQuery) or backend PHP endpoints that perform asynchronous communication (AJAX) in Gestor modules.
+- **SKIP ONLY IF**: Pure local visual utility Scripts (e.g. simple CSS animations without network calls).
+- **CONSEQUENCE OF IGNORING**: 403 Forbidden Errors (Token CSRF invalid or missing) for not activating core AJAX mode, broken JSON envelopes, dimmer/spinner locking and silent session failures (401).
 
 ---
 
-## 🔍 1. Diagnóstico: Como o Gestor Detecta Chamadas AJAX & Prevenção de 403
+## 🔍 1. Diagnosis: Like Gestor Detects AJAX & 403 Calls
 
-No núcleo do framework (`gestor.php`), o modo AJAX só é ativado quando a requisição POST/GET envia explicitamente `ajax: 'sim'`:
-* **Com `ajax: 'sim'`**: O Gestor popula `$_GESTOR['ajax'] = 'sim'`, lê `$_GESTOR['ajax-opcao']` (a partir do campo `ajaxOpcao`) e **desativa a exigência de token CSRF síncrono de formulário HTML**.
-* **Sem `ajax: 'sim'`**: O Gestor assume que se trata de uma submissão de formulário HTML tradicional, exige `$_GESTOR['token']` e **rejeita a requisição imediatamente com 403 Forbidden (`{"status":"error","message":"Token CSRF inválido ou ausente."}`)**.
+At the core of the framework (`gestor.php`), the AJAX mode is only activated when the request POST/GET explicitly sends `ajax: 'sim'`:
+* **With `ajax: 'sim'`**: The Gestor popula `$_GESTOR['ajax'] = 'sim'`, reads `$_GESTOR['ajax-opcao']` (from the `ajaxOpcao` field) and **disables token CSRF synchronous form requirement HTML**.
+* **No `ajax: 'sim'`**: Gestor assumes that this is a traditional HTML form submission, requires `$_GESTOR['token']` and **rejects the request immediately with 403 Forbidden (`{"status":"error","message":"Token CSRF inválido ou ausente."}`)**.
 
-### Cobertura automática de CSRF e 401 pelo `global.js`
+### Automatic CSRF and 401 coverage by `global.js`
 
-`gestor/assets/global/global.js` injeta `X-CSRF-Token` em requisições mutáveis (`POST`, `PUT`, `PATCH`, `DELETE`) de **mesma origem** em TODOS os canais — não escreva o cabeçalho à mão:
+`gestor/assets/global/global.js` injects `X-CSRF-Token` into changeable requests (`POST`, `PUT`, `PATCH`, `DELETE`) from **same origin** on ALL channels — do not type the header by hand:
 
-| Canal | Mecanismo |
+|Channel|Mechanism|
 | --- | --- |
-| `$.ajax` | `jQuery.ajaxPrefilter` |
-| `fetch` | envelope de `window.fetch` |
-| Formulários | listener de `submit` em captura + envelope de `HTMLFormElement.prototype.submit` + handler delegado do jQuery |
-| **`XMLHttpRequest` cru** (req-163) | envelope de `XMLHttpRequest.prototype.open` / `setRequestHeader` / `send` (guarda `__c2fCsrf`) |
+|`$.ajax`|`jQuery.ajaxPrefilter`|
+|`fetch`|`window.fetch` envelope|
+|Forms|`submit` listener in capture + `HTMLFormElement.prototype.submit` envelope + jQuery delegate handler|
+|**Raw `XMLHttpRequest`** (req-163)|`XMLHttpRequest.prototype.open` / `setRequestHeader` / `send` (guard `__c2fCsrf`)|
 
-- **Uploads com barra de progresso**: `fetch` não expõe `upload.onprogress`; use `new XMLHttpRequest()` normalmente — o token entra sozinho. Antes da req-163 esse caminho voltava **403** com o usuário logado.
-- Token definido manualmente (`xhr.setRequestHeader('X-CSRF-Token', ...)`, em qualquer caixa) **não é duplicado nem sobrescrito**. `GET` e cross-origin nunca recebem o token.
-- Resposta **401** com `X-Gestor-Auth-Redirect` redireciona para o login em `$.ajax`, `fetch` e `XMLHttpRequest`. Ainda assim trate o 401 no seu handler para destravar dimmers/spinners.
+- **Uploads with progress bar**: `fetch` does not expose `upload.onprogress`; use `new XMLHttpRequest()` normally — the token enters alone. Before req-163 this path returned **403** with the logged-in user.
+- Token manually defined (`xhr.setRequestHeader('X-CSRF-Token', ...)`, in any box) **is not duplicated or overwritten**. `GET` and cross-origin never receive the token.
+- **401** response with `X-Gestor-Auth-Redirect` redirects to login in `$.ajax`, `fetch` and `XMLHttpRequest`. Still treat the 401 in your handler to unlock dimmers/spinners.
 
 ---
 
-## 🏆 2. Padrão Canônico Frontend em JavaScript Vanilla (Gold Standard)
+## 🏆 2. Frontend Canon Standard in JavaScript Vanilla (Gold Standard)
 
-Em módulos modernos com JavaScript puro (Vanilla JS), utilize sempre o padrão canônico com `URLSearchParams` ou `FormData`:
+In modern modules with pure JavaScript (Vanilla JS), always use the canonical standard with `URLSearchParams` or `FormData`:
 
-### A) Requisições de Dados Estruturados (`application/x-www-form-urlencoded`):
+### A) Structured Data Requests (`application/x-www-form-urlencoded`):
 ```javascript
 /**
  * Padrão Canônico de Requisição AJAX no Gestor (Vanilla JS)
@@ -87,7 +87,7 @@ function gestorAjax(state, ajaxOpcao, extraData) {
 }
 ```
 
-### B) Uploads de Arquivo Multipart (`FormData`):
+### B) Multipart File Uploads (`FormData`):
 ```javascript
 /**
  * Padrão Canônico para Uploads de Arquivo Multipart (Vanilla JS)
@@ -133,9 +133,9 @@ function gestorUpload(state, ajaxOpcao, extraData, file) {
 
 ---
 
-## 🏛️ 3. Padrão Canônico Backend em PHP (`modulo.php`)
+## 🏛️ 3. PHP Backend Canon Pattern (`modulo.php`)
 
-No controlador PHP do módulo, toda rota AJAX DEVE ser interceptada no início do ciclo com `interface_ajax_iniciar()` e finalizada com `interface_ajax_finalizar()`:
+In the module PHP controller, the entire AJAX route should be intercepted at the beginning of the cycle with `interface_ajax_iniciar()` and completed with `interface_ajax_finalizar()`:
 
 ```php
 function modulo_start() {
@@ -194,9 +194,9 @@ function modulo_ajax_minha_acao() {
 
 ---
 
-## 📦 4. Padrão Legado com jQuery (`ajaxDefault`)
+## 📦 4. Legacy pattern with jQuery (`ajaxDefault`)
 
-Para módulos e interfaces legadas que utilizam jQuery e Semantic UI:
+For legacy modules and interfaces using jQuery and Semantic UI:
 
 ```javascript
 var ajaxDefault = {
@@ -248,11 +248,11 @@ $.ajax(ajax);
 
 ---
 
-## 5. Armadilha de Injeção de Scripts no `<head>` (`gestor_pagina_javascript_incluir`)
+## 5. `<head>` (`gestor_pagina_javascript_incluir`) Injection Trap
 
-A função PHP `gestor_pagina_javascript_incluir()` injeta os scripts dos módulos no elemento `<head>` da página HTML. Isso significa que o script é **executado antes do `<body>` ser parseado**.
+The PHP `gestor_pagina_javascript_incluir()` function injects module scripts into the `<head>` element of the HTML page. This means the script is **run before `<body>` is parsed**.
 
-### 5.1 Proibição de Consultas Diretas ao DOM na Raiz do Script
+### 5.1 Prohibition of Direct DOM Queries on Script Root
 
 ```javascript
 // ❌ ERRADO — DOM ainda não foi parseado, retorna null
@@ -266,9 +266,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 ```
 
-### 5.2 Preferência por Delegação de Eventos
+### 5.2 Event Delegation Preferences
 
-Para elementos que podem ser inseridos dinamicamente (widgets, componentes AJAX), use **delegação de eventos** no `document`:
+For elements that can be inserted dynamically (widgets, AJAX components), use **delegation of events** in `document`:
 
 ```javascript
 // ✅ CORRETO — delegação funciona mesmo para elementos futuros
@@ -288,25 +288,35 @@ document.addEventListener('submit', function(e) {
 ```
 
 > [!WARNING]
-> Sem `DOMContentLoaded` ou delegação, o formulário será submetido nativamente (POST síncrono) em vez de ser interceptado via AJAX, causando recarregamento completo da página e perda de estado.
+> Without `DOMContentLoaded` or delegation, the form will be submitted natively (synchronous POST) instead of being intercepted via AJAX, causing full page reload and state loss.
 
 ---
 
-## ⛔ Regras Invioláveis de AJAX:
-1. **SEMPRE envie `ajax: 'sim'`**: Sem este campo, o backend dispara erro `403 Forbidden` por CSRF.
-2. **SEMPRE envie `opcao` e `ajaxOpcao`**: Identificam o contexto da página e a ação a ser roteada no `switch ($_GESTOR['ajax-opcao'])`.
-3. **Backend DEVE usar `interface_ajax_iniciar()` e `interface_ajax_finalizar()`**: Garante headers JSON corretos, limpeza de buffers e envelope padronizado.
-4. **Trate o erro 401 (Unauthorized)**: Redirecione imediatamente para `signin/` em caso de sessão expirada.
-5. **Version Bump Obrigatório**: Ao alterar qualquer script JavaScript em `resources/`, incremente a versão (`versao: "X.Y.Z"`) no `<id>.json` ou no manifest do módulo antes de executar `c2f resources:sync` para invalidar o cache do navegador.
+## ⛔ AJAX Inviolable Rules:
+1. **Always send `ajax: 'sim'`**: Without this field, the backend fires `403 Forbidden` error by CSRF.
+2. **Always send `opcao` and `ajaxOpcao`**: Identify the context of the page and the action to be routed in `switch ($_GESTOR['ajax-opcao'])`.
+3. **Backend MUST use `interface_ajax_iniciar()` and `interface_ajax_finalizar()`**: Ensures headers Correct JSON, buffer cleaning and standardized envelope.
+4. **Treat error 401 (Unauthorized)**: Redirect immediately to `signin/` in case of expired session.
+5. **Required version Bump**: By changing any JavaScript script in `resources/`, increase the version (`versao: "X.Y.Z"`) in `<id>.json` or in the module manifest before running `c2f resources:sync` to invalidate the browser cache.
 
-## Depuração de tráfego assíncrono com Chrome DevTools MCP
+## Asynchronous traffic clearance with Chrome DevTools MCP
 
-Em uma sessão local isolada preparada conforme `c2f-agent-visual-inspection`, reproduza a ação real da interface antes de avaliar console e rede. Consulte o schema negociado pelo servidor instalado; não suponha que os parâmetros sejam idênticos entre versões.
+In an isolated local session prepared according to `c2f-agent-visual-inspection`, play the actual action of the interface before evaluating console and network. See the schema negotiated by the installed server; do not suppose that the parameters are identical between versions.
 
-1. Colete `list_console_messages` antes/depois da ação. Use `get_console_message` pelo ID para detalhar erros e stack traces disponíveis; registre arquivo, linha e frames relevantes, incluindo source maps quando resolvidos. Um console sem erros não comprova que o AJAX funcionou.
-2. Use `list_network_requests` para localizar `fetch`/XHR da ação, incluindo `/_ajax/`, `/_api/` e rotas do módulo. Correlacione ID, método, URL e sequência; examine cada falha com `get_network_request`, verificando status HTTP, headers, payload e corpo da resposta.
-3. No Gestor, confira `ajax=sim`, `opcao` e `ajaxOpcao` onde o contrato da rota os exige. Em métodos mutáveis de mesma origem, verifique presença de `X-CSRF-Token` injetado pelo `global.js` e sessão válida. O campo `ajax=sim` não elimina a proteção CSRF; não desative a proteção para corrigir um 403. Não exponha valores de token, Authorization, Cookie ou Set-Cookie nos registros.
-4. Diferencie 401 (sessão/`X-Gestor-Auth-Redirect`), 403 (autorização/CSRF), 500 (backend) e HTTP 200 com HTML de login, warnings PHP ou JSON inválido. Confira Content-Type e envelope JSON esperado pela rota, além de liberar loading/dimmer após sucesso e falha.
-5. Para multipart, confira campos e boundary gerado pelo navegador; não fixe manualmente Content-Type em `FormData`. Registre latência observada e pedidos duplicados após cliques repetidos. Verifique resultado no DOM com novo snapshot/screenshot.
+1. Collect `list_console_messages` before/after action. Use `get_console_message` by ID to detail available errors and stack traces; register relevant file, line, and frames, including source maps when solved. A bug-free console doesn't prove AJAX worked.
+2. Use `list_network_requests` to locate `fetch`/XHR of the action, including `/_ajax/`, `/_api/` and module routes. Correlate ID, method, URL and sequence; scan each failure with `get_network_request`, checking HTTP status, headers, payload and response body.
+3. In Gestor, check `ajax=sim`, `opcao` and `ajaxOpcao` where the route contract requires them. In changeable methods of the same origin, check the presence of `X-CSRF-Token` injected by `global.js` and valid session. The `ajax=sim` field does not eliminate CSRF protection; do not disable protection to fix a 403. Do not expose token, Authorization, Cookie or Set-Cookie values in the records.
+4. Differentiate 401 (session/`X-Gestor-Auth-Redirect`), 403 (authorization/CSRF), 500 (backend) and HTTP 200 with invalid HTML login, PHP warns or JSON. Check Content-Type and JSON envelope expected by the route, and release loading/dimmer after success and failure.
+5. For multipart, check fields and browser-generated boldness; do not manually set Content-Type on `FormData`. Register observed latency and duplicate requests after repeated clicks. Check DOM results with new snapshot/screenshot.
 
-Prefira observar a requisição original. Reenviar mutações como `fetch()` pode duplicar gravações/pagamentos e exige escopo de teste autorizado. Evidências devem conter IDs e dados sanitizados, nunca dumps integrais de headers sensíveis. Referência: [ferramentas oficiais](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md).
+Prefer to observe the original request. Resending mutations like `fetch()` can duplicate recordings/payments and requires authorized testing scope. Evidence should contain IDs and sanitized data, never dumps comprehensive sensitive headers. Reference: [official tools](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md).
+
+## REP-002 — observable HTTP failures
+
+Callbacks `.fail()` calls AJAX critical must explicitly register `xhr.status`, step and time to correlate with access log, without tokens or sensitive content:
+```javascript
+.fail(function (xhr) {
+    console.error('HTTP', xhr.status);
+});
+```
+Preserve spinner release and session treatment/CSRF. Message “Failure” alone does not support timeout diagnosis or memory.

@@ -1,39 +1,39 @@
 ---
 name: c2f-variables-system
-description: "LEIA ANTES de escrever qualquer texto, rótulo, título, tooltip, mensagem de erro ou alerta no código. Se não ler: strings literais violam a governança i18n, impedem personalização por tenant e o PR é rejeitado."
+description: "READ BEFORE adding user-facing text, labels, titles, tooltips, errors or alerts in code. Uses the variables system for localization and tenant customization."
 user-invocable: false
 ---
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Escrever, alterar ou adicionar qualquer texto visível, label, mensagem de validação, título ou alerta em arquivos PHP, HTML ou JavaScript.
-- **SKIP APENAS SE**: Identificadores técnicos estritos (nomes de colunas SQL, chaves de array, classes CSS ou slugs internos).
-- **CONSEQUÊNCIA DE IGNORAR**: Rejeição sumária do PR por inclusão de texto hardcoded, quebra da internacionalização (i18n) e impossibilidade de alteração de textos via painel de variáveis.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Write, change or add any visible text, label, validation message, title or alert in PHP, HTML or JavaScript files.
+- **SKIP ONLY IF**: Strict technical identifiers (names of SQL columns, array keys, CSS classes or internal slugs).
+- **CONSEQUENCE OF IGNORING**: Summary rejection of the PR by inclusion of hardcoded text, breach of internationalization (i18n) and impossibility of text alteration via variable panel.
 
 ---
 
 ﻿---
 name: c2f-variables-system
-description: "Use SEMPRE que for escrever textos, mensagens de erro, alertas, labels ou qualquer string de interface. Consulte ANTES de usar texto literal em PHP, HTML ou JS."
+description: "Always use to write text, error messages, alerts, labels or any interface string. See BEFORE you use literal text in PHP, HTML or JS."
 user-invocable: false
 ---
 
-# Sistema de VariÃ¡veis e Mensagens MultilÃ­ngues do Conn2Flow
+# Conn2Flow Multilingual Message and Variable System
 
 > [!CAUTION]
-> **REGRA MANDATÃ“RIA â€” PROIBIDO TEXTO LITERAL FIXO**:
-> Ã‰ ESTRITAMENTE PROIBIDO inserir textos literais fixos (strings hardcoded) em cÃ³digo PHP, HTML ou JavaScript para:
-> - Mensagens de erro ou sucesso
-> - Alertas e warnings de interface
-> - Labels de formulÃ¡rios e botÃµes
-> - TÃ­tulos, descriÃ§Ãµes e placeholders
-> - Qualquer texto visÃ­vel ao usuÃ¡rio final
+> **WRITER PROGRAMME FIXED LITERAL TEXT PROHIBITED**:
+> It is strictly prohibited to insert fixed literal texts (hardcoded strings) into PHP, HTML or JavaScript code for:
+> - Error or success messages
+> - Interface Alerts and Warnings
+> - Labels of forms and buttons
+> - Titles, descriptions and placeholders
+> - Any text visible to the final user
 >
-> TODOS os textos DEVEM ser declarados no **Sistema de VariÃ¡veis** e consumidos via API.
+> ALL texts MUST be declared in the **Variable System** and consumed via the API.
 
-## 1. DeclaraÃ§Ã£o de VariÃ¡veis
+## 1. Declaration of Variables
 
-### 1.1. VariÃ¡veis Globais
-Arquivo: `gestor/resources/<lang>/variables.json`
+### 1.1. Global Variables
+File: `gestor/resources/<lang>/variables.json`
 
 ```json
 {
@@ -48,8 +48,8 @@ Arquivo: `gestor/resources/<lang>/variables.json`
 }
 ```
 
-### 1.2. VariÃ¡veis de MÃ³dulo
-Arquivo: `modulos/<modulo-id>/<modulo-id>.json`, dentro da chave `resources.<lang>.variables`:
+### 1.2. Modulu Variables
+File: `modulos/<modulo-id>/<modulo-id>.json`, inside `resources.<lang>.variables` key:
 
 ```json
 {
@@ -68,9 +68,9 @@ Arquivo: `modulos/<modulo-id>/<modulo-id>.json`, dentro da chave `resources.<lan
 
 ---
 
-## 2. Consumo de VariÃ¡veis
+## 2. Variable Consumption
 
-### 2.1. Em PHP
+### 2.1. PHP
 ```php
 // VariÃ¡vel global
 $texto = gestor_variaveis(['id' => 'minha-variavel']);
@@ -79,7 +79,7 @@ $texto = gestor_variaveis(['id' => 'minha-variavel']);
 $texto = gestor_variaveis(['modulo' => 'meu-modulo', 'id' => 'titulo-listagem']);
 ```
 
-### 2.2. Em HTML / Templates de Recurso
+### 2.2. HTML / Resource Templates
 ```html
 <!-- SubstituiÃ§Ã£o direta no template engine -->
 <h1>@[[titulo-listagem]]@</h1>
@@ -88,7 +88,7 @@ $texto = gestor_variaveis(['modulo' => 'meu-modulo', 'id' => 'titulo-listagem'])
 <!-- Alternativa: substituiÃ§Ã£o via modelo_var_troca() no PHP que renderiza o template -->
 ```
 
-### 2.3. Em JavaScript (via atributos data ou variÃ¡veis PHP injetadas)
+### 2.3. In JavaScript (via date attributes or PHP variables injected)
 ```html
 <div data-msg-erro="@[[erro-permissao]]@"></div>
 ```
@@ -98,9 +98,9 @@ const msg = element.dataset.msgErro;
 
 ---
 
-## 3. Fluxo de CompilaÃ§Ã£o
+## 3. Compilation Flow
 
-1. Editar `variables.json` (global) ou `<modulo>.json` (mÃ³dulo)
-2. `atualizacao-dados-recursos.php` compila para `VariaveisData.json`
-3. `atualizacoes-banco-de-dados.php` aplica Upsert na tabela `variaveis`
-4. Runtime consome via `gestor_variaveis()` ou substituiÃ§Ã£o de template
+1. Edit `variables.json` (global) or `<modulo>.json` (module)
+2. `atualizacao-dados-recursos.php` compiles for `VariaveisData.json`
+3. `atualizacoes-banco-de-dados.php` applies Upsert in the `variaveis` table
+4. Runtime consumes via `gestor_variaveis()` or template replacement

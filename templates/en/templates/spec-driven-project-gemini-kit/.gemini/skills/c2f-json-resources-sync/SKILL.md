@@ -1,33 +1,33 @@
 ---
 name: c2f-json-resources-sync
-description: "LEIA ANTES de editar *Data.json ou rodar a compilação/sincronização de recursos. Se não ler: checksums inválidos impedem o deploy, recursos do banco não atualizam e alterações locais são sobrescritas."
+description: "READ BEFORE editing *Data.json or compiling/synchronizing resources. Prevents invalid checksums, stale database resources and overwritten local changes."
 user-invocable: false
 ---
 
-# Sincronização de recursos JSON Conn2Flow
+# JSON Conn2Flow Resource Sync
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Editar manifests JSON de recursos (`pages.json`, `components.json`, `layouts.json`, `templates.json`) ou executar o pipeline de compilação para `*Data.json`.
-- **SKIP APENAS SE**: Edição de código PHP de controladores sem alteração na estrutura de recursos.
-- **CONSEQUÊNCIA DE IGNORAR**: Divergência entre arquivos físicos e os dados no banco SQL (`Data.json`), falhas no cálculo de checksums e perda de alterações após deploy.
-
----
-
-- Não calcule nem edite manualmente checksums de recursos.
-- Em recurso novo, use a versão inicial exigida pelo manifesto, normalmente `1.0`, e deixe checksums como string vazia.
-- Em recurso alterado, limpe os checksums afetados; não invente hashes nem faça bumps mecânicos fora do contrato do projeto.
-- O pipeline de atualização/deploy executa `gestor/controladores/agents/arquitetura/atualizacao-dados-recursos.php` e recalcula versões/checksums.
-- Após testes que regeneram data files, confira `git status` e mantenha apenas artefatos que pertencem ao escopo aprovado.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Edit manifests Resource JSON (`pages.json`, `components.json`, `layouts.json`, `templates.json`) or run the build pipeline for `*Data.json`.
+- **SKIP ONLY IF**: PHP code editing of controllers without changing resource structure.
+- **CONSEQUENCE OF IGNORING**: Divergence between physical files and data in database SQL (`Data.json`), miscalculation of checksums and loss of changes after deploy.
 
 ---
 
-## Preservação de Barras Escapadas (`\/`) em JSON de Módulos
+- Do not manually calculate or edit resource checksums.
+- In new resource, use the initial version required by the manifest, usually `1.0`, and leave checksums as an empty string.
+- In changed resource, clean the affected checksums; do not invent hashes or make mechanical booms outside the project contract.
+- The update/deploy pipeline runs `gestor/controladores/agents/arquitetura/atualizacao-dados-recursos.php` and recalculates versions/checksums.
+- After tests that regenerate data files, check `git status` and keep only artifacts that belong to the approved scope.
 
-O PHP serializa JSON de módulos com escape de barra por padrão (`"products\/add\/"`). Ao manipular esses arquivos com ferramentas externas (Python, Node), o escape pode ser perdido, gerando ruídos massivos no Git diff.
+---
 
-### Diretriz Normativa
+## Preservation of Short Bars (`\/`) in JSON Modules
 
-Ao ler e reescrever arquivos JSON de módulos via Python:
+PHP serializes JSON modules with escaping by default (`"products\/add\/"`). By manipulating these files with external tools (Python, Node), escaping can be lost, generating massive noises in Git diff.
+
+### Normative Directive
+
+While reading and rewriting files Module JSON via Python:
 
 ```python
 import json
@@ -55,11 +55,11 @@ with open(json_path, 'w', encoding='utf-8', newline='') as f:
     f.write(output)
 ```
 
-| Requisito | Implementação |
+|Request|Implementation|
 |---|---|
-| **Escape de barra** | `output.replace('/', '\\/')` quando o original contém `\\/` |
-| **Encoding** | `ensure_ascii=False` para preservar acentos e caracteres UTF-8 |
-| **Line endings** | Detectar e manter LF ou CRLF nativo do arquivo original |
+|**Bar escape**|`output.replace('/', '\\/')` when the original contains `\\/`|
+|**Encoding**|`ensure_ascii=False` to preserve accents and characters UTF-8|
+|**Line endings**|Detect and maintain LF or CRLF native to original file|
 
 > [!CAUTION]
-> Sem a preservação do escape de barra, o `git diff` aponta alterações artificiais em **todas as linhas** do arquivo que contêm caminhos com `/`, poluindo o histórico e dificultando revisões.
+> Without preserving the escaping bar, `git diff` points to artificial changes in **all lines** file containing paths with `/`, polluting the history and making revisions difficult.

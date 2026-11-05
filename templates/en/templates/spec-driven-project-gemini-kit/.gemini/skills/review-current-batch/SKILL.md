@@ -1,34 +1,34 @@
 ---
 name: review-current-batch
-description: "LEIA ANTES de submeter um batch para aprovação humana ou criar pull request. Se não ler: findings críticos passam despercebidos, o código é rejeitado pelo revisor e acumula dívida técnica."
+description: "READ BEFORE submitting a batch for human approval or opening a pull request. Requires review of functional defects, regressions, specification drift and missing validation."
 user-invocable: true
 ---
 
-# Review do batch atual
+# Current batch review
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Realizar a revisão rigorosa findings-first do lote de código implementado antes da validação final ou entrega ao Usuário.
-- **SKIP APENAS SE**: Durante a fase inicial de rascunho enquanto o código ainda está sendo ativamente digitado.
-- **CONSEQUÊNCIA DE IGNORAR**: Submissão de lotes com bugs óbvios, violação de convenções de estilo e acúmulo de débito técnico.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Perform rigorous findings-first review of the code batch implemented before final validation or delivery to the User.
+- **SKIP ONLY IF**: During the initial draft phase while the code is still actively entering.
+- **CONSEQUENCE OF IGNORING**: Submission of lots with obvious bugs, violation of style conventions and accumulation of technical debt.
 
 ---
 
-Revise o batch atual em modo findings-first.
+Review the current batch in endings-first mode.
 
-## Foco padrão
+## Default focus
 
-1. bug funcional
-2. regressão
+1. functional bug
+2. regression
 3. spec drift
 4. batch drift
-5. validação ausente
+5. validation missing
 
-## Formato esperado
+## Expected format
 
-1. findings primeiro, do mais severo para o menos severo
-2. perguntas ou premissas em seguida
-3. resumo apenas por último
+1. endings first, from the most severe to the least severe
+2. Questions or premises below
+3. summary only last
 
-## Foco adicional desta rodada
+## Additional focus of this round
 
 $ARGUMENTS

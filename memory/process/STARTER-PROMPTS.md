@@ -33,7 +33,7 @@ Leia memory/human-requests/CURRENT.md e o arquivo da requisição ativa.
 Renderize imediatamente a Live Todo List ([ ] -> [x]) e inicie a implementação do menor slice aprovado. 
 Regras invioláveis: proibido git add -A, proibido cópia manual de arquivos para pastas de teste e uso obrigatório de variables.json.
 
-Regra de Proporcionalidade de Build: classifique o diff. A (backend PHP/APIs/migrations sem HTML/classes/CSS alterados): testes pertinentes e, se sincronização local for necessária, project:update-all <id> --skip-css ou project:sync-core <id> --skip-css seguido de project:sync-db <id> --core-resources; sistema manager:update-all --skip-css. B (documentação/skills/testes/memória): apenas checks e testes locais, sem deploy no Lab. C (telas/templates/componentes/CSS/fontes de compilação): pipeline completo sem --skip-css. Mudanças mistas com impacto de CSS são C. Preserve locks, execução sequencial e autorizações do ambiente alvo; não prometa duração sem medição.
+Regra de Proporcionalidade de Build: classifique o diff. A (backend PHP/APIs/migrations sem HTML/classes/CSS alterados): testes pertinentes e, se sincronização local for necessária, project:deploy <id> ; Core isolado usa seu pipeline; sistema manager:update-all --skip-css. B (documentação/skills/testes/memória): apenas checks e testes locais, sem deploy no Lab. C (telas/templates/componentes/CSS/fontes de compilação): pipeline completo sem --skip-css. Mudanças mistas com impacto de CSS são C. Preserve locks, execução sequencial e autorizações do ambiente alvo; não prometa duração sem medição.
 
 Instrução específica desta rodada:
 [Descreva aqui ou confirme: "Execute o lote BATCH-XXX conforme os critérios de aceite"]
@@ -86,3 +86,10 @@ Pendências e estado técnico: preencher conforme resultados reais do lote.
 ```
 
 Nota de autoria: na via cirúrgica Core/banco, --core-resources preserva o dono das sementes do Core. Dados e recursos próprios do projeto exigem sua sincronização específica; não use essa flag para transferir autoria.
+
+## REQ-077 — Pipeline, worktrees e preservação (DEC-136)
+
+- Projeto: `./c2f project:deploy <id>` é o padrão (95% dos casos). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` é proibido na rotina de projeto; permitido exclusivamente em lote que altera Core e projeto simultaneamente.
+- Antes de deploy, confira `git branch --show-current` e `git status --short` na origem; não publique trabalho alheio/inacabado. Confira o destino e sua autorização. Categoria B (skills/documentação/testes/memória): somente checks locais, sem deploy. Execução sequencial, foreground, logs e locks continuam obrigatórios.
+- Worktrees por conveniência são proibidas. Só criar com concorrência multi-agente comprovada no mesmo repositório; em dúvida, consultar o humano antes. Registre raiz original, caminho temporário e concorrência na requisição e lote. Ao concluir/homologar, audite trabalho único, integração na main e junctions, então `git worktree remove <caminho>` e `git worktree prune`. Nunca use força para destruir trabalho não integrado; preserve e reporte impedimentos.
+- DEC-136: manter por padrão; nada é removido (arquivo, `status='D'`, `DELETE`) sem confirmação explícita do operador humano. Retirada vira choque pendente; `--confirmar-retirada` só quando pedido pelo operador. Fonte incompleta não autoriza retirada.

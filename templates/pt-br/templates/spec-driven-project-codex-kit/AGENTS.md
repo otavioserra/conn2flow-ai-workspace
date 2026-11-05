@@ -17,9 +17,9 @@
 
 ---
 
-## 📦 Configuração de Skills (39 Skills Oficiais)
+## 📦 Configuração de Skills (46 Skills Oficiais)
 
-Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `.gemini/skills/` (com espelhamento nos demais clientes) e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+Todas as **46 skills** do framework estão disponíveis em `.claude/skills/` e `.gemini/skills/` (com espelhamento nos demais clientes) e seguem o padrão aberto de progressive disclosure (`SKILL.md`):
 
 ### 1. Skills de Papéis da Tríade SDD (3 Skills):
 > Consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
@@ -27,7 +27,7 @@ Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `
 - `c2f-executor-agent`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
 - `c2f-reviewer-agent`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
 
-### 2. Skills Core do Framework (29 Skills):
+### 2. Skills Core do Framework (34 Skills):
 - `c2f-agent-visual-inspection`
 - `c2f-database-operations`
 - `c2f-dev-scripts`
@@ -58,7 +58,7 @@ Todas as **39 skills** do framework estão disponíveis em `.claude/skills/` e `
 - `c2f-quill-editor`
 - `c2f-assets-management`
 
-### 3. Skills de Governança e Workflow SDD (7 Skills):
+### 3. Skills de Governança e Workflow SDD (9 Skills):
 - `mdd-workflow`
 - `start-mdd-slice`
 - `continue-mdd-batch`
@@ -85,7 +85,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 ## 🛡️ Regras Invioláveis de Governança
 
 1. **Proibição Absoluta de `git add -A` e `git add .`**: Commits devem SEMPRE listar arquivos específicos (`git add <caminhos-especificos>`).
-2. **Proibição de Sincronização por Cópia Manual**: NUNCA copie arquivos manualmente (`cp`, `copy`, `Copy-Item`) para pastas de teste/espelho (`dev-environment/data/sites/`). Use sempre `./c2f manager:update-all` (sistema) ou `./c2f project:update-all <id>` (projeto).
+2. **Proibição de Sincronização por Cópia Manual**: NUNCA copie arquivos manualmente (`cp`, `copy`, `Copy-Item`) para pastas de teste/espelho (`dev-environment/data/sites/`). Use sempre `./c2f manager:update-all` (sistema) ou `./c2f project:deploy <id>` (projeto).
 3. **Execução Sequencial Exclusiva**: Comandos de compilação em lote (`manager:update-all`, `project:update-all`, `css:rebuild`, `resources:sync`) devem executar um por vez em foreground com logs desbufferizados.
 4. **Fonte da Verdade em Runtime**: O runtime serve HTML e CSS exclusivamente do banco de dados SQL. `resources/` é a semente de autoria.
 5. **Version Bump Mandatório**: Ao alterar scripts JS ou estilos estáticos, incremente a versão no metadado `<id>.json` do recurso.
@@ -94,3 +94,11 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 8. **Boost Mode (`/boost`)**: Utilize `/boost` no prompt para tarefas que exigem raciocínio analítico profundo, planejamento multi-etapa, múltiplas perspectivas e validação cruzada rigorosa.
 9. **Configuração por Projeto em `.gemini/config.json`**: O arquivo `.gemini/config.json` é o ponto canônico de configuração por projeto no Antigravity v2.16+. O diretório legado `.agents/` foi descontinuado — todas as configurações, MCP servers e discovery vivem exclusivamente em `.gemini/`.
 
+## REQ-077 — Pipeline, worktrees e preservação (DEC-136)
+
+- Projeto: `./c2f project:deploy <id>` é o padrão (95% dos casos). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` é proibido na rotina de projeto; permitido exclusivamente em lote que altera Core e projeto simultaneamente.
+- Antes de deploy, confira `git branch --show-current` e `git status --short` na origem; não publique trabalho alheio/inacabado. Confira o destino e sua autorização. Categoria B (skills/documentação/testes/memória): somente checks locais, sem deploy. Execução sequencial, foreground, logs e locks continuam obrigatórios.
+- Worktrees por conveniência são proibidas. Só criar com concorrência multi-agente comprovada no mesmo repositório; em dúvida, consultar o humano antes. Registre raiz original, caminho temporário e concorrência na requisição e lote. Ao concluir/homologar, audite trabalho único, integração na main e junctions, então `git worktree remove <caminho>` e `git worktree prune`. Nunca use força para destruir trabalho não integrado; preserve e reporte impedimentos.
+- DEC-136: manter por padrão; nada é removido (arquivo, `status='D'`, `DELETE`) sem confirmação explícita do operador humano. Retirada vira choque pendente; `--confirmar-retirada` só quando pedido pelo operador. Fonte incompleta não autoriza retirada.
+
+- `c2f-multilingual-skills-governance`: governança das traduções de skills e hash pairing SHA-256.

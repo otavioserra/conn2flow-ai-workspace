@@ -1,105 +1,105 @@
 ---
 name: c2f-resources-system
-description: "LEIA ANTES de criar ou editar qualquer um dos 11 tipos de recursos nativos (pages, layouts, components, templates, variables, ai_prompts, etc.). Se não ler: recursos não entram no build, perdem vínculos, mantêm cache stale de JS/CSS e quebram o deploy."
+description: "READ BEFORE creating or editing native resources such as pages, layouts, components, templates, variables or AI prompts. Keeps builds, bindings, cache versions and deployments consistent."
 user-invocable: false
 ---
 
-# Sistema de Recursos do Conn2Flow (`resources/`)
+# Conn2Flow Resource System (`resources/`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar, estruturar ou alterar arquivos dentro das pastas `resources/<lang>/` de módulos ou projetos.
-- **SKIP APENAS SE**: Edição de arquivos não gerenciados pelo sistema de recursos (ex: scripts na raiz de `scripts/`).
-- **CONSEQUÊNCIA DE IGNORAR**: Recursos não sincronizados para o banco de dados SQL, ausência de compilação em `*Data.json`, mascaramento de bugs por cache stale de JavaScript/CSS e quebra de layouts no site publicado.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create, structure or change files within the `resources/<lang>/` folders of modules or projects.
+- **SKIP ONLY IF**: Editing files not managed by the resource system (e.g. scripts at the root of `scripts/`).
+- **CONSEQUENCE OF IGNORING**: Unsynchronised features for database SQL, no build on `*Data.json`, bug masking by JavaScript/CSS stale cache, and layout breaking on the published site.
 
 ---
 
 > [!WARNING]
-> **REGRA MANDATÓRIA DE ARQUIVOS HTML, CSS E MARKDOWN**:
-> NUNCA crie arquivos `.html`, `.css` ou `.md` soltos na raiz do projeto, em pastas públicas estáticas ou na raiz de módulos PHP!
-> TODO e QUALQUER conteúdo HTML, CSS ou Markdown para páginas, layouts, componentes, templates ou prompts no Conn2Flow DEVE OBRIGATORIAMENTE ser criado dentro da estrutura do **Sistema de Recursos** (`resources/`), para que possa ser compilado em `*Data.json` e sincronizado no Banco de Dados SQL pelo runtime.
+> **HTML, CSS, AND MARKDOWN ARCHIVE MANAGEMENT**:
+> NEVER create files `.html`, `.css` or `.md` loose at the root of project, in static public folders or at the root of PHP modules!
+> ALL and ANY HTML, CSS or Markdown content for pages, layouts, components, templates or prompts in Conn2Flow It must be created within the structure of the **Resource System** (`resources/`), so that it can be compiled in `*Data.json` and synchronized in the Database SQL by runtime.
 
-## 1. Arquitetura de Recursos (Edição Física -> Compilação -> Banco)
+## 1. Resource Architecture (Physical Edition -> Compilation -> Database)
 
-### Proporcionalidade de recompilação — REQ-075 / Core REQ-269
+### Proportionality of recovery — REQ-075 / Core REQ-269
 
-Classifique o diff antes de compilar:
+Rate diff before compiling:
 
-- **Categoria A:** backend PHP/APIs/migrations/regras de negócio sem alteração de HTML, classes Tailwind, CSS ou fontes/configuração de compilação. Não recompile Tailwind. Se sincronização local for necessária, use `./c2f project:update-all <id> --skip-css` ou `./c2f manager:update-all --skip-css`. Mudanças exclusivamente de Core/banco admitem `./c2f project:sync-core <id> --skip-css` seguido de `./c2f project:sync-db <id> --core-resources`.
-- **Categoria B:** documentação, skills, testes unitários e memória MDD. Execute apenas os testes/checks locais pertinentes; nenhum pipeline de deploy no Lab.
-- **Categoria C:** telas/templates HTML/componentes/classes/CSS autoral/fontes de compilação. Execute o pipeline completo sem `--skip-css`; mudanças mistas com impacto visual também são C.
+- **Category A:** PHP/APIS backend/migrations/business rules without HTML change, Tailwind classes, CSS or sources/compilation configuration. Don't reward Tailwind. If local synchronization is required, use `./c2f project:deploy <id>` or `./c2f manager:update-all --skip-css`. Isolated color uses the system pipeline.
+- **Category B:** documentation, skills, unit tests and MDD memory. Run only relevant local tests/checks; no deploy pipeline in the Lab.
+- **Category C:** screens/HTML templates/components/classes/authoral CSS/sources compilation. Run the complete pipeline without `--skip-css`; mixed changes with visual impact are also C.
 
-Ignorar CSS não significa ignorar dados: recursos alterados ainda precisam gerar seus `*Data.json` e chegar ao banco pelo pipeline. A flag dispensa Tailwind e CSS derivado, preservando as demais etapas. A via cirúrgica de Core/banco não compila recursos do projeto. Mantenha version bump e invalidação de cache para scripts/estilos alterados. Não faça build completo em A nem deploy em B; não prometa duração <45 segundos sem medir no ambiente real.
+Ignore CSS does not mean ignoring data: changed features still need to generate your `*Data.json` and reach database by pipeline. The flag dispenses Tailwind and derived CSS, preserving the other steps. The Core/database surgical route does not compile project resources. Keep version bump and cache invalidation for changed scripts/styles. Do not build full in A or deploy in B; do not promise duration <45 seconds without measuring in the real environment.
 
-* **Fonte (Source)**: Desenvolvedores criam/editam arquivos físicos em `resources/<idioma>/<tipo>/<id>/<id>.<ext>`.
-* **Recursos de Módulo**: `modulos/<modulo-id>/resources/<idioma>/<tipo>/<id>/<id>.<ext>`.
-* **Natural Key**: O nome da pasta do recurso (`<id>`) é a chave primária natural no Banco de Dados.
-* **Compilação**: O comando `c2f resources:sync` lê os fontes e gera arquivos estáticos em `gestor/db/data/*Data.json` (`PaginasData.json`, `LayoutsData.json`, `ComponentesData.json`).
-* **Sincronização**: O runtime aplica Upsert no Banco respeitando proteções de `user_modified = 1` e `project`.
+* **Source (Source)**: Developers create/edit physical files in `resources/<idioma>/<tipo>/<id>/<id>.<ext>`.
+* **Module Resources**: `modulos/<modulo-id>/resources/<idioma>/<tipo>/<id>/<id>.<ext>`.
+* **Natural Key**: The name of the resource folder (`<id>`) is the natural primary key in Database.
+* **Build**: The `c2f resources:sync` command reads sources and generates static files in `gestor/db/data/*Data.json` (`PaginasData.json`, `LayoutsData.json`, `ComponentesData.json`).
+* **Synchronization**: Runtime applies Upsert to Database respecting `user_modified = 1` and `project` protections.
 
 ---
 
-## 2. Os 11 Tipos de Recursos Nativos
+## 2. The 11 Types of Native Resources
 
-| Tipo | Tabela SQL | Arquivo Fonte | Uso |
+|Type|SQL Table|Source File|Usage|
 |---|---|---|---|
-| `pages` (paginas) | `paginas` | `<id>/<id>.html` + `<id>.css` | Páginas com URL, vinculadas a layout via `id_layouts` |
-| `layouts` | `layouts` | `<id>/<id>.html` + `<id>.css` | Estrutura externa (header/footer) com slot de inserção |
-| `components` (componentes) | `componentes` | `<id>/<id>.html` + `<id>.css` | Blocos reutilizáveis de HTML/CSS |
-| `templates` | `templates` | `<id>/<id>.html` | Templates de email, notificação, etc. |
-| `variables` (variaveis) | `variaveis` | `variables.json` | Mensagens, labels e textos multilíngues |
-| `ai_prompts` | `prompts` | `<id>/<id>.md` | Prompts e instruções de IA em Markdown |
-| `ai_modes` | `modos` | `<id>/<id>.md` | System prompts e modos de IA |
-| `ai_prompts_targets` | `prompts_targets` | `<id>/<id>.md` | Targets de prompts de IA |
-| `forms` (formularios) | `formularios` | `<id>/<id>.html` | Formulários HTML reutilizáveis |
-| `widgets` | `widgets` | `<id>/<id>.html` + `<id>.css` | Widgets visuais de interface |
+|`pages` (pagins)|`paginas`|`<id>/<id>.html` + `<id>.css`|URL pages linked to layout via `id_layouts`|
+|`layouts`|`layouts`|`<id>/<id>.html` + `<id>.css`|External structure (header/footer) with insertion slot|
+|`components` (components)|`componentes`|`<id>/<id>.html` + `<id>.css`|Reusable HTML/CSS Blocks|
+|`templates`|`templates`|`<id>/<id>.html`|Email templates, notification, etc.|
+|`variables` (variable)|`variaveis`|`variables.json`|Messages, labels and multilingual texts|
+|`ai_prompts`|`prompts`|`<id>/<id>.md`|Prompts and instructions for AI in Markdown|
+|`ai_modes`|`modos`|`<id>/<id>.md`|System prompts and AI modes|
+|`ai_prompts_targets`|`prompts_targets`|`<id>/<id>.md`|AI Prompt Targets|
+|`forms` (formulas)|`formularios`|`<id>/<id>.html`|Reusable HTML Forms|
+|`widgets`|`widgets`|`<id>/<id>.html` + `<id>.css`|Visual interface widgets|
 
 ---
 
-## 🏷️ 3. Regra Mandatória de Version Bump (Cache-Busting)
+## 🏷️ 3. Version Bump Mandate Rule (Cache-Busting)
 
-Ao criar ou editar qualquer script JavaScript (`<id>.js`) ou folha de estilo (`<id>.css`) em `resources/`:
-* O agente DEVE OBRIGATORIAMENTE realizar o **version bump** (incremento de versão, ex: `"versao": "1.0.0"` ➔ `"1.0.1"`) no arquivo de metadados do recurso (`<id>.json`) ou no manifest do módulo (`<modulo>.json`).
-* Isso assegura que, ao rodar `c2f resources:sync`, a query string `<script src="...&v=1.0.1">` seja atualizada, forçando o navegador a invalidar o cache antigo imediatamente e prevenindo erros por execução de assets obsoletos (*stale cache*).
+When creating or editing any JavaScript script (`<id>.js`) or stylesheet (`<id>.css`) in `resources/`:
+* THE AGENT MUST THANKLY DO THE**version bump** (version increment, e.g.`"versao": "1.0.0"` ➔ `"1.0.1"`) in the metadata file ofresource (`<id>.json`) or the module manifest (`<modulo>.json`).
+* This ensures that when running `c2f resources:sync`, the query string `<script src="...&v=1.0.1">` is updated, forcing the browser to invalidate the old cache immediately and preventing errors by running obsolete assets (*sale cache*).
 
 ---
 
-## 🗄️ 3.1. Fonte da Verdade em Runtime (Banco vs Disco)
+## 🗄️ 3.1. Source of Truth in Runtime (Database vs Disk)
 
 > [!IMPORTANT]
-> O runtime do Conn2Flow serve HTML e CSS exclusivamente do **BANCO DE DADOS** (`gestor.php:2782`). O diretório `resources/` é lido diretamente apenas sob `DEVELOPMENT_ENV=true`.
+> Conn2Flow runtime serves HTML and CSS exclusively from **DATA BANK** (`gestor.php:2782`). The `resources/` directory is read directly only under `DEVELOPMENT_ENV=true`.
 
-**Fluxo Arquitetural**:
+**Architecture Flow**:
 ```
 resources/ (disco) → c2f resources:sync → *Data.json → Upsert no Banco SQL → Runtime serve do Banco
 ```
 
-* **Disco (`resources/`)**: É a **semente de compilação** — a fonte de autoria onde desenvolvedores criam e editam.
-* **Banco de Dados**: É a **fonte da verdade em runtime** — o que o visitante vê e o que o Gestor edita.
-* **Pipeline Oficial**: Alterações em disco SÓ chegam ao runtime após execução de `c2f manager:update-all` (para o sistema) ou `c2f project:update-all <id>` (para projetos).
+* **Disk (`resources/`)**: It's **Compilation seed** — the source author where developers create and edit.
+* **Database**: It is the **source of truth in runtime** — what the visitor sees and what the Gestor edits.
+* **Official Pipeline**: Disk changes Only reach runtime after running `c2f manager:update-all` (for the system) or `c2f project:deploy <id>` (for projects).
 
-**Ao investigar o comportamento de uma página publicada:**
-1. Inspecione o banco PRIMEIRO (tabelas `paginas`, `layouts`, `componentes`).
-2. Compare com `resources/` para identificar divergências.
-3. NUNCA assuma que o conteúdo em disco é o que está sendo servido.
+**When investigating the behavior of a published page:**
+1. Inspect database FIRST (tables `paginas`, `layouts`, `componentes`).
+2. Compare with `resources/` to identify differences.
+3. NEVER assume that disk content is what is being served.
 
 ---
 
-## 4. Convenções de HTML e Seções
+## 4. HTML Conventions and Sections
 
-* Em arquivos de página (`pages/<id>/<id>.html`), adicione obrigatoriamente os atributos às tags `<section>`:
+* In page files (`pages/<id>/<id>.html`), you must add attributes to the `<section>` tags:
   ```html
   <section class="text-center mb-16" data-id="1" data-title="hero">
       <!-- Conteúdo da seção -->
   </section>
   ```
-  - `data-id`: Índice numérico sequencial iniciando em 1.
-  - `data-title`: Nome semântico simples da seção (ex: `hero`, `recursos`, `contato`).
+  - `data-id`: Sequential numerical index starting at 1.
+  - `data-title`: Simple semantic name of the section (e.g. `hero`, `recursos`, `contato`).
 
 ---
 
-## 5. Extensibilidade Dinâmica de Recursos
+## 5. Dynamic Resource Extendability
 
-Tabelas customizadas podem se tornar novos tipos de recursos automaticamente usando `sync_resources: true` em `tables_config.json` ou `<modulo>.json`:
+Custom tables can become new types of features automatically using `sync_resources: true` in `tables_config.json` or `<modulo>.json`:
 
 ```json
 {
@@ -122,12 +122,35 @@ Tabelas customizadas podem se tornar novos tipos de recursos automaticamente usa
 }
 ```
 
-Os `field_types` suportados são:
-* `file:html` — Arquivo HTML físico em `<id>/<id>.html`
-* `file:css` — Arquivo CSS físico em `<id>/<id>.css`
-* `file:md` — Arquivo Markdown físico em `<id>/<id>.md`
-* `json` — Dados JSON inline no metadado
+The supported `field_types` are:
+* `file:html` — Physical HTML file in `<id>/<id>.html`
+* `file:css` — Physical CSS file in `<id>/<id>.css`
+* `file:md` — Physical Markdown archive in `<id>/<id>.md`
+* `json` — Inline JSON data in the metadata
 
-A compilação gera `[PascalCase]Data.json` (ex: `MinhaTabelaData.json`) automaticamente.
+The compilation generates `[PascalCase]Data.json` (e.g. `MinhaTabelaData.json`) automatically.
 
-Nota de autoria: na via cirúrgica Core/banco, --core-resources preserva o dono das sementes do Core. Dados e recursos próprios do projeto exigem sua sincronização específica; não use essa flag para transferir autoria.
+Author note: in the surgical route Core/database, --core-resources preserves the owner of Core seeds. Data and own resources of project require your specific synchronization; do not use this flag to transfer authorship.
+
+## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
+
+- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
+- Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
+- DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.
+
+## Rep-002 — manifests per layer and clashes
+
+Precedence: `projeto` > `plugin:<id>` > `core`. Files use `installation/manifests/<camada>.json`; data use `recursos-<dono>.json`. Same name data in `db/data/` does not change owner: step Core reads the delivery Core; the project step reads the project delivery.
+
+|Shock|Situation|
+| --- | --- |
+|`editado`|Local file differs from the version delivered by the layer|
+|`sobreposto`|Top layer takes precedence over delivery|
+|`retirado`|Owner stopped delivering; keep even human decision|
+|`retirado-editado`|Removed file also has local edition|
+|`original-ausente`|Original required for comparison is not available|
+
+Register clashes before recording the manifest; new versions are in `backups/overrides/<versão>/`. Never reconcile in mass without human simulation and confirmation (DEC-136).
+
+Note REQ-077: `--skip-css` refers to the commands that implement it (`manager:update-all` and the exception `project:update-all`). The `ProjectDeployCommand.php` wrapper passes only project and `--contents`; do not prescribe this flag to `project:deploy`.

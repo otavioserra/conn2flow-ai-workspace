@@ -1,21 +1,21 @@
 ---
 name: c2f-mysql-utf8-emoji-encoding
-description: "LEIA ANTES de salvar textos, posts, JSONs ou strings que possam conter Emojis ou caracteres Unicode especiais no MySQL. Se não ler: o banco rejeita o UPDATE silenciosamente e o registro fica NULL/não persiste."
+description: "READ BEFORE saving text, posts, JSON or strings containing emoji or special Unicode characters in MySQL. Prevents rejected updates and missing persisted values."
 user-invocable: false
 ---
 
-# JSON seguro para MySQL utf8 de 3 bytes
+# JSON Safe for 3 bytes MySQL utf8
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Gravar dados textuais ricos, posts de redes sociais, feedbacks de usuários ou JSONs arbitrários em colunas MySQL.
-- **SKIP APENAS SE**: Colunas estritamente numéricas, booleanas ou slugs ASCII controlados.
-- **CONSEQUÊNCIA DE IGNORAR**: Falha silenciosa de gravação no MySQL (`Incorrect string value`), perda irrecuperável de conteúdo digitado pelo usuário e campos persistidos como NULL.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Record rich textual data, social media posts, user feedback or arbitrary JSONs in MySQL columns.
+- **SKIP ONLY IF**: Strictly numerical columns, booleans or controlled ASCII slugs.
+- **CONSEQUENCE OF IGNORING**: Silent write failure in MySQL (`Incorrect string value`), unrecoverable loss of user-typed content and persisted fields like NULL.
 
 ---
 
-- Enquanto a conexão usar `mysqli_set_charset(..., "utf8")`, trate caracteres de 4 bytes como incompatíveis com gravação direta.
-- Codifique payloads JSON com `json_encode($dados, JSON_UNESCAPED_SLASHES)`.
-- Não adicione `JSON_UNESCAPED_UNICODE`: os escapes `\uXXXX` mantêm o valor ASCII-safe e `json_decode` recompõe Unicode/emoji na leitura.
-- Verifique erro/linhas afetadas após INSERT/UPDATE; helpers legados podem falhar silenciosamente.
-- Se a migration existe mas a coluna continua nula, investigue charset antes de concluir que o caminho de persistência não executou.
-- Se o projeto migrar integralmente para `utf8mb4`, reavalie esta compatibilidade antes de remover o padrão.
+- While the connection uses `mysqli_set_charset(..., "utf8")`, treat 4-byte characters as incompatible with direct recording.
+- Code JSON payloads with `json_encode($dados, JSON_UNESCAPED_SLASHES)`.
+- Do not add `JSON_UNESCAPED_UNICODE`: `\uXXXX` exhausts maintain the ASCII-safe and `json_decode` value restores Unicode/emoji in reading.
+- Check error/affected lines after INSERT/UPDATE; legacy helpers can fail silently.
+- If migration exists but the column remains null, investigate charset before concluding that the persistence path did not run.
+- If project migrates fully to `utf8mb4`, re-evaluate this compatibility before removing the pattern.

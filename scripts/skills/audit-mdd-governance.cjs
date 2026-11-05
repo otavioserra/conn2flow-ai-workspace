@@ -10,13 +10,13 @@ const repos = ['conn2flow-ai-workspace', 'conn2flow', 'conn2flow-site', 'lumix',
 const sources = fs.readdirSync(path.join(root, '.gemini/skills')).filter(name => fs.existsSync(path.join(root, '.gemini/skills', name, 'SKILL.md')));
 const errors = [];
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-if (sources.length !== 45) errors.push(`Canonical count: ${sources.length}`);
+if (sources.length !== 46) errors.push(`Canonical count: ${sources.length}`);
 let checked = 0;
 for (const repo of repos) for (const kit of kits) {
   const base = path.join(root, '..', repo, kit, 'skills');
   for (const old of oldNames) if (fs.existsSync(path.join(base, old))) errors.push(`Legacy directory: ${repo}/${kit}/${old}`);
   const count = fs.readdirSync(base).filter(name => fs.existsSync(path.join(base, name, 'SKILL.md')) && sources.includes(name)).length;
-  if (count !== 45) errors.push(`Canonical count in ${repo}/${kit}: ${count}`);
+  if (count !== 46) errors.push(`Canonical count in ${repo}/${kit}: ${count}`);
   for (const name of sources) {
     const target = path.join(base, name, 'SKILL.md');
     if (hash(target) !== hash(path.join(root, '.gemini/skills', name, 'SKILL.md'))) errors.push(`Different copy: ${target}`);

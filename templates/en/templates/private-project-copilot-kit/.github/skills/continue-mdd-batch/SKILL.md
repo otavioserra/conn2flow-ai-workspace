@@ -1,27 +1,27 @@
 ---
 name: continue-mdd-batch
-description: "LEIA ANTES de retomar o desenvolvimento de um batch que já está em andamento. Se não ler: etapas já concluídas são reexecutadas, o checklist de validação é corrompido e o foco do lote se perde."
+description: "READ BEFORE resuming a batch already in progress. Preserves completed work, validation checklists and the current batch focus."
 user-invocable: true
 ---
 
-# Continuidade de batch MDD
+# Batch continuity MDD
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Continuar ou retomar um lote MDD em andamento (`in-progress`), seja após pausa na conversa ou em nova sessão.
-- **SKIP APENAS SE**: Início de uma nova demanda do zero (onde o comando correto é `/start-mdd-slice`).
-- **CONSEQUÊNCIA DE IGNORAR**: Perda do fio condutor da tarefa, reexecução desnecessária de etapas já validadas e conflito nos checklists de validação.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Continue or resume an MDD batch in progress (`in-progress`), either after pause in conversation or in new session.
+- **SKIP ONLY IF**: Start of a new demand from scratch (where the correct command is `/start-mdd-slice`).
+- **CONSEQUENCE OF IGNORING**: Loss of the task context, unnecessary re-execution of already validated steps and conflict in validation checklists.
 
 ---
 
-Trate `$ARGUMENTS` como o delta operacional desde a última rodada.
+Treat `$ARGUMENTS` as the operational delta since the last round.
 
-## Antes de continuar
+## Before continuing
 
-1. Releia primeiro os artefatos ou arquivos explicitamente citados no delta.
-2. Releia `memory/implementation/BATCH-INDEX.md`, o batch atual e `memory/validation/VALIDATION-CHECKLIST.md`.
-3. Se o delta mudar requisito, recarregue `mdd-workflow` e mova para change request antes de reescrever sdd numerado.
-4. Se o delta for só feedback de round, mantenha documentos normativos numerados estáveis.
+1. First reread the artifacts or files explicitly cited in the delta.
+2. Reread `memory/implementation/BATCH-INDEX.md`, the current batch and `memory/validation/VALIDATION-CHECKLIST.md`.
+3. If the delta changes requirement, reload `mdd-workflow` and move to change request before rewriting numbered sdd.
+4. If the delta is just round feedback, keep numbered normative documents stable.
 
-## Delta atual
+## Current Delta
 
 $ARGUMENTS

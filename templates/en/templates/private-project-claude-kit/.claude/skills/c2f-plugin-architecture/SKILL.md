@@ -1,27 +1,27 @@
 ---
 name: c2f-plugin-architecture
-description: "LEIA ANTES de criar ou empacotar novos plugins para o ecossistema Conn2Flow. Se não ler: plugins não instalam, colidem com tabelas do core ou não desinstalam limpamente."
+description: "READ BEFORE creating or packaging Conn2Flow ecosystem plugins. Prevents installation failures, collisions with core tables and incomplete uninstalls."
 user-invocable: false
 ---
 
-# Arquitetura e Ciclo de Vida de Plugins (`CONN2FLOW-PLUGIN-ARCHITECTURE.md`)
+# Plugin Architecture and Lifecycle (`CONN2FLOW-PLUGIN-ARCHITECTURE.md`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar, estruturar ou testar pacotes em `dev-plugins/` ou `gestor/plugins/`.
-- **SKIP APENAS SE**: Desenvolvimento de recursos nativos do Core ou customizações exclusivas de projeto.
-- **CONSEQUÊNCIA DE IGNORAR**: Plugins incompatíveis com o ciclo de vida do instalador, resíduos órfãos deixados no banco após desinstalação e violação do isolamento de plugins.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create, structure or test packages in `dev-plugins/` or `gestor/plugins/`.
+- **SKIP ONLY IF**: Development of Core native resources or exclusive project customizations.
+- **CONSEQUENCE OF IGNORING**: Plugins incompatible with the installer's lifecycle, orphan waste left in database after uninstalling and violating plugin isolation.
 
 ---
 
-Consulte e aplique as seguintes convenções ao trabalhar com plugins no Conn2Flow:
+See and apply the following conventions when working with Conn2Flow plugins:
 
-## 1. Estrutura de Diretórios de Plugins
+## 1. Plugin Directory Structure
 
-Plugins residem sob `dev-plugins/plugins/`:
-- **Públicos**: `dev-plugins/plugins/public/<plugin-id>/`
-- **Privados**: `dev-plugins/plugins/private/<plugin-id>/`
+Plugins reside under `dev-plugins/plugins/`:
+- **Public**: `dev-plugins/plugins/public/<plugin-id>/`
+- **Private**: `dev-plugins/plugins/private/<plugin-id>/`
 
-Estrutura típica de um plugin:
+Typical plugin structure:
 ```
 dev-plugins/plugins/public/<plugin-id>/
 ├── plugin.json                 # Manifesto do plugin
@@ -32,7 +32,7 @@ dev-plugins/plugins/public/<plugin-id>/
 
 ---
 
-## 2. Manifesto do Plugin (`plugin.json`)
+## 2. Plugin Manifest (`plugin.json`)
 
 ```json
 {
@@ -47,14 +47,14 @@ dev-plugins/plugins/public/<plugin-id>/
 
 ---
 
-## 3. Ciclo de Vida e Instalação (`_install` / `_uninstall`)
+## 3. Lifecycle and Installation (`_install` / `_uninstall`)
 
-- **Instalação (`_install.php`)**: Executa migrações Phinx de tabela do plugin, registra hooks e sincroniza recursos.
-- **Desinstalação (`_uninstall.php`)**: Remove dados temporários ou desabilita registros preservando dados do usuário se configurado.
+- **Installation (`_install.php`)**: Executes migrations Phinx plugin table, register hooks and sync features.
+- **Uninstallation (`_uninstall.php`)**: Remove temporary data or disable records preserving user data if configured.
 
 ---
 
-## 4. Tarefas de Build e Sincronização
+## 4. Build and Synchronization Tasks
 
-- Compilação de recursos do plugin: `php ./dev-plugins/plugins/public/scripts/resources/update-data-resources-plugin.php`.
-- Sincronização local: `bash ./dev-plugins/plugins/public/scripts/dev/synchronizes.sh checksum`.
+- Plugin feature compilation: `php ./dev-plugins/plugins/public/scripts/resources/update-data-resources-plugin.php`.
+- Local sync: `bash ./dev-plugins/plugins/public/scripts/dev/synchronizes.sh checksum`.

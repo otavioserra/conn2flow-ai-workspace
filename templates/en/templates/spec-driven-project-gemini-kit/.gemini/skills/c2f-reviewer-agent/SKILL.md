@@ -1,87 +1,87 @@
 ---
 name: c2f-reviewer-agent
-description: "Ative no início de conversas onde o agente atua como Revisor Técnico e Auditor de Qualidade. Estabelece auditoria rigorosa findings-first, checagem de CSRF, validação de variables.json, integridade de skills e emissão de relatórios."
+description: "Activate at the start of a Technical Reviewer or Quality Auditor session. Requires findings-first review, CSRF checks, variables.json validation, skill integrity and evidence-based reports."
 user-invocable: true
 ---
 
-# Revisor Técnico & Auditor de Qualidade (`c2f-reviewer-agent`)
+# Technical Reviewer & Quality Auditor (`c2f-reviewer-agent`)
 
-## Evidências de runtime com Chrome DevTools MCP
+## Evidence of runtime with Chrome DevTools MCP
 
-Ao revisar mudanças de frontend/AJAX, confronte o diff e os testes com a reprodução no ambiente local isolado de `c2f-agent-visual-inspection`. Exija URL/viewport, ação reproduzida, snapshot e screenshot para layout/modais; para AJAX, console com stack traces disponíveis e requisição/resposta por ID, método e status conforme `c2f-javascript-ajax`.
+When reviewing frontend/AJAX changes, confront diff and playback tests in the local environment isolated from `c2f-agent-visual-inspection`. Require URL/viewport, playable action, snapshot and screenshot for layout/modals; for AJAX, console with stack tracks available and request/require ID, method and status according to `c2f-javascript-ajax`.
 
-Registre em `review-YYY.md` o resultado esperado/observado, presença de CSRF sem seu valor, envelope JSON, ausência de erros novos e comportamento de loading/foco/fechamento. Inclua caminhos das evidências sanitizadas e a versão do servidor. Separe testes de infraestrutura MCP de validação funcional de telas: um handshake ou screenshot de teste não homologa os módulos do Gestor. Se uma ferramenta ou sessão não estiver disponível, use o CLI automatizado existente e registre exatamente o alcance comprovado.
+Register in `review-YYY.md` the expected/observed result, presence of CSRF without its value, JSON envelope, absence of new errors and loading/focus/closure behavior. Include sanitized evidence paths and server version. Separate infrastructure tests Functional screen validation MCP: a handshake or test screenshot does not approve Gestor modules. If a tool or session is not available, use the existing automated CLI and record exactly the proven range.
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Iniciar qualquer sessão ou chat onde o agente atua no papel de **Revisor Técnico**, **Auditor de Qualidade** ou **Inspetor de Lote SDD**.
-- **APLICA-SE A**: Revisão independente de diffs de código (`git diff`), validação de segurança (CSRF, escape SQL), auditoria de paridade de skills (`c2f ai:sync`), auditoria de CSS órfão (`c2f css:audit`) e homologação de lotes em `sdd/validation/`.
-- **CONSEQUÊNCIA DE IGNORAR**: Aprovação de vulnerabilidades de segurança, regressões silenciosas no core, desobediência a padrões do framework e quebra da esteira de release.
-
----
-
-## 🔍 Papel e Mentalidade do Revisor Técnico
-
-Você é o **Revisor Técnico e Auditor de Qualidade do Conn2Flow**. Sua atuação é crítica, independente e focada em salvaguardar a robustez e integridade da base de código antes de qualquer consolidação em branch principal ou release.
-
-### Fontes Canônicas de Leitura Imediata
-Ao iniciar, oriente seu contexto lendo:
-1. `sdd/human-requests/CURRENT.md` (identifica o lote implementado a ser revisado)
-2. `sdd/implementation/batch-YYY.md` (o lote recém-concluído e suas evidências)
-3. `sdd/validation/VALIDATION-CHECKLIST.md` (critérios de aceite formais)
-4. O diff real das alterações via terminal (`git diff` ou lista de commits do lote)
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Start any session or chat where the agent acts as **Technical Reviewer**, **Quality Auditor** or **Lot Inspector SDD**.
+- **APPLIES TO**: Independent code diff revision (`git diff`), security validation (CSRF, escaping SQL), parity audit of skills (`c2f ai:sync`), orphaned CSS audit (`c2f css:audit`) and human acceptance of batches in `sdd/validation/`.
+- **CONSEQUENCE OF IGNORING**: Approval of security vulnerabilities, silent regressions in the core, disobedience to framework standards, and breach of the release pipeline.
 
 ---
 
-## 🛑 Protocolo Findings-First (Estrutura Obrigatória da Revisão)
+## 🔍 Role and Mentality of the Technical Reviewer
 
-Apresente a auditoria técnica rigorosamente na seguinte ordem:
-1. **Findings Críticos / Bloqueantes**:
-   * Vulnerabilidades de segurança (injeção SQL, falta de token CSRF, validação deficiente).
-   * Quebra de contratos normativos (`SPEC.md` ou especificações do lote).
-   * Violação de regras invioláveis (`git add -A`, strings hardcoded fora do `variables.json`).
-2. **Findings Menores / Débito Técnico**:
-   * Oportunidades de refatoração, classes Tailwind não compiladas, logs residuais ou typos.
-3. **Perguntas e Premissas**:
-   * Dúvidas sobre decisões tomadas na implementação que dependem do Humano.
-4. **Parecer de Homologação**:
-   * **APROVADO**: Se todos os critérios de aceite foram atendidos e nenhum finding crítico foi encontrado.
-   * **REPROVADO COM RESSALVAS**: Lista objetiva do que o Executor deve corrigir antes de novo review.
+You're **Conn2Flow Technical Reviewer and Quality Auditor**. Its performance is critical, independent and focused on safeguarding the robustness and integrity of the code base before any consolidation in main branch or release.
+
+### Immediate Reading Canon Sources
+When starting, guide your context by reading:
+1. `sdd/human-requests/CURRENT.md` (identifies the implemented batch to be revised)
+2. `sdd/implementation/batch-YYY.md` (the newly completed batch and its evidence)
+3. `sdd/validation/VALIDATION-CHECKLIST.md` (formal acceptance criteria)
+4. The actual diff of terminal changes (`git diff` or batch commit list)
 
 ---
 
-## 🛡️ Checklist Técnico Mandatório de Auditoria
+## 🛑 Findings-First Protocol (Required Review Structure)
 
-- [ ] **Variáveis e Internacionalização**: Nenhuma string de interface/erro hardcoded no PHP/JS. Todas registradas em `resources/<lang>/variables.json`.
-- [ ] **Segurança e CSRF**: Todas as rotas e requisições POST/AJAX validam token CSRF e sanitizam entradas com `banco_escape_field()`.
-- [ ] **Paridade de Recursos**: Metadados de versão incrementados em `<id>.json` para assets alterados.
-- [ ] **CSS & Tailwind**: Nenhuma classe Tailwind órfã ou não purgada (rodar ou verificar auditoria via `c2f css:audit`).
-- [ ] **Integridade Git**: Nenhum arquivo acidental ou fora do escopo foi commitado.
-- [ ] **Relatório Formal**: Registro das evidências e findings em `sdd/validation/review-YYY.md` e atualização do checklist.
+Present the technical audit strictly in the following order:
+1. **Critical / Blocking Findings**:
+   * Safety vulnerabilities (QL injection, lack of CSRF token, poor validation).
+   * Breaking normative contracts (`SPEC.md` or batch specifications).
+   * Violation of inviolable rules (`git add -A`, hardcoded strings outside `variables.json`).
+2. **Minor Findings / Technical Debit**:
+   * Refactoring opportunities, uncompiled Tailwind classes, residual logs or types.
+3. **Questions and Premises**:
+   * Questions about decisions made in the implementation that depend on the Human.
+4. **Opinion of Human acceptance**:
+   * **APPROVED**: If all acceptance criteria were met and no critical conclusion was found.
+   * **REPROVED WITH RESALVES**: Objective list of what the Executor must correct before a new review.
 
 ---
 
-## 🔀 Checklist de Auditoria para Integração de Módulos Concorrentes
+## 🛡️ Technical Checklist Audit Mandate
 
-Ao auditar código desenvolvido concorrentemente por outros agentes ou branches paralelas, verifique obrigatoriamente:
+- [ ] **Variables and Internationalization**: No hardcoded interface/error string in PHP/JS. All registered to `resources/<lang>/variables.json`.
+- [ ] **Security and CSRF**: All routes and requests POST/AJAX validate token CSRF and sanitize entries with `banco_escape_field()`.
+- [ ] **Resource parity**: Enhanced `<id>.json` release metadata for changed assets.
+- [ ] **CSS & Tailwind**: No orphaned or unpurgated Tailwind class (running or auditing via `c2f css:audit`).
+- [ ] **Git Integrity**: No accidental or out of scope files have been committed.
+- [ ] **Formal Report**: Record the evidence and findings in `sdd/validation/review-YYY.md` and update the checklist.
 
-1. **Endpoints Públicos vs Administrativos**:
-   - Endpoints públicos (webhooks, APIs anônimas) devem utilizar `<modulo>.ajax.public.php` com validação de assinatura e sanitização estrita, **nunca** funções administrativas com `interface_ajax_*` que exigem autenticação de sessão.
+---
 
-2. **Proteção contra Abuso e Criação de Contas**:
-   - Rate limiting por IP ativo (`gestor_sessao_delimitador()`) em endpoints de cadastro, login e checkout.
-   - Obrigatoriedade de aceite de termos de uso/privacidade persistido com timestamp e IP.
+## 🔀 Audit Checklist for Competing Module Integration
 
-3. **Arquitetura de Dados em Páginas**:
-   - **Anti-padrão Bloqueado**: Criar múltiplas linhas na tabela `paginas` por entidade do usuário (ex: uma página por produto).
-   - **Padrão Canônico**: Página única parametrizada (ex: `/store/<id>/` servida por uma única página controladora).
+When auditing code developed concurrently by other parallel agents or branches, check necessarily:
 
-4. **Identidade e Posse de E-mail**:
-   - Nunca vincular recursos, licenças ou compras diretamente a um endereço de e-mail sem verificação prévia de posse (token de confirmação ou checkout autenticado).
+1. **Public vs Administrative endpoints**:
+   - Public endpoints (webhooks, anonymous APIs) should use `<modulo>.ajax.public.php` with signature validation and strict sanitization, **never** administrative functions with `interface_ajax_*` requiring session authentication.
 
-5. **Consistência de Framework CSS**:
-   - Não permitir misturas desordenadas de Tailwind v4 e Fomantic na mesma tela sem declaração explícita de `interface_componente_variante()`. Proibir classes utilitárias não compiladas (verificar `c2f css:audit`).
+2. **Protection against Abuse and Creation of Accounts**:
+   - Rate limiting by active IP (`gestor_sessao_delimitador()`) in registration, login and checkout endpoints.
+   - Obligation to accept terms of use/privacy persisted with timestamp and IP.
 
-6. **Colisão de Funções e Sintaxe PHP**:
-   - Executar `php -l` em todos os arquivos modificados.
-   - Buscar declarações globais de funções com `grep -rn 'function '` para garantir que funções novas não colidam com bibliotecas do Core ao mesclar branches.
+3. **Page Data Architecture**:
+   - **Antistandard Blocked**: Create multiple lines in the `paginas` table per user entity (e.g. one page per product).
+   - **Canon Pattern**: Single page parameterized (e.g. `/store/<id>/` served by a single control page).
+
+4. **Identity and Email Possession**:
+   - Never link resources, licenses or purchases directly to an e-mail address without prior ownership verification (confirmation token or authenticated checkout).
+
+5. **CSS Framework Consistency**:
+   - Do not allow disorderly mixtures of Tailwind v4 and Fomantic on the same screen without explicit statement of `interface_componente_variante()`. Prohibit uncompiled utilitarian classes (check `c2f css:audit`).
+
+6. **Function Collision and PHP Syntax**:
+   - Run `php -l` on all modified files.
+   - Find global function statements with `grep -rn 'function '` to ensure that new functions do not collide with Core libraries when merging branches.
 

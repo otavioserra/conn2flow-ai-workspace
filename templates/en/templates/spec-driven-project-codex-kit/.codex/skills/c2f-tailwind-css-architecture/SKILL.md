@@ -1,69 +1,69 @@
 ---
 name: c2f-tailwind-css-architecture
-description: "LEIA OBRIGATORIAMENTE antes de criar, alterar ou migrar qualquer tela, layout, página ou componente que utilize Tailwind CSS v4. Previne conflitos de cascata, mascaramento por css_compiled em banco, descarte de estilos em runtime e quebra de builds."
+description: "MANDATORY READ before creating, modifying or migrating Tailwind CSS v4 screens, layouts, pages or components. Prevents cascade conflicts, stale compiled CSS, discarded runtime styles and broken builds."
 user-invocable: false
 ---
 
-# Governança e Arquitetura do Tailwind CSS v4 no Conn2Flow e Projetos
+# Governance and Architecture of Tailwind CSS v4 in Conn2Flow and Projects
 
-## Diagnóstico de CSS em runtime com Chrome DevTools MCP
+## Diagnosis of CSS in runtime with Chrome DevTools MCP
 
-Após sincronizar pelo pipeline, siga `c2f-agent-visual-inspection`: capture screenshot e snapshot em desktop/mobile e após alternar estados dinâmicos. Meça o nó com `evaluate_script` (`getComputedStyle`, `getBoundingClientRect`) e correlacione classes reais, breakpoint, display, posição e overflow com o CSS entregue pelo SQL.
+After syncing through the pipeline, follow `c2f-agent-visual-inspection`: capture screenshot and snapshot on desktop/mobile and after switching dynamic states. Measure the node with `evaluate_script` (`getComputedStyle`, `getBoundingClientRect`) and correlate real classes, breakpoint, display, position and overflow with CSS delivered by SQL.
 
-Quando `get_css_styles` estiver no catálogo da sessão, use-o para examinar regras correspondentes e estilos computados. Compare regras sobrescritas, especificidade, ordem e contexto flex/grid; uma declaração aplicada pode ser inativa por incompatibilidade de contexto. Não trate o indicador visual de estilos inativos do DevTools como uma ferramenta MCP garantida. Sem essa ferramenta, combine medições e inspeção das folhas carregadas, registrando a limitação.
+When `get_css_styles` is in the session catalog, use it to examine corresponding rules and computed styles. Compare overwritten rules, specificity, order and context flex/grid; an applied statement can be inactive by context incompatibility. Do not treat DevTools' inactive style visual indicator as a guaranteed MCP tool. Without this tool, combine measurements and inspection of the loaded sheets, recording the limitation.
 
-Correlacione com `c2f css:audit --url=<rota>` e reconstrua derivados pelo `c2f css:rebuild` autorizado. Não use alterações transitórias no DOM/CSS nem updates diretos em `css_compiled` como solução final; valide novamente o recurso sincronizado.
+Correlate with `c2f css:audit --url=<rota>` and rebuild derivatives by the authorised `c2f css:rebuild`. Do not use transitional changes in the DOM/CSS or direct updates in `css_compiled` as the final solution; re-validate the synchronized resource.
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar, alterar, migrar ou debugar qualquer layout, página, componente ou template com classes do Tailwind CSS v4.
-- **SKIP APENAS SE**: Tarefas puramente de backend em PHP ou APIs sem renderização visual.
-- **CONSEQUÊNCIA DE IGNORAR**: Quebra da cascata CSS (sidebar oculta no desktop), mascaramento de código pelo cache de banco (`css_compiled`) e descarte de estilos em runtime.
-
----
-
-## ⛔ Regras Invioláveis
-1. **NUNCA execute comandos manuais via `npx`** (`npx tailwindcss`, etc.). Use sempre `./c2f resources:sync` (ou `php atualizacao-dados-recursos.php`). Quando a invocação direta for estritamente necessária em depuração local, use **exclusivamente os binários locais em `node_modules/.bin/tailwindcss.cmd` e `node_modules/.bin/terser.cmd`** (Armadilha 17: proibição absoluta de `npx`).
-2. **Todo HTML/CSS visual deve residir no Sistema de Recursos**: `resources/<idioma>/<tipo>/<id>/<id>.html` e `<id>.json`.
-3. **Metadados JSON**: Todo recurso Tailwind DEVE declarar `"framework_css": "tailwindcss"` em seu arquivo de metadados `<id>.json`.
-4. **Templates Dinâmicos em Runtime (Finding F2)**: Declare dependências de templates dinâmicos no array `"tailwind_dependencies": ["id-1", "id-2"]` do JSON do recurso pai.
-5. **Cascata e Media Queries**: Nunca use `.hidden` isolado em páginas filhas que conflitem com `lg:flex` ou `md:block` do layout pai; use sempre prefixos explícitos de breakpoint (ex: `hidden lg:flex`).
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create, change, migrate or debug any layout, page, component or template with classes of Tailwind CSS v4.
+- **SKIP ONLY IF**: Purely PHP backend tasks or APIs without visual rendering.
+- **CONSEQUENCE OF IGNORING**: cascade CSS break (idebar hidden on desktop), code masking by database cache (`css_compiled`) and discard runtime styles.
 
 ---
 
-## 🏗️ Autoria vs Derivado (Eliminação do Contorno Manual)
+## ⛔ Inviolable Rules
+1. **NEVER execute manual commands via `npx`** (`npx tailwindcss`, etc.). Always use `./c2f resources:sync` (or `php atualizacao-dados-recursos.php`). When direct invocation is strictly required in local debugging, use **only local binaries in `node_modules/.bin/tailwindcss.cmd` and `node_modules/.bin/terser.cmd`** (Armadilla 17: absolute prohibition of `npx`).
+2. **All HTML/CSS visual must reside in the Resource System**: `resources/<idioma>/<tipo>/<id>/<id>.html` and `<id>.json`.
+3. **JSON Metadata**: All resource Tailwind MUST declare `"framework_css": "tailwindcss"` in your `<id>.json` metadata file.
+4. **Runtime Dynamic Templates (Finding F2)**: Declare dynamic template dependencies in the `"tailwind_dependencies": ["id-1", "id-2"]` array of the parent resource JSON.
+5. **Cascade and Media Queries**: Never use `.hidden` isolated on daughter pages that conflict with `lg:flex` or `md:block` of the parent layout; always use explicit breakpoint prefixes (e.g. `hidden lg:flex`).
 
-A arquitetura CSS do Conn2Flow separa estritamente os campos de **autoria** (preservados) dos campos **derivados** (sempre recalculáveis):
+---
 
-| Campo no Banco | Classificação | Descrição |
+## 🏗️ Author vs Derived (Manual Outline Elimination)
+
+Conn2Flow CSS architecture strictly separates **author** fields (preserved) from **derivatives** fields (always recalculable):
+
+|Field in Database|Classification|Description|
 |---|---|---|
-| `html` | **AUTORIA** | HTML original editado pelo autor. Preservado conforme `user_modified` e `project`. |
-| `css` | **AUTORIA** | CSS original editado pelo autor. Preservado conforme `user_modified` e `project`. |
-| `css_precompiled` | **DERIVADO** | CSS intermediário gerado pelo pipeline de compilação Tailwind. Nunca editado manualmente. |
-| `css_compiled` | **DERIVADO** | CSS final otimizado servido ao visitante. Nunca editado manualmente. |
+|`html`|**AUTHORITY**|Original HTML edited by the author. Preserved according to `user_modified` and `project`.|
+|`css`|**AUTHORITY**|Original CSS edited by the author. Preserved according to `user_modified` and `project`.|
+|`css_precompiled`|**Derivatives**|Intermediate CSS generated by the Tailwind compilation pipeline. Never edited manually.|
+|`css_compiled`|**Derivatives**|Optimized end CSS served to visitor. Never edited manually.|
 
 > [!CAUTION]
-> **Regra de Eliminação do Hack Legacy**: A prática antiga de zerar `paginas.css_compiled = NULL` diretamente no banco era um contorno manual de um problema estrutural. Esta prática é **proibida**. O procedimento correto é usar `c2f css:rebuild` para recalcular o CSS derivado a partir da autoria vigente.
+> **Hack Legacy Elimination Rule**: The old practice of zeroing `paginas.css_compiled = NULL` directly into database was a manual outline of a structural problem. This practice is **prohibited**. The correct procedure is to use `c2f css:rebuild` to recalculate the derived CSS from the current authorship.
 
 ---
 
-## 🔧 Instrumentos de Medição e Reconstrução de CSS
+## 🔧 CSS Measurement and Reconstruction Instruments
 
-Em vez de inferir estilização por leitura cega de código, utilize os comandos de auditoria:
+Instead of inferring blind code reading stylization, use audit commands:
 
 ### `c2f css:audit`
-Audita a procedência (`css_source_hash`), cobertura de classes e classes Tailwind embutidas em PHP/JS por tabela.
+Audit the origin (`css_source_hash`), coverage of classes and classes Tailwind embedded in PHP/JS per table.
 ```bash
 ./c2f css:audit
 ```
 
 ### `c2f css:audit --url=<rota>`
-Audita a página composta real (com layout + componentes) e mapeia classes órfãs ao recurso de origem.
+Audit the actual composite page (with layout + components) and map orphan classes to the source resource.
 ```bash
 ./c2f css:audit --url=/transformamp/home
 ```
 
 ### `c2f css:rebuild`
-Reconstrói o CSS derivado (`css_precompiled` e `css_compiled`) usando o HTML real do banco como fonte.
+Rebuilds the derivative CSS (`css_precompiled` and `css_compiled`) using the actual HTML of the database as source.
 ```bash
 ./c2f css:rebuild
 ./c2f css:rebuild --url=/transformamp/home
@@ -71,24 +71,24 @@ Reconstrói o CSS derivado (`css_precompiled` e `css_compiled`) usando o HTML re
 
 ---
 
-## ⚠️ Dívida Técnica: `tailwind_sources` em PHP/JS
+## ⚠️ Technical debt: `tailwind_sources` in PHP/JS
 
-Apontar `tailwind_sources` para arquivos `.php` ou `.js` indica classes utilitárias do Tailwind montadas em tempo de execução via JavaScript ou PHP. Isso viola a arquitetura do Conn2Flow, onde PHP/JS não devem carregar marcação ou estilos.
+Point `tailwind_sources` to `.php` or `.js` files indicates Tailwind utilitarian classes mounted in running time via JavaScript or PHP. This violates the Conn2Flow architecture, where PHP/JS should not load marking or styles.
 
-**Classificação**: Dívida técnica a eliminar.
-**Ação Corretiva**: Mover a geração de classes para componentes/templates dentro do Sistema de Recursos (`resources/`), onde o compilador Tailwind pode escaneá-las estaticamente.
+**Classification**: Technical debt to be eliminated.
+**Corrective Action**: Move class generation to components/templates within the Resource System (`resources/`), where the Tailwind compiler can scan them statically.
 
 ---
 
-## 📋 Registro Obrigatório de `tailwind_sources` e `tailwind_sources_reason`
+## 📋 Required registration of `tailwind_sources` and `tailwind_sources_reason`
 
-### Problema
+### Problem
 
-O compilador prévio de Tailwind analisa unicamente o HTML estático do recurso. Classes utilitárias montadas dinamicamente em PHP (ex: badges de status), manipuladas em JS (`classList.toggle('hidden')`) ou configuradas em JSON de módulos **não entram no bundle gerado**, causando falhas visuais silenciosas.
+Tailwind's previous compiler analyzes only the static HTML of resource. Dynamically mounted utilitarian classes in PHP (e.g. status badges), manipulated in JS (`classList.toggle('hidden')`) or configured in JSON of **do not enter the generated bundle** modules, causing silent visual failures.
 
-### Diretriz Normativa
+### Normative Directive
 
-Para páginas do gestor/site que utilizam classes Tailwind fora do HTML estático, declare os metadados no `<id>.json` do recurso:
+For manager/site pages using Tailwind classes outside static HTML, declare the metadata in `<id>.json` resource:
 
 ```json
 {
@@ -99,14 +99,14 @@ Para páginas do gestor/site que utilizam classes Tailwind fora do HTML estátic
 }
 ```
 
-| Campo | Obrigatório | Descrição |
+|Field|Mandatory|Description|
 |---|---|---|
-| `tailwind_sources` | Sim | Array de caminhos relativos aos arquivos PHP/JS que contêm classes Tailwind dinâmicas |
-| `tailwind_sources_reason` | **Sim** | Justificativa textual para a inclusão — o build **acusa erro fatal** se a razão for omitida |
+|`tailwind_sources`|Yes|Path array for PHP/JS files containing dynamic Tailwind classes|
+|`tailwind_sources_reason`|**Yes**|Textual justification for inclusion — build **You're accusing fatal error.** if reason is omitted|
 
-### Alternativa em Bibliotecas do Core
+### Alternative in Core Libraries
 
-Para bibliotecas do Core que geram HTML com classes Tailwind, encapsule a paleta dinâmica num elemento `<template>` inerte no próprio componente HTML do recurso:
+For Core libraries that generate HTML with Tailwind classes, encapsulate the dynamic palette in a `<template>` element inert in the resource HTML component itself:
 
 ```html
 <!-- Paleta de classes dinâmicas para o scanner Tailwind -->
@@ -116,18 +116,18 @@ Para bibliotecas do Core que geram HTML com classes Tailwind, encapsule a paleta
 ```
 
 > [!CAUTION]
-> Sem o registro de `tailwind_sources`, classes utilitárias usadas exclusivamente em PHP/JS são **eliminadas do CSS compilado** no build. O erro é silencioso — a página renderiza sem as classes, causando quebra visual sem mensagem de erro.
+> Without registration of `tailwind_sources`, utility classes used exclusively in PHP/JS are **deleted from compiled CSS** in build. The error is silent — the renders page without the classes, causing visual breakage without error message.
 
 ---
 
-## ⚙️ Resolução de Binários Locais e Migração Modular (`node_modules/.bin/`)
+## ⚙️ Local Binary Resolution and Modular Migration (`node_modules/.bin/`)
 
-Para garantir imunidade ao cache volátil do NPM e evitar falhas de PATH no Windows (Armadilha 17):
-- Todo pipeline ou script que invoca o compilador Tailwind ou minificador Terser deve referenciar diretamente os binários locais em `node_modules/.bin/tailwindcss.cmd` (Windows) ou `node_modules/.bin/tailwindcss` (Linux/macOS), sem intermediar chamadas via `npx`.
-- Ao migrar módulos administrativos de Fomantic-UI para Tailwind, consulte e aplique a skill canônica `c2f-tailwind-module-migration`, respeitando a ordem de bundles (`$_GESTOR['tailwind-page-bundle'] = true`), as variantes `-tailwind` em `interface_componente_variante()` e as classes utilitárias isoladas no HTML de recurso.
+To ensure immunity to the NPM volatile cache and avoid PATH crashes in Windows (Armadile 17):
+- Every pipeline or script that invokes the Tailwind compiler or miner Terser shall refer directly to local binaries in `node_modules/.bin/tailwindcss.cmd` (Windows) or `node_modules/.bin/tailwindcss` (Linux/macOS), without intermediating calls via `npx`.
+- When migrating administrative modules from Fomantic-UI to Tailwind, see and apply the canonical skill `c2f-tailwind-module-migration`, respecting the order of bundles (`$_GESTOR['tailwind-page-bundle'] = true`), the `-tailwind` variants in `interface_componente_variante()` and the utilitarian classes isolated in the HTML of resource.
 
-## Hooks em telas de outros módulos (BL-028)
+## Hooks on screens of other modules (BL-028)
 
-Marcação injetada por hook em tela alheia usa folha própria e classes específicas do componente. Não injete bundle genérico de utilities depois do pacote da página: isso altera a cascata e pode inverter responsivas da hospedeira. Valide a tela anfitriã em desktop/mobile e a ordem real de folhas. CSS próprio continua sendo autoria em resources/, sincronizado pelo pipeline.
+Marking injected by hook on other screen uses own sheet and component specific classes. Do not inject generic bundle of utilities after the page package: this changes the cascade and can reverse host responsives. Validate the host screen on desktop/mobile and the actual order of sheets. CSS itself continues to be authored in resources/, synchronized by pipeline.
 
-Componente renderizado em contexto alheio pode não resolver @[[var]]@ do seu módulo. Nesse caso use marcador #x# substituído explicitamente no PHP com valor obtido no escopo correto via gestor_variaveis; escape conforme o destino (texto/atributo). Não coloque marcador em comentário: a troca pode consumir a primeira ocorrência. Confira que não sobraram marcadores na resposta e não aplique substituição indiscriminada a componentes cujo contrato já resolve variáveis.
+Rendered component in someone else's context may not resolve @[var]@ of your module. In this case use marker #x# explicitly replaced in PHP with value obtained in the correct scope via gestor_variaveis; escaping according to destination (text/attribute). Do not place marker in comment: the exchange may consume the first occurrence. Check that there are no markers left in the response and do not apply indiscriminate replacement to components whose contract already solves variables.

@@ -1,48 +1,48 @@
 ---
 name: c2f-hooks-system
-description: "LEIA ANTES de criar, interceptar ou disparar ações (Actions) e filtros (Filters) de extensibilidade. Se não ler: hooks não disparam por registro ausente em hooks.json, parâmetros são perdidos ou causam efeitos colaterais silenciosos."
+description: "READ BEFORE creating, intercepting or dispatching extensibility actions and filters. Prevents missing hooks.json registrations, lost parameters and silent side effects."
 user-invocable: false
 ---
 
-# Sistema de Hooks do Conn2Flow (`gestor/bibliotecas/hooks.php`)
+# Conn2Flow Hooks System (`gestor/bibliotecas/hooks.php`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar ou consumir pontos de extensão via `hook_do_action()` ou `hook_apply_filters()`, ou registrar manipuladores em `hooks.json` / `project/hooks/`.
-- **SKIP APENAS SE**: Código interno fechado de um módulo sem necessidade de interoperabilidade com outros módulos ou plugins.
-- **CONSEQUÊNCIA DE IGNORAR**: Filtros ignorados silenciosamente por falta de registro em `hooks.json`, corrupção do retorno de filtros ou acoplamento monolítico indevido.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create or consume extension points via `hook_do_action()` or `hook_apply_filters()`, or register handlers in `hooks.json` / `project/hooks/`.
+- **SKIP ONLY IF**: Closed internal code of a module without needing interoperability with other modules or plugins.
+- **CONSEQUENCE OF IGNORING**: Filters silently ignored for lack of registration in `hooks.json`, filter return corruption or improper monolithic coupling.
 
 ---
 
-Consulte e aplique as seguintes convenções ao trabalhar com o sistema de Actions e Filters no Conn2Flow:
+See and apply the following conventions when working with the Actions and Filters system in Conn2Flow:
 
-## 1. Conceito Central: Actions vs. Filters
+## 1. Central Concept: Actions vs. Filters
 
-* **Actions (`hook_do_action`)**: Usado para efeitos colaterais (logs, notificações, widgets). Não possui retorno.
+* **Actions (`hook_do_action`)**: Used for side effects (logs, notifications, widgets). There's no return.
   ```php
   hook_do_action('admin-paginas', 'adicionar.banco', $id, $dados);
   ```
-* **Filters (`hook_apply_filters`)**: Usado para transformação de dados. Retorna o valor modificado.
+* **Filters (`hook_apply_filters`)**: Used for data transformation. Returns the modified value.
   ```php
   $titulo = hook_apply_filters('admin-paginas', 'titulo.salvar', $titulo_bruto);
   ```
-* **Verificações Prévias**: `hook_has_actions('namespace', 'evento')` e `hook_has_filters('namespace', 'evento')`.
+* **Previous Checks**: `hook_has_actions('namespace', 'evento')` and `hook_has_filters('namespace', 'evento')`.
 
 ---
 
-## 2. Eventos Nativos de Interface (`interface.php`)
+## 2. Native Interface Events (`interface.php`)
 
-A plataforma dispara hooks automáticos para os módulos que usam o sistema padrão de interface:
+The platform fires automatic hooks for modules using the standard interface system:
 * `adicionar.pre-banco`, `adicionar.banco` (`$id`, `$dados`), `adicionar.parametros`, `adicionar.pagina`.
 * `editar.pre-banco`, `editar.banco` (`$id`, `$dados`), `editar.parametros`, `editar.pagina`.
 * `excluir.banco` (`$id`), `status.banco` (`$id`, `$novoStatus`), `clonar.banco` (`$id`, `$dados`).
 
 ---
 
-## 3. Registro de Hooks via JSON (Fonte Única da Verdade)
+## 3. Record of Hooks via JSON (Source Only of Truth)
 
-**Nunca insira diretamente na tabela `hooks`** — a tabela é sobrescrita pela sincronização `atualizacoes_hooks_sincronizar()`.
+**Never enter directly into the `hooks` table** — the table is overwritten by `atualizacoes_hooks_sincronizar()` synchronization.
 
-### A. Em Módulos (`modulos/<modulo>/<modulo>.json`):
+### A. In Modules (`modulos/<modulo>/<modulo>.json`):
 ```json
 {
     "hooks": {
@@ -63,7 +63,7 @@ A plataforma dispara hooks automáticos para os módulos que usam o sistema padr
 }
 ```
 
-### B. No Projeto (`project/hooks/hooks.json`):
+### B. In Project (`project/hooks/hooks.json`):
 ```json
 {
     "controllers": {
@@ -80,12 +80,12 @@ A plataforma dispara hooks automáticos para os módulos que usam o sistema padr
 
 ---
 
-## 4. Estrutura dos Controladores PHP (Callbacks)
+## 4. PHP Controller Structure (Callbacks)
 
-* No Projeto: `project/hooks/controllers/<namespace>.hooks.php`.
-* Nos Módulos: `modulos/<modulo>/<modulo>.hooks.php`.
+* Project: `project/hooks/controllers/<namespace>.hooks.php`.
+* In Modules: `modulos/<modulo>/<modulo>.hooks.php`.
 
-Exemplo de callback:
+Example of callback:
 ```php
 function meu_modulo_page_added_hook(string $id, array $dados = []): void {
     global $_GESTOR;
@@ -95,35 +95,42 @@ function meu_modulo_page_added_hook(string $id, array $dados = []): void {
 
 ---
 
-## 5. Boas Práticas
-* **Sincronização Idempotente**: Execute `atualizacoes_hooks_sincronizar()` (ou via tarefas de deploy) para aplicar alterações de JSON no banco.
-* **Desativação Temporária**: Use `"habilitado": 0` no JSON para desativar um hook sem remover o registro.
-* **Wildcard `*`**: Use `*` no namespace para registrar ouvintes globais em qualquer módulo.
+## 5. Good Practice
+* **Impotent Synchronization**: Run `atualizacoes_hooks_sincronizar()` (or via deploy tasks) to apply JSON changes to database.
+* **Temporary Deactivation**: Use `"habilitado": 0` in JSON to disable a hook without removing the log.
+* **Wildcard `*`**: Use `*` in the namespace to register global listeners in any module.
 
 ---
 
-## 6. Sincronização de Hooks no Deploy e Comando Dedicado
+## 6. Dedicated Command Deploy and Hooks Sync
 
-### 6.1 Sincronização Automática no Pipeline de Deploy
+### 6.1 Synchronization Automatic on Deploy Pipeline
 
-- A tabela `hooks` do banco de dados é sincronizada automaticamente durante a etapa de banco de dados (`atualizacoes-banco-de-dados.php`) executada por:
-  - `./c2f project:update-all <projeto-id>` (pipeline completo de um projeto)
-  - `./c2f manager:update-all` (pipeline completo de todos os projetos)
-- A função `atualizacoes_hooks_sincronizar()` é chamada internamente, lendo todos os `hooks.json` de módulos e do projeto, e recriando a tabela `hooks` com os registros atualizados.
-- **Idempotência Garantida**: A sincronização é idempotente — executar múltiplas vezes produz o mesmo resultado. A tabela é reconstruída a partir dos JSONs, que são a fonte da verdade.
+- The `hooks` table of the database is automatically synchronized during the database (`atualizacoes-banco-de-dados.php`) step performed by:
+  - `./c2f project:deploy <projeto-id>` (full pipeline of a project)
+  - `./c2f manager:update-all` (full pipeline of all projects)
+- The `atualizacoes_hooks_sincronizar()` function is called internally, reading all `hooks.json` modules and project, and recreating the `hooks` table with updated records.
+- **Guaranteed Impotence**: Synchronisation is idempotent — performing multiple times produces the same result. The table is reconstructed from the JSONs, which are the source of truth.
 
-### 6.2 Comando Dedicado `c2f project:sync-hooks <projeto-id>`
+### 6.2 Command Dedicated `c2f project:sync-hooks <projeto-id>`
 
-- Para atualizar hooks **sem executar o pipeline completo** (sem migrações, sem CSS rebuild, sem resources:sync), use:
+- To update **without running the complete pipeline** hooks (no migrations, no CSS rebuild, no resources:sync), use:
 ```bash
 ./c2f project:sync-hooks <projeto-id>
 ```
-- Este comando foi implementado na REQ-174/BATCH-179 especificamente para permitir atualizações isoladas de hooks durante desenvolvimento.
-- **Caso de Uso Principal**: Após editar um `hooks.json` de módulo ou do projeto, rodar apenas `project:sync-hooks` para refletir as mudanças no banco sem o overhead do pipeline completo.
-- **Verificação Rápida**: Após a sincronização, confirme no banco:
+- This command was implemented in REQ-174/BATCH-179 specifically to allow isolated hook updates during development.
+- **Main Use Case**: After editing a `hooks.json` module or project, run only `project:sync-hooks` to reflect changes in database without the full pipeline overhead.
+- **Quick Check**: After syncing, confirm on database:
 ```sql
 SELECT * FROM hooks WHERE namespace = 'meu-modulo' ORDER BY prioridade;
 ```
 
 > [!IMPORTANT]
-> Nunca insira ou atualize registros diretamente na tabela `hooks` via SQL. A tabela é **sobrescrita integralmente** a cada sincronização. Alterações manuais serão perdidas no próximo deploy.
+> Never enter or update records directly into the `hooks` table via SQL. The table is **overwritten in full** at each synchronization. Manual changes will be lost in the next deploy.
+
+## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
+
+- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
+- Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
+- DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.

@@ -1,23 +1,23 @@
 ---
 name: c2f-payment-gateways
-description: "LEIA ANTES de implementar, integrar ou testar gateways de pagamento (Stripe, PayPal, etc.) no Conn2Flow (\"integra o checkout\", \"configura o gateway\", \"testa o pagamento\"). Se não ler: preço no frontend é adulterável, webhook sem idempotência duplica cobranças, SDK pesado carrega sem necessidade, e testes exigem credenciais reais."
+description: "READ BEFORE implementing, integrating or testing payment gateways such as Stripe or PayPal. Requires trusted server-side prices, idempotent webhooks, lazy SDK loading and sandbox or mock tests."
 user-invocable: true
 ---
 
-# Gateways de Pagamento Seguros (`c2f-payment-gateways`)
+# Secure Payment Gateways (`c2f-payment-gateways`)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Pedido para implementar, configurar, testar ou auditar integração com gateways de pagamento (Stripe, PayPal, PagSeguro, etc.); criar endpoints de checkout; processar webhooks de pagamento; adicionar métodos de pagamento ao e-commerce.
-- **SKIP APENAS SE**: Edição de módulos sem relação com transações financeiras ou páginas de produto sem checkout.
-- **CONSEQUÊNCIA DE IGNORAR**: Preços adulteráveis pelo cliente, cobranças duplicadas por webhooks reenviados, vazamento de credenciais em logs, SDKs pesados carregados desnecessariamente e testes impossíveis sem chaves de produção.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Request to implement, configure, test or audit integration with payment gateways (Stripe, PayPal, PagSeguro, etc.); create checkout endpoints; process payment webhooks; add payment methods to e-commerce.
+- **SKIP ONLY IF**: Editing modules unrelated to financial transactions or product pages without checkout.
+- **CONSEQUENCE OF IGNORING**: Customer tampering prices, charges duplicated by resent webhooks, leaking credentials on logs, unnecessarily loaded heavy SDKs and impossible tests without production keys.
 
 ---
 
-## 1. Autoridade Estrita do Servidor
+## 1. Strict Server Authority
 
-O preço unitário, a moeda, descontos e taxas são definidos e validados **exclusivamente no backend**. O cliente frontend trafega apenas **identificadores e quantidades**.
+The unit price, currency, discounts and fees are defined and validated **only in the backend**. The frontend client traffics only **identifiers and quantities**.
 
-### 1.1 Proibição de Preço no Frontend
+### 1.1 Frontend Price Prohibition
 
 ```php
 // ❌ ERRADO — preço vindo do frontend é adulterável
@@ -30,18 +30,18 @@ $preco = (float) $produto['preco'];
 $gateway->criarCobranca($preco);
 ```
 
-### 1.2 Validação Dupla (Frontend + Backend)
+### 1.2 Dual Validation (Frontend + Backend)
 
-- O frontend pode exibir preços para UX, mas **toda transação financeira** deve recalcular valores no servidor a partir da fonte de dados canônica (banco de dados).
-- Descontos, cupons e frete devem ser validados no backend antes de criar a intenção de pagamento no gateway.
+- The frontend can display prices for UX, but **all financial transaction** must recalculate values on the server from the source of canonical data (database).
+- Discounts, coupons and freight must be validated on the backend before creating the payment intention on the gateway.
 
 ---
 
-## 2. Tokens de Pedido Criptográficos HMAC
+## 2. Cryptographic Request Tokens HMAC
 
-O acesso público a um pedido (ex: página de confirmação, link por e-mail) é protegido por HMAC com salt único por pedido.
+Public access to an order (e.g. confirmation page, link by email) is protected by HMAC with single salt per request.
 
-### 2.1 Geração do Token
+### 2.1 Token Generation
 
 ```php
 // Gerar salt único por pedido
@@ -54,7 +54,7 @@ $token = hash_hmac('sha256', $numero_pedido . '|' . $salt, OPENSSL_PASSWORD);
 $url_publica = "/pedido/$numero_pedido?token=$token";
 ```
 
-### 2.2 Validação do Token
+### 2.2 Token Validation
 
 ```php
 function validar_token_pedido($numero, $token_recebido) {
@@ -65,21 +65,21 @@ function validar_token_pedido($numero, $token_recebido) {
 ```
 
 > [!IMPORTANT]
-> O **salt** é o único segredo armazenado no banco. A constante `OPENSSL_PASSWORD` é a chave HMAC do ambiente e NUNCA deve ser exposta ao frontend. Use `hash_equals()` para comparação timing-safe.
+> **salt** is the only secret stored in database. The `OPENSSL_PASSWORD` constant is the HMAC key of the environment and should NEVER be exposed to the frontend. Use `hash_equals()` for timing-safe comparison.
 
 ---
 
-## 3. Prova de Posse em Verificações de Estado
+## 3. Proof of Posse in State Checks
 
-O estado do pagamento é lido **diretamente da API oficial do gateway** com prova de posse obrigatória.
+Payment status is read **directly from the official gateway API** with proof of mandatory possession.
 
-### 3.1 Tripla Verificação
+### 3.1 Triple Verification
 
-Ao verificar o estado de um pagamento (ex: após retorno do checkout, webhook, polling), o sistema DEVE confirmar:
+When checking the status of a payment (e.g. after checkout return, webhook, polling), the system MUST confirm:
 
-1. **Identificador do pedido nos metadados**: O campo `metadata.order_id` (Stripe) ou `custom_id` (PayPal) corresponde ao pedido interno.
-2. **Valor cobrado**: O `amount` retornado pelo gateway corresponde exatamente ao valor calculado no backend.
-3. **Moeda**: O `currency` retornado corresponde à moeda do pedido.
+1. **Application identifier in metadata**: The `metadata.order_id` (Stripe) or `custom_id` (PayPal) field corresponds to the internal request.
+2. **Value charged**: The `amount` returned by the gateway corresponds exactly to the value calculated in the backend.
+3. **Currency**: The returned `currency` corresponds to the order currency.
 
 ```php
 // ✅ Prova de posse completa
@@ -103,15 +103,15 @@ function verificar_pagamento_gateway($payment_intent_id, $pedido) {
 ```
 
 > [!CAUTION]
-> NUNCA confie apenas no `payment_intent_id` ou `order_id` do retorno do checkout. Um atacante pode substituir o ID por um pagamento legítimo de valor inferior. A tripla verificação é **obrigatória**.
+> NEVER trust only the `payment_intent_id` or `order_id` of the checkout return. An attacker can replace the ID with a legitimate payment of lower value. The triple check is **mandatory**.
 
 ---
 
-## 4. Captura Mandatória no Backend
+## 4. Backend Mandate Capture
 
-Para gateways que operam em duas fases (autorização + captura), como PayPal, a **captura financeira efetiva** deve ocorrer exclusivamente no servidor.
+For two-phase gateways (authorization + capture), such as PayPal, **effective financial catch** must occur exclusively on the server.
 
-### 4.1 Padrão PayPal: Autorizar no Cliente, Capturar no Servidor
+### 4.1 PayPal Standard: Authorize to Client, Capture to Server
 
 ```javascript
 // Frontend — PayPal SDK (apenas AUTORIZA)
@@ -144,19 +144,19 @@ function capturar_ordem_paypal($order_id, $pedido) {
 
 ---
 
-## 5. Webhooks Minimalistas e Idempotentes
+## 5. Minimal and Impotent Webhooks
 
-O webhook atua primariamente como **sinalizador**, não como processador de regras de negócio.
+Webhook acts primarily as **flag**, not as a business rule processor.
 
-### 5.1 Fluxo do Webhook
+### 5.1 Webhook Flow
 
-1. **Receber** o evento do gateway.
-2. **Validar** a assinatura (Stripe: `Webhook::constructEvent()`; PayPal: verificar certificado).
-3. **Identificar** o pedido interno via metadados do evento.
-4. **Disparar ressincronização** via API oficial do gateway (§3 — Prova de Posse).
-5. **Registrar** o evento com `gateway_event_id` para idempotência.
+1. **Receive** the gateway event.
+2. **Validate** signature (Strip: `Webhook::constructEvent()`; PayPal: certificate check).
+3. **Identify** internal request via event metadata.
+4. **Fire resynchronization** via official gateway API (§3 — Posse Test).
+5. **Register** the event with `gateway_event_id` for idempotence.
 
-### 5.2 Idempotência Absoluta
+### 5.2 Absolute Impotence
 
 ```php
 function processar_webhook($event_id, $pedido_id) {
@@ -180,19 +180,19 @@ function processar_webhook($event_id, $pedido_id) {
 ```
 
 > [!WARNING]
-> O webhook **não deve conter lógica de negócio complexa**. Ele sinaliza que algo mudou; a lógica de atualização usa a API oficial do gateway para obter o estado real com prova de posse.
+> The webhook **should not contain complex business logic**. It signals that something has changed; the update logic uses the official gateway API to get the real state with proof of ownership.
 
-### 5.3 Endpoint Público e Seguro
+### 5.3 Public and Safe Endpoint
 
-O endpoint de webhook utiliza o padrão `<modulo>.ajax.public.php` (ver `c2f-gestor-functions` §11) para receber requisições sem autenticação de sessão, mas **obrigatoriamente** valida a assinatura criptográfica do gateway.
+The webhook endpoint uses the `<modulo>.ajax.public.php` standard (see `c2f-gestor-functions` §11) to receive requests without login, but **Mandatory** validates the gateway cryptographic signature.
 
 ---
 
-## 6. Carregamento Condicional de SDKs
+## 6. Conditional SDK loading
 
-SDKs de terceiros pesados (Stripe.js ~40 KB, PayPal SDK ~200 KB) **só devem ser carregados** quando o pedido selecionar aquele método de pagamento.
+Heavy-duty third-party SDKs (Stripe.js ~40 KB, PayPal SDK ~200 KB) **only to be loaded** when the request selects that payment method.
 
-### 6.1 Carregamento Sob Demanda
+### 6.1 Loading Under Demand
 
 ```javascript
 // ✅ CORRETO — carregar SDK apenas quando necessário
@@ -213,18 +213,18 @@ seletorGateway.addEventListener('change', async (e) => {
 });
 ```
 
-### 6.2 Auditoria de Tráfego de Rede
+### 6.2 Network Traffic Audit
 
-- Em testes E2E (Playwright), interceptar requisições de rede via `page.on('request')` para certificar que SDKs de gateways **não selecionados** não estão sendo carregados.
-- Classes CSS dos containers de gateway não selecionado devem receber `hidden` para evitar renderização do iframe.
+- In E2E (Playwright) tests, intercept network requests via `page.on('request')` to make sure that **not selected** gateway SDKs are not being loaded.
+- CSS classes of unselected gateway containers must receive `hidden` to avoid rendering from the iframe.
 
 ---
 
-## 7. Gateway Padrão (Fallback Seguro)
+## 7. Default Gateway (Safe Fallback)
 
-Na ausência de seleção explícita pelo comprador, o sistema assume o **gateway padrão do lojista**.
+In the absence of explicit selection by the buyer, the system assumes the **default storekeeper gateway**.
 
-### 7.1 Configuração do Fallback
+### 7.1 Fallback Settings
 
 ```php
 // Determinar gateway do pedido
@@ -237,22 +237,22 @@ if (!in_array($gateway, $gateways_ativos)) {
 }
 ```
 
-### 7.2 Regra de Prioridade
+### 7.2 Priority Rule
 
-1. Gateway explícito selecionado pelo comprador no checkout.
-2. Gateway padrão configurado pelo lojista no painel administrativo.
-3. Primeiro gateway ativo na lista de gateways configurados.
+1. Explicit gateway selected by the buyer at checkout.
+2. Default Gateway set by the shopkeeper in the administrative panel.
+3. First active gateway in the configured gateway list.
 
 > [!NOTE]
-> O fallback seguro garante que **nenhum pedido fique sem gateway atribuído**, mesmo que o frontend não envie a seleção.
+> Secure fallback ensures that **No request no gateway assigned**, even if the frontend does not send the selection.
 
 ---
 
-## 8. Testes Unitários sem Credenciais
+## 8. Unitary Tests Without Credentials
 
-A estratégia de testes de checkout é baseada em **dublês/mocks** das funções da biblioteca do gateway.
+The checkout test strategy is based on **test doubles/mocks** of the gateway library functions.
 
-### 8.1 Padrão de Dublê (Test Double)
+### 8.1 Test double (Test Double) Pattern
 
 ```php
 // Biblioteca do gateway com injeção de dependência
@@ -284,13 +284,13 @@ class GatewayStripeTest extends TestCase {
 }
 ```
 
-### 8.2 Testes E2E com Cartões de Teste
+### 8.2 E2E Tests with Test Cards
 
-- Stripe: usar cartões de teste (`4242 4242 4242 4242`) no modo de teste.
-- PayPal: usar contas sandbox do PayPal Developer.
-- **Proibição Absoluta**: Credenciais de produção **NUNCA** devem constar em arquivos de teste, variáveis de ambiente de CI, ou logs de execução.
+- Stripe: use test cards (`4242 4242 4242 4242`) in test mode.
+- PayPal: use PayPal Developer Sandbox accounts.
+- **Absolute Prohibition**: Production credentials **NEVER** must appear in test files, IC environment variables, or execution logs.
 
-### 8.3 Simulação de Webhooks
+### 8.3 Webhooks Simulation
 
 ```bash
 # Stripe CLI — enviar webhook de teste localmente
@@ -303,4 +303,4 @@ curl -X POST https://meusite.com/ecommerce/ecommerce.ajax.public.php \
 ```
 
 > [!CAUTION]
-> Em ambientes de produção, **sempre valide a assinatura do webhook** (`Stripe-Signature` header). Testes com `curl` direto devem ser restritos a ambientes de desenvolvimento/staging.
+> In production environments, **always validate the webhook signature** (`Stripe-Signature` header). Tests with direct `curl` should be restricted to development/staging environments.

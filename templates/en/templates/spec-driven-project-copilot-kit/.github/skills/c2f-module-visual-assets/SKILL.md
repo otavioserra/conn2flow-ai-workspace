@@ -1,43 +1,43 @@
 ---
 name: c2f-module-visual-assets
-description: "Diretrizes obrigatórias e prompt canônico para geração de imagens referenciais, capas (covers) e thumbnails de módulos no Conn2Flow e Conn2Flow Site. Use sempre que for criar novos módulos ou gerar assets visuais."
+description: "Mandatory guidelines and canonical prompt for module reference images, covers and thumbnails in Conn2Flow and Conn2Flow Site. Use when creating modules or visual assets."
 user-invocable: true
 ---
 
-# 🎨 Geração de Assets Visuais e Capas de Módulos (Design System V3.0)
+# 🎨 Visual Asset Generation and Module Covers (Design System V3.0)
 
-# ⚡ Gatilho Obrigatório
-- **TRIGGER**: Criar módulos ou gerar capas, ilustrações e miniaturas de módulos do Conn2Flow ou Conn2Flow Site.
-- **SKIP APENAS SE**: A tarefa não cria módulos nem gera assets visuais.
-- **CONSEQUÊNCIA DE IGNORAR**: Capas e miniaturas inconsistentes com o design system e recortes que ocultam o objeto principal.
+# ⚡ MANDATORY TRIGGER
+- **TRIGGER**: Create modules or generate covers, illustrations and thumbnails of Conn2Flow or Conn2Flow Site modules.
+- **SKIP ONLY IF**: The task neither creates modules nor generates visual assets.
+- **CONSEQUENCE OF IGNORING**: Covers and thumbnails inconsistent with the system design and clippings that hide the main object.
 
-Esta skill define o padrão oficial para concepção e geração de capas conceituais, ilustrações 3D e thumbnails para qualquer módulo do ecossistema Conn2Flow (Core e Site), garantindo que novos módulos preservem a mesma sofisticação e unidade estética.
-
----
-
-## 🏛️ 1. Princípios do Design System Visual
-
-Todas as ilustrações de módulos devem obedecer rigidamente aos seguintes pilares:
-1. **Linguagem Visual:** Isométrica 3D conceitual, estilizada e limpa.
-2. **Materiais:** Vidro fosco (*frosted glass / pearl glass*) e cerâmica arredondada com acabamento suave.
-3. **Paleta de Cores Canônica:**
-   - **Fundo:** Azul meia-noite profundo e contínuo (*seamless deep midnight blue*).
-   - **Acentos Luminosos:** Ciano suave e violeta elétrico nas bordas e reflexos sutis.
-   - **Elementos de Apoio:** Tons neutros claros em cerâmica e transparência vítrea.
-4. **Iluminação e Câmera:**
-   - Câmera ortográfica isométrica (sem distorção de perspectiva extrema).
-   - Luz de estúdio suave vindo da parte superior-esquerda com sombra suave de contato no chão.
-5. **Composição e Margens:**
-   - O grupo principal de objetos deve ocupar os **70% centrais** da imagem.
-   - Deixar 15% de margem livre em todas as bordas para permitir corte em miniatura e avatares sem perder o foco.
-6. **Regras Negativas Invioláveis (Negative Prompts):**
-   - **NENHUM** texto, letra, número, logotipo, marca d'água, pessoa, rosto ou moldura ao redor da imagem.
+This skill defines the official standard for designing and generating conceptual covers, 3D illustrations and thumbnails for any module of the Conn2Flow ecosystem (Core and Site), ensuring that new modules preserve the same sophistication and aesthetic unity.
 
 ---
 
-## 🤖 2. Template do Prompt Canônico para Geradores de Imagem (DALL-E / Midjourney / SD)
+## 🏛️ 1. Principles of Visual Design System
 
-Ao solicitar a uma IA ou pipeline a criação da imagem de um novo módulo, utilize o seguinte template preenchendo apenas os campos `{MODULO_ID}` e `{DESCRICAO_DO_OBJETO_3D}`:
+All illustrations of modules shall comply rigidly with the following pillars:
+1. **Visual Language:** Conceptual, stylized and clean 3D isometric.
+2. **Materials:** Ground glass (*frosted glass / pearl glass*) and round ceramic with smooth finish.
+3. **Canon Color Palette:**
+   - **Background:** Deep and continuous midnight blue (*seamless deep middlenight blue*).
+   - **Light accents:** Smooth cyan and electric violet on the edges and subtle reflexes.
+   - **Support elements:** Light neutral tones in ceramics and vitreous transparency.
+4. **Lighting and Camera:**
+   - Isometric orthographic camera (without extreme perspective distortion).
+   - Smooth studio light coming from the upper left with soft touch shadow on the floor.
+5. **Composition and Margins:**
+   - The main group of objects must occupy the **70% central** of the image.
+   - Leave 15% margin free on all edges to allow miniature cutting and avatars without losing focus.
+6. **Inviolable Negative Rules:**
+   - **NONE** text, letter, number, logo, watermark, person, face or frame around the image.
+
+---
+
+## 🤖 2. Canon Prompt Template for Image Generators (DALL-E / Midjourney / SD)
+
+When requesting an AI or pipeline to create the image of a new module, use the following template by filling only the fields `{MODULO_ID}` and `{DESCRICAO_DO_OBJETO_3D}`:
 
 ```text
 Use case: stylized-concept. Asset type: Conn2Flow module cover for {MODULO_ID}, square 1024x1024. 
@@ -49,27 +49,27 @@ Strict constraints: No lettering, no text, no numbers, no logos, no watermarks, 
 
 ---
 
-## 📐 3. Exemplos Práticos de Aplicação
+## 📐 3. Practical Application Examples
 
-### Exemplo 1: Módulo de Assinaturas (`subscriptions`)
-> **Subject**: *"A floating 3D recurring billing sphere surrounded by a glowing cyan orbital ring with subtle calendar nodes and card token placeholders in frosted glass."*
+### Example 1: Subscription Module (`subscriptions`)
+> **Subject**: *"A floating 3D recurring billing sphere surrounded by a blooming cyan orbital ring with subtle calendar nodes and card token placeholders in frosted glass."*
 
-### Exemplo 2: Módulo de Automação / Tarefas (`admin-cron`)
-> **Subject**: *"Three interlocking floating precision ceramic clockwork gears with an elegant glowing violet pendulum and timeline indicator."*
+### Example 2: Automation / Task Module (`admin-cron`)
+> **Subject**: *"Three interlocking floating precision ceramic clockwork hearts with an elegant glowing violet pendulum and timeline indicator."*
 
-### Exemplo 3: Módulo de Catálogo 3D (`3d-catalog`)
-> **Subject**: *"A glowing holographic display pedestal showcasing an abstract floating wireframe polygon cube rendered in luminous cyan glass."*
+### Example 3: 3D Catalogue Module (`3d-catalog`)
+> **Subject**: *"A glowing holographic display pedestal showing an abstract floating wireless polygon cube rendered in luminous cyan glass."*
 
 ---
 
-## 📦 4. Especificações Técnicas de Entrega dos Arquivos
+## 📦 4. Technical Specifications for File Delivery
 
-1. **Formato:** `.webp` (Google WebP).
-2. **Resolução:** 1024 × 1024 pixels (proporção 1:1).
-3. **Qualidade e Tamanho Máximo:** Qualidade 90, método 6, **tamanho máximo de 120 KB** (alvo: entre 60 KB e 95 KB).
-4. **Caminho Canônico de Armazenamento:**
-   - No Core: `gestor/assets/modulos/covers/<modulo-id>.webp`
-   - No Site: `gestor/assets/modulos/covers/<modulo-id>.webp`
-   - Opcional local do módulo: `gestor/modulos/<modulo-id>/cover.webp`
-5. **Atualização do Manifesto:**
-   - Adicionar a entrada com `id`, `width`, `height`, `bytes` e hash `sha256` no arquivo `gestor/assets/modulos/covers/manifest.json`.
+1. **Format:** `.webp` (Google WebP).
+2. **Resolution:** 1024 × 1024 pixels (proportion 1:1).
+3. **Maximum Quality and Size:** Quality 90, method 6, **Maximum size of 120 KB** (target: 60 KB to 95 KB).
+4. **Canon Path of Storage:**
+   - In Core: `gestor/assets/modulos/covers/<modulo-id>.webp`
+   - On the Site: `gestor/assets/modulos/covers/<modulo-id>.webp`
+   - Module location optional: `gestor/modulos/<modulo-id>/cover.webp`
+5. **Manifest Update:**
+   - Add the entry with `id`, `width`, `height`, `bytes` and hash `sha256` in the `gestor/assets/modulos/covers/manifest.json` file.
