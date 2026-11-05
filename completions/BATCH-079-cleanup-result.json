@@ -1,0 +1,21 @@
+﻿{
+    "user_direction":  "Preservar trabalho unico; remover somente comprovadamente seguras",
+    "dependency_hashes_unchanged":  true,
+    "removed":  [
+                    {
+                        "path":  "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req277",
+                        "removed":  true,
+                        "head":  "010b70d586c958c8b1af390d8a518aa806eb6ccf",
+                        "detached_junctions":  2,
+                        "backup_verified":  true
+                    },
+                    {
+                        "path":  "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req284",
+                        "removed":  true,
+                        "head":  "ad969b62411e0810a8a716e14e254ca4fc998c81",
+                        "detached_junctions":  2,
+                        "backup_verified":  true
+                    }
+                ],
+    "preserved_worktrees":  15
+}

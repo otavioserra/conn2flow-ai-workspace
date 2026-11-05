@@ -1,0 +1,16 @@
+{
+  "project": "conn2flow-ai-workspace",
+  "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace",
+  "request": "REQ-077",
+  "batch": "BATCH-079",
+  "date": "2026-11-05",
+  "topology": "dupla",
+  "autonomy": "autonomo_monitorado",
+  "status": "ready-for-human-review",
+  "review": "memory/human-reviews/rev-079.md",
+  "recommendation": "RECOMMEND-APPROVAL",
+  "tests": {"python_passed": 131, "extension_passed": 133},
+  "cleanup": {"removed": 2, "preserved": 15, "scope_adjusted_by_human": true, "ignored_files_preserved_and_verified": 1240},
+  "human_acceptance": "pending",
+  "continuation": "REQ-078/BATCH-080 expressly authorized by human"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "baseline": "PASS",
+  "audit_after_source_mutation": "DRIFT_WARNING",
+  "apply_after_source_mutation": "DRIFT_WARNING",
+  "acknowledged_audit": "PASS",
+  "translation_preserved": true,
+  "other_registry_entries_preserved": true,
+  "scope": "isolated temporary matrix; no live source/translation mutation"
+}

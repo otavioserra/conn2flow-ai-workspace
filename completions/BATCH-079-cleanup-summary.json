@@ -1,0 +1,272 @@
+[
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267",
+    "registered": true,
+    "files": 6416,
+    "bytes": 139036430,
+    "dirty_entries": 590,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267-v31",
+    "registered": true,
+    "files": 5355,
+    "bytes": 105647741,
+    "dirty_entries": 581,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267-v31\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-covers-267-v31\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-lab219",
+    "registered": true,
+    "files": 4655,
+    "bytes": 64551817,
+    "dirty_entries": 417,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-lab219\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-lab219\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req203",
+    "registered": true,
+    "files": 4218,
+    "bytes": 51586391,
+    "dirty_entries": 368,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req203\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req203\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req223",
+    "registered": true,
+    "files": 4601,
+    "bytes": 58961297,
+    "dirty_entries": 2,
+    "unique_commits": "",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req224",
+    "registered": true,
+    "files": 4580,
+    "bytes": 58605015,
+    "dirty_entries": 1,
+    "unique_commits": "",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req225",
+    "registered": true,
+    "files": 13759,
+    "bytes": 182669160,
+    "dirty_entries": 428,
+    "unique_commits": "c6e5f7a9 docs(sdd): record req-225 delivery and seed storage workaround\n5834b45c fix(ui): close req-225 panel consistency audit and Lab validation\nbea5af30 Merge branch 'feat/req-224' into feat/req-225\n5dddea5e Merge branch 'feat/req-223' into feat/req-225\n98de7768 fix(listagem): rótulo colorido do formatador mantém a cor da paleta (req-219)\nbf2695d9 feat(listagem): seta no hover da coluna sem ordem e Ctrl+clique para ordenar por várias colunas (req-219)\nf5c63a3c fix(painel): compilar bundles completos e padronizar controles (req-225)\n782d30fa fix(resources): preservar array plano na integracao dos componentes\n244e656c merge: integrar entrega da req-222 na conferencia req-225\n03da1897 Merge branch 'main' into feat/req-225\nba895725 feat(painel): padronizar controles de cron e perfil (req-225)",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req232",
+    "registered": true,
+    "files": 4663,
+    "bytes": 64743526,
+    "dirty_entries": 492,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req232\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req256",
+    "registered": true,
+    "files": 5497,
+    "bytes": 106695391,
+    "dirty_entries": 2951,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req256\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req232\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req256\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req277",
+    "registered": true,
+    "files": 7140,
+    "bytes": 151568901,
+    "dirty_entries": 0,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req277\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req277\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req284",
+    "registered": true,
+    "files": 5911,
+    "bytes": 180361702,
+    "dirty_entries": 0,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req284\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\node_modules"
+      },
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-req284\\vendor",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\vendor"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-covers-123",
+    "registered": true,
+    "files": 6141,
+    "bytes": 549019663,
+    "dirty_entries": 1342,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-covers-123\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site\\node_modules"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-covers-123-v31",
+    "registered": true,
+    "files": 5992,
+    "bytes": 545916382,
+    "dirty_entries": 1354,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-covers-123-v31\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site\\node_modules"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-req077",
+    "registered": false,
+    "files": 11,
+    "bytes": 295092,
+    "dirty_entries": 0,
+    "unique_commits": "",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-req108",
+    "registered": true,
+    "files": 5987,
+    "bytes": 544802936,
+    "dirty_entries": 167,
+    "unique_commits": "",
+    "junctions": [
+      {
+        "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-req108\\node_modules",
+        "target": "\\\\?\\C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site\\node_modules"
+      }
+    ],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-req221",
+    "registered": true,
+    "files": 5910,
+    "bytes": 441430720,
+    "dirty_entries": 1094,
+    "unique_commits": "",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  },
+  {
+    "path": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site-req225",
+    "registered": true,
+    "files": 6155,
+    "bytes": 524936188,
+    "dirty_entries": 101,
+    "unique_commits": "6cabb928 feat(admin): consolidate Tailwind migrations for REQ-100 and REQ-101\n53827221 feat(painel): unificar controles dos formularios administrativos (req-225)",
+    "junctions": [],
+    "removed": false,
+    "reason": "Preservada: conteúdo local/ignorado requer triagem ou autorização de arquivamento; não usar --force."
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "project": "conn2flow-ai-workspace",
+  "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace",
+  "request": "REQ-078",
+  "batch": "BATCH-080",
+  "date": "2026-11-05",
+  "topology": "dupla",
+  "autonomy": "autonomo_monitorado",
+  "status": "ready-for-review",
+  "review": "memory/human-reviews/rev-080.md",
+  "recommendation": "RECOMMEND-APPROVAL",
+  "tests": {"python_passed": 138, "extension_passed": 133},
+  "skills": {"canonical": 46, "targets": 44, "translated_files": 312, "divergences": 0, "local_skills_preserved": 85},
+  "evidence": ["memory/implementation/batch-080.md", "completions/BATCH-080-skills-audit.json", "completions/BATCH-080-translation-audit.json", "completions/BATCH-080-pytest.xml", "completions/BATCH-080-extension-tests.log"],
+  "limitations": ["No production deployment, commit or push", "Human acceptance pending", "Technical translation review and sampling do not constitute complete human editorial review"],
+  "next_role": "Macro-Arquiteto",
+  "dispatch": "MCP Hub unavailable; local handoff recorded"
+}

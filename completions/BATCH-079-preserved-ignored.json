@@ -1,0 +1,18 @@
+[
+  {
+    "worktree": "conn2flow-req277",
+    "head": "010b70d586c958c8b1af390d8a518aa806eb6ccf",
+    "ignored_files_preserved": 1237,
+    "archive": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\.git\\batch079-preserved\\conn2flow-req277.zip",
+    "archive_sha256": "a89aced84684d0f147f2c844f2005d9244856e6abdcc85b2ad3a3fa05f32760b",
+    "verified": true
+  },
+  {
+    "worktree": "conn2flow-req284",
+    "head": "ad969b62411e0810a8a716e14e254ca4fc998c81",
+    "ignored_files_preserved": 3,
+    "archive": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow\\.git\\batch079-preserved\\conn2flow-req284.zip",
+    "archive_sha256": "70525dd7ab75494a87119134764001e9bceeb476d09dcccc99836088f071bbee",
+    "verified": true
+  }
+]
