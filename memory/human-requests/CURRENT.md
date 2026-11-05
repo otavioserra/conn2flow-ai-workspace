@@ -6,6 +6,8 @@
 * **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa e audita ➔ Humano homologa)
 * **Nível de Autonomia**: `autonomo_monitorado`
 * **Data de Entrada**: 2026-10-20
+* **Frente Pronta na Sequência Imediata**:
+  - [req-078.md](req-078.md) (`BATCH-080`, Internacionalização Completa das 45 Skills, Nova Skill de Governança Multilíngue e Sistema de Detecção de Drift de Tradução com Hash Tracking, `APPROVED` em 2026-11-05)
 * **Entregas Anteriores com Homologação Visual Pendente na Fila Humana**:
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
