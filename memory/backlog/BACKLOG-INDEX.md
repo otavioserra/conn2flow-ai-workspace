@@ -14,6 +14,9 @@
 | [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md) | Hub / Auto-Evolução | `ICEBOX` | MDD Hub & Documentation Watcher (Python) — Motor de Auto-Evolução e Scraping de Modelos de IA | Integrar com telemetria do Daemon MCP | 2026-10-09 |
 | [ARCH-013](ARCH-013-vector-database-and-nosql-memory-evolution.md) | Arquitetura / Futuro | `ICEBOX` | Evolução para Banco de Dados Vetorial & NoSQL para Codebases de Hiperescala | Pesquisa futura após consolidação do MDD | 2026-10-09 |
 | [ARCH-014](ARCH-014-vscode-extension-mdd-client-hub-integration.md) | Extensão VS Code | `PROMOTED` | Integração da Extensão VS Code com MDD Client e Hub + Servidor MCP no Daemon Python | Preparar REQ-074 / BATCH-076 | 2026-10-09 |
+| [ARCH-016](ARCH-016-mcp-hub-dual-dispatch-channels-headless.md) | Infraestrutura / MCP | `ICEBOX` | Despacho Dual do MCP Hub: chat visível (Claude Code Channels) e headless (API), com modo didático | Reavaliar na próxima rodada de infraestrutura (spike de Channels como gate) | 2026-11-04 |
+
+| [ARCH-017](ARCH-017-mdd-database-engine-sqlite-fts5-and-sql-driver.md) | Arquitetura / DB | PROMOTED | Motor de Banco de Dados Relacional e Full-Text Search (SQLite3 + FTS5 Local e Multi-Driver SQL) para o MDD | Implementar em REQ-079 / BATCH-081 | 2026-11-05 |
 
 ---
 

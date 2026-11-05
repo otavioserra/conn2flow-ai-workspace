@@ -1,13 +1,13 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-077.md](req-077.md) (Restrição Canônica de Worktrees, Pipeline Padrão `project:deploy`, Banimento de `project:update-all` na Rotina e Incorporação das Lições do Atualizador/Choques — DEC-136 / REP-002)
-* **Status**: `APPROVED` para execução
-* **Lote Relacionado**: `BATCH-079`
+* **Ponteiro Ativo**: [req-079.md](req-079.md) (Motor de Banco de Dados MDD `SQLite3 + FTS5` Local e Multi-Driver SQL no `mdd-client`) & [req-078.md](req-078.md) (Internacionalização das skills e detecção de drift por SHA-256)
+* **Status**: `REQ-079` (`APPROVED` / `BATCH-081` `in-progress`); `REQ-078` (`READY-FOR-REVIEW`, implementação validada; homologação humana pendente)
+* **Lote Relacionado**: `BATCH-081` ([batch-081.md](../implementation/batch-081.md)) & `BATCH-080` ([batch-080.md](../implementation/batch-080.md))
 * **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa e audita ➔ Humano homologa)
 * **Nível de Autonomia**: `autonomo_monitorado`
-* **Data de Entrada**: 2026-10-20
-* **Frente Pronta na Sequência Imediata**:
-  - [req-078.md](req-078.md) (`BATCH-080`, Internacionalização Completa das 45 Skills, Nova Skill de Governança Multilíngue e Sistema de Detecção de Drift de Tradução com Hash Tracking, `APPROVED` em 2026-11-05)
+* **Data de Entrada**: 2026-11-05
+* **Frente Anterior**:
+  - [req-077.md](req-077.md) / [BATCH-079](../implementation/batch-079.md): governança validada, 2 worktrees removidas e 15 preservadas conforme decisão humana; [REV-079](../human-reviews/rev-079.md) `RECOMMEND-APPROVAL`. Homologação pendente.
 * **Entregas Anteriores com Homologação Visual Pendente na Fila Humana**:
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
@@ -23,7 +23,11 @@
 
 ---
 
-## Objetivo operacional — REQ-077 / BATCH-079
+## Entrega ativa — REQ-078 / BATCH-080
+
+46 skills com versões EN nos templates, registro source_sha256, warnings não bloqueantes no Node/Python e nova skill de governança multilíngue propagada. Python 138/138, extensão 133/133 e skills 44 alvos PASS. Evidências e limites em [batch-080.md](../implementation/batch-080.md). Próximo passo: Macro-Arquiteto revisa e encaminha homologação humana.
+
+## Frente anterior — REQ-077 / BATCH-079
 
 1. **Substituição de `project:update-all` por `project:deploy <id>`**: Corrigir em `AGENTS.md`, `GEMINI.md`, prompts de agentes, hooks de guarda e skills (`c2f-project-pipeline-and-tasks`, `c2f-executor-agent`, `c2f-resources-system`) para consolidar `project:deploy` como pipeline padrão (95% dos casos) e banir `project:update-all` na rotina normal de projetos.
 2. **Nova Regra Canônica de Worktrees**: Proibir criação de worktrees por comodidade; permitir apenas sob comprovada concorrência de múltiplos agentes em paralelo, com consulta humana mandatória em caso de dúvida; e instituir expurgo obrigatório (`git worktree remove` + `prune`) ao término do lote.
