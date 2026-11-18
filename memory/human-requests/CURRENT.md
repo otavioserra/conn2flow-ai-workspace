@@ -1,13 +1,15 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-079.md](req-079.md) (Motor de Banco de Dados MDD `SQLite3 + FTS5` Local e Multi-Driver SQL no `mdd-client`) & [req-078.md](req-078.md) (Internacionalização das skills e detecção de drift por SHA-256)
-* **Status**: `REQ-079` (`APPROVED` / `BATCH-081` `in-progress`); `REQ-078` (`READY-FOR-REVIEW`, implementação validada; homologação humana pendente)
-* **Lote Relacionado**: `BATCH-081` ([batch-081.md](../implementation/batch-081.md)) & `BATCH-080` ([batch-080.md](../implementation/batch-080.md))
-* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa e audita ➔ Humano homologa)
-* **Nível de Autonomia**: `autonomo_monitorado`
-* **Data de Entrada**: 2026-11-05
-* **Frente Anterior**:
-  - [req-077.md](req-077.md) / [BATCH-079](../implementation/batch-079.md): governança validada, 2 worktrees removidas e 15 preservadas conforme decisão humana; [REV-079](../human-reviews/rev-079.md) `RECOMMEND-APPROVAL`. Homologação pendente.
+* **Ponteiro Ativo**: [req-080.md](req-080.md) (Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto no `environment.json`, Instalação Local do VSIX e Ciclo Iterativo de Homologação da Extensão)
+* **Status**: `APPROVED` para execução imediata e testes iterativos com o Operador Humano
+* **Lote Relacionado**: `BATCH-082` ([batch-082.md](../implementation/batch-082.md))
+* **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa, instala o VSIX local e itera diretamente com o Humano ➔ Retorno ao Macro-Arquiteto para release final)
+* **Nível de Autonomia**: `supervisionado` / iterativo com o operador
+* **Data de Entrada**: 2026-11-18
+* **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
+  - [req-079.md](req-079.md) / [BATCH-081](../implementation/batch-081.md): Motor de Banco de Dados MDD (`SQLite3 + FTS5` Local e Multi-Driver SQL) no `mdd-client` (`ready-for-review`).
+  - [req-078.md](req-078.md) / [BATCH-080](../implementation/batch-080.md): Internacionalização das 46 skills e detecção de drift por SHA-256; [REV-080](../human-reviews/rev-080.md) `RECOMMEND-APPROVAL`.
+  - [req-077.md](req-077.md) / [BATCH-079](../implementation/batch-079.md): Governança de pipelines, worktrees e DEC-136; [REV-079](../human-reviews/rev-079.md) `RECOMMEND-APPROVAL`.
 * **Entregas Anteriores com Homologação Visual Pendente na Fila Humana**:
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
@@ -16,21 +18,13 @@
   - [req-073.md](req-073.md) (`BATCH-075`, Consolidação Harmônica das Branches MDD na main, `HOMOLOGATED` em 2026-10-09 via [rev-075.md](../human-reviews/rev-075.md))
   - [req-072.md](req-072.md) (`BATCH-074`, Trava Tripla MDD, CLI de Mutação Atômica, 45ª Skill e Human Reviews, `HOMOLOGATED` em 2026-10-09 via [rev-074.md](../human-reviews/rev-074.md))
   - [req-071.md](req-071.md) (`BATCH-073`, Padronização das Memórias 03 e 04 em Inglês e Boilerplates, concluída nos 8 repositórios)
-  - [req-069.md](req-069.md) (`BATCH-071`, Aplicações Python MDD Client CLI/Daemon e MDD Hub, concluída em tools/)
-  - [req-070.md](req-070.md) (`BATCH-072`, Revamp da Documentação Pública e READMEs Raiz, `HOMOLOGATED` em 2026-10-09)
-  - [req-068.md](req-068.md) (`BATCH-070`, Migração Estrutural MDD nos 7 Repositórios Satélites, `HOMOLOGATED` em 2026-10-09)
 * **Contrato de Handoff**: REQ-072 / ARCH-015. `solo`: auto-revisão do Executor; `dupla`: retorno ao Macro-Arquiteto; `triade`: recibo e Revisor Independente com ficha em `memory/human-reviews/`. `supervisionado` aguarda input humano em cada transição; `autonomo_monitorado` mantém Live Todo e aciona próximo papel autorizado; `autonomo_headless` persiste despacho e recibos. Nenhum modo simula homologação humana. Detalhes em [02-policy.md](../02-policy.md).
 
 ---
 
-## Entrega ativa — REQ-078 / BATCH-080
+## Objetivo operacional — REQ-080 / BATCH-082
 
-46 skills com versões EN nos templates, registro source_sha256, warnings não bloqueantes no Node/Python e nova skill de governança multilíngue propagada. Python 138/138, extensão 133/133 e skills 44 alvos PASS. Evidências e limites em [batch-080.md](../implementation/batch-080.md). Próximo passo: Macro-Arquiteto revisa e encaminha homologação humana.
-
-## Frente anterior — REQ-077 / BATCH-079
-
-1. **Substituição de `project:update-all` por `project:deploy <id>`**: Corrigir em `AGENTS.md`, `GEMINI.md`, prompts de agentes, hooks de guarda e skills (`c2f-project-pipeline-and-tasks`, `c2f-executor-agent`, `c2f-resources-system`) para consolidar `project:deploy` como pipeline padrão (95% dos casos) e banir `project:update-all` na rotina normal de projetos.
-2. **Nova Regra Canônica de Worktrees**: Proibir criação de worktrees por comodidade; permitir apenas sob comprovada concorrência de múltiplos agentes em paralelo, com consulta humana mandatória em caso de dúvida; e instituir expurgo obrigatório (`git worktree remove` + `prune`) ao término do lote.
-3. **Incorporação das Lições do Atualizador/Choques (DEC-136 / REP-002)**: Cravar DEC-136 (nada é removido sem confirmação humana), diagnóstico de falhas HTTP de atualização, tabelas sem coluna `status` (DELETE físico) e armadilhas de shell em `c2f-shell-and-windows-traps`, `c2f-database-operations` e `c2f-executor-agent`.
-4. **Descarte Seguro de Pastas Residuais**: Auditar e desvincular as 17 pastas residuais listadas pelo Engenheiro Chefe no Core e no Site.
-5. **Propagação Canônica e Testes**: Propagar as 45 skills com `sync-skills.cjs`, regenerar índices e validar com 100% PASS em Python (131/131) e Extensão (133/133).
+1. **Saneamento de "Choques de Entregas" na Aba Projetos e Ambientes de Testes**: Remover a listagem poluída de todos os projetos com ícone `warning` (`!`) em `conn2flowTreeProvider.ts`; exibir apenas 1 item para o `{target}` ativo (`Choques de entregas: {target}`, ícone neutro `diff` ou `git-compare`) e 1 item seletor (`Choques de entregas (Selecionar Projeto...)`).
+2. **Novo Editor Isolado de Dados do Projeto (`Scoped Project Config Editor`)**: Criar as ações **Editar Dados do Projeto: {target}** e **Editar Dados de Projeto (Selecionar...)** na aba Projetos e Ambientes de Testes, abrindo um JSON provisório contendo exclusivamente o nó `devProjects[projectId]` do `environment.json` (sem expor outros projetos nem chaves globais) e sincronizando automaticamente de volta ao `environment.json` ao salvar (`Ctrl+S`).
+3. **Compilação, Testes e Instalação Local Imediata do VSIX**: Compilar (`npm run compile`), validar testes (`npm test`), empacotar (`npx @vscode/vsce package`) e instalar diretamente no VS Code local (`code --install-extension <arquivo.vsix> --force`).
+4. **Ciclo Iterativo com o Operador Humano**: Permanecer à disposição nesta mesma requisição para aplicar e reinstalar imediatamente quaisquer ajustes adicionais solicitados pelo operador durante os testes práticos.
