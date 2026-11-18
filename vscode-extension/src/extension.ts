@@ -155,6 +155,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(actionsWatcher);
 
   // Monitorar fechamento de terminais de log
+  context.subscriptions.push(ProjectsManager.registerScopedProjectConfigEditor(() => refreshAll()));
   context.subscriptions.push(vscode.window.onDidCloseTerminal(t => LogFollowManager.handleTerminalClosed(t, refreshAll)));
 
   const interval = setInterval(refreshAll, 30000);
@@ -593,6 +594,21 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('conn2flow.projects.listConflicts', async (projectId?: string) => {
       await ProjectConflictsManager.openForProject(projectId, refreshAll);
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.editTargetConfig', async () => {
+      await ProjectsManager.openScopedProjectConfig(ProjectsManager.getTargetProject());
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.deleteProjectSelect', async () => {
+      const projectId = await selectProjectFromEnvironment(LocalizationManager.t('projects.deleteSelectPrompt'));
+      if (projectId) {
+        await ProjectsManager.deleteProject(projectId, refreshAll);
+      }
+    }),
+    vscode.commands.registerCommand('conn2flow.projects.editProjectConfigSelect', async () => {
+      const projectId = await selectProjectFromEnvironment(LocalizationManager.t('projects.configSelectPrompt'));
+      if (projectId) {
+        await ProjectsManager.openScopedProjectConfig(projectId);
+      }
     }),
     vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
       const target = ProjectsManager.getTargetProject();

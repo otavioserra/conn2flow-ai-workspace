@@ -1,5 +1,16 @@
 # Validation Checklist
 
+## BATCH-082 — REQ-080 (2026-11-18)
+
+- [x] Saneamento de "Choques de entregas" na aba Projetos (`🔀 Choques de Entrega: {target}` + seletor, sem parede de `⚠️`).
+- [x] Editor isolado de dados do projeto (`conn2flow.projects.editTargetConfig` / `editProjectConfigSelect`) com buffer provisório em `os.tmpdir()` e sincronização automática em `devProjects[projectId]` no `Ctrl+S`.
+- [x] Exclusão de projeto (`conn2flow.projects.deleteProjectSelect`) com confirmação modal e limpeza de `projectTarget` caso seja o alvo removido.
+- [x] Cadastro de projeto com valores pré-preenchidos editáveis (`URL`, `path`, `path_tests`), validação de ID e `ignoreFocusOut: true` em todas as caixas.
+- [x] Suíte da extensão: `npm test` → **145/145 PASS** (12 novos testes em `test/projectConfigEditor.test.cjs`).
+- [x] Pacote final `vscode-extension/conn2flow-tools-1.1.7.vsix` (SHA-256 `2d1088f93b7726c5c24fb4296af3cafee0a7b19fa0e94ea06ddbff3be6888afa`) instalado localmente e homologado na prática pelo Operador Humano (Otávio Serra) após 3 rodadas de testes.
+
+Evidências: [BATCH-082](../implementation/batch-082.md).
+
 ## BATCH-080 — REQ-078 (2026-11-05)
 
 ### Rodada 1 — tradução e drift

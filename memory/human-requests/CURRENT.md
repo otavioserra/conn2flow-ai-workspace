@@ -1,7 +1,7 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-080.md](req-080.md) (Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto no `environment.json`, Instalação Local do VSIX e Ciclo Iterativo de Homologação da Extensão)
-* **Status**: `APPROVED` para execução imediata e testes iterativos com o Operador Humano
+* **Ponteiro Ativo**: [req-080.md](req-080.md) (Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto no `environment.json`, Exclusão e Cadastro Pré-Preenchido de Projetos e Release `v1.1.7` do VSIX)
+* **Status**: `HOMOLOGATED` pelo Operador Humano em 2026-11-18 (extensão `conn2flow-tools@1.1.7`, `145/145` testes PASS, pronta para upload manual no VS Code Marketplace)
 * **Lote Relacionado**: `BATCH-082` ([batch-082.md](../implementation/batch-082.md))
 * **Topologia de Agentes**: `dupla` (Macro-Arquiteto planeja ➔ Executor implementa, instala o VSIX local e itera diretamente com o Humano ➔ Retorno ao Macro-Arquiteto para release final)
 * **Nível de Autonomia**: `supervisionado` / iterativo com o operador

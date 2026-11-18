@@ -145,6 +145,8 @@ class Conn2FlowTreeProvider {
             projects.push(this.leaf('projects.syncCore', 'conn2flow.projects.syncCoreTarget', 'arrow-right', targetValues));
             projects.push(this.leaf('projects.syncFiles', 'conn2flow.projects.syncFilesTarget', 'cloud-upload', targetValues));
             projects.push(this.leaf('projects.deploy', 'conn2flow.projects.deployTarget', 'rocket', targetValues));
+            projects.push(this.leaf('projects.conflictsFor', 'conn2flow.projects.listConflicts', 'git-compare', { project: target }, [target]));
+            projects.push(this.leaf('projects.editTargetConfig', 'conn2flow.projects.editTargetConfig', 'settings-gear', targetValues));
         }
         projects.push(this.leaf('projects.updateSelect', 'conn2flow.projects.updateAllWithSelect', 'list-selection'));
         projects.push(this.leaf('projects.deploySelect', 'conn2flow.projects.deployOther', 'send'));
@@ -152,7 +154,9 @@ class Conn2FlowTreeProvider {
         projects.push(this.leaf('projects.register', 'conn2flow.projects.registerExisting', 'plus'));
         projects.push(this.leaf('projects.clone', 'conn2flow.projects.cloneMissing', 'repo-clone'));
         projects.push(this.leaf('projects.syncTemplate', 'conn2flow.projects.syncTemplate', 'diff-added'));
-        projects.push(...projectsManager_1.ProjectsManager.getProjectsList().map(project => this.leaf('projects.conflictsFor', 'conn2flow.projects.listConflicts', 'warning', { project: project.name }, [project.id])));
+        projects.push(this.leaf('projects.conflictsSelectProject', 'conn2flow.projects.listConflicts', 'diff'));
+        projects.push(this.leaf('projects.editConfigSelect', 'conn2flow.projects.editProjectConfigSelect', 'edit'));
+        projects.push(this.leaf('projects.deleteSelect', 'conn2flow.projects.deleteProjectSelect', 'trash'));
         const diagnostics = [];
         if (!projectsManager_1.ProjectsManager.isTargetVm()) {
             diagnostics.push(this.leaf('diagnostics.dockerStatus', 'conn2flow.docker.status', 'pulse'), this.leaf('diagnostics.apacheLogs', 'conn2flow.docker.logsApache', logFollowManager_1.LogFollowManager.isApacheFollowing ? 'debug-stop' : 'output'), this.leaf('diagnostics.phpLogs', 'conn2flow.docker.logsPhp', logFollowManager_1.LogFollowManager.isPhpFollowing ? 'debug-stop' : 'terminal'), this.leaf('diagnostics.truncatePhp', 'conn2flow.docker.truncatePhpLog', 'trash'));

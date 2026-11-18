@@ -15,6 +15,7 @@
 | BATCH-079 | Pipeline project:deploy, restrição de worktrees e lições REP-002 | Governança validada, duas worktrees integradas removidas e quinze preservadas por decisão humana. | [source](<batch-079.md>) | ready-for-review-with-preservation |
 | BATCH-080 | Traduções EN das skills e detecção de drift por SHA-256 | 46 skills com versões EN, registro SHA-256 e avisos não bloqueantes; Python 138 e extensão 133 PASS. | [source](<batch-080.md>) | ready-for-review |
 | BATCH-081 | Implementação do Motor de Banco de Dados MDD (SQLite3 + FTS5 Local e Multi-Driver SQL) no mdd-client | Projeto: `conn2flow-ai-workspace`; raiz: `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`; requisição:... | [source](<batch-081.md>) | ready-for-review |
+| BATCH-082 | Saneamento de Choques por Projeto, Editor Isolado de Dados do Projeto e Instalação Local do VSIX | Os pacotes intermediários `1.1.5` e `1.1.6` só foram usados nas iterações locais e não devem ser publicados. | [source](<batch-082.md>) | complete |
 
 ## Directories
 

@@ -192,6 +192,8 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
       projects.push(this.leaf('projects.syncCore', 'conn2flow.projects.syncCoreTarget', 'arrow-right', targetValues));
       projects.push(this.leaf('projects.syncFiles', 'conn2flow.projects.syncFilesTarget', 'cloud-upload', targetValues));
       projects.push(this.leaf('projects.deploy', 'conn2flow.projects.deployTarget', 'rocket', targetValues));
+      projects.push(this.leaf('projects.conflictsFor', 'conn2flow.projects.listConflicts', 'git-compare', { project: target }, [target]));
+      projects.push(this.leaf('projects.editTargetConfig', 'conn2flow.projects.editTargetConfig', 'settings-gear', targetValues));
     }
     projects.push(this.leaf('projects.updateSelect', 'conn2flow.projects.updateAllWithSelect', 'list-selection'));
     projects.push(this.leaf('projects.deploySelect', 'conn2flow.projects.deployOther', 'send'));
@@ -199,15 +201,9 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     projects.push(this.leaf('projects.register', 'conn2flow.projects.registerExisting', 'plus'));
     projects.push(this.leaf('projects.clone', 'conn2flow.projects.cloneMissing', 'repo-clone'));
     projects.push(this.leaf('projects.syncTemplate', 'conn2flow.projects.syncTemplate', 'diff-added'));
-    projects.push(...ProjectsManager.getProjectsList().map(project =>
-      this.leaf(
-        'projects.conflictsFor',
-        'conn2flow.projects.listConflicts',
-        'warning',
-        { project: project.name },
-        [project.id]
-      )
-    ));
+    projects.push(this.leaf('projects.conflictsSelectProject', 'conn2flow.projects.listConflicts', 'diff'));
+    projects.push(this.leaf('projects.editConfigSelect', 'conn2flow.projects.editProjectConfigSelect', 'edit'));
+    projects.push(this.leaf('projects.deleteSelect', 'conn2flow.projects.deleteProjectSelect', 'trash'));
 
     const diagnostics: Conn2FlowTreeItem[] = [];
     if (!ProjectsManager.isTargetVm()) {

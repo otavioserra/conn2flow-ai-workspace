@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.1.4",
+  "version": "1.1.7",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
@@ -350,7 +350,25 @@
         "command": "conn2flow.projects.listConflicts",
         "title": "%command.conn2flow.projects.listConflicts%",
         "category": "Conn2Flow Projetos",
-        "icon": "$(warning)"
+        "icon": "$(git-compare)"
+      },
+      {
+        "command": "conn2flow.projects.editTargetConfig",
+        "title": "%command.conn2flow.projects.editTargetConfig%",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "conn2flow.projects.deleteProjectSelect",
+        "title": "%command.conn2flow.projects.deleteProjectSelect%",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "conn2flow.projects.editProjectConfigSelect",
+        "title": "%command.conn2flow.projects.editProjectConfigSelect%",
+        "category": "Conn2Flow Projetos",
+        "icon": "$(edit)"
       },
       {
         "command": "conn2flow.projects.addNew",

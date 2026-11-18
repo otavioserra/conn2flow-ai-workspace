@@ -129,6 +129,7 @@ function activate(context) {
     const actionsWatcher = customActionsManager_1.CustomActionsManager.setupWatcher(refreshAll);
     context.subscriptions.push(actionsWatcher);
     // Monitorar fechamento de terminais de log
+    context.subscriptions.push(projectsManager_1.ProjectsManager.registerScopedProjectConfigEditor(() => refreshAll()));
     context.subscriptions.push(vscode.window.onDidCloseTerminal(t => logFollowManager_1.LogFollowManager.handleTerminalClosed(t, refreshAll)));
     const interval = setInterval(refreshAll, 30000);
     context.subscriptions.push({ dispose: () => clearInterval(interval) });
@@ -475,6 +476,18 @@ function activate(context) {
         }
     }), vscode.commands.registerCommand('conn2flow.projects.listConflicts', async (projectId) => {
         await projectConflictsManager_1.ProjectConflictsManager.openForProject(projectId, refreshAll);
+    }), vscode.commands.registerCommand('conn2flow.projects.editTargetConfig', async () => {
+        await projectsManager_1.ProjectsManager.openScopedProjectConfig(projectsManager_1.ProjectsManager.getTargetProject());
+    }), vscode.commands.registerCommand('conn2flow.projects.deleteProjectSelect', async () => {
+        const projectId = await selectProjectFromEnvironment(localizationManager_1.LocalizationManager.t('projects.deleteSelectPrompt'));
+        if (projectId) {
+            await projectsManager_1.ProjectsManager.deleteProject(projectId, refreshAll);
+        }
+    }), vscode.commands.registerCommand('conn2flow.projects.editProjectConfigSelect', async () => {
+        const projectId = await selectProjectFromEnvironment(localizationManager_1.LocalizationManager.t('projects.configSelectPrompt'));
+        if (projectId) {
+            await projectsManager_1.ProjectsManager.openScopedProjectConfig(projectId);
+        }
     }), vscode.commands.registerCommand('conn2flow.projects.deployTarget', () => {
         const target = projectsManager_1.ProjectsManager.getTargetProject();
         if (!target)

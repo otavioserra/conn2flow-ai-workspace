@@ -1,10 +1,12 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import { LocalizationManager } from './localizationManager';
 import { PREFERENCE_KEYS, PREFERENCE_SECTION, recognizeProjectId } from '../workspacePreferencesPolicy';
 import { isLocalVmProject, isVmProject } from '../projectEnvironmentPolicy';
 import { normalizeVmConnection, VmConnection } from '../vmDiagnosticsPolicy';
+import { extractProjectConfig, mergeProjectConfig, removeProjectConfig, scopedConfigFileName, serializeProjectConfig } from '../projectConfigEditorPolicy';
 
 export interface DevProject {
   id: string;
@@ -20,7 +22,17 @@ export interface DevProject {
   ssh_target_path?: string;
 }
 
+interface ScopedConfigSession {
+  projectId: string;
+  envPath: string;
+  filePath: string;
+  dir: string;
+}
+
 export class ProjectsManager {
+  /** Buffers temporários do Editor Isolado de Dados do Projeto (REQ-080). */
+  private static readonly scopedConfigSessions = new Map<string, ScopedConfigSession>();
+
   private static readonly targetProjectChangedEmitter = new vscode.EventEmitter<string>();
   public static readonly onTargetProjectChanged = this.targetProjectChangedEmitter.event;
 
@@ -231,27 +243,74 @@ export class ProjectsManager {
       return;
     }
 
-    const id = await vscode.window.showInputBox({
+    const coreRoot = this.getCoreRoot();
+    const parent = this.getRepositoryParent();
+    if (!coreRoot || !parent) {
+      vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: 'Raiz dos repositórios não encontrada.' }));
+      return;
+    }
+    const existingIds = new Set(Object.keys(this.getEnvironmentData()?.devProjects || {}));
+
+    // REQ-080 / BATCH-082: todas as caixas usam ignoreFocusOut para sobreviver
+    // ao Alt+Tab (copiar/colar de outra janela) e chegam pré-preenchidas e editáveis.
+    const id = (await vscode.window.showInputBox({
       prompt: LocalizationManager.t('projects.idPrompt'),
-      placeHolder: 'ex: meu-novo-projeto'
-    });
+      placeHolder: 'ex: meu-novo-projeto',
+      ignoreFocusOut: true,
+      validateInput: value => {
+        const trimmed = value.trim();
+        if (!trimmed) return LocalizationManager.t('projects.fieldRequired');
+        if (!/^[a-zA-Z0-9._-]+$/.test(trimmed)) return LocalizationManager.t('projects.idInvalid');
+        if (existingIds.has(trimmed)) return LocalizationManager.t('projects.idExists', { id: trimmed });
+        return undefined;
+      }
+    }))?.trim();
     if (!id) return;
 
-    const name = await vscode.window.showInputBox({
+    const name = (await vscode.window.showInputBox({
       prompt: LocalizationManager.t('projects.namePrompt'),
-      placeHolder: 'ex: Meu Novo Projeto'
-    });
+      placeHolder: 'ex: Meu Novo Projeto',
+      value: id,
+      ignoreFocusOut: true,
+      validateInput: value => value.trim() ? undefined : LocalizationManager.t('projects.fieldRequired')
+    }))?.trim();
     if (!name) return;
 
-    const url = await vscode.window.showInputBox({
-      prompt: LocalizationManager.t('projects.urlPrompt'),
-      placeHolder: 'ex: http://localhost/meu-novo-projeto/ ou https://meusite.com/'
-    });
-
     const isLocalChoice = await vscode.window.showQuickPick([LocalizationManager.t('common.yesLocal'), LocalizationManager.t('common.noRemote')], {
-      placeHolder: LocalizationManager.t('projects.localPrompt')
+      placeHolder: LocalizationManager.t('projects.localPrompt'),
+      ignoreFocusOut: true
     });
-    const isLocal = isLocalChoice ? isLocalChoice === LocalizationManager.t('common.yesLocal') : true;
+    if (!isLocalChoice) return;
+    const isLocal = isLocalChoice === LocalizationManager.t('common.yesLocal');
+
+    const defaultUrl = `http://localhost/${id}/`;
+    const url = (await vscode.window.showInputBox({
+      prompt: LocalizationManager.t('projects.urlPrompt'),
+      placeHolder: 'ex: http://localhost/meu-novo-projeto/ ou https://meusite.com/',
+      value: defaultUrl,
+      ignoreFocusOut: true,
+      validateInput: value => value.trim() ? undefined : LocalizationManager.t('projects.fieldRequired')
+    }))?.trim();
+    if (!url) return;
+
+    const projectPath = (await vscode.window.showInputBox({
+      prompt: LocalizationManager.t('projects.pathPrompt'),
+      value: this.toGitPath(path.join(parent, id, 'gestor')),
+      ignoreFocusOut: true,
+      validateInput: value => value.trim() ? undefined : LocalizationManager.t('projects.fieldRequired')
+    }))?.trim();
+    if (!projectPath) return;
+
+    let pathTests = '';
+    if (isLocal) {
+      const answer = await vscode.window.showInputBox({
+        prompt: LocalizationManager.t('projects.pathTestsPrompt'),
+        value: this.toGitPath(path.join(coreRoot, 'dev-environment', 'data', 'sites', 'localhost', id)) + '/',
+        ignoreFocusOut: true
+      });
+      if (answer === undefined) return;
+      pathTests = answer.trim();
+    }
 
     try {
       const data = this.getEnvironmentData();
@@ -261,17 +320,14 @@ export class ProjectsManager {
         data.devProjects = {};
       }
 
-      const coreRoot = this.getCoreRoot();
-      const parent = this.getRepositoryParent();
-      if (!coreRoot || !parent) throw new Error('Raiz dos repositórios não encontrada.');
       data.devProjects[id] = {
         name,
-        path: this.toGitPath(path.join(parent, id, 'gestor')),
-        path_tests: isLocal ? this.toGitPath(path.join(coreRoot, 'dev-environment', 'data', 'sites', 'localhost', id)) + '/' : '',
+        path: projectPath,
+        path_tests: pathTests,
         local: isLocal,
         gitDeploy: false,
         gitDeployBaseRef: 'HEAD',
-        url: url || `http://localhost/${id}/`,
+        url,
         api: {}
       };
 
@@ -331,6 +387,173 @@ export class ProjectsManager {
       }
     } catch (err: any) {
       vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+    }
+  }
+
+  private static sessionKey(filePath: string): string {
+    const normalized = path.normalize(filePath);
+    return process.platform === 'win32' ? normalized.toLowerCase() : normalized;
+  }
+
+  /**
+   * REQ-080 / BATCH-082: abre um JSON temporário contendo somente
+   * `devProjects[projectId]`, sem expor outros projetos nem chaves globais.
+   */
+  public static async openScopedProjectConfig(projectId: string | undefined): Promise<void> {
+    if (!projectId) {
+      vscode.window.showWarningMessage(LocalizationManager.t('projects.noTargetWarning'));
+      return;
+    }
+    const envPath = this.getEnvironmentFilePath();
+    if (!envPath || !fs.existsSync(envPath)) {
+      vscode.window.showErrorMessage(LocalizationManager.t('projects.environmentMissing'));
+      return;
+    }
+
+    let project: Record<string, unknown> | undefined;
+    try {
+      project = extractProjectConfig(JSON.parse(fs.readFileSync(envPath, 'utf8')), projectId);
+    } catch (err: any) {
+      vscode.window.showErrorMessage(LocalizationManager.t('projects.configEnvironmentInvalid', { message: err.message }));
+      return;
+    }
+    if (!project) {
+      vscode.window.showErrorMessage(LocalizationManager.t('projects.conflictProjectMissing', { project: projectId }));
+      return;
+    }
+
+    try {
+      let session = [...this.scopedConfigSessions.values()].find(item => item.projectId === projectId && fs.existsSync(item.filePath));
+      const openDoc = session && vscode.workspace.textDocuments.find(doc => this.sessionKey(doc.uri.fsPath) === this.sessionKey(session!.filePath));
+      if (!session) {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'c2f-project-config-'));
+        const filePath = path.join(dir, scopedConfigFileName(projectId));
+        session = { projectId, envPath, filePath, dir };
+        this.scopedConfigSessions.set(this.sessionKey(filePath), session);
+        fs.writeFileSync(filePath, serializeProjectConfig(project), 'utf8');
+      } else if (!openDoc?.isDirty) {
+        session.envPath = envPath;
+        fs.writeFileSync(session.filePath, serializeProjectConfig(project), 'utf8');
+      }
+
+      const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(session.filePath));
+      await vscode.window.showTextDocument(doc, { preview: false });
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.configOpened', { project: projectId }), 4000);
+    } catch (err: any) {
+      vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+    }
+  }
+
+  /** Registra a sincronização ao salvar (Ctrl+S) e a limpeza ao fechar a aba. */
+  public static registerScopedProjectConfigEditor(onUpdated?: () => void): vscode.Disposable {
+    const onSave = vscode.workspace.onDidSaveTextDocument(doc => {
+      const session = this.scopedConfigSessions.get(this.sessionKey(doc.uri.fsPath));
+      if (session) {
+        this.applyScopedProjectConfig(session, doc.getText(), onUpdated);
+      }
+    });
+    const onClose = vscode.workspace.onDidCloseTextDocument(doc => {
+      const key = this.sessionKey(doc.uri.fsPath);
+      const session = this.scopedConfigSessions.get(key);
+      if (session) {
+        this.scopedConfigSessions.delete(key);
+        this.removeScopedSessionFiles(session);
+      }
+    });
+    return vscode.Disposable.from(onSave, onClose, { dispose: () => this.disposeScopedProjectConfigSessions() });
+  }
+
+  private static applyScopedProjectConfig(session: ScopedConfigSession, editedText: string, onUpdated?: () => void): boolean {
+    let environmentText: string;
+    try {
+      environmentText = fs.readFileSync(session.envPath, 'utf8');
+    } catch {
+      vscode.window.showErrorMessage(LocalizationManager.t('projects.environmentMissing'));
+      return false;
+    }
+
+    const result = mergeProjectConfig(environmentText, session.projectId, editedText);
+    if (!result.ok) {
+      const key = result.reason === 'invalidJson' ? 'projects.configInvalidJson'
+        : result.reason === 'notObject' ? 'projects.configNotObject'
+          : result.reason === 'environmentInvalid' ? 'projects.configEnvironmentInvalid'
+            : 'projects.conflictProjectMissing';
+      vscode.window.showErrorMessage(LocalizationManager.t(key, { project: session.projectId, message: result.message || '' }));
+      return false;
+    }
+
+    try {
+      fs.writeFileSync(session.envPath, result.text, 'utf8');
+    } catch (err: any) {
+      vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+      return false;
+    }
+    vscode.window.setStatusBarMessage(LocalizationManager.t('projects.configSaved', { project: session.projectId }), 4000);
+    if (onUpdated) {
+      onUpdated();
+    }
+    return true;
+  }
+
+  private static removeScopedSessionFiles(session: ScopedConfigSession): void {
+    try {
+      fs.rmSync(session.dir, { recursive: true, force: true });
+    } catch {
+      // Limpeza best-effort: o diretório fica em os.tmpdir() e contém apenas o próprio buffer.
+    }
+  }
+
+  public static disposeScopedProjectConfigSessions(): void {
+    for (const session of this.scopedConfigSessions.values()) {
+      this.removeScopedSessionFiles(session);
+    }
+    this.scopedConfigSessions.clear();
+  }
+
+  /**
+   * REQ-080 / BATCH-082 (pedido iterativo do operador): remove somente
+   * `devProjects[projectId]` do `environment.json`, após confirmação modal.
+   * Arquivos e repositórios do projeto no disco não são tocados.
+   */
+  public static async deleteProject(projectId: string | undefined, onUpdated?: () => void): Promise<boolean> {
+    if (!projectId) {
+      return false;
+    }
+    const envPath = this.getEnvironmentFilePath();
+    if (!envPath || !fs.existsSync(envPath)) {
+      vscode.window.showErrorMessage(LocalizationManager.t('projects.environmentMissing'));
+      return false;
+    }
+
+    const confirmLabel = LocalizationManager.t('projects.deleteConfirmButton');
+    const answer = await vscode.window.showWarningMessage(
+      LocalizationManager.t('projects.deleteConfirm', { project: projectId }),
+      { modal: true, detail: LocalizationManager.t('projects.deleteConfirmDetail', { project: projectId }) },
+      confirmLabel
+    );
+    if (answer !== confirmLabel) {
+      return false;
+    }
+
+    try {
+      const result = removeProjectConfig(fs.readFileSync(envPath, 'utf8'), projectId);
+      if (!result.ok) {
+        const key = result.reason === 'environmentInvalid' ? 'projects.configEnvironmentInvalid' : 'projects.conflictProjectMissing';
+        vscode.window.showErrorMessage(LocalizationManager.t(key, { project: projectId, message: result.message || '' }));
+        return false;
+      }
+      fs.writeFileSync(envPath, result.text, 'utf8');
+      if (result.wasTarget) {
+        this.targetProjectChangedEmitter.fire('');
+      }
+      vscode.window.setStatusBarMessage(LocalizationManager.t('projects.deleted', { project: projectId }), 5000);
+      if (onUpdated) {
+        onUpdated();
+      }
+      return true;
+    } catch (err: any) {
+      vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: err.message }));
+      return false;
     }
   }
 
