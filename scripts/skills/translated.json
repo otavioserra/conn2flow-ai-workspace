@@ -11,8 +11,8 @@
       "translator": "mdd-agent"
     },
     "c2f-architect-master": {
-      "source_sha256": "62cb44d7b61f1622046c4bfeb600c018d63954a8eb74e16e4dfde21f03f3a875",
-      "translated_at": "2026-11-05",
+      "source_sha256": "6ed722ac4fedf2521e2c582f43d2f6fba6c0b8ff22d8740539e1254ab66d033e",
+      "translated_at": "2026-11-21",
       "translator": "mdd-agent"
     },
     "c2f-database-operations": {
@@ -51,8 +51,8 @@
       "translator": "mdd-agent"
     },
     "c2f-executor-agent": {
-      "source_sha256": "e0833a30d205095227e47fdc1bc95051d2f2387b486c5d524adc0300ea3b7aa1",
-      "translated_at": "2026-11-05",
+      "source_sha256": "55e71adcc9e4fc3adb765d535b49ea657c29584c4547a5b738626d205e11c443",
+      "translated_at": "2026-11-21",
       "translator": "mdd-agent"
     },
     "c2f-gd-image-safety": {

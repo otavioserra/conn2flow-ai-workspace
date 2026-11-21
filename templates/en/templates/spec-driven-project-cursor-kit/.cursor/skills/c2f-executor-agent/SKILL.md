@@ -74,6 +74,18 @@ Forbidden to Run Tailwind Full Build in Category A or deploy pipelines in Catego
 - When completing the batch tasks, fill out the evidence and metrics section in `memory/implementation/batch-YYY.md` and mark the criteria met in `memory/validation/VALIDATION-CHECKLIST.md`.
 - Tell the Human Engineer to have the lot submitted to the Technical Reviewer.
 
+#### Difficulties and Lessons Learned Report for the AI Workspace — REQ-081
+
+At the end of every implementation, include the structured report in the Executor's final response, ready to forward to the `conn2flow-ai-workspace` Master Architect, and reference it in `memory/implementation/batch-YYY.md`. When working in `conn2flow-ai-workspace` itself or explicitly authorized to write to the main workspace, also record the report in `memory/reports/REP-XXX-<slug>.md`, following the `REP-002` pattern.
+
+1. **Round Context** — identify the project/repository, `REQ-XXX` / `BATCH-YYY`, and the type of work.
+2. **Difficulties and Friction Encountered** — describe blockers, in-depth code investigation, or rework and state the verified causes.
+3. **Skill Gaps or Outdated Guidance** — list the skills consulted and identify missing, ambiguous, outdated, or misplaced guidance.
+4. **Validated Solution / Measured Pitfalls** — state what resolved the issue in practice and the evidence or measurements that confirm the result.
+5. **Improvement Suggestions for the AI Workspace** — name the skills, templates, or rules to update and propose a concrete change.
+
+If the round had no obstacles or skill gaps, keep the report and explicitly state “No friction or skill gaps were identified in this round”.
+
 ---
 
 ## ✍️ Text for outside reader (pages, news, README)

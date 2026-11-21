@@ -71,6 +71,8 @@ Retome o trabalho a partir do estado registrado em memory/human-requests/CURRENT
 
 Para todo acionamento, preencher o contrato abaixo e aplicar a matriz em memory/02-policy.md. No modo supervisionado, apresentar o prompt e aguardar input humano antes da transição. Em triade monitored, o Executor pode acionar Revisor Independente; em dupla, devolver ao Macro-Arquiteto; em solo, auto-revisar.
 
+Ao criar ou atualizar uma requisição pronta para execução ou revisão, o Arquiteto Master deve encerrar a resposta com a caixa copiável de acionamento definida na skill `c2f-architect-master`. A caixa também é obrigatória quando houver despacho automático.
+
 ```text
 Papel: Revisor Independente (ou Macro-Arquiteto conforme topologia).
 Projeto Matriz: conn2flow-ai-workspace

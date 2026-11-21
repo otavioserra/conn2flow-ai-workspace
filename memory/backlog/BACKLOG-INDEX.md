@@ -17,6 +17,11 @@
 | [ARCH-016](ARCH-016-mcp-hub-dual-dispatch-channels-headless.md) | Infraestrutura / MCP | `ICEBOX` | Despacho Dual do MCP Hub: chat visível (Claude Code Channels) e headless (API), com modo didático | Reavaliar na próxima rodada de infraestrutura (spike de Channels como gate) | 2026-11-04 |
 
 | [ARCH-017](ARCH-017-mdd-database-engine-sqlite-fts5-and-sql-driver.md) | Arquitetura / DB | PROMOTED | Motor de Banco de Dados Relacional e Full-Text Search (SQLite3 + FTS5 Local e Multi-Driver SQL) para o MDD | Implementar em REQ-079 / BATCH-081 | 2026-11-05 |
+| [FEAT-015](FEAT-015-sync-resources-receita-de-dados-de-modulo-nas-skills.md) | Conhecimento / Skills | `ICEBOX` | Receita de dados de módulo por `sync_resources` nas skills de recursos e pipeline | Reescrever §5 de `c2f-resources-system` e propagar aos kits | 2026-11-19 |
+| [FEAT-016](FEAT-016-architect-master-copy-paste-handoff-box.md) | Governança / Skills / DX | `COMPLETED` | Caixa de texto copiar-e-colar obrigatória no encerramento de requisições do Arquiteto Master | Homologado em `REQ-081` / `BATCH-083` | 2026-11-21 |
+| [FEAT-017](FEAT-017-executor-ai-workspace-friction-report.md) | Governança / Skills / Melhoria Contínua | `COMPLETED` | Relatório obrigatório de dificuldades e aprendizados para o AI Workspace no encerramento do Executor | Homologado em `REQ-081` / `BATCH-083` | 2026-11-21 |
+| [FEAT-018](FEAT-018-skills-matrix-sync-and-crlf-hash-stability.md) | Governança / Skills / Ferramental | `PROMOTED` | Sync restrito à matriz (`--repos`) e estabilidade de hashes SHA-256 frente a finais de linha (CRLF/LF) | Executar em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-21 |
+| [FEAT-019](FEAT-019-mdd-cli-resolve-by-yaml-id-and-slug.md) | Ferramental / CLI / Skills | `PROMOTED` | Resolução por ID YAML e prefixo com slug no `mdd meta get/set` e alinhamento da skill de indexação | Executar em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-21 |
 
 ---
 

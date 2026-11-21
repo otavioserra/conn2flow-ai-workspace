@@ -66,3 +66,19 @@ When starting, guide your context by reading only the essentials:
   * The repository name (e.g. `conn2flow-ai-workspace` or `conn2flow`).
   * The absolute root path of the target workspace (e.g. `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`).
   * The recommended skill for paper (`c2f-executor-agent` or `c2f-reviewer-agent`).
+
+#### Mandatory copy-and-paste box — REQ-081
+
+Whenever you create or update a request that is ready for implementation or review, end your response with a copyable Markdown `text` block ready to forward to the target agent. The box summarizes the operational objective in 1–3 lines and points to the full specification in `memory/human-requests/req-XXX.md`.
+
+Include the target skill (`c2f-executor-agent` or `c2f-reviewer-agent`), the repository name and absolute root, the `memory/human-requests/CURRENT.md` pointer, the request file, the `REQ-XXX` and `BATCH-YYY` IDs, and an explicit command to start, render the Live Todo List, and follow the acceptance criteria. Preserve the topology, autonomy, and other applicable fields of the REQ-072 handoff contract.
+
+Display the box in `supervisionado`, `autonomo_monitorado`, and `autonomo_headless`, even when MCP Hub or another mechanism dispatches the handoff automatically. The box makes the dispatch instruction visible and provides a manual copy option.
+
+```text
+Activate c2f-executor-agent in the conn2flow-ai-workspace repository at C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace.
+Read memory/human-requests/CURRENT.md and memory/human-requests/req-XXX.md (REQ-XXX / BATCH-YYY).
+Topology dupla | Autonomy supervisionado
+Batch objective — update and locally validate the skills identified in the request.
+Start now. Render the Live Todo List and implement according to the acceptance criteria.
+```

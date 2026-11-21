@@ -1,5 +1,16 @@
 # Validation Checklist
 
+## BATCH-083 — REQ-081 (2026-11-21)
+
+- [x] Arquiteto Master com caixa `text` copiável obrigatória, campos mínimos, exemplo e exibição em todos os modos.
+- [x] Executor com relatório obrigatório de cinco partes, regra explícita para rodadas sem atritos e vínculos ao lote e ao REP.
+- [x] Dez arquivos EN revisados e hashes SHA-256 das duas fontes PT-BR atualizados via sincronizador.
+- [x] Cinco kits da matriz sincronizados. Auditoria PASS em 19 alvos, sem divergências nem drift, e 61 testes locais passaram.
+- [x] Relatório do lote criado com frontmatter canônico e relatório de aprendizados também registrado em REP-004.
+- [x] Índices MDD das áreas afetadas regenerados sem erros.
+
+Evidências em [BATCH-083](../implementation/batch-083.md), [REP-004](../reports/REP-004-batch083-skills-learnings.md) e na [auditoria local](../../completions/skills-audit.json). Homologação humana pendente.
+
 ## BATCH-082 — REQ-080 (2026-11-18)
 
 - [x] Saneamento de "Choques de entregas" na aba Projetos (`🔀 Choques de Entrega: {target}` + seletor, sem parede de `⚠️`).
