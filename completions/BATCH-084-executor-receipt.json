@@ -1,0 +1,295 @@
+{
+  "request": "REQ-082",
+  "batch": "BATCH-084",
+  "date": "2026-11-21",
+  "repo": "conn2flow-ai-workspace",
+  "repo_root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace",
+  "matrix_branch": "main",
+  "role": "executor",
+  "topology": "dupla",
+  "autonomy": "supervisionado",
+  "category": "B",
+  "status": "ready-for-review",
+  "next_role": "architect",
+  "gate": {
+    "phase": 3,
+    "state": "approved",
+    "approved_by": [
+      "macro-architect",
+      "human-operator"
+    ],
+    "date": "2026-11-21",
+    "evidence": "conversation"
+  },
+  "evidence": [
+    "memory/implementation/batch-084.md",
+    "memory/reports/REP-005-batch084-rollout-and-eol.md",
+    "memory/validation/VALIDATION-CHECKLIST.md",
+    "completions/skills-audit.json"
+  ],
+  "phase_1": {
+    "satellites": [
+      "conn2flow",
+      "conn2flow-site",
+      "lumix",
+      "transformamp",
+      "conn2flow-home",
+      "website-conn2flow",
+      "conn2flow-app",
+      "conn2flow-mkt",
+      "conn2flow-nexus"
+    ],
+    "verified_skill_copies": 68,
+    "other_catalog_differences": 81
+  },
+  "phase_2": {
+    "audit_status": "PASS",
+    "audit_targets": 19,
+    "divergences": 0,
+    "translation_drift": 0,
+    "tests_passed": 119
+  },
+  "dispatch": "local_receipt",
+  "phase_3": {
+    "state": "verified",
+    "satellites": {
+      "conn2flow": {
+        "branch": "main",
+        "head": "91017a3ecac14008956cff3475d4a34d86e735f2",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 224,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "conn2flow-site": {
+        "branch": "feat/req-292-docs-mdd",
+        "head": "402bcb6c507bbaeef2e04ea1c7ec2057882bda52",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 232,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "lumix": {
+        "branch": "main",
+        "head": "463a366b21b4f03c9f4e28a53a0a13c6fa2f670a",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 236,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "transformamp": {
+        "branch": "main",
+        "head": "4856ac84732b833d530ba15538d282514f217bbc",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 244,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "conn2flow-home": {
+        "branch": "main",
+        "head": "f5a3915fb46bb3bb04779486278d449ee22bd288",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 250,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "website-conn2flow": {
+        "branch": "main",
+        "head": "1a3b406e0cc34c47375bbc0a43781010be8dd938",
+        "copies": 15,
+        "created": 0,
+        "preserved_skill_and_rule_files": 232,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".codex/skills/c2f-architect-master/SKILL.md",
+          ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".cursor/skills/c2f-architect-master/SKILL.md",
+          ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "conn2flow-app": {
+        "branch": "main",
+        "head": "df07611424e2409c562dea6237f962cae94eb9ce",
+        "copies": 3,
+        "created": 2,
+        "preserved_skill_and_rule_files": 46,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "conn2flow-mkt": {
+        "branch": "main",
+        "head": "ba37e5dcbf62c18d163ee81099ab4dba163f50e6",
+        "copies": 3,
+        "created": 2,
+        "preserved_skill_and_rule_files": 53,
+        "paths": [
+          ".gemini/skills/c2f-architect-master/SKILL.md",
+          ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      },
+      "conn2flow-nexus": {
+        "branch": "main",
+        "head": "00a678aba35303d029c6cfae0751e128719f604c",
+        "copies": 6,
+        "created": 4,
+        "preserved_skill_and_rule_files": 88,
+        "paths": [
+          ".claude/skills/c2f-architect-master/SKILL.md",
+          ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+          ".github/skills/c2f-architect-master/SKILL.md",
+          ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+          ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+        ]
+      }
+    },
+    "verified_skill_copies": 102,
+    "new_copies": 8,
+    "equivalent_copies": 97,
+    "recognized_customizations": [
+      {
+        "onde": "conn2flow/.gemini",
+        "path": ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "skill": "c2f-multilingual-skills-governance"
+      },
+      {
+        "onde": "conn2flow/.claude",
+        "path": ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "skill": "c2f-multilingual-skills-governance"
+      },
+      {
+        "onde": "conn2flow/.cursor",
+        "path": ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "skill": "c2f-multilingual-skills-governance"
+      },
+      {
+        "onde": "conn2flow/.codex",
+        "path": ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "skill": "c2f-multilingual-skills-governance"
+      },
+      {
+        "onde": "conn2flow/.github",
+        "path": ".github/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "skill": "c2f-multilingual-skills-governance"
+      }
+    ],
+    "core_customization_manifest": "conn2flow/memory/sync-customizations.json",
+    "preserved_skill_and_rule_files": 1605,
+    "audit_targets": 53,
+    "target_skill_divergences": 0,
+    "remaining_other_divergences": 68,
+    "translation_drift": 0,
+    "registered_translation_copies_preserved": 312,
+    "local_skills_preserved": 129,
+    "idempotent_reapply_files_written": 0,
+    "matrix_audit_status": "PASS",
+    "matrix_audit_targets": 19,
+    "tests_passed": 66,
+    "ignored_local_copies": {
+      "conn2flow": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ],
+      "lumix": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    }
+  },
+  "next_event": "human_acceptance_before_git_integration"
+}

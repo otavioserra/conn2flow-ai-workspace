@@ -1,4 +1,4 @@
-"""Deterministic scalar YAML metadata and indexes, shared contract with Core PHP.
+"""Deterministic scalar YAML metadata and indexes, with Core PHP-compatible metadata.
 
 Read tolerantly; mutate only the supported string mapping/block-scalar dialect.
 Each replacement is atomic; cooperative writers share memory/.mdd.lock. On an
@@ -157,7 +157,8 @@ def resolve(repo: Path, target: str, directory: bool = False) -> Path:
     memory = _memory(repo)
     supplied = Path(target)
     candidates = [supplied] if supplied.is_absolute() else [repo / supplied, memory / supplied]
-    for candidate in candidates:
+    explicit = directory or supplied.is_absolute() or supplied.name != target
+    for candidate in candidates if explicit else []:
         if candidate.exists():
             candidate = contained(repo, candidate)
             if not candidate.resolve().is_relative_to(memory.resolve()):
@@ -167,9 +168,28 @@ def resolve(repo: Path, target: str, directory: bool = False) -> Path:
             return candidate
     if directory or supplied.name != target:
         raise ValueError(f"Target not found: {target}")
-    matches = [p for p in _walk(repo) if p.name.casefold() == target.casefold() or p.stem.casefold() == target.casefold()]
-    if len(matches) != 1:
-        raise ValueError(f"Target must be unique: {target} ({len(matches)} matches)")
+    key = target.casefold()
+    paths = list(_walk(repo))
+    matches = [path for path in paths if key in (path.name.casefold(), path.stem.casefold())]
+    if not matches:
+        for path in paths:
+            if path.name.casefold() in INFRA:
+                continue
+            if path.stem.casefold().startswith(key + "-"):
+                matches.append(path)
+                continue
+            try:
+                content = path.read_bytes().decode("utf-8")
+            except UnicodeDecodeError:
+                continue
+            parsed, _, _, errors = parse(content)
+            if parsed.get("id", "").casefold() == key and "Duplicate field: id" not in errors:
+                matches.append(path)
+    if len(matches) > 1:
+        choices = ", ".join(sorted(path.relative_to(repo).as_posix() for path in matches))
+        raise ValueError(f"Target must be unique: {target}. Use a path under memory/: {choices}")
+    if not matches:
+        raise ValueError(f"Target not found: {target}")
     return matches[0]
 
 

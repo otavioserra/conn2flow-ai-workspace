@@ -17,6 +17,7 @@
 | BATCH-081 | Implementação do Motor de Banco de Dados MDD (SQLite3 + FTS5 Local e Multi-Driver SQL) no mdd-client | Projeto: `conn2flow-ai-workspace`; raiz: `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`; requisição:... | [source](<batch-081.md>) | ready-for-review |
 | BATCH-082 | Saneamento de Choques por Projeto, Editor Isolado de Dados do Projeto e Instalação Local do VSIX | Os pacotes intermediários `1.1.5` e `1.1.6` só foram usados nas iterações locais e não devem ser publicados. | [source](<batch-082.md>) | complete |
 | BATCH-083 | Caixa copiável do Arquiteto Master e relatório de dificuldades do Executor | Caixa copiável do Arquiteto e relatório do Executor implementados e validados nos cinco kits. | [source](<batch-083.md>) | HOMOLOGATED |
+| BATCH-084 | Propagação da REQ-081 e melhorias de governança e indexação na matriz | Propagação das skills da REQ-081, validação de FEAT-018/019 e segunda propagação em nove satélites. | [source](<batch-084.md>) | HOMOLOGATED |
 
 ## Directories
 

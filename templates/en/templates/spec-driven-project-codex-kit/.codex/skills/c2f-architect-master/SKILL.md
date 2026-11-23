@@ -44,6 +44,10 @@ When starting, guide your context by reading only the essentials:
   * Guides in `docs/` and `sdd/`
 - When evaluating batch closure or release preparation, audit whether the documentation reflects the actual status of the software.
 
+#### Git working tree hygiene after human acceptance
+
+The Master Architect is responsible for the integrity of the Git working tree after human acceptance. Check `git status --short` and `git branch --show-current`, coordinate selective governance commits with explicit paths, and oversee integration into `main` and `git push` when authorized. Preserve other contributors’ changes and follow up on pending work to prevent temporary files and stray changes from accumulating.
+
 ### 4. Backlog Management and Atomic Requirements
 - **Backlog (`sdd/backlog/`)**: Place where future ideas, improvements and tasks are frozen without entering the active development flow.
 - **Requirements (`sdd/human-requests/req-XXX.md`)**: Only active and approved tasks for the immediate implementation cycle become formal requests and point to `sdd/human-requests/CURRENT.md`.

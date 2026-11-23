@@ -1,5 +1,19 @@
 # Validation Checklist
 
+## BATCH-084 — REQ-082 (2026-11-21)
+
+- [x] As duas skills homologadas na REQ-081 foram verificadas em 34 kits de nove satélites, preservando skills locais, regras e trabalho em andamento.
+- [x] FEAT-018 e FEAT-019 implementadas, e diretriz de higiene Git e integração na `main` adicionada ao Arquiteto Master em PT-BR e EN.
+- [x] A auditoria da matriz passou em 19 alvos, sem divergências e sem drift. As variantes LF, CRLF e mista foram verificadas localmente.
+- [x] A suíte `tools/mdd-client/tests` passou com 119 testes. O CLI Python resolveu `REP-004` por ID e o CLI PHP resolveu por caminho explícito.
+- [x] Relatório do lote, registro de aprendizados, recibo local e índices MDD entregues. Execução local de Categoria B.
+- [x] Validação do Macro-Arquiteto e autorização humana da Fase 3 registradas na conversa em 2026-11-21.
+- [x] Fase 3 concluída em 34 kits de nove satélites. As 102 cópias estão validadas, incluindo cinco variantes reconhecidas no Core, e a repetição do sync gravou zero arquivos.
+- [x] Zero divergências nas três skills da Fase 3 e zero drift de tradução. A auditoria global manteve 68 divergências preexistentes fora do escopo. A auditoria da matriz passou em 19 alvos e 66 testes locais passaram.
+- [ ] Homologação final e integração Git na main pelo Arquiteto Master, após aceite do operador humano.
+
+Evidências em [BATCH-084](../implementation/batch-084.md), [REP-005](../reports/REP-005-batch084-rollout-and-eol.md) e na [auditoria da matriz](../../completions/skills-audit.json).
+
 ## BATCH-083 — REQ-081 (2026-11-21)
 
 - [x] Arquiteto Master com caixa `text` copiável obrigatória, campos mínimos, exemplo e exibição em todos os modos.

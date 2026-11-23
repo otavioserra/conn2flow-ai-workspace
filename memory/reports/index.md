@@ -7,6 +7,7 @@
 | REP-002 | REP-002: Relatório para o AI Workspace — o que as skills e o ambiente devem aprender com a REQ-285 (atualizador, choques e Lab) | Hoje o conhecimento está espalhado em memórias e comentários de código. Conteúdo mínimo: | [source](<REP-002-req285-atualizador-choques-learnings.md>) | READY |
 | REP-003 | Esteira de Vídeo com IA: Aprendizados para Skills do conn2flow-home | Aprendizados da produção do promo-02 e proposta de skills de vídeo para instalar com o conn2flow-home. | [source](<REP-003-esteira-video-ia-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-004 | Dificuldades e Aprendizados do BATCH-083 para o AI Workspace | Escopo de sincronização e sensibilidade de hashes SHA-256 a finais de linha no BATCH-083. | [source](<REP-004-batch083-skills-learnings.md>) | READY_FOR_ARCHITECT |
+| REP-005 | Dificuldades e aprendizados do BATCH-084 para o AI Workspace | Escopo do sincronizador, migração de SHA-256 para LF e paridade do CLI no BATCH-084. | [source](<REP-005-batch084-rollout-and-eol.md>) | READY_FOR_ARCHITECT |
 
 ## Directories
 

@@ -20,8 +20,8 @@
 | [FEAT-015](FEAT-015-sync-resources-receita-de-dados-de-modulo-nas-skills.md) | Conhecimento / Skills | `ICEBOX` | Receita de dados de módulo por `sync_resources` nas skills de recursos e pipeline | Reescrever §5 de `c2f-resources-system` e propagar aos kits | 2026-11-19 |
 | [FEAT-016](FEAT-016-architect-master-copy-paste-handoff-box.md) | Governança / Skills / DX | `COMPLETED` | Caixa de texto copiar-e-colar obrigatória no encerramento de requisições do Arquiteto Master | Homologado em `REQ-081` / `BATCH-083` | 2026-11-21 |
 | [FEAT-017](FEAT-017-executor-ai-workspace-friction-report.md) | Governança / Skills / Melhoria Contínua | `COMPLETED` | Relatório obrigatório de dificuldades e aprendizados para o AI Workspace no encerramento do Executor | Homologado em `REQ-081` / `BATCH-083` | 2026-11-21 |
-| [FEAT-018](FEAT-018-skills-matrix-sync-and-crlf-hash-stability.md) | Governança / Skills / Ferramental | `PROMOTED` | Sync restrito à matriz (`--repos`) e estabilidade de hashes SHA-256 frente a finais de linha (CRLF/LF) | Executar em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-21 |
-| [FEAT-019](FEAT-019-mdd-cli-resolve-by-yaml-id-and-slug.md) | Ferramental / CLI / Skills | `PROMOTED` | Resolução por ID YAML e prefixo com slug no `mdd meta get/set` e alinhamento da skill de indexação | Executar em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-21 |
+| [FEAT-018](FEAT-018-skills-matrix-sync-and-crlf-hash-stability.md) | Governança / Skills / Ferramental | `COMPLETED` | Sync restrito à matriz (`--repos`) e estabilidade de hashes SHA-256 frente a finais de linha (CRLF/LF) | Homologado em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-23 |
+| [FEAT-019](FEAT-019-mdd-cli-resolve-by-yaml-id-and-slug.md) | Ferramental / CLI / Skills | `COMPLETED` | Resolução por ID YAML e prefixo com slug no `mdd meta get/set` e alinhamento da skill de indexação | Homologado em `REQ-082` / `BATCH-084` (origem: `REP-004`) | 2026-11-23 |
 
 ---
 

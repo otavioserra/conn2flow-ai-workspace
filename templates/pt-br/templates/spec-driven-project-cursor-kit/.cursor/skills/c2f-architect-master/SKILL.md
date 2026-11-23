@@ -44,6 +44,10 @@ Ao iniciar, oriente seu contexto lendo apenas o essencial:
   * Guias em `docs/` e `sdd/`
 - Ao avaliar o encerramento de lotes ou preparação de releases, audite se a documentação reflete o estado real do software.
 
+#### Higiene da árvore Git após homologação
+
+O Arquiteto Master responde pela integridade da árvore Git após a homologação humana. Confira `git status --short` e `git branch --show-current`, coordene commits seletivos de governança com caminhos explícitos e conduza a integração na `main` e o `git push` quando autorizados. Preserve alterações de terceiros e encaminhe pendências para evitar acúmulo de arquivos temporários e alterações avulsas.
+
 ### 4. Gestão de Backlog e Requisitos Atômicos
 - **Backlog (`sdd/backlog/`)**: Local onde ideias, melhorias e tarefas futuras ficam congeladas sem entrar no fluxo ativo de desenvolvimento.
 - **Requisitos (`sdd/human-requests/req-XXX.md`)**: Apenas tarefas ativas e aprovadas para o ciclo imediato de implementação se tornam requisições formais e apontam em `sdd/human-requests/CURRENT.md`.

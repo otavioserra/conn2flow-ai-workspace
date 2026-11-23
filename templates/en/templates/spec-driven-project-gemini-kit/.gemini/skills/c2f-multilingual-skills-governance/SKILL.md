@@ -18,9 +18,20 @@ user-invocable: false
 2. Translated templates: `templates/<idioma>/templates/<kit>/<cliente>/skills/<nome>/SKILL.md` receive revised translation. skill name, PHP functions, c2f commands, constants, paths and superglobals remain intact. Translate explanations, triggers and description YAML; preserve keys, control values and Markdown alerts.
 3. Satellites: `node scripts/skills/sync-skills.cjs --apply --all` propagates the matrix through existing kits and preserves registered translations and local skills. Do not manually copy to test mirrors.
 
+## Matrix-only sync
+
+Use these commands for local batches approved for the matrix. The selection includes all five matrix kits and the templates. The EN templates keep their registered translations.
+
+```sh
+node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace
+node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json
+```
+
 ## Hash pairing and review
 
-The record `scripts/skills/translated.json` maps language → skill → `source_sha256`, `translated_at` and `translator`. The hash SHA-256 is from the bytes of the revised source PT-BR, including line endings; it is not the hash of translation and does not prove linguistic quality.
+The record `scripts/skills/translated.json` maps language → skill → `source_sha256`, `translated_at` and `translator`. The SHA-256 identifies the reviewed PT-BR source. The synchronizer converts CRLF to LF in memory before hashing the source and comparing skill copies. Written copies retain the source bytes, and hashes for acknowledged customizations still use the exact bytes.
+
+Before updating hashes, check the branch and working tree with `git branch --show-current` and `git status --short`. Use `git ls-files --eol -- .gemini/skills` to compare the index (`i/`) and working tree (`w/`), and `git diff --ignore-cr-at-eol -- .gemini/skills` to review content changes. Raw file hashes can change solely because of CRLF/LF, including in files with mixed endings. Review translations before acknowledging actual source changes.
 
 Before changing the matrix, inspect its active translations. After the change, update the translations in the scope or explicitly record the pending in the batch. Standard audit and `mdd sync --audit --matrix <raiz> --path <destino>` emit `[DRIFT-WARNING]`/`DRIFT_WARNING` if source diverges. Warning is non-blocking; actual copy differences continue FAIL.
 
@@ -28,7 +39,7 @@ After reviewing the content translated into all relevant kits, recognize the new
 
 ```sh
 node scripts/skills/sync-skills.cjs --update-translation-hash <skill> <idioma> --translator mdd-agent
-node scripts/skills/sync-skills.cjs --report completions/skills-audit.json
+node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json
 ```
 
 Never update hashes automatically during normal sync, before content review, or merely to obtain PASS. Overwrite protection remains active even when drift is detected. Rename requires migrating the name in the kits and registration, preserving the history and reviewing hashes; do not create a second source of authorship.

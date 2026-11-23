@@ -2,7 +2,8 @@
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 const path = require('node:path');
-const digest = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const normalizeLineEndings = bytes => Buffer.from(bytes.toString('latin1').replace(/\r\n/g, '\n'), 'latin1');
+const digest = bytes => crypto.createHash('sha256').update(normalizeLineEndings(bytes)).digest('hex');
 const identifier = value => typeof value === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value);
 
 function load(file) {
@@ -60,4 +61,4 @@ function update(file, data, canonical, skill, language, translator = 'mdd-agent'
   return updated[language][skill];
 }
 
-module.exports = { load, registered, audit, message, update };
+module.exports = { load, registered, audit, message, update, normalizeLineEndings };

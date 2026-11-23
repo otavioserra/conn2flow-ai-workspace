@@ -12,6 +12,58 @@ from mdd_client.core import indexer
 from mdd_client.storage import lock
 from typer.testing import CliRunner
 
+
+def test_yaml_id_slug_fallback_and_cli_paths(tmp_path):
+    reports = tmp_path / "memory/reports"
+    reports.mkdir(parents=True)
+    report = reports / "skills-learnings.md"
+    report.write_bytes(b'---\r\nid: "REP-004"\r\nstatus: ready\r\n---\r\nBody\r\n')
+    backlog = reports / "FEAT-018-sync-and-crlf.md"
+    backlog.write_text("# Legacy item\n", encoding="utf-8")
+    (reports / "FEAT-0180-similar.md").write_text("# Other item\n", encoding="utf-8")
+
+    runner = CliRunner()
+    result = runner.invoke(app, ["meta", "get", "rep-004", "status", "--json", "--path", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    assert json.loads(result.output) == "ready"
+    assert indexer.resolve(tmp_path, "feat-018") == backlog
+    assert indexer.resolve(tmp_path, "memory/reports/skills-learnings.md") == report
+    assert indexer.resolve(tmp_path, str(report)) == report
+
+    result = runner.invoke(app, ["meta", "set", "REP-004", "status", "reviewed", "--path", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    assert indexer.get(tmp_path, "skills-learnings.md", "status") == "reviewed"
+    assert b'status: "reviewed"\r\n' in report.read_bytes()
+
+
+def test_yaml_id_ambiguity_is_sorted_and_exact_stem_takes_precedence(tmp_path):
+    memory = tmp_path / "memory"
+    archive = memory / "archive"
+    archive.mkdir(parents=True)
+    slug = memory / "REP-004-report.md"
+    slug.write_text("# Prefix match\n", encoding="utf-8")
+    yaml = archive / "findings.md"
+    yaml.write_text("---\nid: rep-004\n---\n# YAML match\n", encoding="utf-8")
+
+    before = {path: path.read_bytes() for path in (slug, yaml)}
+    with pytest.raises(ValueError) as err:
+        indexer.set_metadata(tmp_path, "REP-004", {"status": "NEW"})
+    assert str(err.value) == (
+        "Target must be unique: REP-004. Use a path under memory/: "
+        "memory/REP-004-report.md, memory/archive/findings.md"
+    )
+    assert all(path.read_bytes() == data for path, data in before.items())
+    assert not (memory / "index.md").exists()
+    assert indexer.resolve(tmp_path, "memory/archive/findings.md") == yaml
+
+    exact = memory / "rep-004.md"
+    exact.write_text("# Exact stem\n", encoding="utf-8")
+    assert indexer.resolve(tmp_path, "REP-004") == exact
+    (archive / exact.name).write_text("# Another exact stem\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Target must be unique"):
+        indexer.resolve(tmp_path, "REP-004")
+    assert indexer.resolve(tmp_path, "memory/rep-004.md") == exact
+
 MATRIX = Path(__file__).resolve().parents[3]
 PHP_CLI = MATRIX.parent / "conn2flow/cli/c2f.php"
 HAS_PHP = PHP_CLI.is_file() and bool(shutil.which("php")) and not os.environ.get("MDD_TEST_NO_PHP")

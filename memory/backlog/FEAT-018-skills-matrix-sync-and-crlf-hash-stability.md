@@ -1,7 +1,7 @@
 ---
 id: "FEAT-018"
 title: "Sync restrito à matriz e estabilidade de hashes SHA-256 de skills frente a finais de linha (CRLF/LF)"
-status: "PROMOTED"
+status: "COMPLETED"
 date: "2026-11-21"
 author: "architect"
 target_repo: "conn2flow-ai-workspace"

@@ -1,11 +1,11 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-082.md](req-082.md) (Propagação Global das Skills da `REQ-081` aos Projetos Satélites + Melhorias do `REP-004` [`FEAT-018` / `FEAT-019`] com Segunda Publicação Condicionada)
-* **Status**: `APPROVED` — pronto para execução (`Categoria B`: propagação de skills, melhorias na matriz e checks locais, sem deploy no Lab; Gate humano antes da Fase 3)
-* **Lote Relacionado**: `BATCH-084` ([batch-084.md](../implementation/batch-084.md))
-* **Topologia de Agentes**: `dupla` (Macro-Arquiteto especifica ➔ Executor executa Fases 1 e 2 e entrega relatório ➔ Revisão/Gate para Fase 3)
+* **Ponteiro Ativo**: [req-083.md](req-083.md) (Integração Isolada via Worktree — Commit, Merge na `main`, Push e Limpeza — das Skills Propagadas nos Repositórios Satélites)
+* **Status**: `APPROVED` — pronto para execução (`Categoria B`: worktrees isoladas, commits seletivos, merge/push na `main` dos satélites e remoção das worktrees; sem deploy no Lab)
+* **Lote Relacionado**: `BATCH-085` ([batch-085.md](../implementation/batch-085.md))
+* **Topologia de Agentes**: `dupla` (Macro-Arquiteto especifica ➔ Executor integra nos satélites via worktree isolada, limpa worktrees e entrega relatório ➔ Retorno ao Macro-Arquiteto e homologação humana)
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-11-21
+* **Data de Entrada**: 2026-11-23
 * **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
   - [req-079.md](req-079.md) / [BATCH-081](../implementation/batch-081.md): Motor de Banco de Dados MDD (`SQLite3 + FTS5` Local e Multi-Driver SQL) no `mdd-client` (`ready-for-review`).
   - [req-078.md](req-078.md) / [BATCH-080](../implementation/batch-080.md): Internacionalização das 46 skills e detecção de drift por SHA-256; [REV-080](../human-reviews/rev-080.md) `RECOMMEND-APPROVAL`.
@@ -14,6 +14,7 @@
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
+  - [req-082.md](req-082.md) (`BATCH-084`, Propagação Global da `REQ-081` + Melhorias do `REP-004` [`FEAT-018` / `FEAT-019`] + Diretriz Git do Arquiteto Master + Segunda Propagação Global, `HOMOLOGATED` em 2026-11-23)
   - [req-081.md](req-081.md) (`BATCH-083`, Caixa Copiável Obrigatória no Arquiteto Master [`FEAT-016`] e Relatório Obrigatório de Dificuldades do Executor [`FEAT-017`], `HOMOLOGATED` em 2026-11-21)
   - [req-080.md](req-080.md) (`BATCH-082`, Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto no `environment.json`, Exclusão e Cadastro Pré-Preenchido de Projetos e Release `v1.1.7` do VSIX, `HOMOLOGATED` em 2026-11-18)
   - [req-076.md](req-076.md) (`BATCH-078`, Limpeza Geral do Ecossistema, Memory Gardening Global, Poda de Worktrees e Sincronização Canônica de Todos os Repositórios)
@@ -24,8 +25,8 @@
 
 ---
 
-## Objetivo operacional — REQ-082 / BATCH-084
+## Objetivo operacional — REQ-083 / BATCH-085
 
-1. **Fase 1 — Propagação Inicial (`REQ-081` homologada)**: Publicar `c2f-architect-master` e `c2f-executor-agent` em todos os projetos satélites oficiais (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`, `conn2flow-home` e eventuais projetos irmãos locais como `website-conn2flow`), preservando customizações intencionais e skills locais.
-2. **Fase 2 — Melhorias do `REP-004` (`FEAT-018` e `FEAT-019`) + Regra Git na Matriz**: Atualizar `c2f-multilingual-skills-governance` (`--repos conn2flow-ai-workspace` + CRLF/LF), implementar resolução por ID YAML/slug no `mdd_client` (`indexer.py` + `test_indexer.py`) e atualizar `c2f-mdd-indexing-and-handoffs`, incluir diretriz de higiene da árvore Git/merge na `main` em `c2f-architect-master`, avaliar/tratar finais de linha com segurança; sincronizar matriz PT/EN, atualizar hashes e rodar auditoria + `pytest` local.
-3. **Gate para Fase 3**: Entregar o relatório `batch-084.md` (com Relatório de Dificuldades para o AI Workspace) e aguardar validação antes de propagar as melhorias da Fase 2 aos projetos satélites.
+1. **Integração Isolada nos Satélites via Worktree**: Sem alterar, commitar ou descartar trabalho em andamento nas árvores principais dos chefes de cada satélite, criar worktree temporária a partir de `origin/main` para cada satélite elegível (`conn2flow`, `conn2flow-site`, `lumix`, `transformamp`, `conn2flow-home`, `website-conn2flow`, `conn2flow-app`, `conn2flow-mkt`, `conn2flow-nexus`).
+2. **Commit Seletivo, Merge na `main` e `git push`**: Aplicar na worktree apenas as 4 skills homologadas da `REQ-081`/`REQ-082` (e `memory/sync-customizations.json` no Core), commitar seletivamente, integrar em `main` e executar `git push origin main`.
+3. **Limpeza Obrigatória de Worktrees (`REQ-077`)**: Auditar, remover cada worktree temporária (`git worktree remove` + `git worktree prune`), deletar branches temporárias mescladas e entregar relatório consolidado em `memory/implementation/batch-085.md`.

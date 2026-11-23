@@ -33,6 +33,29 @@ def translated_matrix(tmp_path):
     return matrix
 
 
+@pytest.mark.parametrize("source", [b"caf\xc3\xa9\nkeep\n", b"caf\xc3\xa9\r\nkeep\r\n", b"caf\xc3\xa9\r\nkeep\n"])
+def test_translation_hash_and_sync_ignore_line_ending_variants(tmp_path, translated_matrix, source):
+    target = tmp_path / "client"
+    target.mkdir()
+    seed = translated_matrix / ".gemini/skills" / NAME / "SKILL.md"
+    normalized = b"caf\xc3\xa9\nkeep\n"
+    seed.write_bytes(normalized)
+    sync(target, translated_matrix)
+
+    seed.write_bytes(source)
+    result, _ = run_node(translated_matrix, "--update-translation-hash", NAME, "en")
+    assert result.returncode == 0, result.stderr
+    registry = json.loads((translated_matrix / "scripts/skills/translated.json").read_text())
+    assert registry["en"][NAME]["source_sha256"] == hashlib.sha256(normalized).hexdigest()
+    result, data = run_node(translated_matrix, "--target", str(target), "--apply", NAME)
+    assert result.returncode == 0 and data["status"] == "PASS"
+    assert data["escritos"] == data["divergentes"] == data["translation_drift"] == []
+    assert (target / ".gemini/skills" / NAME / "SKILL.md").read_bytes() == normalized
+
+    seed.write_bytes(source.replace(b"keep", b"changed"))
+    assert sync(target, translated_matrix)["status"] == "DRIFT_WARNING"
+
+
 def run_node(matrix, *args):
     report = matrix / "audit.json"
     result = subprocess.run(["node", str(matrix / "scripts/skills/sync-skills.cjs"), *args,

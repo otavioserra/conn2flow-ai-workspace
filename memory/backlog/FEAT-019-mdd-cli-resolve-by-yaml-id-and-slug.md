@@ -1,7 +1,7 @@
 ---
 id: "FEAT-019"
 title: "Resolução por ID do frontmatter YAML e prefixo com slug no mdd meta get/set e alinhamento da skill de indexação"
-status: "PROMOTED"
+status: "COMPLETED"
 date: "2026-11-21"
 author: "architect"
 target_repo: "conn2flow-ai-workspace"

@@ -37,6 +37,7 @@ const renamedSkills = {
 
 const md5 = (bytes) => crypto.createHash('md5').update(bytes).digest('hex');
 const sha256 = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+const normalize = translations.normalizeLineEndings;
 const ler = (arquivo) => (fs.existsSync(arquivo) ? fs.readFileSync(arquivo) : null);
 
 const canonDir = path.join(root, '.gemini/skills');
@@ -54,6 +55,7 @@ if (hashUpdate >= 0) {
   console.log(JSON.stringify({ status: 'PASS', skill, language, ...entry }));
   process.exit(0);
 }
+const canonicalLF = new Map([...canonical].map(([nome, bytes]) => [nome, normalize(bytes)]));
 const translationDrift = translations.audit(traduzidas, canonical);
 for (const item of translationDrift) console.error(translations.message(item));
 
@@ -184,7 +186,7 @@ if (apply) {
       if (alvo.template && translations.registered(traduzidas, alvo.idioma, nome)) continue;
       const atual = ler(destino);
       if (intentional(destino, atual, canonical.get(nome))) continue;
-      if (atual && atual.equals(canonical.get(nome))) continue;
+      if (atual && normalize(atual).equals(canonicalLF.get(nome))) continue;
       fs.mkdirSync(path.dirname(destino), { recursive: true });
       fs.writeFileSync(destino, canonical.get(nome));
       escritos.push(path.relative(path.dirname(root), destino).replace(/\\/g, '/'));
@@ -215,7 +217,7 @@ for (const alvo of alvos) {
       continue;
     }
     if (alvo.template && translations.registered(traduzidas, alvo.idioma, nome)) { traducoes++; continue; }
-    if (sha256(atual) === sha256(bytes)) iguais++;
+    if (normalize(atual).equals(canonicalLF.get(nome))) iguais++;
     else if (intentional(destination, atual, bytes)) customizadas.push({ onde: alvo.onde,
       path: path.relative(path.dirname(path.dirname(alvo.skills)), destination).replace(/\\/g, '/'), skill: nome });
     else divergentes.push({ onde: alvo.onde, skill: nome, motivo: 'conteúdo diferente',
