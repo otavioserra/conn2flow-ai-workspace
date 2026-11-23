@@ -21,8 +21,8 @@
       "translator": "mdd-agent"
     },
     "c2f-database-testing": {
-      "source_sha256": "8a9a69356c1f64b5366693e384442da2b425ddf4d13c9ba49814ccfe9b8e1dae",
-      "translated_at": "2026-11-05",
+      "source_sha256": "3a01ca5363d4b55c6526f40f123d53a5ebe3e0386f31073a7635f314a65b63c5",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-dev-scripts": {
@@ -46,12 +46,12 @@
       "translator": "mdd-agent"
     },
     "c2f-environment-configuration": {
-      "source_sha256": "deba6d8d37782abbde7104f7da7ca1b05c6f6fd1488032a567a911d95ceb8d1b",
-      "translated_at": "2026-11-05",
+      "source_sha256": "5870f16d4ea24783dd82d35d757cdbc23958e1695077b4873076833e95d68eb9",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-executor-agent": {
-      "source_sha256": "9b3babe508d649ecd5b90c868f2a291b6f1a4fdec5f66958d44dbcd7a4e03e84",
+      "source_sha256": "ea7ccbc35eb4ca83afc77b46bfbb734e76fcd8a5addefb0ac082b1598b8284d3",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
@@ -86,8 +86,8 @@
       "translator": "mdd-agent"
     },
     "c2f-javascript-ajax": {
-      "source_sha256": "c7e08ee9c0d37551176fc1308e4a4769f5e9ed7700bc6579ea90523618c78e6a",
-      "translated_at": "2026-11-05",
+      "source_sha256": "063046a609ce58f3f5fff1c2861cc80d7376a692403116ace165abf5075b33ea",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-json-resources-sync": {
@@ -106,8 +106,8 @@
       "translator": "mdd-agent"
     },
     "c2f-module-crud-scaffolding": {
-      "source_sha256": "96ca6169b480418d5414153d2a7fdd3b2f4d2db39f93863067106df0b87c0fe8",
-      "translated_at": "2026-11-05",
+      "source_sha256": "05d5b3dcac2f573e18cf38948cff4b9641cbc9d2576ebc2ffbd61b4ab2d05226",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-module-visual-assets": {
@@ -146,7 +146,7 @@
       "translator": "mdd-agent"
     },
     "c2f-project-pipeline-and-tasks": {
-      "source_sha256": "f4a90cfc65174fa98bd572ae28053615b024583b5f5255c8a50d41b158c544d3",
+      "source_sha256": "d953c02b4d79d443e8020623891be85f3f50ab53bd9cb17dcc6e4c2ab68614ca",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
@@ -166,7 +166,7 @@
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "5cd77c720645b8cb0d6b6be65f45794d998e622421233ab6b171590aed0d90fc",
+      "source_sha256": "e171432a2d31faf94ddd682242824c87f0a0f5f40b506a6fc652f5c3dc3061e7",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },

@@ -11,7 +11,7 @@ summary_medium: "O sync restrito à matriz validou os cinco kits e os templates 
 
 # REP-004 — Dificuldades e Aprendizados do BATCH-083 para o AI Workspace
 
-Relatório para o Macro-Arquiteto do `conn2flow-ai-workspace`. Evidências em [BATCH-083](../implementation/batch-083.md) e na [auditoria local](../../completions/skills-audit.json).
+Relatório para o Macro-Arquiteto do `conn2flow-ai-workspace`. Evidências em [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md) e na [auditoria local](../../completions/skills-audit.json).
 
 ## Relatório de Dificuldades e Aprendizados para o AI Workspace
 

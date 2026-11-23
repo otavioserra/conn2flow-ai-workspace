@@ -45,7 +45,7 @@ In modern modules with pure JavaScript (Vanilla JS), always use the canonical st
 /**
  * Padrão Canônico de Requisição AJAX no Gestor (Vanilla JS)
  * @param {Object} state - Estado do módulo (deve conter opcao e moduleBaseUrl)
- * @param {string} ajaxOpcao - Ação a ser executada no backend (ex: 'salvar-dados', 'listar')
+ * @param {string} ajaxOpcao - Backend action (e.g. 'salvar-dados', 'listar-itens')
  * @param {Object} [extraData] - Parâmetros adicionais (objetos/arrays são serializados em JSON)
  * @returns {Promise<Object>} Resposta JSON do backend
  */
@@ -193,6 +193,17 @@ function modulo_ajax_minha_acao() {
 ```
 
 ---
+
+### AJAX options reserved by the `interface` core
+
+The `interface` dispatcher handles these values. Reusing them as a custom module `ajaxOpcao` collides with the core and causes HTTP 500. Use module-specific actions such as `listar-itens` or `salvar-dados`.
+
+| `ajaxOpcao` | Core action |
+| --- | --- |
+| `listar` | Interface listing |
+| `verificar-campo` | Field validation |
+| `backup-campos-mudou` | Backup of changed fields |
+| `historico-mais-resultados` | History pagination |
 
 ## 📦 4. Legacy pattern with jQuery (`ajaxDefault`)
 

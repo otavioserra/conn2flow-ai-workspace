@@ -36,7 +36,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Lote atual
 
-[REQ-084](../human-requests/req-084.md) / [BATCH-086](batch-086.md) (`ready-for-review`): três skills PT-BR/EN atualizadas e Regra dos 10 Ativos aplicada na matriz. O [índice MDD](index.md) lista os dez lotes ativos.
+[REQ-086](../human-requests/req-086.md) / [BATCH-088](batch-088.md) (`ready-for-review`). Sete skills na matriz, onze em sete satélites e worktrees da requisição removidas. [Índice MDD](index.md).
 
 ## Histórico de lotes arquivados — BATCH-068 a BATCH-075
 
@@ -52,6 +52,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-075** | complete | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | [batch-075.md](archive/batch-075.md) | REQ-073 aprovada; merge de feat/req-071 em feat/req-072, testes 100% verde (pytest e VS Code) e merge final na branch main |
 
 ## Entregas anteriores
+
+[REQ-084](../human-requests/req-084.md) / [BATCH-086](batch-086.md) atualizou três skills PT-BR/EN e aplicou a regra dos dez ativos.
+
+[REQ-080](../human-requests/req-080.md) / [BATCH-082](archive/compacted/batch-082-4a26865308ed.md) está concluído e arquivado com o original íntegro. O [BATCH-083](archive/compacted/batch-083-95aade2d8707.md) homologado também foi arquivado.
 
 REQ-083 / BATCH-085 (`ready-for-review`) aplicou os ajustes do REP-005 e a paridade PHP, com sete satélites publicados e dois sem `origin`. As worktrees foram removidas. [Relatório](batch-085.md).
 

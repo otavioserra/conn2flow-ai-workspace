@@ -19,3 +19,8 @@ user-invocable: false
 4. Create the required minimum schema, isolate fixtures and remove the database/test tables at the end.
 5. Use autorun guards to include controllers directly and inject PDO/configuration instead of relying on full bootstrap.
 6. If a test changes manifests or versioned data files, restore only these side effects out of scope and confirm diff.
+
+## Isolating `HookManager` and controlling time
+
+- In PHPUnit `setUp()`, use `ReflectionClass` and its `ReflectionProperty` objects to snapshot and isolate the singleton state the test touches. Reset the static `instance` for a suite that owns the singleton, or isolate just the relevant `loaded` and `filters` entries if the suite shares it. Mark the test event as loaded and install an empty filter list or test doubles to avoid loading or firing real hooks. In `tearDown()`, undo those changes and restore the original singleton state to prevent leakage into other tests.
+- Inject SQL execution and a clock so tests can use SQLite in memory and advance time deterministically. `tests/Unit/PHP/ComunicacaoFilaReq304Test.php` illustrates the seams `$_GESTOR['comunicacao-fila-db']` and `$_GESTOR['comunicacao-relogio']`, along with event isolation via Reflection.

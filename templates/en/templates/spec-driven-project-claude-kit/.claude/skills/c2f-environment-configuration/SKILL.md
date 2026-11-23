@@ -99,3 +99,10 @@ gestor/
       .env                  <-- Live secret values
   config.php                <-- Bootstrap: loads .env and populates $_CONFIG, $_BANCO, $_GESTOR
 ```
+
+## 5. `APP_ENV` and email communication
+
+- The example template `gestor/autenticacoes.exemplo/dominio/.env` declares `APP_ENV=` and documents `production`, `staging`, and `development`. In `gestor/config.php`, a nonempty value is trimmed, lowercased, and stored in `$_CONFIG['email']['ambiente']` without an allowlist. If it is absent or blank, the default is `production`, or `development` when `DEVELOPMENT_ENV` is true.
+- In `gestor/bibliotecas/comunicacao-fila.php`, `comunicacao_config()` reads that email setting first, then tries `$_ENV['APP_ENV']` and falls back to `$_GESTOR['development-env']`.
+- The redirect guard in `gestor/bibliotecas/comunicacao.php` treats exactly `production`, `prod`, and `producao` as production. All other nonempty values are treated as non-production. Set `APP_ENV=development` explicitly for local development and `APP_ENV=staging` for staging.
+- A valid `MAIL_REDIRECT_TO` replaces TO/CC/BCC with a single test mailbox and the message carries a test subject prefix and the `X-Original-To` header. In production, the guard blocks a valid redirect and the send path logs a warning once per request unless `MAIL_REDIRECT_ALLOW_PRODUCTION=true`. The template defaults that override to `false`.

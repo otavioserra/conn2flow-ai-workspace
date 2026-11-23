@@ -46,7 +46,7 @@ user-invocable: false
 ```bash
 ./c2f project:deploy <projectID>
 ```
-O deploy publica o projeto via `deploy-project-v2.sh`. Não atribua a ele as oito etapas de `project:update-all` nem a flag `--skip-css`, que o wrapper de deploy não repassa. A Regra #8 descreve somente a exceção mista Core + projeto.
+O deploy publica o projeto via `deploy-project-v2.sh`. Não atribua a ele as oito etapas de `project:update-all` nem a flag `--skip-css`, que o wrapper de deploy não repassa. A Regra #8 cobre os lotes com alterações do Core que precisam de validação no Lab de um projeto.
 
 > [!IMPORTANT]
 > **Prevenção do Estado Híbrido Pós-Deploy**:
@@ -99,7 +99,7 @@ As tarefas definidas em `.vscode/tasks.json` são atalhos visuais para os comand
 | VS Code Task | Comando CLI Equivalente | Descrição |
 |---|---|---|
 | 🗃️ Projects - Sync Core → ID | `c2f project:sync-core <id>` | Sincroniza o Core para o espelho do projeto |
-| 🗃️ Projects - Update All → ID (somente lote misto) | `c2f project:update-all <id>` | 8 etapas: JS → Core → DB → Resources → Files → DB → CSS Rebuild → dist; Categoria A usa --skip-css |
+| 🗃️ Projects - Update All → ID (alterações do Core no Lab de projeto) | `c2f project:update-all <id>` | 8 etapas: JS → Core → DB → Resources → Files → DB → CSS Rebuild → dist. Na Categoria A, use `--skip-css`. |
 | 🚀 Projects - Deploy Project → ID | `c2f project:deploy <id>` | Deploy do projeto para o servidor de destino |
 | 📦 Manager - Update All | `c2f manager:update-all` | 6 etapas: JS → Resources → Files → DB → CSS Rebuild → dist; Categoria A usa --skip-css |
 | 🎨 Tailwind - Sync Resources | `c2f resources:sync` | Compila recursos e gera `*Data.json` |
@@ -177,7 +177,9 @@ ssh usuario@host "tail -50 /path/to/conn2flow-gestor/logs/php-error.log"
 
 ---
 
-## 🧭 Regra #8: Exceção mista Core + projeto — `project:update-all <id>` (8 etapas)
+## 🧭 Regra #8: Alterações do Core no Lab de um projeto — `project:update-all <id>` (8 etapas)
+
+Use o comando quando o lote alterar o Core e precisar de sincronização ou validação no Lab de um projeto (`local: true`), com ou sem mudanças no projeto. Na Categoria A, execute `./c2f project:update-all <id> --skip-css`. Alterações exclusivamente de projeto exigem `./c2f project:deploy <id>`.
 
 A sequência de `ProjectUpdateAllCommand.php` tem **oito** etapas. Use esta lista ao ler o log:
 
@@ -239,7 +241,7 @@ Nota de autoria: na via cirúrgica Core/banco, --core-resources preserva o dono 
 
 ## REQ-077 — Pipeline, worktrees e preservação (DEC-136)
 
-- Projeto: `./c2f project:deploy <id>` é o padrão (95% dos casos). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` é proibido na rotina de projeto; permitido exclusivamente em lote que altera Core e projeto simultaneamente.
+- Na rotina de alterações exclusivamente de projeto, use `./c2f project:deploy <id>`. Nessa rotina, `project:update-all` é proibido. Para sincronizar e validar alterações do Core no Lab de um projeto (`local: true`), use `./c2f project:update-all <id>` tanto em lote misto quanto em lote só de Core. Para atualizar o sistema/manager isolado, use `./c2f manager:update-all`. Na Categoria A, acrescente `--skip-css` aos comandos update-all.
 - Antes de deploy, confira `git branch --show-current` e `git status --short` na origem; não publique trabalho alheio/inacabado. Confira o destino e sua autorização. Categoria B (skills/documentação/testes/memória): somente checks locais, sem deploy. Execução sequencial, foreground, logs e locks continuam obrigatórios.
 - Worktrees por conveniência são proibidas. Só criar com concorrência multi-agente comprovada no mesmo repositório; em dúvida, consultar o humano antes. Registre raiz original, caminho temporário e concorrência na requisição e lote. Ao concluir/homologar, audite trabalho único, integração na main e junctions, então `git worktree remove <caminho>` e `git worktree prune`. Nunca use força para destruir trabalho não integrado; preserve e reporte impedimentos.
 - DEC-136: manter por padrão; nada é removido (arquivo, `status='D'`, `DELETE`) sem confirmação explícita do operador humano. Retirada vira choque pendente; `--confirmar-retirada` só quando pedido pelo operador. Fonte incompleta não autoriza retirada.

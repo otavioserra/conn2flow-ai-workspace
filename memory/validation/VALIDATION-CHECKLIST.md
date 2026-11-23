@@ -1,5 +1,15 @@
 # Validation Checklist
 
+## BATCH-088 — REQ-086 (2026-11-23)
+
+- [x] Sete skills atualizadas em PT-BR/EN. A leitura do Core confirmou o comportamento de `APP_ENV`.
+- [x] Cinco kits e templates sincronizados, sete hashes EN reconhecidos, auditoria PASS em 19 alvos com zero divergências e zero drift. Pytest em `.\.venv-mdd` com 119/119 aprovados.
+- [x] Onze skills e 308 cópias publicadas nos sete satélites elegíveis. Cinco variantes Core reconhecidas via `mdd sync --customize`.
+- [x] Sete SHAs remotos confirmados. Worktrees e branches da requisição removidas após a inspeção de junctions.
+- [x] `conn2flow-home` e `conn2flow-mkt` sem `origin`, documentados para os chefes locais.
+- [x] Lote e FEAT-017 em revisão, índices MDD atualizados e FEAT-015 fora do stage. [Lote](../implementation/batch-088.md) · [Relatório](../reports/REP-008-batch088-skills-rollout.md).
+- [ ] Homologação humana e consolidação da matriz.
+
 ## BATCH-087 — REQ-085 (2026-11-23)
 
 - [x] Quatro skills (`c2f-documentation`, `c2f-json-resources-sync`, `c2f-project-pipeline-and-tasks`, `c2f-shell-and-windows-traps`) e dois ajustes do REP-007 documentados em PT-BR/EN.
@@ -51,7 +61,7 @@ Evidências em [BATCH-084](../implementation/batch-084.md), [REP-005](../reports
 - [x] Relatório do lote criado com frontmatter canônico e relatório de aprendizados também registrado em REP-004.
 - [x] Índices MDD das áreas afetadas regenerados sem erros.
 
-Evidências em [BATCH-083](../implementation/batch-083.md), [REP-004](../reports/REP-004-batch083-skills-learnings.md) e na [auditoria local](../../completions/skills-audit.json). Homologação humana pendente.
+Evidências em [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md), [REP-004](../reports/REP-004-batch083-skills-learnings.md) e na [auditoria local](../../completions/skills-audit.json). Homologação humana pendente.
 
 ## BATCH-082 — REQ-080 (2026-11-18)
 
@@ -62,7 +72,7 @@ Evidências em [BATCH-083](../implementation/batch-083.md), [REP-004](../reports
 - [x] Suíte da extensão: `npm test` → **145/145 PASS** (12 novos testes em `test/projectConfigEditor.test.cjs`).
 - [x] Pacote final `vscode-extension/conn2flow-tools-1.1.7.vsix` (SHA-256 `2d1088f93b7726c5c24fb4296af3cafee0a7b19fa0e94ea06ddbff3be6888afa`) instalado localmente e homologado na prática pelo Operador Humano (Otávio Serra) após 3 rodadas de testes.
 
-Evidências: [BATCH-082](../implementation/batch-082.md).
+Evidências: [BATCH-082](../implementation/archive/compacted/batch-082-4a26865308ed.md).
 
 ## BATCH-080 — REQ-078 (2026-11-05)
 

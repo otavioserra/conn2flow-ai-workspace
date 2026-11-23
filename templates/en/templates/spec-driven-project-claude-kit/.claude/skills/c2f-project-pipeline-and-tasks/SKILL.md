@@ -46,7 +46,7 @@ user-invocable: false
 ```bash
 ./c2f project:deploy <projectID>
 ```
-Deploy publishes project via `deploy-project-v2.sh`. Do not assign to it the eight steps of `project:update-all` or the `--skip-css` flag, which the deploy wrapper does not pass on. Rule #8 describes only the mixed exception Core + project.
+Deploy publishes project via `deploy-project-v2.sh`. Do not assign to it the eight steps of `project:update-all` or the `--skip-css` flag, which the deploy wrapper does not pass on. Rule #8 covers batches with Core changes that need validation in a project Lab.
 
 > [!IMPORTANT]
 > **Prevention of the Post-Deploy Hybrid State**:
@@ -99,7 +99,7 @@ The tasks defined in `.vscode/tasks.json` are visual shortcuts to the native Cor
 |VS Code Task|CLI command Equivalent|Description|
 |---|---|---|
 | 🗃️ Projects - Sync Core → ID|`c2f project:sync-core <id>`|Sync the Color to the project mirror|
-| 🗃️ Projects - Update All → ID (mixed batch only)|`c2f project:update-all <id>`|8 steps: JS → Core → DB → Resources → Files → DB → CSS Rebuild → dist; Category The uses --skip-css|
+| 🗃️ Projects - Update All → ID (Core changes going to a project Lab) | `c2f project:update-all <id>` | 8 steps: JS → Core → DB → Resources → Files → DB → CSS Rebuild → dist. Add `--skip-css` in Category A. |
 | 🚀 Projects - Deploy Project → ID|`c2f project:deploy <id>`|Deploy from project to target server|
 | 📦 Manager - Update All|`c2f manager:update-all`|6 steps: JS → Resources → Files → DB → CSS Rebuild → dist; Category The uses --skip-css|
 | 🎨 Tailwind - Sync Resources|`c2f resources:sync`|Build resources and generate `*Data.json`|
@@ -177,7 +177,9 @@ ssh usuario@host "tail -50 /path/to/conn2flow-gestor/logs/php-error.log"
 
 ---
 
-## 🧭 Rule #8: Mixed exception Core + project — `project:update-all <id>` (8 steps)
+## 🧭 Rule #8: Core changes going to a project Lab — `project:update-all <id>` (8 steps)
+
+Use this command only when a batch changes Core and needs synchronization or validation in a project Lab (`local: true`), whether or not it also changes the project. In Category A, run `./c2f project:update-all <id> --skip-css`. Project-only deployments require `./c2f project:deploy <id>`.
 
 The sequence of `ProjectUpdateAllCommand.php` has **eight** steps. Use this list when reading the log:
 
@@ -239,7 +241,7 @@ Author note: in the surgical route Core/database, --core-resources preserves the
 
 ## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
 
-- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- For routine project-only changes, use `./c2f project:deploy <id>`. `project:update-all` is prohibited for this routine. To sync and validate Core changes in a project Lab (`local: true`), use `./c2f project:update-all <id>` for both mixed and Core-only batches. Use `./c2f manager:update-all` for an isolated system/manager update. Add `--skip-css` to either update-all command in Category A.
 - Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
 - Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
 - DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.

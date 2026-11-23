@@ -63,6 +63,6 @@ O agente só conseguiu consultar o metadado passando o caminho completo relativo
 ## 🔗 Referências
 
 - Relatório de origem: [REP-004](../reports/REP-004-batch083-skills-learnings.md)
-- Lote de origem: [BATCH-083](../implementation/batch-083.md)
+- Lote de origem: [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md)
 - Skill alvo: `.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md`
 - Contrato original: `REQ-072` / `ARCH-015` (Trava Tripla MDD)

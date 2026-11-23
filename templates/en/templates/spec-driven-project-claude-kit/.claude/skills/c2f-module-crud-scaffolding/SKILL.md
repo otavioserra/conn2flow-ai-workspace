@@ -393,6 +393,8 @@ function meu_modulo_interfaces_padroes(){
 ```
 
 ### 3.6. Dispatcher Central `_start()`
+
+The `interface` core reserves four `ajaxOpcao` values (`listar`, `verificar-campo`, `backup-campos-mudou`, `historico-mais-resultados`). Keep these values out of custom module endpoints and use module-specific actions such as `listar-itens`.
 ```php
 function meu_modulo_start(){
     global $_GESTOR;

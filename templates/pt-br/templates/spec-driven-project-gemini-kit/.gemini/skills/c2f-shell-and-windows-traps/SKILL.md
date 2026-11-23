@@ -478,3 +478,8 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) pode substituir acentos por caracteres
    ```
    Confirme que o timestamp do lock não muda.
 4. **Ação segura**: com `git.exe` ativo naquele repo/worktree, aguarde e nunca apague lock alheio. Sem nenhum `git.exe` atuando e com o arquivo parado (órfão), remova só o arquivo literal (`Remove-Item -LiteralPath .git/index.lock`) e confira com `git status --short` (e `git fsck` se a interrupção ocorreu durante gravação).
+
+### Busca de skills em pastas iniciadas por ponto
+
+Por padrão, o `glob(..., recursive=True)` do Python ignora pastas iniciadas por ponto, como `.gemini`, `.claude`, `.codex` e `.github`. Para varrer os kits de skills, use `os.walk` ou `Path.rglob`.
+Na matriz `conn2flow-ai-workspace`, rode `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests`.

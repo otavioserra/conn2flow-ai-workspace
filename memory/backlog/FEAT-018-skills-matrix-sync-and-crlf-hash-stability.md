@@ -58,6 +58,6 @@ Durante a execução do `REQ-081` / `BATCH-083` (Categoria B, escopo restrito à
 ## 🔗 Referências
 
 - Relatório de origem: [REP-004](../reports/REP-004-batch083-skills-learnings.md)
-- Lote de origem: [BATCH-083](../implementation/batch-083.md)
+- Lote de origem: [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md)
 - Skill alvo: `.gemini/skills/c2f-multilingual-skills-governance/SKILL.md`
 - Script sincronizador: `scripts/skills/sync-skills.cjs` e `scripts/skills/translated.json`

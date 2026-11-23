@@ -478,3 +478,8 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different cha
    ```
    Confirm that the lock timestamp does not change.
 4. **Safe action**: with an active `git.exe` on that repo/worktree, wait and never delete someone else's lock. With no `git.exe` acting and the file idle (orphan), remove only the literal file (`Remove-Item -LiteralPath .git/index.lock`) and check with `git status --short` (and `git fsck` if the interruption happened during a write).
+
+### Finding skills in dot-prefixed directories
+
+Python's `glob(..., recursive=True)` skips dot-prefixed directories by default, including `.gemini`, `.claude`, `.codex`, and `.github`. Use `os.walk` or `Path.rglob` to scan the skill kits.
+In the `conn2flow-ai-workspace` source repository, run `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests`.
