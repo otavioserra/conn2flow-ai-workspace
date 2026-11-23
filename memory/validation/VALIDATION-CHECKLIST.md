@@ -1,5 +1,12 @@
 # Validation Checklist
 
+## BATCH-087 — REQ-085 (2026-11-23)
+
+- [x] Quatro skills (`c2f-documentation`, `c2f-json-resources-sync`, `c2f-project-pipeline-and-tasks`, `c2f-shell-and-windows-traps`) e dois ajustes do REP-007 documentados em PT-BR/EN.
+- [x] Kits e templates sincronizados na matriz, seis hashes EN atualizados. Auditoria PASS em 19 alvos, 0 divergências e 0 drift. [Auditoria](../../completions/skills-audit.json).
+- [x] `pytest -q tools/mdd-client/tests` com 119/119 aprovados (via `.venv-mdd`, após os hashes).
+- [x] Lote com FEAT-017 em `ready-for-review`, FEAT-015 fora do stage. [Lote](../implementation/batch-087.md).
+- [ ] Homologação humana e commit/push seletivos da matriz.
 ## BATCH-086 — REQ-084 (2026-11-23)
 
 - [x] Worktrees com junctions, stage seletivo de `*Data.json` e avanço concorrente da `main` documentados em PT-BR/EN.

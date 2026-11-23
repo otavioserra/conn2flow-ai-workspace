@@ -91,6 +91,12 @@ verified_at: 5b4348ab       # git rev-parse --short HEAD do Core no momento da c
 - The build is idempotent. Running twice without changing Markdown does not change file.
 - Implementation Reference: `conn2flow-site` (REQ-057 / BATCH-050) and Core `cli/src/Support/Docs/`.
 
+### Build from `git archive origin/main` (publish only what is committed)
+
+1. Before generating `/docs/` from a Core with a shared tree or work in progress, extract a clean source from the approved commit: `git fetch origin` and `git archive origin/main -- ai-workspace/ | tar -x -C <temp-dir>` (or a deterministic equivalent).
+2. Run `docs:build` against the extracted source, or ensure the source is identical to `origin/main`, with no drafts or untracked working-tree files.
+3. Remove the temporary directory at the end. Never publish documentation that is not committed and integrated into `origin/main`.
+
 ## ⛔ Prohibitions
 
 - Document from memory, legacy text or other doc without opening the code.

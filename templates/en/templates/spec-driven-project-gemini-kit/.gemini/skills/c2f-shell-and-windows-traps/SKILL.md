@@ -466,3 +466,15 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different cha
 - CRLF files require safe editing tool or script that read bytes and consciously preserve/normalize line ends; do not apply multiline regex assuming LF.
 - `grep -c $'\r'` can produce false negative on Windows/Git Bash. Check bytes (`Path(...).read_bytes().count(b'\r\n')` or PHP `bin2hex`); zero grep output does not prove LF.
 - In Windows removal, use a single shell from end to end; check absolute paths and reparse points before deleting. Do not enumerate in PowerShell to pass deletion to CMD. Never cross junctions in cleaning.
+
+### 21. How to recognize an orphan `index.lock` on Windows
+
+1. **Symptom**: `fatal: Unable to create '.../.git/index.lock': File exists` (or `.git/worktrees/<name>/index.lock`) after an interrupted Git command, timeout or hang on Windows/OneDrive.
+2. **Prohibition**: never delete `index.lock` without checking for an active `git.exe` on the repository. Deleting an active lock corrupts the index.
+3. **Mandatory diagnosis (PowerShell)**:
+   ```powershell
+   Get-CimInstance Win32_Process -Filter "Name='git.exe'" | Select-Object ProcessId, CreationDate, CommandLine
+   Get-Item -LiteralPath .git/index.lock | Select-Object FullName, Length, LastWriteTime
+   ```
+   Confirm that the lock timestamp does not change.
+4. **Safe action**: with an active `git.exe` on that repo/worktree, wait and never delete someone else's lock. With no `git.exe` acting and the file idle (orphan), remove only the literal file (`Remove-Item -LiteralPath .git/index.lock`) and check with `git status --short` (and `git fsck` if the interruption happened during a write).

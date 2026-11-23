@@ -222,6 +222,12 @@ O pipeline por SSH não tem trava. Dois agentes publicando no mesmo ambiente ger
 
 ---
 
+### Branch local de integração com conferência de hash
+
+1. Para consolidar ou validar entregas sem misturar alterações da árvore de trabalho, crie ou atualize uma branch local de integração a partir da base remota verificada (`git fetch origin`).
+2. Registre e confira os hashes (`git rev-parse HEAD`, `git rev-parse origin/main` e o hash do commit aprovado) antes e depois da integração.
+3. Só avance para `git push` ou deploy depois de confirmar que o `HEAD` da integração é exatamente o hash esperado, sem commits estranhos nem alterações sujas fora do escopo.
+
 ## 🧱 Regra #11: Regras de dados do sincronizador
 
 - `insert_only` vale para as estratégias `pk` e `natural_key`. Ao mudar a estratégia de uma tabela no contrato, confira que as proteções existem no ramo novo de `sincronizarTabela()`.

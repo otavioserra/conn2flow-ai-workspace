@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-085.md](req-085.md) (`REQ-085`)
-* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
-* **Lote Relacionado**: `BATCH-087` ([batch-087.md](../implementation/batch-087.md), a criar/preencher pelo Executor)
+* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-085.md](req-085.md) / `BATCH-087`)
+* **Status**: `IDLE` — pronto para abertura da próxima requisição
+* **Lote Relacionado**: `BATCH-087` ([batch-087.md](../implementation/batch-087.md), `HOMOLOGATED` em 2026-11-23)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-23
@@ -14,6 +14,7 @@
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/archive/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
+  - [req-085.md](req-085.md) (`BATCH-087`, Melhorias em 4 skills canônicas + 2 micro-ajustes do `REP-007` em PT-BR/EN somente na matriz, `HOMOLOGATED` em 2026-11-23)
   - [req-084.md](req-084.md) (`BATCH-086`, Melhorias em 3 skills canônicas PT-BR/EN na matriz + Faxina Determinística dos 10 Ativos com reescrita de links, `HOMOLOGATED` em 2026-11-23)
   - [req-083.md](req-083.md) (`BATCH-085`, Ajustes do `REP-005` + Paridade PHP de `memory:get/set` no Core + Integração Isolada via Worktree em 7/9 Satélites com Limpeza Total das Worktrees; `conn2flow-home` e `conn2flow-mkt` sem `origin` a cargo dos chefes locais, `HOMOLOGATED` em 2026-11-23)
   - [req-082.md](req-082.md) (`BATCH-084`, Propagação Global da `REQ-081` + Melhorias do `REP-004` [`FEAT-018` / `FEAT-019`] + Diretriz Git do Arquiteto Master + Segunda Propagação Global, `HOMOLOGATED` em 2026-11-23)

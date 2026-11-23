@@ -36,8 +36,8 @@
       "translator": "mdd-agent"
     },
     "c2f-documentation": {
-      "source_sha256": "3818b219a2dafd31af5eae9e07abf9b58791535a5a4ed87c21c53b920b2a7c20",
-      "translated_at": "2026-11-05",
+      "source_sha256": "87a002e3b32606ff28373dc116263fc2a8070b704d5abe705743e7287706f47d",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-documentation-governance": {
@@ -91,7 +91,7 @@
       "translator": "mdd-agent"
     },
     "c2f-json-resources-sync": {
-      "source_sha256": "3135bf013b783d9012452ed5772eedd82c12020f0310295eb73650aac9cf71d2",
+      "source_sha256": "5ddfa2a24e67cedd7dc4e75a246fb5f8b20d6efbcbb4774191634bacb5017b8c",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
@@ -116,7 +116,7 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "3d8b2dcd82ac82300654a20a8bc103d999fe5419aa27600ea0bdbaa3b7c38443",
+      "source_sha256": "6bac1888c9e6a6b2c2dfa092a7740ecea6d660b44854e5e67526187c44246d52",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
@@ -146,8 +146,8 @@
       "translator": "mdd-agent"
     },
     "c2f-project-pipeline-and-tasks": {
-      "source_sha256": "09c3aa5bc568c7bba8c961b3b83fc635c161b7b9b47644be7efd7324820bfcf3",
-      "translated_at": "2026-11-05",
+      "source_sha256": "f4a90cfc65174fa98bd572ae28053615b024583b5f5255c8a50d41b158c544d3",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-projects-system": {
@@ -166,7 +166,7 @@
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "5acf5c65d3628f84b2015460f6305afaace04765747e910638a0d4301a4379a6",
+      "source_sha256": "5cd77c720645b8cb0d6b6be65f45794d998e622421233ab6b171590aed0d90fc",
       "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
@@ -201,8 +201,8 @@
       "translator": "mdd-agent"
     },
     "mdd-memory-gardening": {
-      "source_sha256": "354ecc5f1b11fb088772657494b94ed5758d51fa56e7b2f269bab09134efef5b",
-      "translated_at": "2026-11-05",
+      "source_sha256": "f1d853b7a609793afcc1c663474a03f174035fdd12ef7022d834eca0d6de867c",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "mdd-workflow": {

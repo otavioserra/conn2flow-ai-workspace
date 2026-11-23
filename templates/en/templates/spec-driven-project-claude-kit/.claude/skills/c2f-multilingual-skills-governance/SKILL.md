@@ -48,6 +48,8 @@ node scripts/skills/sync-skills.cjs --update-translation-hash <skill> <idioma> -
 node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json
 ```
 
+Tests that read the matrix (e.g. `pytest -q tools/mdd-client/tests`) must run **after** the translation hashes are acknowledged (`--update-translation-hash`), to avoid a transient `DRIFT_WARNING` during the round. Order: sync → hashes → audit → `pytest`.
+
 Never update hashes automatically during normal sync, before content review, or merely to obtain PASS. Overwrite protection remains active even when drift is detected. Rename requires migrating the name in the kits and registration, preserving the history and reviewing hashes; do not create a second source of authorship.
 
 ## New language

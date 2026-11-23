@@ -466,3 +466,15 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) pode substituir acentos por caracteres
 - Arquivos CRLF exigem ferramenta de edição segura ou script que leia bytes e preserve/normalize conscientemente os finais de linha; não aplique regex multilinha presumindo LF.
 - `grep -c $'\r'` pode produzir falso negativo no Windows/Git Bash. Confira bytes (`Path(...).read_bytes().count(b'\r\n')` ou PHP `bin2hex`); saída zero de grep não prova LF.
 - Na remoção Windows, use uma única shell de ponta a ponta; verifique caminhos absolutos e reparse points antes de excluir. Não enumere no PowerShell para passar exclusão ao CMD. Nunca atravesse junctions na limpeza.
+
+### 21. Como reconhecer um `index.lock` órfão no Windows
+
+1. **Sintoma**: `fatal: Unable to create '.../.git/index.lock': File exists` (ou `.git/worktrees/<nome>/index.lock`) após comando Git interrompido, timeout ou travamento no Windows/OneDrive.
+2. **Proibição**: nunca apague `index.lock` sem verificar se há `git.exe` ativo no repositório. Apagar um lock ativo corrompe o índice.
+3. **Diagnóstico obrigatório (PowerShell)**:
+   ```powershell
+   Get-CimInstance Win32_Process -Filter "Name='git.exe'" | Select-Object ProcessId, CreationDate, CommandLine
+   Get-Item -LiteralPath .git/index.lock | Select-Object FullName, Length, LastWriteTime
+   ```
+   Confirme que o timestamp do lock não muda.
+4. **Ação segura**: com `git.exe` ativo naquele repo/worktree, aguarde e nunca apague lock alheio. Sem nenhum `git.exe` atuando e com o arquivo parado (órfão), remova só o arquivo literal (`Remove-Item -LiteralPath .git/index.lock`) e confira com `git status --short` (e `git fsck` se a interrupção ocorreu durante gravação).

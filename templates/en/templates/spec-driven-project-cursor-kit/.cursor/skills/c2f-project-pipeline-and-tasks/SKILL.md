@@ -222,6 +222,12 @@ The SSH pipeline has no lock. Two agents publishing in the same environment gene
 
 ---
 
+### Local integration branch with hash verification
+
+1. To consolidate or validate deliveries without mixing working-tree changes, create or update a local integration branch from the verified remote base (`git fetch origin`).
+2. Record and check the hashes (`git rev-parse HEAD`, `git rev-parse origin/main` and the approved commit hash) before and after the integration.
+3. Proceed to `git push` or deploy only after confirming that the integration `HEAD` is exactly the expected hash, with no stray commits and no dirty changes outside the scope.
+
 ## 🧱 Rule #11: Synchronizer data rules
 
 - `insert_only` is valid for `pk` and `natural_key` strategies. When changing the strategy of a table in the contract, check that the protections exist in the new branch of `sincronizarTabela()`.

@@ -75,3 +75,9 @@ with open(json_path, 'w', encoding='utf-8', newline='') as f:
 4. Before committing, validate the syntax of the final file and the staged blob (`git show :caminho/ArquivoData.json`). Review `git diff --cached -- caminho/ArquivoData.json` by ID and `git diff --cached` for the entire index. Proceed only if staged content is limited to the batch.
 
 5. If ownership, the scope of an ID, or the legitimacy of a removal is ambiguous, stop, preserve both versions, and consult the human operator under DEC-136.
+
+## Atomic merge: parts and manifest from the same side
+
+1. When resolving merge conflicts on resources (`pages.json`, `components.json`, `layouts.json`, `templates.json` and physical files in `resources/<language>/...`), the physical files (HTML/CSS/MD) and the matching manifest entry must come from the same side (`ours` or `theirs`).
+2. Mixing the physical body from one side with metadata, version or checksum from the other is prohibited.
+3. If changes from both sides must be combined in the same resource, merge the content consciously, clear the affected checksums in the manifest and let the official pipeline recalculate them (`atualizacao-dados-recursos.php`). Validate the JSON and the diff before committing.

@@ -75,3 +75,9 @@ with open(json_path, 'w', encoding='utf-8', newline='') as f:
 4. Antes do commit, valide a sintaxe do arquivo final e do blob do stage (`git show :caminho/ArquivoData.json`). Confira `git diff --cached -- caminho/ArquivoData.json` por ID e `git diff --cached` para todo o stage. Só prossiga se o conteúdo preparado estiver limitado ao lote.
 
 5. Se a autoria, o escopo de algum ID ou a legitimidade de uma retirada estiverem ambíguos, pare, preserve as duas versões e consulte o humano conforme a DEC-136.
+
+## Merge atômico: partes e manifest do mesmo lado
+
+1. Ao resolver conflitos de merge em recursos (`pages.json`, `components.json`, `layouts.json`, `templates.json` e arquivos físicos em `resources/<idioma>/...`), os arquivos físicos (HTML/CSS/MD) e a entrada correspondente no manifest devem vir do mesmo lado (`ours` ou `theirs`).
+2. É proibido misturar o corpo físico de um lado com metadados, versão ou checksum do outro.
+3. Se precisar combinar alterações dos dois lados no mesmo recurso, mescle o conteúdo conscientemente, limpe os checksums afetados no manifest e deixe o pipeline oficial recalcular (`atualizacao-dados-recursos.php`). Valide o JSON e o diff antes do commit.

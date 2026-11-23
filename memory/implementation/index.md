@@ -11,7 +11,8 @@
 | BATCH-083 | Caixa copiável do Arquiteto Master e relatório de dificuldades do Executor | Caixa copiável do Arquiteto e relatório do Executor implementados e validados nos cinco kits. | [source](<batch-083.md>) | HOMOLOGATED |
 | BATCH-084 | Propagação da REQ-081 e melhorias de governança e indexação na matriz | Propagação das skills da REQ-081, validação de FEAT-018/019 e segunda propagação em nove satélites. | [source](<batch-084.md>) | HOMOLOGATED |
 | BATCH-085 | Ajustes do REP-005 e integração isolada das skills | Matriz e paridade PHP validadas; sete satélites publicados e dois sem origin; worktrees removidas. | [source](<batch-085.md>) | HOMOLOGATED |
-| BATCH-086 | Governança operacional de três skills e Regra dos 10 Ativos | Atualiza três skills bilíngues e arquiva 12 registros com reescrita de links na matriz. | [source](<batch-086.md>) | ready-for-review |
+| BATCH-086 | Governança operacional de três skills e Regra dos 10 Ativos | Atualiza três skills bilíngues e arquiva 12 registros com reescrita de links na matriz. | [source](<batch-086.md>) | HOMOLOGATED |
+| BATCH-087 | Governança operacional de quatro skills e micro-ajustes do REP-007 | Atualiza seis skills PT-BR/EN na matriz, com sync, hashes, auditoria PASS e pytest 119/119. | [source](<batch-087.md>) | ready-for-review |
 
 ## Directories
 

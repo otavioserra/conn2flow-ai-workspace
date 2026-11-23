@@ -34,6 +34,10 @@ Preserve the full original and a traceable summary in memory/raw/archive/origina
 
 ---
 
+### Post-archive link audit: baseline and orphans
+
+Record the orphan-link baseline **before** the move. Afterwards, report separately the pre-existing orphans in protected historical sources (`archive/original/` and `04-memory-engineering-execution.md`) and the orphans introduced by the batch. Any repair of protected originals requires explicit human authorization.
+
 ## 🧠 Execution Memory Pruning
 
 1. Measure bytes and line count and read the full execution memory (or run `c2f ai:prune-memories`).
