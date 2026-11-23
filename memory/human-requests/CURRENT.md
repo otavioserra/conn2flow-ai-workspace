@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-085.md](req-085.md) / `BATCH-087`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-087` ([batch-087.md](../implementation/batch-087.md), `HOMOLOGATED` em 2026-11-23)
+* **Ponteiro Ativo**: [req-086.md](req-086.md) (`REQ-086`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-088` ([batch-088.md](../implementation/batch-088.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-23
@@ -28,12 +28,16 @@
 
 ---
 
-## Objetivo operacional — REQ-085 / BATCH-087
+## Objetivo operacional — REQ-086 / BATCH-088
 
-1. **Melhorias em 4 Skills Canônicas (Somente Matriz `conn2flow-ai-workspace`)**:
-   - `c2f-documentation`: build a partir de `git archive origin/main` para publicar só o que está commitado.
-   - `c2f-json-resources-sync`: no merge, partes físicas do recurso e manifest do mesmo lado.
-   - `c2f-project-pipeline-and-tasks`: padrão de branch local de integração com conferência explícita de hash.
-   - `c2f-shell-and-windows-traps`: como reconhecer e tratar com segurança um `index.lock` órfão no Windows.
-2. **Micro-ajustes do `REP-007`**: Atualizar `c2f-multilingual-skills-governance` (ordem hashes → `pytest`) e `mdd-memory-gardening` (separação entre órfãos preexistentes em fontes históricas protegidas e órfãos novos).
-3. **Governança Multilíngue & Validação Local (Categoria B)**: Atualizar traduções EN das 6 skills, rodar sync restrito à matriz (`--repos conn2flow-ai-workspace`), atualizar os 6 hashes (`--update-translation-hash`), validar auditoria (`PASS`, `0` divergências, `0` drift) e `pytest -q tools/mdd-client/tests` (`100% PASS`), atualizar `batch-087.md` + `VALIDATION-CHECKLIST.md` + índices MDD e entregar `ready-for-review` (sem propagar aos satélites nesta REQ).
+1. **Fase 1 — Melhorias em 7 Skills na Matriz (`conn2flow-ai-workspace`, PT-BR + EN)**:
+   - `c2f-javascript-ajax` e `c2f-module-crud-scaffolding`: listar opções AJAX reservadas pelo núcleo `interface` (`listar`, `verificar-campo`, `backup-campos-mudou`, `historico-mais-resultados`) e corrigir o exemplo da linha 48 de `c2f-javascript-ajax`.
+   - `c2f-project-pipeline-and-tasks` + alinhamento em `c2f-executor-agent`: clarificar que lote de Core indo ao Lab de projeto (`local: true`) usa `./c2f project:update-all <id>` (com `--skip-css` na Categoria A), mantendo a proibição na rotina pura de projeto (`project:deploy <id>`).
+   - `c2f-environment-configuration`: inspecionar `APP_ENV` no código do Core (somente leitura) e documentar o comportamento real na comunicação.
+   - `c2f-database-testing`: documentar isolamento/reset do `HookManager` via `Reflection` + executor SQL e relógio injetáveis.
+   - `c2f-shell-and-windows-traps`: adicionar micro-nota sobre Python `glob(recursive=True)` ignorar pastas com ponto (usar `os.walk`/`rglob`) e uso de `.\.venv-mdd\Scripts\pytest.exe` na matriz.
+   - Sincronizar 5 kits/templates na matriz, atualizar os 7 hashes EN, validar auditoria (`PASS`, `0` divergências, `0` drift) e `pytest` (`100% PASS`).
+2. **Fase 2 — Propagação & Integração Isolada via Worktree das 11 Skills do Ciclo (`REQ-084`/`085`/`086`) nos Satélites**:
+   - Criar worktree temporária a partir de `origin/main` para cada satélite com `origin`, aplicar as 11 skills atualizadas (preservando a customização reconhecida do Core em `c2f-multilingual-skills-governance` via `mdd sync --customize`), fazer commit seletivo, respeitar a regra de avanço concorrente da `main`, integrar e dar `git push origin main` sem tocar nas árvores principais.
+   - `conn2flow-home` e `conn2flow-mkt` (sem `origin`): manter sem alteração na árvore principal e reportar para os chefes locais.
+   - Remover e podar todas as worktrees temporárias (`git worktree remove` + `git worktree prune`), entregar `batch-088.md` + `FEAT-017` + `VALIDATION-CHECKLIST.md` + índices MDD em `ready-for-review` (sem commit/push na matriz).
