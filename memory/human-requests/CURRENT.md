@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-083.md](req-083.md) / `BATCH-085`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-085` ([batch-085.md](../implementation/batch-085.md), `HOMOLOGATED` em 2026-11-23)
+* **Ponteiro Ativo**: [req-084.md](req-084.md) (`REQ-084`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-086` ([batch-086.md](../implementation/batch-086.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-23
@@ -26,8 +26,11 @@
 
 ---
 
-## Objetivo operacional — REQ-083 / BATCH-085
+## Objetivo operacional — REQ-084 / BATCH-086
 
-1. **Fase 1 — Ajustes do `REP-005` na Matriz**: Atualizar `c2f-multilingual-skills-governance` (escopo de escrita vs. auditoria global + fluxo `mdd sync --customize`) e `c2f-mdd-indexing-and-handoffs` (paridade Python/PHP), sincronizar os 5 kits/templates PT-BR/EN na matriz, atualizar hashes e validar auditoria + `pytest`.
-2. **Fase 2 — Paridade PHP no Core + Integração Isolada via Worktree nos 9 Satélites**: Sem alterar ou descartar trabalho nas árvores principais dos chefes de cada satélite, criar worktree temporária a partir de `origin/main` para cada satélite, aplicar as 4 skills atualizadas (no Core `conn2flow`, incluir também a paridade PHP de `memory:get/set` por ID YAML/slug com PHPUnit + `memory/sync-customizations.json`), commitar seletivamente, integrar em `main` e executar `git push origin main`.
-3. **Limpeza Obrigatória de Worktrees (`REQ-077`)**: Auditar, remover cada worktree temporária (`git worktree remove` + `git worktree prune`), deletar branches temporárias mescladas e entregar relatório consolidado em `memory/implementation/batch-085.md` (matriz pronta para homologação e commit/push pelo Arquiteto Master).
+1. **Melhorias em 3 Skills Canônicas (Somente Matriz `conn2flow-ai-workspace`)**:
+   - `c2f-shell-and-windows-traps`: adicionar seção executável **"Remover worktree com junctions"** (CMD único, comandos proibidos, conferência pós-remoção) e ajustar cabeçalho de contagem obsoleta.
+   - `c2f-json-resources-sync`: adicionar regra **"Commit seletivo de partes de `*Data.json`"** (inspeção por entrada/ID, seleção cirúrgica preservando `\/`/UTF-8/EOL, sem checksum manual, validação JSON + `git diff --cached`, parar e perguntar em ambiguidade).
+   - `c2f-executor-agent`: adicionar regra **"Avanço concorrente da `main` após fast-forward aprovado"** (se a `main` andou, fazer merge só quando a versão da `main` contiver tudo; senão, parar, preservar e perguntar).
+2. **Governança Multilíngue & Validação Local (Categoria B)**: Atualizar traduções EN, rodar sync restrito à matriz (`--repos conn2flow-ai-workspace`), atualizar hashes das 3 skills (`--update-translation-hash`), validar auditoria (`PASS`, `0` divergências, `0` drift) e `pytest -q tools/mdd-client/tests` (`100% PASS`).
+3. **Faxina Determinística dos 10 Ativos**: Arquivar excedentes mais antigos de `memory/human-requests/` e `memory/implementation/` mantendo no máximo 10 ativos na raiz (preservando `req-084.md` e `batch-086.md`), reescrever links relativos sem órfãos, manter `04-memory-engineering-execution.md` sem poda, atualizar índices MDD e entregar `ready-for-review` ao Arquiteto Master (sem propagar aos satélites nesta REQ).
