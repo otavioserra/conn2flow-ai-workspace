@@ -57,14 +57,15 @@ mdd meta get req-072 status --json --path RAIZ_ABSOLUTA
 
 Without folder, index regenerates all existing index.md under memory/ including historical files. With explicit folder, create/rebuild only the local index. Do not change the index as if it were source authorship: regeneration replaces its content with table and links to child indexes. README, CURRENT, BATCH-INDEX, DECISION-LOG and VALIDATION-CHECKLIST are infrastructure and do not enter as records.
 
-In Python, `mdd meta get` and `mdd meta set` look for an explicit path under `memory/`, then an exact file name or stem, and finally the YAML frontmatter `id` or a stem prefix followed by a hyphen and slug. File name, stem, and ID comparisons are case-insensitive. Examples:
+Python `mdd meta get/set` and Core PHP `php cli/c2f.php memory:get/set` look for an explicit path under `memory/`, then an exact file name or stem, and finally the YAML frontmatter `id` or a stem prefix followed by a hyphen and slug. File name, stem, and ID comparisons are case-insensitive. Examples:
 
 ```sh
 mdd meta get REP-004 status --json
+php cli/c2f.php memory:get REP-004 status --json
 mdd meta get memory/reports/REP-004-batch083-skills-learnings.md status --json
 ```
 
-When a lookup step finds multiple candidates, the CLI lists their paths in order and asks for an explicit path. Use the relative path under `memory/` with legacy versions and the PHP Core CLI, which accepts paths, exact file names, and exact stems.
+When a lookup step finds multiple candidates, the CLI lists their paths in order and asks for an explicit path. Use the relative path under `memory/` when working with legacy versions as well.
 
 Fallback: first `# Título`; standard ID `# ID — Título` or file name; first run paragraph, ignoring headers, tables, lists and code fences, up to 120 characters including `...`; line status Status or `indexed`/`archived`. Incomplete or unsupported YAML does not block index/get: uses valid fields and defaults. Mutation refuses invalid/duplicated header without discarding information. Fallback does not modify the document.
 

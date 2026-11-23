@@ -1,9 +1,9 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-083.md](req-083.md) (Ajustes do `REP-005` [skills + paridade PHP] e Integração Isolada via Worktree — Commit, Merge na `main`, Push e Limpeza — nos 9 Satélites)
-* **Status**: `APPROVED` — pronto para execução (`Categoria B`: ajustes do `REP-005` na matriz/Core + worktrees isoladas, commits seletivos, merge/push na `main` dos satélites e remoção das worktrees; sem deploy no Lab)
-* **Lote Relacionado**: `BATCH-085` ([batch-085.md](../implementation/batch-085.md))
-* **Topologia de Agentes**: `dupla` (Macro-Arquiteto especifica ➔ Executor integra nos satélites via worktree isolada, limpa worktrees e entrega relatório ➔ Retorno ao Macro-Arquiteto e homologação humana)
+* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-083.md](req-083.md) / `BATCH-085`)
+* **Status**: `IDLE` — pronto para abertura da próxima requisição
+* **Lote Relacionado**: `BATCH-085` ([batch-085.md](../implementation/batch-085.md), `HOMOLOGATED` em 2026-11-23)
+* **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-23
 * **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
@@ -14,6 +14,7 @@
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
+  - [req-083.md](req-083.md) (`BATCH-085`, Ajustes do `REP-005` + Paridade PHP de `memory:get/set` no Core + Integração Isolada via Worktree em 7/9 Satélites com Limpeza Total das Worktrees; `conn2flow-home` e `conn2flow-mkt` sem `origin` a cargo dos chefes locais, `HOMOLOGATED` em 2026-11-23)
   - [req-082.md](req-082.md) (`BATCH-084`, Propagação Global da `REQ-081` + Melhorias do `REP-004` [`FEAT-018` / `FEAT-019`] + Diretriz Git do Arquiteto Master + Segunda Propagação Global, `HOMOLOGATED` em 2026-11-23)
   - [req-081.md](req-081.md) (`BATCH-083`, Caixa Copiável Obrigatória no Arquiteto Master [`FEAT-016`] e Relatório Obrigatório de Dificuldades do Executor [`FEAT-017`], `HOMOLOGATED` em 2026-11-21)
   - [req-080.md](req-080.md) (`BATCH-082`, Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto no `environment.json`, Exclusão e Cadastro Pré-Preenchido de Projetos e Release `v1.1.7` do VSIX, `HOMOLOGATED` em 2026-11-18)

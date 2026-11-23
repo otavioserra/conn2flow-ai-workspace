@@ -27,6 +27,12 @@ node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace
 node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json
 ```
 
+## Selective writes and customized variants
+
+`--apply <skills>` restricts writes to the selected skills. The audit still inspects the full catalog at the selected destinations and may report pre-existing differences in other skills.
+
+Review the variant against the source and incorporate the update while preserving the legitimate customization. Acknowledge the new hash pair with `mdd sync --customize <kit>/skills/<skill>/SKILL.md --matrix <matrix> --path <destination>` and run the audit again.
+
 ## Hash pairing and review
 
 The record `scripts/skills/translated.json` maps language → skill → `source_sha256`, `translated_at` and `translator`. The SHA-256 identifies the reviewed PT-BR source. The synchronizer converts CRLF to LF in memory before hashing the source and comparing skill copies. Written copies retain the source bytes, and hashes for acknowledged customizations still use the exact bytes.

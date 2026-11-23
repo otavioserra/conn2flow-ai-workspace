@@ -1,5 +1,17 @@
 # Validation Checklist
 
+## BATCH-085 — REQ-083 (2026-11-23)
+
+- [x] Skills PT-BR/EN e hashes revisados; 19 alvos com PASS, 0 divergências e 0 drift; pytest 119/119.
+- [x] Paridade PHP por caminho, nome/stem, ID YAML e slug no Core; PHPUnit 6/6 no teste novo e 11/11 no filtro de memória. O CLI retornou `"READY_FOR_ARCHITECT"` para REP-004.
+- [x] Sete satélites elegíveis publicados com staging seletivo; 112 cópias, cinco reconhecimentos do Core e zero divergências nas quatro skills.
+- [ ] Publicação em `conn2flow-home` e `conn2flow-mkt`, que aguardam remoto `origin` com branch `main`.
+- [x] Sete worktrees e branches temporárias removidas; `git worktree prune` e comparações confirmaram a preservação das nove árvores principais. Categoria B.
+- [x] Lote, recibo, relatório de dificuldades e índices preparados para o Macro-Arquiteto.
+- [ ] Homologação humana e commit/push seletivos da matriz.
+
+Evidências no [BATCH-085](../implementation/batch-085.md), no [REP-006](../reports/REP-006-batch085-worktrees-and-php.md) e no [recibo](../../completions/BATCH-085-executor-receipt.json).
+
 ## BATCH-084 — REQ-082 (2026-11-21)
 
 - [x] As duas skills homologadas na REQ-081 foram verificadas em 34 kits de nove satélites, preservando skills locais, regras e trabalho em andamento.

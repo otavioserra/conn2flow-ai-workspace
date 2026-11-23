@@ -18,6 +18,7 @@
 | BATCH-082 | Saneamento de Choques por Projeto, Editor Isolado de Dados do Projeto e Instalação Local do VSIX | Os pacotes intermediários `1.1.5` e `1.1.6` só foram usados nas iterações locais e não devem ser publicados. | [source](<batch-082.md>) | complete |
 | BATCH-083 | Caixa copiável do Arquiteto Master e relatório de dificuldades do Executor | Caixa copiável do Arquiteto e relatório do Executor implementados e validados nos cinco kits. | [source](<batch-083.md>) | HOMOLOGATED |
 | BATCH-084 | Propagação da REQ-081 e melhorias de governança e indexação na matriz | Propagação das skills da REQ-081, validação de FEAT-018/019 e segunda propagação em nove satélites. | [source](<batch-084.md>) | HOMOLOGATED |
+| BATCH-085 | Ajustes do REP-005 e integração isolada das skills | Matriz e paridade PHP validadas; sete satélites publicados e dois sem origin; worktrees removidas. | [source](<batch-085.md>) | HOMOLOGATED |
 
 ## Directories
 

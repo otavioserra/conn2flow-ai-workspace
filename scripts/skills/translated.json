@@ -96,8 +96,8 @@
       "translator": "mdd-agent"
     },
     "c2f-mdd-indexing-and-handoffs": {
-      "source_sha256": "afdba77ff5d0442f89df0c38b832025ac5ca6a629b3db6943cad30c410f8f349",
-      "translated_at": "2026-11-21",
+      "source_sha256": "194811bc7103218121fb4977aa1e95494ad73ea604e663ef14ee032858854021",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-modelo-templates": {
@@ -116,8 +116,8 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "55d772269af77dc4edca28b7aa2b0e345295f1de027a172fc7b7a31410791d23",
-      "translated_at": "2026-11-21",
+      "source_sha256": "3d8b2dcd82ac82300654a20a8bc103d999fe5419aa27600ea0bdbaa3b7c38443",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-multilingual-system": {

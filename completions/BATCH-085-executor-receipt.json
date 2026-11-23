@@ -1,0 +1,547 @@
+{
+  "request": "REQ-083",
+  "batch": "BATCH-085",
+  "date": "2026-11-23",
+  "repo": "conn2flow-ai-workspace",
+  "repo_root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace",
+  "role": "executor",
+  "topology": "dupla",
+  "autonomy": "supervisionado",
+  "category": "B",
+  "status": "ready-for-review",
+  "next_role": "architect",
+  "dispatch": "local_receipt",
+  "matrix": {
+    "status": "PASS",
+    "audit_targets": 19,
+    "divergences": 0,
+    "translation_drift": 0,
+    "pytest_passed": 119,
+    "evidence": "completions/skills-audit.json"
+  },
+  "core_php": {
+    "version": "8.5.8",
+    "phpunit_version": "11.5.55",
+    "focused_tests_passed": 6,
+    "focused_assertions": 15,
+    "related_tests_passed": 11,
+    "related_assertions": 73,
+    "related_phpunit_deprecations": 4,
+    "memory_get_rep_004_status": "READY_FOR_ARCHITECT",
+    "customizations_verified_in_git_blobs": 5
+  },
+  "rollout": {
+    "skills": [
+      "c2f-architect-master",
+      "c2f-executor-agent",
+      "c2f-multilingual-skills-governance",
+      "c2f-mdd-indexing-and-handoffs"
+    ],
+    "copies_verified": 112,
+    "published": 7,
+    "blocked": 2,
+    "selected_skill_divergences": 0,
+    "other_catalog_divergences": 177,
+    "reapply_writes": 0,
+    "worktrees_created": 7,
+    "worktrees_remaining": 0
+  },
+  "satellites": {
+    "conn2flow": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "91017a3ecac14008956cff3475d4a34d86e735f2",
+      "status_short_counts": {
+        " M": 26,
+        "??": 10
+      },
+      "status_short_sha256": "fe370222da5a7b7f09b0c959c50af015de91928ffdf085419690ec7039f49b5b",
+      "remotes_before": [
+        "origin\tgit@github.com:otavioserra/conn2flow.git (fetch)",
+        "origin\tgit@github.com:otavioserra/conn2flow.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow                 91017a3e [main]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267      05823079 [feat/req-267-covers]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267-v31  0def10fc [feat/req-267-covers-v31]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-lab219          64495301 (detached HEAD)",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req203          d77dba43 [feat/req-204]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req223          15c93b10 [feat/req-223]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req224          e5dc99d3 [feat/req-224]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req225          c6e5f7a9 [feat/req-225]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req232          64495301 [feat/req-232]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req243          f8db1f50 [feat/req-262]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req256          0203d266 [feat/req-256]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow                 91017a3e [main]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267      05823079 [feat/req-267-covers]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-covers-267-v31  0def10fc [feat/req-267-covers-v31]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-lab219          64495301 (detached HEAD)",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req203          d77dba43 [feat/req-204]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req223          15c93b10 [feat/req-223]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req224          e5dc99d3 [feat/req-224]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req225          c6e5f7a9 [feat/req-225]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req232          64495301 [feat/req-232]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req243          f8db1f50 [feat/req-262]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-req256          0203d266 [feat/req-256]"
+      ],
+      "base": "91017a3ecac14008956cff3475d4a34d86e735f2",
+      "commits": [
+        "d7fc2fe4c9f387f8ed4d28bef4530d912d3ce820",
+        "4f2db9cebfc021a46b2bd4ff3c39ba6c55f71340"
+      ],
+      "remote_head": "4f2db9cebfc021a46b2bd4ff3c39ba6c55f71340",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".gemini",
+        ".github"
+      ],
+      "audit": {
+        "copies": 20,
+        "customized": 5,
+        "other_differences": 35
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".codex/skills/c2f-architect-master/SKILL.md",
+        ".codex/skills/c2f-executor-agent/SKILL.md",
+        ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".cursor/skills/c2f-architect-master/SKILL.md",
+        ".cursor/skills/c2f-executor-agent/SKILL.md",
+        ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".gemini/skills/c2f-architect-master/SKILL.md",
+        ".gemini/skills/c2f-executor-agent/SKILL.md",
+        ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md",
+        "cli/src/Support/Memory/Indexer.php",
+        "memory/sync-customizations.json",
+        "tests/Unit/PHP/MemoryIndexerReq083Test.php"
+      ]
+    },
+    "conn2flow-site": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow-site",
+      "worktree_created": true,
+      "branch_before": "feat/req-292-docs-mdd",
+      "head_before": "4774dc8554a113c08b8818a40af4e29cba29abb2",
+      "status_short_counts": {
+        " M": 98,
+        "??": 39
+      },
+      "status_short_sha256": "409fd3ee63c5f6a7a4d4f0e13074074cd44b9ce41bce22e28d91e1a454b20cb6",
+      "remotes_before": [
+        "origin\tgit@github.com:otavioserra/conn2flow-site.git (fetch)",
+        "origin\tgit@github.com:otavioserra/conn2flow-site.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site                 4774dc85 [feat/req-292-docs-mdd]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123      939ae49f [feat/req-123-covers]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123-v31  aee83954 [feat/req-123-covers-v31]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req108          aee83954 [linha-3.1]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req221          8f533e8b [feat/req-221]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req225          6cabb928 [feat/req-225]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site                 4774dc85 [feat/req-292-docs-mdd]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123      939ae49f [feat/req-123-covers]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-covers-123-v31  aee83954 [feat/req-123-covers-v31]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req108          aee83954 [linha-3.1]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req221          8f533e8b [feat/req-221]",
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-site-req225          6cabb928 [feat/req-225]"
+      ],
+      "base": "b8e75f53f092824fc62f5aa4684d7b70f484838f",
+      "commits": [
+        "a1f0932067870b2ddbe9e02da850cf395f00c613"
+      ],
+      "remote_head": "a1f0932067870b2ddbe9e02da850cf395f00c613",
+      "integration": "fast-forward da main local e remota",
+      "push_ref": "main",
+      "kits": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".gemini",
+        ".github"
+      ],
+      "audit": {
+        "copies": 20,
+        "customized": 0,
+        "other_differences": 50
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".codex/skills/c2f-architect-master/SKILL.md",
+        ".codex/skills/c2f-executor-agent/SKILL.md",
+        ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".cursor/skills/c2f-architect-master/SKILL.md",
+        ".cursor/skills/c2f-executor-agent/SKILL.md",
+        ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".gemini/skills/c2f-architect-master/SKILL.md",
+        ".gemini/skills/c2f-executor-agent/SKILL.md",
+        ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    },
+    "lumix": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/lumix",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-lumix",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "463a366b21b4f03c9f4e28a53a0a13c6fa2f670a",
+      "status_short_counts": {
+        " M": 16
+      },
+      "status_short_sha256": "8f8e1715fc3149566b1a01a4efb65919403a3d0ffec9ec18513c32224d2f6367",
+      "remotes_before": [
+        "origin\thttps://github.com/otavioserra/lumix.git (fetch)",
+        "origin\thttps://github.com/otavioserra/lumix.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/lumix  463a366 [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/lumix  463a366 [main]"
+      ],
+      "base": "463a366b21b4f03c9f4e28a53a0a13c6fa2f670a",
+      "commits": [
+        "d135be6d5d0aab4d33af7fa67ea2956e1e389b0c"
+      ],
+      "remote_head": "d135be6d5d0aab4d33af7fa67ea2956e1e389b0c",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".gemini",
+        ".github"
+      ],
+      "audit": {
+        "copies": 20,
+        "customized": 0,
+        "other_differences": 41
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".codex/skills/c2f-architect-master/SKILL.md",
+        ".codex/skills/c2f-executor-agent/SKILL.md",
+        ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".cursor/skills/c2f-architect-master/SKILL.md",
+        ".cursor/skills/c2f-executor-agent/SKILL.md",
+        ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".gemini/skills/c2f-architect-master/SKILL.md",
+        ".gemini/skills/c2f-executor-agent/SKILL.md",
+        ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    },
+    "transformamp": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/transformamp",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-transformamp",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "4856ac84732b833d530ba15538d282514f217bbc",
+      "status_short_counts": {
+        " M": 20
+      },
+      "status_short_sha256": "74576458b95dd35cdc25951dc1783a16a1133921a52969bf2dd228f3b2f21c26",
+      "remotes_before": [
+        "origin\tgit@github.com:otavioserra/transformamp.git (fetch)",
+        "origin\tgit@github.com:otavioserra/transformamp.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/transformamp  4856ac8 [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/transformamp  4856ac8 [main]"
+      ],
+      "base": "4856ac84732b833d530ba15538d282514f217bbc",
+      "commits": [
+        "3796882c5257a7ad55309e55089666cff5514712"
+      ],
+      "remote_head": "3796882c5257a7ad55309e55089666cff5514712",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".gemini",
+        ".github"
+      ],
+      "audit": {
+        "copies": 20,
+        "customized": 0,
+        "other_differences": 0
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".codex/skills/c2f-architect-master/SKILL.md",
+        ".codex/skills/c2f-executor-agent/SKILL.md",
+        ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".cursor/skills/c2f-architect-master/SKILL.md",
+        ".cursor/skills/c2f-executor-agent/SKILL.md",
+        ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".gemini/skills/c2f-architect-master/SKILL.md",
+        ".gemini/skills/c2f-executor-agent/SKILL.md",
+        ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    },
+    "conn2flow-home": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-home",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow-home",
+      "worktree_created": false,
+      "branch_before": "infra/conn2flow-stack-req013",
+      "head_before": "1f55fd644b586f3a3065c757ae1c2c5f349ad839",
+      "status_short_counts": {
+        " M": 32,
+        "??": 33
+      },
+      "status_short_sha256": "a2f8d04a4b8eeb7022cae17887d64bbbc1ede8ba23b77bef75d3d456badf802d",
+      "remotes_before": [],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-home  1f55fd6 [infra/conn2flow-stack-req013]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-home  1f55fd6 [infra/conn2flow-stack-req013]"
+      ],
+      "blocker": "git fetch origin: fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists."
+    },
+    "website-conn2flow": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/website-conn2flow",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-website-conn2flow",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "1a3b406e0cc34c47375bbc0a43781010be8dd938",
+      "status_short_counts": {
+        " M": 21
+      },
+      "status_short_sha256": "6c52285bb5da6d9c89e7626ca5072d6c2ca1f81b17d15cf32d791e46b0793ef3",
+      "remotes_before": [
+        "origin\tgit@github.com:otavioserra/website-conn2flow.git (fetch)",
+        "origin\tgit@github.com:otavioserra/website-conn2flow.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/website-conn2flow  1a3b406 [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/website-conn2flow  1a3b406 [main]"
+      ],
+      "base": "1a3b406e0cc34c47375bbc0a43781010be8dd938",
+      "commits": [
+        "15004bc5ff34e611fb37b32c394815ed0484852b"
+      ],
+      "remote_head": "15004bc5ff34e611fb37b32c394815ed0484852b",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude",
+        ".codex",
+        ".cursor",
+        ".gemini",
+        ".github"
+      ],
+      "audit": {
+        "copies": 20,
+        "customized": 0,
+        "other_differences": 0
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".codex/skills/c2f-architect-master/SKILL.md",
+        ".codex/skills/c2f-executor-agent/SKILL.md",
+        ".codex/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".cursor/skills/c2f-architect-master/SKILL.md",
+        ".cursor/skills/c2f-executor-agent/SKILL.md",
+        ".cursor/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".gemini/skills/c2f-architect-master/SKILL.md",
+        ".gemini/skills/c2f-executor-agent/SKILL.md",
+        ".gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    },
+    "conn2flow-app": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-app",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow-app",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "df07611424e2409c562dea6237f962cae94eb9ce",
+      "status_short_counts": {
+        " M": 2,
+        "??": 2
+      },
+      "status_short_sha256": "eb7570a196e36ca0d8338745644d7a4d2baddc1f5fb70d8f18be16f5b6069c30",
+      "remotes_before": [
+        "origin\tgit@github.com:otavioserra/conn2flow-app.git (fetch)",
+        "origin\tgit@github.com:otavioserra/conn2flow-app.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-app  df07611 [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-app  df07611 [main]"
+      ],
+      "base": "df07611424e2409c562dea6237f962cae94eb9ce",
+      "commits": [
+        "adb211cd44fb057b1fc52c70431bf6c5c7b5d386"
+      ],
+      "remote_head": "adb211cd44fb057b1fc52c70431bf6c5c7b5d386",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude"
+      ],
+      "audit": {
+        "copies": 4,
+        "customized": 0,
+        "other_differences": 17
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    },
+    "conn2flow-mkt": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-mkt",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow-mkt",
+      "worktree_created": false,
+      "branch_before": "main",
+      "head_before": "ba37e5dcbf62c18d163ee81099ab4dba163f50e6",
+      "status_short_counts": {
+        " D": 1,
+        " M": 39,
+        "??": 46
+      },
+      "status_short_sha256": "76a0e929f67466e275b14c9e8849fe9d30210fb54a4b0537e15a2cd33d82f2bd",
+      "remotes_before": [],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-mkt  ba37e5d [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-mkt  ba37e5d [main]"
+      ],
+      "blocker": "git fetch origin: fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists."
+    },
+    "conn2flow-nexus": {
+      "root": "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-nexus",
+      "worktree_path": "C:/Users/otavi/OneDrive/Documentos/GIT/_wt-req083-conn2flow-nexus",
+      "worktree_created": true,
+      "branch_before": "main",
+      "head_before": "00a678aba35303d029c6cfae0751e128719f604c",
+      "status_short_counts": {
+        " M": 4,
+        "??": 4
+      },
+      "status_short_sha256": "3ea8492711aa3a1245c2eeae1f984c26d9da6e018d5be94dcc4801ba20f02dee",
+      "remotes_before": [
+        "origin\thttps://github.com/otavioserra/conn2flow-nexus.git (fetch)",
+        "origin\thttps://github.com/otavioserra/conn2flow-nexus.git (push)"
+      ],
+      "worktrees_before": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-nexus  00a678a [main]"
+      ],
+      "primary_checkout_preserved": true,
+      "temporary_worktree_absent": true,
+      "worktrees_after": [
+        "C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-nexus  00a678a [main]"
+      ],
+      "base": "00a678aba35303d029c6cfae0751e128719f604c",
+      "commits": [
+        "7abcfec7e036d71b887c42f96285a3593a121295"
+      ],
+      "remote_head": "7abcfec7e036d71b887c42f96285a3593a121295",
+      "integration": "fast-forward remoto; main local ocupada e preservada",
+      "push_ref": "HEAD:refs/heads/main",
+      "kits": [
+        ".claude",
+        ".github"
+      ],
+      "audit": {
+        "copies": 8,
+        "customized": 0,
+        "other_differences": 34
+      },
+      "changed": [
+        ".claude/skills/c2f-architect-master/SKILL.md",
+        ".claude/skills/c2f-executor-agent/SKILL.md",
+        ".claude/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+        ".github/skills/c2f-architect-master/SKILL.md",
+        ".github/skills/c2f-executor-agent/SKILL.md",
+        ".github/skills/c2f-mdd-indexing-and-handoffs/SKILL.md",
+        ".github/skills/c2f-multilingual-skills-governance/SKILL.md"
+      ]
+    }
+  }
+}

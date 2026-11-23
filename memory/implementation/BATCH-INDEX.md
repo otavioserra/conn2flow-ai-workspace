@@ -49,6 +49,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Requisição ativa
 
+REQ-083 / BATCH-085 (`ready-for-review`) aplicou os ajustes do REP-005 e a paridade PHP, com sete satélites publicados e dois sem `origin`. As worktrees foram removidas. [Relatório](batch-085.md).
+
 REQ-082 / BATCH-084 (`ready-for-review`): As três fases foram validadas em Categoria B, com 102 cópias verificadas na segunda propagação. O lote aguarda homologação final e integração na main. [Relatório](batch-084.md).
 
 REQ-079 / BATCH-081 (`ready-for-review`): Motor de Banco de Dados MDD (`SQLite3 + FTS5` local em `memory/.mdd.sqlite` e compatibilidade 1:1 com `ai_memories` no `conn2flow-site`), detalhado em [batch-081.md](batch-081.md) e [req-079.md](../human-requests/req-079.md).

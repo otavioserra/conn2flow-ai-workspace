@@ -8,6 +8,7 @@
 | REP-003 | Esteira de Vídeo com IA: Aprendizados para Skills do conn2flow-home | Aprendizados da produção do promo-02 e proposta de skills de vídeo para instalar com o conn2flow-home. | [source](<REP-003-esteira-video-ia-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-004 | Dificuldades e Aprendizados do BATCH-083 para o AI Workspace | Escopo de sincronização e sensibilidade de hashes SHA-256 a finais de linha no BATCH-083. | [source](<REP-004-batch083-skills-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-005 | Dificuldades e aprendizados do BATCH-084 para o AI Workspace | Escopo do sincronizador, migração de SHA-256 para LF e paridade do CLI no BATCH-084. | [source](<REP-005-batch084-rollout-and-eol.md>) | READY_FOR_ARCHITECT |
+| REP-006 | Dificuldades e aprendizados do BATCH-085 para o AI Workspace | Registra bloqueios de remoto, staging de kits ignorados e hashes da variante do Core. | [source](<REP-006-batch085-worktrees-and-php.md>) | READY_FOR_ARCHITECT |
 
 ## Directories
 
