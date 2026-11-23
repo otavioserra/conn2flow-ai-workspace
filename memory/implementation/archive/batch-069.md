@@ -2,7 +2,7 @@
 
 - Projeto: conn2flow-ai-workspace
 - Raiz: C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace
-- Requisição: [REQ-067](../human-requests/req-067.md)
+- Requisição: [REQ-067](../../human-requests/archive/original/req-067.md)
 - Status: ready-for-review
 - Autonomia: autonomo_monitorado
 - Data: 2026-10-09
@@ -33,12 +33,12 @@ Skills correlatas receberam CSS isolado de hooks e #x#, leitura restrita a main,
 
 | Verificação | Resultado | Evidência |
 | --- | --- | --- |
-| Estrutura, preservação e links de índices | PASS | [estrutura](../../completions/BATCH-069-structure-audit.json) |
-| Propagação oficial | PASS | [apply](../../completions/BATCH-069-skills-apply.json) |
-| Auditoria MD5 e por alvo | PASS: 44 skills, 39 alvos, 1.653 iguais, 21 traduções, zero divergências | [auditoria](../../completions/BATCH-069-skills-audit.json) |
-| Preservação local | PASS: 60 SKILL.md no sincronizador; SHA-256 independente de 36 skills dos satélites | [preservação](../../completions/BATCH-069-preservation-audit.json) |
-| Extensão VS Code | PASS: 124/124, zero falhas/skips | [testes](../../completions/BATCH-069-extension-tests.json) / [log](../../completions/BATCH-069-extension-tests.log) |
-| Descoberta matriz memory/ e core sdd/ | PASS, incluindo prefixos legados e MDD | [smoke](../../completions/BATCH-069-extension-scope-smoke.json) |
+| Estrutura, preservação e links de índices | PASS | [estrutura](../../../completions/BATCH-069-structure-audit.json) |
+| Propagação oficial | PASS | [apply](../../../completions/BATCH-069-skills-apply.json) |
+| Auditoria MD5 e por alvo | PASS: 44 skills, 39 alvos, 1.653 iguais, 21 traduções, zero divergências | [auditoria](../../../completions/BATCH-069-skills-audit.json) |
+| Preservação local | PASS: 60 SKILL.md no sincronizador; SHA-256 independente de 36 skills dos satélites | [preservação](../../../completions/BATCH-069-preservation-audit.json) |
+| Extensão VS Code | PASS: 124/124, zero falhas/skips | [testes](../../../completions/BATCH-069-extension-tests.json) / [log](../../../completions/BATCH-069-extension-tests.log) |
+| Descoberta matriz memory/ e core sdd/ | PASS, incluindo prefixos legados e MDD | [smoke](../../../completions/BATCH-069-extension-scope-smoke.json) |
 | Compilação TypeScript | npm.cmd run compile, exit 0 | Executado antes da suíte final |
 | Skill nova | quick_validate.py: Skill is valid!, exit 0 | PyYAML instalado somente em pasta temporária |
 | Scripts e diff | node --check e git diff --check (stage e working tree), exit 0 | Verificador reproduzível |

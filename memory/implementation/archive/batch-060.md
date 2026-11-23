@@ -1,6 +1,6 @@
 # BATCH-060 — Skill `c2f-documentation` e Propagação
 
-Execução da [REQ-058](../human-requests/req-058.md).
+Execução da [REQ-058](../../human-requests/archive/req-058.md).
 
 ## Entregue
 
@@ -21,4 +21,4 @@ Execução da [REQ-058](../human-requests/req-058.md).
 ## Notas
 
 - O `.claude/skills/` é *gitignored* no Core e no `lumix`. A cópia local existe, mas só `.cursor/.github/.gemini/.codex` entram no git desses repositórios.
-- A distribuição automática de atualizações de skill às instalações é o [ARCH-007](../backlog/ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) (backlog).
+- A distribuição automática de atualizações de skill às instalações é o [ARCH-007](../../backlog/archive/original/ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) (backlog).

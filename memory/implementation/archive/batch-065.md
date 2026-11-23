@@ -2,7 +2,7 @@
 
 - Projeto: `conn2flow-ai-workspace`
 - Raiz: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- Requisição: [REQ-063](../human-requests/req-063.md)
+- Requisição: [REQ-063](../../human-requests/archive/req-063.md)
 - Status: `ready-for-review`
 - Executor: OpenAI Codex
 - Data: 2026-10-01
@@ -91,7 +91,7 @@ Foram examinados os arquivos canônicos, seus gatilhos, seções e relação com
 1. `node scripts/mcp/sync-devtools-kits.cjs --apply --report completions/BATCH-065-md5-audit.json`: **1.025/1.025 MD5**, 25 kits, 41 skills, 14 templates, zero divergências e zero mudanças locais.
 2. `node scripts/mcp/sync-devtools-kits.cjs`: **PASS**, zero arquivos planejados; comprova idempotência e configuração coerente dos 25 kits/14 templates.
 3. `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/mcp/verify-devtools.ps1`: **exit 0**, Chrome **154.0.8037.58**, perfil TEMP isolado, CDP **127.0.0.1:9222**, recusa de porta ocupada e do mesmo perfil em outra porta. Sintaxe PowerShell validada; ramo `-Visible` testado por interceptação da criação de processo (Normal, sem headless), sem abrir janela para o operador. Chrome criado encerrado e porta liberada.
-4. Smoke MCP real com **Node v22.23.3**, **chrome-devtools-mcp 1.10.1**, handshake e 30 ferramentas: página sintética HTTP loopback, navegação, snapshot, clique em UID, modal aberto, medição de DOM, screenshot, erro de console com stack trace e AJAX POST com HTTP **200**, CSRF de fixture e envelope JSON. Registro: [MCP smoke](../../completions/BATCH-065-mcp-smoke.json), [lançador](../../completions/BATCH-065-launcher-smoke.json), [screenshot](../../completions/BATCH-065-sandbox-smoke.png). Screenshot inspecionado: modal centralizado com overlay visível.
+4. Smoke MCP real com **Node v22.23.3**, **chrome-devtools-mcp 1.10.1**, handshake e 30 ferramentas: página sintética HTTP loopback, navegação, snapshot, clique em UID, modal aberto, medição de DOM, screenshot, erro de console com stack trace e AJAX POST com HTTP **200**, CSRF de fixture e envelope JSON. Registro: [MCP smoke](../../../completions/BATCH-065-mcp-smoke.json), [lançador](../../../completions/BATCH-065-launcher-smoke.json), [screenshot](../../../completions/BATCH-065-sandbox-smoke.png). Screenshot inspecionado: modal centralizado com overlay visível.
 5. `npm test` em `vscode-extension/`: compilação TypeScript e **124/124 PASS**, 0 fail/skip/cancelled, exit **0**, 238.6059 ms na suíte. Os seis artefatos `out/` modificados pela normalização de EOL do build foram restaurados aos bytes anteriores; fontes da extensão não foram alteradas.
 6. `node --check` dos scripts CJS e `git diff --check`: sem erros. Revisão do executor conforme `review-current-batch`: nenhuma falha funcional pendente no slice; requisito de Node do host identificado abaixo.
 
@@ -99,4 +99,4 @@ Foram examinados os arquivos canônicos, seus gatilhos, seções e relação com
 
 O teste de infraestrutura não homologa telas específicas nem rotas autenticadas do Gestor. Para ativar a configuração canônica no cliente, Node compatível precisa estar no PATH do processo MCP; **Node 20.14.0 atual não inicia o servidor**. A validação reproduzível usa Node 22 temporário; não houve atualização global de Node. Não foi alegada ativação/reload do cliente nesta sessão, cujo catálogo de ferramentas é fixo.
 
-O MCP Hub não estava exposto como ferramenta nesta sessão; CLI local e recibo em disco foram usados. Não houve commit, push, deploy, publicação ou alteração de CURRENT/REQ/SPEC. O lote está implementado e validado para revisão independente; recibo: [BATCH-065-executor-receipt.json](../../completions/BATCH-065-executor-receipt.json).
+O MCP Hub não estava exposto como ferramenta nesta sessão; CLI local e recibo em disco foram usados. Não houve commit, push, deploy, publicação ou alteração de CURRENT/REQ/SPEC. O lote está implementado e validado para revisão independente; recibo: [BATCH-065-executor-receipt.json](../../../completions/BATCH-065-executor-receipt.json).

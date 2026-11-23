@@ -1,8 +1,8 @@
 # Relatório de Revisão Técnica — BATCH-070
 
 - **Projeto**: Multi-Repositório (`conn2flow`, `conn2flow-site`, `conn2flow-nexus`, `conn2flow-app`, `lumix`, `transformamp`, `conn2flow-mkt`)
-- **Requisição**: [REQ-068](../human-requests/req-068.md)
-- **Lote**: [BATCH-070](../implementation/batch-070.md)
+- **Requisição**: [REQ-068](../human-requests/archive/original/req-068.md)
+- **Lote**: [BATCH-070](../implementation/archive/batch-070.md)
 - **Revisor**: Macro-Arquiteto & Auditor Técnico
 - **Data**: 2026-10-09
 - **Veredito**: **APPROVED (Homologado com Observações Arquiteturais)**

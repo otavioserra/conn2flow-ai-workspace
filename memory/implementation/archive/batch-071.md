@@ -2,7 +2,7 @@
 
 - **Projeto**: `conn2flow-ai-workspace`
 - **Raiz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- **Requisição**: [REQ-069](../human-requests/req-069.md)
+- **Requisição**: [REQ-069](../../human-requests/archive/original/req-069.md)
 - **Status**: `ready-for-review`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
@@ -55,11 +55,11 @@
 
 ### Validação executada
 
-1. `python -m pytest tools/mdd-client/tests tools/mdd-hub/tests tools/tests -q --cov=mdd_client --cov=mdd_hub --cov-fail-under=95`: **61 aprovados, zero falhas/erros/skips**, **97,23% de cobertura global** (901 statements, 25 não cobertos). Todos os cenários críticos de aceite possuem testes; isso não equivale a 100% de cobertura de linhas. [JUnit](../../completions/BATCH-071-pytest.xml) / [resumo](../../completions/BATCH-071-test-summary.json).
+1. `python -m pytest tools/mdd-client/tests tools/mdd-hub/tests tools/tests -q --cov=mdd_client --cov=mdd_hub --cov-fail-under=95`: **61 aprovados, zero falhas/erros/skips**, **97,23% de cobertura global** (901 statements, 25 não cobertos). Todos os cenários críticos de aceite possuem testes; isso não equivale a 100% de cobertura de linhas. [JUnit](../../../completions/BATCH-071-pytest.xml) / [resumo](../../../completions/BATCH-071-test-summary.json).
 2. Git real: branch e stage humanos preservados no modo headless, retry idempotente, publicação para remote bare local, rejeição de branch incompleta e falha de commit conservando worktree. API real: Uvicorn em porta loopback temporária, Client envia relatório autenticado, retry deduplicado e acesso sem token rejeitado; processo encerrado no finally.
-3. `python tools/verify_mdd.py --output completions/BATCH-071-smoke.json --live-docs`: **11 checks de CLI**, **44 skills × 5 kits**, segunda sincronização sem escrita, dois excedentes arquivados e **sete fontes reais coletadas sem erro**, com digest e tamanho registrados. [Smoke](../../completions/BATCH-071-smoke.json). Conteúdo externo não foi copiado para evidência permanente.
+3. `python tools/verify_mdd.py --output completions/BATCH-071-smoke.json --live-docs`: **11 checks de CLI**, **44 skills × 5 kits**, segunda sincronização sem escrita, dois excedentes arquivados e **sete fontes reais coletadas sem erro**, com digest e tamanho registrados. [Smoke](../../../completions/BATCH-071-smoke.json). Conteúdo externo não foi copiado para evidência permanente.
 4. `ruff check tools`, `pip check`, `node --check scripts/skills/sync-skills.cjs` e `git diff --check`: PASS. Sintaxe dos 15 módulos de aplicação analisada com gramática Python 3.11. Workflow CI preparado para Python 3.11/3.12 em Windows/Linux; execução remota não foi conferida neste lote.
-5. Manual [tools/README](../../tools/README.md) e guias [PT-BR](../../docs/pt-br/GUIA-ECOSSISTEMA-PYTHON-MDD.md) / [EN](../../docs/en/MDD-PYTHON-ECOSYSTEM-GUIDE.md) conferidos contra código `d052f32`. `node scripts/docs/validate-public-docs.cjs`: PASS em 23 documentos, 11 pares, 254 links relativos e 84 fontes; zero falhas. [Auditoria](../../completions/BATCH-071-docs-audit.json).
+5. Manual [tools/README](../../../tools/README.md) e guias [PT-BR](../../../docs/pt-br/GUIA-ECOSSISTEMA-PYTHON-MDD.md) / [EN](../../../docs/en/MDD-PYTHON-ECOSYSTEM-GUIDE.md) conferidos contra código `d052f32`. `node scripts/docs/validate-public-docs.cjs`: PASS em 23 documentos, 11 pares, 254 links relativos e 84 fontes; zero falhas. [Auditoria](../../../completions/BATCH-071-docs-audit.json).
 
 ### Defeitos encontrados e corrigidos
 

@@ -2,7 +2,7 @@
 
 - **Projeto**: Multi-Repositório (`conn2flow`, `conn2flow-site`, `conn2flow-nexus`, `conn2flow-app`, `lumix`, `transformamp`, `conn2flow-mkt`)
 - **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- **Requisição**: [REQ-068](../human-requests/req-068.md)
+- **Requisição**: [REQ-068](../../human-requests/archive/original/req-068.md)
 - **Status**: `ready-for-review`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09

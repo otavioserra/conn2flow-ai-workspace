@@ -1,6 +1,6 @@
 # BATCH-062 — Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways
 
-* **Requisição**: [req-060.md](../human-requests/req-060.md)
+* **Requisição**: [req-060.md](../../human-requests/archive/req-060.md)
 * **Status**: `READY_FOR_REVIEW`
 * **Data de Início**: 2026-09-29
 * **Data de Conclusão**: 2026-09-29

@@ -51,8 +51,8 @@
       "translator": "mdd-agent"
     },
     "c2f-executor-agent": {
-      "source_sha256": "e616936d6f2f20033ab38d2f47998d50031999354fcbb65e2cb90ffe570dea20",
-      "translated_at": "2026-11-21",
+      "source_sha256": "9b3babe508d649ecd5b90c868f2a291b6f1a4fdec5f66958d44dbcd7a4e03e84",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-gd-image-safety": {
@@ -91,8 +91,8 @@
       "translator": "mdd-agent"
     },
     "c2f-json-resources-sync": {
-      "source_sha256": "017bc54dbc42e76036082b8a0d38270b272d0df0249d4370b79a75af23efb9e0",
-      "translated_at": "2026-11-05",
+      "source_sha256": "3135bf013b783d9012452ed5772eedd82c12020f0310295eb73650aac9cf71d2",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-mdd-indexing-and-handoffs": {
@@ -166,8 +166,8 @@
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "5d640c59e8028bfe254006467725c56ab3ee9e46db9b6b61d2577cde57da4fcf",
-      "translated_at": "2026-11-05",
+      "source_sha256": "5acf5c65d3628f84b2015460f6305afaace04765747e910638a0d4301a4379a6",
+      "translated_at": "2026-11-23",
       "translator": "mdd-agent"
     },
     "c2f-system-tasks": {

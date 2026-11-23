@@ -1,5 +1,14 @@
 # Validation Checklist
 
+## BATCH-086 — REQ-084 (2026-11-23)
+
+- [x] Worktrees com junctions, stage seletivo de `*Data.json` e avanço concorrente da `main` documentados em PT-BR/EN.
+- [x] Cinco kits locais e templates sincronizados, três hashes EN atualizados. Auditoria PASS em 19 alvos, 0 divergências e 0 drift. [Auditoria](../../completions/skills-audit.json).
+- [x] `pytest -q tools/mdd-client/tests` com 119/119 aprovados.
+- [x] Dez requisições e dez lotes ativos. Arquivadas quatro requisições e oito lotes. Zero órfãos novos, 65 links reescritos e 33 links históricos reparados.
+- [ ] Zero órfãos em toda `memory/`. Permanecem 166 ocorrências preexistentes em snapshots `archive/original/` e na memória de execução preservada. [REP-007](../reports/REP-007-batch086-skills-and-memory-links.md).
+- [x] Memória de execução íntegra (10.329 bytes / 57 linhas), índices regenerados e FEAT-015 fora do stage. [Lote em `ready-for-review`](../implementation/batch-086.md).
+
 ## BATCH-085 — REQ-083 (2026-11-23)
 
 - [x] Skills PT-BR/EN e hashes revisados; 19 alvos com PASS, 0 divergências e 0 drift; pytest 119/119.
@@ -120,7 +129,7 @@ Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/B
 - [x] Home SPEC e67arquivos preservados byte a byte na working tree; commit f5a7ea4.
 - [ ] Homologação visual de Otávio Serra, adiada explicitamente para o fim.
 
-Evidências preservadas em [batch-076.md](../implementation/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
+Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
 
 Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de testes empÃ­ricos de validaÃ§Ã£o para os lotes funcionais ativos.
 
@@ -171,7 +180,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - Preservação: 60 skills locais no sincronizador (36 nos satélites + 24 nos templates); SHA-256 independente para todos os arquivos das 36 skills dos satélites. [Evidência](../../completions/BATCH-069-preservation-audit.json).
 - Extensão: compilação npm.cmd run compile, exit 0; 124/124 testes, zero falhas/skips; descoberta memory/ da matriz e sdd/ do core exercitada no JS compilado. [Testes](../../completions/BATCH-069-extension-tests.json) / [smoke](../../completions/BATCH-069-extension-scope-smoke.json).
 - Nova skill validada com quick_validate.py; scripts com node --check e diffs stage/working tree sem erros. Sem execução real de IA, exclusão de worktrees ou deploy.
-- Entrega técnica ready-for-review: [lote](../implementation/batch-069.md) e [recibo](../../completions/BATCH-069-executor-receipt.json). Parecer independente e homologação continuam pendentes abaixo.
+- Entrega técnica ready-for-review: [lote](../implementation/archive/batch-069.md) e [recibo](../../completions/BATCH-069-executor-receipt.json). Parecer independente e homologação continuam pendentes abaixo.
 
 ### 3. Revisão Técnica
 
@@ -200,7 +209,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Auditoria executada: 23 documentos, 11 pares estruturais, 252 links relativos, 80 fontes existentes, catálogos 44/44 e READMEs de 5.089/5.394 bytes.
 - [x] Verificador falsificável: 5/5 mutações detectadas em fixture temporária, incluindo o README antigo do HEAD.
 - [x] Paridade temática revisada; sintaxe CJS e diff sem erros.
-- [x] [Relatório](../implementation/batch-072.md), [auditoria](../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../completions/BATCH-072-executor-receipt.json) registrados.
+- [x] [Relatório](../implementation/archive/batch-072.md), [auditoria](../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../completions/BATCH-072-executor-receipt.json) registrados.
 - [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-072.md](review-072.md) (APPROVED).
 
 Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega homologada.
@@ -220,7 +229,7 @@ Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejad
 - [x] Manual, guias bilíngues, lote e recibo versionados com stage de caminhos explícitos.
 - [ ] Parecer técnico independente e homologação executiva.
 
-Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
+Evidências: [lote](../implementation/archive/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
 
 
@@ -237,7 +246,7 @@ Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. A
 - [x] Commits com staging explícito; seis satélites com push confirmado, conn2flow-mkt sem remote e commit local.
 - [x] Relatório, recibo e índices atualizados para ready-for-review; homologação independente não atribuída.
 
-Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073.md).
+Evidências, comandos, hashes e limites: [BATCH-073](../implementation/archive/batch-073.md).
 
 ## BATCH-074 — Trava Tripla MDD (REQ-072, 2026-10-09)
 
@@ -251,7 +260,7 @@ Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073
 - [x] Commits com caminhos específicos e recibo persistente.
 - [x] Homologação humana identificada: Otávio, 2026-10-09, [REV-074](../human-reviews/rev-074.md).
 
-Evidências: [lote](../implementation/batch-074.md), [JUnit](../../completions/BATCH-074-pytest.xml), [resumo](../../completions/BATCH-074-test-summary.json), [artefatos](../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../completions/BATCH-074-skills-audit.json), [recibo](../../completions/BATCH-074-receipt.json), [revisão](../human-reviews/rev-074.md).
+Evidências: [lote](../implementation/archive/batch-074.md), [JUnit](../../completions/BATCH-074-pytest.xml), [resumo](../../completions/BATCH-074-test-summary.json), [artefatos](../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../completions/BATCH-074-skills-audit.json), [recibo](../../completions/BATCH-074-receipt.json), [revisão](../human-reviews/rev-074.md).
 
 Limites: auditoria global FAIL/52 divergências nas três skills alheias preservadas; nova skill PASS. Sem MCP Hub remoto, Linux, banco/UI/deploy/CI remoto ou suíte PHP integral do produto. YAML escalar documentado; crash entre arquivos requer indexação. Starlette/AnyIO emite aviso de depreciação. Gerador legado de init/compact mantido; pendências humanas não auto-arquivadas.
 
@@ -271,7 +280,7 @@ REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histó
 - [x] Relatório e recibo persistentes, staging por caminhos específicos.
 - [x] Homologação humana identificada do BATCH-075 (Otávio, 2026-10-09, [REV-075](../human-reviews/rev-075.md)).
 
-Evidências e limites: [lote](../implementation/batch-075.md), [resumo](../../completions/BATCH-075-test-summary.json), [recibo](../../completions/BATCH-075-receipt.json), [REV-075](../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.
+Evidências e limites: [lote](../implementation/archive/batch-075.md), [resumo](../../completions/BATCH-075-test-summary.json), [recibo](../../completions/BATCH-075-receipt.json), [REV-075](../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.
 
 [Archived history](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
 

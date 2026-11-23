@@ -64,7 +64,7 @@ Corrigidos durante a execução: saída MCP sem structuredContent (retorno agora
 
 Avisos: depreciação Starlette/AnyIO nos testes e DEP0190 do vsce legado durante empacotamento. Python 3.14/Windows executado; ambiente canônico Python 3.12 instalado. Linux/CI remota não exercitados. Não houve execução de infraestrutura, produção, PyPI, Marketplace, push ou homologação simulada. Textos históricos preservados, não revalidados como descrição atual dos serviços; referências históricas sdd/ dentro de SPEC/memórias não foram reescritas para preservar seu conteúdo.
 
-Revisão independente emitida em [rev-076.md](../human-reviews/rev-076.md), parecer RECOMMEND-APPROVAL, sem findings bloqueantes remanescentes. Homologação visual humana obrigatória permanece pendente. Conferir MDD Explorer, escopos memory/ e fallback legado, painel de choques e ação intencional no VSIX 1.1.3. A matriz permanece com diff local revisado, sem commit deste lote; home possui commit específico f5a7ea4.
+Revisão independente emitida em [rev-076.md](../../human-reviews/rev-076.md), parecer RECOMMEND-APPROVAL, sem findings bloqueantes remanescentes. Homologação visual humana obrigatória permanece pendente. Conferir MDD Explorer, escopos memory/ e fallback legado, painel de choques e ação intencional no VSIX 1.1.3. A matriz permanece com diff local revisado, sem commit deste lote; home possui commit específico f5a7ea4.
 
 ## Correção na revisão independente
 

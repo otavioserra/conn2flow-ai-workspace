@@ -2,7 +2,7 @@
 
 - **Projeto**: Multi-Repositório (`conn2flow-ai-workspace`, `conn2flow`, `conn2flow-site`, `conn2flow-nexus`, `conn2flow-app`, `lumix`, `transformamp`, `conn2flow-mkt`)
 - **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- **Requisição**: [REQ-071](../human-requests/req-071.md)
+- **Requisição**: [REQ-071](../../human-requests/archive/req-071.md)
 - **Status**: `ready-for-review`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
@@ -81,10 +81,10 @@ Cada staging listou caminhos de arquivos explicitamente; nenhuma operação `git
 
 ### Evidências e limites
 
-- [Preservação das memórias](../../completions/BATCH-073-memory-preservation.json)
-- [Validação estrutural e links](../../completions/BATCH-073-validation.json)
-- [Auditoria global de skills](../../completions/BATCH-073-skills-audit.json)
-- [Prova das divergências anteriores](../../completions/BATCH-073-skills-baseline-proof.json)
-- [Recibo do Executor](../../completions/BATCH-073-executor-receipt.json)
+- [Preservação das memórias](../../../completions/BATCH-073-memory-preservation.json)
+- [Validação estrutural e links](../../../completions/BATCH-073-validation.json)
+- [Auditoria global de skills](../../../completions/BATCH-073-skills-audit.json)
+- [Prova das divergências anteriores](../../../completions/BATCH-073-skills-baseline-proof.json)
+- [Recibo do Executor](../../../completions/BATCH-073-executor-receipt.json)
 
 Mantidos sem revalidar: contratos e lições históricos dos documentos 03/04; seu conteúdo foi preservado, não reinterpretado como garantia técnica atual. Não foi exercitada a interface gráfica da extensão; compilação, suíte e descoberta da memória foram verificadas por execução local. A CLI de compactação não foi executada sobre históricos reais neste lote.

@@ -2,7 +2,7 @@
 
 - **Projeto**: `conn2flow-ai-workspace`
 - **Raiz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- **Requisição**: [REQ-070](../human-requests/req-070.md)
+- **Requisição**: [REQ-070](../../human-requests/archive/original/req-070.md)
 - **Status**: `ready-for-review`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
@@ -52,9 +52,9 @@
 ### Validação executada
 
 - Comando reproduzível: node scripts/docs/validate-public-docs.cjs --report completions/BATCH-072-docs-audit.json.
-- [Auditoria documental](../../completions/BATCH-072-docs-audit.json): PASS em 23 arquivos, 11 pares com estrutura correspondente (títulos, tabelas, passos e blocos de código), 252 links relativos válidos, 80 caminhos de fonte existentes e 44/44 skills nos dois catálogos.
+- [Auditoria documental](../../../completions/BATCH-072-docs-audit.json): PASS em 23 arquivos, 11 pares com estrutura correspondente (títulos, tabelas, passos e blocos de código), 252 links relativos válidos, 80 caminhos de fonte existentes e 44/44 skills nos dois catálogos.
 - Paridade temática revisada seção a seção: mesmos limites, papéis, interfaces, estados de disponibilidade, modos de autonomia e ressalvas técnicas. A comparação automatizada prova estrutura; não é um verificador semântico de tradução.
-- [Verificações negativas](../../completions/BATCH-072-validator-negative-checks.json): 5/5 defeitos detectados em diretório temporário isolado. O README original do HEAD falha no limite de tamanho; link quebrado, skill ausente, seção sem par e cerca de código aberta também falham. Arquivos reais não foram adulterados durante essas verificações.
+- [Verificações negativas](../../../completions/BATCH-072-validator-negative-checks.json): 5/5 defeitos detectados em diretório temporário isolado. O README original do HEAD falha no limite de tamanho; link quebrado, skill ausente, seção sem par e cerca de código aberta também falham. Arquivos reais não foram adulterados durante essas verificações.
 - node --check scripts/docs/validate-public-docs.cjs: exit 0. git diff --check: sem erros de whitespace; avisos normais de normalização LF/CRLF do Git registrados, sem falha.
 - Diagrama Mermaid inspecionado no código: IDs e conexões equivalentes entre idiomas, componentes Python em ligações pontilhadas. Renderização visual Mermaid não executada.
 
@@ -75,6 +75,6 @@
 
 ### Consolidação
 
-- [Recibo do Executor](../../completions/BATCH-072-executor-receipt.json) emitido com evidências e limitações.
+- [Recibo do Executor](../../../completions/BATCH-072-executor-receipt.json) emitido com evidências e limitações.
 - Stage e commit restritos à lista explícita da REQ-070. Sem push automático ou publicação.
 - Entrega técnica ready-for-review; revisão independente e homologação não são declaradas como realizadas pelo Executor.

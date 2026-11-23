@@ -34,20 +34,24 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-062** | Incorporação Canônica dos Aprendizados de E-commerce nas Skills e Criação da Skill c2f-payment-gateways | [batch-062](archive/batch-062.md) |
 | **BATCH-063** | Choques das entregas na extensão do VS Code | [batch-063](archive/batch-063.md) |
 
-## Lotes ativos e recentes
+## Lote atual
+
+[REQ-084](../human-requests/req-084.md) / [BATCH-086](batch-086.md) (`ready-for-review`): três skills PT-BR/EN atualizadas e Regra dos 10 Ativos aplicada na matriz. O [índice MDD](index.md) lista os dez lotes ativos.
+
+## Histórico de lotes arquivados — BATCH-068 a BATCH-075
 
 | Batch | Status | Escopo | Alvo de validação | Observações |
 | --- | --- | --- | --- | --- |
 | **BATCH-068** | complete | Memory Gardening Global do Ecossistema SDD: Poda de Arquivos Gigantes, Saneamento da Regra dos 10 e Limpeza de Sobras Locais | [batch-068.md](archive/original/batch-068.md) | REQ-066 homologada; dumps gigantes podados no Core, DECISION-LOG e VALIDATION-CHECKLIST saneados (<50KB), worktrees e backups .bak removidos, 124/124 npm test, review-068.md aprovado. |
-| **BATCH-069** | complete | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](batch-069.md) | REQ-067 homologada; fundação MDD (00, 01, 02), 50 índices, 44 skills (c2f-ai-features), Armadilhas 18 e 19, 39 alvos PASS, 124/124 testes, review-069.md aprovado. |
-| **BATCH-070** | complete | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](batch-070.md) | REQ-068 homologada; migração nos 7 satélites, Tríade 00, 01, 02 e 44 skills, review-070.md aprovado. |
-| **BATCH-071** | ready-for-review | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
-| **BATCH-072** | complete | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](batch-072.md) | REQ-070 homologada; 23 docs, 11 pares, 252 links PASS, 44 skills, review-072.md aprovado. |
-| **BATCH-073** | complete | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
-| **BATCH-074** | complete | Implementação da Trava Tripla MDD: Metadata Header com Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | [batch-074.md](batch-074.md) | REQ-072 homologada em rev-074.md; cabeçalho YAML frontmatter, auto-cura/mutação via CLI (PHP/Python) com fallback, 45ª skill c2f-mdd-indexing-and-handoffs, pasta human-reviews/ |
-| **BATCH-075** | complete | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | [batch-075.md](batch-075.md) | REQ-073 aprovada; merge de feat/req-071 em feat/req-072, testes 100% verde (pytest e VS Code) e merge final na branch main |
+| **BATCH-069** | complete | Fundação Estrutural do MDD (Memory Driven Development), Sistema Hierárquico de index.md com Compactação Dual e Incorporação das Lições do BL-028 | [batch-069.md](archive/batch-069.md) | REQ-067 homologada; fundação MDD (00, 01, 02), 50 índices, 44 skills (c2f-ai-features), Armadilhas 18 e 19, 39 alvos PASS, 124/124 testes, review-069.md aprovado. |
+| **BATCH-070** | complete | Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | [batch-070.md](archive/batch-070.md) | REQ-068 homologada; migração nos 7 satélites, Tríade 00, 01, 02 e 44 skills, review-070.md aprovado. |
+| **BATCH-071** | ready-for-review | Implementação das Aplicações em Python: MDD Client CLI & Daemon (ARCH-010) e MDD Hub & Documentation Watcher (ARCH-011) | [batch-071.md](archive/batch-071.md) | REQ-069 aprovada; desenvolvimento modular em Python 3.11+ em tools/mdd-client e tools/mdd-hub com pytest |
+| **BATCH-072** | complete | Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em docs/ | [batch-072.md](archive/batch-072.md) | REQ-070 homologada; 23 docs, 11 pares, 252 links PASS, 44 skills, review-072.md aprovado. |
+| **BATCH-073** | complete | Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com raw/ e Boilerplates | [batch-073.md](archive/batch-073.md) | REQ-071 aprovada; renomeação para 03-memory-engineering-chief e 04-memory-engineering-execution, uso de raw/ e skeletons |
+| **BATCH-074** | complete | Implementação da Trava Tripla MDD: Metadata Header com Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | [batch-074.md](archive/batch-074.md) | REQ-072 homologada em rev-074.md; cabeçalho YAML frontmatter, auto-cura/mutação via CLI (PHP/Python) com fallback, 45ª skill c2f-mdd-indexing-and-handoffs, pasta human-reviews/ |
+| **BATCH-075** | complete | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | [batch-075.md](archive/batch-075.md) | REQ-073 aprovada; merge de feat/req-071 em feat/req-072, testes 100% verde (pytest e VS Code) e merge final na branch main |
 
-## Requisição ativa
+## Entregas anteriores
 
 REQ-083 / BATCH-085 (`ready-for-review`) aplicou os ajustes do REP-005 e a paridade PHP, com sete satélites publicados e dois sem `origin`. As worktrees foram removidas. [Relatório](batch-085.md).
 
@@ -64,7 +68,7 @@ REQ-078 / BATCH-080: implementação pronta para revisão; 46 skills EN, registr
 | Batch | Estado técnico | Escopo | Evidências |
 | --- | --- | --- | --- |
 | BATCH-078 | ready-for-human-review | Limpeza Git, arquivamento dual e saneamento de derivados do Site | [batch-078.md](batch-078.md), [REV-078](../human-reviews/rev-078.md) |
-| BATCH-076 | ready-for-human-review | MCP nativo, UI Bridge MDD e migração home | [batch-076.md](batch-076.md), [REV-076](../human-reviews/rev-076.md) |
+| BATCH-076 | ready-for-human-review | MCP nativo, UI Bridge MDD e migração home | [batch-076.md](archive/batch-076.md), [REV-076](../human-reviews/rev-076.md) |
 | BATCH-077 | ready-for-human-review | Quatro skills MDD, proporcionalidade de build e propagação segura | [batch-077.md](batch-077.md), [REV-077](../human-reviews/rev-077.md) |
 
 [Archived history](<archive/compacted/BATCH-INDEX-fe51f34e6321.md>)

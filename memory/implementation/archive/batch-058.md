@@ -1,6 +1,6 @@
 # BATCH-058 — Armadilhas 7/8/9 e Sincronização Global de Skills
 
-* **Requisição**: [req-056.md](../human-requests/req-056.md)
+* **Requisição**: [req-056.md](../../human-requests/archive/req-056.md)
 * **Status**: `READY_FOR_REVIEW`
 * **Data de Início**: 2026-09-18
 * **Data de Conclusão**: 2026-09-18

@@ -1,8 +1,8 @@
 # Relatório de Revisão Técnica — BATCH-065
 
 - **Projeto**: `conn2flow-ai-workspace`
-- **Requisição**: [REQ-063](../human-requests/req-063.md)
-- **Lote**: [BATCH-065](../implementation/batch-065.md)
+- **Requisição**: [REQ-063](../human-requests/archive/req-063.md)
+- **Lote**: [BATCH-065](../implementation/archive/batch-065.md)
 - **Revisor**: Macro-Arquiteto & Auditor Técnico
 - **Data**: 2026-10-01
 - **Veredito**: **APPROVED (Homologado)**

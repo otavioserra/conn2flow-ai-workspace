@@ -21,7 +21,7 @@ user-invocable: false
 
 ---
 
-## ⛔ The 17 Critical Traps
+## ⛔ Critical Shell and Windows Traps
 
 ### 1. Automatic Conversion of Paths into Git Bash (MSYS Path Conversion)
 
@@ -399,13 +399,61 @@ End of line checkout CRLF read by Linux fails tests that run scripts `.sh` (`syn
 > [!CAUTION]
 > NEVER use `npx tailwindcss` or `npx terser` in automated build scripts or build repetitive routines. It depends strictly on local dependencies in `node_modules/.bin/`.
 
-### 18. Junctions and git worktree remove (critical)
+### 18. Remove a worktree with junctions
 
-The BL-028 records loss of vendor and node_modules in 2026-10-08: removal of worktrees in Windows crossed Directory Junctions (mklink /J) and emptied destinations in the main tree. Treat any removal as unsafe until you check the reparse points and its references.
+On Windows, inspect and remove the worktree in a single Command Prompt (CMD) session. Run each block in order, replacing the example paths with verified absolute paths.
 
-Before removing, confirm the absolute path of worktree, which is neither main tree nor pipeline origin. List junctions with cmd /c "dir /AL <pasta>" (also inspect internal nodes without crossing links). Check references from other worktrees into it; if there is, preserve/repoint first. Undo each junction individually with cmd /c "rmdir <pasta>\<atalho>" **without /S**: this removes only the shortcut. Use previously checked literal paths and end-to-end CMD; never enumerate paths in PowerShell and pass deletion to another shell. Confirm that the links have left, then run git worktree remove. Never use --force to overcome unintegrated work. Then check the content of the vendor/node_modules on the main trees and the remaining worktrees.
+1. From the main checkout, confirm the registered worktree and protect the main checkout and pipeline source trees. Confirm that the path and its ancestors are real directories, that all worktree commits are integrated into `main`, and that there is no pending work, including ignored files that need to be preserved.
 
-Do not create junction for another temporary worktree; when necessary, the reference is for the main tree. Check the six-step routine in mdd-memory-gardening.
+   ```bat
+   cd /d "C:\Projetos\repo"
+   git worktree list --porcelain
+   git -C "C:\Projetos\repo-lote" status --short --untracked-files=all --ignored=matching
+   git -C "C:\Projetos\repo-lote" merge-base --is-ancestor HEAD main
+   echo %ERRORLEVEL%
+   ```
+
+   The last command must return 0. Stop if there is unique work, an uncertain target, or a protected path.
+
+2. Inventory links and real directories one level at a time. Repeat the commands in each real directory, including project subdirectories and real `vendor` and `node_modules` installations. Inspect these names from the parent before entering. Check the other worktrees and the targets reported by `dir /AL`. If another checkout depends on the target worktree, suspend removal until the reference has been resolved and the targets checked.
+
+   ```bat
+   dir /AL "C:\Projetos\repo-lote"
+   dir /A:D-L "C:\Projetos\repo-lote"
+   dir /AL "C:\Projetos\repo-lote\projeto"
+   dir /AL "C:\Projetos\repo"
+   ```
+
+   Never use `/S` for enumeration. Record the contents and targets of `vendor` and `node_modules` in the checkouts that will remain for comparison after removal.
+
+3. Remove each verified `<JUNCTION>` entry individually by its literal path, without `/S`. If you find another kind of reparse point or removal fails, stop and preserve the worktree.
+
+   ```bat
+   rmdir "C:\Projetos\repo-lote\vendor"
+   rmdir "C:\Projetos\repo-lote\projeto\node_modules"
+   ```
+
+4. Repeat `dir /AL` in every real directory inventoried. Proceed only after confirming that no links remain. Distinguish an empty listing from a path or access error.
+
+5. Run `git worktree remove` with the verified path. If Git refuses, preserve the worktree and investigate. After successful removal, check `git worktree prune --dry-run --verbose` and run `git worktree prune` if the preview lists only disposable metadata.
+
+   ```bat
+   git worktree remove "C:\Projetos\repo-lote"
+   git worktree prune --dry-run --verbose
+   git worktree prune
+   ```
+
+6. Confirm the target is absent from `git worktree list --porcelain`. In every remaining checkout, compare the contents of `vendor` and `node_modules` against the earlier inventory and confirm that retained junctions resolve to the expected targets.
+
+   ```bat
+   git worktree list --porcelain
+   dir "C:\Projetos\repo\vendor"
+   dir "C:\Projetos\repo\node_modules"
+   ```
+
+**Commands prohibited during this cleanup:** `rmdir /S`, `Remove-Item -Recurse`, `rm -rf`, and enumeration in PowerShell followed by deletion in CMD. Never use `git worktree remove --force` to discard unintegrated work.
+
+When a junction is needed for shared dependencies, target the main checkout. See `mdd-memory-gardening` for the maintenance routine.
 
 ### 19. iconv //TRANSLIT not portable in PHP Windows
 

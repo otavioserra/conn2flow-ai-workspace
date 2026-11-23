@@ -92,7 +92,7 @@ apenas após o reload. Os normalizadores passaram a aceitar aliases e a escrita 
 8. Gate SDD final: `ai:archive-sdd --keep=10 --repair-links --dry-run` confirmou 10 requisições,
    10 batches e **zero links relativos órfãos** no `conn2flow-ai-workspace`.
 
-Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md).
+Detalhamento operacional: [batch-053.md](../../implementation/archive/batch-053.md).
 
 ### 3. Revisão Técnica
 
@@ -123,7 +123,7 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
 4. Execução SSH real do `css:audit` para `conn2flow-site-local`: código 0, relatório das quatro
    tabelas retornado pela VM e nenhuma tentativa de leitura do `.env` local.
 5. Manifesto Tailwind confirmado com **237 recursos** e preservado como alteração preexistente.
-6. Detalhamento operacional: [batch-054.md](../implementation/archive/batch-054.md).
+6. Detalhamento operacional: [batch-054.md](../../implementation/archive/batch-054.md).
 7. Gate SDD final: 10 requisições, 10 batches e zero links relativos órfãos; `batch-044.md`
    preservado em `implementation/archive/` pelo comando oficial.
 
@@ -213,7 +213,7 @@ Detalhamento operacional: [batch-053.md](../implementation/archive/batch-053.md)
    `description`; zero erros.
 3. Testes focados do Core: `npx vitest run tests/Unit/JS/global-csrf.test.js tests/Unit/JS/global-auth-redirect.test.js`, **20/20 aprovados**.
 4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos.
-5. Detalhamento operacional: [batch-057.md](../implementation/archive/batch-057.md).
+5. Detalhamento operacional: [batch-057.md](../../implementation/archive/batch-057.md).
 
 ### 3. Revisão Técnica
 

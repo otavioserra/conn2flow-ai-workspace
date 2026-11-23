@@ -123,6 +123,18 @@ Author note: in the surgical route Core/database, --core-resources preserves the
 - Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
 - DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.
 
+### Concurrent advance of `main` after an approved fast-forward
+
+1. Before integration and again before publishing, run `git fetch origin`. Compare the current `main` and `origin/main` SHAs with the SHAs recorded at approval and with the approved branch/worktree tip. Stop if the fetch fails or a verifiable ref is missing.
+
+2. With the refs at the approved point, run `git merge --ff-only` of the approved tip onto a clean `main`. At the pre-push check, account for the local fast-forward already performed and confirm that `origin/main` remains at the expected point.
+
+3. If either `main` advances, inspect `git log --oneline <base>..origin/main` and `git diff --stat <base> origin/main`. Make the same comparisons for local `main` if it advanced. Compare approved paths and requirements with the current tree and run the relevant checks. Ancestry and statistics alone cannot show that a later change preserved the delivery.
+
+4. Proceed only if the current `main` verifiably contains the entire delivery without conflicts, regressions, or loss of scope. If the commits are already integrated, record that result and skip a redundant merge. Use a fast-forward when possible. A divergent merge requires explicit authorization in addition to the original fast-forward approval. Preserve history and never force publication.
+
+5. If any part of the delivery is missing, the result is ambiguous, or a ref changes between the check and the operation, stop before merging or pushing. Preserve the branch/worktree intact and consult the human operator or Master Architect.
+
 ## REP-002 — diagnosis and rounds
 
 “<etapa> failed” means HTTP failure. Inspect session log → Nginx access log (code and bytes) → `php-error.log` on time → database SQL. Don't follow a preliminary hypothesis without evidence. Check branch and git status before deploy.

@@ -14,8 +14,8 @@ summary_medium: Rastreamento detalhado das etapas de scaffold de human-reviews/,
 - **Projeto**: Multi-Repositório: `conn2flow-ai-workspace` (Matriz / Ferramental Python) e `conn2flow` (Core Oficial / CLI PHP)
 - **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
 - **Raiz Core**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
-- **Requisição**: [REQ-072](../human-requests/req-072.md)
-- **Épico**: [ARCH-015](../backlog/ARCH-015-headless-triad-mechanics-and-human-reviews.md)
+- **Requisição**: [REQ-072](../../human-requests/archive/req-072.md)
+- **Épico**: [ARCH-015](../../backlog/archive/original/ARCH-015-headless-triad-mechanics-and-human-reviews.md)
 - **Status**: `complete`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
@@ -71,12 +71,12 @@ Implementação técnica entregue na branch feat/req-072 dos dois repositórios,
 
 ### Evidências executadas
 
-- **111/111 pytest**, zero falhas/erros/skips; **48 casos de paridade** executam PHP real e Python, com validação PyYAML, links, ambiguidades, rollback, lock compartilhado, junctions, Unicode e cabeçalhos inválidos. [JUnit](../../completions/BATCH-074-pytest.xml) e [resumo](../../completions/BATCH-074-test-summary.json).
+- **111/111 pytest**, zero falhas/erros/skips; **48 casos de paridade** executam PHP real e Python, com validação PyYAML, links, ambiguidades, rollback, lock compartilhado, junctions, Unicode e cabeçalhos inválidos. [JUnit](../../../completions/BATCH-074-pytest.xml) e [resumo](../../../completions/BATCH-074-test-summary.json).
 - **124/124 testes VS Code**, zero falhas/skips; TypeScript compilado. npm test encontrou incompatibilidade do Node 24 com argumento de pasta test/; a execução com lista explícita de arquivos passou. Não foi necessário alterar código da extensão.
 - Ruff, pip check, lint dos quatro arquivos PHP novos, git diff --check e quick_validate.py em UTF-8: PASS. c2f ai:sync: 45/45 contratos válidos nos cinco kits do core.
-- [Auditoria de artefatos](../../completions/BATCH-074-artifact-audit.json): 45 skills, dez cópias SHA-256 idênticas, dois catálogos 45/45, dezoito arquivos estruturais/modelos, onze links de índices válidos.
+- [Auditoria de artefatos](../../../completions/BATCH-074-artifact-audit.json): 45 skills, dez cópias SHA-256 idênticas, dois catálogos 45/45, dezoito arquivos estruturais/modelos, onze links de índices válidos.
 - docs:audit: exit 0, zero erros, 253 warnings do acervo do produto; não houve build/publicação das docs.
-- Revisão independente autorizada por REQ-072 triade: cinco defeitos de parsing/mutação identificados e corrigidos, mais a expansão de folding com parágrafo indentado; probes e 48 testes executados novamente pelo Revisor. [Ficha](../human-reviews/rev-074.md).
+- Revisão independente autorizada por REQ-072 triade: cinco defeitos de parsing/mutação identificados e corrigidos, mais a expansão de folding com parágrafo indentado; probes e 48 testes executados novamente pelo Revisor. [Ficha](../../human-reviews/rev-074.md).
 
 ### Defeitos encontrados e corrigidos
 
@@ -92,7 +92,7 @@ Implementação técnica entregue na branch feat/req-072 dos dois repositórios,
 
 - Dialeto YAML de mapeamento escalar/string com blocos; listas, objetos, âncoras e tags são tolerados por fallback em leitura e recusados para mutação. Vocabulários/limites editoriais não são validados pelas CLIs.
 - Dois arquivos não formam transação de filesystem: crash entre substituições exige regenerar índice; cada substituição individual é atômica e falha ordinária de índice faz rollback. Lock órfão exige inspeção, não remoção automática.
-- Auditoria global de skills permanece **FAIL com 52 divergências**, todas nas três skills canônicas que já tinham edições alheias na abertura: c2f-ai-features, c2f-modelo-templates e c2f-module-visual-assets. Bytes dessas skills e seus espelhos foram preservados. Nova skill tem PASS independente; não alegamos PASS global. [Relatório completo](../../completions/BATCH-074-skills-audit.json).
+- Auditoria global de skills permanece **FAIL com 52 divergências**, todas nas três skills canônicas que já tinham edições alheias na abertura: c2f-ai-features, c2f-modelo-templates e c2f-module-visual-assets. Bytes dessas skills e seus espelhos foram preservados. Nova skill tem PASS independente; não alegamos PASS global. [Relatório completo](../../../completions/BATCH-074-skills-audit.json).
 - MCP Hub não disponibilizado na sessão: recibo e despacho para Revisor local persistidos; sem report_completion/dispatch_task remotos.
 - Windows/Python 3.12 e PHP 8.5 executados; não executados Linux, suíte PHP completa do produto, CI remoto, banco, UI, deploy, publicação, testes reais de watcher/IA nem integração VS Code dual. Não são parte do código alterado neste lote.
 - Gerador legado de index.md em init/compact mantido, não integrado à API nova; após essas rotinas, mdd index restaura a tabela canônica. human-reviews pendentes não são arquivadas automaticamente.
@@ -103,7 +103,7 @@ Implementação técnica entregue na branch feat/req-072 dos dois repositórios,
 - Core conn2flow: `67e99d41834f55e7fc9ddf15d563b5977e16a91f`.
 - Matriz conn2flow-ai-workspace: `1e26ae63402cb34fc0a5930b9bac2a760ec750ad`.
 - Ambos com lista explícita de arquivos; espelhos ignorados foram adicionados por caminho exato com git add -f, sem arrastar outras skills. output/ do core e três skills alheias da matriz permanecem fora dos commits.
-- Recibo: [BATCH-074-receipt.json](../../completions/BATCH-074-receipt.json). Topologia triade / autonomo_monitorado; Revisor Independente acionado em contexto de ambos os projetos e raízes absolutas.
+- Recibo: [BATCH-074-receipt.json](../../../completions/BATCH-074-receipt.json). Topologia triade / autonomo_monitorado; Revisor Independente acionado em contexto de ambos os projetos e raízes absolutas.
 - Próximo evento: homologação humana da ficha rev-074.md; o estado técnico ready-for-review não representa fechamento humano.
 
 ## Quality Gate humano

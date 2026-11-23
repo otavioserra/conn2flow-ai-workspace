@@ -1,6 +1,6 @@
 # BATCH-056 — Memory Gardening do Ecossistema SDD
 
-* **Requisição**: [req-054.md](../human-requests/req-054.md)
+* **Requisição**: [req-054.md](../../human-requests/archive/req-054.md)
 * **Status**: `READY_FOR_REVIEW`
 * **Data de Início**: 2026-09-14
 * **Data de Conclusão**: 2026-09-14

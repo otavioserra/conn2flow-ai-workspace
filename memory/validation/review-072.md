@@ -1,8 +1,8 @@
 # Relatório de Revisão Técnica — BATCH-072
 
 - **Projeto**: `conn2flow-ai-workspace`
-- **Requisição**: [REQ-070](../human-requests/req-070.md)
-- **Lote**: [BATCH-072](../implementation/batch-072.md)
+- **Requisição**: [REQ-070](../human-requests/archive/original/req-070.md)
+- **Lote**: [BATCH-072](../implementation/archive/batch-072.md)
 - **Revisor**: Macro-Arquiteto & Auditor Técnico
 - **Data**: 2026-10-09
 - **Veredito**: **APPROVED (Homologado)**

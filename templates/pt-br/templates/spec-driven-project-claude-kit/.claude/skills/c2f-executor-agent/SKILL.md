@@ -123,6 +123,18 @@ Nota de autoria: na via cirúrgica Core/banco, --core-resources preserva o dono 
 - Worktrees por conveniência são proibidas. Só criar com concorrência multi-agente comprovada no mesmo repositório; em dúvida, consultar o humano antes. Registre raiz original, caminho temporário e concorrência na requisição e lote. Ao concluir/homologar, audite trabalho único, integração na main e junctions, então `git worktree remove <caminho>` e `git worktree prune`. Nunca use força para destruir trabalho não integrado; preserve e reporte impedimentos.
 - DEC-136: manter por padrão; nada é removido (arquivo, `status='D'`, `DELETE`) sem confirmação explícita do operador humano. Retirada vira choque pendente; `--confirmar-retirada` só quando pedido pelo operador. Fonte incompleta não autoriza retirada.
 
+### Avanço concorrente da `main` após fast-forward aprovado
+
+1. Antes da integração e novamente antes de publicar, execute `git fetch origin`. Compare os SHAs atuais de `main` e `origin/main` com os SHAs registrados na aprovação e com a ponta aprovada da branch/worktree. Se a busca falhar ou faltar uma referência verificável, pare.
+
+2. Com as referências no ponto aprovado, execute o `git merge --ff-only` da ponta aprovada sobre uma `main` limpa. Na checagem pré-push, considere também o fast-forward local já realizado e confirme que `origin/main` continua no ponto esperado.
+
+3. Se qualquer `main` avançar, inspecione `git log --oneline <base>..origin/main` e `git diff --stat <base> origin/main`. Faça as mesmas comparações para a `main` local se ela avançou. Compare os caminhos e requisitos aprovados com a versão atual e rode as verificações pertinentes. Ancestralidade e estatísticas sozinhas não comprovam que uma alteração posterior preservou a entrega.
+
+4. Prossiga somente se a `main` atual contiver toda a entrega de forma verificável, sem conflitos, regressões ou perda de escopo. Se os commits já estiverem integrados, registre o resultado e dispense merge redundante. Use fast-forward quando possível. Um merge divergente exige autorização explícita além da aprovação original de fast-forward. Preserve o histórico e nunca force a publicação.
+
+5. Se faltar qualquer parte da entrega, surgir ambiguidade ou mudar uma referência entre a conferência e a operação, pare antes de merge ou push. Preserve a branch/worktree intacta e consulte o operador humano ou o Arquiteto Master.
+
 ## REP-002 — diagnóstico e rodadas
 
 “Falha <etapa>” significa falha HTTP. Inspecione log da sessão → access log do Nginx (código e bytes) → `php-error.log` no horário → banco SQL. Não siga hipótese preliminar sem evidência. Confira branch e git status antes de deploy.

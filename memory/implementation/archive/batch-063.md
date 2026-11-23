@@ -1,6 +1,6 @@
 # BATCH-063 — Choques das Entregas na Extensão do VS Code
 
-* **Requisição**: [req-061.md](../human-requests/req-061.md)
+* **Requisição**: [req-061.md](../../human-requests/archive/req-061.md)
 * **Status**: `complete` — implementado pelo executor; revisado, corrigido e validado de ponta a ponta contra o CLI e o tenant pelo agente da req-198/199 do core (2026-09-30). Pendente: homologação visual humana no VS Code.
 * **Data de Início**: 2026-09-30
 * **Data de Conclusão Técnica**: 2026-09-30

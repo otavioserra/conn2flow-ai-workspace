@@ -14,7 +14,7 @@ summary_medium: Rastreamento detalhado da resolução de conflitos de governanç
 - **Projeto**: Multi-Repositório: `conn2flow-ai-workspace` (Matriz Central) e `conn2flow` (Core)
 - **Raiz Matriz**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
 - **Raiz Core**: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow`
-- **Requisição**: [REQ-073](../human-requests/req-073.md)
+- **Requisição**: [REQ-073](../../human-requests/archive/req-073.md)
 - **Status**: `complete`
 - **Autonomia**: `autonomo_monitorado`
 - **Data**: 2026-10-09
@@ -66,7 +66,7 @@ Entrega técnica completa, integrada e publicada em `main` na matriz e no Core. 
 - `npm.cmd run compile` e `node --test` com enumeração explícita de test/*.test.cjs: **124/124 PASS**, zero falhas/skips.
 - `php -l`: **33 arquivos PASS** (32 arquivos PHP do diff main...feat/req-072 mais cli/c2f.php), listados no resumo de testes.
 - Ruff, pip check e git diff --check PASS.
-- Revisor Independente conferiu evidências e invariantes: **RECOMMEND-APPROVAL**, sem bloqueantes. [REV-075](../human-reviews/rev-075.md).
+- Revisor Independente conferiu evidências e invariantes: **RECOMMEND-APPROVAL**, sem bloqueantes. [REV-075](../../human-reviews/rev-075.md).
 
 ### Git, publicação e limpeza
 
@@ -87,6 +87,6 @@ Entrega técnica completa, integrada e publicada em `main` na matriz e no Core. 
 
 ### Evidências
 
-- [Resumo de testes](../../completions/BATCH-075-test-summary.json), [JUnit](../../completions/BATCH-075-pytest.xml), [log da extensão](../../completions/BATCH-075-extension.log).
-- [Auditoria de artefatos](../../completions/BATCH-075-artifact-audit.json), [auditoria de worktrees](../../completions/BATCH-075-worktree-audit.json), [limpeza e dependências](../../completions/BATCH-075-worktree-cleanup.json).
-- [Recibo persistente](../../completions/BATCH-075-receipt.json), [parecer independente](../human-reviews/rev-075.md).
+- [Resumo de testes](../../../completions/BATCH-075-test-summary.json), [JUnit](../../../completions/BATCH-075-pytest.xml), [log da extensão](../../../completions/BATCH-075-extension.log).
+- [Auditoria de artefatos](../../../completions/BATCH-075-artifact-audit.json), [auditoria de worktrees](../../../completions/BATCH-075-worktree-audit.json), [limpeza e dependências](../../../completions/BATCH-075-worktree-cleanup.json).
+- [Recibo persistente](../../../completions/BATCH-075-receipt.json), [parecer independente](../../human-reviews/rev-075.md).

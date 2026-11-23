@@ -1,6 +1,6 @@
 # BATCH-059 — Migração para `.gemini/config.json` e Aderência ao Antigravity v2.16+
 
-* **Requisição**: [req-057.md](../human-requests/req-057.md)
+* **Requisição**: [req-057.md](../../human-requests/archive/req-057.md)
 * **Status**: `READY_FOR_REVIEW`
 * **Data de Início**: 2026-09-24
 * **Data de Conclusão**: 2026-09-24

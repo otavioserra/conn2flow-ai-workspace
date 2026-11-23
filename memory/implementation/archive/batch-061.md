@@ -1,6 +1,6 @@
 # BATCH-061 — Auditoria Ampla do Ecossistema SDD, Poda de Arquivos Gigantes e Cristalização dos Aprendizados em Skills
 
-* **Requisição**: [req-059.md](../human-requests/req-059.md)
+* **Requisição**: [req-059.md](../../human-requests/archive/req-059.md)
 * **Status**: `READY_FOR_REVIEW`
 * **Data de Início**: 2026-09-28
 * **Data de Conclusão**: 2026-09-28

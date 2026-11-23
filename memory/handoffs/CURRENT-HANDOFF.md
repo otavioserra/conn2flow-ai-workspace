@@ -11,7 +11,7 @@
 
 ## 🎯 Instruções para o Executor
 
-Implementar a requisição **`REQ-055`** detalhada em [sdd/human-requests/req-055.md](../human-requests/req-055.md):
+Implementar a requisição **`REQ-055`** detalhada em [sdd/human-requests/req-055.md](../human-requests/archive/req-055.md):
 
 ### 1. Consolidação na Matriz Central (`conn2flow-ai-workspace`):
 - Atualizar `c2f-shell-and-windows-traps/SKILL.md` adicionando a Armadilha 1 com a solução obrigatória `MSYS_NO_PATHCONV=1` para `rsync`.

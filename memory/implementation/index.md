@@ -2,14 +2,6 @@
 
 | ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| BATCH-069 | BATCH-069 — Fundação MDD e lições do BL-028 | Migração comprovada por 219 renames R100 no índice Git. Snapshot independente confirma a presença dos 231 arquivos fí... | [source](<batch-069.md>) | ready-for-review |
-| BATCH-070 | BATCH-070 — Propagação da Transição Estrutural MDD nos 7 Repositórios Satélites do Ecossistema Conn2Flow | Automação: `scripts/memory/batch-070-migrate.cjs &lt;repo&gt; "&lt;papel&gt;"` (git mv, tríade, índices, referências) + `scripts/... | [source](<batch-070.md>) | ready-for-review |
-| BATCH-071 | BATCH-071 — Implementação das Aplicações em Python: MDD Client CLI &amp; Daemon (ARCH-010) e MDD Hub &amp; Documentation Watcher (ARCH-011) |  | [source](<batch-071.md>) | ready-for-review |
-| BATCH-072 | BATCH-072 — Revamp da Documentação Pública: Modernização dos READMEs Raiz e Descentralização em `docs/` |  | [source](<batch-072.md>) | ready-for-review |
-| BATCH-073 | BATCH-073 — Padronização Canônica das Memórias de Engenharia em Inglês (03 e 04), Integração com `memory/raw/` e Atualização dos Boilerplates | Cada staging listou caminhos de arquivos explicitamente; nenhuma operação `git add .`, `git add -A` ou commit de alte... | [source](<batch-073.md>) | ready-for-review |
-| BATCH-074 | Implementação da Trava Tripla MDD, Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | Live Todo List para implementação das 3 travas de governança do ARCH-015 / REQ-072 | [source](<batch-074.md>) | complete |
-| BATCH-075 | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | Consolidação MDD integrada e publicada na main da matriz e do Core, com testes verdes e worktrees removidas | [source](<batch-075.md>) | complete |
-| BATCH-076 | Servidor MCP, interface MDD e migração do conn2flow-home | Execução da REQ-074: MCP nativo, extensão MDD e migração da governança local. | [source](<batch-076.md>) | ready-for-human-review |
 | BATCH-077 | Skills MDD e proporcionalidade de build | Canonização de quatro skills MDD, seleção proporcional de build e propagação segura dos kits. | [source](<batch-077.md>) | ready-for-human-review |
 | BATCH-078 | Limpeza segura do ecossistema | Inventário Git, arquivamento dual das memórias e auditoria do ecossistema para a REQ-076. | [source](<batch-078.md>) | ready-for-human-review |
 | BATCH-079 | Pipeline project:deploy, restrição de worktrees e lições REP-002 | Governança validada, duas worktrees integradas removidas e quinze preservadas por decisão humana. | [source](<batch-079.md>) | ready-for-review-with-preservation |
@@ -19,6 +11,7 @@
 | BATCH-083 | Caixa copiável do Arquiteto Master e relatório de dificuldades do Executor | Caixa copiável do Arquiteto e relatório do Executor implementados e validados nos cinco kits. | [source](<batch-083.md>) | HOMOLOGATED |
 | BATCH-084 | Propagação da REQ-081 e melhorias de governança e indexação na matriz | Propagação das skills da REQ-081, validação de FEAT-018/019 e segunda propagação em nove satélites. | [source](<batch-084.md>) | HOMOLOGATED |
 | BATCH-085 | Ajustes do REP-005 e integração isolada das skills | Matriz e paridade PHP validadas; sete satélites publicados e dois sem origin; worktrees removidas. | [source](<batch-085.md>) | HOMOLOGATED |
+| BATCH-086 | Governança operacional de três skills e Regra dos 10 Ativos | Atualiza três skills bilíngues e arquiva 12 registros com reescrita de links na matriz. | [source](<batch-086.md>) | ready-for-review |
 
 ## Directories
 
