@@ -47,31 +47,31 @@ export function activate(context: vscode.ExtensionContext) {
   const hubWatcher = HubTaskWatcher.initialize(context, () => refreshAll());
   context.subscriptions.push(hubWatcher);
   let refreshAll = () => undefined;
-  LocalizationManager.initialize(context, () => refreshAll());
   const treeProvider = new Conn2FlowTreeProvider(context);
   const commandRunner = new CommandRunner();
   vscode.window.registerTreeDataProvider('conn2flow-explorer', treeProvider);
 
   // MDD Hub & Skills Control (REQ-090): visual client of mdd-client and conn2flow-hub.
   context.subscriptions.push(MddHubManager.initialize(context));
-  const mddHubProvider = new MddHubTreeProvider();
+  const mddHubTreeProvider = new MddHubTreeProvider();
+  const mddHubView = vscode.window.createTreeView('conn2flow-mdd-hub', { treeDataProvider: mddHubTreeProvider });
   const resolveServer = async (item?: MddHubTreeItem): Promise<MddServerId | undefined> =>
     item?.serverId || await MddHubManager.pickServer(LocalizationManager.t('mddHub.selectServer'));
   const runServerAction = async (item: MddHubTreeItem | undefined, action: (id: MddServerId) => Promise<void>) => {
     const id = await resolveServer(item);
     if (!id) return;
     const running = action(id);
-    mddHubProvider.repaint();
+    mddHubTreeProvider.repaint();
     await running;
-    await mddHubProvider.refresh();
+    await mddHubTreeProvider.refresh();
   };
   // Visible progress on the view (and in the status bar) so Refresh/Toggle never look frozen.
   const withHubProgress = (title: string) => vscode.window.withProgress(
     { location: { viewId: 'conn2flow-mdd-hub' }, title },
-    () => vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title }, () => mddHubProvider.refresh())
+    () => vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title }, () => mddHubTreeProvider.refresh())
   );
   context.subscriptions.push(
-    vscode.window.registerTreeDataProvider('conn2flow-mdd-hub', mddHubProvider),
+    mddHubView,
     vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
       await withHubProgress(LocalizationManager.t('mddHub.refreshing'));
       vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.refreshed', { count: String(MddHubManager.getFeedback().length) }), 4000);
@@ -80,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.mddHub.stop', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.stop(id))),
     vscode.commands.registerCommand('conn2flow.mddHub.restart', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.restart(id))),
     vscode.commands.registerCommand('conn2flow.mddHub.triageFeedback', async (item?: MddHubTreeItem) => {
-      if (await MddHubManager.triage(item?.feedback)) await mddHubProvider.refresh();
+      if (await MddHubManager.triage(item?.feedback)) await mddHubTreeProvider.refresh();
     }),
     vscode.commands.registerCommand('conn2flow.mddHub.openFeedback', async (item?: MddHubTreeItem) => {
       if (item?.feedback) await MddHubManager.open(item.feedback);
@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
       await MddHubManager.toggleGithub();
       const state = LocalizationManager.t(MddHubManager.includeGithub() ? 'mddHub.githubStateOn' : 'mddHub.githubStateOff');
       vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.githubToggling', { state }), 4000);
-      mddHubProvider.repaint();
+      mddHubTreeProvider.repaint();
       await withHubProgress(LocalizationManager.t('mddHub.githubToggling', { state }));
       vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.githubToggled', {
         state, count: String(MddHubManager.getFeedback().length)
@@ -98,11 +98,10 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('conn2flow.mdd.initProject', async () => {
       if (await MddBootstrapManager.initializeProject()) {
         refreshAll();
-        await mddHubProvider.refresh();
+        await mddHubTreeProvider.refresh();
       }
     })
   );
-  void mddHubProvider.refresh();
 
   // Status Bar Items
   dockerStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -123,6 +122,14 @@ export function activate(context: vscode.ExtensionContext) {
     GardeningManager.checkAndNotify();
   };
 
+  LocalizationManager.initialize(context, () => {
+    refreshAll();
+    mddHubView.title = LocalizationManager.t('view.mddHub');
+    mddHubTreeProvider.repaint();
+    void mddHubTreeProvider.refresh();
+  });
+  mddHubView.title = LocalizationManager.t('view.mddHub');
+  void mddHubTreeProvider.refresh();
   refreshAll();
   context.subscriptions.push(
     ProjectsManager.onTargetProjectChanged(() => updateStatusBar()),

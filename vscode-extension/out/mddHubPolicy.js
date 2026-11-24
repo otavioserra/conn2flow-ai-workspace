@@ -20,9 +20,12 @@ exports.validateTriage = validateTriage;
 exports.buildTriageArgs = buildTriageArgs;
 exports.parseFeedbackList = parseFeedbackList;
 exports.groupFeedback = groupFeedback;
+exports.feedbackLabel = feedbackLabel;
 exports.describeFeedback = describeFeedback;
+exports.describeFeedbackMetadata = describeFeedbackMetadata;
 exports.canTriage = canTriage;
 const path = require("path");
+const localizationCatalog_1 = require("./localizationCatalog");
 exports.FEEDBACK_VERDICTS = ['ACCEPT', 'NEEDS_EVIDENCE', 'QUARANTINE', 'REJECT', 'LOCAL_ONLY'];
 exports.FEEDBACK_GROUP_ORDER = ['PENDING', ...exports.FEEDBACK_VERDICTS];
 const SEVERITY_ORDER = { high: 0, medium: 1, low: 2 };
@@ -123,13 +126,14 @@ function resolveServerStatus(id, record, pidAlive, portOpen) {
     }
     return { id, state: 'STOPPED', port: record?.port };
 }
-function describeServerStatus(status, externalLabel = 'external') {
+function describeServerStatus(status, locale = 'en') {
+    const state = (0, localizationCatalog_1.translate)(locale, status.state === 'RUNNING' ? 'mddHub.serverState.RUNNING' : 'mddHub.serverState.STOPPED');
     if (status.state !== 'RUNNING')
-        return 'STOPPED';
+        return state;
     const parts = [`PID ${status.pid}`];
     if (status.port)
         parts.push(`127.0.0.1:${status.port}`);
-    return `${status.external ? `RUNNING (${externalLabel})` : 'RUNNING'} · ${parts.join(' · ')}`;
+    return `${status.external ? (0, localizationCatalog_1.translate)(locale, 'mddHub.serverState.external', { state }) : state} · ${parts.join(' · ')}`;
 }
 /** Tree context value: external processes expose no Start/Stop/Restart. */
 function serverContextValue(status) {
@@ -223,8 +227,21 @@ function groupFeedback(records) {
         items: buckets.get(verdict).sort((a, b) => (SEVERITY_ORDER[a.severity] ?? 9) - (SEVERITY_ORDER[b.severity] ?? 9) || a.id.localeCompare(b.id))
     }));
 }
-function describeFeedback(record) {
-    return [record.severity, record.skill, record.repo].filter(Boolean).join(' · ');
+/** Translate known metadata codes, preserving values introduced by a newer CLI. */
+function feedbackLabel(locale, field, value) {
+    const code = field === 'status' ? value.toUpperCase() : value;
+    const key = ('mddHub.' + field + '.' + code);
+    return Object.prototype.hasOwnProperty.call(localizationCatalog_1.en, key) ? (0, localizationCatalog_1.translate)(locale, key) : value;
+}
+function describeFeedback(record, locale = 'en') {
+    return [feedbackLabel(locale, 'severity', record.severity), record.skill, record.repo].filter(Boolean).join(' · ');
+}
+function describeFeedbackMetadata(record, locale) {
+    return (0, localizationCatalog_1.translate)(locale, 'tooltip.mddHub.feedbackMetadata', {
+        status: feedbackLabel(locale, 'status', record.status) || '—',
+        verdict: feedbackLabel(locale, 'group', record.verdict),
+        kind: feedbackLabel(locale, 'kind', record.kind) || '—'
+    });
 }
 /** Triage only applies to inbox records (GitHub-only items have no FB file yet). */
 function canTriage(record) {

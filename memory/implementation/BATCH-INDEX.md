@@ -53,9 +53,11 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entrega atual
 
-[REQ-093](../human-requests/req-093.md) / [BATCH-095](batch-095.md) (`ready-for-review`) entrega a extensão v1.2.1 (UTF-8, triagem no menu, progresso, hub externo, domínio do projeto), `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), FB-004/FB-007 e a 1ª rodada do Optimizer (0 skills OVER, eval 15/15). [Relatório FEAT-017](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md).
+[REQ-094](../human-requests/req-094.md) / [BATCH-096](batch-096.md) (`ready-for-review`) valida o gate Python em 96,32%, entrega a extensão VS Code 1.2.2 e restabelece a janela de dez seções do checklist. [Relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
 
 ## Entregas anteriores
+
+[REQ-093](../human-requests/req-093.md) / [BATCH-095](batch-095.md) (`ready-for-review`) entrega a extensão v1.2.1 (UTF-8, triagem no menu, progresso, hub externo, domínio do projeto), `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), FB-004/FB-007 e a 1ª rodada do Optimizer (0 skills OVER, eval 15/15). [Relatório FEAT-017](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md).
 
 [REQ-092](../human-requests/req-092.md) / [BATCH-094](batch-094.md) (`HOMOLOGATED`) entregou VSIX v1.2.0 validado, saneamento cirúrgico de 57 sobras de skills, documentação bilíngue e inventário DEC-136. [Relatório FEAT-017](../reports/REP-014-batch094-vsix-skills-and-curation.md).
 
@@ -64,7 +66,7 @@ REQ-091 / BATCH-093 (`ready-for-review`): Fase 4 (final) do ARCH-018. Quarentena
 
 REQ-090 / BATCH-092 (`ready-for-review`): Fase 3 do ARCH-018. Aba MDD Hub & Skills Control na extensão (servidores + triagem de feedbacks), fila serial no stdio do hub, tools de feedback no MCP Python, `docs/` em 48 skills, poda do checklist e, no Core via worktree isolada já removida, `ai:archive-memory` com `reports/` e `--status` publicado em `origin/main` (`6e146f7aa8b6`). [Relatório](batch-092.md).
 
-REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](batch-091.md).
+REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](archive/batch-091.md).
 
 REQ-088 / BATCH-090 (`ready-for-review`): Fase 1 do ARCH-018 só na matriz. Cinco personas `c2f-persona-*` com aliases no sync, 48 skills, índice de skills, `subskills/` com piloto Mercado Pago e `memory/learnings/`. Auditoria PASS e pytest 130/130. [Relatório](archive/batch-090.md).
 

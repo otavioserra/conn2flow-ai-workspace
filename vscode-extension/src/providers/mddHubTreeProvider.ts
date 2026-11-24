@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { canTriage, describeFeedback, describeServerStatus, FeedbackRecord, groupFeedback, MddServerId, serverContextValue } from '../mddHubPolicy';
+import { canTriage, describeFeedback, describeFeedbackMetadata, describeServerStatus, feedbackLabel, FeedbackRecord, groupFeedback, MddServerId, serverContextValue } from '../mddHubPolicy';
 import { LocalizationManager } from './localizationManager';
 import { MDD_SERVER_IDS, MddHubManager } from './mddHubManager';
 
@@ -59,7 +59,7 @@ export class MddHubTreeProvider implements vscode.TreeDataProvider<MddHubTreeIte
     const busy = MddHubManager.isBusy(id);
     const item = new MddHubTreeItem(MddHubManager.serverLabel(id), 'server', vscode.TreeItemCollapsibleState.None, [], id);
     item.id = `mddHub.server.${id}`;
-    item.description = busy ? LocalizationManager.t('mddHub.busy') : describeServerStatus(status, LocalizationManager.t('mddHub.external'));
+    item.description = busy ? LocalizationManager.t('mddHub.busy') : describeServerStatus(status, LocalizationManager.currentLocale);
     item.contextValue = serverContextValue(status);
     item.iconPath = busy
       ? new vscode.ThemeIcon('loading~spin')
@@ -82,7 +82,9 @@ ${LocalizationManager.t('mddHub.externalTooltip', { pid: String(status.pid ?? '?
       children = [this.message(LocalizationManager.t('mddHub.feedbackEmpty'), 'inbox')];
     } else {
       children = groupFeedback(records).map(group => {
-        const node = new MddHubTreeItem(`${group.verdict} (${group.items.length})`, 'group',
+        const node = new MddHubTreeItem(LocalizationManager.t('mddHub.groupLabel', {
+          verdict: feedbackLabel(LocalizationManager.currentLocale, 'group', group.verdict), count: group.items.length
+        }), 'group',
           group.verdict === 'PENDING' ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed,
           group.items.map(record => this.feedbackItem(record)));
         node.id = `mddHub.group.${group.verdict}`;
@@ -104,14 +106,14 @@ ${LocalizationManager.t('mddHub.externalTooltip', { pid: String(status.pid ?? '?
     const item = new MddHubTreeItem(`${record.id} — ${record.summary}`, 'feedback', vscode.TreeItemCollapsibleState.None,
       [], undefined, record);
     item.id = `mddHub.feedback.${record.id}`;
-    item.description = describeFeedback(record);
+    item.description = describeFeedback(record, LocalizationManager.currentLocale);
     item.contextValue = canTriage(record) ? 'mddHubFeedback.triage' : 'mddHubFeedback.readonly';
     const icon = record.severity === 'high' ? 'error' : record.severity === 'medium' ? 'warning' : 'info';
     item.iconPath = new vscode.ThemeIcon(record.source === 'github' ? 'github' : icon);
     const tooltip = new vscode.MarkdownString();
     tooltip.isTrusted = false;
     tooltip.appendText(`${record.title || record.id}\n\n`);
-    tooltip.appendText(`status: ${record.status} · verdict: ${record.verdict} · kind: ${record.kind}`);
+    tooltip.appendText(describeFeedbackMetadata(record, LocalizationManager.currentLocale));
     item.tooltip = tooltip;
     item.command = { command: 'conn2flow.mddHub.openFeedback', title: record.id, arguments: [item] };
     return item;

@@ -13,7 +13,7 @@ summary_medium: "Fase 2 do ARCH-018 validada só na matriz.\nRegistra onde as sk
 
 # REP-011 — Dificuldades e aprendizados do BATCH-091
 
-1. **Contexto da rodada.** REQ-089 / BATCH-091, Fase 2 do ARCH-018, no `conn2flow-ai-workspace`. Categoria B, topologia dupla, autonomia supervisionada, somente matriz. Escopo: `mdd feedback submit/list/triage`, tools MCP `submit_skill_feedback`/`list_skill_feedback`, 4 personas e notas do REP-010, READMEs e Regra dos 10. [Lote](../implementation/batch-091.md).
+1. **Contexto da rodada.** REQ-089 / BATCH-091, Fase 2 do ARCH-018, no `conn2flow-ai-workspace`. Categoria B, topologia dupla, autonomia supervisionada, somente matriz. Escopo: `mdd feedback submit/list/triage`, tools MCP `submit_skill_feedback`/`list_skill_feedback`, 4 personas e notas do REP-010, READMEs e Regra dos 10. [Lote](../implementation/archive/batch-091.md).
 
 2. **Dificuldades e atritos.**
    - **Dois servidores MCP.** O `mdd-client` tem um MCP Python (`mdd mcp`), e o `conn2flow-hub` é o servidor TypeScript em `mcp-hub/`, conforme `.vscode/mcp.json`. A REQ nomeia o hub, então as tools foram para lá e delegam ao CLI Python. O MCP Python não ganhou as tools; o teste dele conta exatamente 9 tools.

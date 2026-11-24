@@ -2,7 +2,6 @@
 
 | ID | Title | Executive summary | Relative link | Status |
 | --- | --- | --- | --- | --- |
-| REP-002 | REP-002: Relatório para o AI Workspace — o que as skills e o ambiente devem aprender com a REQ-285 (atualizador, choques e Lab) | Hoje o conhecimento está espalhado em memórias e comentários de código. Conteúdo mínimo: | [source](<REP-002-req285-atualizador-choques-learnings.md>) | READY |
 | REP-003 | Esteira de Vídeo com IA: Aprendizados para Skills do conn2flow-home | Aprendizados da produção do promo-02 e proposta de skills de vídeo para instalar com o conn2flow-home. | [source](<REP-003-esteira-video-ia-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-004 | Dificuldades e Aprendizados do BATCH-083 para o AI Workspace | Escopo de sincronização e sensibilidade de hashes SHA-256 a finais de linha no BATCH-083. | [source](<REP-004-batch083-skills-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-005 | Dificuldades e aprendizados do BATCH-084 para o AI Workspace | Escopo do sincronizador, migração de SHA-256 para LF e paridade do CLI no BATCH-084. | [source](<REP-005-batch084-rollout-and-eol.md>) | READY_FOR_ARCHITECT |
@@ -12,6 +11,7 @@
 | REP-013 | Dificuldades e aprendizados do BATCH-093 para o AI Workspace | Quarentena por recorrência, --budget-report, mdd eval e curadoria FB-001..003; no rollout, alias renomeado para pasta ignorada pelo .gitignore saía do repositório. | [source](<REP-013-batch093-anti-bloat-evals-and-global-rollout.md>) | READY_FOR_ARCHITECT |
 | REP-014 | Dificuldades e aprendizados do BATCH-094 | Registra os atritos de empacotamento VSIX, prova de origem das skills e validação da documentação pós-ARCH-018. | [source](<REP-014-batch094-vsix-skills-and-curation.md>) | ready-for-review |
 | REP-015 | Dificuldades e aprendizados do BATCH-095 | Atritos de EOL em edições por script, testes presos ao estado da matriz e regras da extensão descobertas só no teste; cita FB-008. | [source](<REP-015-batch095-domains-bootstrap-and-optimizer.md>) | ready-for-review |
+| REP-016 | FEAT-017 — Atritos no gate Python, no idioma da extensão e na memória MDD | Registra o diagnóstico da cobertura Python, do idioma do Hub e da janela de memória. | [source](<REP-016-batch096-ci-hub-i18n-and-memory.md>) | ready-for-review |
 
 ## Directories
 

@@ -15,7 +15,7 @@ summary_medium: "Categoria B, somente matriz, sem deploy, stage ou commit.\nAudi
 
 # BATCH-091 — Fase 2 do ARCH-018
 
-[REQ-089](../human-requests/req-089.md) · [ARCH-018](../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-011)](../reports/REP-011-batch091-feedback-bus-learnings.md)
+[REQ-089](../../human-requests/req-089.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-011)](../../reports/REP-011-batch091-feedback-bus-learnings.md)
 
 ## Live Todo List
 
@@ -86,10 +86,10 @@ php cli/c2f.php ai:archive-sdd --repo=../conn2flow-ai-workspace --keep=10 --verb
 
 | Comando | Resultado |
 | --- | --- |
-| `node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace` | 47 gravações, 0 divergências ([apply](../../completions/BATCH-091-skills-apply.json)) |
+| `node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace` | 47 gravações, 0 divergências ([apply](../../../completions/BATCH-091-skills-apply.json)) |
 | `--update-translation-hash <skill> en --translator mdd-agent` | 5 skills: architect, executor, reviewer, curator, `c2f-multilingual-skills-governance` |
 | `node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json` | **PASS**: 19 alvos, 562 iguais, 322 traduzidas, 0 divergências, 0 drift, 24 skills locais preservadas |
-| `node scripts/skills/audit-mdd-governance.cjs --repos conn2flow-ai-workspace` | **PASS**: 48 canônicas, 240 cópias ([relatório](../../completions/BATCH-091-governance-audit.json)) |
+| `node scripts/skills/audit-mdd-governance.cjs --repos conn2flow-ai-workspace` | **PASS**: 48 canônicas, 240 cópias ([relatório](../../../completions/BATCH-091-governance-audit.json)) |
 | `node scripts/skills/generate-skills-index.cjs --check` | **PASS** (48 skills) |
 | `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests` | **141 passed** (130 anteriores + 11 em `test_feedback.py`) |
 | `npm test` em `mcp-hub/` | **5/5** (2 anteriores + 3 em `skillFeedback.test.cjs`) |
@@ -115,4 +115,4 @@ Testes novos (`test_feedback.py`): IDs sequenciais com acentos no slug e reserva
 
 ## 8. Relatório de Dificuldades e Aprendizados (FEAT-017)
 
-Registrado em [REP-011](../reports/REP-011-batch091-feedback-bus-learnings.md): dois servidores MCP, concorrência no stdio do hub, 7 cópias EN (não 5), `reports/` fora do `ai:archive-sdd` e a correção do script de links, e o heredoc que quebrou um teste.
+Registrado em [REP-011](../../reports/REP-011-batch091-feedback-bus-learnings.md): dois servidores MCP, concorrência no stdio do hub, 7 cópias EN (não 5), `reports/` fora do `ai:archive-sdd` e a correção do script de links, e o heredoc que quebrou um teste.

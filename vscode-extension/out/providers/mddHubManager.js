@@ -47,7 +47,11 @@ class MddHubManager {
     static isBusy(id) { return this.busy.has(id); }
     static getCachedStatus(id) { return this.statuses.get(id) || { id, state: 'STOPPED' }; }
     static getFeedback() { return this.feedback; }
-    static getFeedbackError() { return this.feedbackError; }
+    static getFeedbackError() {
+        const error = this.feedbackError;
+        if (error)
+            return 'key' in error ? localizationManager_1.LocalizationManager.t(error.key) : error.message;
+    }
     static includeGithub() { return this.storage?.get(this.githubKey, false) ?? false; }
     static async toggleGithub() {
         await this.storage?.update(this.githubKey, !this.includeGithub());
@@ -248,12 +252,12 @@ class MddHubManager {
         const matrix = workspaceLocator_1.WorkspaceLocator.getAiWorkspaceRoot();
         if (!matrix) {
             this.feedback = [];
-            this.feedbackError = localizationManager_1.LocalizationManager.t('mddHub.matrixMissing');
+            this.feedbackError = { key: 'mddHub.matrixMissing' };
             return;
         }
         if (!vscode.workspace.isTrusted) {
             this.feedback = [];
-            this.feedbackError = localizationManager_1.LocalizationManager.t('command.trustRequired');
+            this.feedbackError = { key: 'command.trustRequired' };
             return;
         }
         try {
@@ -262,8 +266,9 @@ class MddHubManager {
         }
         catch (error) {
             this.feedback = [];
-            this.feedbackError = this.message(error);
-            this.log(`[feedback] list failed: ${this.feedbackError}`);
+            const message = this.message(error);
+            this.feedbackError = { message };
+            this.log(`[feedback] list failed: ${message}`);
         }
     }
     static async triage(record) {
@@ -282,19 +287,19 @@ class MddHubManager {
             return false;
         }
         const verdict = await vscode.window.showQuickPick(mddHubPolicy_1.FEEDBACK_VERDICTS.map(value => ({
-            label: value, description: localizationManager_1.LocalizationManager.t(`mddHub.verdict.${value}`), value
+            label: (0, mddHubPolicy_1.feedbackLabel)(localizationManager_1.LocalizationManager.currentLocale, 'group', value), description: localizationManager_1.LocalizationManager.t(`mddHub.verdict.${value}`), value
         })), { placeHolder: localizationManager_1.LocalizationManager.t('mddHub.triageVerdict', { id: target.id }) });
         if (!verdict)
             return false;
         const reason = await vscode.window.showInputBox({
-            prompt: localizationManager_1.LocalizationManager.t('mddHub.triageReason', { id: target.id, verdict: verdict.value }),
+            prompt: localizationManager_1.LocalizationManager.t('mddHub.triageReason', { id: target.id, verdict: verdict.label }),
             validateInput: value => value.trim() ? undefined : localizationManager_1.LocalizationManager.t('mddHub.reasonRequired')
         });
         if (!reason?.trim())
             return false;
         try {
             await this.runMdd((0, mddHubPolicy_1.buildTriageArgs)(matrix, target.id, verdict.value, reason), matrix);
-            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.triaged', { id: target.id, verdict: verdict.value }), 4000);
+            vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.triaged', { id: target.id, verdict: verdict.label }), 4000);
             return true;
         }
         catch (error) {
@@ -318,7 +323,7 @@ class MddHubManager {
         if (!this.feedback.length)
             await this.loadFeedback();
         const picked = await vscode.window.showQuickPick(this.feedback.filter(item => item.source === 'inbox').map(item => ({
-            label: item.id, description: `${item.verdict} · ${item.severity} · ${item.skill}`, detail: item.summary, item
+            label: item.id, description: [(0, mddHubPolicy_1.feedbackLabel)(localizationManager_1.LocalizationManager.currentLocale, 'group', item.verdict), (0, mddHubPolicy_1.describeFeedback)(item, localizationManager_1.LocalizationManager.currentLocale)].filter(Boolean).join(' · '), detail: item.summary, item
         })), { placeHolder: localizationManager_1.LocalizationManager.t('mddHub.selectFeedback') });
         return picked?.item;
     }

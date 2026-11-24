@@ -2,6 +2,17 @@
 
 Este documento concentra os checklists de aceitação e os registros de testes empíricos de validação dos lotes ativos (Regra dos 10: lotes pendentes de homologação permanecem aqui).
 
+## BATCH-096 — REQ-094 (2026-11-24)
+
+- [x] Comando exato do CI passou localmente com 211 testes e cobertura de 96,32%.
+- [x] O idioma atualiza o título e a árvore do MDD Hub. Catálogos PT-BR/EN validados e extensão 169/169.
+- [x] VSIX 1.2.2 empacotado e verificado (98 entradas, CRC válido).
+- [x] Poda de BATCH-090 a BATCH-092 com original integral. Checklist e janelas governadas com 10 ativos.
+- [x] `mdd eval` retornou `EVAL-PASS` 15/15. `mdd status --json` retornou `healthy: true` após `mdd index`.
+- [ ] Revisão supervisionada e homologação visual humana do VSIX.
+
+Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
+
 ## BATCH-095 — REQ-093 (2026-11-24)
 
 - [x] Extensão v1.2.1: UTF-8 (`PYTHONUTF8`/`PYTHONIOENCODING`) em toda chamada `mdd`, triagem também no botão direito, progresso em Refresh/Toggle GitHub, `conn2flow-hub` externo como `RUNNING (externo)` sem controles, `.vscode/mcp.json` só com `servers`. Compile PASS, 166/166 testes, VSIX `conn2flow-tools-1.2.1.vsix` com 98 arquivos e `unzip -t` limpo.
@@ -9,7 +20,7 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] FB-004 e FB-007 aplicados; 4 skills OVER extraídas para 11 subskills novas em PT-BR/EN. `--budget-report` com `OVER: 0`, índice PASS, auditoria PASS (0 divergências, 0 drift, 0 divergência entre cópias EN), `pytest` 162/162 e `mdd eval` EVAL-PASS 15/15.
 - [x] ARCH-019 Fase 1: `domains/` (`README.md`, `generic`, `conn2flow`), `mdd bootstrap` (`--list-domains`, `--domain auto|<id>`, detecção de stack, memória e guia local sem sobrescrever) com domínio `laravel` de fixture e idempotência; `conn2flow.projectDomain` aberto (padrão `auto`) e QuickPick dinâmico "Inicializar MDD neste Projeto".
 - [x] Regra dos 10 com `ai:archive-memory` (Core `230262177a27` via `git archive`): req-085/086, batch-089/090 e REP-009/010 arquivados; janelas em 10/10/10. Lote, REP-015 (FEAT-017) e índices em `ready-for-review`; FEAT-015 fora do stage.
-- [ ] Poda deste checklist (12 seções; proposta: mover BATCH-090 e BATCH-091 para `archive/`) aguardando autorização DEC-136.
+- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../implementation/batch-096.md).
 - [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
 
 Evidências no [BATCH-095](../implementation/batch-095.md), no [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy.
@@ -35,38 +46,6 @@ Evidências no [BATCH-094](../implementation/batch-094.md), no [REP-014](../repo
 - [x] Limpeza: 0 junctions (PowerShell), 7 worktrees removidas sem `--force`, branches apagadas com `-d`, `git worktree prune`; árvores principais, `conn2flow-home` e `conn2flow-mkt` intocadas.
 - [x] Regra dos 10 com `ai:archive-memory --status=HOMOLOGATED,REVIEWED` (CLI de `origin/main` `6e146f7aa8b6` via `git archive`): `req-084`, `batch-088` e `REP-008` arquivados; 10 ativos em cada raiz; 0 links quebrados novos; `04-memory-engineering-execution.md` intacta. Poda deste checklist (DEC-136, autorizada): seção BATCH-089 → [validation-089.md](archive/validation-089.md), original em `archive/original/` (SHA-256 `4ebc09f7…`); 10 seções; `mdd status` healthy. Lote e FEAT-017 ([REP-013](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)) em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-093.md).
 - [ ] Homologação humana, `ARCH-018` → `COMPLETED` e commit/push seletivos da matriz pelo Arquiteto; triagem de FB-004..007.
-
-## BATCH-092 — REQ-090 (2026-11-24)
-
-- [x] Extensão: aba **MDD Hub & Skills Control** (`conn2flow-mdd-hub`) com status `RUNNING`/`STOPPED` + PID/porta e Iniciar/Parar/Reiniciar de `mdd-client` e `conn2flow-hub`, listagem `mdd feedback list --json` por veredito e triagem via `mdd feedback triage`; rótulos SDD→MDD com fallback `sdd/` preservado. `npm test` **154/154** (inclui `mddHubPolicy.test.cjs`); smoke real de Start/Stop do daemon SSE (porta em 777 ms, `taskkill /T` encerrou 4 processos).
-- [x] `mcp-hub`: fila serial no stdio (`startStdio` + `processLine`), `dist/` recompilado, `npm test` **7/7** (+2 em `stdioQueue.test.cjs`).
-- [x] MCP Python: `submit_skill_feedback` e `list_skill_feedback` em `mdd mcp` reaproveitando `feedback.py`; pytest **142/142** (141 + `test_python_mcp_feedback_tools_match_cli`; `test_mcp.py` passou a esperar 11 tools).
-- [x] `docs/`: 11 arquivos de 45 para 48 skills; catálogos PT-BR/EN com 48 linhas, 4 links `sdd-*` corrigidos para `mdd-*` e `c2f-multilingual-skills-governance` incluída (0 links quebrados).
-- [x] Poda deste checklist (DEC-136, autorizada): 14 seções homologadas movidas para [validation-069-088.md](archive/validation-069-088.md) (50 links rebaseados), original byte a byte em `archive/original/` (SHA-256 `b3b8b810…`); 10 ativos (este + 6 pendentes 076–081 + 089–091); 0 links quebrados antes e depois. Regra dos 10 com o `ai:archive-memory --status=HOMOLOGATED,REVIEWED` novo: `req-083`, `batch-087`, `REP-007` arquivados (18 links, só os afetados).
-- [x] Core via worktree isolada `_wt-req090-conn2flow`: `ai:archive-memory` canônico (alias `ai:archive-sdd`), `reports/`, `--folders`, `--status`, reescrita só dos links afetados e destinos `<...>`; PHPUnit **13/13** nos testes do arquivador; suíte Unit com as mesmas 29 falhas do `origin/main` intacto (ambiente sem `vendor/`/OpenSSL); `docs:audit` 0 erros. Publicado em `origin/main` **`6e146f7aa8b6`** por fast-forward; worktree removida, branch apagada e `git worktree prune` sem resíduo.
-- [x] Auditoria PASS (19 alvos, 0 divergências), governança PASS (240 cópias), índice `--check` PASS (48). FB-001..003 registrados na inbox. Lote e FEAT-017 ([REP-012](../reports/REP-012-batch092-hub-control-and-core-cli.md)) em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-092.md).
-- [ ] Homologação humana (incluindo teste visual da aba no VS Code) e commit/push seletivos da matriz pelo Arquiteto.
-
-## BATCH-091 — REQ-089 (2026-11-24)
-
-- [x] `mdd feedback submit/list/triage` no `mdd-client`, gravando `FB-XXX-<slug>.md` em `memory/inbox/feedback/`, atualizando `index.md` e o SQLite (quando presente) e suportando `--github` por runner injetável (mock nos testes).
-- [x] `submit_skill_feedback` e `list_skill_feedback` no `conn2flow-hub` (`mcp-hub/`), delegando ao CLI; `npm test` 5/5 e teste ponta a ponta hub → CLI no pytest.
-- [x] 4 personas (PT-BR + cópias EN) usando `mdd feedback` / MCP; ordem do rename em `c2f-multilingual-skills-governance`; CRLF normalizado em `audit-mdd-governance.cjs` (com teste); `README.md` e `README-PT-BR.md` em 48 skills.
-- [x] Regra dos 10: `human-requests/`, `implementation/` e `reports/` com 10 ativos cada (`req-082`, `batch-086`, `BL-028`, `REP-001` arquivados); pendentes do CURRENT protegidos; 176 links quebrados antes e depois (0 novos); `04-memory-engineering-execution.md` intacta.
-- [x] Auditoria PASS (19 alvos, 0 divergências, 0 drift, 0 legados), governança PASS (240 cópias), índice `--check` PASS e pytest 141/141 depois dos 5 hashes EN. Lote, FEAT-017 ([REP-011](../reports/REP-011-batch091-feedback-bus-learnings.md)) e índices em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-091.md).
-- [ ] Decisão do Arquiteto sobre `docs/` (45 skills), tools de feedback no MCP Python e poda deste checklist.
-- [ ] Homologação humana e commit/push seletivos da matriz; rollout das Fases 0+1+2 aos satélites em requisição própria.
-
-## BATCH-090 — REQ-088 (2026-11-24)
-
-- [x] Rename para `c2f-persona-architect`, `c2f-persona-executor` e `c2f-persona-reviewer` em PT-BR/EN, 5 kits, templates, `translated.json`, `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` e `STARTER-PROMPTS.md`. Mapa de aliases no `sync-skills.cjs`: 46 pastas migradas, 0 legados.
-- [x] `c2f-persona-curator` (escopos global e local) e `c2f-persona-optimizer` em PT-BR/EN. Catálogo canônico com 48 skills.
-- [x] `.gemini/skills/index.md` gerado por `generate-skills-index.cjs` (`--check` PASS). `subskills/` suportado no sync, com o piloto `c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md` em PT-BR/EN.
-- [x] `memory/learnings/` na matriz e nos boilerplates MDD PT-BR/EN, criada pelo `mdd init`, indexada pelo `mdd index` e coberta por teste.
-- [x] Regra dos 10: `human-requests/` e `implementation/` com 10 ativos cada (6 arquivados pelo `ai:archive-sdd` com `--protect`). Nenhum órfão novo; `04-memory-engineering-execution.md` intacta (SHA-256 inalterado).
-- [x] Auditoria PASS (19 alvos, 0 divergências, 0 drift), governança PASS e pytest 130/130 depois dos 7 hashes EN. Lote, FEAT-017 ([REP-010](../reports/archive/REP-010-batch090-personas-subskills-learnings.md)) e índices em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/archive/batch-090.md).
-- [ ] Decisão do Arquiteto sobre a Regra dos 10 em `memory/reports/` (11 relatórios) e a poda deste checklist (321 linhas).
-- [ ] Homologação humana e commit/push seletivos da matriz; propagação aos satélites em requisição própria.
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
@@ -150,6 +129,7 @@ Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md
 
 ## Validações Arquivadas
 
+- [validation-090-092.md](archive/validation-090-092.md) (BATCH-090 a BATCH-092; poda da REQ-094)
 - [validation-001-003.md](archive/validation-001-003.md) (BATCH-001 a BATCH-003)
 - [validation-006-007-014.md](archive/validation-006-007-014.md) (BATCH-006, BATCH-007 e BATCH-014)
 - [validation-015.md](archive/validation-015.md) (BATCH-015)

@@ -15,6 +15,8 @@ import {
   buildTriageArgs,
   FeedbackRecord,
   FeedbackVerdict,
+  describeFeedback,
+  feedbackLabel,
   FEEDBACK_VERDICTS,
   isHubHandshakeReply,
   ManagedProcessRecord,
@@ -48,7 +50,7 @@ export class MddHubManager {
   private static readonly children = new Map<MddServerId, ChildProcess>();
   private static busy = new Set<MddServerId>();
   private static feedback: FeedbackRecord[] = [];
-  private static feedbackError: string | undefined;
+  private static feedbackError: { message: string } | { key: 'mddHub.matrixMissing' | 'command.trustRequired' } | undefined;
   private static statuses = new Map<MddServerId, MddServerStatus>();
 
   public static initialize(context: vscode.ExtensionContext): vscode.Disposable {
@@ -71,7 +73,10 @@ export class MddHubManager {
   public static isBusy(id: MddServerId): boolean { return this.busy.has(id); }
   public static getCachedStatus(id: MddServerId): MddServerStatus { return this.statuses.get(id) || { id, state: 'STOPPED' }; }
   public static getFeedback(): readonly FeedbackRecord[] { return this.feedback; }
-  public static getFeedbackError(): string | undefined { return this.feedbackError; }
+  public static getFeedbackError(): string | undefined {
+    const error = this.feedbackError;
+    if (error) return 'key' in error ? LocalizationManager.t(error.key) : error.message;
+  }
   public static includeGithub(): boolean { return this.storage?.get<boolean>(this.githubKey, false) ?? false; }
 
   public static async toggleGithub(): Promise<void> {
@@ -266,12 +271,12 @@ export class MddHubManager {
     const matrix = WorkspaceLocator.getAiWorkspaceRoot();
     if (!matrix) {
       this.feedback = [];
-      this.feedbackError = LocalizationManager.t('mddHub.matrixMissing');
+      this.feedbackError = { key: 'mddHub.matrixMissing' };
       return;
     }
     if (!vscode.workspace.isTrusted) {
       this.feedback = [];
-      this.feedbackError = LocalizationManager.t('command.trustRequired');
+      this.feedbackError = { key: 'command.trustRequired' };
       return;
     }
     try {
@@ -279,8 +284,9 @@ export class MddHubManager {
       this.feedbackError = undefined;
     } catch (error) {
       this.feedback = [];
-      this.feedbackError = this.message(error);
-      this.log(`[feedback] list failed: ${this.feedbackError}`);
+      const message = this.message(error);
+      this.feedbackError = { message };
+      this.log(`[feedback] list failed: ${message}`);
     }
   }
 
@@ -295,17 +301,17 @@ export class MddHubManager {
       return false;
     }
     const verdict = await vscode.window.showQuickPick(FEEDBACK_VERDICTS.map(value => ({
-      label: value, description: LocalizationManager.t(`mddHub.verdict.${value}` as TranslationKey), value
+      label: feedbackLabel(LocalizationManager.currentLocale, 'group', value), description: LocalizationManager.t(`mddHub.verdict.${value}` as TranslationKey), value
     })), { placeHolder: LocalizationManager.t('mddHub.triageVerdict', { id: target.id }) });
     if (!verdict) return false;
     const reason = await vscode.window.showInputBox({
-      prompt: LocalizationManager.t('mddHub.triageReason', { id: target.id, verdict: verdict.value }),
+      prompt: LocalizationManager.t('mddHub.triageReason', { id: target.id, verdict: verdict.label }),
       validateInput: value => value.trim() ? undefined : LocalizationManager.t('mddHub.reasonRequired')
     });
     if (!reason?.trim()) return false;
     try {
       await this.runMdd(buildTriageArgs(matrix, target.id, verdict.value as FeedbackVerdict, reason), matrix);
-      vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.triaged', { id: target.id, verdict: verdict.value }), 4000);
+      vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.triaged', { id: target.id, verdict: verdict.label }), 4000);
       return true;
     } catch (error) {
       vscode.window.showErrorMessage(LocalizationManager.t('common.error', { message: this.message(error) }));
@@ -328,7 +334,7 @@ export class MddHubManager {
   private static async pickFeedback(): Promise<FeedbackRecord | undefined> {
     if (!this.feedback.length) await this.loadFeedback();
     const picked = await vscode.window.showQuickPick(this.feedback.filter(item => item.source === 'inbox').map(item => ({
-      label: item.id, description: `${item.verdict} · ${item.severity} · ${item.skill}`, detail: item.summary, item
+      label: item.id, description: [feedbackLabel(LocalizationManager.currentLocale, 'group', item.verdict), describeFeedback(item, LocalizationManager.currentLocale)].filter(Boolean).join(' · '), detail: item.summary, item
     })), { placeHolder: LocalizationManager.t('mddHub.selectFeedback') });
     return picked?.item;
   }

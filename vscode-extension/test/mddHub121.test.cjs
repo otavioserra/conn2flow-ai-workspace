@@ -62,7 +62,7 @@ test('external hub shows RUNNING (external) and exposes no Start/Stop/Restart', 
   const stopped = { id: 'conn2flow-hub', state: 'STOPPED' };
   const external = policy.resolveExternalHubStatus(stopped, [321, 400]);
   assert.deepEqual(external, { id: 'conn2flow-hub', state: 'RUNNING', pid: 321, external: true });
-  assert.equal(policy.describeServerStatus(external, 'externo'), 'RUNNING (externo) · PID 321');
+  assert.equal(policy.describeServerStatus(external, 'pt-BR'), 'EM EXECUÇÃO (externo) · PID 321');
   assert.equal(policy.serverContextValue(external), 'mddHubServer.external');
   assert.equal(policy.resolveExternalHubStatus(stopped, []), stopped);
   const own = { id: 'conn2flow-hub', state: 'RUNNING', pid: 9 };
@@ -86,7 +86,7 @@ test('Refresh and Toggle GitHub report progress and completion', () => {
   assert.match(extension, /withProgress\(\s*\{ location: \{ viewId: 'conn2flow-mdd-hub' \}/);
   assert.match(extension, /'conn2flow\.mddHub\.refresh'[\s\S]*?withHubProgress[\s\S]*?mddHub\.refreshed/);
   assert.match(extension, /'conn2flow\.mddHub\.toggleGithub'[\s\S]*?githubStateOn[\s\S]*?withHubProgress[\s\S]*?mddHub\.githubToggled/);
-  for (const key of ['mddHub.refreshing', 'mddHub.refreshed', 'mddHub.githubToggling', 'mddHub.githubToggled', 'mddHub.external']) {
+  for (const key of ['mddHub.refreshing', 'mddHub.refreshed', 'mddHub.githubToggling', 'mddHub.githubToggled', 'mddHub.serverState.external']) {
     assert.ok(catalogEn[key] && catalogPt[key], key);
   }
 });
@@ -168,10 +168,10 @@ test('real mdd bootstrap --list-domains feeds the picker (matrix catalog)', t =>
   assert.deepEqual(catalog.errors, []);
 });
 
-test('release is 1.2.1 in package.json, package-lock and CHANGELOG', () => {
+test('release version is consistent in the manifest, lockfile and changelog', () => {
   const lock = require('../package-lock.json');
-  assert.equal(manifest.version, '1.2.1');
-  assert.equal(lock.version, '1.2.1');
-  assert.equal(lock.packages[''].version, '1.2.1');
-  assert.match(fs.readFileSync(path.join(__dirname, '../CHANGELOG.md'), 'utf8'), /## 1\.2\.1 — /);
+  assert.equal(manifest.version, '1.2.2');
+  assert.equal(lock.version, manifest.version);
+  assert.equal(lock.packages[''].version, manifest.version);
+  assert.ok(fs.readFileSync(path.join(__dirname, '../CHANGELOG.md'), 'utf8').includes('## ' + manifest.version + ' — '));
 });

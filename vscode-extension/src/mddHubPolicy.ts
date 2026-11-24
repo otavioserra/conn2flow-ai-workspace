@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { en, SupportedLocale, translate, TranslationKey } from './localizationCatalog';
 
 /**
  * Pure policy for the "MDD Hub & Skills Control" view (REQ-090 / BATCH-092).
@@ -167,11 +168,12 @@ export function resolveServerStatus(
   return { id, state: 'STOPPED', port: record?.port };
 }
 
-export function describeServerStatus(status: MddServerStatus, externalLabel = 'external'): string {
-  if (status.state !== 'RUNNING') return 'STOPPED';
+export function describeServerStatus(status: MddServerStatus, locale: SupportedLocale = 'en'): string {
+  const state = translate(locale, status.state === 'RUNNING' ? 'mddHub.serverState.RUNNING' : 'mddHub.serverState.STOPPED');
+  if (status.state !== 'RUNNING') return state;
   const parts = [`PID ${status.pid}`];
   if (status.port) parts.push(`127.0.0.1:${status.port}`);
-  return `${status.external ? `RUNNING (${externalLabel})` : 'RUNNING'} · ${parts.join(' · ')}`;
+  return `${status.external ? translate(locale, 'mddHub.serverState.external', { state }) : state} · ${parts.join(' · ')}`;
 }
 
 /** Tree context value: external processes expose no Start/Stop/Restart. */
@@ -260,8 +262,23 @@ export function groupFeedback(records: readonly FeedbackRecord[]): FeedbackGroup
   }));
 }
 
-export function describeFeedback(record: FeedbackRecord): string {
-  return [record.severity, record.skill, record.repo].filter(Boolean).join(' · ');
+/** Translate known metadata codes, preserving values introduced by a newer CLI. */
+export function feedbackLabel(locale: SupportedLocale, field: 'group' | 'status' | 'kind' | 'severity', value: string): string {
+  const code = field === 'status' ? value.toUpperCase() : value;
+  const key = ('mddHub.' + field + '.' + code) as TranslationKey;
+  return Object.prototype.hasOwnProperty.call(en, key) ? translate(locale, key) : value;
+}
+
+export function describeFeedback(record: FeedbackRecord, locale: SupportedLocale = 'en'): string {
+  return [feedbackLabel(locale, 'severity', record.severity), record.skill, record.repo].filter(Boolean).join(' · ');
+}
+
+export function describeFeedbackMetadata(record: FeedbackRecord, locale: SupportedLocale): string {
+  return translate(locale, 'tooltip.mddHub.feedbackMetadata', {
+    status: feedbackLabel(locale, 'status', record.status) || '—',
+    verdict: feedbackLabel(locale, 'group', record.verdict),
+    kind: feedbackLabel(locale, 'kind', record.kind) || '—'
+  });
 }
 
 /** Triage only applies to inbox records (GitHub-only items have no FB file yet). */

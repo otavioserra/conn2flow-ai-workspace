@@ -158,3 +158,101 @@ def test_cli_bootstrap_json(matrix, tmp_path):
     assert json.loads(result.stdout)["domain"] == "generic"
     bad = CliRunner().invoke(app, ["bootstrap", "--path", str(project), "--matrix", str(matrix), "--domain", "nope"])
     assert bad.exit_code == 1 and "Unknown domain" in bad.output
+
+@pytest.mark.parametrize(("manifest", "error"), [
+    ([], "must be an object"),
+    ({**LARAVEL, "description": ""}, "description is required"),
+    ({**LARAVEL, "detectors": []}, "detectors must be an object"),
+    ({**LARAVEL, "detectors": {"dirs": [1]}}, "detectors.dirs"),
+    ({**LARAVEL, "detectors": {"markers": [{"file": "composer.json"}]}}, "items need file and contains"),
+    ({**LARAVEL, "skills_mode": ["Missing/Skill"]}, "list must name skills"),
+    ({**LARAVEL, "skills_mode": "invalid"}, "must be core-mdd-only"),
+    ({**LARAVEL, "extra_skills_dir": "../other"}, "relative path inside the domain"),
+    ({**LARAVEL, "generate_local_project_skill": "yes"}, "must be true or false"),
+    ({**LARAVEL, "priority": True}, "must be an integer"),
+])
+def test_discovery_reports_invalid_manifest(tmp_path, manifest, error):
+    folder = tmp_path / "laravel"
+    folder.mkdir()
+    (folder / "domain.json").write_text(json.dumps(manifest), encoding="utf-8")
+    domains, errors = boot.discover_domains(tmp_path)
+    assert domains == []
+    assert len(errors) == 1 and errors[0]["domain"] == "laravel"
+    assert error in errors[0]["error"]
+
+
+def test_catalog_override_and_environment_precedence(matrix, tmp_path, monkeypatch):
+    explicit = tmp_path / "explicit"
+    explicit.mkdir()
+    env_catalog = tmp_path / "environment"
+    env_catalog.mkdir()
+    monkeypatch.setenv("MDD_DOMAINS_DIR", str(env_catalog))
+    monkeypatch.setenv("MDD_MATRIX", str(matrix))
+
+    assert boot.find_domains_dir(matrix, explicit) == explicit.resolve()
+    assert boot.find_domains_dir(matrix) == (matrix / "domains").resolve()
+    assert boot.find_domains_dir() == env_catalog.resolve()
+    monkeypatch.delenv("MDD_DOMAINS_DIR")
+    assert boot.find_domains_dir() == (matrix / "domains").resolve()
+
+
+def test_empty_catalog_and_non_generic_fallback(tmp_path):
+    with pytest.raises(ValueError, match="catalog is empty"):
+        boot.detect_domain(tmp_path, [])
+    domains = [{**LARAVEL, "detectors": {"files": [], "dirs": [], "markers": []}}]
+    assert boot.detect_domain(tmp_path, domains) == {"id": "laravel", "evidence": [], "fallback": True}
+
+
+def test_missing_target_and_missing_skills_have_actionable_errors(matrix, tmp_path):
+    with pytest.raises(ValueError, match="Target folder does not exist"):
+        boot.bootstrap(tmp_path / "absent", matrix=matrix)
+
+    with pytest.raises(ValueError, match="Canonical skills not found"):
+        boot.resolve_skills({"skills_mode": "all-canonical"}, None)
+    with pytest.raises(ValueError, match="absent from the matrix: absent-skill"):
+        boot.resolve_skills({**LARAVEL, "skills_mode": ["absent-skill"]}, matrix / ".gemini/skills")
+
+
+def test_stack_detection_keeps_available_commands_when_package_json_is_malformed(tmp_path):
+    (tmp_path / "package.json").write_text("{broken", encoding="utf-8")
+    for marker in ("pyproject.toml", "go.mod", "Cargo.toml"):
+        (tmp_path / marker).touch()
+    (tmp_path / "tests").mkdir()
+    (tmp_path / ".git").mkdir()
+    stack = boot.detect_stack(tmp_path)
+    assert [item["id"] for item in stack["stacks"]] == ["node", "python", "go", "rust"]
+    assert stack["commands"] == ["pytest", "go test ./...", "cargo test"]
+    assert stack["git"]
+    assert ".git/" not in stack["top_level"]
+
+
+@pytest.mark.parametrize(("options", "messages"), [
+    (["--list-domains"], ["MDD domains", "invalid domain broken", "auto -> generic (fallback)"]),
+    (["--dry-run"], ["Domain: generic", "Planned skills: 4 per kit", "kits: gemini"]),
+    ([], ["Domain: generic", "Skills: 4 installed", "Local project skill:"]),
+])
+def test_cli_bootstrap_text(matrix, tmp_path, options, messages):
+    result = CliRunner().invoke(app, ["bootstrap", "--path", str(tmp_path), "--matrix", str(matrix),
+                                      "--kits", "gemini", *options])
+    assert result.exit_code == 0, result.output
+    for message in messages:
+        assert message in result.output
+    assert (tmp_path / "memory").exists() == (not options)
+
+
+def test_install_preserves_partial_skill_files_and_ignores_build_artifacts(matrix, tmp_path):
+    source = matrix / ".gemini/skills/c2f-persona-executor"
+    (source / "notes.md").write_text("matrix notes", encoding="utf-8")
+    (source / "build").mkdir()
+    (source / "build/cache").touch()
+    destination = tmp_path / ".gemini/skills/c2f-persona-executor"
+    destination.mkdir(parents=True)
+    (destination / "notes.md").write_text("local notes", encoding="utf-8")
+
+    report = boot.bootstrap(tmp_path, "generic", kits=boot.parse_kits("Gemini, gemini"), matrix=matrix)
+
+    assert report["kits"] == ["gemini"]
+    assert ".gemini/skills/c2f-persona-executor" in report["skills"]["installed"]
+    assert (destination / "SKILL.md").is_file()
+    assert (destination / "notes.md").read_text(encoding="utf-8") == "local notes"
+    assert not (destination / "build").exists()

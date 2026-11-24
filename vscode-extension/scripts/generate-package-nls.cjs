@@ -45,7 +45,20 @@ const english = {
   'conn2flow.mddHub.toggleGithub': 'Toggle GitHub Issues in Feedback List'
 };
 
+const portuguese = {
+  'conn2flow.mddHub.refresh': 'Atualizar estado do MDD Hub',
+  'conn2flow.mddHub.start': 'Iniciar servidor MDD',
+  'conn2flow.mddHub.stop': 'Parar servidor MDD',
+  'conn2flow.mddHub.restart': 'Reiniciar servidor MDD',
+  'conn2flow.mddHub.triageFeedback': 'Triar avaliações de habilidades',
+  'conn2flow.mddHub.openFeedback': 'Abrir avaliação de habilidade',
+  'conn2flow.mddHub.toggleGithub': 'Alternar ocorrências do GitHub na lista de avaliações'
+};
+
 const en = {
+  ...previousEn,
+  'view.mddHub': 'MDD Hub & Skills Control',
+  'config.mddHubPort.description': 'Local port (127.0.0.1) used by the MDD Client SSE server started from the MDD Hub view.',
   'extension.displayName': 'Conn2Flow Dev Tools',
   'extension.description': 'Official developer panel for MDD, Core, projects, diagnostics, agents, backlog and releases.',
   'view.title': 'Conn2Flow Dev Tools',
@@ -57,6 +70,9 @@ const en = {
   'config.agentsAutonomy.description': 'Agent autonomy level (supervised, monitored, or headless).'
 };
 const pt = {
+  ...previousPt,
+  'view.mddHub': 'MDD Hub e Controle de Habilidades',
+  'config.mddHubPort.description': 'Porta local (127.0.0.1) usada pelo servidor SSE do MDD Client iniciado pela aba MDD Hub.',
   'extension.displayName': 'Conn2Flow Dev Tools',
   'extension.description': 'Painel oficial para MDD, Core, projetos, diagnóstico, agentes, backlog e releases.',
   'view.title': 'Conn2Flow Dev Tools',
@@ -69,28 +85,25 @@ const pt = {
 };
 
 
-for (const key of Object.keys(previousEn)) {
-  if (key.startsWith('tooltip.') || key.startsWith('agents.')) en[key] = previousEn[key];
-}
-for (const key of Object.keys(previousPt)) {
-  if (key.startsWith('tooltip.') || key.startsWith('agents.')) pt[key] = previousPt[key];
-}
-
 for (const command of manifest.contributes.commands) {
   const key = `command.${command.command}`;
   const current = command.title;
-  const localizedPt = typeof current === 'string' && !current.startsWith('%') ? current : previousPt[key];
+  const localizedPt = portuguese[command.command]
+    ?? (typeof current === 'string' && !current.startsWith('%') ? current : previousPt[key]);
   if (!localizedPt) throw new Error(`Missing pt-BR title for ${command.command}`);
-  if (!english[command.command]) throw new Error(`Missing English title for ${command.command}`);
+  const localizedEn = english[command.command] ?? previousEn[key];
+  if (!localizedEn) throw new Error(`Missing English title for ${command.command}`);
   pt[key] = localizedPt;
-  en[key] = english[command.command];
+  en[key] = localizedEn;
   command.title = `%${key}%`;
 }
 
 manifest.displayName = '%extension.displayName%';
 manifest.description = '%extension.description%';
 manifest.contributes.viewsContainers.activitybar[0].title = '%view.title%';
-manifest.contributes.views['conn2flow-view-container'][0].name = '%view.title%';
+const views = manifest.contributes.views['conn2flow-view-container'];
+views.find(view => view.id === 'conn2flow-explorer').name = '%view.mddExplorer%';
+views.find(view => view.id === 'conn2flow-mdd-hub').name = '%view.mddHub%';
 
 fs.writeFileSync(packagePath, JSON.stringify(manifest, null, 2) + '\n');
 fs.writeFileSync(path.join(root, 'package.nls.json'), JSON.stringify(en, null, 2) + '\n');

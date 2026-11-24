@@ -1,5 +1,10 @@
 # Conn2Flow Tools changelog
 
+## 1.2.2 — 2026-11-24
+
+- O título e os itens do MDD Hub são atualizados imediatamente ao mudar o idioma da extensão.
+- Estados dos servidores, grupos de triagem e detalhes dos registros têm traduções em português e inglês. Os títulos e resumos escritos nos registros mantêm o idioma original.
+
 ## 1.2.1 — 2026-11-24
 
 - Fixed garbled accents in feedback titles and tooltips: every `mdd` call now runs Python in UTF-8 mode (`PYTHONUTF8=1`, `PYTHONIOENCODING=utf-8`).

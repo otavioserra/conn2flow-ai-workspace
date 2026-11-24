@@ -104,7 +104,7 @@ Toda proposta de alteração em skill passa por 4 filtros antes de ser apresenta
 | --- | --- | --- | --- |
 | 0 | [BATCH-089](../implementation/archive/batch-089.md) | `HOMOLOGATED` | 4 melhorias operacionais, saneamento SDD→MDD nas 13 skills, MDD como evolução do SDD |
 | 1 | [BATCH-090](../implementation/archive/batch-090.md) | `HOMOLOGATED` | 5 personas `c2f-persona-*` com aliases, 48 skills, `index.md`, `subskills/`, `memory/learnings/` |
-| 2 | [BATCH-091](../implementation/batch-091.md) | `HOMOLOGATED` | `mdd feedback submit/list/triage`, inbox `FB-XXX`, GitHub Issues, tools MCP no `conn2flow-hub` |
+| 2 | [BATCH-091](../implementation/archive/batch-091.md) | `HOMOLOGATED` | `mdd feedback submit/list/triage`, inbox `FB-XXX`, GitHub Issues, tools MCP no `conn2flow-hub` |
 | 3 | [BATCH-092](../implementation/batch-092.md) | `HOMOLOGATED` | Aba MDD Hub & Skills Control, paridade MCP Python, `ai:archive-memory` no Core |
 | 4 | [BATCH-093](../implementation/batch-093.md) | `ready-for-review` | Filtro 2 (quarentena por recorrência por origem `(repo, batch)`), filtro 3 (`--budget-report`), aviso de divergência entre cópias EN, filtro 5 (`mdd eval` determinístico, 13 cenários, provider plugável), primeira curadoria real (FB-001..003 `ACCEPT`) e rollout das Fases 0–4 em 7 satélites |
 

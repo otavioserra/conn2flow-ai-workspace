@@ -54,7 +54,7 @@ class MddHubTreeProvider {
         const busy = mddHubManager_1.MddHubManager.isBusy(id);
         const item = new MddHubTreeItem(mddHubManager_1.MddHubManager.serverLabel(id), 'server', vscode.TreeItemCollapsibleState.None, [], id);
         item.id = `mddHub.server.${id}`;
-        item.description = busy ? localizationManager_1.LocalizationManager.t('mddHub.busy') : (0, mddHubPolicy_1.describeServerStatus)(status, localizationManager_1.LocalizationManager.t('mddHub.external'));
+        item.description = busy ? localizationManager_1.LocalizationManager.t('mddHub.busy') : (0, mddHubPolicy_1.describeServerStatus)(status, localizationManager_1.LocalizationManager.currentLocale);
         item.contextValue = (0, mddHubPolicy_1.serverContextValue)(status);
         item.iconPath = busy
             ? new vscode.ThemeIcon('loading~spin')
@@ -77,7 +77,9 @@ ${localizationManager_1.LocalizationManager.t('mddHub.externalTooltip', { pid: S
         }
         else {
             children = (0, mddHubPolicy_1.groupFeedback)(records).map(group => {
-                const node = new MddHubTreeItem(`${group.verdict} (${group.items.length})`, 'group', group.verdict === 'PENDING' ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed, group.items.map(record => this.feedbackItem(record)));
+                const node = new MddHubTreeItem(localizationManager_1.LocalizationManager.t('mddHub.groupLabel', {
+                    verdict: (0, mddHubPolicy_1.feedbackLabel)(localizationManager_1.LocalizationManager.currentLocale, 'group', group.verdict), count: group.items.length
+                }), 'group', group.verdict === 'PENDING' ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed, group.items.map(record => this.feedbackItem(record)));
                 node.id = `mddHub.group.${group.verdict}`;
                 node.iconPath = new vscode.ThemeIcon(group.verdict === 'PENDING' ? 'inbox' : 'checklist');
                 return node;
@@ -95,14 +97,14 @@ ${localizationManager_1.LocalizationManager.t('mddHub.externalTooltip', { pid: S
     feedbackItem(record) {
         const item = new MddHubTreeItem(`${record.id} — ${record.summary}`, 'feedback', vscode.TreeItemCollapsibleState.None, [], undefined, record);
         item.id = `mddHub.feedback.${record.id}`;
-        item.description = (0, mddHubPolicy_1.describeFeedback)(record);
+        item.description = (0, mddHubPolicy_1.describeFeedback)(record, localizationManager_1.LocalizationManager.currentLocale);
         item.contextValue = (0, mddHubPolicy_1.canTriage)(record) ? 'mddHubFeedback.triage' : 'mddHubFeedback.readonly';
         const icon = record.severity === 'high' ? 'error' : record.severity === 'medium' ? 'warning' : 'info';
         item.iconPath = new vscode.ThemeIcon(record.source === 'github' ? 'github' : icon);
         const tooltip = new vscode.MarkdownString();
         tooltip.isTrusted = false;
         tooltip.appendText(`${record.title || record.id}\n\n`);
-        tooltip.appendText(`status: ${record.status} · verdict: ${record.verdict} · kind: ${record.kind}`);
+        tooltip.appendText((0, mddHubPolicy_1.describeFeedbackMetadata)(record, localizationManager_1.LocalizationManager.currentLocale));
         item.tooltip = tooltip;
         item.command = { command: 'conn2flow.mddHub.openFeedback', title: record.id, arguments: [item] };
         return item;
