@@ -1,0 +1,83 @@
+name: Update MDD skills
+
+on:
+  schedule:
+    - cron: '23 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: mdd-skills-autosync
+
+jobs:
+  sync:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install MDD Client
+        run: python -m pip install "git+https://github.com/otavioserra/conn2flow-ai-workspace.git@main#subdirectory=tools/mdd-client"
+      - name: Update skills and stage the resulting files
+        run: |
+          mdd sync --remote --apply --json > "$RUNNER_TEMP/mdd-sync.json"
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          report = json.loads((Path(os.environ["RUNNER_TEMP"]) / "mdd-sync.json").read_text())
+          for conflict in report["conflicts"]:
+              print(f"Needs review: {conflict['path']} ({conflict['reason']})")
+          ignored_updates = []
+          for path in report["updated"]:
+              ignored = subprocess.run(["git", "check-ignore", "-q", "--", path]).returncode
+              if ignored == 0:
+                  ignored_updates.append(path)
+                  print(f"Ignored by the project's Git policy: {path}")
+              elif ignored == 1:
+                  subprocess.run(["git", "--literal-pathspecs", "add", "--", path], check=True)
+              else:
+                  raise SystemExit(f"Could not verify Git ignore rules for {path}")
+          if report["metadata_changed"]:
+              state_path = Path("memory/skill-sync-state.json")
+              if ignored_updates:
+                  state = json.loads(state_path.read_text(encoding="utf-8"))
+                  for path in ignored_updates:
+                      state["files"].pop(path, None)
+                  state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+              ignored = subprocess.run(["git", "check-ignore", "-q", "--", str(state_path)]).returncode
+              if ignored == 1:
+                  subprocess.run(["git", "add", "--", str(state_path)], check=True)
+              elif ignored != 0:
+                  raise SystemExit("Could not verify Git ignore rules for the skill state")
+          PY
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if git diff --cached --quiet; then exit 0; fi
+          open="$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("mdd/skills-autosync-"))] | length')"
+          if [ "$open" != 0 ]; then
+            echo "An MDD skill update pull request is already open."
+            exit 0
+          fi
+          branch="mdd/skills-autosync-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$branch"
+          git commit -m 'chore(mdd): update skills from upstream'
+          gh auth setup-git
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create --head "$branch" --base "$BASE_BRANCH" \
+            --title 'chore(mdd): update skills from upstream' \
+            --body 'Updates official MDD skills. Local variants and conflicts require separate review.'

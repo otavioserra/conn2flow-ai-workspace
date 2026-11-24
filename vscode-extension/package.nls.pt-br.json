@@ -1,6 +1,10 @@
 {
   "extension.displayName": "Conn2Flow Dev Tools",
-  "extension.description": "Painel oficial para MDD, Core, projetos, diagnóstico, agentes, backlog e releases.",
+  "command.conn2flow.mddHub.syncRemoteSkills": "Sincronizar Skills Remotas (GitHub)",
+  "config.autoSyncSkills.description": "Sincronização remota de skills. Off desativa a consulta, notify avisa sobre atualizações e auto aplica as atualizações sem choque.",
+  "config.autoSyncIntervalHours.description": "Intervalo em horas entre tentativas de sincronização remota em um workspace confiável.",
+  "config.remoteMatrixUrl.description": "URL Git HTTPS da matriz usada para atualizar skills.",
+  "extension.description": "Desenvolvimento Orientado por Memória (MDD) para qualquer framework, com gestão multiagente e ferramentas nativas do Conn2Flow.",
   "view.title": "Conn2Flow Dev Tools",
   "config.language.description": "Idioma da interface em runtime. Automático acompanha o idioma de exibição do VS Code.",
   "config.githubOwner.description": "Owner ou organização GitHub opcional, usado somente quando não puder ser derivado do remoto origin do Core.",

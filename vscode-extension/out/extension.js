@@ -27,6 +27,8 @@ const mddConflictsManager_1 = require("./providers/mddConflictsManager");
 const mddHubManager_1 = require("./providers/mddHubManager");
 const mddHubTreeProvider_1 = require("./providers/mddHubTreeProvider");
 const mddBootstrapManager_1 = require("./providers/mddBootstrapManager");
+const mddRemoteSyncManager_1 = require("./providers/mddRemoteSyncManager");
+const mddRemoteSyncPolicy_1 = require("./mddRemoteSyncPolicy");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 const documentationSearchPolicy_1 = require("./documentationSearchPolicy");
 const vmDiagnosticsPolicy_1 = require("./vmDiagnosticsPolicy");
@@ -46,7 +48,8 @@ function activate(context) {
     vscode.window.registerTreeDataProvider('conn2flow-explorer', treeProvider);
     // MDD Hub & Skills Control (REQ-090): visual client of mdd-client and conn2flow-hub.
     context.subscriptions.push(mddHubManager_1.MddHubManager.initialize(context));
-    const mddHubTreeProvider = new mddHubTreeProvider_1.MddHubTreeProvider();
+    let remoteSync;
+    const mddHubTreeProvider = new mddHubTreeProvider_1.MddHubTreeProvider(() => remoteSync?.pendingUpdates() ?? 0);
     const mddHubView = vscode.window.createTreeView('conn2flow-mdd-hub', { treeDataProvider: mddHubTreeProvider });
     const resolveServer = async (item) => item?.serverId || await mddHubManager_1.MddHubManager.pickServer(localizationManager_1.LocalizationManager.t('mddHub.selectServer'));
     const runServerAction = async (item, action) => {
@@ -60,7 +63,7 @@ function activate(context) {
     };
     // Visible progress on the view (and in the status bar) so Refresh/Toggle never look frozen.
     const withHubProgress = (title) => vscode.window.withProgress({ location: { viewId: 'conn2flow-mdd-hub' }, title }, () => vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title }, () => mddHubTreeProvider.refresh()));
-    context.subscriptions.push(mddHubView, vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
+    context.subscriptions.push(mddHubView, vscode.commands.registerCommand(mddRemoteSyncPolicy_1.REMOTE_SKILLS_COMMAND, () => remoteSync?.runManual()), vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
         await withHubProgress(localizationManager_1.LocalizationManager.t('mddHub.refreshing'));
         vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.refreshed', { count: String(mddHubManager_1.MddHubManager.getFeedback().length) }), 4000);
     }), vscode.commands.registerCommand('conn2flow.mddHub.start', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.start(id))), vscode.commands.registerCommand('conn2flow.mddHub.stop', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.stop(id))), vscode.commands.registerCommand('conn2flow.mddHub.restart', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.restart(id))), vscode.commands.registerCommand('conn2flow.mddHub.triageFeedback', async (item) => {
@@ -105,6 +108,8 @@ function activate(context) {
         mddHubTreeProvider.repaint();
         void mddHubTreeProvider.refresh();
     });
+    remoteSync = new mddRemoteSyncManager_1.MddRemoteSyncManager(context.workspaceState, () => mddHubTreeProvider.repaint());
+    context.subscriptions.push(remoteSync);
     mddHubView.title = localizationManager_1.LocalizationManager.t('view.mddHub');
     void mddHubTreeProvider.refresh();
     refreshAll();

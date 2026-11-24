@@ -57,12 +57,28 @@ def init(
     console.print(f"Initialized {path.resolve()} ({len(created)} new documents)")
 
 
+@app.command("update")
 @app.command()
 @guarded
-def sync(matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path(".")), audit: bool = False,
+def sync(ctx: typer.Context, matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path(".")), audit: bool = False,
          customization: str | None = typer.Option(None, "--customize"),
-         local_sha256: str | None = None, seed_sha256: str | None = None):
-    """Synchronize canonical skills through the official pipeline."""
+         local_sha256: str | None = None, seed_sha256: str | None = None,
+         remote: bool = typer.Option(False, "--remote"), source_url: str | None = typer.Option(None, "--source-url"),
+         cache_dir: Path | None = typer.Option(None, "--cache-dir"), domain: str | None = typer.Option(None, "--domain"),
+         check_only: bool = typer.Option(False, "--check-only"), apply: bool = typer.Option(False, "--apply"),
+         as_json: bool = typer.Option(False, "--json")):
+    """Synchronize canonical skills. The update alias uses the remote matrix."""
+    if remote or ctx.info_name == "update":
+        from .remote_sync import SOURCE_URL, remote_sync
+
+        if matrix or customization or audit or local_sha256 or seed_sha256 or (check_only and apply):
+            raise ValueError("Remote sync cannot combine local options or --check-only and --apply")
+        data = remote_sync(path, source_url=source_url or SOURCE_URL, cache_dir=cache_dir,
+                           domain=domain or "auto", check_only=check_only)
+        typer.echo(json.dumps(data, ensure_ascii=False))
+        return
+    if source_url or cache_dir or domain or check_only:
+        raise ValueError("Remote options require --remote or mdd update")
     data = ({"status": "PASS", "customization": customize(path, find_matrix(matrix), customization, local_sha256, seed_sha256)}
             if customization else synchronize(path, find_matrix(matrix), audit))
     for item in data.get("translation_drift", []):
@@ -353,6 +369,7 @@ def bootstrap_command(
     matrix: Path | None = typer.Option(None, help="Matrix root with domains/ and .gemini/skills/"),
     domains_dir: Path | None = typer.Option(None, "--domains-dir", help="Alternative domains/ catalog"),
     dry_run: bool = typer.Option(False, "--dry-run", help="Detect and plan without writing"),
+    with_ci_sync: bool = typer.Option(False, "--with-ci-sync", help="Install the optional weekly GitHub workflow"),
     as_json: bool = typer.Option(False, "--json"),
 ):
     """Install MDD (memory/, domain skills, local project guide) in any project without overwriting files."""
@@ -375,12 +392,15 @@ def bootstrap_command(
         for error in data["errors"]:
             typer.echo(f"invalid domain {error['domain']}: {error['error']}", err=True)
         return
-    data = boot.bootstrap(path, domain, kits=boot.parse_kits(kits), matrix=matrix, domains_dir=domains_dir, dry_run=dry_run)
+    data = boot.bootstrap(path, domain, kits=boot.parse_kits(kits), matrix=matrix, domains_dir=domains_dir,
+                          dry_run=dry_run, with_ci_sync=with_ci_sync)
     if as_json:
         typer.echo(json.dumps(data, ensure_ascii=False))
         return
     stacks = ", ".join(s["label"] for s in data["stack"]["stacks"]) or "none"
     typer.echo(f"Domain: {data['domain']} (requested {data['requested_domain']}) · stack: {stacks}")
+    if with_ci_sync:
+        typer.echo(f"CI sync: {data['ci_sync']['path']} ({data['ci_sync']['status']})")
     if dry_run:
         typer.echo(f"Planned skills: {len(data['skills']['planned'])} per kit · kits: {','.join(data['kits'])}")
         return

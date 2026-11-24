@@ -8,7 +8,7 @@
 
 Projetos longos com IA perdem contexto entre sessões. **Memory-Driven Development (MDD)** mantém especificações, decisões, evidências de execução e procedimentos reutilizáveis no Git para que o próximo agente retome o trabalho por um índice pequeno e fontes verificadas.
 
-O **MDD evolui o Spec-Driven Development (SDD)**: preserva especificações e validação e acrescenta memória persistente. O workspace oferece o MDD Client para memória local, o MDD Hub Python para relatórios e monitoramento de documentação e a extensão Conn2Flow Tools v1.2.0 para VS Code. As skills gerais servem a qualquer projeto, e as específicas dão suporte ao ecossistema PHP e de recursos do Conn2Flow.
+O **MDD evolui o Spec-Driven Development (SDD)**: preserva especificações e validação e acrescenta memória persistente. O workspace oferece o MDD Client para memória local, o MDD Hub Python para relatórios e monitoramento de documentação e a extensão Conn2Flow Tools v1.2.4 para VS Code. As skills gerais servem a qualquer projeto, e as específicas dão suporte ao ecossistema PHP e de recursos do Conn2Flow.
 
 ## Como as partes se conectam
 
@@ -41,9 +41,15 @@ Aprendizados verificados ficam em [`memory/learnings/`](memory/learnings/index.m
 
 ## Quickstart em três passos
 
-1. **Instale o Client.** Na raiz, com Python 3.11+ e um ambiente virtual ativo, rode `python -m pip install -e tools/mdd-client`. Para provisionar um projeto, rode `mdd init ./my-project --type software --kits`.
-2. **Instale a extensão.** Abra o VS Code e use **Extensões → Instalar do VSIX** com `vscode-extension/conn2flow-tools-1.2.0.vsix`. O [guia do painel](docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md) descreve a configuração e os controles.
+1. **Instale o Client.** Na raiz, com Python 3.11+ e um ambiente virtual ativo, rode `python -m pip install -e tools/mdd-client`. Para provisionar um projeto, rode `mdd bootstrap --path ./meu-projeto`.
+2. **Instale a extensão.** Abra o VS Code e use **Extensões → Instalar do VSIX** com `vscode-extension/conn2flow-tools-1.2.4.vsix`. O [guia do painel](docs/pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md) descreve a configuração e os controles.
 3. **Abra a requisição e ative a persona.** Leia `memory/human-requests/CURRENT.md` quando disponível e o `index.md` da área. Selecione escopo, topologia e autonomia, invoque a persona pelo nome da skill e registre as verificações antes da revisão.
+
+## Mantenha as skills do projeto atualizadas
+
+Rode `mdd sync --remote --check-only --json` para consultar atualizações e `mdd update --apply` para aplicar arquivos com origem verificável. O Client atualiza um cache Git raso compartilhado em `~/.mdd/cache/`. A consulta preserva os arquivos do projeto. Skills locais, customizações reconhecidas e arquivos com edição local sem origem verificável são preservados. Versione `memory/skill-sync-state.json` com as skills para que outros clones e o CI reconheçam as sementes instaladas.
+
+Acrescente `--with-ci-sync` a `mdd bootstrap --path ./meu-projeto` para gerar o [workflow semanal opcional](templates/ci/mdd-skills-autosync.yml). O workflow abre um pull request para revisão quando há atualizações. O repositório de destino precisa permitir a criação de pull requests pelo GitHub Actions. [Configurações do GitHub Actions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository)
 
 ## Explore a documentação
 

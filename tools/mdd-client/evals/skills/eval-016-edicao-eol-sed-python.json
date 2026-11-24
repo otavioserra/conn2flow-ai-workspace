@@ -1,0 +1,28 @@
+{
+  "id": "EVAL-016-edicao-eol-sed-python",
+  "skill": "c2f-shell-and-windows-traps",
+  "title": "FB-008: preserve EOL during in-place edits (PT-BR/EN)",
+  "trap": "Git Bash sed -i can rewrite CRLF as LF, and Windows Python Path.write_text() uses CRLF by default for newline conversion.",
+  "must_match": [
+    "(?m)^## 20\\. REP-002[^\\n]*\\n(?:(?!^#{1,3} ).*\\n)*^- \\*\\*FB-008\\*\\*"
+  ],
+  "must_include": [
+    "`sed -i` do Git Bash converte CRLF em LF",
+    "`Path.write_text()` no Python do Windows grava CRLF por padrão",
+    "`Path.read_bytes()` e `Path.write_bytes()`",
+    "preserve o EOL original"
+  ],
+  "translations": {
+    "en": {
+      "must_match": [
+        "(?m)^## 20\\. REP-002[^\\n]*\\n(?:(?!^#{1,3} ).*\\n)*^- \\*\\*FB-008\\*\\*"
+      ],
+      "must_include": [
+        "Git Bash `sed -i` converts CRLF to LF",
+        "Windows Python `Path.write_text()` writes CRLF by default",
+        "`Path.read_bytes()` and `Path.write_bytes()`",
+        "preserve the original EOL"
+      ]
+    }
+  }
+}

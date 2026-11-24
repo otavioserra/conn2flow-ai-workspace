@@ -24,6 +24,8 @@ import { MddHubManager } from './providers/mddHubManager';
 import { MddHubTreeItem, MddHubTreeProvider } from './providers/mddHubTreeProvider';
 import { MddServerId } from './mddHubPolicy';
 import { MddBootstrapManager } from './providers/mddBootstrapManager';
+import { MddRemoteSyncManager } from './providers/mddRemoteSyncManager';
+import { REMOTE_SKILLS_COMMAND } from './mddRemoteSyncPolicy';
 import {
   getPreviewCloseReason,
   isTargetMpePreview,
@@ -53,7 +55,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   // MDD Hub & Skills Control (REQ-090): visual client of mdd-client and conn2flow-hub.
   context.subscriptions.push(MddHubManager.initialize(context));
-  const mddHubTreeProvider = new MddHubTreeProvider();
+  let remoteSync: MddRemoteSyncManager | undefined;
+  const mddHubTreeProvider = new MddHubTreeProvider(() => remoteSync?.pendingUpdates() ?? 0);
   const mddHubView = vscode.window.createTreeView('conn2flow-mdd-hub', { treeDataProvider: mddHubTreeProvider });
   const resolveServer = async (item?: MddHubTreeItem): Promise<MddServerId | undefined> =>
     item?.serverId || await MddHubManager.pickServer(LocalizationManager.t('mddHub.selectServer'));
@@ -72,6 +75,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
   context.subscriptions.push(
     mddHubView,
+    vscode.commands.registerCommand(REMOTE_SKILLS_COMMAND, () => remoteSync?.runManual()),
     vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
       await withHubProgress(LocalizationManager.t('mddHub.refreshing'));
       vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.refreshed', { count: String(MddHubManager.getFeedback().length) }), 4000);
@@ -128,6 +132,8 @@ export function activate(context: vscode.ExtensionContext) {
     mddHubTreeProvider.repaint();
     void mddHubTreeProvider.refresh();
   });
+  remoteSync = new MddRemoteSyncManager(context.workspaceState, () => mddHubTreeProvider.repaint());
+  context.subscriptions.push(remoteSync);
   mddHubView.title = LocalizationManager.t('view.mddHub');
   void mddHubTreeProvider.refresh();
   refreshAll();

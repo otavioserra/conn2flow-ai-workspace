@@ -13,7 +13,7 @@ summary_medium: "Origem: REP-004 (BATCH-083). Adiciona exemplos de sync/auditori
 
 * **Status**: `ICEBOX` (aguardando promoção formal para `memory/human-requests/`)
 * **Tipo**: Governança / Skills / Ferramental (`sync-skills.cjs`)
-* **Origem**: [REP-004 — Dificuldades e Aprendizados do BATCH-083](../reports/REP-004-batch083-skills-learnings.md)
+* **Origem**: [REP-004 — Dificuldades e Aprendizados do BATCH-083](../reports/archive/REP-004-batch083-skills-learnings.md)
 * **Autor**: Arquiteto Master
 * **Data de Criação**: 2026-11-21
 * **Repositórios Alvo**: `conn2flow-ai-workspace` (e paridade de auditoria no `mdd-client`)
@@ -57,7 +57,7 @@ Durante a execução do `REQ-081` / `BATCH-083` (Categoria B, escopo restrito à
 
 ## 🔗 Referências
 
-- Relatório de origem: [REP-004](../reports/REP-004-batch083-skills-learnings.md)
+- Relatório de origem: [REP-004](../reports/archive/REP-004-batch083-skills-learnings.md)
 - Lote de origem: [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md)
 - Skill alvo: `.gemini/skills/c2f-multilingual-skills-governance/SKILL.md`
 - Script sincronizador: `scripts/skills/sync-skills.cjs` e `scripts/skills/translated.json`

@@ -36,7 +36,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Lote atual
 
-[REQ-086](../human-requests/archive/req-086.md) / [BATCH-088](archive/batch-088.md) (`ready-for-review`). Sete skills na matriz, onze em sete satélites e worktrees da requisição removidas. [Índice MDD](index.md).
+[REQ-096](../human-requests/req-096.md) / [BATCH-098](batch-098.md) (ready-for-review). Sincronização remota de skills, VSIX 1.2.4 e workflow semanal opcional.
 
 ## Histórico de lotes arquivados — BATCH-068 a BATCH-075
 
@@ -53,6 +53,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entrega atual
 
+[REQ-096](../human-requests/req-096.md) / [BATCH-098](batch-098.md) (ready-for-review). Gate local PASS, 222 testes Python com 96,21% e extensão 172/172. [Relatório FEAT-017](../reports/REP-018-batch098-remote-skill-sync.md).
+
+[REQ-095](../human-requests/req-095.md) / [BATCH-097](batch-097.md) (ready-for-review). VSIX 1.2.3, EVAL-016 e rollout confirmado nos sete satélites.
+
 [REQ-094](../human-requests/req-094.md) / [BATCH-096](batch-096.md) (`ready-for-review`) valida o gate Python em 96,32%, entrega a extensão VS Code 1.2.2 e restabelece a janela de dez seções do checklist. [Relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
 
 ## Entregas anteriores
@@ -62,9 +66,9 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 [REQ-092](../human-requests/req-092.md) / [BATCH-094](batch-094.md) (`HOMOLOGATED`) entregou VSIX v1.2.0 validado, saneamento cirúrgico de 57 sobras de skills, documentação bilíngue e inventário DEC-136. [Relatório FEAT-017](../reports/REP-014-batch094-vsix-skills-and-curation.md).
 
 
-REQ-091 / BATCH-093 (`ready-for-review`): Fase 4 (final) do ARCH-018. Quarentena por recorrência em `mdd feedback` (origem `(repo, batch)`, `--force-ready` nos dois MCP), `--budget-report`, aviso de divergência entre cópias EN, `mdd eval` determinístico com 13 cenários, FB-001..003 aceitos e aplicados em PT-BR/EN (gate: pytest 153/153, EVAL-PASS 13/13). Rollout das 48 skills em 7 satélites via worktrees isoladas já removidas; `conn2flow-home` e `conn2flow-mkt` intocados. [Relatório](batch-093.md).
+REQ-091 / BATCH-093 (`ready-for-review`): Fase 4 (final) do ARCH-018. Quarentena por recorrência em `mdd feedback` (origem `(repo, batch)`, `--force-ready` nos dois MCP), `--budget-report`, aviso de divergência entre cópias EN, `mdd eval` determinístico com 13 cenários, FB-001..003 aceitos e aplicados em PT-BR/EN (gate: pytest 153/153, EVAL-PASS 13/13). Rollout das 48 skills em 7 satélites via worktrees isoladas já removidas; `conn2flow-home` e `conn2flow-mkt` intocados. [Relatório](archive/batch-093.md).
 
-REQ-090 / BATCH-092 (`ready-for-review`): Fase 3 do ARCH-018. Aba MDD Hub & Skills Control na extensão (servidores + triagem de feedbacks), fila serial no stdio do hub, tools de feedback no MCP Python, `docs/` em 48 skills, poda do checklist e, no Core via worktree isolada já removida, `ai:archive-memory` com `reports/` e `--status` publicado em `origin/main` (`6e146f7aa8b6`). [Relatório](batch-092.md).
+REQ-090 / BATCH-092 (`ready-for-review`): Fase 3 do ARCH-018. Aba MDD Hub & Skills Control na extensão (servidores + triagem de feedbacks), fila serial no stdio do hub, tools de feedback no MCP Python, `docs/` em 48 skills, poda do checklist e, no Core via worktree isolada já removida, `ai:archive-memory` com `reports/` e `--status` publicado em `origin/main` (`6e146f7aa8b6`). [Relatório](archive/batch-092.md).
 
 REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](archive/batch-091.md).
 

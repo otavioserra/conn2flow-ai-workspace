@@ -71,9 +71,13 @@ def _validate(data: object, folder: str) -> dict:
     if not isinstance(detectors, dict):
         raise ValueError("detectors must be an object")
     for key in ("files", "dirs"):
-        if not all(isinstance(item, str) and item for item in detectors.get(key, [])):
+        paths = detectors.get(key, [])
+        if not isinstance(paths, list) or not all(isinstance(item, str) and item for item in paths):
             raise ValueError(f"detectors.{key} must list relative paths")
-    for marker in detectors.get("markers", []):
+    markers = detectors.get("markers", [])
+    if not isinstance(markers, list):
+        raise ValueError("detectors.markers must be a list")
+    for marker in markers:
         if not (isinstance(marker, dict) and isinstance(marker.get("file"), str) and isinstance(marker.get("contains"), str)):
             raise ValueError("detectors.markers items need file and contains")
     mode = data.get("skills_mode")
@@ -160,15 +164,24 @@ def detect_stack(root: Path) -> dict:
 
 def _hits(root: Path, domain: dict) -> list[str]:
     detectors, hits = domain["detectors"], []
+
+    def candidate(name: str) -> Path | None:
+        if Path(name).anchor or ".." in Path(name).parts:
+            return None
+        try:
+            return contained(root, root / name)
+        except ValueError:
+            return None
+
     for name in detectors["files"]:
-        if (root / name).is_file():
+        if (path := candidate(name)) is not None and path.is_file():
             hits.append(f"file:{name}")
     for name in detectors["dirs"]:
-        if (root / name).is_dir():
+        if (path := candidate(name)) is not None and path.is_dir():
             hits.append(f"dir:{name}")
     for marker in detectors["markers"]:
-        path = root / marker["file"]
-        if path.is_file() and marker["contains"].lower() in _read(path).lower():
+        path = candidate(marker["file"])
+        if path is not None and path.is_file() and marker["contains"].lower() in _read(path).lower():
             hits.append(f"marker:{marker['file']}~{marker['contains']}")
     return hits
 
@@ -291,7 +304,7 @@ def parse_kits(value: str | None) -> list[str]:
 
 
 def bootstrap(root: Path, domain: str = "auto", *, kits: list[str] | None = None, matrix: Path | None = None,
-              domains_dir: Path | None = None, dry_run: bool = False) -> dict:
+              domains_dir: Path | None = None, dry_run: bool = False, with_ci_sync: bool = False) -> dict:
     root = root.resolve()
     if not root.is_dir():
         raise ValueError(f"Target folder does not exist: {root}")
@@ -313,6 +326,13 @@ def bootstrap(root: Path, domain: str = "auto", *, kits: list[str] | None = None
               "kits": kit_names, "dry_run": dry_run, "memory": {"created": [], "preserved": False},
               "skills": {"installed": [], "preserved": []}, "rules": {"created": [], "preserved": []},
               "local_skill": {"created": [], "preserved": []}}
+    if with_ci_sync:
+        workflow = contained(root, root / ".github/workflows/mdd-skills-autosync.yml")
+        template = matrix_root / "templates/ci/mdd-skills-autosync.yml"
+        existing = workflow.exists()
+        workflow_content = None if existing else template.read_bytes()
+        report["ci_sync"] = {"path": workflow.relative_to(root).as_posix(),
+                             "status": "preserved" if existing else "planned" if dry_run else "created"}
     if dry_run:
         report["skills"]["planned"] = [name for name, _ in skills]
         return report
@@ -350,4 +370,10 @@ def bootstrap(root: Path, domain: str = "auto", *, kits: list[str] | None = None
                 if bucket == "created":
                     write(root, guide, local_skill(root, chosen, stack))
                 report["local_skill"][bucket].append(guide.relative_to(root).as_posix())
+        from .remote_sync import remember_bootstrap
+
+        remember_bootstrap(root, matrix_root, catalog, skills, [KITS[kit] for kit in kit_names],
+                           chosen_id if domain not in (None, "", "auto") else "auto")
+        if with_ci_sync and workflow_content is not None:
+            write(root, workflow, workflow_content)
     return report

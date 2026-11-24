@@ -53,7 +53,7 @@ Evidências no [BATCH-085](../../implementation/archive/batch-085.md), no [REP-0
 - [x] Zero divergências nas três skills da Fase 3 e zero drift de tradução. A auditoria global manteve 68 divergências preexistentes fora do escopo. A auditoria da matriz passou em 19 alvos e 66 testes locais passaram.
 - [ ] Homologação final e integração Git na main pelo Arquiteto Master, após aceite do operador humano.
 
-Evidências em [BATCH-084](../../implementation/archive/batch-084.md), [REP-005](../../reports/REP-005-batch084-rollout-and-eol.md) e na [auditoria da matriz](../../../completions/skills-audit.json).
+Evidências em [BATCH-084](../../implementation/archive/batch-084.md), [REP-005](../../reports/archive/REP-005-batch084-rollout-and-eol.md) e na [auditoria da matriz](../../../completions/skills-audit.json).
 
 ## BATCH-083 — REQ-081 (2026-11-21)
 
@@ -64,7 +64,7 @@ Evidências em [BATCH-084](../../implementation/archive/batch-084.md), [REP-005]
 - [x] Relatório do lote criado com frontmatter canônico e relatório de aprendizados também registrado em REP-004.
 - [x] Índices MDD das áreas afetadas regenerados sem erros.
 
-Evidências em [BATCH-083](../../implementation/archive/compacted/batch-083-95aade2d8707.md), [REP-004](../../reports/REP-004-batch083-skills-learnings.md) e na [auditoria local](../../../completions/skills-audit.json). Homologação humana pendente.
+Evidências em [BATCH-083](../../implementation/archive/compacted/batch-083-95aade2d8707.md), [REP-004](../../reports/archive/REP-004-batch083-skills-learnings.md) e na [auditoria local](../../../completions/skills-audit.json). Homologação humana pendente.
 
 ## BATCH-082 — REQ-080 (2026-11-18)
 

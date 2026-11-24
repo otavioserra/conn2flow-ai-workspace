@@ -170,7 +170,7 @@ test('real mdd bootstrap --list-domains feeds the picker (matrix catalog)', t =>
 
 test('release version is consistent in the manifest, lockfile and changelog', () => {
   const lock = require('../package-lock.json');
-  assert.equal(manifest.version, '1.2.2');
+  assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
   assert.equal(lock.version, manifest.version);
   assert.equal(lock.packages[''].version, manifest.version);
   assert.ok(fs.readFileSync(path.join(__dirname, '../CHANGELOG.md'), 'utf8').includes('## ' + manifest.version + ' — '));

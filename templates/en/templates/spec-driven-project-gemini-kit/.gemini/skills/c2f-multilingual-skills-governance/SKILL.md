@@ -33,6 +33,16 @@ node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report comp
 
 Review the variant against the source and incorporate the update while preserving the legitimate customization. Acknowledge the new hash pair with `mdd sync --customize <kit>/skills/<skill>/SKILL.md --matrix <matrix> --path <destination>` and run the audit again.
 
+## Satellite rollout
+
+The command defaults to a dry run in worktrees based on `origin/main`. Review the report and use `--apply` once publication is authorized. Omit `--skills` to select the entire catalog. `--repos` limits the satellites, and repositories without an `origin` are skipped.
+
+```sh
+node scripts/skills/rollout-satellites.cjs --dry-run --repos conn2flow,lumix --skills c2f-shell-and-windows-traps,c2f-multilingual-skills-governance --report completions/rollout.json
+```
+
+The rollout syncs only kits already present in the worktree, checks ignored alias successors, and updates acknowledged customizations through `mdd sync --customize`. It verifies the remote base before a fast-forward push. It checks for Windows reparse points and removes temporary worktrees. If integration of a newly created commit cannot be confirmed, the report identifies the worktree kept for inspection.
+
 ## Hash pairing and review
 
 The record `scripts/skills/translated.json` maps language → skill → `source_sha256`, `translated_at` and `translator`. The SHA-256 identifies the reviewed PT-BR source. The synchronizer converts CRLF to LF in memory before hashing the source and comparing skill copies. Written copies retain the source bytes, and hashes for acknowledged customizations still use the exact bytes.

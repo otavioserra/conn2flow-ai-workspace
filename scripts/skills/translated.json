@@ -106,9 +106,9 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "297616f3d3eb106584f3eb5f5f68d6b185558802ae33018de805f300321e907f",
+      "source_sha256": "135ba57335fcc727fe3dd2bda4af179ae157a7a10a1acf56361b8bd2c2d3a334",
       "translated_at": "2026-11-24",
-      "translator": "mdd-agent"
+      "translator": "executor"
     },
     "c2f-multilingual-system": {
       "source_sha256": "63fe772e98899efa3a5a99580b566e7e6ca3e4553f72f16c41d1ab86266f4099",
@@ -176,9 +176,9 @@
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "e25ea96840ff167ec7bcb3526b7d0e45f2c4430787bed1e6fda319500d0a0219",
+      "source_sha256": "1dc1eafee950f69958af7f156a87132582b83f4c6defef66bf93b893bafbdb02",
       "translated_at": "2026-11-24",
-      "translator": "mdd-agent"
+      "translator": "executor"
     },
     "c2f-system-tasks": {
       "source_sha256": "78a50476b36c9f152ec939ce81c0a6a6dbb19d1550828cfe7426fa349c36de9e",

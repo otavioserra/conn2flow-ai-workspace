@@ -1,5 +1,15 @@
 # Conn2Flow Tools changelog
 
+## 1.2.4 — 2026-11-24
+
+- Added remote skill checks, opt-in automatic updates and a manual sync command in MDD Hub & Skills Control.
+- The default Notify mode reports available updates in trusted workspaces. Auto mode applies safe updates and records conflicts in the MDD Hub output.
+
+## 1.2.3 — 2026-11-24
+
+- Rewrote the Marketplace overview and quickstart around Memory-Driven Development, plug-in domains, five agent roles, and MDD Hub & Skills Control.
+- Updated the English and Brazilian Portuguese subtitles and added search keywords for MDD, multi-agent development, and MCP.
+
 ## 1.2.2 — 2026-11-24
 
 - O título e os itens do MDD Hub são atualizados imediatamente ao mudar o idioma da extensão.

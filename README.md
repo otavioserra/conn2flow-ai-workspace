@@ -8,7 +8,7 @@
 
 Long-running AI projects lose context between sessions. **Memory-Driven Development (MDD)** keeps specifications, decisions, execution evidence and reusable procedures in Git so the next agent can resume from a small index and verified sources.
 
-**MDD builds on Spec-Driven Development (SDD)** by adding persistent memory to specifications and validation. The workspace provides MDD Client for local memory, the Python MDD Hub for reports and documentation monitoring, and Conn2Flow Tools v1.2.0 for VS Code. General skills apply to any project, while Conn2Flow skills support its PHP and resource ecosystem.
+**MDD builds on Spec-Driven Development (SDD)** by adding persistent memory to specifications and validation. The workspace provides MDD Client for local memory, the Python MDD Hub for reports and documentation monitoring, and Conn2Flow Tools v1.2.4 for VS Code. General skills apply to any project, while Conn2Flow skills support its PHP and resource ecosystem.
 
 ## How it fits together
 
@@ -41,9 +41,15 @@ Verified lessons live in [`memory/learnings/`](memory/learnings/index.md), and i
 
 ## Quickstart in three steps
 
-1. **Install the Client.** From the root, with Python 3.11+ and an activated virtual environment, run `python -m pip install -e tools/mdd-client`. To set up a project, run `mdd init ./my-project --type software --kits`.
-2. **Install the extension.** In VS Code, choose **Extensions → Install from VSIX** and select `vscode-extension/conn2flow-tools-1.2.0.vsix`. The [panel guide](docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md) explains configuration and controls.
+1. **Install the Client.** From the root, with Python 3.11+ and an activated virtual environment, run `python -m pip install -e tools/mdd-client`. To set up a project, run `mdd bootstrap --path ./my-project`.
+2. **Install the extension.** In VS Code, choose **Extensions → Install from VSIX** and select `vscode-extension/conn2flow-tools-1.2.4.vsix`. The [panel guide](docs/en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md) explains configuration and controls.
 3. **Open the request and activate a persona.** Read `memory/human-requests/CURRENT.md` when available and the relevant `index.md`. Select repository scope, topology and autonomy, invoke the persona by skill name and record the checks before review.
+
+## Keep project skills up to date
+
+Run `mdd sync --remote --check-only --json` to check for updates, then `mdd update --apply` to apply files with a known source. The client refreshes a shared shallow Git cache under `~/.mdd/cache/`. A check leaves the project files intact. Local skills, recognized customizations and files with unverified local changes are preserved. Commit `memory/skill-sync-state.json` with your skills so other clones and CI can recognize the installed seeds.
+
+Add `--with-ci-sync` to `mdd bootstrap --path ./my-project` to generate the optional [weekly workflow](templates/ci/mdd-skills-autosync.yml). The workflow opens a reviewable pull request for updates. GitHub must allow Actions to create pull requests in the destination repository. [GitHub Actions repository settings](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository)
 
 ## Explore the documentation
 

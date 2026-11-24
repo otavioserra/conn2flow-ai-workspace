@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
@@ -20,12 +20,15 @@
     "Linters"
   ],
   "keywords": [
+    "mdd",
+    "memory-driven-development",
+    "ai-agents",
+    "mcp",
+    "skills",
+    "multi-agent",
     "conn2flow",
-    "sdd",
     "docker",
-    "tailwind",
-    "ai",
-    "mdd"
+    "tailwind"
   ],
   "activationEvents": [],
   "capabilities": {
@@ -621,6 +624,13 @@
         "icon": "$(rocket)"
       },
       {
+        "command": "conn2flow.mddHub.syncRemoteSkills",
+        "title": "%command.conn2flow.mddHub.syncRemoteSkills%",
+        "category": "Conn2Flow",
+        "icon": "$(cloud-download)",
+        "enablement": "isWorkspaceTrusted && workspaceFolderCount != 0"
+      },
+      {
         "command": "conn2flow.mddHub.refresh",
         "title": "%command.conn2flow.mddHub.refresh%",
         "category": "Conn2Flow MDD Hub",
@@ -716,6 +726,30 @@
           "scope": "window",
           "description": "%config.agentsAutonomy.description%"
         },
+        "conn2flow.autoSyncSkills": {
+          "type": "string",
+          "enum": [
+            "off",
+            "notify",
+            "auto"
+          ],
+          "default": "notify",
+          "description": "%config.autoSyncSkills.description%",
+          "scope": "resource"
+        },
+        "conn2flow.autoSyncIntervalHours": {
+          "type": "number",
+          "minimum": 1,
+          "default": 24,
+          "description": "%config.autoSyncIntervalHours.description%",
+          "scope": "resource"
+        },
+        "conn2flow.remoteMatrixUrl": {
+          "type": "string",
+          "default": "https://github.com/otavioserra/conn2flow-ai-workspace.git",
+          "description": "%config.remoteMatrixUrl.description%",
+          "scope": "resource"
+        },
         "conn2flow.mddExecutable": {
           "type": "string",
           "default": "",
@@ -759,6 +793,11 @@
           "command": "conn2flow.mddHub.toggleGithub",
           "when": "view == conn2flow-mdd-hub",
           "group": "navigation@1"
+        },
+        {
+          "command": "conn2flow.mddHub.syncRemoteSkills",
+          "when": "view == conn2flow-mdd-hub && isWorkspaceTrusted",
+          "group": "navigation@3"
         },
         {
           "command": "conn2flow.mddHub.refresh",

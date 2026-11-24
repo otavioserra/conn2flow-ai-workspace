@@ -1,6 +1,7 @@
 """Contained, atomic filesystem operations; no traversal through links."""
 
 import os
+import stat
 import tempfile
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -15,10 +16,12 @@ def contained(root: Path, path: Path) -> Path:
     if not absolute.resolve().is_relative_to(root):
         raise ValueError(f"Path escapes project: {path}")
     for node in (absolute, *absolute.parents):
+        if node.is_symlink():
+            raise ValueError(f"Linked path is not writable: {node}")
+        if os.name == "nt" and node.exists() and node.lstat().st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+            raise ValueError(f"Linked path is not writable: {node}")
         if node.resolve() == root:
             break
-        if node.is_symlink() or getattr(os.path, "isjunction", lambda _: False)(node):
-            raise ValueError(f"Linked path is not writable: {node}")
     return absolute
 
 

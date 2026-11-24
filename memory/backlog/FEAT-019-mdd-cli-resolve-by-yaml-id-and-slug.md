@@ -13,7 +13,7 @@ summary_medium: "Origem: REP-004 (BATCH-083). Hoje mdd meta get REP-004 falha po
 
 * **Status**: `ICEBOX` (aguardando promoção formal para `memory/human-requests/`)
 * **Tipo**: Ferramental / CLI (`mdd-client` & Core CLI) / Skills
-* **Origem**: [REP-004 — Dificuldades e Aprendizados do BATCH-083](../reports/REP-004-batch083-skills-learnings.md)
+* **Origem**: [REP-004 — Dificuldades e Aprendizados do BATCH-083](../reports/archive/REP-004-batch083-skills-learnings.md)
 * **Autor**: Arquiteto Master
 * **Data de Criação**: 2026-11-21
 * **Repositórios Alvo**: `conn2flow-ai-workspace` (`mdd-client` + skill `c2f-mdd-indexing-and-handoffs`) e paridade no `conn2flow` (`cli/` PHP)
@@ -62,7 +62,7 @@ O agente só conseguiu consultar o metadado passando o caminho completo relativo
 
 ## 🔗 Referências
 
-- Relatório de origem: [REP-004](../reports/REP-004-batch083-skills-learnings.md)
+- Relatório de origem: [REP-004](../reports/archive/REP-004-batch083-skills-learnings.md)
 - Lote de origem: [BATCH-083](../implementation/archive/compacted/batch-083-95aade2d8707.md)
 - Skill alvo: `.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md`
 - Contrato original: `REQ-072` / `ARCH-015` (Trava Tripla MDD)

@@ -1,0 +1,14 @@
+# Validation Checklist — BATCH-093
+
+Seção homologada arquivada no BATCH-097. Os links foram reancorados. [Original integral](original/VALIDATION-CHECKLIST-cf29c4e725f7.md), SHA-256 cf29c4e725f705453c124444ae184ca9c2c5e1193d9d2a0fafcb07dc89c0aae9.
+
+## BATCH-093 — REQ-091 (2026-11-24)
+
+- [x] Quarentena por recorrência em `mdd feedback`: `high` nasce `READY`; `medium`/`low` nascem em `QUARANTINE` até a 2ª origem `(repo, batch)` distinta, que promove os irmãos auto-quarentenados; `recurrence` no `submit`/`list --json`; `--force-ready` na CLI, no `mdd mcp` e no `conn2flow-hub` (`npm test` 7/7, `dist/` recompilado). Curador nunca sobrescrito.
+- [x] `generate-skills-index.cjs --budget-report [--text]` somente leitura (4 OVER, 2 NEAR) e `[TRANSLATION-COPY-DIVERGENCE]` não bloqueante no `sync-skills.cjs` (0 hoje), ambos com teste.
+- [x] `mdd eval` com provider plugável (`deterministic` offline) e 13 cenários em `tools/mdd-client/evals/skills/`; `test_eval.py` 7/7 com casos negativos; **EVAL-PASS 13/13** na matriz.
+- [x] FB-001..003 triados `ACCEPT` pela CLI e aplicados em PT-BR + 24 cópias EN; sync da matriz (40 gravações); 4 hashes EN; índice regravado. Gate: auditoria **PASS** (0 divergências, 0 drift, 0 legados), `--check` **PASS**, pytest **153/153**, `mdd eval` **PASS**.
+- [x] Rollout via worktrees `_wt-req091-*` de `origin/main`: 48 skills em 28 kits existentes de 7 satélites, aliases migrados por rename (0 legados), customização do Core reaplicada e reconhecida (5× `mdd sync --customize`), duplicata legada `sdd-memory-gardening` removida em app/nexus com autorização humana (DEC-136) e sucessores rastreados em kits `.claude` com whitelist. Fast-forward em `origin/main`: conn2flow `230262177a27`, site `12a83fc5f239`, lumix `60faf3875813`, transformamp `7f891df71d63`, website `84943eaffa1e`, app `e8f6b9497b04`, nexus `9534c3207ab5`.
+- [x] Limpeza: 0 junctions (PowerShell), 7 worktrees removidas sem `--force`, branches apagadas com `-d`, `git worktree prune`; árvores principais, `conn2flow-home` e `conn2flow-mkt` intocadas.
+- [x] Regra dos 10 com `ai:archive-memory --status=HOMOLOGATED,REVIEWED` (CLI de `origin/main` `6e146f7aa8b6` via `git archive`): `req-084`, `batch-088` e `REP-008` arquivados; 10 ativos em cada raiz; 0 links quebrados novos; `04-memory-engineering-execution.md` intacta. Poda deste checklist (DEC-136, autorizada): seção BATCH-089 → [validation-089.md](validation-089.md), original em `archive/original/` (SHA-256 `4ebc09f7…`); 10 seções; `mdd status` healthy. Lote e FEAT-017 ([REP-013](../../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)) em `ready-for-review`; FEAT-015 fora do stage. [Lote](../../implementation/archive/batch-093.md).
+- [ ] Homologação humana, `ARCH-018` → `COMPLETED` e commit/push seletivos da matriz pelo Arquiteto; triagem de FB-004..007.

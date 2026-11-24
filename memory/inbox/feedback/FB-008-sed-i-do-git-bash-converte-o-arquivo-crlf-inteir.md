@@ -1,8 +1,8 @@
 ---
 id: "FB-008"
 title: "FB-008 — sed -i do Git Bash converte o arquivo CRLF inteiro para LF; Path.write_text no Python Windows faz o inverso"
-status: "READY"
-verdict: "PENDING"
+status: "TRIAGED"
+verdict: "ACCEPT"
 date: "2026-11-24"
 author: "executor"
 target_repo: "conn2flow-ai-workspace"
@@ -18,6 +18,9 @@ recurrence: "3"
 evidence: "BATCH-095: printf 'a\\r\\nb\\r\\nc\\r\\n' + sed -i '2s/b/B/' (GNU sed 4.9, /usr/bin/sed) -> od -c mostra a\\n B\\n c\\n; mddHubManager.ts perdeu o CRLF após sed -i; Python 3.14 win32 read_text/write_text gravou CRLF em arquivos LF (os.linesep)"
 summary_short: "sed -i do Git Bash converte o arquivo CRLF inteiro para LF; Path.write_text no Python Windows faz o inverso"
 github_issue: ""
+triage_reason: "Medições do BATCH-095 confirmam a conversão de EOL; a Armadilha 20 agora exige edição por bytes em PT-BR e EN."
+triage_reviewer: "curator"
+triage_date: "2026-11-24"
 ---
 
 # FB-008 — sed -i do Git Bash converte o arquivo CRLF inteiro para LF; Path.write_text no Python Windows faz o inverso

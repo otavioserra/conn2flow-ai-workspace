@@ -35,7 +35,7 @@ const { FEEDBACK_GROUP_ORDER, feedbackLabel, describeFeedback, describeFeedbackM
 test('MDD Hub and bootstrap catalogs agree on keys and placeholders in both languages', () => {
   const pairs = [
     [en, ptBR, /^(?:mddHub\.|tooltip\.mddHub\.|bootstrap\.|view\.mddHub$)/],
-    [manifestEn, manifestPt, /^(?:command\.conn2flow\.(?:mddHub\.|mdd\.initProject$)|view\.mddHub$|config\.mddHubPort\.description$)/]
+    [manifestEn, manifestPt, /^(?:command\.conn2flow\.(?:mddHub\.|mdd\.initProject$)|view\.mddHub$|config\.(?:mddHubPort|autoSyncSkills|autoSyncIntervalHours|remoteMatrixUrl)\.description$)/]
   ];
   const portugueseWords = /\b(?:atualizar|servidores|habilidades|pendentes|aceitos|quarentena|iniciar|triagem|domínio|veredito)\b/iu;
   const englishWords = /\b(?:refresh|servers|skills|pending|accepted|quarantine|stop|restart|handshake|feedbacks?|issues|verdict|kind|running|stopped)\b/iu;
@@ -49,7 +49,9 @@ test('MDD Hub and bootstrap catalogs agree on keys and placeholders in both lang
       assert.deepEqual(placeholders(english[key]), placeholders(portuguese[key]), key);
       assert.doesNotMatch(english[key], portugueseWords, key);
       // The executable, its subcommand and machine placeholders keep their spelling.
-      assert.doesNotMatch(portuguese[key].replace(/memory\/inbox\/feedback\/|mdd feedback(?: list| triage)?|\{\w+\}/g, ''), englishWords, key);
+      const text = /remoteSync|syncRemoteSkills|autoSync|remoteMatrixUrl/i.test(key)
+        ? portuguese[key].replace(/\bskills\b/gi, '') : portuguese[key];
+      assert.doesNotMatch(text.replace(/memory\/inbox\/feedback\/|mdd feedback(?: list| triage)?|\{\w+\}/g, ''), englishWords, key);
     }
   }
   assert.equal(manifestEn['view.mddHub'], en['view.mddHub']);

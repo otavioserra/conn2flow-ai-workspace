@@ -15,7 +15,7 @@ summary_medium: "Categoria B, sem deploy; matriz sem stage/commit/push.\nGate 4A
 
 # BATCH-093 — Fase 4 (final) do ARCH-018
 
-[REQ-091](../human-requests/req-091.md) · [ARCH-018](../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-013)](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)
+[REQ-091](../../human-requests/req-091.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-013)](../../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)
 
 ## Live Todo List
 
@@ -109,7 +109,7 @@ Detalhes verificados:
 - **Arquivados**: `req-084.md` (HOMOLOGATED), `batch-088.md` (HOMOLOGATED) e `REP-008-batch088-skills-rollout.md` (REVIEWED). Os pendentes do `CURRENT.md` (req-077..079, BATCH-077..081), `req-091`, `batch-093` e `REP-013` ficaram na raiz pelo `--status`.
 - **Resultado**: 10 ativos em `human-requests/`, `implementation/` e `reports/`. 11 linhas de link reescritas em 10 arquivos, só as afetadas (`CURRENT.md`, `BATCH-INDEX.md`, `req-085..087`, `archive/batch-086.md`, `validation/archive/validation-069-088.md` e índices).
 - **Links**: verificador independente com 273 links relativos quebrados antes e depois, lista idêntica (0 novos; os 258 que o comando aponta são órfãos históricos de `archive/original/`). `memory/04-memory-engineering-execution.md` com SHA-256 inalterado.
-- **Checklist (DEC-136, autorizado pelo Operador Humano nesta sessão)**: a seção do BATCH-093 levou o `VALIDATION-CHECKLIST.md` a 11 seções, e `mdd status` deu `healthy: false` (`exceeds-10`). Movi só a seção homologada BATCH-089 para [validation-089.md](../validation/archive/validation-089.md), com 2 links rebaseados. O original byte a byte ficou em `archive/original/VALIDATION-CHECKLIST-4ebc09f79d5b.md` (SHA-256 `4ebc09f7…`), com entradas novas em "Validações Arquivadas". Resultado: 10 seções e `mdd status` `healthy: true`. Links: 0 quebrados novos fora do snapshot protegido. Os 43 do snapshot existem por desenho, porque seus links continuam relativos à localização original, como no snapshot da REQ-090.
+- **Checklist (DEC-136, autorizado pelo Operador Humano nesta sessão)**: a seção do BATCH-093 levou o `VALIDATION-CHECKLIST.md` a 11 seções, e `mdd status` deu `healthy: false` (`exceeds-10`). Movi só a seção homologada BATCH-089 para [validation-089.md](../../validation/archive/validation-089.md), com 2 links rebaseados. O original byte a byte ficou em `archive/original/VALIDATION-CHECKLIST-4ebc09f79d5b.md` (SHA-256 `4ebc09f7…`), com entradas novas em "Validações Arquivadas". Resultado: 10 seções e `mdd status` `healthy: true`. Links: 0 quebrados novos fora do snapshot protegido. Os 43 do snapshot existem por desenho, porque seus links continuam relativos à localização original, como no snapshot da REQ-090.
 - **Fechamento**: `CURRENT.md` e `req-091` em `READY_FOR_REVIEW`; BATCH-INDEX, VALIDATION-CHECKLIST (seção BATCH-093) e ARCH-018 (§7, situação das 5 fases, sem `COMPLETED`) atualizados; `mdd index --path .` regenerou os índices.
 
 ## 7. Feedbacks emitidos (barramento ARCH-018)
@@ -138,4 +138,4 @@ Detalhes verificados:
 
 ## 10. Relatório de Dificuldades e Aprendizados (FEAT-017)
 
-Registrado em [REP-013](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md) (cita FB-004..FB-007). Resumo: (1) alias renomeado para pasta ignorada por `.gitignore` saía do repositório; um verificador de deleção → sucessor pegou antes do push. (2) `--apply --all` cria kits ausentes em satélites. (3) Legado duplicado do BATCH-088 bloqueava o sync. (4) Semente nova desfaz a customização do Core; reaplicar e reconhecer. (5) Auditoria de junctions pelo Git Bash dá falso zero; usar PowerShell. (6) Core sem o comando novo na árvore principal; `git archive` do `cli/` publicado resolveu sem worktree.
+Registrado em [REP-013](../../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md) (cita FB-004..FB-007). Resumo: (1) alias renomeado para pasta ignorada por `.gitignore` saía do repositório; um verificador de deleção → sucessor pegou antes do push. (2) `--apply --all` cria kits ausentes em satélites. (3) Legado duplicado do BATCH-088 bloqueava o sync. (4) Semente nova desfaz a customização do Core; reaplicar e reconhecer. (5) Auditoria de junctions pelo Git Bash dá falso zero; usar PowerShell. (6) Core sem o comando novo na árvore principal; `git archive` do `cli/` publicado resolveu sem worktree.

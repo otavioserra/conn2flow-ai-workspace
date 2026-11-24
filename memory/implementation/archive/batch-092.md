@@ -15,7 +15,7 @@ summary_medium: "Categoria B, sem deploy; matriz sem stage/commit/push.\nExtens�
 
 # BATCH-092 — Fase 3 do ARCH-018
 
-[REQ-090](../human-requests/req-090.md) · [ARCH-018](../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-012)](../reports/REP-012-batch092-hub-control-and-core-cli.md)
+[REQ-090](../../human-requests/req-090.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-012)](../../reports/REP-012-batch092-hub-control-and-core-cli.md)
 
 ## Live Todo List
 
@@ -56,7 +56,7 @@ Nova view `conn2flow-mdd-hub` no contêiner Conn2Flow. A extensão só orquestra
 
 ## 3. Poda do checklist e Regra dos 10
 
-- **`VALIDATION-CHECKLIST.md`** (31.501 bytes / 342 linhas → ~14 KB): 14 seções homologadas ou concluídas (BATCH-069–075 e 082–088) foram para [validation-069-088.md](../validation/archive/validation-069-088.md), com o texto preservado e só os 50 links relativos rebaseados. O original byte a byte ficou em `archive/original/VALIDATION-CHECKLIST-b3b8b81070b3.md` (igual ao `HEAD`), com resumo estrutural em `archive/compacted/`. O título com mojibake ("ValidaÃ§Ãµes") foi refeito. Ativos: BATCH-092, os 6 pendentes de homologação (076–081) e 089–091 = **10**. O BATCH-078 ficou ativo porque o próprio arquivo diz `ready-for-human-review`, embora o CURRENT o liste como homologado: ver Pendências.
+- **`VALIDATION-CHECKLIST.md`** (31.501 bytes / 342 linhas → ~14 KB): 14 seções homologadas ou concluídas (BATCH-069–075 e 082–088) foram para [validation-069-088.md](../../validation/archive/validation-069-088.md), com o texto preservado e só os 50 links relativos rebaseados. O original byte a byte ficou em `archive/original/VALIDATION-CHECKLIST-b3b8b81070b3.md` (igual ao `HEAD`), com resumo estrutural em `archive/compacted/`. O título com mojibake ("ValidaÃ§Ãµes") foi refeito. Ativos: BATCH-092, os 6 pendentes de homologação (076–081) e 089–091 = **10**. O BATCH-078 ficou ativo porque o próprio arquivo diz `ready-for-human-review`, embora o CURRENT o liste como homologado: ver Pendências.
 - **Links**: 0 quebrados no checklist e no arquivo novo, antes e depois.
 - **Regra dos 10** com o comando novo do Core (rodado da worktree, antes da publicação):
 
@@ -131,4 +131,4 @@ php ../_wt-req090-conn2flow/cli/c2f.php ai:archive-memory --repo=. --keep=10 --s
 
 ## 9. Relatório de Dificuldades e Aprendizados (FEAT-017)
 
-Registrado em [REP-012](../reports/REP-012-batch092-hub-control-and-core-cli.md).
+Registrado em [REP-012](../../reports/REP-012-batch092-hub-control-and-core-cli.md).

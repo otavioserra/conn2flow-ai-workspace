@@ -2,6 +2,25 @@
 
 Este documento concentra os checklists de aceitação e os registros de testes empíricos de validação dos lotes ativos (Regra dos 10: lotes pendentes de homologação permanecem aqui).
 
+## BATCH-098 — REQ-096 (2026-11-24)
+
+- [x] mdd sync --remote e mdd update preservam skills locais, variantes e choques. Cache raso, domínio e check-only validados.
+- [x] VS Code 1.2.4 com Auto-Sync, comando manual, 172/172 testes e pacote íntegro.
+- [x] Bootstrap com template semanal opcional, preservação de workflow existente e teste de staging seletivo.
+- [x] Gate Python final, 222 PASS e 96,21%. MDD saudável com 10 ativos por janela, índices atualizados e BATCH-098 em ready-for-review.
+- [ ] Revisão pelo Macro-Arquiteto e homologação visual humana.
+
+[BATCH-098](../implementation/batch-098.md) e [FEAT-017](../reports/REP-018-batch098-remote-skill-sync.md).
+
+## BATCH-097 — REQ-095 (2026-11-24)
+
+- [x] Overview em inglês, subtítulos PT-BR/EN, keywords e changelogs atualizados. VSIX 1.2.3 íntegro, com 169/169 testes, e inventário fechado com 1.2.3 e 1.1.7 antes do BATCH-098.
+- [x] FB-008 aceito e aplicado em PT-BR e EN. EVAL-PASS 16/16, sync e índice PASS, OVER 0.
+- [x] Gate Python exato do CI. 211 testes, 96,32% de cobertura.
+- [x] Rollout conferido em origin/main, variantes do Core preservadas e zero worktrees temporárias.
+- [x] Janela de dez ativos restabelecida. Evidências no [BATCH-097](../implementation/batch-097.md) e no [FEAT-017](../reports/REP-017-batch097-marketplace-and-rollout.md).
+- [ ] Revisão técnica e homologação visual humana.
+
 ## BATCH-096 — REQ-094 (2026-11-24)
 
 - [x] Comando exato do CI passou localmente com 211 testes e cobertura de 96,32%.
@@ -24,28 +43,6 @@ Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT
 - [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
 
 Evidências no [BATCH-095](../implementation/batch-095.md), no [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy.
-
-## BATCH-094 — REQ-092 (2026-11-24)
-
-- [x] Manifesto e lockfile v1.2.0, compile PASS e 154/154 testes VS Code. VSIX de 94 entradas com CRC e metadados verificados.
-- [x] 57 caminhos de skills restaurados com preservação dos arquivos restantes, incluindo cinco skills locais do Home. Status dos seis satélites em leitura registrado. Website manteve alteração local de schema, condição de árvore limpa para pull não atendida.
-- [x] READMEs, changelogs e guias pós-ARCH-018 atualizados. Validador público PASS em 23 arquivos e 284 links relativos.
-- [x] Inventário DEC-136 cobre 162 recibos e artefatos em completions, nove VSIX anteriores, caminhos da raiz, FB-004 a FB-007 e quatro skills OVER.
-- [x] Auditoria de skills PASS, índice de skills PASS, mdd eval 13/13 e pytest 153/153. Índices MDD regenerados, lote e FEAT-017 prontos para revisão.
-- [ ] Revisão do Macro-Arquiteto e homologação visual pelo operador.
-
-Evidências no [BATCH-094](../implementation/batch-094.md), no [REP-014](../reports/REP-014-batch094-vsix-skills-and-curation.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy. A janela de retenção está registrada no lote para decisão DEC-136.
-
-## BATCH-093 — REQ-091 (2026-11-24)
-
-- [x] Quarentena por recorrência em `mdd feedback`: `high` nasce `READY`; `medium`/`low` nascem em `QUARANTINE` até a 2ª origem `(repo, batch)` distinta, que promove os irmãos auto-quarentenados; `recurrence` no `submit`/`list --json`; `--force-ready` na CLI, no `mdd mcp` e no `conn2flow-hub` (`npm test` 7/7, `dist/` recompilado). Curador nunca sobrescrito.
-- [x] `generate-skills-index.cjs --budget-report [--text]` somente leitura (4 OVER, 2 NEAR) e `[TRANSLATION-COPY-DIVERGENCE]` não bloqueante no `sync-skills.cjs` (0 hoje), ambos com teste.
-- [x] `mdd eval` com provider plugável (`deterministic` offline) e 13 cenários em `tools/mdd-client/evals/skills/`; `test_eval.py` 7/7 com casos negativos; **EVAL-PASS 13/13** na matriz.
-- [x] FB-001..003 triados `ACCEPT` pela CLI e aplicados em PT-BR + 24 cópias EN; sync da matriz (40 gravações); 4 hashes EN; índice regravado. Gate: auditoria **PASS** (0 divergências, 0 drift, 0 legados), `--check` **PASS**, pytest **153/153**, `mdd eval` **PASS**.
-- [x] Rollout via worktrees `_wt-req091-*` de `origin/main`: 48 skills em 28 kits existentes de 7 satélites, aliases migrados por rename (0 legados), customização do Core reaplicada e reconhecida (5× `mdd sync --customize`), duplicata legada `sdd-memory-gardening` removida em app/nexus com autorização humana (DEC-136) e sucessores rastreados em kits `.claude` com whitelist. Fast-forward em `origin/main`: conn2flow `230262177a27`, site `12a83fc5f239`, lumix `60faf3875813`, transformamp `7f891df71d63`, website `84943eaffa1e`, app `e8f6b9497b04`, nexus `9534c3207ab5`.
-- [x] Limpeza: 0 junctions (PowerShell), 7 worktrees removidas sem `--force`, branches apagadas com `-d`, `git worktree prune`; árvores principais, `conn2flow-home` e `conn2flow-mkt` intocadas.
-- [x] Regra dos 10 com `ai:archive-memory --status=HOMOLOGATED,REVIEWED` (CLI de `origin/main` `6e146f7aa8b6` via `git archive`): `req-084`, `batch-088` e `REP-008` arquivados; 10 ativos em cada raiz; 0 links quebrados novos; `04-memory-engineering-execution.md` intacta. Poda deste checklist (DEC-136, autorizada): seção BATCH-089 → [validation-089.md](archive/validation-089.md), original em `archive/original/` (SHA-256 `4ebc09f7…`); 10 seções; `mdd status` healthy. Lote e FEAT-017 ([REP-013](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)) em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-093.md).
-- [ ] Homologação humana, `ARCH-018` → `COMPLETED` e commit/push seletivos da matriz pelo Arquiteto; triagem de FB-004..007.
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
@@ -128,6 +125,10 @@ Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/B
 Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
 
 ## Validações Arquivadas
+
+- [validation-094.md](archive/validation-094.md) (BATCH-094)
+
+- [validation-093.md](archive/validation-093.md) (BATCH-093)
 
 - [validation-090-092.md](archive/validation-090-092.md) (BATCH-090 a BATCH-092; poda da REQ-094)
 - [validation-001-003.md](archive/validation-001-003.md) (BATCH-001 a BATCH-003)

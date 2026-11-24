@@ -48,7 +48,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-project-pipeline-and-tasks`](c2f-project-pipeline-and-tasks/SKILL.md) | 254 | 17855 | 300 | NEAR | no | — | en 2026-11-23 |
 | [`c2f-projects-system`](c2f-projects-system/SKILL.md) | 95 | 4381 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-resources-system`](c2f-resources-system/SKILL.md) | 156 | 10289 | 300 | OK | no | — | en 2026-11-05 |
-| [`c2f-shell-and-windows-traps`](c2f-shell-and-windows-traps/SKILL.md) | 201 | 16752 | 300 | OK | no | [cli-e-ssh.md](c2f-shell-and-windows-traps/subskills/cli-e-ssh.md) (92)<br>[scripts-e-caminhos-msys.md](c2f-shell-and-windows-traps/subskills/scripts-e-caminhos-msys.md) (148)<br>[worktrees-e-junctions.md](c2f-shell-and-windows-traps/subskills/worktrees-e-junctions.md) (71) | en 2026-11-24 |
+| [`c2f-shell-and-windows-traps`](c2f-shell-and-windows-traps/SKILL.md) | 202 | 16988 | 300 | OK | no | [cli-e-ssh.md](c2f-shell-and-windows-traps/subskills/cli-e-ssh.md) (92)<br>[scripts-e-caminhos-msys.md](c2f-shell-and-windows-traps/subskills/scripts-e-caminhos-msys.md) (148)<br>[worktrees-e-junctions.md](c2f-shell-and-windows-traps/subskills/worktrees-e-junctions.md) (71) | en 2026-11-24 |
 | [`c2f-system-tasks`](c2f-system-tasks/SKILL.md) | 45 | 2888 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-tailwind-css-architecture`](c2f-tailwind-css-architecture/SKILL.md) | 133 | 8854 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-tailwind-module-migration`](c2f-tailwind-module-migration/SKILL.md) | 56 | 8194 | 300 | OK | no | — | en 2026-11-24 |
@@ -60,7 +60,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | Skill | Lines | Bytes | Budget | State | Invocable | Subskills | Translations |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
 | [`c2f-mdd-indexing-and-handoffs`](c2f-mdd-indexing-and-handoffs/SKILL.md) | 98 | 7640 | 200 | OK | no | — | en 2026-11-23 |
-| [`c2f-multilingual-skills-governance`](c2f-multilingual-skills-governance/SKILL.md) | 65 | 7599 | 200 | OK | no | — | en 2026-11-24 |
+| [`c2f-multilingual-skills-governance`](c2f-multilingual-skills-governance/SKILL.md) | 75 | 8517 | 200 | OK | no | — | en 2026-11-24 |
 | [`continue-mdd-batch`](continue-mdd-batch/SKILL.md) | 27 | 1281 | 200 | OK | yes | — | en 2026-11-24 |
 | [`mdd-memory-gardening`](mdd-memory-gardening/SKILL.md) | 81 | 7632 | 200 | OK | no | — | en 2026-11-24 |
 | [`mdd-workflow`](mdd-workflow/SKILL.md) | 182 | 14000 | 200 | NEAR | no | — | en 2026-11-05 |

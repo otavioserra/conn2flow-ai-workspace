@@ -15,7 +15,7 @@ summary_medium: "Categoria B, somente matriz, sem deploy, stage ou commit.\nAudi
 
 # BATCH-091 — Fase 2 do ARCH-018
 
-[REQ-089](../../human-requests/req-089.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-011)](../../reports/REP-011-batch091-feedback-bus-learnings.md)
+[REQ-089](../../human-requests/archive/req-089.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-011)](../../reports/REP-011-batch091-feedback-bus-learnings.md)
 
 ## Live Todo List
 

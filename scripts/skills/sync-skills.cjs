@@ -7,6 +7,7 @@
 //   ... --report caminho.json                                grava o relatório
 //   ... --repos conn2flow,conn2flow-site                     limita os satélites
 //   ... --target PATH                                       só os cinco kits de um cliente
+//   ... --target PATH --existing-kits                       só skills de kits já presentes
 //
 // Nunca apaga nada e nunca toca em skill que não existe na matriz (skill local de um satélite).
 // Traduções registradas por idioma/skill em translated.json nunca são sobrescritas.
@@ -29,6 +30,8 @@ const comValor = new Set(['--report', '--repos', '--target', '--translator']);
 const nomes = args.filter((a, i) => !a.startsWith('--') && !comValor.has(args[i - 1]));
 const repos = (valor('--repos') || 'conn2flow-ai-workspace,conn2flow,conn2flow-site,lumix,transformamp,conn2flow-home').split(',').filter(Boolean);
 const kits = ['.gemini', '.claude', '.cursor', '.codex', '.github'];
+const existingKits = args.includes('--existing-kits');
+if (existingKits && !valor('--target')) throw new Error('--existing-kits requires --target');
 const translationFile = path.join(__dirname, 'translated.json');
 const traduzidas = translations.load(translationFile);
 // Legacy name -> canonical name. A legacy folder is moved whole (never copied) when its
@@ -127,6 +130,7 @@ if (target) {
   }
   for (const kit of kits) {
     const skills = path.join(target, kit, 'skills');
+    if (existingKits && !fs.existsSync(skills)) continue;
     if (apply) fs.mkdirSync(skills, { recursive: true });
     alvos.push({ onde: `${target}/${kit}`, skills });
   }
@@ -207,7 +211,7 @@ for (const alvo of alvos) {
 
 const escritos = [];
 const rulesWritten = [];
-const canonicalRules = target && fs.existsSync(path.join(root, '.gemini/rules'))
+const canonicalRules = target && !existingKits && fs.existsSync(path.join(root, '.gemini/rules'))
   ? fs.readdirSync(path.join(root, '.gemini/rules')).filter(name => fs.statSync(path.join(root, '.gemini/rules', name)).isFile()).sort() : [];
 if (target) for (const kit of kits) for (const name of canonicalRules) validateTarget(path.join(target, kit, 'rules', name));
 if (apply) {

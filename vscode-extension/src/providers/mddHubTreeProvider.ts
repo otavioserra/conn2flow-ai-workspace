@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { canTriage, describeFeedback, describeFeedbackMetadata, describeServerStatus, feedbackLabel, FeedbackRecord, groupFeedback, MddServerId, serverContextValue } from '../mddHubPolicy';
 import { LocalizationManager } from './localizationManager';
 import { MDD_SERVER_IDS, MddHubManager } from './mddHubManager';
+import { REMOTE_SKILLS_COMMAND } from '../mddRemoteSyncPolicy';
 
 type NodeKind = 'section' | 'server' | 'group' | 'feedback' | 'message';
 
@@ -24,6 +25,8 @@ export class MddHubTreeProvider implements vscode.TreeDataProvider<MddHubTreeIte
   readonly onDidChangeTreeData = this.changeEmitter.event;
   private loading: Promise<void> | undefined;
 
+  constructor(private readonly pendingUpdates: () => number = () => 0) {}
+
   /** Re-probes servers and reloads `mdd feedback list`, then repaints. */
   async refresh(): Promise<void> {
     if (!this.loading) {
@@ -42,7 +45,18 @@ export class MddHubTreeProvider implements vscode.TreeDataProvider<MddHubTreeIte
 
   getChildren(element?: MddHubTreeItem): MddHubTreeItem[] {
     if (element) return element.children;
-    return [this.serversSection(), this.feedbackSection()];
+    return [this.serversSection(), this.remoteSkillsItem(), this.feedbackSection()];
+  }
+
+  private remoteSkillsItem(): MddHubTreeItem {
+    const count = this.pendingUpdates();
+    const title = LocalizationManager.t(count ? 'mddHub.remoteSyncUpdate' : 'mddHub.remoteSyncAction');
+    const item = new MddHubTreeItem(title, 'message', vscode.TreeItemCollapsibleState.None);
+    item.id = 'mddHub.remoteSkills';
+    item.description = count ? String(count) : undefined;
+    item.iconPath = new vscode.ThemeIcon('cloud-download');
+    item.command = { command: REMOTE_SKILLS_COMMAND, title };
+    return item;
   }
 
   private serversSection(): MddHubTreeItem {

@@ -66,7 +66,7 @@ A memória de execução está em 10.329 bytes e 57 linhas. O lote foi executado
 4. **Solução validada e armadilhas medidas.** Foram conferidas 68 cópias da Fase 1 e 1.631 arquivos protegidos. A matriz passou em 19 alvos no checkout real e em duas simulações de EOL. `mdd meta get REP-004 status --json` retornou `READY_FOR_ARCHITECT`. A suíte do cliente passou com 119 testes e o PHP resolveu o mesmo relatório por caminho explícito.
 5. **Sugestões de melhoria.** Registrar em `c2f-multilingual-skills-governance` que a seleção de skills restringe a escrita e que a auditoria ainda cobre o catálogo inteiro dos destinos. Abrir acompanhamento para paridade de ID e slug no resolvedor PHP.
 
-O relatório também está registrado em [REP-005](../../reports/REP-005-batch084-rollout-and-eol.md).
+O relatório também está registrado em [REP-005](../../reports/archive/REP-005-batch084-rollout-and-eol.md).
 
 ## Gate da Fase 3 — registro da entrega das Fases 1 e 2
 

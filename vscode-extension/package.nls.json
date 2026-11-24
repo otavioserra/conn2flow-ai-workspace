@@ -1,6 +1,10 @@
 {
   "extension.displayName": "Conn2Flow Dev Tools",
-  "extension.description": "Official developer panel for MDD, Core, projects, diagnostics, agents, backlog and releases.",
+  "command.conn2flow.mddHub.syncRemoteSkills": "Sync Remote Skills (GitHub)",
+  "config.autoSyncSkills.description": "Remote skill synchronization. Off disables checks, notify checks for updates, and auto applies safe updates.",
+  "config.autoSyncIntervalHours.description": "Hours between remote skill sync attempts in a trusted workspace.",
+  "config.remoteMatrixUrl.description": "HTTPS Git URL of the matrix used for remote skill updates.",
+  "extension.description": "Memory-Driven Development for any framework, with multi-agent workflows and native Conn2Flow tools.",
   "view.title": "Conn2Flow Dev Tools",
   "config.language.description": "Runtime interface language. Automatic follows the VS Code display language.",
   "config.githubOwner.description": "Optional GitHub owner or organization, used only when it cannot be derived from the Core origin remote.",

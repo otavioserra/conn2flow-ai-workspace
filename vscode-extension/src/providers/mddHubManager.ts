@@ -422,6 +422,6 @@ export class MddHubManager {
     return undefined;
   }
 
-  private static log(message: string): void { this.output?.appendLine(`${new Date().toISOString()} ${message}`); }
+  public static log(message: string): void { this.output?.appendLine(`${new Date().toISOString()} ${message}`); }
   private static message(error: unknown): string { return error instanceof Error ? error.message : String(error); }
 }

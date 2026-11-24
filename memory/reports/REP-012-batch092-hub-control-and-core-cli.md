@@ -13,7 +13,7 @@ summary_medium: "Fase 3 do ARCH-018 com publicação no Core via worktree isolad
 
 # REP-012 — Dificuldades e aprendizados do BATCH-092
 
-1. **Contexto da rodada.** REQ-090 / BATCH-092, Fase 3 do ARCH-018. Matriz `conn2flow-ai-workspace` (extensão VS Code, `mcp-hub`, `mdd-client`, `docs/`, poda de memória) e Core `conn2flow` (`cli/src/`) via worktree isolada, publicada em `origin/main` `6e146f7aa8b6`. Categoria B, topologia dupla, autonomia supervisionada. [Lote](../implementation/batch-092.md). Feedbacks emitidos: FB-001, FB-002, FB-003.
+1. **Contexto da rodada.** REQ-090 / BATCH-092, Fase 3 do ARCH-018. Matriz `conn2flow-ai-workspace` (extensão VS Code, `mcp-hub`, `mdd-client`, `docs/`, poda de memória) e Core `conn2flow` (`cli/src/`) via worktree isolada, publicada em `origin/main` `6e146f7aa8b6`. Categoria B, topologia dupla, autonomia supervisionada. [Lote](../implementation/archive/batch-092.md). Feedbacks emitidos: FB-001, FB-002, FB-003.
 
 2. **Dificuldades e atritos.**
    - **O arquivador do Core reescrevia links alheios.** `rewriteTarget` recalculava o caminho relativo de qualquer link para arquivo existente, mesmo quando nem o documento nem o alvo tinham sido movidos (`./x.md`, `a/../b.md` e a caixa eram normalizados). Era a mesma classe de erro que o REP-011 relatou no script próprio. Também deixava quebrados os links de pasta (`../scripts/`) dentro dos documentos movidos, porque exigia `is_file`. Achado lendo o código antes de mudar e confirmado no teste `testOnlyLinksAffectedByTheMoveAreRewritten`.

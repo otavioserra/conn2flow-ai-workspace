@@ -5,6 +5,7 @@ const vscode = require("vscode");
 const mddHubPolicy_1 = require("../mddHubPolicy");
 const localizationManager_1 = require("./localizationManager");
 const mddHubManager_1 = require("./mddHubManager");
+const mddRemoteSyncPolicy_1 = require("../mddRemoteSyncPolicy");
 class MddHubTreeItem extends vscode.TreeItem {
     kind;
     children;
@@ -21,9 +22,13 @@ class MddHubTreeItem extends vscode.TreeItem {
 exports.MddHubTreeItem = MddHubTreeItem;
 /** "MDD Hub & Skills Control" view: server status/control and feedback triage. */
 class MddHubTreeProvider {
+    pendingUpdates;
     changeEmitter = new vscode.EventEmitter();
     onDidChangeTreeData = this.changeEmitter.event;
     loading;
+    constructor(pendingUpdates = () => 0) {
+        this.pendingUpdates = pendingUpdates;
+    }
     /** Re-probes servers and reloads `mdd feedback list`, then repaints. */
     async refresh() {
         if (!this.loading) {
@@ -40,7 +45,17 @@ class MddHubTreeProvider {
     getChildren(element) {
         if (element)
             return element.children;
-        return [this.serversSection(), this.feedbackSection()];
+        return [this.serversSection(), this.remoteSkillsItem(), this.feedbackSection()];
+    }
+    remoteSkillsItem() {
+        const count = this.pendingUpdates();
+        const title = localizationManager_1.LocalizationManager.t(count ? 'mddHub.remoteSyncUpdate' : 'mddHub.remoteSyncAction');
+        const item = new MddHubTreeItem(title, 'message', vscode.TreeItemCollapsibleState.None);
+        item.id = 'mddHub.remoteSkills';
+        item.description = count ? String(count) : undefined;
+        item.iconPath = new vscode.ThemeIcon('cloud-download');
+        item.command = { command: mddRemoteSyncPolicy_1.REMOTE_SKILLS_COMMAND, title };
+        return item;
     }
     serversSection() {
         const section = new MddHubTreeItem(localizationManager_1.LocalizationManager.t('mddHub.section.servers'), 'section', vscode.TreeItemCollapsibleState.Expanded, mddHubManager_1.MDD_SERVER_IDS.map(id => this.serverItem(id)));

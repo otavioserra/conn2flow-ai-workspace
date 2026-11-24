@@ -13,7 +13,7 @@ summary_medium: "Fase 4 do ARCH-018 e rollout em 7 satélites via worktree isola
 
 # REP-013 — Dificuldades e aprendizados do BATCH-093
 
-1. **Contexto da rodada.** REQ-091 / BATCH-093, Fase 4 (final) do ARCH-018. Matriz `conn2flow-ai-workspace` (`mdd-client`, `mcp-hub`, `scripts/skills/`, 4 skills PT-BR/EN, inbox) e rollout das 48 skills nos 7 satélites com `origin` via worktrees `_wt-req091-<repo>`, já removidas. Categoria B, topologia dupla, autonomia supervisionada. [Lote](../implementation/batch-093.md). Feedbacks emitidos: FB-004, FB-005, FB-006, FB-007.
+1. **Contexto da rodada.** REQ-091 / BATCH-093, Fase 4 (final) do ARCH-018. Matriz `conn2flow-ai-workspace` (`mdd-client`, `mcp-hub`, `scripts/skills/`, 4 skills PT-BR/EN, inbox) e rollout das 48 skills nos 7 satélites com `origin` via worktrees `_wt-req091-<repo>`, já removidas. Categoria B, topologia dupla, autonomia supervisionada. [Lote](../implementation/archive/batch-093.md). Feedbacks emitidos: FB-004, FB-005, FB-006, FB-007.
 
 2. **Dificuldades e atritos enfrentados.**
    - **Skill rastreada perdida no commit (causa verificada).** Em `conn2flow` e `lumix`, o `.gitignore` ignora `.claude/skills/*` com whitelist. `c2f-architect-master` e `c2f-executor-agent` estavam rastreados por `add -f` antigo. O sync os renomeou para `c2f-persona-*`, que caem no ignore: o commit registrou só a deleção. Um verificador (`ls-tree` de `origin/main` × `HEAD`, deleção → sucessor rastreado) pegou o caso antes do push; `git add -f` dos dois sucessores corrigiu.

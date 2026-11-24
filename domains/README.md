@@ -24,6 +24,12 @@ Kits: `gemini` → `.gemini/`, `claude` → `.claude/`, `codex` → `.codex/`, `
 
 In VS Code, run **Conn2Flow MDD: Initialize MDD in this Project**. The picker lists `auto` plus every domain in this folder; the choice is saved in the `conn2flow.projectDomain` setting.
 
+## Remote skill updates
+
+After bootstrap, run `mdd sync --remote --check-only --json` to preview available updates and local conflicts, or run `mdd update --apply` to apply safe changes. Remote sync uses existing kits, the domain chosen during bootstrap or automatic detection, and a shared shallow cache under `~/.mdd/cache/`. Override the domain with `--domain <id>` or choose another HTTPS matrix with `--source-url <url>`. A first run recognizes existing copies that match the source. An unknown baseline is reported as a conflict.
+
+Use `mdd bootstrap --with-ci-sync` to add the optional [GitHub Actions workflow](../templates/ci/mdd-skills-autosync.yml) to the target project. It checks weekly and opens a pull request for review. Keep the seed hashes in `memory/skill-sync-state.json` under version control with the skills.
+
 ## Adding a domain (Pull Request)
 
 1. Create `domains/<id>/domain.json`. The folder name must equal `id` (lowercase letters, digits and `-`).
