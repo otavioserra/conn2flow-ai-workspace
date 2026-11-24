@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-092.md](req-092.md) / `BATCH-094`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-094` ([batch-094.md](../implementation/batch-094.md), `HOMOLOGATED` em 2026-11-24; relatório [REP-014](../reports/REP-014-batch094-vsix-skills-and-curation.md))
+* **Ponteiro Ativo**: [req-093.md](req-093.md) (`REQ-093`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-095` ([batch-095.md](../implementation/batch-095.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24
@@ -35,8 +35,8 @@
 
 ---
 
-## Objetivo operacional — REQ-092 / BATCH-094
+## Objetivo operacional — REQ-093 / BATCH-095
 
-1. **Extensão VS Code `v1.2.0`**: bump `1.1.7` → `1.2.0`, atualizar `CHANGELOG.md`, validar testes (`154/154`) e empacotar `vscode-extension/conn2flow-tools-1.2.0.vsix` pronto para instalação local.
-2. **Saneamento Cirúrgico de Sobras de Skills (`REQ-082`)**: limpar exclusivamente os caminhos sujos sob `*/skills/` em `website-conn2flow` (+ fast-forward em `main` se limpo), `conn2flow` e `conn2flow-home` sem tocar em nenhum arquivo de feature, e reportar status somente leitura dos demais satélites.
-3. **Documentação Viva & Curadoria (`DEC-136`)**: atualizar `README.md`, `README-PT-BR.md`, `CHANGELOG.md` e guias principais em `docs/` para o estado pós-`ARCH-018`, gerar tabela de curadoria de candidatos à remoção/otimização (sem deletar nada sem aprovação) e entregar `batch-094.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
+1. **Extensão VS Code `v1.2.1` (pós-homologação visual)**: corrigir charset UTF-8 nos feedbacks (`PYTHONUTF8=1`/`PYTHONIOENCODING=utf-8`), adicionar triagem no botão direito, feedback visual/loading em Refresh e Toggle GitHub, detectar `conn2flow-hub` externo, limpar duplicidade em `.vscode/mcp.json` e empacotar `conn2flow-tools-1.2.1.vsix`.
+2. **Feedback `--github` & Limpeza `FB-008`**: garantir criação automática da label `skill-feedback` no `feedback.py` (com teste `pytest`) e remover o teste sintético `FB-008`.
+3. **1ª Rodada Real do Curator (`FB-004`/`FB-007`) + Optimizer (4 skills `OVER` → `0 OVER`)**: aplicar `FB-004` e `FB-007`, extrair receitas longas das 4 skills `OVER` para `subskills/` em PT-BR/EN, adicionar 2 cenários em `mdd eval` (**15/15 `EVAL-PASS`**), aplicar Regra dos 10 Ativos, validar auditoria + índice (`OVER: 0`) + `pytest` + extensão e entregar `batch-095.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
