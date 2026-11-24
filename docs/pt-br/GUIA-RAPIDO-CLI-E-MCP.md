@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../tools/mdd-client/src/mdd_client/cli.py
   - ../../scripts/skills/sync-skills.cjs
   - ../../scripts/install-spec-driven-codex-kit.ps1
   - ../../scripts/setup-mcp-connectors.ps1
@@ -21,7 +23,7 @@ sources:
 | c2f | Core conn2flow | Recursos do produto, ambiente e pipelines de projeto | Implementado no repositório separado do Core |
 | Sincronizador de skills | conn2flow-ai-workspace | Auditar/propagar skills canônicas | Implementado |
 | MCP conn2flow-hub | conn2flow-ai-workspace/mcp-hub | Rodar comandos Core, enfileirar tarefas e registrar recibos | Implementado em TypeScript |
-| mdd / MDD Hub | Previstos tools/mdd-client e tools/mdd-hub | Memória local e evolução documental | Aprovados; pacotes ausentes neste checkout |
+| MDD Client / MDD Hub Python | tools/mdd-client e tools/mdd-hub | Memória local, relatórios e monitoramento de documentação | Disponíveis a partir do código-fonte |
 
 ## CLI Core
 
@@ -53,9 +55,19 @@ O padrão é auditoria sem escrita. Aplicar uma skill nomeada escreve nos kits c
 
 Esse instalador ainda provisiona sdd/ e preserva uma pasta SDD existente. Ele não implementa mdd init nem comprova que um satélite migrou.
 
-## CLI Python prevista
+## MDD Client
 
-Os seis comandos solicitados são mdd init, sync, compact, status, report e daemon. A interface inicial é `mdd init [caminho] [--type software|mobile|general]`. Não instale um pacote presumido nem deduza opções. Consulte interface e estado da entrega no [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md).
+Na raiz do repositório, instale o Client em um ambiente virtual ativo com Python 3.11+.
+
+```sh
+python -m pip install -e tools/mdd-client
+mdd init ./my-project --type software --kits
+mdd status --path ./my-project
+mdd feedback list --json
+mdd eval
+```
+
+Consulte `mdd feedback submit --help` e `mdd feedback triage --help` para os argumentos obrigatórios. Rode os exemplos de feedback e eval na raiz da matriz. O [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) descreve a sincronização, o roteamento do feedback, a quarentena e os cenários de regressão.
 
 ## Configuração do MCP Hub
 
@@ -74,6 +86,8 @@ O [servidor Hub](../../mcp-hub/src/server.ts) usa JSON-RPC por stdin/stdout. Ins
 
 Essa é a estrutura de conector usada pelo injector do repositório; confira o formato de configuração do cliente alvo antes de aplicar. O setup-mcp-connectors.ps1 atual também escreve uma entrada legada .agents/mcp_config.json. A matriz agora exige configuração em .gemini/; não trate a entrada legada como canônica. Esta alteração documental mantém o helper e registra a divergência.
 
+O conector Python roda `mdd mcp` por stdio por padrão. Configure o caminho absoluto do executável no ambiente virtual se o cliente MCP não encontrar `mdd` no PATH. As tools `submit_skill_feedback` e `list_skill_feedback` também estão em `conn2flow-hub`. A triagem usa o CLI do Client.
+
 ## Ferramentas, modos e evidências
 
 | Ferramenta | Entrada obrigatória | Resultado |
@@ -85,4 +99,4 @@ Essa é a estrutura de conector usada pelo injector do repositório; confira o f
 
 dispatch_task aceita **supervised**, **live_autonomous** e **headless_autonomous**; o padrão é supervised. Ele grava o registro da fila, sem iniciar daemon Python ou executar um lote autonomamente. O watcher VS Code observa alterações em tarefas e recibos. Inclua projeto alvo, raiz absoluta, requisição, lote, escopo e condições de parada nos prompts.
 
-Os modos headless/monitored/reviewer de evolução do Hub Python previsto são outra interface. Um recibo de sucesso descreve verificações executadas; não substitui revisão independente nem homologação humana. Consulte o [playbook do workflow](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md).
+Os modos headless/monitored/reviewer de evolução do MDD Hub Python são outra interface. Um recibo de sucesso descreve verificações executadas; não substitui revisão independente nem homologação humana. Consulte o [playbook do workflow](PLAYBOOK-ORQUESTRACAO-MULTI-AGENTES.md).

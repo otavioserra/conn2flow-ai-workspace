@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/02-policy.md
   - ../../.gemini/skills/c2f-persona-architect/SKILL.md
   - ../../.gemini/skills/c2f-persona-executor/SKILL.md
@@ -57,10 +59,12 @@ O painel suporta topologias dupla e tríade. O modo duplo combina revisão com o
 | monitored | autonomo_monitorado | live_autonomous | Progredir continuamente com Live Todo List visível e evidências |
 | headless | autonomo_headless | headless_autonomous | Trabalho em background autorizado, com recibos e condições de parada |
 
-O Hub Python previsto usa headless/monitored/reviewer para evolução documental. Esses nomes não devem ser enviados sem conversão para dispatch_task do MCP. O modo autônomo não autoriza produção nem amplia escopo.
+O MDD Hub Python usa headless/monitored/reviewer para evolução documental. Esses nomes não devem ser enviados sem conversão para dispatch_task do MCP. O modo autônomo não autoriza produção nem amplia escopo.
 
 ## Handoffs e consolidação
 
 Todo handoff informa projeto, raiz absoluta do repositório, REQ, BATCH, estado atual, evidências e próxima ação. Use memory/ na matriz; resolva a raiz real de governança de cada satélite sem presumir migração concluída.
 
 Commite somente arquivos nomeados. Pipelines de recursos rodam sequencialmente pelos comandos CLI oficiais; nunca copie arquivos para espelhos de teste. O Revisor informa gravidade, impacto concreto e evidência reproduzível antes da consolidação final. Mantenha limitações e verificações não executadas visíveis no relatório do lote.
+
+Registre aprendizados verificados em `memory/learnings/`. O Curador tria propostas compartilhadas por `mdd feedback`, e o Otimizador usa o Skill Budget e `mdd eval` ao revisar o catálogo. Consulte as [personas canônicas](CATALOGO-DE-SKILLS.md#personas-canônicas--5-skills).

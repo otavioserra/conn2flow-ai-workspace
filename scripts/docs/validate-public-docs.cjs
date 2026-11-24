@@ -89,7 +89,7 @@ for (const file of files) {
 }
 const canonicalDir = path.join(root, '.gemini/skills');
 const canonical = fs.existsSync(canonicalDir) ? fs.readdirSync(canonicalDir).filter(id => fs.existsSync(path.join(canonicalDir,id,'SKILL.md'))).sort() : [];
-if (canonical.length !== 44) failures.push(`Expected 44 canonical skills; found ${canonical.length}`);
+if (canonical.length !== 48) failures.push(`Expected 48 canonical skills; found ${canonical.length}`);
 for (const file of ['docs/en/SKILLS-CATALOG.md', 'docs/pt-br/CATALOGO-DE-SKILLS.md']) {
   const ids = [...read(file).matchAll(/^\| \[`([^`]+)`\]/gm)].map(m => m[1]).sort();
   if (JSON.stringify(ids) !== JSON.stringify(canonical)) failures.push(`Catalog differs from canonical set: ${file}`);

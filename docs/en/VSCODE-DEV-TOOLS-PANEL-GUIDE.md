@@ -1,6 +1,9 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
+  - ../../vscode-extension/src/providers/mddHubManager.ts
   - ../../vscode-extension/package.json
   - ../../vscode-extension/src/providers/conn2flowTreeProvider.ts
   - ../../vscode-extension/src/providers/sddScopeManager.ts
@@ -8,17 +11,16 @@ sources:
   - ../../vscode-extension/src/providers/commandRunner.ts
   - ../../vscode-extension/src/providers/hubTaskWatcher.ts
   - ../../vscode-extension/src/providers/releaseManager.ts
-  - ../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md
 ---
 
 
-# Conn2Flow Dev Tools panel: current behavior and v1.1.2 target
+# Conn2Flow Tools v1.2.0 panel
 
 [Português](../pt-br/GUIA-PAINEL-DEV-TOOLS-VSCODE.md) · [Documentation index](README.md)
 
 ## Version and delivery state
 
-The [extension manifest](../../vscode-extension/package.json) currently declares **v1.1.1**. **v1.1.2** is the release target in REQ-062; this guide does not claim a published release. Panel v2 is the interface design name, not the extension package version. The planned Python dual integration is ARCH-014 and remains ICEBOX.
+The [manifest](../../vscode-extension/package.json) declares v1.2.0. Install the locally packaged VSIX and open **MDD Hub & Skills Control** from the Conn2Flow activity bar.
 
 ## How to use
 
@@ -33,7 +35,7 @@ Command execution depends on Workspace Trust where required. Missing repository 
 | Section | Contents |
 | --- | --- |
 | Main Controls | Repository scope, target, language, topology, autonomy, HubTaskWatcher |
-| SDD & Planning | Agent bridge, CURRENT, SPEC, checks, requests, batches, backlog, decisions, handoffs and gardening |
+| MDD & Planning | Agent bridge, CURRENT, SPEC, checks, requests, batches, backlog, decisions, handoffs and gardening |
 | Core & Releases | Core pipelines and guarded release preparation/execution |
 | Projects & Test Environment | Project targeting, updates, scaffolding and delivery conflicts |
 | Environment & Diagnostics | Docker, logs, CSS and skill synchronization |
@@ -43,9 +45,9 @@ The tree uses progressive disclosure and persists expansion state. Native toolti
 
 ## Repository scope, language and autonomy
 
-The matrix resolves memory/. Current satellite discovery still searches sdd/; the migration workstream must update and verify each satellite. A missing document does not silently fall back to another repository's governance. Documents support preview, source or side-by-side display. Backlog navigation reads BACKLOG-INDEX and reports index/file drift; promotion prepares context rather than authorizing execution.
+Repository discovery prefers `memory/` and falls back to legacy `sdd/`. A missing document does not silently fall back to another repository's governance. Documents support preview, source or side-by-side display. Backlog navigation reads BACKLOG-INDEX and reports index/file drift; promotion prepares context rather than authorizing execution.
 
-conn2flow.language supports auto, pt-BR and en. Runtime labels update immediately; palette labels may need Reload Window. The panel supports dual/triad topology and supervised/monitored/headless workflow selection. These differ from the planned Python Hub evolution modes.
+conn2flow.language supports auto, pt-BR and en. Runtime labels update immediately; palette labels may need Reload Window. The panel supports solo/dual/triad topology and supervised/monitored/headless workflow selection. These differ from the Python MDD Hub evolution modes.
 
 ## Delivery conflicts
 
@@ -57,13 +59,12 @@ When mesclar is available, open and edit the merged file, save it, confirm conti
 
 Dedicated tasks run with an explicit directory and succeed only at exit code 0. Exclusive operations are guarded against concurrent execution. Remote/destructive actions show a review form; project actions require a valid target and the applicable trust check.
 
-HubTaskWatcher observes tasks/*.json and completions/*.json and displays dispatch/receipt state; it does not execute queued work or scrape documentation. Core release preparation stores a draft, verifies GitHub permission and preflight conditions, and only then enables the separate execution phase. This documentation batch does not execute a release.
+HubTaskWatcher observes tasks/*.json and completions/*.json and displays dispatch/receipt state; it does not execute queued work or scrape documentation. Core release preparation stores a draft, verifies GitHub permission and preflight conditions, and only then enables the separate execution phase.
 
-## Planned dual integration
+## MDD Hub & Skills Control
 
-| Planned mode | Intended controls | State |
-| --- | --- | --- |
-| Client / general user | mdd init, status, sync, compact and report for any project | ARCH-014 proposal; no current mdd.mode setting asserted |
-| Developer / Core | Hub watcher status, scraper queue, evolution modes, approval and global synchronization | Depends on Python Hub and access checks |
+1. Install MDD Client. Set `conn2flow.mddExecutable` to its absolute executable path if VS Code cannot find `mdd` on PATH.
+2. Build `mcp-hub/` with `npm ci` and `npm run build` from that directory. The view starts the TypeScript `conn2flow-hub` from the matrix checkout and manages it alongside the MDD Client daemon.
+3. Expand **Servers** to see status and use **Start**, **Stop** or **Restart**. Expand **Skill Feedback** to open inbox entries, optionally include GitHub Issues and triage eligible entries with a reason.
 
-The proposal uses CLI subprocesses or local REST/IPC and should degrade to Client functions when Hub governance is unavailable. These are planned controls, distinct from current MCP task observation. Read the [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) and [packaging guide](VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md) before assuming availability.
+Feedback operations call the Client CLI. The [CLI and MCP guide](QUICKSTART-CLI-AND-MCP.md) covers connector setup and the [packaging guide](VSCODE-MARKETPLACE-PUBLISHING-GUIDE.md) covers the local VSIX.

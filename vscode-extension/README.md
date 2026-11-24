@@ -66,17 +66,17 @@ Para compilar a extensão localmente:
 
 ```bash
 cd vscode-extension
-npm install
+npm ci
 npm run compile
 ```
 
 Para gerar o pacote instalável `.vsix`:
 
 ```bash
-npm run package
+npx @vscode/vsce package --out conn2flow-tools-1.2.0.vsix
 ```
 
 E instale diretamente no VS Code:
 ```bash
-code --install-extension conn2flow-tools-1.0.0.vsix
+code --install-extension conn2flow-tools-1.2.0.vsix --force
 ```

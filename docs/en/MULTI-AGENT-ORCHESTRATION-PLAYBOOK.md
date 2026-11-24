@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/02-policy.md
   - ../../mcp-hub/src/server.ts
   - ../../mcp-hub/src/tools/dispatchTask.ts
@@ -18,7 +20,7 @@ The human defines the need. The Architect reads current source and memory, defin
 
 ## Execute with visible evidence
 
-The Executor reads CURRENT, the request, batch and checklist; selects the relevant procedures from the **45-skill catalog**; displays the Live Todo List; and implements the smallest approved slice. Update progress after meaningful steps, run appropriate checks and record concrete results and limitations.
+The Executor reads CURRENT, the request, batch and checklist; selects the relevant procedures from the **48-skill catalog**; displays the Live Todo List; and implements the smallest approved slice. Update progress after meaningful steps, run appropriate checks and record concrete results and limitations.
 
 ```text
 Project: <repository identifier>
@@ -40,10 +42,12 @@ The Reviewer independently reads diffs and authoritative source, checks task-spe
 
 Use dispatch_task with the repository, request and actionable prompt. Select supervised, live_autonomous or headless_autonomous; the call writes a task record. report_completion records success/failed and logs, with task/request/role correlation when supplied. log_session_event records a shareable milestone. Queueing does not start an executor by itself; the VS Code watcher observes changes.
 
-The [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md) documents actual tool inputs. The planned Python Hub has a different purpose: Client reports and documentation monitoring, with headless/monitored/reviewer evolution modes.
+The [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md) documents actual tool inputs. The Python MDD Hub has a different purpose: Client reports and documentation monitoring, with headless/monitored/reviewer evolution modes.
 
 ## Concurrency and memory hygiene
 
 Separate authorized fronts by explicit file ownership or isolated worktrees. Do not run resource compilation pipelines concurrently. Commit only explicit paths and verify the staged diff. Before removing Windows worktrees, inspect junctions and references; never force removal through unintegrated work. Read the shell skill for the full procedure.
 
 Capture dated evidence, retrieve through indexes and preserve originals during authorized compaction. Respect the 10-item active windows and 50 KB ceiling; do not prune healthy memory at session end. See the [memory guide](MDD-FRAMEWORK-SPECIFICATION.md) and [triad responsibilities](DOUBLE-AGENT-ARCHITECTURE.md).
+
+Keep verified lessons in `memory/learnings/`. The Curator triages shared proposals through `mdd feedback`, and the Optimizer uses Skill Budget and `mdd eval` when reviewing the catalog. See the [canonical personas](SKILLS-CATALOG.md#canonical-personas--5-skills).

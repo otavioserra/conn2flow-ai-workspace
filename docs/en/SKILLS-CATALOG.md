@@ -1,6 +1,8 @@
 ---
-verified_at: 1e26ae63
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md
   - ../../.gemini/skills/c2f-ai-features/SKILL.md
   - ../../scripts/skills/sync-skills.cjs
@@ -95,6 +97,10 @@ node scripts/skills/sync-skills.cjs
 node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 ```
 
-Run from the matrix root. The first command audits without writing; the second propagates the named skill to configured targets. The script preserves exclusive local skills and declared template translations; --apply --all propagates the full catalog. mdd sync is the planned Python Client equivalent, without implementation in this checkout.
+Run from the matrix root. The first command audits without writing; the second propagates the named skill to configured targets. The script preserves exclusive local skills and declared template translations; --apply --all propagates the full catalog. Use `mdd sync` for the same workflow through the Python Client.
 
 The total was checked against the 48 canonical folders containing SKILL.md. Synchronization counts and targets come from the script rather than historical guide numbers. See the [CLI/MCP guide](QUICKSTART-CLI-AND-MCP.md).
+
+## Index, budget and regression checks
+
+The [generated index](../../.gemini/skills/index.md) tracks the 48 entry points, their line counts and detailed topics in `subskills/`. Run `node scripts/skills/generate-skills-index.cjs --budget-report` to list skills near or over their category budget. Run `mdd eval` from the matrix root to check the versioned regression scenarios. Submit evidence-backed suggestions through `mdd feedback submit`. See the [Client guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md).

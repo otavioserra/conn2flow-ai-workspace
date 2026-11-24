@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-092.md](req-092.md) (`REQ-092`)
-* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
-* **Lote Relacionado**: `BATCH-094` ([batch-094.md](../implementation/batch-094.md), a criar/preencher pelo Executor)
+* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-092.md](req-092.md) / `BATCH-094`)
+* **Status**: `IDLE` — pronto para abertura da próxima requisição
+* **Lote Relacionado**: `BATCH-094` ([batch-094.md](../implementation/batch-094.md), `HOMOLOGATED` em 2026-11-24; relatório [REP-014](../reports/REP-014-batch094-vsix-skills-and-curation.md))
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24
@@ -14,6 +14,7 @@
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/archive/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
+  - [req-092.md](req-092.md) (`BATCH-094`, Release VSIX `v1.2.0` [154/154, pronto para instalação local], saneamento cirúrgico de 57 sobras de skills da `REQ-082` em website/Core/Home, atualização completa da documentação viva [READMEs, CHANGELOGs, 11 pares em `docs/`, 284 links PASS] e inventário de curadoria `DEC-136`, `HOMOLOGATED` em 2026-11-24)
   - [req-091.md](req-091.md) (`BATCH-093`, Fase 4 Final do `ARCH-018`: quarentena por recorrência, `--budget-report` + divergência EN, `mdd eval` 13/13, curadoria real `FB-001..003`, `pytest` 153/153, rollout global consolidado em 7/9 satélites via worktree com 100% de limpeza e `ARCH-018` `COMPLETED`; `conn2flow-home` e `conn2flow-mkt` sem `origin` a cargo dos chefes locais, `HOMOLOGATED` em 2026-11-24)
   - [req-090.md](req-090.md) (`BATCH-092`, Fase 3 do `ARCH-018`: aba MDD Hub & Skills Control na extensão VS Code [154/154, homologação visual pendente], fila serial `mcp-hub` [7/7], paridade MCP Python [142/142], docs 48 skills, poda do checklist, e Core CLI `ai:archive-memory` publicado em `origin/main` `6e146f7aa8b6` via worktree limpa, `HOMOLOGATED` em 2026-11-24)
   - [req-089.md](req-089.md) (`BATCH-091`, Fase 2 do `ARCH-018`: barramento `mdd feedback` + inbox `FB-XXX` + GitHub Issues + tools MCP no `conn2flow-hub` + conexão das 4 personas + notas `REP-010` + READMEs 48 skills + Regra dos 10, `HOMOLOGATED` em 2026-11-24)

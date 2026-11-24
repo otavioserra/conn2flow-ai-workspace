@@ -1,6 +1,8 @@
 ---
-verified_at: 1e26ae63
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md
   - ../../.gemini/skills/c2f-ai-features/SKILL.md
   - ../../scripts/skills/sync-skills.cjs
@@ -95,6 +97,10 @@ node scripts/skills/sync-skills.cjs
 node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 ```
 
-Execute na raiz da matriz. O primeiro comando audita sem escrever; o segundo propaga a skill nomeada para os alvos configurados. O script preserva skills locais exclusivas e traduções declaradas de templates; --apply --all é reservado à propagação de todo o catálogo. mdd sync é o equivalente previsto no Client Python, ainda sem implementação neste checkout.
+Execute na raiz da matriz. O primeiro comando audita sem escrever. O segundo propaga a skill nomeada para os alvos configurados. O script preserva skills locais exclusivas e traduções declaradas de templates. Use `--apply --all` para propagar todo o catálogo ou `mdd sync` para usar o fluxo pelo Client Python.
 
 O total foi conferido nas 48 pastas canônicas com SKILL.md. Contagens e alvos de sincronização vêm do script, não de números históricos nos guias. Consulte o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md).
+
+## Índice, orçamento e regressões
+
+O [índice gerado](../../.gemini/skills/index.md) registra as 48 skills, o número de linhas e os tópicos detalhados em `subskills/`. Rode `node scripts/skills/generate-skills-index.cjs --budget-report` para listar as skills próximas ou acima do orçamento da categoria. Rode `mdd eval` na raiz da matriz para verificar os cenários versionados. Envie sugestões com evidência por `mdd feedback submit`. Consulte o [guia do Client](GUIA-ECOSSISTEMA-PYTHON-MDD.md).

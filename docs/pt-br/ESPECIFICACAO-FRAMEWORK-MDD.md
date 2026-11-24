@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/00-baseline-architecture.md
   - ../../memory/01-general-memory.md
   - ../../memory/02-policy.md
@@ -23,6 +25,8 @@ MDD acrescenta memória persistente e consultável de projeto à engenharia guia
 | Raw | Observações intermediárias, notas e artefatos compartilháveis | raw/active/ e raw/archive/ | Sem autoridade normativa |
 
 Não armazene credenciais, dados pessoais desnecessários ou transcrições de raciocínio privado. Registre evidências compartilháveis e sínteses concisas de decisões. Uma observação raw vira episódio verificado somente após conferir a fonte; uma regra recorrente precisa de aprovação antes da promoção para skill ou contrato.
+
+Aprendizados verificados do projeto ficam em `memory/learnings/`. Os agentes encaminham propostas de mudança de skills por `mdd feedback` à inbox da matriz em `memory/inbox/feedback/`. As duas áreas complementam o modelo de quatro camadas.
 
 ## Ciclo de vida e retenção
 

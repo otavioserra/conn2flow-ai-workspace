@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/02-policy.md
   - ../../.gemini/skills/c2f-persona-architect/SKILL.md
   - ../../.gemini/skills/c2f-persona-executor/SKILL.md
@@ -25,7 +27,7 @@ The historical filename is retained so existing links keep working. MDD extends 
 | Reviewer | Inspect diffs and current sources, report findings by severity with evidence, issue an independent opinion | Does not claim PASS for checks not run; review does not itself homologate |
 | Human | Direct priorities, authorize scope and review consolidation | Retains the approval gate required by the selected workflow |
 
-The role procedures are [Architect](../../.gemini/skills/c2f-persona-architect/SKILL.md), [Executor](../../.gemini/skills/c2f-persona-executor/SKILL.md) and [Reviewer](../../.gemini/skills/c2f-persona-reviewer/SKILL.md). The 45-skill [catalog](SKILLS-CATALOG.md) explains task-specific procedures.
+The role procedures are [Architect](../../.gemini/skills/c2f-persona-architect/SKILL.md), [Executor](../../.gemini/skills/c2f-persona-executor/SKILL.md) and [Reviewer](../../.gemini/skills/c2f-persona-reviewer/SKILL.md). The 48-skill [catalog](SKILLS-CATALOG.md) explains task-specific procedures.
 
 ## Shared memory and lifecycle
 
@@ -57,10 +59,12 @@ The panel supports dual and triad topologies. Dual mode combines review with the
 | monitored | autonomo_monitorado | live_autonomous | Progress continuously with a visible Live Todo List and evidence |
 | headless | autonomo_headless | headless_autonomous | Authorized background work with receipts and stop conditions |
 
-The planned Python Hub uses headless/monitored/reviewer for documentation evolution. Those names must not be sent unchanged to MCP dispatch_task. Autonomous mode does not authorize production or widen scope.
+The Python MDD Hub uses headless/monitored/reviewer for documentation evolution. Those names must not be sent unchanged to MCP dispatch_task. Autonomous mode does not authorize production or widen scope.
 
 ## Handoffs and consolidation
 
 Every handoff names the project, absolute repository root, REQ, BATCH, current state, evidence and next action. Use memory/ in the matrix; resolve each satellite's actual governance root rather than guessing that migration is complete.
 
 Commit only named files. Resource pipelines run sequentially through official CLI commands; never copy files into test mirrors. The Reviewer reports severity, concrete impact and reproducible evidence before final consolidation. Keep limitations and unexecuted checks visible in the batch report.
+
+Keep verified lessons in `memory/learnings/`. The Curator triages shared proposals through `mdd feedback`, and the Optimizer uses Skill Budget and `mdd eval` when reviewing the catalog. See the [canonical personas](SKILLS-CATALOG.md#canonical-personas--5-skills).

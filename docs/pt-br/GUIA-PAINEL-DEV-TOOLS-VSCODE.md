@@ -1,6 +1,9 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
+  - ../../vscode-extension/src/providers/mddHubManager.ts
   - ../../vscode-extension/package.json
   - ../../vscode-extension/src/providers/conn2flowTreeProvider.ts
   - ../../vscode-extension/src/providers/sddScopeManager.ts
@@ -8,17 +11,16 @@ sources:
   - ../../vscode-extension/src/providers/commandRunner.ts
   - ../../vscode-extension/src/providers/hubTaskWatcher.ts
   - ../../vscode-extension/src/providers/releaseManager.ts
-  - ../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md
 ---
 
 
-# Painel Conn2Flow Dev Tools: comportamento atual e alvo v1.1.2
+# Painel Conn2Flow Tools v1.2.0
 
 [English](../en/VSCODE-DEV-TOOLS-PANEL-GUIDE.md) · [Índice da documentação](README.md)
 
 ## Versão e estado da entrega
 
-O [manifesto da extensão](../../vscode-extension/package.json) declara atualmente **v1.1.1**. **v1.1.2** é o alvo de release na REQ-062; este guia não afirma publicação. Painel v2 é o nome do desenho da interface, não a versão do pacote da extensão. A integração dual Python prevista é ARCH-014 e permanece ICEBOX.
+O [manifesto](../../vscode-extension/package.json) declara v1.2.0. Instale o VSIX empacotado localmente e abra **MDD Hub & Skills Control** pela barra de atividades do Conn2Flow.
 
 ## Como usar
 
@@ -33,7 +35,7 @@ A execução de comandos depende de Workspace Trust quando exigido. Resolva cont
 | Seção | Conteúdo |
 | --- | --- |
 | Controles Principais | Escopo do repositório, alvo, idioma, topologia, autonomia, HubTaskWatcher |
-| SDD & Planejamento | Ponte de agentes, CURRENT, SPEC, verificações, requisições, lotes, backlog, decisões, handoffs e gardening |
+| MDD & Planejamento | Ponte de agentes, CURRENT, SPEC, verificações, requisições, lotes, backlog, decisões, handoffs e gardening |
 | Core & Releases | Pipelines Core e preparação/execução protegidas de releases |
 | Projetos & Ambiente de Testes | Alvos de projeto, atualizações, scaffolding e choques de entrega |
 | Ambiente & Diagnóstico | Docker, logs, CSS e sincronização de skills |
@@ -43,9 +45,9 @@ A árvore usa progressive disclosure e persiste expansão. Tooltips nativos expl
 
 ## Escopo do repositório, idioma e autonomia
 
-A matriz resolve memory/. A descoberta atual dos satélites ainda procura sdd/; a frente de migração precisa atualizar e verificar cada satélite. Um documento ausente não cai silenciosamente na governança de outro repositório. Documentos suportam prévia, fonte ou exibição lado a lado. A navegação do backlog lê BACKLOG-INDEX e relata divergência índice/arquivo; promoção prepara contexto sem autorizar execução.
+A descoberta de repositório prefere `memory/` e usa `sdd/` como fallback legado. Um documento ausente não cai silenciosamente na governança de outro repositório. Documentos suportam prévia, fonte ou exibição lado a lado. A navegação do backlog lê BACKLOG-INDEX e relata divergência índice/arquivo; promoção prepara contexto sem autorizar execução.
 
-conn2flow.language suporta auto, pt-BR e en. Rótulos da interface atualizam imediatamente; os da paleta podem exigir Reload Window. O painel suporta topologia dupla/tríade e escolha de workflow supervisionado/monitorado/headless. São distintos dos modos previstos de evolução do Hub Python.
+conn2flow.language suporta auto, pt-BR e en. Rótulos da interface atualizam imediatamente; os da paleta podem exigir Reload Window. O painel suporta topologia solo/dupla/tríade e escolha de workflow supervisionado/monitorado/headless. São distintos dos modos de evolução do Hub Python.
 
 ## Choques de entrega
 
@@ -57,13 +59,12 @@ Quando mesclar está disponível, abra e edite o arquivo mesclado, salve, confir
 
 Tarefas dedicadas rodam em diretório explícito e só têm sucesso com exit code 0. Operações exclusivas são protegidas contra execução concorrente. Ações remotas/destrutivas mostram formulário de revisão; ações de projeto exigem alvo válido e a verificação de confiança aplicável.
 
-HubTaskWatcher observa tasks/*.json e completions/*.json e exibe estado de despacho/recibo; não executa trabalho enfileirado nem raspa documentação. A preparação de release Core guarda rascunho, verifica permissão GitHub e preflight, e só então habilita a fase separada de execução. Este lote documental não executa release.
+HubTaskWatcher observa tasks/*.json e completions/*.json e exibe estado de despacho/recibo; não executa trabalho enfileirado nem raspa documentação. A preparação de release Core guarda rascunho, verifica permissão GitHub e preflight, e só então habilita a fase separada de execução.
 
-## Integração dual prevista
+## MDD Hub & Skills Control
 
-| Modo previsto | Controles pretendidos | Estado |
-| --- | --- | --- |
-| Cliente / usuário geral | mdd init, status, sync, compact e report em qualquer projeto | Proposta ARCH-014; sem afirmar configuração mdd.mode atual |
-| Desenvolvedor / Core | Status do watcher Hub, fila de scrapers, modos de evolução, aprovação e sincronização global | Depende do Hub Python e verificações de acesso |
+1. Instale o MDD Client. Configure `conn2flow.mddExecutable` com o caminho absoluto do executável se o VS Code não encontrar `mdd` no PATH.
+2. Na pasta `mcp-hub/`, rode `npm ci` e `npm run build`. A aba inicia o `conn2flow-hub` TypeScript do checkout da matriz e o gerencia junto com o daemon do MDD Client.
+3. Expanda **Servidores** para conferir o status e usar **Iniciar**, **Parar** ou **Reiniciar**. Expanda **Feedback de Skills** para abrir itens da inbox, incluir issues do GitHub e triar itens elegíveis com uma justificativa.
 
-A proposta usa subprocessos CLI ou REST/IPC local e deve degradar para funções Client quando a governança Hub estiver indisponível. São controles planejados, distintos da observação MCP atual. Leia o [guia Python](GUIA-ECOSSISTEMA-PYTHON-MDD.md) e o [guia de empacotamento](GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md) antes de presumir disponibilidade.
+As operações de feedback usam o CLI do Client. O [guia de CLI e MCP](GUIA-RAPIDO-CLI-E-MCP.md) descreve os conectores e o [guia de empacotamento](GUIA-PUBLICACAO-VSCODE-MARKETPLACE.md) explica a instalação do VSIX local.

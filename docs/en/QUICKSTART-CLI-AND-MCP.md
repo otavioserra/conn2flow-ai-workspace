@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../tools/mdd-client/src/mdd_client/cli.py
   - ../../scripts/skills/sync-skills.cjs
   - ../../scripts/install-spec-driven-codex-kit.ps1
   - ../../scripts/setup-mcp-connectors.ps1
@@ -21,7 +23,7 @@ sources:
 | c2f | conn2flow Core | Product resources, environment and project pipelines | Implemented in the separate Core repository |
 | Skills synchronizer | conn2flow-ai-workspace | Audit/propagate canonical skills | Implemented |
 | conn2flow-hub MCP | conn2flow-ai-workspace/mcp-hub | Run Core commands, queue tasks and record receipts | Implemented in TypeScript |
-| mdd / MDD Hub | Planned tools/mdd-client and tools/mdd-hub | Local memory and documentation evolution | Approved; packages absent in this checkout |
+| MDD Client / Python MDD Hub | tools/mdd-client and tools/mdd-hub | Local memory, reports and documentation monitoring | Available from source |
 
 ## Core CLI
 
@@ -53,9 +55,19 @@ The default is a read-only audit. Applying a named skill writes configured kits 
 
 That installer still provisions sdd/ and preserves an existing SDD folder. It does not implement mdd init or prove a satellite has migrated.
 
-## Planned Python CLI
+## MDD Client
 
-The six requested commands are mdd init, sync, compact, status, report and daemon. The initial interface is `mdd init [path] [--type software|mobile|general]`. Do not install an assumed package or infer options. See the [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) for the interface and delivery status.
+From the repository root, install the Client in an active Python 3.11+ virtual environment.
+
+```sh
+python -m pip install -e tools/mdd-client
+mdd init ./my-project --type software --kits
+mdd status --path ./my-project
+mdd feedback list --json
+mdd eval
+```
+
+Use `mdd feedback submit --help` and `mdd feedback triage --help` for their required arguments. Run the feedback and eval examples from the matrix root. See the [Python guide](MDD-PYTHON-ECOSYSTEM-GUIDE.md) for sync, feedback routing, quarantine and regression scenarios.
 
 ## MCP Hub setup
 
@@ -74,6 +86,8 @@ The [Hub server](../../mcp-hub/src/server.ts) speaks JSON-RPC over stdin/stdout.
 
 This is the connector shape used by the repository injector; confirm the target client's configuration format before applying it. The current setup-mcp-connectors.ps1 also writes a legacy .agents/mcp_config.json entry. The matrix now requires .gemini/ configuration; do not treat that legacy entry as canonical. This documentation change leaves the helper unchanged and records the mismatch.
 
+The Python connector runs `mdd mcp` over stdio by default. Configure it with the absolute executable path from the virtual environment when the MCP client cannot see `mdd` on PATH. It shares `submit_skill_feedback` and `list_skill_feedback` with `conn2flow-hub`. Feedback triage uses the Client CLI.
+
 ## Tools, modes and evidence
 
 | Tool | Required input | Result |
@@ -85,4 +99,4 @@ This is the connector shape used by the repository injector; confirm the target 
 
 dispatch_task accepts **supervised**, **live_autonomous** and **headless_autonomous**; the default is supervised. It writes the queue record, rather than starting a Python daemon or autonomously executing a batch. The VS Code watcher observes task and receipt changes. Include the target project, absolute root, request, batch, scope and stop conditions in prompts.
 
-The planned Python Hub evolution modes headless/monitored/reviewer are a separate interface. A success receipt describes executed checks; it does not replace independent review or human homologation. See the [workflow playbook](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md).
+The Python MDD Hub evolution modes headless/monitored/reviewer are a separate interface. A success receipt describes executed checks; it does not replace independent review or human homologation. See the [workflow playbook](MULTI-AGENT-ORCHESTRATION-PLAYBOOK.md).

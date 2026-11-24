@@ -51,6 +51,10 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 | **BATCH-074** | complete | Implementação da Trava Tripla MDD: Metadata Header com Auto-Cura de Índices, Handoffs Adaptáveis e Pasta Canônica memory/human-reviews/ | [batch-074.md](archive/batch-074.md) | REQ-072 homologada em rev-074.md; cabeçalho YAML frontmatter, auto-cura/mutação via CLI (PHP/Python) com fallback, 45ª skill c2f-mdd-indexing-and-handoffs, pasta human-reviews/ |
 | **BATCH-075** | complete | Consolidação Harmônica das Branches MDD (REQ-071 e REQ-072), Resolução de Conflitos e Unificação na main | [batch-075.md](archive/batch-075.md) | REQ-073 aprovada; merge de feat/req-071 em feat/req-072, testes 100% verde (pytest e VS Code) e merge final na branch main |
 
+## Entrega atual
+
+[REQ-092](../human-requests/req-092.md) / [BATCH-094](batch-094.md) (`ready-for-review`) entrega VSIX v1.2.0 validado, saneamento cirúrgico de 57 sobras de skills, documentação bilíngue e inventário DEC-136. [Relatório FEAT-017](../reports/REP-014-batch094-vsix-skills-and-curation.md).
+
 ## Entregas anteriores
 
 REQ-091 / BATCH-093 (`ready-for-review`): Fase 4 (final) do ARCH-018. Quarentena por recorrência em `mdd feedback` (origem `(repo, batch)`, `--force-ready` nos dois MCP), `--budget-report`, aviso de divergência entre cópias EN, `mdd eval` determinístico com 13 cenários, FB-001..003 aceitos e aplicados em PT-BR/EN (gate: pytest 153/153, EVAL-PASS 13/13). Rollout das 48 skills em 7 satélites via worktrees isoladas já removidas; `conn2flow-home` e `conn2flow-mkt` intocados. [Relatório](batch-093.md).

@@ -12,6 +12,7 @@
 | REP-011 | Dificuldades e aprendizados do BATCH-091 para o AI Workspace | Barramento mdd feedback + tools MCP no hub TypeScript; cópias EN fora dos kits spec-driven, concorrência no stdio do hub e reescrita de links ao arquivar memory/reports/. | [source](<REP-011-batch091-feedback-bus-learnings.md>) | READY_FOR_ARCHITECT |
 | REP-012 | Dificuldades e aprendizados do BATCH-092 para o AI Workspace | Aba MDD Hub na extensão, fila serial no hub, paridade MCP Python e ai:archive-memory no Core; o arquivador normalizava links alheios e ignorava destinos &lt;...&gt;. | [source](<REP-012-batch092-hub-control-and-core-cli.md>) | READY_FOR_ARCHITECT |
 | REP-013 | Dificuldades e aprendizados do BATCH-093 para o AI Workspace | Quarentena por recorrência, --budget-report, mdd eval e curadoria FB-001..003; no rollout, alias renomeado para pasta ignorada pelo .gitignore saía do repositório. | [source](<REP-013-batch093-anti-bloat-evals-and-global-rollout.md>) | READY_FOR_ARCHITECT |
+| REP-014 | Dificuldades e aprendizados do BATCH-094 | Registra os atritos de empacotamento VSIX, prova de origem das skills e validação da documentação pós-ARCH-018. | [source](<REP-014-batch094-vsix-skills-and-curation.md>) | ready-for-review |
 
 ## Directories
 

@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/02-policy.md
   - ../../mcp-hub/src/server.ts
   - ../../mcp-hub/src/tools/dispatchTask.ts
@@ -40,10 +42,12 @@ O Revisor lê diffs e fontes autoritativas independentemente, verifica riscos pe
 
 Use dispatch_task com repositório, requisição e prompt executável. Selecione supervised, live_autonomous ou headless_autonomous; a chamada grava registro de tarefa. report_completion registra success/failed e logs, correlacionando tarefa/requisição/papel quando informados. log_session_event registra marco compartilhável. Enfileirar não inicia um executor por si só; o watcher VS Code observa mudanças.
 
-O [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md) documenta entradas reais das ferramentas. O Hub Python previsto tem outro propósito: relatórios do Client e monitoramento documental, com modos de evolução headless/monitored/reviewer.
+O [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md) documenta entradas reais das ferramentas. O MDD Hub Python tem outro propósito: relatórios do Client e monitoramento documental, com modos de evolução headless/monitored/reviewer.
 
 ## Concorrência e higiene de memória
 
 Separe frentes autorizadas por propriedade explícita de arquivos ou worktrees isoladas. Não rode pipelines de compilação de recursos concorrentemente. Commite apenas caminhos explícitos e confira o diff staged. Antes de remover worktrees Windows, inspecione junctions e referências; nunca force remoção de trabalho não integrado. Leia o procedimento completo na skill de shell.
 
 Capte evidências datadas, consulte por índices e preserve originais na compactação autorizada. Respeite janelas de 10 ativos e teto de 50 KB; não pode memória saudável ao fechar sessão. Consulte o [guia de memória](ESPECIFICACAO-FRAMEWORK-MDD.md) e as [responsabilidades da tríade](ARQUITETURA-AGENTE-DUPLO.md).
+
+Registre aprendizados verificados em `memory/learnings/`. O Curador tria propostas compartilhadas por `mdd feedback`, e o Otimizador usa o Skill Budget e `mdd eval` ao revisar o catálogo. Consulte as [personas canônicas](CATALOGO-DE-SKILLS.md#personas-canônicas--5-skills).

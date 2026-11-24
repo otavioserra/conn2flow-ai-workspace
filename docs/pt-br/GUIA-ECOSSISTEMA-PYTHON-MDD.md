@@ -1,6 +1,9 @@
 ---
-verified_at: d052f32
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../vscode-extension/src/providers/mddHubManager.ts
+  - ../../tools/mdd-client/src/mdd_client/mcp_server.py
   - ../../tools/mdd-client/pyproject.toml
   - ../../tools/mdd-client/src/mdd_client/cli.py
   - ../../tools/mdd-client/src/mdd_client/memory.py
@@ -53,6 +56,12 @@ mdd watch --path ./my-project --once
 
 Documentos saudáveis permanecem intactos. Originais arquivados conservam os bytes e a base relativa registrada; sínteses são extratos de navegação, não resumos semânticos aprovados. Referências inline, definições Markdown e URIs de arquivo internas são reparadas. Sintaxe aninhada e anchors HTML personalizados exigem revisão. Locks exclusivos impedem mutações concorrentes; um lock abandonado exige inspeção antes de remoção explícita.
 
+## Feedback e regressões de skills
+
+Aprendizados verificados do repositório ficam em `memory/learnings/`. Use `mdd feedback submit` com evidência para propor uma mudança de skill na inbox da matriz. `--github` encaminha o envio a uma issue com o rótulo `skill-feedback` quando a matriz está indisponível. Use `mdd feedback list --json` para consultar os itens e `mdd feedback triage` para registrar um veredito. Sinais de severidade baixa ou média ficam em quarentena até haver recorrência de origens distintas.
+
+Na raiz da matriz, rode `mdd eval --matrix .` para verificar os cenários versionados com o provedor determinístico offline. Uma falha retorna código 1. `mdd mcp` e `conn2flow-hub` expõem envio e listagem de feedback.
+
 ## Hub e API
 
 ```sh
@@ -98,4 +107,4 @@ python tools/verify_mdd.py --output temp/mdd-smoke.json --live-docs
 
 Foram executados 61 testes com sucesso e 97,23% de cobertura em Windows/Python 3.12.4: inicialização, retenção, preservação local, API, envio HTTP real, parsing, retries e três modos de evolução com Git real. Os 11 checks de CLI e a coleta real das sete fontes passaram. Consulte [evidências](../../completions/BATCH-071-smoke.json) e [lote](../../memory/implementation/archive/batch-071.md). Há um aviso de depreciação Starlette/AnyIO, sem falhas. A CI está configurada para Windows/Linux e Python 3.11/3.12; a execução remota não integra esta evidência local.
 
-A integração dual da extensão [ARCH-014](../../memory/backlog/ARCH-014-vscode-extension-mdd-client-hub-integration.md) permanece futura. Não houve alteração ou publicação da extensão, merge, deploy ou publicação PyPI.
+O Conn2Flow Tools v1.2.0 gerencia o daemon do Client e o MCP Hub TypeScript pela aba **MDD Hub & Skills Control**, que lista e tria feedbacks de skills. O Hub HTTP Python roda separadamente. Consulte o [guia do painel](GUIA-PAINEL-DEV-TOOLS-VSCODE.md).

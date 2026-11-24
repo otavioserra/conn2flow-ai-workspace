@@ -1,6 +1,8 @@
 ---
-verified_at: 2afd000
+verified_at: fb46fe7
+verified_in: BATCH-094
 sources:
+  - ../../memory/backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md
   - ../../memory/00-baseline-architecture.md
   - ../../memory/01-general-memory.md
   - ../../memory/02-policy.md
@@ -23,6 +25,8 @@ MDD adds persistent, retrievable project memory to specification-driven engineer
 | Raw | Intermediate observations, notes and shareable artifacts | raw/active/ and raw/archive/ | No normative authority |
 
 Do not store credentials, unnecessary personal information or private reasoning transcripts. Record shareable evidence and concise decision summaries. A raw observation becomes a verified episode only after its source is checked; a recurring rule needs approval before promotion to a skill or contract.
+
+Verified project lessons live in `memory/learnings/`. Agents send proposed shared skill changes through `mdd feedback` to the matrix inbox at `memory/inbox/feedback/`. Both areas support the four-layer model.
 
 ## Lifecycle and retention
 
