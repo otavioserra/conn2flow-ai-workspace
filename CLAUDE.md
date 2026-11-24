@@ -39,9 +39,9 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
 2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `memory/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
-   - **No VS Code / Claude Code (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
-   - **No Antigravity (Arquiteto Master)**: Ativa `c2f-architect-master`, lê `memory/03-memory-engineering-chief.md` e propõe o próximo plano.
-   - **No Revisor**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+   - **No VS Code / Claude Code (Executor Tático)**: Ativa `c2f-persona-executor`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Antigravity (Arquiteto Master)**: Ativa `c2f-persona-architect`, lê `memory/03-memory-engineering-chief.md` e propõe o próximo plano.
+   - **No Revisor**: Ativa `c2f-persona-reviewer`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
 
 ## 📋 Protocolo de Transparência & Checklist Vivo (Live Todo List)
@@ -81,7 +81,7 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 ## Trava Tripla MDD — REQ-072 / ARCH-015
 
-Leia `c2f-mdd-indexing-and-handoffs` antes de criar metadados, regenerar índices ou transferir o lote. Novos artefatos usam YAML frontmatter; `memory:index/set/get` no core e `mdd index/meta set/meta get` no Client mantêm o índice derivado. A fonte canônica contém **46 skills** (3 papéis, 34 de core e 9 de governança).
+Leia `c2f-mdd-indexing-and-handoffs` antes de criar metadados, regenerar índices ou transferir o lote. Novos artefatos usam YAML frontmatter; `memory:index/set/get` no core e `mdd index/meta set/meta get` no Client mantêm o índice derivado. A fonte canônica contém **48 skills** (5 personas `c2f-persona-*`, 34 de core e 9 de governança), catalogadas em `.gemini/skills/index.md`.
 
 Handoffs incluem projeto, raiz absoluta, REQ, BATCH, escopo, evidências, pendências, topologia e autonomia. `solo`: auto-revisão; `dupla`: retorno ao Macro-Arquiteto; `triade`: recibo e Revisor Independente com ficha em memory/human-reviews/. `supervisionado`: aguardar input humano em cada transição; `autonomo_monitorado`: Live Todo e acionamento autorizado; `autonomo_headless`: despacho/recibos persistentes. Somente humano assina homologação. Detalhes em memory/02-policy.md; dez fichas ativas, arquivos duais compacted/original.
 

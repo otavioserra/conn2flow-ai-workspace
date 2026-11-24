@@ -6,19 +6,25 @@ const root = path.resolve(__dirname, '../..');
 const kits = ['.gemini', '.claude', '.cursor', '.codex', '.github'];
 const names = ['start-mdd-slice', 'continue-mdd-batch', 'mdd-workflow', 'mdd-memory-gardening'];
 const oldNames = ['start-sdd-slice', 'continue-sdd-batch', 'sdd-workflow', 'sdd-memory-gardening'];
-const repos = ['conn2flow-ai-workspace', 'conn2flow', 'conn2flow-site', 'lumix', 'transformamp', 'conn2flow-home'];
+// REQ-088: persona aliases also count as legacy directories once a repository is migrated.
+const personaAliases = ['c2f-architect-master', 'c2f-executor-agent', 'c2f-reviewer-agent'];
+const EXPECTED = 48;
+const reposArg = process.argv.indexOf('--repos');
+const repos = reposArg >= 0 ? process.argv[reposArg + 1].split(',').filter(Boolean)
+  : ['conn2flow-ai-workspace', 'conn2flow', 'conn2flow-site', 'lumix', 'transformamp', 'conn2flow-home'];
 const sources = fs.readdirSync(path.join(root, '.gemini/skills')).filter(name => fs.existsSync(path.join(root, '.gemini/skills', name, 'SKILL.md')));
 const errors = [];
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-if (sources.length !== 46) errors.push(`Canonical count: ${sources.length}`);
+if (sources.length !== EXPECTED) errors.push(`Canonical count: ${sources.length}`);
 let checked = 0;
 for (const repo of repos) for (const kit of kits) {
   const base = path.join(root, '..', repo, kit, 'skills');
-  for (const old of oldNames) if (fs.existsSync(path.join(base, old))) errors.push(`Legacy directory: ${repo}/${kit}/${old}`);
+  for (const old of [...oldNames, ...personaAliases]) if (fs.existsSync(path.join(base, old))) errors.push(`Legacy directory: ${repo}/${kit}/${old}`);
   const count = fs.readdirSync(base).filter(name => fs.existsSync(path.join(base, name, 'SKILL.md')) && sources.includes(name)).length;
-  if (count !== 46) errors.push(`Canonical count in ${repo}/${kit}: ${count}`);
+  if (count !== EXPECTED) errors.push(`Canonical count in ${repo}/${kit}: ${count}`);
   for (const name of sources) {
     const target = path.join(base, name, 'SKILL.md');
+    if (!fs.existsSync(target)) { errors.push(`Missing copy: ${target}`); continue; }
     if (hash(target) !== hash(path.join(root, '.gemini/skills', name, 'SKILL.md'))) errors.push(`Different copy: ${target}`);
     checked++;
   }
@@ -27,7 +33,7 @@ for (const name of names) {
   const text = fs.readFileSync(path.join(root, '.gemini/skills', name, 'SKILL.md'), 'utf8');
   if (!text.includes(`name: ${name}`) || text.includes('sdd/') || oldNames.some(old => text.includes(old))) errors.push(`Unmigrated canonical content: ${name}`);
 }
-for (const name of ['c2f-executor-agent', 'c2f-project-pipeline-and-tasks', 'c2f-resources-system']) {
+for (const name of ['c2f-persona-executor', 'c2f-project-pipeline-and-tasks', 'c2f-resources-system']) {
   const text = fs.readFileSync(path.join(root, '.gemini/skills', name, 'SKILL.md'), 'utf8');
   for (const required of ['Categoria A', 'Categoria B', 'Categoria C', '--skip-css']) if (!text.includes(required)) errors.push(`Missing ${required}: ${name}`);
 }

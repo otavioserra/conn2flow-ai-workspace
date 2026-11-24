@@ -11,6 +11,7 @@
 | decisions | decisions | See source | [decisions](decisions/index.md) | indexed |
 | human-requests | human-requests | See source | [human-requests](human-requests/index.md) | indexed |
 | implementation | implementation | See source | [implementation](implementation/index.md) | indexed |
+| learnings | learnings | See source | [learnings](learnings/index.md) | indexed |
 | process | process | See source | [process](process/index.md) | indexed |
 | raw | raw | See source | [raw](raw/index.md) | indexed |
 | README.md | README.md | See source | [README.md](README.md) | indexed |

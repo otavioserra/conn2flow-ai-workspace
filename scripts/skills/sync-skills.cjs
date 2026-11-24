@@ -12,6 +12,7 @@
 // Traduções registradas por idioma/skill em translated.json nunca são sobrescritas.
 // A auditoria compara source_sha256 com a matriz e emite warnings não bloqueantes.
 // Após revisão: --update-translation-hash <skill> <idioma> [--translator nome].
+// <skill>/subskills/** acompanha a skill-mãe (REQ-088) e entra no hash da tradução.
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -30,10 +31,16 @@ const repos = (valor('--repos') || 'conn2flow-ai-workspace,conn2flow,conn2flow-s
 const kits = ['.gemini', '.claude', '.cursor', '.codex', '.github'];
 const translationFile = path.join(__dirname, 'translated.json');
 const traduzidas = translations.load(translationFile);
+// Legacy name -> canonical name. A legacy folder is moved whole (never copied) when its
+// canonical name is selected, so a satellite never ends with both names.
 const renamedSkills = {
   'start-sdd-slice': 'start-mdd-slice', 'continue-sdd-batch': 'continue-mdd-batch',
   'sdd-workflow': 'mdd-workflow', 'sdd-memory-gardening': 'mdd-memory-gardening',
+  // REQ-088 / ARCH-018: the three role skills become c2f-persona-*.
+  'c2f-architect-master': 'c2f-persona-architect', 'c2f-executor-agent': 'c2f-persona-executor',
+  'c2f-reviewer-agent': 'c2f-persona-reviewer',
 };
+const EXPECTED_SKILLS = 48;
 
 const md5 = (bytes) => crypto.createHash('md5').update(bytes).digest('hex');
 const sha256 = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -44,19 +51,40 @@ const canonDir = path.join(root, '.gemini/skills');
 const canonical = new Map(fs.readdirSync(canonDir, { withFileTypes: true })
   .filter((e) => e.isDirectory() && fs.existsSync(path.join(canonDir, e.name, 'SKILL.md')))
   .map((e) => [e.name, fs.readFileSync(path.join(canonDir, e.name, 'SKILL.md'))]));
-if (canonical.size !== 46) throw new Error('O catálogo canônico deve conter exatamente 46 skills');
+if (canonical.size !== EXPECTED_SKILLS) throw new Error(`O catálogo canônico deve conter exatamente ${EXPECTED_SKILLS} skills`);
+
+// <skill>/subskills/**: on-demand recipes that travel with their parent skill.
+function listFiles(dir, prefix) {
+  return fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1)).flatMap((entry) => {
+    const file = path.join(dir, entry.name);
+    if (entry.isSymbolicLink() || fs.lstatSync(file).isSymbolicLink()) throw new Error(`Subskill vinculada recusada: ${file}`);
+    const relative = `${prefix}/${entry.name}`;
+    return entry.isDirectory() ? listFiles(file, relative) : [relative];
+  });
+}
+const subskills = new Map();
+for (const nome of canonical.keys()) {
+  const dir = path.join(canonDir, nome, 'subskills');
+  if (!fs.existsSync(dir)) continue;
+  const files = listFiles(dir, 'subskills');
+  if (files.length) subskills.set(nome, new Map(files.map((rel) => [rel, fs.readFileSync(path.join(canonDir, nome, rel))])));
+}
+// A translation covers the skill and its subskills: any subskill change reopens the review.
+const translationSources = new Map([...canonical].map(([nome, bytes]) => [nome, !subskills.has(nome) ? bytes
+  : Buffer.concat([bytes, ...[...subskills.get(nome)].flatMap(([rel, data]) => [Buffer.from(`\n\0${rel}\n`), data])])]));
 
 // Explicit acknowledgement after content review. Never update hashes during normal sync.
 if (hashUpdate >= 0) {
   if (apply || args.includes('--target')) throw new Error('Hash update cannot be combined with sync/apply');
   const skill = args[hashUpdate + 1];
   const language = args[hashUpdate + 2];
-  const entry = translations.update(translationFile, traduzidas, canonical, skill, language, valor('--translator') || 'mdd-agent');
+  const entry = translations.update(translationFile, traduzidas, translationSources, skill, language, valor('--translator') || 'mdd-agent');
   console.log(JSON.stringify({ status: 'PASS', skill, language, ...entry }));
   process.exit(0);
 }
 const canonicalLF = new Map([...canonical].map(([nome, bytes]) => [nome, normalize(bytes)]));
-const translationDrift = translations.audit(traduzidas, canonical);
+const translationDrift = translations.audit(traduzidas, translationSources);
+const subskillPaths = (base, nome) => [...(subskills.get(nome) || new Map()).keys()].map((rel) => path.join(base, nome, ...rel.split('/')));
 for (const item of translationDrift) console.error(translations.message(item));
 
 const selecionadas = todas ? [...canonical.keys()] : nomes;
@@ -92,7 +120,10 @@ if (target) {
   for (const kit of kits) {
     validateTarget(path.join(target, kit, 'skills'));
     validateTarget(path.join(target, kit, 'rules'));
-    for (const nome of canonical.keys()) validateTarget(path.join(target, kit, 'skills', nome, 'SKILL.md'));
+    for (const nome of canonical.keys()) {
+      validateTarget(path.join(target, kit, 'skills', nome, 'SKILL.md'));
+      for (const file of subskillPaths(path.join(target, kit, 'skills'), nome)) validateTarget(file);
+    }
   }
   for (const kit of kits) {
     const skills = path.join(target, kit, 'skills');
@@ -121,7 +152,7 @@ for (const idioma of target ? [] : fs.readdirSync(path.join(root, 'templates'), 
 }
 
 // Skills locais de cada alvo: ficam fora da propagação e são conferidas ao fim.
-// REQ-075: migrate only the four named aliases; preserve complete directories.
+// REQ-075/REQ-088: migrate only the named aliases (renamedSkills); preserve complete directories.
 // Preflight every move before mutation. Never traverse a junction/symlink or delete a directory.
 const migrations = [];
 const legacySkills = [];
@@ -143,7 +174,10 @@ function safeSkillPath(base, destination) {
 }
 for (const alvo of alvos) {
   safeSkillPath(alvo.skills, alvo.skills);
-  for (const name of canonical.keys()) safeSkillPath(alvo.skills, path.join(alvo.skills, name, 'SKILL.md'));
+  for (const name of canonical.keys()) {
+    safeSkillPath(alvo.skills, path.join(alvo.skills, name, 'SKILL.md'));
+    for (const file of subskillPaths(alvo.skills, name)) safeSkillPath(alvo.skills, file);
+  }
   if (!fs.existsSync(alvo.skills)) continue;
   for (const [oldName, newName] of Object.entries(renamedSkills)) {
     const source = path.join(alvo.skills, oldName);
@@ -191,6 +225,19 @@ if (apply) {
       fs.writeFileSync(destino, canonical.get(nome));
       escritos.push(path.relative(path.dirname(root), destino).replace(/\\/g, '/'));
     }
+    // Subskills follow the parent: only where the parent exists and is not a registered translation.
+    for (const nome of selecionadas) {
+      if (!subskills.has(nome) || !fs.existsSync(path.join(alvo.skills, nome, 'SKILL.md'))) continue;
+      if (alvo.template && translations.registered(traduzidas, alvo.idioma, nome)) continue;
+      for (const [rel, bytes] of subskills.get(nome)) {
+        const destino = path.join(alvo.skills, nome, ...rel.split('/'));
+        const atual = ler(destino);
+        if (atual && normalize(atual).equals(normalize(bytes))) continue;
+        fs.mkdirSync(path.dirname(destino), { recursive: true });
+        fs.writeFileSync(destino, bytes);
+        escritos.push(path.relative(path.dirname(root), destino).replace(/\\/g, '/'));
+      }
+    }
   }
   if (target) for (const kit of kits) for (const name of canonicalRules) {
     const source = fs.readFileSync(path.join(root, '.gemini/rules', name));
@@ -205,6 +252,8 @@ if (apply) {
 
 let iguais = 0;
 let traducoes = 0;
+let subskillsIguais = 0;
+let subskillsTraduzidas = 0;
 const divergentes = [];
 const customizadas = [];
 for (const alvo of alvos) {
@@ -224,6 +273,21 @@ for (const alvo of alvos) {
       path: target ? path.relative(target, destination).replace(/\\/g, '/') : destination,
       local_sha256: sha256(atual), seed_sha256: sha256(bytes) });
   }
+  // A missing parent is already reported above; a translated parent must carry its translated subskills.
+  for (const [nome, files] of subskills) {
+    if (!fs.existsSync(path.join(alvo.skills, nome, 'SKILL.md'))) continue;
+    const traduzida = alvo.template && translations.registered(traduzidas, alvo.idioma, nome);
+    for (const [rel, bytes] of files) {
+      const destination = path.join(alvo.skills, nome, ...rel.split('/'));
+      const atual = ler(destination);
+      const shown = target ? path.relative(target, destination).replace(/\\/g, '/') : destination;
+      if (!atual) divergentes.push({ onde: alvo.onde, skill: `${nome}/${rel}`, motivo: 'subskill ausente', path: shown });
+      else if (traduzida) subskillsTraduzidas++;
+      else if (normalize(atual).equals(normalize(bytes))) subskillsIguais++;
+      else divergentes.push({ onde: alvo.onde, skill: `${nome}/${rel}`, motivo: 'subskill diferente', path: shown,
+        local_sha256: sha256(atual), seed_sha256: sha256(bytes) });
+    }
+  }
 }
 const locaisAlteradas = [...locais].filter(([arquivo, hash]) => !fs.existsSync(arquivo) || md5(fs.readFileSync(arquivo)) !== hash).map(([arquivo]) => arquivo);
 const rulesDivergent = [];
@@ -235,7 +299,9 @@ if (target) for (const kit of kits) for (const name of canonicalRules) {
 const relatorio = {
   gerado_em: new Date().toISOString(), modo: apply ? 'apply' : 'audit',
   skills_canonicas: canonical.size, selecionadas, alvos: alvos.length,
-  iguais, traduzidas: traducoes, divergentes, escritos, skills_locais_preservadas: locais.size, skills_locais_alteradas: locaisAlteradas,
+  iguais, traduzidas: traducoes, divergentes, escritos,
+  subskills: Object.fromEntries([...subskills].map(([nome, files]) => [nome, [...files.keys()]])),
+  subskills_iguais: subskillsIguais, subskills_traduzidas: subskillsTraduzidas, aliases: renamedSkills, skills_locais_preservadas: locais.size, skills_locais_alteradas: locaisAlteradas,
   md5: Object.fromEntries([...canonical].map(([nome, bytes]) => [nome, md5(bytes)])),
   sha256: Object.fromEntries([...canonical].map(([nome, bytes]) => [nome, sha256(bytes)])), customizadas,
   renamed_skills: migrations, legacy_skills: remainingLegacySkills,

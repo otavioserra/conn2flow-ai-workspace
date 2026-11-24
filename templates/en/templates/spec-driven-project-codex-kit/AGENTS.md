@@ -23,9 +23,9 @@ Todas as **46 skills** do framework estão disponíveis em `.claude/skills/` e `
 
 ### 1. Skills de Papéis da Tríade SDD (3 Skills):
 > Consulte [sdd/process/STARTER-PROMPTS.md](sdd/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat prontos para copiar e colar.
-- `c2f-architect-master`: Arquiteto Master / Engenheiro Chefe (governança macro, documentação viva, backlog e restrição de edição direta).
-- `c2f-executor-agent`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
-- `c2f-reviewer-agent`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
+- `c2f-persona-architect`: Arquiteto Master / Engenheiro Chefe (governança macro, documentação viva, backlog e restrição de edição direta).
+- `c2f-persona-executor`: Micro-Executor Tático (Live Todo List `[ ]` ➔ `[x]`, compilação oficial e obediência a contratos).
+- `c2f-persona-reviewer`: Revisor Técnico / Auditor de Qualidade (inspeção findings-first de `git diff`, CSRF, `variables.json`).
 
 ### 2. Skills Core do Framework (34 Skills):
 - `c2f-agent-visual-inspection`
@@ -75,9 +75,9 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
 2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `sdd/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
-   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `sdd/03-memory-engineering-chief.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
-   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
-   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-persona-architect`, lê `sdd/03-memory-engineering-chief.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-persona-executor`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-persona-reviewer`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
 
 ---

@@ -8,6 +8,7 @@ MDD (Memory Driven Development) organiza memória persistente em quatro camadas.
 | Semântica / normativa | Arquitetura, SPEC, decisões, política e contratos aprovados | documentos raiz, decisions/, change-requests/ |
 | Procedural | Procedimentos reutilizáveis e armadilhas operacionais | .gemini/skills/; process/ como runbooks |
 | Raw | Notas de trabalho, observações intermediárias e artefatos livres de modelos | raw/active/; raw/archive/ |
+| Aprendizados | Aprendizados verificados do repositório (`LRN-XXX`), destilados de raw/active/ com causa raiz, evidência e anti-padrão (REQ-088) | learnings/; learnings/archive/ |
 
 ## Ciclo de vida
 

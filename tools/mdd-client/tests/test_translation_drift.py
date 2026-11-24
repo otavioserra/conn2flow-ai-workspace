@@ -1,4 +1,4 @@
-"""Exercise real Node/Python entrypoints against isolated 46-skill matrices."""
+"""Exercise real Node/Python entrypoints against isolated 48-skill matrices."""
 import hashlib
 import json
 import shutil
@@ -22,7 +22,7 @@ def translated_matrix(tmp_path):
     for name in ["sync-skills.cjs", "skill-customizations.cjs", "translations.cjs"]:
         shutil.copyfile(MATRIX / "scripts/skills" / name, scripts / name)
     sources = sorted((MATRIX / ".gemini/skills").glob("*/SKILL.md"))
-    assert len(sources) == 46
+    assert len(sources) == 48
     for source in sources:
         output = matrix / ".gemini/skills" / source.parent.name / "SKILL.md"
         output.parent.mkdir(parents=True)

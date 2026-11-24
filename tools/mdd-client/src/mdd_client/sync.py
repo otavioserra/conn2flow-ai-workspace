@@ -10,6 +10,7 @@ from pathlib import Path
 from .storage import contained, lock, write
 
 KITS = (".gemini", ".claude", ".cursor", ".codex", ".github")
+EXPECTED_SKILLS = 48  # 5 personas + 34 core + 9 governance (REQ-088)
 
 
 def customize(root: Path, matrix: Path, target: str, local_sha256: str | None = None, seed_sha256: str | None = None) -> dict:
@@ -48,8 +49,8 @@ def sync(root: Path, matrix: Path, audit: bool = False) -> dict:
     script = matrix / "scripts/skills/sync-skills.cjs"
     source = matrix / ".gemini/skills"
     skills = sorted(p for p in source.glob("*/SKILL.md") if p.is_file())
-    if len(skills) != 46 or not script.is_file():
-        raise ValueError("Matrix must contain the canonical synchronizer and exactly 46 skills")
+    if len(skills) != EXPECTED_SKILLS or not script.is_file():
+        raise ValueError(f"Matrix must contain the canonical synchronizer and exactly {EXPECTED_SKILLS} skills")
     for kit in KITS:
         contained(root, root / kit / "skills")
         if (root / kit / "skills").exists():

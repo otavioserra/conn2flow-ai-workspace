@@ -11,7 +11,7 @@ Como o histórico de cada conversa acumula mensagens e pode degradar após muita
 > **Quando usar**: No início de uma nova conversa para planejamento estratégico, criação de novas requisições em `memory/human-requests/`, gestão de backlog (`memory/backlog/`), governança de documentação viva (`README.md`, `CHANGELOG.md`, `docs/`) ou preparação de releases.
 
 ```text
-Ative a skill c2f-architect-master. Você é meu Arquiteto Master e Engenheiro Chefe no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
+Ative a skill c2f-persona-architect. Você é meu Arquiteto Master e Engenheiro Chefe no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
 
 Atue em nível macro na governança, especificações e documentação viva. Não edite código sem autorização prévia expressa e não faça varreduras cegas na codebase.
 Consulte memory/human-requests/CURRENT.md e memory/03-memory-engineering-chief.md.
@@ -27,7 +27,7 @@ Demanda atual:
 > **Quando usar**: Ao abrir uma nova conversa para codificar um lote ou fatia de desenvolvimento aprovado em `memory/human-requests/CURRENT.md`.
 
 ```text
-Ative a skill c2f-executor-agent. Você é o Executor Tático do lote no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
+Ative a skill c2f-persona-executor. Você é o Executor Tático do lote no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
 
 Leia memory/human-requests/CURRENT.md e o arquivo da requisição ativa.
 Renderize imediatamente a Live Todo List ([ ] -> [x]) e inicie a implementação do menor slice aprovado. 
@@ -46,7 +46,7 @@ Instrução específica desta rodada:
 > **Quando usar**: Ao abrir uma nova conversa para auditar o código implementado pelo Executor antes de fechar o lote ou commitar em branch principal.
 
 ```text
-Ative a skill c2f-reviewer-agent. Você é o Revisor Técnico no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
+Ative a skill c2f-persona-reviewer. Você é o Revisor Técnico no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
 
 Audite o lote ativo apontado em memory/human-requests/CURRENT.md em modo findings-first.
 Inspecione o git diff das alterações, valide a ausência de strings hardcoded (uso de variables.json), proteção CSRF e gere o relatório de homologação técnica.
@@ -57,12 +57,39 @@ Demanda de auditoria:
 
 ---
 
+## 🧭 4. Prompt para o Curador de Aprendizados e Skills
+
+> **Quando usar**: Para triar aprendizados e sugestões de skills. Na matriz, o escopo é global (skills `c2f-*`). Num projeto ou satélite, o escopo é local (`memory/learnings/` e skills locais do projeto).
+
+```text
+Ative a skill c2f-persona-curator. Você é o Curador no repositório <nome-do-repositório>, raiz <caminho-absoluto>.
+Escopo: global (matriz conn2flow-ai-workspace) | local (projeto/satélite).
+Leia memory/raw/active/, memory/learnings/index.md e os relatórios REP-XXX pendentes. Aplique o Tribunal de 4 Filtros e não edite skill canônica fora de um lote aprovado.
+
+Demanda de curadoria:
+[Descreva aqui a fonte a triar, ex: "Trie os relatórios REP-008 e REP-009"]
+```
+
+---
+
+## 🧹 5. Prompt para o Otimizador do Catálogo de Skills
+
+> **Quando usar**: No ciclo mensal/bimestral de revisão de longo prazo do catálogo de skills da matriz.
+
+```text
+Ative a skill c2f-persona-optimizer. Você é o Otimizador no repositório conn2flow-ai-workspace, raiz c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
+Gere o índice com node scripts/skills/generate-skills-index.cjs e leia .gemini/skills/index.md.
+Aponte skills acima do Skill Budget, redundâncias, contradições e receitas candidatas a subskills/. Entregue uma proposta de lote enxuto; não edite skills sem requisição aprovada.
+```
+
+---
+
 ## 💡 Dica de Continuidade Instantânea
 
 Caso um chat tenha sido interrompido ou travado, você nunca precisa reexplicar o que já foi feito. Basta iniciar o novo chat com:
 
 ```text
-Ative a skill c2f-architect-master. Você é o Engenheiro Chefe no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
+Ative a skill c2f-persona-architect. Você é o Engenheiro Chefe no repositório c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace.
 Retome o trabalho a partir do estado registrado em memory/human-requests/CURRENT.md e me informe o status atual para seguirmos.
 ```
 
@@ -71,7 +98,7 @@ Retome o trabalho a partir do estado registrado em memory/human-requests/CURRENT
 
 Para todo acionamento, preencher o contrato abaixo e aplicar a matriz em memory/02-policy.md. No modo supervisionado, apresentar o prompt e aguardar input humano antes da transição. Em triade monitored, o Executor pode acionar Revisor Independente; em dupla, devolver ao Macro-Arquiteto; em solo, auto-revisar.
 
-Ao criar ou atualizar uma requisição pronta para execução ou revisão, o Arquiteto Master deve encerrar a resposta com a caixa copiável de acionamento definida na skill `c2f-architect-master`. A caixa também é obrigatória quando houver despacho automático.
+Ao criar ou atualizar uma requisição pronta para execução ou revisão, o Arquiteto Master deve encerrar a resposta com a caixa copiável de acionamento definida na skill `c2f-persona-architect`. A caixa também é obrigatória quando houver despacho automático.
 
 ```text
 Papel: Revisor Independente (ou Macro-Arquiteto conforme topologia).

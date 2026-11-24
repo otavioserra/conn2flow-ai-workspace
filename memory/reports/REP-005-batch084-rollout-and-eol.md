@@ -17,7 +17,7 @@ summary_medium: "Registra a propagação em nove satélites e a auditoria estáv
 4. **Solução validada e armadilhas medidas.** Foram conferidas 68 cópias da Fase 1 e 1.631 arquivos protegidos. A matriz passou em 19 alvos no checkout real e em duas simulações de EOL. `mdd meta get REP-004 status --json` retornou `READY_FOR_ARCHITECT`. A suíte do cliente passou com 119 testes e o PHP resolveu o mesmo relatório por caminho explícito.
 5. **Sugestões de melhoria.** Registrar em `c2f-multilingual-skills-governance` que a seleção de skills restringe a escrita e que a auditoria ainda cobre o catálogo inteiro dos destinos. Abrir acompanhamento para paridade de ID e slug no resolvedor PHP.
 
-Evidências no [BATCH-084](../implementation/batch-084.md) e na [auditoria local](../../completions/skills-audit.json).
+Evidências no [BATCH-084](../implementation/archive/batch-084.md) e na [auditoria local](../../completions/skills-audit.json).
 
 ## Fase 3 — Segunda propagação
 

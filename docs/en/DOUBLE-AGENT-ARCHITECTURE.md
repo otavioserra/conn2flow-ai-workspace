@@ -2,9 +2,9 @@
 verified_at: 2afd000
 sources:
   - ../../memory/02-policy.md
-  - ../../.gemini/skills/c2f-architect-master/SKILL.md
-  - ../../.gemini/skills/c2f-executor-agent/SKILL.md
-  - ../../.gemini/skills/c2f-reviewer-agent/SKILL.md
+  - ../../.gemini/skills/c2f-persona-architect/SKILL.md
+  - ../../.gemini/skills/c2f-persona-executor/SKILL.md
+  - ../../.gemini/skills/c2f-persona-reviewer/SKILL.md
   - ../../mcp-hub/src/server.ts
   - ../../vscode-extension/src/providers/modesManager.ts
 ---
@@ -25,7 +25,7 @@ The historical filename is retained so existing links keep working. MDD extends 
 | Reviewer | Inspect diffs and current sources, report findings by severity with evidence, issue an independent opinion | Does not claim PASS for checks not run; review does not itself homologate |
 | Human | Direct priorities, authorize scope and review consolidation | Retains the approval gate required by the selected workflow |
 
-The role procedures are [Architect](../../.gemini/skills/c2f-architect-master/SKILL.md), [Executor](../../.gemini/skills/c2f-executor-agent/SKILL.md) and [Reviewer](../../.gemini/skills/c2f-reviewer-agent/SKILL.md). The 45-skill [catalog](SKILLS-CATALOG.md) explains task-specific procedures.
+The role procedures are [Architect](../../.gemini/skills/c2f-persona-architect/SKILL.md), [Executor](../../.gemini/skills/c2f-persona-executor/SKILL.md) and [Reviewer](../../.gemini/skills/c2f-persona-reviewer/SKILL.md). The 45-skill [catalog](SKILLS-CATALOG.md) explains task-specific procedures.
 
 ## Shared memory and lifecycle
 

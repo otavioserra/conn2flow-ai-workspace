@@ -55,3 +55,10 @@ Never update hashes automatically during normal sync, before content review, or 
 ## New language
 
 Create the language kits with the same structure; translate each complete procedure and its descriptive metadata. Register only existing and revised translations, with SHA-256, ISO date and responsible. Check equivalence of rules, code blocks, functions, commands, variables, and links. Run audit, sync tests, and a source mutation in a fixture to demonstrate a warning without overwriting content. Include the language in the synchroniser template selection before claiming propagation support. This maintenance does not authorize production changes or human acceptance.
+
+## Subskills, index and aliases — REQ-088
+
+- **`<skill>/subskills/<topic>.md`**: a long recipe, or one specific to a provider or rare case, lives inside the parent skill and is read on demand without inflating the initial system prompt. The parent skill keeps a pointer with the reading trigger and the critical rules. `sync-skills.cjs` propagates subskills only where the parent skill exists and audits each file (`subskill ausente` or `subskill diferente` is FAIL).
+- **Translation**: the translated subskill sits at the same relative path in the language template. The skill's `source_sha256` covers `SKILL.md` and all its subskills, so changing a PT-BR subskill raises `DRIFT_WARNING` until the EN review and `--update-translation-hash`.
+- **Index**: `node scripts/skills/generate-skills-index.cjs` generates `.gemini/skills/index.md` (personas, core, governance, lines, bytes, budget and subskills). Run it after creating, renaming or resizing a skill; `--check` fails when the index is stale.
+- **Renaming**: register the legacy → canonical pair in `renamedSkills` in `sync-skills.cjs` and rename the key in `translated.json`. The synchroniser moves the whole folder, never copies it, only when the new name is selected, and refuses to migrate when both names coexist. Active aliases: `c2f-architect-master` → `c2f-persona-architect`, `c2f-executor-agent` → `c2f-persona-executor`, `c2f-reviewer-agent` → `c2f-persona-reviewer`, plus the four `sdd-*` → `mdd-*` aliases from REQ-075.

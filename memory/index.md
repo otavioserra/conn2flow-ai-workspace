@@ -18,6 +18,7 @@
 - [human-requests](<human-requests/index.md>)
 - [human-reviews](<human-reviews/index.md>)
 - [implementation](<implementation/index.md>)
+- [learnings](<learnings/index.md>)
 - [process](<process/index.md>)
 - [proxies](<proxies/index.md>)
 - [raw](<raw/index.md>)

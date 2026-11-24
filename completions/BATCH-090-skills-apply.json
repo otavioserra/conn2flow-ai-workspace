@@ -1,0 +1,500 @@
+{
+  "gerado_em": "2026-11-24T13:50:26.641Z",
+  "modo": "apply",
+  "skills_canonicas": 48,
+  "selecionadas": [
+    "c2f-agent-visual-inspection",
+    "c2f-ai-features",
+    "c2f-database-operations",
+    "c2f-database-testing",
+    "c2f-dev-scripts",
+    "c2f-docker-environment",
+    "c2f-documentation",
+    "c2f-documentation-governance",
+    "c2f-environment-configuration",
+    "c2f-gd-image-safety",
+    "c2f-gestor-functions",
+    "c2f-global-variables",
+    "c2f-hooks-system",
+    "c2f-html-css-pages-and-components",
+    "c2f-interface-v2-architecture",
+    "c2f-javascript-ajax",
+    "c2f-json-resources-sync",
+    "c2f-mdd-indexing-and-handoffs",
+    "c2f-modelo-templates",
+    "c2f-module-crud-scaffolding",
+    "c2f-module-visual-assets",
+    "c2f-multilingual-skills-governance",
+    "c2f-multilingual-system",
+    "c2f-mysql-utf8-emoji-encoding",
+    "c2f-payment-gateways",
+    "c2f-persona-architect",
+    "c2f-persona-curator",
+    "c2f-persona-executor",
+    "c2f-persona-optimizer",
+    "c2f-persona-reviewer",
+    "c2f-plugin-architecture",
+    "c2f-preview-modals-system",
+    "c2f-project-pipeline-and-tasks",
+    "c2f-projects-system",
+    "c2f-resources-system",
+    "c2f-shell-and-windows-traps",
+    "c2f-system-tasks",
+    "c2f-tailwind-css-architecture",
+    "c2f-tailwind-module-migration",
+    "c2f-variables-system",
+    "c2f-widget-development",
+    "continue-mdd-batch",
+    "mdd-memory-gardening",
+    "mdd-workflow",
+    "project-validation",
+    "raise-spec-change",
+    "review-current-batch",
+    "start-mdd-slice"
+  ],
+  "alvos": 19,
+  "iguais": 562,
+  "traduzidas": 322,
+  "divergentes": [],
+  "escritos": [
+    "conn2flow-ai-workspace/.claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/.claude/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/.cursor/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/.codex/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/.github/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-claude-kit/.claude/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-claude-kit/.claude/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-claude-kit/.claude/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-copilot-kit/.github/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-copilot-kit/.github/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/private-project-copilot-kit/.github/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-claude-kit/.claude/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-codex-kit/.codex/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-copilot-kit/.github/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-cursor-kit/.cursor/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-multilingual-skills-governance/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-payment-gateways/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-persona-architect/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-persona-curator/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-persona-executor/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-persona-optimizer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-persona-reviewer/SKILL.md",
+    "conn2flow-ai-workspace/templates/pt-br/templates/spec-driven-project-gemini-kit/.gemini/skills/c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md"
+  ],
+  "subskills": {
+    "c2f-payment-gateways": [
+      "subskills/mercadopago-webhook-hmac.md"
+    ]
+  },
+  "subskills_iguais": 12,
+  "subskills_traduzidas": 7,
+  "aliases": {
+    "start-sdd-slice": "start-mdd-slice",
+    "continue-sdd-batch": "continue-mdd-batch",
+    "sdd-workflow": "mdd-workflow",
+    "sdd-memory-gardening": "mdd-memory-gardening",
+    "c2f-architect-master": "c2f-persona-architect",
+    "c2f-executor-agent": "c2f-persona-executor",
+    "c2f-reviewer-agent": "c2f-persona-reviewer"
+  },
+  "skills_locais_preservadas": 24,
+  "skills_locais_alteradas": [],
+  "md5": {
+    "c2f-agent-visual-inspection": "df356e54847d7b6c48a18c02a134fa2f",
+    "c2f-ai-features": "7836d38cc6ca35ad52e0fbcd1ec126f0",
+    "c2f-database-operations": "bf8b30f5c4ea85b08f4429ef8a17b420",
+    "c2f-database-testing": "d2798b1b0028a947e39c15891d8d0713",
+    "c2f-dev-scripts": "dfa364a9985b01d962cfd0b8a8746abf",
+    "c2f-docker-environment": "55756a27ffa0a7aaa06c9c946583997f",
+    "c2f-documentation": "b51701c72293d3540436177c1c103c8c",
+    "c2f-documentation-governance": "022f349c21e237766065c69b5b9ea187",
+    "c2f-environment-configuration": "3a00224fb1c8945a811556158303a9d4",
+    "c2f-gd-image-safety": "da336a26bc7190d206a0124fdad15c87",
+    "c2f-gestor-functions": "5846423edf69faaaf67285f45a8e4d5f",
+    "c2f-global-variables": "75f621f7e74aa2918baf0914600c5a04",
+    "c2f-hooks-system": "5b613f8e6125190f7323ce9277fb6b72",
+    "c2f-html-css-pages-and-components": "dd9b50654c8609ccb84316f0eca9fae7",
+    "c2f-interface-v2-architecture": "64e208034a3661d81d5f2dc24e14785b",
+    "c2f-javascript-ajax": "f35e6fb31d591ec73887b849feb32bce",
+    "c2f-json-resources-sync": "c0ce79c0c1aec511ce80917d271261c0",
+    "c2f-mdd-indexing-and-handoffs": "9e21b50dae9f4ae92e0d0e17fa936235",
+    "c2f-modelo-templates": "caf7cca1b2a83ae939b325d1d0568fa6",
+    "c2f-module-crud-scaffolding": "9aaecc631522d0a9fd08851bbe5059ed",
+    "c2f-module-visual-assets": "89ac2e2af1e73f1e9ed5802347bb59ea",
+    "c2f-multilingual-skills-governance": "f730c13401cbadbdbd349f1a9cf8bc30",
+    "c2f-multilingual-system": "a13d8b89324a6f48bae59ea6ba0c566f",
+    "c2f-mysql-utf8-emoji-encoding": "7222ca99ef3e2304937cafdbf6de5aba",
+    "c2f-payment-gateways": "60c84dcb49007bf9aabcdb5a55f8bb59",
+    "c2f-persona-architect": "55d0f9dd5105861c3c7d64deb32d413c",
+    "c2f-persona-curator": "0819f0ff2c8d6dbeb447d935fb146abf",
+    "c2f-persona-executor": "4976812331000773a580da878a8d7a00",
+    "c2f-persona-optimizer": "7972144a554288894223f89f1d357e8b",
+    "c2f-persona-reviewer": "866aa8de4d662547087a27f07f814297",
+    "c2f-plugin-architecture": "a2bf251dda479f6de8f120786a7e8a6a",
+    "c2f-preview-modals-system": "8590de3378a9a260abcc7691ce86a936",
+    "c2f-project-pipeline-and-tasks": "da3e5012e198b7743d33b2e0aed8c7e3",
+    "c2f-projects-system": "0b8935dcbc4dc4ac8e3a1f988171eb47",
+    "c2f-resources-system": "6aa753f079385eb8aa90e9e6809dc206",
+    "c2f-shell-and-windows-traps": "e8380b7a91ededcd0ffbd1c45b41d007",
+    "c2f-system-tasks": "ec0257e47b06a53b0f649a9d2e04f098",
+    "c2f-tailwind-css-architecture": "ff378b07c85153a9175fd4a8f3da51bc",
+    "c2f-tailwind-module-migration": "0cab1e31d9ac2800dfa75fd88f80abad",
+    "c2f-variables-system": "4ed4e1944af1164e4bc428776399cb68",
+    "c2f-widget-development": "d6b824a6c8162af22871a9d07390ea77",
+    "continue-mdd-batch": "57e2add3356e329e072c615e6f081193",
+    "mdd-memory-gardening": "5ece0bcca56e7fa832be2277a21b3924",
+    "mdd-workflow": "bf45f198da0bfd8bd1f0b77de96f0188",
+    "project-validation": "fb3ecb28bafbf073fe42e2e95877f213",
+    "raise-spec-change": "a0bdd143e7b2b0481fa1f6f20f985f4f",
+    "review-current-batch": "79653a7035e117264f89acf4f3684ce2",
+    "start-mdd-slice": "77976c5a912ba26b9629e380a06fcbbf"
+  },
+  "sha256": {
+    "c2f-agent-visual-inspection": "eb14e79026b82444bef8514bb29fd317d94f64f4c2ac0994ae33b9e5e566aca8",
+    "c2f-ai-features": "f94130d472f54acf3d2e3a92b1b5b0d998fc5e330c7e17b9f7510e8999df5513",
+    "c2f-database-operations": "9cad2a9b10a84cbd0bbe40f2174eb0d1064a936898991ef1668cd70a8bec6de3",
+    "c2f-database-testing": "31304cd373e0ab4fb4d770247b4f71c80fcf570ac6e37f2ae1d2bd84d91cbf78",
+    "c2f-dev-scripts": "80f707b5388593508427fb5006945695b493982a9419f16be9160bf7131aa09a",
+    "c2f-docker-environment": "07c8de57a61d5a80419aadfb18ab60529958a90b74fec76c781886dce8cea774",
+    "c2f-documentation": "fa1fdc97e76940831ee75e84df789221d70fa78f0b592b2ac8e5416e28cf8334",
+    "c2f-documentation-governance": "e808db1fed3160038a1ec32c400171483585a61d5ee2e4b96392e76166a6a067",
+    "c2f-environment-configuration": "5870f16d4ea24783dd82d35d757cdbc23958e1695077b4873076833e95d68eb9",
+    "c2f-gd-image-safety": "8c8aa58ba8fb6f5a544cfc00ece982edd985fd4fce84ac4f5b0bbc08b7151f1c",
+    "c2f-gestor-functions": "865f29065d23caf7f6e6d23094a5c6ccba50f2361fd962760a824da584c86e85",
+    "c2f-global-variables": "714c77d758deb2abf6c8049ab8dd5aeea0154f0189cee1b47f3c4113ed60b0c3",
+    "c2f-hooks-system": "759671a52234ca93db96fbd733787b418ebade1c1eee8a381c7fe1a817bfe5e9",
+    "c2f-html-css-pages-and-components": "25c9252774afa0990539906f83fd4030b4bf13e2242dee667ee1323b528fc97e",
+    "c2f-interface-v2-architecture": "150d89388a8e65bbe12b99e94471645e8c6f03aa8747ac687d0621ea5a539f80",
+    "c2f-javascript-ajax": "063046a609ce58f3f5fff1c2861cc80d7376a692403116ace165abf5075b33ea",
+    "c2f-json-resources-sync": "c217829e60bd93faf17ea42dab1af5c7daf078a85dfd9d4a8b9d01a034f87d41",
+    "c2f-mdd-indexing-and-handoffs": "00b946d69fcdae0eece62326e91660f1c56d2ad6e8ec21e2faf1fba94758f0cf",
+    "c2f-modelo-templates": "e60c5a0013366e22d7e80b4153e26405818bd3517fb1df31e2e0bc2f50840997",
+    "c2f-module-crud-scaffolding": "05d5b3dcac2f573e18cf38948cff4b9641cbc9d2576ebc2ffbd61b4ab2d05226",
+    "c2f-module-visual-assets": "276b3443ee5c01b82b28035570300208dbae929f9cbe6c798587d630e5819c30",
+    "c2f-multilingual-skills-governance": "261bf985909969445014231967ba545045031d30290cdd1b998a4a18c983c337",
+    "c2f-multilingual-system": "d821ba3ad8e70c7ba527b6dbe49833d149b95d6f595320439e716d339f196db7",
+    "c2f-mysql-utf8-emoji-encoding": "fc9bc4cd06742e65af07302ce208b916b71c936227fa64dc5f52d671258576a9",
+    "c2f-payment-gateways": "81afd3f06b508ea0c582e0ce567e0c12140d1630324512a14e53efa10504756a",
+    "c2f-persona-architect": "cbb9bfa794960b253e42fa8ee1ed4cff6411f373e024ea477f41b98cf382b751",
+    "c2f-persona-curator": "a0f6fd109b89c454b07315104dc331b6115f9bc891d2c64317bab123191e89b5",
+    "c2f-persona-executor": "f096e7b9f4b96c18acdbb96722327afdbfdf99be1c7a5b43ea1c0be27bb0c1b9",
+    "c2f-persona-optimizer": "c9b1821a51a122825788119fa9f279885c2cadf7e6c391eeb4b734eee7f0d9cc",
+    "c2f-persona-reviewer": "7f80d856d31976f89e34c630adf74733202d9a0937e0aecfc653ea45cce250e3",
+    "c2f-plugin-architecture": "6e545a90af35093d9016d1f30188c50ca687c4bcbec0121a639536772164bc96",
+    "c2f-preview-modals-system": "2e40803760f9addfd91d5cb2c2d7858393ccf0c5d27fa5717cfad6c4c4b7a816",
+    "c2f-project-pipeline-and-tasks": "7a22a3c1b9a3398b157a3d120c44d0642defcfe94682fe9c549d60e6aaa23d71",
+    "c2f-projects-system": "0897d4cf5bead652cfb94590011606a4c4eeb9ac0cf83cd971454ba58c861109",
+    "c2f-resources-system": "065f90c2233caa5c185275341d7d2861f4fa082d06ee22fda9591adc3df9a369",
+    "c2f-shell-and-windows-traps": "8103a002d9328920801187cff8ee5b6c22c2f3d9829e6f1b919af7d456ce9021",
+    "c2f-system-tasks": "ace831ad0efbd4042f8277ce34878192a5c46023ddf5d845cd37a62d70463568",
+    "c2f-tailwind-css-architecture": "142a6eb23602989fd3f86f668a915f232a79954c87bd9328097754d87bd0f67f",
+    "c2f-tailwind-module-migration": "5603aecd495b8ac0762af4c4e1fe65022c4c69b8ea98e735b63c9d9c1c27a291",
+    "c2f-variables-system": "301ef3d529ae298545dec196723697ebb78819dde20933b46d7f499348ca362d",
+    "c2f-widget-development": "759d1eb709cacad90b67f8b154aeea8c2e97a667967e822e537db440e08b9cee",
+    "continue-mdd-batch": "f87d2e9f163409d386b3fac1ff49d5d820965cd572d5cf98cdd252f22d2d1ce5",
+    "mdd-memory-gardening": "51bc7700aa0f50634ea3dd58b22c96fa55634d05f1cf36170b63fa41e00a8e66",
+    "mdd-workflow": "4bfc15f9d0cf72a65fca79a6f692ecfa38b69693e8883bfd7ee27cde319c5048",
+    "project-validation": "4dc309dffb67975ae2d96ec6d24bb72d46a18ce42a158f4279c201b73e320bb1",
+    "raise-spec-change": "36e80ed482ba43607cbac1d8c6107c12ed8fc1c0e7f568912aa9f40fd4139d9d",
+    "review-current-batch": "aee0081d38037213f19d3334000852191ce7337ff3a84343e27e1837d250f2c2",
+    "start-mdd-slice": "aac8e6637c6e9b7b5d958e0fad02d81c5b829a2252b1551bd0c9158dc8857b80"
+  },
+  "customizadas": [],
+  "renamed_skills": [
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.claude\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.cursor\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.codex\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\.github\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\private-project-claude-kit\\.claude\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\private-project-claude-kit\\.claude\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\private-project-copilot-kit\\.github\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\private-project-copilot-kit\\.github\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\en\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\private-project-claude-kit\\.claude\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\private-project-claude-kit\\.claude\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\private-project-copilot-kit\\.github\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\private-project-copilot-kit\\.github\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-claude-kit\\.claude\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-codex-kit\\.codex\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-copilot-kit\\.github\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-cursor-kit\\.cursor\\skills\\c2f-persona-reviewer"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-architect-master",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-architect"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-executor-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-executor"
+    },
+    {
+      "source": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-reviewer-agent",
+      "destination": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-ai-workspace\\templates\\pt-br\\templates\\spec-driven-project-gemini-kit\\.gemini\\skills\\c2f-persona-reviewer"
+    }
+  ],
+  "legacy_skills": [],
+  "customizations_migrated": [],
+  "rules_written": [],
+  "rules_divergent": [],
+  "translation_drift": [
+    {
+      "language": "en",
+      "skill": "c2f-multilingual-skills-governance",
+      "source_sha256": "3bd424d85cf27ab2488f05382d06689a6ec9503818591e9c1af7bba796fc53e4",
+      "current_source_sha256": "261bf985909969445014231967ba545045031d30290cdd1b998a4a18c983c337",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-payment-gateways",
+      "source_sha256": "149af3e51905826b1f2e1cf5625dc2d833376db86b0b4adaecaae16c2b272a1b",
+      "current_source_sha256": "3307ef1b08a372ea315748e3bb4d547412cf2a27ed8cb7830d2d68b1b8e60be7",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-persona-architect",
+      "source_sha256": "70415589667157c3d594b8befbcfdeae60c227b3053c9927cc980592fbe1762a",
+      "current_source_sha256": "1f9e2912da448ebdf6d53d6e41f3cd7de19efab99091493ecd7f08f3c284dba9",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-persona-curator",
+      "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "current_source_sha256": "a0f6fd109b89c454b07315104dc331b6115f9bc891d2c64317bab123191e89b5",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-persona-executor",
+      "source_sha256": "a82dd865caeed5e7cf6f735c918d1cdc9229389fb264695ba567927f5ceda440",
+      "current_source_sha256": "e4737f985cdcf34b79c46bfb3f17eb3d3b9a48d72920778b048b62276e502bae",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-persona-optimizer",
+      "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "current_source_sha256": "c9b1821a51a122825788119fa9f279885c2cadf7e6c391eeb4b734eee7f0d9cc",
+      "reason": "source_changed"
+    },
+    {
+      "language": "en",
+      "skill": "c2f-persona-reviewer",
+      "source_sha256": "45f4f3ed1405fd2ff23ce50c3149225387e0b6cf764d6ca89f59543fb6de3db3",
+      "current_source_sha256": "1cb724bfcc944633cca7d23f5a981d282a19a0b17ae6ae5e125c2c43ecb3f1de",
+      "reason": "source_changed"
+    }
+  ],
+  "status": "DRIFT_WARNING"
+}

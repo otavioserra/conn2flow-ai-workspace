@@ -17,6 +17,7 @@ AREAS = (
     "human-requests",
     "human-reviews",
     "implementation",
+    "learnings",  # REQ-088: verified repository learnings (LRN-XXX), distilled from raw/active/
     "reports",
     "proxies",
     "sessions",

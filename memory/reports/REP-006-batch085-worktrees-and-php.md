@@ -17,4 +17,4 @@ summary_medium: "Sete satélites publicados e duas ausências de origin confirma
 4. **Solução validada.** O inventário permitiu partir de `origin/main` nos sete casos elegíveis. Staging explícito nos casos ignorados e revisão do diff limitaram a propagação a 112 cópias, cinco delas reconhecidas como variantes do Core. A reaplicação escreveu zero arquivos. As sete publicações foram confirmadas e as worktrees removidas. O PHP passou os seis testes novos e resolveu o REP-004 no CLI real.
 5. **Melhorias propostas.** Na governança de worktrees, registrar no inventário os casos sem remoto antes da criação e consultar `git check-ignore --no-index` para caminhos de skill explicitamente aprovados. Na governança multilíngue, registrar uma verificação dos hashes exatos contra o blob staged e o efeito de CRLF no reconhecimento em checkouts novos.
 
-Evidências no [BATCH-085](../implementation/batch-085.md) e no [recibo de execução](../../completions/BATCH-085-executor-receipt.json).
+Evidências no [BATCH-085](../implementation/archive/batch-085.md) e no [recibo de execução](../../completions/BATCH-085-executor-receipt.json).

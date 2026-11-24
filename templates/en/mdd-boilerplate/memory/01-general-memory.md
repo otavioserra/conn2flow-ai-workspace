@@ -16,4 +16,6 @@ Numbering standardizes filenames; historical content may remain multilingual. SP
 
 Use [raw/active/](raw/active/index.md) for temporary scratchpads, observable logs and shareable decision summaries, without secrets or private reasoning transcripts. Raw observations have no normative authority.
 
+Use [learnings/](learnings/index.md) for verified repository learnings (`LRN-XXX-<slug>.md`), distilled from raw/active/ with root cause, evidence and anti-pattern. Check them before new tasks; the full flow is in [learnings/README.md](learnings/README.md).
+
 Execution memory has a preventive 50 KiB ceiling and a critical alert at 75 KiB. Plan maintenance at 50 KiB; never prune healthy memory merely to close a session. When authorized maintenance is needed, preserve the complete original in [raw/archive/original/](raw/archive/original/index.md) and a traceable summary in [raw/archive/compacted/](raw/archive/compacted/index.md) before reducing the active document to about 25 KiB with the 20–25 most recent records and all unresolved items. Repair links and update hierarchical indexes in the same operation.

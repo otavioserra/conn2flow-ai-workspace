@@ -16,4 +16,6 @@ A numeração padroniza os nomes; o histórico pode permanecer multilíngue. SPE
 
 Use [raw/active/](raw/active/index.md) para scratchpads temporários, logs observáveis e sínteses compartilháveis de decisões, sem segredos ou transcrições de raciocínio privado. Observações raw não têm autoridade normativa.
 
+Use [learnings/](learnings/index.md) para aprendizados verificados do repositório (`LRN-XXX-<slug>.md`), destilados de raw/active/ com causa raiz, evidência e anti-padrão. Consulte-os antes de novas tarefas; o fluxo completo está em [learnings/README.md](learnings/README.md).
+
 A memória de execução tem teto preventivo de 50 KiB e alerta crítico em 75 KiB. Planeje manutenção em 50 KiB; nunca pode memória saudável apenas para fechar sessão. Quando a manutenção autorizada for necessária, preserve o original integral em [raw/archive/original/](raw/archive/original/index.md) e uma síntese rastreável em [raw/archive/compacted/](raw/archive/compacted/index.md) antes de reduzir o ativo a cerca de 25 KiB, com os 20–25 registros mais recentes e todas as pendências. Repare links e atualize os índices hierárquicos na mesma operação.

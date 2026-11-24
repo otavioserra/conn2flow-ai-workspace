@@ -12,13 +12,15 @@ sources:
 
 The canonical source is .gemini/skills/. The .claude/, .cursor/, .codex/ and .github/ kits receive mirrors through the official synchronizer. Load only task-relevant skills and read the full SKILL.md before the corresponding operation. Legacy sdd-* names remain identifiers; the matrix uses memory/.
 
-## Triad roles — 3 skills
+## Canonical personas — 5 skills
 
 | Skill | When to use |
 | --- | --- |
-| [`c2f-architect-master`](../../.gemini/skills/c2f-architect-master/SKILL.md) | Approved specifications, decisions, briefs and homologation. |
-| [`c2f-executor-agent`](../../.gemini/skills/c2f-executor-agent/SKILL.md) | Approved implementation, Live Todo List, checks and receipts. |
-| [`c2f-reviewer-agent`](../../.gemini/skills/c2f-reviewer-agent/SKILL.md) | Independent findings-first audit and evidence verification. |
+| [`c2f-persona-architect`](../../.gemini/skills/c2f-persona-architect/SKILL.md) | Approved specifications, decisions, briefs and homologation. |
+| [`c2f-persona-executor`](../../.gemini/skills/c2f-persona-executor/SKILL.md) | Approved implementation, Live Todo List, checks and receipts. |
+| [`c2f-persona-reviewer`](../../.gemini/skills/c2f-persona-reviewer/SKILL.md) | Independent findings-first audit and evidence verification. |
+| [`c2f-persona-curator`](../../.gemini/skills/c2f-persona-curator/SKILL.md) | Triage of learnings and skill suggestions: global scope in the matrix, local scope in projects (`memory/learnings/`). |
+| [`c2f-persona-optimizer`](../../.gemini/skills/c2f-persona-optimizer/SKILL.md) | Periodic catalog review: Skill Budget, redundancy and extraction to `subskills/`. |
 
 ## Core, modules and infrastructure — 34 skills
 

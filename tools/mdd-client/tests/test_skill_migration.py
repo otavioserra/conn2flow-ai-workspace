@@ -46,7 +46,7 @@ def test_partial_apply_does_not_migrate_unselected_skills(tmp_path):
     report = tmp_path / "audit.json"
     result = subprocess.run([
         "node", str(MATRIX / "scripts/skills/sync-skills.cjs"), "--target", str(tmp_path),
-        "--apply", "c2f-executor-agent", "--report", str(report),
+        "--apply", "c2f-persona-executor", "--report", str(report),
     ], capture_output=True, check=False)
     assert result.returncode == 1  # Remaining missing/legacy skills keep the audit failing.
     assert legacy.exists() and not legacy.with_name("mdd-workflow").exists()

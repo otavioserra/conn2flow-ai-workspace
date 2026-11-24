@@ -1,5 +1,16 @@
 # Validation Checklist
 
+## BATCH-090 — REQ-088 (2026-11-24)
+
+- [x] Rename para `c2f-persona-architect`, `c2f-persona-executor` e `c2f-persona-reviewer` em PT-BR/EN, 5 kits, templates, `translated.json`, `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` e `STARTER-PROMPTS.md`. Mapa de aliases no `sync-skills.cjs`: 46 pastas migradas, 0 legados.
+- [x] `c2f-persona-curator` (escopos global e local) e `c2f-persona-optimizer` em PT-BR/EN. Catálogo canônico com 48 skills.
+- [x] `.gemini/skills/index.md` gerado por `generate-skills-index.cjs` (`--check` PASS). `subskills/` suportado no sync, com o piloto `c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md` em PT-BR/EN.
+- [x] `memory/learnings/` na matriz e nos boilerplates MDD PT-BR/EN, criada pelo `mdd init`, indexada pelo `mdd index` e coberta por teste.
+- [x] Regra dos 10: `human-requests/` e `implementation/` com 10 ativos cada (6 arquivados pelo `ai:archive-sdd` com `--protect`). Nenhum órfão novo; `04-memory-engineering-execution.md` intacta (SHA-256 inalterado).
+- [x] Auditoria PASS (19 alvos, 0 divergências, 0 drift), governança PASS e pytest 130/130 depois dos 7 hashes EN. Lote, FEAT-017 ([REP-010](../reports/REP-010-batch090-personas-subskills-learnings.md)) e índices em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-090.md).
+- [ ] Decisão do Arquiteto sobre a Regra dos 10 em `memory/reports/` (11 relatórios) e a poda deste checklist (321 linhas).
+- [ ] Homologação humana e commit/push seletivos da matriz; propagação aos satélites em requisição própria.
+
 ## BATCH-089 — REQ-087 (2026-11-24)
 
 - [x] Quatro melhorias operacionais e micro-ajustes do REP-008 em PT-BR/EN: `c2f-hooks-system`, `c2f-payment-gateways` (Core conferido em modo somente leitura, na branch REQ-305), `c2f-architect-master` + `STARTER-PROMPTS.md`, `c2f-shell-and-windows-traps` e `c2f-multilingual-skills-governance`.
@@ -46,7 +57,7 @@
 - [x] Lote, recibo, relatório de dificuldades e índices preparados para o Macro-Arquiteto.
 - [ ] Homologação humana e commit/push seletivos da matriz.
 
-Evidências no [BATCH-085](../implementation/batch-085.md), no [REP-006](../reports/REP-006-batch085-worktrees-and-php.md) e no [recibo](../../completions/BATCH-085-executor-receipt.json).
+Evidências no [BATCH-085](../implementation/archive/batch-085.md), no [REP-006](../reports/REP-006-batch085-worktrees-and-php.md) e no [recibo](../../completions/BATCH-085-executor-receipt.json).
 
 ## BATCH-084 — REQ-082 (2026-11-21)
 
@@ -60,7 +71,7 @@ Evidências no [BATCH-085](../implementation/batch-085.md), no [REP-006](../repo
 - [x] Zero divergências nas três skills da Fase 3 e zero drift de tradução. A auditoria global manteve 68 divergências preexistentes fora do escopo. A auditoria da matriz passou em 19 alvos e 66 testes locais passaram.
 - [ ] Homologação final e integração Git na main pelo Arquiteto Master, após aceite do operador humano.
 
-Evidências em [BATCH-084](../implementation/batch-084.md), [REP-005](../reports/REP-005-batch084-rollout-and-eol.md) e na [auditoria da matriz](../../completions/skills-audit.json).
+Evidências em [BATCH-084](../implementation/archive/batch-084.md), [REP-005](../reports/REP-005-batch084-rollout-and-eol.md) e na [auditoria da matriz](../../completions/skills-audit.json).
 
 ## BATCH-083 — REQ-081 (2026-11-21)
 

@@ -55,3 +55,10 @@ Nunca atualize hashes automaticamente num sync normal, antes da revisão ou só 
 ## Novo idioma
 
 Crie os kits do idioma com a mesma estrutura; traduza cada procedimento completo e seus metadados descritivos. Registre somente traduções existentes e revisadas, com origem SHA-256, data ISO e responsável. Confira equivalência de regras, blocos de código, funções, comandos, variáveis e links. Execute auditoria, testes do sincronizador e uma mutação da fonte numa fixture para demonstrar o warning sem sobrescrita. Inclua o idioma na seleção de templates do sincronizador antes de alegar suporte à propagação. Produção e homologação humana não são autorizadas por essa manutenção.
+
+## Subskills, índice e aliases — REQ-088
+
+- **`<skill>/subskills/<topico>.md`**: receita extensa ou específica de um provedor ou caso raro vive dentro da skill-mãe e é lida sob demanda, sem inflar o system prompt inicial. A skill-mãe mantém um ponteiro com o gatilho de leitura e as regras críticas. O `sync-skills.cjs` propaga as subskills só onde a skill-mãe existe e audita cada arquivo (`subskill ausente` ou `subskill diferente` é FAIL).
+- **Tradução**: a subskill traduzida fica no mesmo caminho relativo do template do idioma. O `source_sha256` da skill cobre o `SKILL.md` e todas as suas subskills, então mudar uma subskill PT-BR gera `DRIFT_WARNING` até a revisão EN e o `--update-translation-hash`.
+- **Índice**: `node scripts/skills/generate-skills-index.cjs` gera `.gemini/skills/index.md` (personas, core, governança, linhas, bytes, *budget* e subskills). Rode-o depois de criar, renomear ou mudar o tamanho de uma skill; `--check` falha se o índice estiver desatualizado.
+- **Renomear**: registre o par legado → canônico em `renamedSkills` no `sync-skills.cjs` e renomeie a chave em `translated.json`. O sincronizador move a pasta inteira, sem cópia, só quando o nome novo é selecionado, e recusa migrar se os dois nomes coexistirem. Aliases ativos: `c2f-architect-master` → `c2f-persona-architect`, `c2f-executor-agent` → `c2f-persona-executor`, `c2f-reviewer-agent` → `c2f-persona-reviewer`, além dos quatro aliases `sdd-*` → `mdd-*` da REQ-075.

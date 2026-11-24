@@ -12,13 +12,15 @@ sources:
 
 A fonte canônica é .gemini/skills/. Os kits .claude/, .cursor/, .codex/ e .github/ recebem os espelhos pelo sincronizador oficial. Carregue somente as skills pertinentes à tarefa e leia o SKILL.md completo antes da operação correspondente. Nomes legados sdd-* são preservados como identificadores; a matriz usa memory/.
 
-## Papéis da tríade — 3 skills
+## Personas canônicas — 5 skills
 
 | Skill | Quando usar |
 | --- | --- |
-| [`c2f-architect-master`](../../.gemini/skills/c2f-architect-master/SKILL.md) | Especificações aprovadas, decisões, briefings e homologação. |
-| [`c2f-executor-agent`](../../.gemini/skills/c2f-executor-agent/SKILL.md) | Implementação aprovada, Live Todo List, verificações e recibos. |
-| [`c2f-reviewer-agent`](../../.gemini/skills/c2f-reviewer-agent/SKILL.md) | Auditoria independente findings-first e conferência de evidências. |
+| [`c2f-persona-architect`](../../.gemini/skills/c2f-persona-architect/SKILL.md) | Especificações aprovadas, decisões, briefings e homologação. |
+| [`c2f-persona-executor`](../../.gemini/skills/c2f-persona-executor/SKILL.md) | Implementação aprovada, Live Todo List, verificações e recibos. |
+| [`c2f-persona-reviewer`](../../.gemini/skills/c2f-persona-reviewer/SKILL.md) | Auditoria independente findings-first e conferência de evidências. |
+| [`c2f-persona-curator`](../../.gemini/skills/c2f-persona-curator/SKILL.md) | Triagem de aprendizados e sugestões de skills: escopo global na matriz, escopo local em projetos (`memory/learnings/`). |
+| [`c2f-persona-optimizer`](../../.gemini/skills/c2f-persona-optimizer/SKILL.md) | Revisão periódica do catálogo: *Skill Budget*, redundâncias e extração para `subskills/`. |
 
 ## Core, módulos e infraestrutura — 34 skills
 

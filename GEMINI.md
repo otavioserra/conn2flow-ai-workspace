@@ -30,7 +30,7 @@ O Antigravity suporta 3 papéis distintos no ecossistema:
 - **Atuação**: Inspeção e auditoria técnica independente antes do fechamento de lotes.
 - **Responsabilidades**:
   * Auditar diffs de código (`git diff`) checando padrões de segurança, `variables.json` mandatório e CSRF.
-  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 46 skills.
+  * Executar `php cli/c2f.php ai:sync` para validar os contratos das 48 skills.
   * Executar `c2f css:audit` para assegurar que não haja classes órfãs ou dívidas em PHP/JS.
   * Gerar o relatório de homologação técnica em `memory/validation/review-YYY.md`.
 
@@ -76,9 +76,9 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 1. **Identificação Automática**: O agente assume imediatamente o contexto do repositório `conn2flow-ai-workspace` em `c:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`.
 2. **Leitura Mandatória de `CURRENT.md`**: O agente abre `memory/human-requests/CURRENT.md` para inspecionar o ponteiro da requisição ativa (`req-XXX.md`), o lote correspondente e o modo de autonomia (`supervisionado`, `autonomo_monitorado` ou `autonomo_headless`).
 3. **Ativação Automática por Papel**:
-   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-architect-master`, lê `memory/03-memory-engineering-chief.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
-   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-executor-agent`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
-   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-reviewer-agent`, audita diffs e valida contratos de segurança/skills.
+   - **No Antigravity (Arquiteto Master / Engenheiro Chefe)**: Ativa `c2f-persona-architect`, lê `memory/03-memory-engineering-chief.md`, verifica pendências e propõe o próximo plano estratégico ao usuário.
+   - **No VS Code / Claude Code / Codex (Executor Tático)**: Ativa `c2f-persona-executor`, renderiza de imediato a **Live Todo List (`[ ]` ➔ `[x]`)** a partir da requisição ativa e inicia a implementação do menor slice aprovado.
+   - **No Revisor (Auditor de Qualidade)**: Ativa `c2f-persona-reviewer`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
 
 ---
@@ -97,11 +97,11 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
 
 ## 📦 Skills e Ferramentas
 
-O workspace possui **46 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
-- Papéis da Tríade MDD: `c2f-architect-master`, `c2f-executor-agent`, `c2f-reviewer-agent` (consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
+O workspace possui **48 skills oficiais** em `.gemini/skills/` (com espelhamento em `.claude/`, `.cursor/`, `.codex/` e `.github/`) que seguem o padrão aberto de progressive disclosure (`SKILL.md`):
+- Personas Canônicas MDD (5): `c2f-persona-architect`, `c2f-persona-executor`, `c2f-persona-reviewer`, `c2f-persona-curator` e `c2f-persona-optimizer`; os nomes legados `c2f-architect-master`, `c2f-executor-agent` e `c2f-reviewer-agent` são aliases migrados pelo `sync-skills.cjs` (consulte [memory/process/STARTER-PROMPTS.md](memory/process/STARTER-PROMPTS.md) para modelos de abertura rápida de chat).
 - Planejamento e fluxo MDD: `mdd-workflow`, `start-mdd-slice`, `continue-mdd-batch`.
 - Mudanças e Governança: `raise-spec-change`, `mdd-memory-gardening`, `project-validation`, `review-current-batch`.
-- Arquitetura, Core e Módulos: `c2f-*` (34 skills para pipelines, recursos, banco, Docker, Tailwind, visual assets, widgets, shell e Windows traps).
+- Arquitetura, Core e Módulos: `c2f-*` (34 skills para pipelines, recursos, banco, Docker, Tailwind, visual assets, widgets, shell e Windows traps). Catálogo com tamanho, *budget* e `subskills/`: [.gemini/skills/index.md](.gemini/skills/index.md).
 
 
 ## Fundação MDD (Memory Driven Development)
