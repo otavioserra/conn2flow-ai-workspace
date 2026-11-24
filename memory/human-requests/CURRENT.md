@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-094.md](req-094.md) / `BATCH-096`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-096` ([batch-096.md](../implementation/batch-096.md), `HOMOLOGATED` em 2026-11-24; relatório [REP-016](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md))
+* **Ponteiro Ativo**: [req-095.md](req-095.md) (`REQ-095`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-097` ([batch-097.md](../implementation/batch-097.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24
@@ -37,8 +37,8 @@
 
 ---
 
-## Objetivo operacional — REQ-094 / BATCH-096
+## Objetivo operacional — REQ-095 / BATCH-097
 
-1. **CI GitHub Actions Verde (`>= 95%`)**: adicionar testes em `test_bootstrap.py` (e ramos descobertos) para o comando exato do CI (`pytest ... --cov-fail-under=95`) passar com folga.
-2. **Extensão VS Code `v1.2.2` (i18n da aba MDD Hub)**: disparar `mddHubTreeProvider.refresh()` imediatamente ao trocar `extensionLanguage`, corrigir todas as chaves PT-BR/EN misturadas em `localizationCatalog.ts`/`package.nls*.json` com teste unitário, e empacotar `conn2flow-tools-1.2.2.vsix`.
-3. **Saúde MDD (`healthy: true`)**: podar `VALIDATION-CHECKLIST.md` para ≤ 10 seções ativas (e manter ≤ 10 nas demais pastas), confirmar `mdd status --json` com `healthy: true` e entregar `batch-096.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
+1. **Página da Loja Microsoft (`vscode-extension/` → `v1.2.3`)**: reescrever `vscode-extension/README.md` (Overview moderno MDD agnóstico + `domains/` + 5 personas + MDD Hub + Conn2Flow), atualizar subtítulo (`package.nls*.json`), `keywords` e `CHANGELOG.md`, validar testes (`100% PASS`), empacotar `conn2flow-tools-1.2.3.vsix` e limpar `.vsix` antigos (mantendo `1.2.3` e `1.1.7`).
+2. **`FB-008` + `EVAL-016`**: aplicar `FB-008` na Armadilha 20 (PT-BR/EN), adicionar `EVAL-016` (`16/16 EVAL-PASS`), manter `OVER: 0` e CI `>= 95%`.
+3. **Automação `rollout-satellites.cjs` + Propagação das 11 `subskills/` nos 7 Satélites**: criar script determinístico `scripts/skills/rollout-satellites.cjs` (`--dry-run`/`--apply`, worktree isolada, `git check-ignore`, customização do Core via `mdd sync --customize`, checagem de `origin/main` e limpeza total de worktrees), documentar em `c2f-multilingual-skills-governance`, executar o rollout real nos 7 satélites com `origin` (preservando `conn2flow-home`/`conn2flow-mkt`), confirmar `mdd status` `healthy: true` e entregar `batch-097.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
