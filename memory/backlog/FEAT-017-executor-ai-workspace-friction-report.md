@@ -60,5 +60,5 @@ Tornar esse **Relatório para o AI Workspace** parte obrigatória da persona do 
 ## 🔗 Referências
 
 - Skill alvo: `.gemini/skills/c2f-executor-agent/SKILL.md` (e fonte canônica de skills do workspace).
-- Exemplos reais de relatórios no padrão da matriz: `memory/reports/BL-028-site-ai-learnings.md` e `memory/reports/REP-002-req285-atualizador-choques-learnings.md`.
+- Exemplos reais de relatórios no padrão da matriz: `memory/reports/archive/BL-028-site-ai-learnings.md` e `memory/reports/REP-002-req285-atualizador-choques-learnings.md`.
 - Backlog relacionado: `memory/backlog/FEAT-015-sync-resources-receita-de-dados-de-modulo-nas-skills.md` e `memory/backlog/FEAT-016-architect-master-copy-paste-handoff-box.md`.

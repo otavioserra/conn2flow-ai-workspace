@@ -14,7 +14,9 @@ const repos = reposArg >= 0 ? process.argv[reposArg + 1].split(',').filter(Boole
   : ['conn2flow-ai-workspace', 'conn2flow', 'conn2flow-site', 'lumix', 'transformamp', 'conn2flow-home'];
 const sources = fs.readdirSync(path.join(root, '.gemini/skills')).filter(name => fs.existsSync(path.join(root, '.gemini/skills', name, 'SKILL.md')));
 const errors = [];
-const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+// REP-010 / REQ-089: compare after CRLF -> LF, like sync-skills.cjs, so Windows checkouts are not false positives.
+const { normalizeLineEndings } = require('./translations.cjs');
+const hash = file => crypto.createHash('sha256').update(normalizeLineEndings(fs.readFileSync(file))).digest('hex');
 if (sources.length !== EXPECTED) errors.push(`Canonical count: ${sources.length}`);
 let checked = 0;
 for (const repo of repos) for (const kit of kits) {

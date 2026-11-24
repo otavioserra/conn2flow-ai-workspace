@@ -12,7 +12,7 @@ summary_medium: "Fase 1 distribui as skills homologadas e a Fase 2 valida as mel
 # BATCH-084 — REQ-082
 
 - Projeto e raiz: `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`.
-- Requisição: [REQ-082](../../human-requests/req-082.md). Topologia dupla, autonomia supervisionada, Categoria B.
+- Requisição: [REQ-082](../../human-requests/archive/req-082.md). Topologia dupla, autonomia supervisionada, Categoria B.
 
 ## Fase 1 — Propagação da REQ-081
 

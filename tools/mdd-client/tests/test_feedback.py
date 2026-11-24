@@ -1,0 +1,231 @@
+import json
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+import pytest
+from mdd_client import feedback
+from mdd_client.cli import app
+from mdd_client.core import indexer
+from mdd_client.db import SQLiteMDDDriver
+from typer.testing import CliRunner
+
+MATRIX = Path(__file__).resolve().parents[3]
+BASE = dict(persona="executor", skill="c2f-persona-executor", kind="gap", severity="medium",
+            summary="Falta exemplo de lock", evidence="batch-091.md linha 10", repo="conn2flow-site",
+            request="REQ-089", batch="BATCH-091")
+
+
+@pytest.fixture
+def matrix(tmp_path):
+    (tmp_path / "memory").mkdir()
+    return tmp_path
+
+
+def submit(root, **extra):
+    return feedback.submit(root, {**BASE, **extra}, today="2026-11-24")
+
+
+def test_submit_allocates_sequential_ids_and_indexes(matrix):
+    first = submit(matrix)
+    second = submit(matrix, summary="Ação: duplicar? Não!", kind="bug", severity="high")
+    assert (first["id"], second["id"]) == ("FB-001", "FB-002")
+    assert first["path"] == "memory/inbox/feedback/FB-001-falta-exemplo-de-lock.md"
+    assert second["path"].endswith("FB-002-acao-duplicar-nao.md")
+    meta = indexer.get(matrix, "FB-002")
+    assert meta["status"] == meta["verdict"] == "PENDING"
+    assert (meta["persona"], meta["skill"], meta["scope"], meta["github_issue"]) == ("executor", "c2f-persona-executor", "global", "")
+    index = (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8")
+    assert "FB-001" in index and "FB-002" in index and "README" not in index
+    assert "feedback/index.md" in (matrix / "memory/inbox/index.md").read_text(encoding="utf-8")
+    # Archived records still reserve their numbers; the generic indexer stays compatible.
+    archive = matrix / "memory/inbox/feedback/archive"
+    archive.mkdir()
+    (matrix / first["path"]).rename(archive / "FB-001-old.md")
+    assert submit(matrix)["id"] == "FB-003"
+    before = (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8")
+    indexer.index(matrix, "inbox/feedback")
+    assert (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8") == before
+
+
+def test_submit_validates_enums_and_evidence(matrix):
+    for field, value in (("persona", "boss"), ("kind", "rant"), ("severity", "urgent"), ("scope", "planet"), ("skill", "../x")):
+        with pytest.raises(ValueError):
+            submit(matrix, **{field: value})
+    with pytest.raises(ValueError, match="evidence"):
+        submit(matrix, evidence="  ")
+    with pytest.raises(ValueError, match="matrix"):
+        feedback.submit(None, BASE)
+    assert not (matrix / "memory/inbox").exists()
+
+
+def test_multiline_evidence_round_trips(matrix):
+    result = submit(matrix, evidence='linha 1\nlinha "2"', proposal="Adicionar seção")
+    assert feedback.list_feedback(matrix)[0]["evidence"] == 'linha 1\nlinha "2"'
+    body = (matrix / result["path"]).read_text(encoding="utf-8")
+    assert "## Proposal\n\nAdicionar seção" in body
+
+
+def test_list_filters(matrix):
+    submit(matrix)
+    submit(matrix, skill="c2f-persona-reviewer", severity="high", repo="conn2flow")
+    assert len(feedback.list_feedback(matrix)) == 2
+    assert [r["id"] for r in feedback.list_feedback(matrix, {"severity": "HIGH"})] == ["FB-002"]
+    assert [r["id"] for r in feedback.list_feedback(matrix, {"skill": "c2f-persona-executor", "repo": "conn2flow-site"})] == ["FB-001"]
+    assert feedback.list_feedback(matrix, {"verdict": "ACCEPT"}) == []
+    empty = matrix / "empty"
+    (empty / "memory").mkdir(parents=True)
+    assert feedback.list_feedback(empty) == []
+
+
+def test_triage_records_verdict_and_reindexes(matrix):
+    submit(matrix)
+    submit(matrix)
+    result = feedback.triage(matrix, "fb-002", "LOCAL_ONLY", reason="Regra específica do site", reviewer="curator", today="2026-11-25")
+    assert result["verdict"] == "LOCAL_ONLY" and result["scope"] == "local"
+    meta = indexer.get(matrix, "FB-002")
+    assert (meta["status"], meta["triage_reason"], meta["triage_reviewer"], meta["triage_date"]) == (
+        "TRIAGED", "Regra específica do site", "curator", "2026-11-25")
+    assert "TRIAGED" in (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8")
+    assert [r["id"] for r in feedback.list_feedback(matrix, {"verdict": "local_only"})] == ["FB-002"]
+    with pytest.raises(ValueError, match="verdict"):
+        feedback.triage(matrix, "FB-001", "MAYBE", reason="x")
+    with pytest.raises(ValueError, match="reason"):
+        feedback.triage(matrix, "FB-001", "ACCEPT", reason=" ")
+    with pytest.raises(ValueError, match="not found"):
+        feedback.triage(matrix, "FB-099", "ACCEPT", reason="x")
+    with pytest.raises(ValueError, match="Invalid"):
+        feedback.triage(matrix, "../FB-001", "ACCEPT", reason="x")
+
+
+def test_sqlite_is_updated_only_when_present(matrix):
+    assert submit(matrix)["database"] is False
+    assert not (matrix / "memory/.mdd.sqlite").exists()
+    SQLiteMDDDriver(matrix / "memory/.mdd.sqlite").close()
+    assert submit(matrix, summary="Busca FTS exemplar")["database"] is True
+    feedback.triage(matrix, "FB-002", "ACCEPT", reason="ok")
+    with SQLiteMDDDriver(matrix / "memory/.mdd.sqlite") as driver:
+        rows = driver.query("exemplar")
+        assert [r["doc_id"] for r in rows] == ["FB-002"]
+        assert json.loads(rows[0]["frontmatter_json"])["verdict"] == "ACCEPT"
+
+
+def test_github_backend_uses_injected_runner(matrix):
+    calls = []
+
+    def runner(command):
+        calls.append(list(command))
+        if command[:3] == ["gh", "issue", "create"]:
+            return "Creating issue\nhttps://github.com/acme/ws/issues/7\n"
+        return json.dumps([{"number": 7, "title": "dup", "url": "https://github.com/acme/ws/issues/7", "state": "OPEN"},
+                           {"number": 8, "title": "remote only", "url": "https://github.com/acme/ws/issues/8", "state": "OPEN"}])
+
+    result = feedback.submit(matrix, BASE, github=True, github_repo="acme/ws", runner=runner)
+    assert result["github_issue"] == "https://github.com/acme/ws/issues/7"
+    create = calls[0]
+    assert create[create.index("--label") + 1] == "skill-feedback" and create[create.index("--repo") + 1] == "acme/ws"
+    assert "FB-001" in create[create.index("--body") + 1]
+    assert indexer.get(matrix, "FB-001", "github_issue") == "https://github.com/acme/ws/issues/7"
+    rows = feedback.list_feedback(matrix, include_github=True, runner=runner)
+    assert [(r["id"], r["source"]) for r in rows] == [("FB-001", "inbox"), ("GH-8", "github")]
+    # GitHub-only mode (no matrix disk) and runner failure keep the local record.
+    remote = feedback.submit(None, BASE, github=True, runner=runner)
+    assert remote["id"] is None and remote["github_issue"].endswith("/7")
+
+    def broken(command):
+        raise ValueError("gh failed: auth")
+
+    failed = feedback.submit(matrix, BASE, github=True, runner=broken)
+    assert failed["id"] == "FB-002" and failed["github_error"] == "gh failed: auth" and failed["github_issue"] is None
+
+
+def test_scope_resolution(matrix, monkeypatch):
+    local = matrix / "site"
+    (local / "memory").mkdir(parents=True)
+    assert feedback.resolve_root(local, None, "local") == local.resolve()
+    monkeypatch.setenv("MDD_MATRIX", str(matrix))
+    assert feedback.resolve_root(None, None, "global") == matrix.resolve()
+    with pytest.raises(ValueError, match="memory"):
+        feedback.resolve_root(None, matrix / "missing", "global")
+
+
+def test_cli_submit_list_triage_json(matrix):
+    runner = CliRunner()
+    args = ["feedback", "submit", "--matrix", str(matrix), "--persona", "reviewer", "--skill", "c2f-persona-reviewer",
+            "--kind", "bloat", "--severity", "low", "--summary", "Seção duplicada", "--evidence", "SKILL.md:40",
+            "--req", "REQ-089", "--batch", "BATCH-091", "--repo", "conn2flow", "--json"]
+    result = runner.invoke(app, args)
+    assert result.exit_code == 0, result.output
+    assert json.loads(result.output)["id"] == "FB-001"
+    listed = runner.invoke(app, ["feedback", "list", "--matrix", str(matrix), "--skill", "c2f-persona-reviewer", "--json"])
+    assert [r["request"] for r in json.loads(listed.output)] == ["REQ-089"]
+    assert "FB-001" in runner.invoke(app, ["feedback", "list", "--matrix", str(matrix)]).output
+    triaged = runner.invoke(app, ["feedback", "triage", "FB-001", "--matrix", str(matrix), "--verdict", "REJECT",
+                                  "--reason", "Sem ganho", "--date", "2026-11-26", "--json"])
+    assert json.loads(triaged.output)["triage_date"] == "2026-11-26"
+    bad = runner.invoke(app, [*args[:-1], "--kind", "rant"])
+    assert bad.exit_code == 1 and "Invalid kind" in bad.output
+
+
+NODE = shutil.which("node")
+HUB = MATRIX / "mcp-hub" / "dist" / "index.js"
+
+
+@pytest.mark.skipif(not NODE, reason="node unavailable")
+def test_governance_audit_ignores_crlf_only_differences(tmp_path):
+    matrix = tmp_path / "matrix"
+    scripts = matrix / "scripts/skills"
+    scripts.mkdir(parents=True)
+    for name in ("audit-mdd-governance.cjs", "translations.cjs"):
+        shutil.copyfile(MATRIX / "scripts/skills" / name, scripts / name)
+    names = [f"skill-{n:02d}" for n in range(42)] + ["start-mdd-slice", "continue-mdd-batch", "mdd-workflow",
+             "mdd-memory-gardening", "c2f-project-pipeline-and-tasks", "c2f-resources-system"]
+    names[0] = "c2f-persona-executor"
+    for name in names:
+        text = f"---\nname: {name}\n---\nCategoria A\nCategoria B\nCategoria C\n--skip-css\n".encode()
+        for kit in (".gemini", ".claude", ".cursor", ".codex", ".github"):
+            target = matrix / kit / "skills" / name / "SKILL.md"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(text if kit == ".gemini" else text.replace(b"\n", b"\r\n"))
+
+    def audit():
+        result = subprocess.run([NODE, str(scripts / "audit-mdd-governance.cjs"), "--repos", "matrix"],
+                                capture_output=True, text=True, timeout=60, check=False)
+        return json.loads(result.stdout)
+
+    assert audit()["status"] == "PASS" and audit()["copies_checked"] == 240
+    (matrix / ".claude/skills/mdd-workflow/SKILL.md").write_bytes(b"---\r\nname: mdd-workflow\r\n---\r\nother\r\n")
+    assert audit()["errors"] == [f"Different copy: {matrix / '.claude/skills/mdd-workflow/SKILL.md'}"]
+
+
+@pytest.mark.skipif(not NODE or not HUB.is_file(), reason="node or built mcp-hub unavailable")
+def test_conn2flow_hub_feedback_tools_delegate_to_cli(matrix):
+    requests = [
+        {"jsonrpc": "2.0", "id": 1, "method": "tools/list"},
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "submit_skill_feedback", "arguments": {
+            "persona": "architect", "skill": "c2f-persona-architect", "kind": "proposal", "severity": "medium",
+            "summary": "Via MCP", "evidence": "rev-091", "repo": "conn2flow-ai-workspace", "req": "REQ-089"}}},
+        {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "list_skill_feedback", "arguments": {
+            "skill": "c2f-persona-architect"}}},
+        {"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "submit_skill_feedback", "arguments": {
+            "persona": "architect", "skill": "c2f-persona-architect", "kind": "nope", "severity": "low",
+            "summary": "x", "evidence": "y"}}},
+    ]
+    env = {**os.environ, "MDD_CLI": json.dumps([sys.executable, "-m", "mdd_client.cli"]), "MDD_MATRIX": str(matrix)}
+
+    def call(request):  # one process per request: the stdio hub answers lines concurrently
+        process = subprocess.run([NODE, str(HUB)], input=json.dumps(request) + "\n", capture_output=True, text=True,
+                                 encoding="utf-8", env=env, timeout=120, check=False)
+        return json.loads(process.stdout.splitlines()[0])
+
+    responses = {r["id"]: call(r) for r in requests}
+    names = {tool["name"] for tool in responses[1]["result"]["tools"]}
+    assert {"c2f_run_command", "dispatch_task", "report_completion", "log_session_event",
+            "submit_skill_feedback", "list_skill_feedback"} <= names
+    submitted = json.loads(responses[2]["result"]["content"][0]["text"])
+    assert submitted["id"] == "FB-001" and (matrix / submitted["path"]).is_file()
+    listed = json.loads(responses[3]["result"]["content"][0]["text"])
+    assert [r["summary_short"] for r in listed] == ["Via MCP"]
+    assert responses[4]["result"]["isError"] and "Invalid kind" in responses[4]["result"]["content"][0]["text"]

@@ -10,11 +10,11 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 
 | Skill | Lines | Bytes | Budget | State | Invocable | Subskills | Translations |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
-| [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 9568 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-curator`](c2f-persona-curator/SKILL.md) | 69 | 5595 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 153 | 15625 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 9971 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-curator`](c2f-persona-curator/SKILL.md) | 69 | 6127 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 153 | 16038 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-optimizer`](c2f-persona-optimizer/SKILL.md) | 52 | 4249 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-reviewer`](c2f-persona-reviewer/SKILL.md) | 96 | 7248 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-reviewer`](c2f-persona-reviewer/SKILL.md) | 96 | 7524 | 200 | OK | yes | — | en 2026-11-24 |
 
 ## Core skills (`c2f-*`) — 34
 
@@ -60,7 +60,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | Skill | Lines | Bytes | Budget | State | Invocable | Subskills | Translations |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
 | [`c2f-mdd-indexing-and-handoffs`](c2f-mdd-indexing-and-handoffs/SKILL.md) | 98 | 7640 | 200 | OK | no | — | en 2026-11-23 |
-| [`c2f-multilingual-skills-governance`](c2f-multilingual-skills-governance/SKILL.md) | 64 | 6672 | 200 | OK | no | — | en 2026-11-24 |
+| [`c2f-multilingual-skills-governance`](c2f-multilingual-skills-governance/SKILL.md) | 64 | 6926 | 200 | OK | no | — | en 2026-11-24 |
 | [`continue-mdd-batch`](continue-mdd-batch/SKILL.md) | 27 | 1281 | 200 | OK | yes | — | en 2026-11-24 |
 | [`mdd-memory-gardening`](mdd-memory-gardening/SKILL.md) | 70 | 6681 | 200 | OK | no | — | en 2026-11-23 |
 | [`mdd-workflow`](mdd-workflow/SKILL.md) | 182 | 14000 | 200 | NEAR | no | — | en 2026-11-05 |

@@ -53,9 +53,11 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entregas anteriores
 
+REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](batch-091.md).
+
 REQ-088 / BATCH-090 (`ready-for-review`): Fase 1 do ARCH-018 só na matriz. Cinco personas `c2f-persona-*` com aliases no sync, 48 skills, índice de skills, `subskills/` com piloto Mercado Pago e `memory/learnings/`. Auditoria PASS e pytest 130/130. [Relatório](batch-090.md).
 
-[REQ-084](../human-requests/req-084.md) / [BATCH-086](batch-086.md) atualizou três skills PT-BR/EN e aplicou a regra dos dez ativos.
+[REQ-084](../human-requests/req-084.md) / [BATCH-086](archive/batch-086.md) atualizou três skills PT-BR/EN e aplicou a regra dos dez ativos.
 
 [REQ-080](../human-requests/archive/req-080.md) / [BATCH-082](archive/compacted/batch-082-4a26865308ed.md) está concluído e arquivado com o original íntegro. O [BATCH-083](archive/compacted/batch-083-95aade2d8707.md) homologado também foi arquivado.
 

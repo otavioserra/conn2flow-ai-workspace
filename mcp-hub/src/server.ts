@@ -3,6 +3,12 @@ import { executeC2fCommand, type C2fRunCommandArgs } from './tools/c2fCommand.js
 import { dispatchTask, type DispatchTaskArgs } from './tools/dispatchTask.js';
 import { reportCompletion, type ReportCompletionArgs } from './tools/reportCompletion.js';
 import { logSessionEvent, type LogSessionEventArgs } from './tools/logSessionEvent.js';
+import {
+  listSkillFeedback,
+  submitSkillFeedback,
+  type ListSkillFeedbackArgs,
+  type SubmitSkillFeedbackArgs
+} from './tools/skillFeedback.js';
 
 export interface McpTool {
   name: string;
@@ -146,6 +152,49 @@ export class McpServer {
         required: ['batch_id', 'agent_id', 'role', 'summary']
       }
     });
+
+    this.tools.set('submit_skill_feedback', {
+      name: 'submit_skill_feedback',
+      description: 'Record structured skill feedback (FB-XXX) in the matrix inbox memory/inbox/feedback/ via `mdd feedback submit`; optionally opens a GitHub Issue labelled skill-feedback.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          persona: { type: 'string', enum: ['architect', 'executor', 'reviewer', 'curator', 'optimizer'] },
+          skill: { type: 'string', description: 'Canonical skill name (e.g. "c2f-persona-executor")' },
+          kind: { type: 'string', enum: ['gap', 'bug', 'bloat', 'proposal', 'learning'] },
+          severity: { type: 'string', enum: ['high', 'medium', 'low'] },
+          summary: { type: 'string', description: 'One-line summary of the finding' },
+          evidence: { type: 'string', description: 'Verifiable evidence: file:line, command, measurement or test' },
+          proposal: { type: 'string', description: 'Optional concrete change proposal' },
+          repo: { type: 'string', description: 'Origin repository (e.g. "conn2flow-site")' },
+          req: { type: 'string', description: 'Origin request (e.g. "REQ-089")' },
+          batch: { type: 'string', description: 'Origin batch (e.g. "BATCH-091")' },
+          scope: { type: 'string', enum: ['global', 'local'], description: 'global (matrix inbox, default) or local (repo_path inbox)' },
+          matrix: { type: 'string', description: 'Optional matrix root; defaults to MDD_MATRIX or this workspace' },
+          repo_path: { type: 'string', description: 'Repository root for scope=local' },
+          github: { type: 'boolean', description: 'Also create a GitHub Issue (label skill-feedback) via gh CLI' },
+          github_repo: { type: 'string', description: 'Optional owner/name for the GitHub Issue' }
+        },
+        required: ['persona', 'skill', 'kind', 'severity', 'summary', 'evidence']
+      }
+    });
+
+    this.tools.set('list_skill_feedback', {
+      name: 'list_skill_feedback',
+      description: 'List skill feedback from memory/inbox/feedback/ as JSON (filters: status, verdict, skill, repo, severity) for the Curator persona and dashboards.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          status: { type: 'string', description: 'e.g. PENDING or TRIAGED' },
+          verdict: { type: 'string', enum: ['PENDING', 'ACCEPT', 'NEEDS_EVIDENCE', 'QUARANTINE', 'REJECT', 'LOCAL_ONLY'] },
+          skill: { type: 'string' },
+          repo: { type: 'string' },
+          severity: { type: 'string', enum: ['high', 'medium', 'low'] },
+          include_github: { type: 'boolean', description: 'Also list GitHub Issues labelled skill-feedback via gh CLI' },
+          matrix: { type: 'string', description: 'Optional matrix root; defaults to MDD_MATRIX or this workspace' }
+        }
+      }
+    });
   }
 
   public async handleRequest(request: Record<string, any>): Promise<Record<string, any>> {
@@ -195,6 +244,10 @@ export class McpServer {
             contentResult = await reportCompletion(toolArgs as ReportCompletionArgs);
           } else if (toolName === 'log_session_event') {
             contentResult = await logSessionEvent(toolArgs as LogSessionEventArgs);
+          } else if (toolName === 'submit_skill_feedback') {
+            contentResult = await submitSkillFeedback(toolArgs as SubmitSkillFeedbackArgs);
+          } else if (toolName === 'list_skill_feedback') {
+            contentResult = await listSkillFeedback(toolArgs as ListSkillFeedbackArgs);
           } else {
             return {
               jsonrpc: '2.0',

@@ -1,5 +1,15 @@
 # Validation Checklist
 
+## BATCH-091 — REQ-089 (2026-11-24)
+
+- [x] `mdd feedback submit/list/triage` no `mdd-client`, gravando `FB-XXX-<slug>.md` em `memory/inbox/feedback/`, atualizando `index.md` e o SQLite (quando presente) e suportando `--github` por runner injetável (mock nos testes).
+- [x] `submit_skill_feedback` e `list_skill_feedback` no `conn2flow-hub` (`mcp-hub/`), delegando ao CLI; `npm test` 5/5 e teste ponta a ponta hub → CLI no pytest.
+- [x] 4 personas (PT-BR + cópias EN) usando `mdd feedback` / MCP; ordem do rename em `c2f-multilingual-skills-governance`; CRLF normalizado em `audit-mdd-governance.cjs` (com teste); `README.md` e `README-PT-BR.md` em 48 skills.
+- [x] Regra dos 10: `human-requests/`, `implementation/` e `reports/` com 10 ativos cada (`req-082`, `batch-086`, `BL-028`, `REP-001` arquivados); pendentes do CURRENT protegidos; 176 links quebrados antes e depois (0 novos); `04-memory-engineering-execution.md` intacta.
+- [x] Auditoria PASS (19 alvos, 0 divergências, 0 drift, 0 legados), governança PASS (240 cópias), índice `--check` PASS e pytest 141/141 depois dos 5 hashes EN. Lote, FEAT-017 ([REP-011](../reports/REP-011-batch091-feedback-bus-learnings.md)) e índices em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-091.md).
+- [ ] Decisão do Arquiteto sobre `docs/` (45 skills), tools de feedback no MCP Python e poda deste checklist.
+- [ ] Homologação humana e commit/push seletivos da matriz; rollout das Fases 0+1+2 aos satélites em requisição própria.
+
 ## BATCH-090 — REQ-088 (2026-11-24)
 
 - [x] Rename para `c2f-persona-architect`, `c2f-persona-executor` e `c2f-persona-reviewer` em PT-BR/EN, 5 kits, templates, `translated.json`, `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` e `STARTER-PROMPTS.md`. Mapa de aliases no `sync-skills.cjs`: 46 pastas migradas, 0 legados.
@@ -45,7 +55,7 @@
 - [x] `pytest -q tools/mdd-client/tests` com 119/119 aprovados.
 - [x] Dez requisições e dez lotes ativos. Arquivadas quatro requisições e oito lotes. Zero órfãos novos, 65 links reescritos e 33 links históricos reparados.
 - [ ] Zero órfãos em toda `memory/`. Permanecem 166 ocorrências preexistentes em snapshots `archive/original/` e na memória de execução preservada. [REP-007](../reports/REP-007-batch086-skills-and-memory-links.md).
-- [x] Memória de execução íntegra (10.329 bytes / 57 linhas), índices regenerados e FEAT-015 fora do stage. [Lote em `ready-for-review`](../implementation/batch-086.md).
+- [x] Memória de execução íntegra (10.329 bytes / 57 linhas), índices regenerados e FEAT-015 fora do stage. [Lote em `ready-for-review`](../implementation/archive/batch-086.md).
 
 ## BATCH-085 — REQ-083 (2026-11-23)
 

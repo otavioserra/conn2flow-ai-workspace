@@ -14,7 +14,7 @@ summary_medium: "Sincronização e hashes das traduções com auditoria PASS e 1
 
 # BATCH-086 — Governança operacional das skills e Regra dos 10 Ativos
 
-[REQ-084](../human-requests/req-084.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-084](../../human-requests/req-084.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 
@@ -31,7 +31,7 @@ summary_medium: "Sincronização e hashes das traduções com auditoria PASS e 1
 | --- | --- |
 | `node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace` | 31 cópias atualizadas. Três avisos de drift esperados enquanto o registro EN ainda referenciava os hashes anteriores. |
 | `--update-translation-hash <skill> en --translator mdd-agent` | Três entradas atualizadas. Conferência independente do SHA-256 sobre LF e das cópias locais dos cinco kits. |
-| Auditoria da matriz | **PASS**, 19 alvos, 542 cópias alinhadas à fonte, 312 traduções protegidas, 0 divergências, 0 drift. [JSON da auditoria](../../completions/skills-audit.json). |
+| Auditoria da matriz | **PASS**, 19 alvos, 542 cópias alinhadas à fonte, 312 traduções protegidas, 0 divergências, 0 drift. [JSON da auditoria](../../../completions/skills-audit.json). |
 | `pytest -q tools/mdd-client/tests` | **119 aprovados em 50,44 s**, após estabilizar o registro de hashes. |
 | Paridade PT-BR/EN | Todos os templates EN pertinentes conferidos por skill (7 worktree, 7 JSON, 5 Executor). Os cinco blocos de CMD coincidem entre os idiomas. |
 
@@ -46,7 +46,7 @@ Os três espelhos de `.cursor/skills/` na raiz estão sincronizados no checkout 
 
 A prévia verificou destinos e colisões. A aplicação reescreveu 65 links válidos afetados por movimento da origem ou do destino e reparou 33 links históricos com destino local identificável. Os índices derivados foram regenerados após os movimentos. Os dois guias do ecossistema Python também tiveram seus links para o BATCH-071 ajustados.
 
-A varredura de destinos relativos em Markdown encontrou zero links órfãos introduzidos pelo lote. A meta global de zero continua pendente: 166 ocorrências preexistentes foram preservadas, sendo 164 em 11 snapshots `archive/original/` e duas em `04-memory-engineering-execution.md`. O arquivo de execução está saudável, com 10.329 bytes e 57 linhas, e seu SHA-256 permanece igual ao inicial. [Detalhamento no REP-007](../reports/REP-007-batch086-skills-and-memory-links.md).
+A varredura de destinos relativos em Markdown encontrou zero links órfãos introduzidos pelo lote. A meta global de zero continua pendente: 166 ocorrências preexistentes foram preservadas, sendo 164 em 11 snapshots `archive/original/` e duas em `04-memory-engineering-execution.md`. O arquivo de execução está saudável, com 10.329 bytes e 57 linhas, e seu SHA-256 permanece igual ao inicial. [Detalhamento no REP-007](../../reports/REP-007-batch086-skills-and-memory-links.md).
 
 ## Handoff supervisionado
 

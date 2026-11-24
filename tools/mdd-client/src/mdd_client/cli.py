@@ -230,6 +230,89 @@ def db_import(source: Path, workspace: Path = Path(".")):
         typer.echo(driver.import_jsonl(source.read_text(encoding="utf-8")))
 
 
+feedback_app = typer.Typer(no_args_is_help=True, help="Federated skill-feedback inbox (ARCH-018 Phase 2).")
+app.add_typer(feedback_app, name="feedback")
+
+
+def _feedback_root(path: Path, matrix: Path | None, scope: str, github: bool) -> Path | None:
+    from . import feedback
+
+    try:
+        return feedback.resolve_root(path, matrix, scope)
+    except ValueError:
+        if github and scope == "global" and matrix is None:
+            return None  # GitHub-only fallback when the matrix disk is unreachable.
+        raise
+
+
+@feedback_app.command("submit")
+@guarded
+def feedback_submit(
+    persona: str = typer.Option(..., help="architect|executor|reviewer|curator|optimizer"),
+    skill: str = typer.Option(...), kind: str = typer.Option(..., help="gap|bug|bloat|proposal|learning"),
+    severity: str = typer.Option(..., help="high|medium|low"), summary: str = typer.Option(...),
+    evidence: str = typer.Option(...), proposal: str = "", repo: str | None = None,
+    req: str = typer.Option("", "--req"), batch: str = "", scope: str = typer.Option("global", help="global|local"),
+    matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path("."), "--path"),
+    github: bool = typer.Option(False, "--github"), github_repo: str | None = typer.Option(None, "--github-repo"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """Record one structured FB-XXX feedback (inbox + optional GitHub Issue)."""
+    from . import feedback
+
+    root = _feedback_root(path, matrix, scope, github)
+    data = dict(persona=persona, skill=skill, kind=kind, severity=severity, summary=summary, evidence=evidence,
+                proposal=proposal, repo=repo or path.resolve().name, request=req, batch=batch, scope=scope)
+    result = feedback.submit(root, data, github=github, github_repo=github_repo)
+    typer.echo(json.dumps(result, ensure_ascii=False) if as_json else
+               f"{result['id'] or 'GitHub-only'}: {result['path'] or ''} {result['github_issue'] or ''}".strip())
+    if result.get("github_error"):
+        typer.echo(f"[GITHUB-ERROR] {result['github_error']}", err=True)
+        raise typer.Exit(1)
+
+
+@feedback_app.command("list")
+@guarded
+def feedback_list(
+    status: str | None = None, verdict: str | None = None, skill: str | None = None, repo: str | None = None,
+    severity: str | None = None, include_github: bool = typer.Option(False, "--include-github"),
+    github_repo: str | None = typer.Option(None, "--github-repo"), scope: str = "global",
+    matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path("."), "--path"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """List inbox feedback filtered by status, verdict, skill, repo or severity."""
+    from . import feedback
+
+    root = _feedback_root(path, matrix, scope, include_github)
+    rows = feedback.list_feedback(root, dict(status=status, verdict=verdict, skill=skill, repo=repo, severity=severity),
+                                  include_github=include_github, github_repo=github_repo)
+    if as_json:
+        typer.echo(json.dumps(rows, ensure_ascii=False))
+        return
+    table = Table(title=f"Skill feedback ({len(rows)})")
+    for column in ("ID", "Status", "Verdict", "Skill", "Kind", "Severity", "Repo", "Summary"):
+        table.add_column(column)
+    for row in rows:
+        table.add_row(*(str(row.get(k, "")) for k in ("id", "status", "verdict", "skill", "kind", "severity", "repo", "summary_short")))
+    console.print(table)
+
+
+@feedback_app.command("triage")
+@guarded
+def feedback_triage(
+    feedback_id: str, verdict: str = typer.Option(..., help="ACCEPT|NEEDS_EVIDENCE|QUARANTINE|REJECT|LOCAL_ONLY"),
+    reason: str = typer.Option(...), reviewer: str = "curator", date: str | None = None, scope: str = "global",
+    matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path("."), "--path"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """Apply a Tribunal-of-4-Filters verdict to one FB-XXX record."""
+    from . import feedback
+
+    result = feedback.triage(feedback.resolve_root(path, matrix, scope), feedback_id, verdict,
+                             reason=reason, reviewer=reviewer, today=date)
+    typer.echo(json.dumps(result, ensure_ascii=False) if as_json else f"{result['id']}: {result['verdict']} ({result['path']})")
+
+
 def main():
     app()
 

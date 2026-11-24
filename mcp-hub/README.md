@@ -15,6 +15,17 @@ correlacionar o recibo com o despacho. Quando o papel é informado, o Hub manté
 em `completions/<batch>-<role>-receipt.json`, sincroniza o recibo canônico e transiciona a tarefa
 identificada para `completed` ou `failed`.
 
+### Feedback de skills (ARCH-018 Fase 2)
+
+| Ferramenta | Descrição |
+|---|---|
+| `submit_skill_feedback` | Grava um `FB-XXX` em `memory/inbox/feedback/` da matriz via `mdd feedback submit --json`; `github: true` também abre Issue `skill-feedback`. |
+| `list_skill_feedback` | Lista a inbox em JSON (filtros `status`, `verdict`, `skill`, `repo`, `severity`; `include_github`). |
+
+As duas delegam ao CLI Python (regras ficam no `mdd-client`). O executável é resolvido por `MDD_CLI`
+(caminho ou array JSON), depois `.venv-mdd` da matriz, depois `mdd` no `PATH`; a matriz, por `matrix`,
+`MDD_MATRIX` ou a raiz deste workspace. Os argumentos viram argv explícito, sem shell.
+
 ## 🚀 Como Executar
 
 ### 1. Local (Node.js)

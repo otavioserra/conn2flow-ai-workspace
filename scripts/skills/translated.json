@@ -106,7 +106,7 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "261bf985909969445014231967ba545045031d30290cdd1b998a4a18c983c337",
+      "source_sha256": "1062387d43054eeb2ec07ac131465a7b89644f7218fb5d652271f2e30070a1fe",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
@@ -126,17 +126,17 @@
       "translator": "mdd-agent"
     },
     "c2f-persona-architect": {
-      "source_sha256": "1f9e2912da448ebdf6d53d6e41f3cd7de19efab99091493ecd7f08f3c284dba9",
+      "source_sha256": "db382294d42a1b0b85d49110f61dd125e61db4d0a9657d2320fc8a0e1c721a70",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-persona-curator": {
-      "source_sha256": "a0f6fd109b89c454b07315104dc331b6115f9bc891d2c64317bab123191e89b5",
+      "source_sha256": "40c93e64e16e20a0ead86d895643f76a2c98ce7d77c028c4e7f96bcd64871f00",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-persona-executor": {
-      "source_sha256": "e4737f985cdcf34b79c46bfb3f17eb3d3b9a48d72920778b048b62276e502bae",
+      "source_sha256": "305c83b22e051707406465b7576fb26cd4a68b84356d77aa81e6233ece66dc90",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
@@ -146,7 +146,7 @@
       "translator": "mdd-agent"
     },
     "c2f-persona-reviewer": {
-      "source_sha256": "1cb724bfcc944633cca7d23f5a981d282a19a0b17ae6ae5e125c2c43ecb3f1de",
+      "source_sha256": "63e516b8052119de2c0e303177d351fe17e350925cb1b334a65fc961276c74bc",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },

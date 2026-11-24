@@ -79,6 +79,7 @@
 | REQ-076 | Limpeza Geral do Ecossistema, Memory Gardening Global, Poda de Worktrees e Sincronização Canônica de Todos os Repositórios | Higienização global de worktrees obsoletas, poda de memória (Regra dos 10), saneamento de branches mortas e sincronização de todos os repositórios. | [source](<req-076.md>) | APPROVED |
 | REQ-080 | REQ-080 — Saneamento Visual de Choques por Projeto, Editor Isolado de Dados do Projeto (environment.json Scoped Editor), Instalação Local do VSIX e Ciclo Iterativo de Homologação da Extensão | Durante a gravação de um vídeo demonstrativo pelo Operador Humano utilizando a extensão **Conn2Flow Dev Tools (`vscod... | [source](<req-080.md>) | HOMOLOGATED |
 | REQ-081 | Caixa Copiável Obrigatória no Arquiteto Master e Relatório Obrigatório de Dificuldades do Executor para o AI Workspace | Atualizar c2f-architect-master (caixa copiar-e-colar obrigatória) e c2f-executor-agent (relatório de dificuldades ao AI Workspace) com sync PT/EN e kits. | [source](<req-081.md>) | HOMOLOGATED |
+| REQ-082 | Propagação Global das Skills da REQ-081 aos Projetos Satélites + Melhorias do REP-004 (FEAT-018 e FEAT-019) com Segunda Publicação Condicionada | Propaga REQ-081 (FEAT-016/017) a todos os projetos, implementa melhorias do REP-004 (FEAT-018) na matriz e pausa para validação antes da 2ª propagação. | [source](<req-082.md>) | HOMOLOGATED |
 
 ## Directories
 
