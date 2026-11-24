@@ -229,3 +229,42 @@ def test_conn2flow_hub_feedback_tools_delegate_to_cli(matrix):
     listed = json.loads(responses[3]["result"]["content"][0]["text"])
     assert [r["summary_short"] for r in listed] == ["Via MCP"]
     assert responses[4]["result"]["isError"] and "Invalid kind" in responses[4]["result"]["content"][0]["text"]
+
+
+def test_python_mcp_feedback_tools_match_cli(matrix, monkeypatch):
+    """REQ-090: `mdd mcp` exposes submit/list_skill_feedback with the hub's contract."""
+    import asyncio
+
+    from mcp.server.fastmcp.exceptions import ToolError
+    from mdd_client import mcp_server
+
+    monkeypatch.delenv("MDD_MATRIX", raising=False)
+    server = mcp_server.create_server(matrix)
+
+    async def call(name, **args):
+        _, structured = await server.call_tool(name, args)
+        return structured
+
+    async def check():
+        names = {tool.name for tool in await server.list_tools()}
+        assert {"submit_skill_feedback", "list_skill_feedback"} <= names
+        first = await call("submit_skill_feedback", persona="executor", skill="c2f-persona-executor", kind="gap",
+                           severity="high", summary="Fila serial no hub", evidence="server.ts:startStdio",
+                           req="REQ-090", batch="BATCH-092", matrix=str(matrix))
+        assert first["id"] == "FB-001" and first["path"].startswith("memory/inbox/feedback/FB-001-")
+        await call("submit_skill_feedback", persona="reviewer", skill="c2f-persona-reviewer", kind="bloat",
+                   severity="low", summary="Outro", evidence="x", matrix=str(matrix))
+        listed = await call("list_skill_feedback", severity="HIGH", matrix=str(matrix))
+        assert listed["count"] == 1 and listed["feedback"][0]["request"] == "REQ-090"
+        assert listed["feedback"][0]["repo"] == matrix.name
+        feedback.triage(matrix, "FB-001", "ACCEPT", reason="ok", today="2026-11-24")
+        assert (await call("list_skill_feedback", verdict="ACCEPT", matrix=str(matrix)))["count"] == 1
+        local = await call("list_skill_feedback", scope="local")
+        assert local["count"] == 2
+        with pytest.raises(ToolError, match="Invalid kind"):
+            await call("submit_skill_feedback", persona="executor", skill="s", kind="rant", severity="low",
+                       summary="x", evidence="y", matrix=str(matrix))
+        with pytest.raises(ToolError, match="escapes"):
+            await call("list_skill_feedback", scope="local", path="../fora")
+
+    asyncio.run(check())

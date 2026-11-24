@@ -7,6 +7,7 @@
 | VALIDATION-006-007-014 | Validações Arquivadas — BATCH-006, BATCH-007 e BATCH-014 | Conteúdo movido de `VALIDATION-CHECKLIST.md` em 2026-08-29 para manter o checklist ativo dentro do teto operacional d... | [source](<validation-006-007-014.md>) | archived |
 | VALIDATION-015 | Validação Arquivada — BATCH-015 | Conteúdo movido de `VALIDATION-CHECKLIST.md` em 2026-08-29 para abrir o BATCH-038 sem ultrapassar o teto normativo de... | [source](<validation-015.md>) | archived |
 | VALIDATION-051-057 | Validation Checklist — Histórico Arquivado (BATCH-051 a BATCH-057) | Este documento contém os registros consolidados de validação e checklists técnicos arquivados do `conn2flow-ai-worksp... | [source](<validation-051-057.md>) | archived |
+| VALIDATION-069-088 | Validation Checklist — Histórico Arquivado (BATCH-069 a BATCH-088) | Seções movidas de `../VALIDATION-CHECKLIST.md` em 2026-11-24 pela poda autorizada da REQ-090 / BATCH-092 (DEC-136), m... | [source](<validation-069-088.md>) | archived |
 
 ## Directories
 

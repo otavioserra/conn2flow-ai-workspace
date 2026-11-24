@@ -14,7 +14,7 @@ sources:
 
 ## Delivered foundation
 
-The matrix has memory/, four-layer policy, hierarchical indexes, dual archive nodes and **45 canonical skills**, including c2f-ai-features. The TypeScript MCP Hub implements command execution, task records, receipts and session events. The VS Code panel supports topology/autonomy controls, repository scope, task observation and delivery conflicts.
+The matrix has memory/, four-layer policy, hierarchical indexes, dual archive nodes and **48 canonical skills**, including c2f-ai-features. The TypeScript MCP Hub implements command execution, task records, receipts and session events. The VS Code panel supports topology/autonomy controls, repository scope, task observation and delivery conflicts.
 
 ## Approved workstreams
 

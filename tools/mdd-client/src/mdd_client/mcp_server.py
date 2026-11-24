@@ -9,7 +9,7 @@ from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
-from . import daemon, memory, report
+from . import daemon, feedback, memory, report
 from .core import indexer
 from .storage import contained
 from .sync import find_matrix, sync
@@ -85,6 +85,37 @@ def create_server(root: Path, port: int = 8765) -> FastMCP:
             if meta["status"].upper() != "HOMOLOGATED":
                 reviews.append({"path": document.relative_to(repo).as_posix(), "metadata": meta})
         return {"reviews": reviews}
+
+    def feedback_root(path: str, matrix: str | None, scope: str, github: bool = False) -> Path | None:
+        """Local scope stays inside the bound project; global scope targets the matrix inbox."""
+        try:
+            return feedback.resolve_root(project(path), Path(matrix) if matrix else None, scope)
+        except ValueError:
+            if github and scope == "global" and not matrix:
+                return None  # GitHub-only submission, same as the CLI.
+            raise
+
+    @server.tool()
+    def submit_skill_feedback(persona: str, skill: str, kind: str, severity: str, summary: str, evidence: str,
+                              proposal: str = "", repo: str = "", req: str = "", batch: str = "",
+                              scope: str = "global", matrix: str | None = None, path: str = ".",
+                              github: bool = False, github_repo: str | None = None) -> dict[str, Any]:
+        """Record one FB-XXX skill feedback in memory/inbox/feedback/ (parity with conn2flow-hub)."""
+        data = dict(persona=persona, skill=skill, kind=kind, severity=severity, summary=summary, evidence=evidence,
+                    proposal=proposal, repo=repo or project(path).name, request=req, batch=batch, scope=scope)
+        root = feedback_root(path, matrix, scope, github)
+        return feedback.submit(root, data, github=github, github_repo=github_repo)
+
+    @server.tool()
+    def list_skill_feedback(status: str | None = None, verdict: str | None = None, skill: str | None = None,
+                            repo: str | None = None, severity: str | None = None, include_github: bool = False,
+                            scope: str = "global", matrix: str | None = None, path: str = ".",
+                            github_repo: str | None = None) -> dict[str, Any]:
+        """List FB-XXX feedback as JSON filtered by status, verdict, skill, repo or severity."""
+        root = feedback_root(path, matrix, scope, include_github)
+        rows = feedback.list_feedback(root, dict(status=status, verdict=verdict, skill=skill, repo=repo, severity=severity),
+                                      include_github=include_github, github_repo=github_repo)
+        return {"count": len(rows), "feedback": rows}
 
     return server
 

@@ -6,11 +6,11 @@ sources:
   - ../../scripts/skills/sync-skills.cjs
 ---
 
-# Catálogo de 45 skills canônicas
+# Catálogo de 48 skills canônicas
 
 [English](../en/SKILLS-CATALOG.md) · [Índice da documentação](README.md)
 
-A fonte canônica é .gemini/skills/. Os kits .claude/, .cursor/, .codex/ e .github/ recebem os espelhos pelo sincronizador oficial. Carregue somente as skills pertinentes à tarefa e leia o SKILL.md completo antes da operação correspondente. Nomes legados sdd-* são preservados como identificadores; a matriz usa memory/.
+A fonte canônica é .gemini/skills/. Os kits .claude/, .cursor/, .codex/ e .github/ recebem os espelhos pelo sincronizador oficial. Carregue somente as skills pertinentes à tarefa e leia o SKILL.md completo antes da operação correspondente. O MDD é a evolução do SDD: as skills de workflow agora usam nomes mdd-*, a matriz usa memory/ e as ferramentas mantêm fallback técnico para sdd/ em projetos legados.
 
 ## Personas canônicas — 5 skills
 
@@ -61,18 +61,19 @@ A fonte canônica é .gemini/skills/. Os kits .claude/, .cursor/, .codex/ e .git
 | [`c2f-variables-system`](../../.gemini/skills/c2f-variables-system/SKILL.md) | Rótulos, mensagens e textos de interface localizados e configuráveis. |
 | [`c2f-widget-development`](../../.gemini/skills/c2f-widget-development/SKILL.md) | Renderizadores de widgets, isolamento de escopo e grids modulares. |
 
-## Governança e workflow — 8 skills
+## Governança e workflow — 9 skills
 
 | Skill | Quando usar |
 | --- | --- |
 | [`c2f-mdd-indexing-and-handoffs`](../../.gemini/skills/c2f-mdd-indexing-and-handoffs/SKILL.md) | Frontmatter de memória, mutação atômica, índices derivados e handoffs por topologia/autonomia. |
-| [`sdd-workflow`](../../.gemini/skills/sdd-workflow/SKILL.md) | Classificar mudanças e seguir governança e autoridade da memória. |
-| [`start-sdd-slice`](../../.gemini/skills/start-sdd-slice/SKILL.md) | Iniciar requisição aprovada delimitada com critérios de aceite. |
-| [`continue-sdd-batch`](../../.gemini/skills/continue-sdd-batch/SKILL.md) | Retomar o lote atual sem repetir etapas concluídas. |
+| [`mdd-workflow`](../../.gemini/skills/mdd-workflow/SKILL.md) | Classificar mudanças e seguir governança e autoridade da memória. |
+| [`start-mdd-slice`](../../.gemini/skills/start-mdd-slice/SKILL.md) | Iniciar requisição aprovada delimitada com critérios de aceite. |
+| [`continue-mdd-batch`](../../.gemini/skills/continue-mdd-batch/SKILL.md) | Retomar o lote atual sem repetir etapas concluídas. |
 | [`raise-spec-change`](../../.gemini/skills/raise-spec-change/SKILL.md) | Propor alterações normativas por change requests aprovadas. |
 | [`review-current-batch`](../../.gemini/skills/review-current-batch/SKILL.md) | Revisar evidências e diffs antes de aprovação humana ou PR. |
+| [`c2f-multilingual-skills-governance`](../../.gemini/skills/c2f-multilingual-skills-governance/SKILL.md) | Criar, renomear ou editar skills e idiomas de templates mantendo traduções e hashes de origem alinhados. |
 | [`project-validation`](../../.gemini/skills/project-validation/SKILL.md) | Executar verificações capazes de detectar regressões reais e declarar limites. |
-| [`sdd-memory-gardening`](../../.gemini/skills/sdd-memory-gardening/SKILL.md) | Manutenção por limiares, preservação de memória e reparo de links. |
+| [`mdd-memory-gardening`](../../.gemini/skills/mdd-memory-gardening/SKILL.md) | Manutenção por limiares, preservação de memória e reparo de links. |
 
 ## c2f-ai-features: oito pilares de IA do Conn2Flow Pro
 
@@ -96,4 +97,4 @@ node scripts/skills/sync-skills.cjs --apply c2f-ai-features
 
 Execute na raiz da matriz. O primeiro comando audita sem escrever; o segundo propaga a skill nomeada para os alvos configurados. O script preserva skills locais exclusivas e traduções declaradas de templates; --apply --all é reservado à propagação de todo o catálogo. mdd sync é o equivalente previsto no Client Python, ainda sem implementação neste checkout.
 
-O total foi conferido nas 45 pastas canônicas com SKILL.md. Contagens e alvos de sincronização vêm do script, não de números históricos nos guias. Consulte o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md).
+O total foi conferido nas 48 pastas canônicas com SKILL.md. Contagens e alvos de sincronização vêm do script, não de números históricos nos guias. Consulte o [guia CLI/MCP](GUIA-RAPIDO-CLI-E-MCP.md).

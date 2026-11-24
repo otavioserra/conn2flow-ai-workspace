@@ -25,6 +25,13 @@ identificada para `completed` ou `failed`.
 As duas delegam ao CLI Python (regras ficam no `mdd-client`). O executável é resolvido por `MDD_CLI`
 (caminho ou array JSON), depois `.venv-mdd` da matriz, depois `mdd` no `PATH`; a matriz, por `matrix`,
 `MDD_MATRIX` ou a raiz deste workspace. Os argumentos viram argv explícito, sem shell.
+As mesmas duas tools existem no MCP Python do `mdd-client` (`mdd mcp`), com o mesmo contrato (REQ-090).
+
+### Ordem das requisições (stdio)
+
+O transporte stdio processa as linhas em **fila serial**: cada requisição termina, e sua resposta é escrita,
+antes de a próxima começar. Um `submit_skill_feedback` seguido de `list_skill_feedback` no mesmo stdin sempre
+enxerga a gravação. Uma requisição que falha devolve erro JSON-RPC `-32603` sem travar a fila.
 
 ## 🚀 Como Executar
 

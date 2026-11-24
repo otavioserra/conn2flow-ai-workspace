@@ -46,7 +46,7 @@ Os três espelhos de `.cursor/skills/` na raiz estão sincronizados no checkout 
 
 A prévia verificou destinos e colisões. A aplicação reescreveu 65 links válidos afetados por movimento da origem ou do destino e reparou 33 links históricos com destino local identificável. Os índices derivados foram regenerados após os movimentos. Os dois guias do ecossistema Python também tiveram seus links para o BATCH-071 ajustados.
 
-A varredura de destinos relativos em Markdown encontrou zero links órfãos introduzidos pelo lote. A meta global de zero continua pendente: 166 ocorrências preexistentes foram preservadas, sendo 164 em 11 snapshots `archive/original/` e duas em `04-memory-engineering-execution.md`. O arquivo de execução está saudável, com 10.329 bytes e 57 linhas, e seu SHA-256 permanece igual ao inicial. [Detalhamento no REP-007](../../reports/REP-007-batch086-skills-and-memory-links.md).
+A varredura de destinos relativos em Markdown encontrou zero links órfãos introduzidos pelo lote. A meta global de zero continua pendente: 166 ocorrências preexistentes foram preservadas, sendo 164 em 11 snapshots `archive/original/` e duas em `04-memory-engineering-execution.md`. O arquivo de execução está saudável, com 10.329 bytes e 57 linhas, e seu SHA-256 permanece igual ao inicial. [Detalhamento no REP-007](../../reports/archive/REP-007-batch086-skills-and-memory-links.md).
 
 ## Handoff supervisionado
 

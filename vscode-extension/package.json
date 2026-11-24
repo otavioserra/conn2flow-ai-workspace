@@ -54,6 +54,10 @@
         {
           "id": "conn2flow-explorer",
           "name": "%view.mddExplorer%"
+        },
+        {
+          "id": "conn2flow-mdd-hub",
+          "name": "%view.mddHub%"
         }
       ]
     },
@@ -609,6 +613,48 @@
         "title": "%command.conn2flow.mdd.syncConflicts%",
         "category": "Conn2Flow MDD",
         "icon": "$(diff)"
+      },
+      {
+        "command": "conn2flow.mddHub.refresh",
+        "title": "%command.conn2flow.mddHub.refresh%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "conn2flow.mddHub.start",
+        "title": "%command.conn2flow.mddHub.start%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(debug-start)"
+      },
+      {
+        "command": "conn2flow.mddHub.stop",
+        "title": "%command.conn2flow.mddHub.stop%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "conn2flow.mddHub.restart",
+        "title": "%command.conn2flow.mddHub.restart%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "conn2flow.mddHub.triageFeedback",
+        "title": "%command.conn2flow.mddHub.triageFeedback%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(law)"
+      },
+      {
+        "command": "conn2flow.mddHub.openFeedback",
+        "title": "%command.conn2flow.mddHub.openFeedback%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "conn2flow.mddHub.toggleGithub",
+        "title": "%command.conn2flow.mddHub.toggleGithub%",
+        "category": "Conn2Flow MDD Hub",
+        "icon": "$(github)"
       }
     ],
     "configuration": {
@@ -668,6 +714,14 @@
           "type": "string",
           "default": "",
           "description": "%config.mddExecutable.description%"
+        },
+        "conn2flow.mddHub.port": {
+          "type": "number",
+          "default": 8765,
+          "minimum": 1,
+          "maximum": 65535,
+          "scope": "window",
+          "description": "%config.mddHubPort.description%"
         }
       }
     },
@@ -687,6 +741,49 @@
           "command": "conn2flow.refreshTree",
           "when": "view == conn2flow-explorer",
           "group": "navigation@3"
+        },
+        {
+          "command": "conn2flow.mddHub.toggleGithub",
+          "when": "view == conn2flow-mdd-hub",
+          "group": "navigation@1"
+        },
+        {
+          "command": "conn2flow.mddHub.refresh",
+          "when": "view == conn2flow-mdd-hub",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "conn2flow.mddHub.start",
+          "when": "view == conn2flow-mdd-hub && viewItem == mddHubServer.stopped",
+          "group": "inline@1"
+        },
+        {
+          "command": "conn2flow.mddHub.restart",
+          "when": "view == conn2flow-mdd-hub && viewItem == mddHubServer.running",
+          "group": "inline@1"
+        },
+        {
+          "command": "conn2flow.mddHub.stop",
+          "when": "view == conn2flow-mdd-hub && viewItem == mddHubServer.running",
+          "group": "inline@2"
+        },
+        {
+          "command": "conn2flow.mddHub.triageFeedback",
+          "when": "view == conn2flow-mdd-hub && viewItem == mddHubFeedback.triage",
+          "group": "inline@1"
+        },
+        {
+          "command": "conn2flow.mddHub.openFeedback",
+          "when": "view == conn2flow-mdd-hub && viewItem =~ /^mddHubFeedback\\./",
+          "group": "navigation@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "conn2flow.mddHub.openFeedback",
+          "when": "false"
         }
       ]
     }

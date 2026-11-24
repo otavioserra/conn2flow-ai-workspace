@@ -112,5 +112,14 @@
   "command.conn2flow.release.openActions": "🐙 Abrir GitHub Actions",
   "view.mddExplorer": "MDD Explorer",
   "command.conn2flow.mdd.syncConflicts": "Choques de Skills MDD",
-  "config.mddExecutable.description": "Caminho do executável MDD. Vazio descobre o ambiente virtual da matriz e depois mdd no PATH. Execução exige Workspace Trust."
+  "config.mddExecutable.description": "Caminho do executável MDD. Vazio descobre o ambiente virtual da matriz e depois mdd no PATH. Execução exige Workspace Trust.",
+  "command.conn2flow.mddHub.refresh": "Atualizar Status do MDD Hub",
+  "command.conn2flow.mddHub.start": "Iniciar Servidor MDD",
+  "command.conn2flow.mddHub.stop": "Parar Servidor MDD",
+  "command.conn2flow.mddHub.restart": "Reiniciar Servidor MDD",
+  "command.conn2flow.mddHub.triageFeedback": "Triar Feedback de Skill",
+  "command.conn2flow.mddHub.openFeedback": "Abrir Feedback de Skill",
+  "command.conn2flow.mddHub.toggleGithub": "Alternar GitHub Issues na Lista de Feedbacks",
+  "view.mddHub": "MDD Hub & Controle de Skills",
+  "config.mddHubPort.description": "Porta local (127.0.0.1) usada pelo servidor SSE do MDD Client iniciado pela aba MDD Hub."
 }

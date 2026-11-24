@@ -254,7 +254,7 @@ export function createReleaseDraftSuggestion(
   const notes = recentCommits.length > 0
     ? recentCommits.map(commit => `- ${commit}`).join('\n')
     : `- ${activeBatch || tag}`;
-  const batchLine = activeBatch ? `\n\nSDD: ${activeBatch}` : '';
+  const batchLine = activeBatch ? `\n\nMDD: ${activeBatch}` : '';
   return {
     product,
     increment,

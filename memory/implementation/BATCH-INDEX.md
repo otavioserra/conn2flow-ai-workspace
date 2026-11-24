@@ -53,6 +53,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entregas anteriores
 
+REQ-090 / BATCH-092 (`ready-for-review`): Fase 3 do ARCH-018. Aba MDD Hub & Skills Control na extensão (servidores + triagem de feedbacks), fila serial no stdio do hub, tools de feedback no MCP Python, `docs/` em 48 skills, poda do checklist e, no Core via worktree isolada já removida, `ai:archive-memory` com `reports/` e `--status` publicado em `origin/main` (`6e146f7aa8b6`). [Relatório](batch-092.md).
+
 REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](batch-091.md).
 
 REQ-088 / BATCH-090 (`ready-for-review`): Fase 1 do ARCH-018 só na matriz. Cinco personas `c2f-persona-*` com aliases no sync, 48 skills, índice de skills, `subskills/` com piloto Mercado Pago e `memory/learnings/`. Auditoria PASS e pytest 130/130. [Relatório](batch-090.md).

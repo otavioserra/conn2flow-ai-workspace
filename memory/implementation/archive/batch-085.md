@@ -11,7 +11,7 @@ summary_medium: "Skills PT-BR/EN e hashes atualizados. Core resolve IDs YAML e s
 
 # BATCH-085 — Ajustes do REP-005 e integração isolada das skills
 
-Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`. REQ-083 aprovada, Categoria B, topologia dupla, autonomia supervisionada. A concorrência nas árvores principais foi autorizada como motivo para o isolamento no [REQ-083](../../human-requests/req-083.md).
+Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`. REQ-083 aprovada, Categoria B, topologia dupla, autonomia supervisionada. A concorrência nas árvores principais foi autorizada como motivo para o isolamento no [REQ-083](../../human-requests/archive/req-083.md).
 
 ## Live Todo List
 

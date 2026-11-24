@@ -14,7 +14,7 @@ sources:
 
 ## Fundação entregue
 
-A matriz possui memory/, política de quatro camadas, índices hierárquicos, nós de arquivo dual e **45 skills canônicas**, incluindo c2f-ai-features. O MCP Hub TypeScript implementa execução de comandos, registros de tarefas, recibos e eventos de sessão. O painel VS Code suporta controles de topologia/autonomia, escopo de repositório, observação de tarefas e choques de entrega.
+A matriz possui memory/, política de quatro camadas, índices hierárquicos, nós de arquivo dual e **48 skills canônicas**, incluindo c2f-ai-features. O MCP Hub TypeScript implementa execução de comandos, registros de tarefas, recibos e eventos de sessão. O painel VS Code suporta controles de topologia/autonomia, escopo de repositório, observação de tarefas e choques de entrega.
 
 ## Frentes aprovadas
 

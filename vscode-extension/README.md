@@ -6,8 +6,8 @@ Painel visual e interativo integrado à barra lateral do VS Code para acelerar o
 
 ## 🌟 Recursos Principais
 
-### 1. 🏛️ SDD & Planejamento
-Acesso ao SDD do escopo realmente selecionado, com preferência persistida, preview MPE controlado, navegadores de requisições/lotes/decisões/handoffs e backlog filtrável com alerta de divergência.
+### 1. 🏛️ MDD & Planejamento
+Acesso à memória MDD (`memory/`, com fallback para `sdd/` em projetos legados) do escopo realmente selecionado, com preferência persistida, preview MPE controlado, navegadores de requisições/lotes/decisões/handoffs e backlog filtrável com alerta de divergência.
 
 ### 2. 🐳 Docker & Logs em Tempo Real
 Controle e depuração ágil dos containers de desenvolvimento local:
@@ -32,12 +32,18 @@ Gerenciamento de projetos satélites locais e remotos:
 
 ### 5. 📚 AI Workspace Hub
 Central de comando dos 5 kits de IA e governança de agentes:
-- **Sincronizar Skills (1-Click)**: Propaga e alinha as 36 skills em todos os repositórios conectados.
-- **Validar 36 Skills (ai:sync)**: Audita rigorosamente os blocos de contrato nos 5 kits de IA.
+- **Sincronizar Skills (1-Click)**: Propaga e alinha as 48 skills em todos os repositórios conectados.
+- **Validar Skills (ai:sync)**: Audita rigorosamente os blocos de contrato nos 5 kits de IA.
 - **Abrir Playbook Multi-Agentes**: Acesso imediato ao guia prático de alternância entre IDEs e ferramentas.
-- **Abrir Catálogo de Skills**: Documentação completa das 29 Core Skills e 7 Skills SDD.
+- **Abrir Catálogo de Skills**: Documentação completa das 48 skills canônicas (Core, MDD e personas).
 
-### 6. 🌐 Interface e execução segura
+### 6. 🛰️ MDD Hub & Skills Control (aba dedicada)
+Aba própria no painel Conn2Flow, que atua só como cliente visual: as regras ficam no `mdd-client` e no `conn2flow-hub`.
+- **Servidores**: status `RUNNING`/`STOPPED` com PID (e porta, no MDD Client) e ações Iniciar, Parar e Reiniciar para o **MDD Client** (`mdd daemon --mcp --transport sse`, porta `conn2flow.mddHub.port`, padrão 8765) e o **Conn2Flow MCP Hub** (`node mcp-hub/dist/index.js`, confirmado por handshake MCP `initialize`). Parada por PID; no Windows, `taskkill /T /F` encerra a árvore do processo.
+- **Feedbacks & Curadoria**: lista `mdd feedback list --json` agrupada por veredito (PENDING primeiro, ordenado por severidade), com opção de incluir GitHub Issues; a triagem invoca `mdd feedback triage <id> --verdict ... --reason ...` e recarrega a árvore. O painel nunca edita os arquivos `FB-XXX`.
+- Exige Workspace Trust para iniciar/parar servidores e triar.
+
+### 7. 🌐 Interface e execução segura
 
 - Idioma automático pelo VS Code ou sobrescrita `pt-BR`/`en`.
 - Títulos da Paleta de Comandos localizados por `package.nls`.
@@ -50,7 +56,7 @@ Central de comando dos 5 kits de IA e governança de agentes:
 ## 📊 Itens da Barra de Status (Status Bar)
 
 - **`$(server) Conn2Flow Docker`**: Indicador de prontidão do ambiente Docker local.
-- **`$(git-commit) SDD: REQ-XXX`**: Exibe dinamicamente o número da requisição ativa em desenvolvimento. Clicar no item abre diretamente o arquivo correspondente.
+- **`$(git-commit) MDD: REQ-XXX`**: Exibe dinamicamente o número da requisição ativa em desenvolvimento. Clicar no item abre diretamente o arquivo correspondente.
 
 ---
 

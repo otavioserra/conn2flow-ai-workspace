@@ -22,7 +22,7 @@ def test_tools_use_real_core_and_reject_traversal(tmp_path, monkeypatch):
         return structured
 
     async def check():
-        assert len(await server.list_tools()) == 9
+        assert len(await server.list_tools()) == 11
         assert (await call("mdd_init"))["created"]
         assert not (await call("mdd_init"))["created"]
         health = await call("mdd_status")
@@ -138,6 +138,7 @@ def test_real_stdio_handshake_and_tools(tmp_path, command):
                 assert {t.name for t in tools.tools} == {
                     "mdd_status", "mdd_init", "mdd_sync", "mdd_index", "mdd_meta_get",
                     "mdd_meta_set", "mdd_compact", "mdd_report", "mdd_review_inbox",
+                    "submit_skill_feedback", "list_skill_feedback",
                 }
                 result = await session.call_tool("mdd_status", {})
                 assert not result.isError and result.structuredContent["healthy"]
@@ -171,7 +172,7 @@ def test_real_sse_handshake(tmp_path):
             async with sse_client(url + "/sse") as (read, write):
                 async with ClientSession(read, write) as session:
                     await session.initialize()
-                    assert len((await session.list_tools()).tools) == 9
+                    assert len((await session.list_tools()).tools) == 11
                     result = await session.call_tool("mdd_status", {})
                     assert result.structuredContent["healthy"]
         try:

@@ -314,34 +314,60 @@ class McpServer {
                 };
         }
     }
-    startStdio() {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-            terminal: false
-        });
-        rl.on('line', async (line) => {
-            if (!line.trim())
-                return;
-            try {
-                const request = JSON.parse(line);
-                const response = await this.handleRequest(request);
-                if (response.id !== undefined || response.error !== undefined) {
-                    process.stdout.write(JSON.stringify(response) + '\n');
+    /**
+     * Processes one stdin line and returns the serialized response (or null for
+     * notifications/blank lines). Parse errors become JSON-RPC -32700 replies.
+     */
+    async processLine(line) {
+        if (!line.trim())
+            return null;
+        let request;
+        try {
+            request = JSON.parse(line);
+        }
+        catch (err) {
+            return JSON.stringify({
+                jsonrpc: '2.0',
+                id: null,
+                error: {
+                    code: -32700,
+                    message: `Parse error: ${err.message}`
                 }
-            }
-            catch (err) {
-                process.stdout.write(JSON.stringify({
-                    jsonrpc: '2.0',
-                    id: null,
-                    error: {
-                        code: -32700,
-                        message: `Parse error: ${err.message}`
-                    }
-                }) + '\n');
-            }
+            });
+        }
+        const response = await this.handleRequest(request);
+        if (response.id !== undefined || response.error !== undefined) {
+            return JSON.stringify(response);
+        }
+        return null;
+    }
+    /**
+     * Starts the stdio transport. Lines are handled through a serial queue
+     * (REQ-090 / REP-011): each request finishes, and its response is written,
+     * before the next line starts, so `submit_skill_feedback` followed by
+     * `list_skill_feedback` on the same stdin always observes the write.
+     */
+    startStdio(input = process.stdin, output = process.stdout) {
+        const rl = readline.createInterface({ input, terminal: false });
+        let queue = Promise.resolve();
+        rl.on('line', (line) => {
+            queue = queue.then(async () => {
+                try {
+                    const serialized = await this.processLine(line);
+                    if (serialized !== null)
+                        output.write(serialized + '\n');
+                }
+                catch (err) {
+                    output.write(JSON.stringify({
+                        jsonrpc: '2.0',
+                        id: null,
+                        error: { code: -32603, message: `Internal error: ${err?.message ?? String(err)}` }
+                    }) + '\n');
+                }
+            });
         });
         process.stderr.write('[MCP Hub] Conn2Flow MCP Server running on stdio.\n');
+        return new Promise(resolve => rl.on('close', () => { void queue.then(() => resolve()); }));
     }
 }
 exports.McpServer = McpServer;

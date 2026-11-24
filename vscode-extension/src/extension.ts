@@ -20,6 +20,9 @@ import { ReleaseManager } from './providers/releaseManager';
 import { HubTaskWatcher } from './providers/hubTaskWatcher';
 import { ProjectConflictsManager } from './providers/projectConflictsManager';
 import { MddConflictsManager } from './providers/mddConflictsManager';
+import { MddHubManager } from './providers/mddHubManager';
+import { MddHubTreeItem, MddHubTreeProvider } from './providers/mddHubTreeProvider';
+import { MddServerId } from './mddHubPolicy';
 import {
   getPreviewCloseReason,
   isTargetMpePreview,
@@ -47,6 +50,38 @@ export function activate(context: vscode.ExtensionContext) {
   const treeProvider = new Conn2FlowTreeProvider(context);
   const commandRunner = new CommandRunner();
   vscode.window.registerTreeDataProvider('conn2flow-explorer', treeProvider);
+
+  // MDD Hub & Skills Control (REQ-090): visual client of mdd-client and conn2flow-hub.
+  context.subscriptions.push(MddHubManager.initialize(context));
+  const mddHubProvider = new MddHubTreeProvider();
+  const resolveServer = async (item?: MddHubTreeItem): Promise<MddServerId | undefined> =>
+    item?.serverId || await MddHubManager.pickServer(LocalizationManager.t('mddHub.selectServer'));
+  const runServerAction = async (item: MddHubTreeItem | undefined, action: (id: MddServerId) => Promise<void>) => {
+    const id = await resolveServer(item);
+    if (!id) return;
+    const running = action(id);
+    mddHubProvider.repaint();
+    await running;
+    await mddHubProvider.refresh();
+  };
+  context.subscriptions.push(
+    vscode.window.registerTreeDataProvider('conn2flow-mdd-hub', mddHubProvider),
+    vscode.commands.registerCommand('conn2flow.mddHub.refresh', () => mddHubProvider.refresh()),
+    vscode.commands.registerCommand('conn2flow.mddHub.start', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.start(id))),
+    vscode.commands.registerCommand('conn2flow.mddHub.stop', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.stop(id))),
+    vscode.commands.registerCommand('conn2flow.mddHub.restart', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.restart(id))),
+    vscode.commands.registerCommand('conn2flow.mddHub.triageFeedback', async (item?: MddHubTreeItem) => {
+      if (await MddHubManager.triage(item?.feedback)) await mddHubProvider.refresh();
+    }),
+    vscode.commands.registerCommand('conn2flow.mddHub.openFeedback', async (item?: MddHubTreeItem) => {
+      if (item?.feedback) await MddHubManager.open(item.feedback);
+    }),
+    vscode.commands.registerCommand('conn2flow.mddHub.toggleGithub', async () => {
+      await MddHubManager.toggleGithub();
+      await mddHubProvider.refresh();
+    })
+  );
+  void mddHubProvider.refresh();
 
   // Status Bar Items
   dockerStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
@@ -482,7 +517,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }),
 
-    // SDD Commands & Interactive Browsers
+    // MDD Commands & Interactive Browsers (command IDs keep the legacy sdd prefix)
     vscode.commands.registerCommand('conn2flow.mdd.syncConflicts', () => MddConflictsManager.open()),
     vscode.commands.registerCommand('conn2flow.sdd.selectScope', async () => {
       // Trocar de escopo troca o CURRENT.md de referência: recarrega os modos

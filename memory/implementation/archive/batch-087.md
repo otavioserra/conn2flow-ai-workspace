@@ -14,7 +14,7 @@ summary_medium: "Categoria B, somente matriz. Sem commit, push, deploy ou propag
 
 # BATCH-087 — Governança operacional de quatro skills e micro-ajustes do REP-007
 
-[REQ-085](../human-requests/req-085.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-085](../../human-requests/req-085.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 
@@ -32,7 +32,7 @@ summary_medium: "Categoria B, somente matriz. Sem commit, push, deploy ou propag
 | --- | --- |
 | `node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace` | 64 arquivos gravados. Seis avisos de drift esperados até o reconhecimento dos hashes. |
 | `--update-translation-hash <skill> en --translator mdd-agent` (6 skills) | 6 entradas atualizadas em `scripts/skills/translated.json`. |
-| Auditoria da matriz | **PASS**, 19 alvos, 542 cópias iguais, 312 traduções, 0 divergências, 0 drift. [JSON](../../completions/skills-audit.json). |
+| Auditoria da matriz | **PASS**, 19 alvos, 542 cópias iguais, 312 traduções, 0 divergências, 0 drift. [JSON](../../../completions/skills-audit.json). |
 | `pytest -q tools/mdd-client/tests` (via `.venv-mdd`) | **119 aprovados em 54,73 s**, executado após os hashes. |
 | Git | Nenhum commit, push nem stage. `FEAT-015` intacto e não rastreado. |
 

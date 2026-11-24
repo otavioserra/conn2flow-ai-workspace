@@ -112,5 +112,14 @@
   "command.conn2flow.release.openActions": "Open GitHub Actions",
   "view.mddExplorer": "MDD Explorer",
   "command.conn2flow.mdd.syncConflicts": "MDD Skill Conflicts",
-  "config.mddExecutable.description": "MDD executable path. Empty discovers the matrix virtual environment, then mdd on PATH. Execution requires Workspace Trust."
+  "config.mddExecutable.description": "MDD executable path. Empty discovers the matrix virtual environment, then mdd on PATH. Execution requires Workspace Trust.",
+  "command.conn2flow.mddHub.refresh": "Refresh MDD Hub Status",
+  "command.conn2flow.mddHub.start": "Start MDD Server",
+  "command.conn2flow.mddHub.stop": "Stop MDD Server",
+  "command.conn2flow.mddHub.restart": "Restart MDD Server",
+  "command.conn2flow.mddHub.triageFeedback": "Triage Skill Feedback",
+  "command.conn2flow.mddHub.openFeedback": "Open Skill Feedback",
+  "command.conn2flow.mddHub.toggleGithub": "Toggle GitHub Issues in Feedback List",
+  "view.mddHub": "MDD Hub & Skills Control",
+  "config.mddHubPort.description": "Local port (127.0.0.1) used by the MDD Client SSE server started from the MDD Hub view."
 }
