@@ -1,8 +1,8 @@
 {
   "en": {
     "c2f-agent-visual-inspection": {
-      "source_sha256": "9ec190baace2e54cd952827267768b5ed50450dc4c1a7a8a6a7d5bc58ee91f77",
-      "translated_at": "2026-11-05",
+      "source_sha256": "2fdc3529edb94888af65b32b7fa5bc13383989e6b077f47d28516eab8ec809f7",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-ai-features": {
@@ -11,8 +11,8 @@
       "translator": "mdd-agent"
     },
     "c2f-architect-master": {
-      "source_sha256": "4588d3b3a2ab549e9e9722e9c9becce2549f160b04bd3a336306c1d2582d2337",
-      "translated_at": "2026-11-21",
+      "source_sha256": "70415589667157c3d594b8befbcfdeae60c227b3053c9927cc980592fbe1762a",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-database-operations": {
@@ -36,13 +36,13 @@
       "translator": "mdd-agent"
     },
     "c2f-documentation": {
-      "source_sha256": "87a002e3b32606ff28373dc116263fc2a8070b704d5abe705743e7287706f47d",
-      "translated_at": "2026-11-23",
+      "source_sha256": "fa1fdc97e76940831ee75e84df789221d70fa78f0b592b2ac8e5416e28cf8334",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-documentation-governance": {
-      "source_sha256": "0c3d53cc2fcd3b20bc7f47cc6ee5458a06de29247738cdb8553d25875aed144d",
-      "translated_at": "2026-11-05",
+      "source_sha256": "2365ffe07e6ca5174b5e75ac7a1dfbec9abe46db7b10a3db5d4efffdc5d89a01",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-environment-configuration": {
@@ -51,8 +51,8 @@
       "translator": "mdd-agent"
     },
     "c2f-executor-agent": {
-      "source_sha256": "ea7ccbc35eb4ca83afc77b46bfbb734e76fcd8a5addefb0ac082b1598b8284d3",
-      "translated_at": "2026-11-23",
+      "source_sha256": "a82dd865caeed5e7cf6f735c918d1cdc9229389fb264695ba567927f5ceda440",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-gd-image-safety": {
@@ -71,8 +71,8 @@
       "translator": "mdd-agent"
     },
     "c2f-hooks-system": {
-      "source_sha256": "edbbdef4797ef680fde4139bbfd8bdad5ecc5c526e46409a86b501f2a2ce5db6",
-      "translated_at": "2026-11-05",
+      "source_sha256": "0904e8f7252f3e31bcf4d878fd6fab5a8aa183a9186dfbf774ba4f4f1b51da1d",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-html-css-pages-and-components": {
@@ -116,8 +116,8 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "6bac1888c9e6a6b2c2dfa092a7740ecea6d660b44854e5e67526187c44246d52",
-      "translated_at": "2026-11-23",
+      "source_sha256": "3bd424d85cf27ab2488f05382d06689a6ec9503818591e9c1af7bba796fc53e4",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-multilingual-system": {
@@ -131,8 +131,8 @@
       "translator": "mdd-agent"
     },
     "c2f-payment-gateways": {
-      "source_sha256": "7d01ed9cf4f74766594f6c2a2cce68b53b7de9e93ae08f1b8b43c9de4d43ec31",
-      "translated_at": "2026-11-05",
+      "source_sha256": "149af3e51905826b1f2e1cf5625dc2d833376db86b0b4adaecaae16c2b272a1b",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-plugin-architecture": {
@@ -161,13 +161,13 @@
       "translator": "mdd-agent"
     },
     "c2f-reviewer-agent": {
-      "source_sha256": "20947bd29346b24ffe6c8297b6cf7b161ecf3487e4d8678ef6c6694231658b82",
-      "translated_at": "2026-11-05",
+      "source_sha256": "45f4f3ed1405fd2ff23ce50c3149225387e0b6cf764d6ca89f59543fb6de3db3",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "e171432a2d31faf94ddd682242824c87f0a0f5f40b506a6fc652f5c3dc3061e7",
-      "translated_at": "2026-11-23",
+      "source_sha256": "7ee81e21b6ec4c0976c64c642f97dae01676b27bae2a9511aeb0a8fed2b87442",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-system-tasks": {
@@ -181,8 +181,8 @@
       "translator": "mdd-agent"
     },
     "c2f-tailwind-module-migration": {
-      "source_sha256": "f12639a1f4c8729277046d858066b5eecaa1ca4a00c4c126392f806b4192cd1f",
-      "translated_at": "2026-11-05",
+      "source_sha256": "5603aecd495b8ac0762af4c4e1fe65022c4c69b8ea98e735b63c9d9c1c27a291",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-variables-system": {
@@ -196,8 +196,8 @@
       "translator": "mdd-agent"
     },
     "continue-mdd-batch": {
-      "source_sha256": "2958b5ec332e2eabcb1c64716feaf4c7dc8e1cf7d29937fe357b8dd39cdaa23b",
-      "translated_at": "2026-11-05",
+      "source_sha256": "ea7dfaa58ec113d28c5983177af484150932320abe451c480e0ff9206da266a0",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "mdd-memory-gardening": {
@@ -211,13 +211,13 @@
       "translator": "mdd-agent"
     },
     "project-validation": {
-      "source_sha256": "486d5dae6f54436cb613c8f1f8625145af5476afb5e1b3d765fcb6553f871195",
-      "translated_at": "2026-11-05",
+      "source_sha256": "c1b90235082cf866fb150dd1005b6677fc9a2c3376136eb29b1ef3d7ec9dfe77",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "raise-spec-change": {
-      "source_sha256": "d49d2a3e8dc7924936089d033ab346abc83e16db8549c8b149c55aed7fa666cf",
-      "translated_at": "2026-11-05",
+      "source_sha256": "297e054c868b09bdb84679e15be31591b7b982b104ba874921a6ee86c5713da5",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "review-current-batch": {
@@ -226,8 +226,8 @@
       "translator": "mdd-agent"
     },
     "start-mdd-slice": {
-      "source_sha256": "235c3c129b3e46258d7dc7d09bed9f9b04dbbe7d8f41a0c83ed803c50171d651",
-      "translated_at": "2026-11-05",
+      "source_sha256": "5089d9fb4efc8727a4612d105dbf60c2f0435168a63f27d1c0231b6f3d516116",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     }
   }

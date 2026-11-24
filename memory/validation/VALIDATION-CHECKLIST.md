@@ -1,5 +1,15 @@
 # Validation Checklist
 
+## BATCH-089 — REQ-087 (2026-11-24)
+
+- [x] Quatro melhorias operacionais e micro-ajustes do REP-008 em PT-BR/EN: `c2f-hooks-system`, `c2f-payment-gateways` (Core conferido em modo somente leitura, na branch REQ-305), `c2f-architect-master` + `STARTER-PROMPTS.md`, `c2f-shell-and-windows-traps` e `c2f-multilingual-skills-governance`.
+- [x] Saneamento SDD→MDD nas 13 skills: de 43 para 7 linhas em PT-BR e de 43 para 8 em EN. Restam apenas o fallback legado e o comando `ai:archive-sdd`.
+- [x] MDD como evolução do SDD em `00-baseline-architecture.md`, `02-policy.md` e nos boilerplates MDD PT-BR/EN.
+- [x] Sync da matriz e 15 hashes EN. Auditoria PASS em 19 alvos, com 0 divergências e 0 drift. Pytest 119/119 depois dos hashes.
+- [x] Lote e FEAT-017 em `ready-for-review`, índices MDD atualizados e FEAT-015 fora do stage. [Lote](../implementation/batch-089.md) · [Relatório](../reports/REP-009-batch089-phase0-skills-and-sdd-cleanup.md).
+- [ ] Decisão do Arquiteto sobre o arquivamento da Regra dos 10 (11 lotes ativos).
+- [ ] Homologação humana e commit/push seletivos da matriz.
+
 ## BATCH-088 — REQ-086 (2026-11-23)
 
 - [x] Sete skills atualizadas em PT-BR/EN. A leitura do Core confirmou o comportamento de `APP_ENV`.

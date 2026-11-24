@@ -13,10 +13,10 @@ user-invocable: false
 
 ## Alive reference
 
-- Full implementation: `admin-paginas` (commits `7cf44d27` and `435fd83c`, `sdd/implementation/BATCH-227.md` report).
+- Full implementation: `admin-paginas` (commits `7cf44d27` and `435fd83c`, `memory/implementation/archive/BATCH-227.md` report).
 - Native Tailwind Module: `perfil-usuario`.
 - Library: `gestor/assets/interface/controles.js` and `gestor/bibliotecas/controles.php` headers.
-- Contract tested: `tests/Unit/PHP/HtmlEditorTailwindReq219Test.php`. Model browser script: `conn2flow-site/sdd/validation/core/req219-controles-e2e.cjs`.
+- Contract tested: `tests/Unit/PHP/HtmlEditorTailwindReq219Test.php`. Model browser script: `conn2flow-site/memory/validation/core/req219-controles-e2e.cjs`.
 
 ## Step by step per module
 
@@ -38,7 +38,7 @@ user-invocable: false
 - project Pipeline: a round of `project:deploy <id>`; check assets mined on delivery. `project:update-all` only for mixed batch Core + project.
 - Minimum validation: PHP contract test (original x variable, metadata, HTML without `class="ui `), Vitest move on JS, Playwright script on Lab (without Fomantic asset in the main document — `request.frame() === page.mainFrame()` —, save without 403, 390 px without scrolling, no visible `.ui.modal` loose) and the same Fomantic control module without change.
 - Shared Lab: beam with `mkdir C:/Users/otavi/OneDrive/Documentos/GIT/.c2f-lab-lock` (failed = another agent using; wait), `git merge origin/main` in your branch before `project:deploy conn2flow-site-local` (rode 2 times when changing JS) and script, and release with `rmdir` at the end.
-- Human pendency goes to `conn2flow-site/sdd/PENDENCIAS-HUMANAS.md`, item of the unique script of the req-219.
+- Human pendency goes to `conn2flow-site/memory/PENDENCIAS-HUMANAS.md`, item of the unique script of the req-219.
 
 ## Main scope and late boot by hooks (BL-028)
 

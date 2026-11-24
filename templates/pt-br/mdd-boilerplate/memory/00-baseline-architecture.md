@@ -1,5 +1,8 @@
 # 00 Baseline Architecture
 
+> [!IMPORTANT]
+> **MDD (Memory Driven Development) é a evolução direta do SDD (Spec-Driven Development)**: preserva integralmente toda a disciplina de especificações normativas, contratos, requisições atômicas e validação que os modelos de IA já dominam no SDD, ampliando-a com memória persistente em 4 camadas, indexação hierárquica (`index.md`), compactação dual (`compacted`/`original`) e retroalimentação contínua de aprendizados.
+
 ## Objetivo
 
 Registre aqui o estado aprovado do legado antes de mudanças estruturais importantes.

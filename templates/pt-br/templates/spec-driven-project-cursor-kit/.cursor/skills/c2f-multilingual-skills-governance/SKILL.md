@@ -29,7 +29,7 @@ node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report comp
 
 ## Escrita seletiva e variantes customizadas
 
-`--apply <skills>` restringe a escrita às skills selecionadas. A auditoria continua inspecionando o catálogo completo dos destinos selecionados e pode apontar divergências preexistentes em outras skills.
+`--apply <skills>` restringe a escrita às skills selecionadas. A auditoria continua inspecionando o catálogo completo dos destinos selecionados e pode apontar divergências preexistentes em outras skills. Por isso o código de saída `1` pode aparecer depois que a escrita seletiva terminou: valide o escopo filtrando as skills selecionadas no relatório JSON (`--report`) antes de concluir que a escrita falhou.
 
 Revise o diff da variante em relação à fonte e incorpore a atualização preservando a customização legítima. Reconheça o novo par de hashes com `mdd sync --customize <kit>/skills/<skill>/SKILL.md --matrix <matriz> --path <destino>` e repita a auditoria.
 

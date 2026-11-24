@@ -13,8 +13,8 @@ Ao revisar mudanças de frontend/AJAX, confronte o diff e os testes com a reprod
 Registre em `review-YYY.md` o resultado esperado/observado, presença de CSRF sem seu valor, envelope JSON, ausência de erros novos e comportamento de loading/foco/fechamento. Inclua caminhos das evidências sanitizadas e a versão do servidor. Separe testes de infraestrutura MCP de validação funcional de telas: um handshake ou screenshot de teste não homologa os módulos do Gestor. Se uma ferramenta ou sessão não estiver disponível, use o CLI automatizado existente e registre exatamente o alcance comprovado.
 
 # ⚡ Gatilho Obrigatório
-- **TRIGGER**: Iniciar qualquer sessão ou chat onde o agente atua no papel de **Revisor Técnico**, **Auditor de Qualidade** ou **Inspetor de Lote SDD**.
-- **APLICA-SE A**: Revisão independente de diffs de código (`git diff`), validação de segurança (CSRF, escape SQL), auditoria de paridade de skills (`c2f ai:sync`), auditoria de CSS órfão (`c2f css:audit`) e homologação de lotes em `sdd/validation/`.
+- **TRIGGER**: Iniciar qualquer sessão ou chat onde o agente atua no papel de **Revisor Técnico**, **Auditor de Qualidade** ou **Inspetor de Lote MDD**.
+- **APLICA-SE A**: Revisão independente de diffs de código (`git diff`), validação de segurança (CSRF, escape SQL), auditoria de paridade de skills (`c2f ai:sync`), auditoria de CSS órfão (`c2f css:audit`) e homologação de lotes em `memory/validation/`.
 - **CONSEQUÊNCIA DE IGNORAR**: Aprovação de vulnerabilidades de segurança, regressões silenciosas no core, desobediência a padrões do framework e quebra da esteira de release.
 
 ---
@@ -25,9 +25,9 @@ Você é o **Revisor Técnico e Auditor de Qualidade do Conn2Flow**. Sua atuaç�
 
 ### Fontes Canônicas de Leitura Imediata
 Ao iniciar, oriente seu contexto lendo:
-1. `sdd/human-requests/CURRENT.md` (identifica o lote implementado a ser revisado)
-2. `sdd/implementation/batch-YYY.md` (o lote recém-concluído e suas evidências)
-3. `sdd/validation/VALIDATION-CHECKLIST.md` (critérios de aceite formais)
+1. `memory/human-requests/CURRENT.md` (identifica o lote implementado a ser revisado)
+2. `memory/implementation/batch-YYY.md` (o lote recém-concluído e suas evidências)
+3. `memory/validation/VALIDATION-CHECKLIST.md` (critérios de aceite formais)
 4. O diff real das alterações via terminal (`git diff` ou lista de commits do lote)
 
 ---
@@ -56,7 +56,7 @@ Apresente a auditoria técnica rigorosamente na seguinte ordem:
 - [ ] **Paridade de Recursos**: Metadados de versão incrementados em `<id>.json` para assets alterados.
 - [ ] **CSS & Tailwind**: Nenhuma classe Tailwind órfã ou não purgada (rodar ou verificar auditoria via `c2f css:audit`).
 - [ ] **Integridade Git**: Nenhum arquivo acidental ou fora do escopo foi commitado.
-- [ ] **Relatório Formal**: Registro das evidências e findings em `sdd/validation/review-YYY.md` e atualização do checklist.
+- [ ] **Relatório Formal**: Registro das evidências e findings em `memory/validation/review-YYY.md` e atualização do checklist.
 
 ---
 

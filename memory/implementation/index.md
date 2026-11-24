@@ -11,7 +11,8 @@
 | BATCH-085 | Ajustes do REP-005 e integração isolada das skills | Matriz e paridade PHP validadas; sete satélites publicados e dois sem origin; worktrees removidas. | [source](<batch-085.md>) | HOMOLOGATED |
 | BATCH-086 | Governança operacional de três skills e Regra dos 10 Ativos | Atualiza três skills bilíngues e arquiva 12 registros com reescrita de links na matriz. | [source](<batch-086.md>) | HOMOLOGATED |
 | BATCH-087 | Governança operacional de quatro skills e micro-ajustes do REP-007 | Atualiza seis skills PT-BR/EN na matriz, com sync, hashes, auditoria PASS e pytest 119/119. | [source](<batch-087.md>) | HOMOLOGATED |
-| BATCH-088 | Sete skills bilíngues na matriz e publicação isolada de onze skills | Sete skills bilíngues validadas na matriz e onze skills publicadas em sete satélites. | [source](<batch-088.md>) | ready-for-review |
+| BATCH-088 | Sete skills bilíngues na matriz e publicação isolada de onze skills | Sete skills bilíngues validadas na matriz e onze skills publicadas em sete satélites. | [source](<batch-088.md>) | HOMOLOGATED |
+| BATCH-089 | Fase 0 do ARCH-018: quatro melhorias operacionais, saneamento SDD→MDD e MDD como evolução do SDD | Quinze skills PT-BR/EN revisadas na matriz, jargão SDD reduzido de 43 para 7 linhas e MDD explicitado como evolução do SDD. | [source](<batch-089.md>) | ready-for-review |
 
 ## Directories
 

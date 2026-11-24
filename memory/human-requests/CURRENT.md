@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
 * **Ponteiro Ativo**: [req-087.md](req-087.md) (`REQ-087`)
-* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
-* **Lote Relacionado**: `BATCH-089` ([batch-089.md](../implementation/batch-089.md), a criar/preencher pelo Executor)
+* **Status**: `READY_FOR_REVIEW` — implementação e validação local concluídas pelo Executor Tático em 2026-11-24; aguardando revisão do Macro-Arquiteto
+* **Lote Relacionado**: `BATCH-089` ([batch-089.md](../implementation/batch-089.md), `ready-for-review`; relatório [REP-009](../reports/REP-009-batch089-phase0-skills-and-sdd-cleanup.md))
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24

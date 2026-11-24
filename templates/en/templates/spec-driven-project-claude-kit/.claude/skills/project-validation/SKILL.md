@@ -1,6 +1,6 @@
 ---
 name: project-validation
-description: "MANDATORY READ before validating code changes or closing an SDD batch. Prevents incomplete tests, regressions in production, and closing batches without verifiable evidence."
+description: "MANDATORY READ before validating code changes or closing an MDD batch. Prevents incomplete tests, regressions in production, and closing batches without verifiable evidence."
 user-invocable: false
 ---
 
@@ -19,7 +19,7 @@ Use this skill when a task requires validating the current batch.
 
 1. Start with the smallest check capable of falsifying the current slice.
 2. Prioritize validation aligned with the batch and the validation checklist before running full test suites.
-3. Log evidence and pending items in `sdd/validation/VALIDATION-CHECKLIST.md`.
+3. Log evidence and pending items in `memory/validation/VALIDATION-CHECKLIST.md`.
 4. If the repository provides specific test, lint, build, or Docker commands, use them to collect objective evidence.
 
 ---

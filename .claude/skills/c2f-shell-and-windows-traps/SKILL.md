@@ -465,6 +465,7 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) pode substituir acentos por caracteres
 - Substituições exigem caminho explícito e asserção da contagem esperada antes de gravar. Zero ou múltiplos inesperados abortam sem escrita; valide todos os alvos antes de alteração em lote.
 - Arquivos CRLF exigem ferramenta de edição segura ou script que leia bytes e preserve/normalize conscientemente os finais de linha; não aplique regex multilinha presumindo LF.
 - `grep -c $'\r'` pode produzir falso negativo no Windows/Git Bash. Confira bytes (`Path(...).read_bytes().count(b'\r\n')` ou PHP `bin2hex`); saída zero de grep não prova LF.
+- Ao restaurar um caminho específico no Windows, o checkout pode converter LF em CRLF. Confira com `git ls-files --eol -- <caminho>` (`i/` índice, `w/` checkout) e compare os bytes com o blob de referência (`git show HEAD:<caminho>`) antes de declarar paridade.
 - Na remoção Windows, use uma única shell de ponta a ponta; verifique caminhos absolutos e reparse points antes de excluir. Não enumere no PowerShell para passar exclusão ao CMD. Nunca atravesse junctions na limpeza.
 
 ### 21. Como reconhecer um `index.lock` órfão no Windows
@@ -478,6 +479,7 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) pode substituir acentos por caracteres
    ```
    Confirme que o timestamp do lock não muda.
 4. **Ação segura**: com `git.exe` ativo naquele repo/worktree, aguarde e nunca apague lock alheio. Sem nenhum `git.exe` atuando e com o arquivo parado (órfão), remova só o arquivo literal (`Remove-Item -LiteralPath .git/index.lock`) e confira com `git status --short` (e `git fsck` se a interrupção ocorreu durante gravação).
+5. **Deploy em repositório no OneDrive**: o `git diff` disparado pelo pipeline de deploy frequentemente deixa `.git/index.lock` órfão quando o repositório está no OneDrive. Antes de repetir o deploy, aplique o diagnóstico dos passos 3 e 4.
 
 ### Busca de skills em pastas iniciadas por ponto
 

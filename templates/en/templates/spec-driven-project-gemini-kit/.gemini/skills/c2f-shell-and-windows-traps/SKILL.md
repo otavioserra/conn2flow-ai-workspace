@@ -465,6 +465,7 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different cha
 - Replacements require explicit path and assertion from count expected before recording. Zero or multiple unexpected abort without writing; validate all targets before batch change.
 - CRLF files require safe editing tool or script that read bytes and consciously preserve/normalize line ends; do not apply multiline regex assuming LF.
 - `grep -c $'\r'` can produce false negative on Windows/Git Bash. Check bytes (`Path(...).read_bytes().count(b'\r\n')` or PHP `bin2hex`); zero grep output does not prove LF.
+- When restoring a specific path on Windows, checkout may convert LF to CRLF. Check with `git ls-files --eol -- <caminho>` (`i/` index, `w/` working tree) and compare the bytes against the reference blob (`git show HEAD:<caminho>`) before declaring parity.
 - In Windows removal, use a single shell from end to end; check absolute paths and reparse points before deleting. Do not enumerate in PowerShell to pass deletion to CMD. Never cross junctions in cleaning.
 
 ### 21. How to recognize an orphan `index.lock` on Windows
@@ -478,6 +479,7 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different cha
    ```
    Confirm that the lock timestamp does not change.
 4. **Safe action**: with an active `git.exe` on that repo/worktree, wait and never delete someone else's lock. With no `git.exe` acting and the file idle (orphan), remove only the literal file (`Remove-Item -LiteralPath .git/index.lock`) and check with `git status --short` (and `git fsck` if the interruption happened during a write).
+5. **Deploy in a repository on OneDrive**: the `git diff` triggered by the deploy pipeline often leaves an orphan `.git/index.lock` when the repository lives on OneDrive. Before retrying the deploy, apply the diagnosis from steps 3 and 4.
 
 ### Finding skills in dot-prefixed directories
 

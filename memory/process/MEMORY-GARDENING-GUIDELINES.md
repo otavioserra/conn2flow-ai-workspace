@@ -16,7 +16,7 @@ Estas diretrizes mantêm as memórias de engenharia organizadas e transformam co
 - estado operacional das 20 a 25 tarefas mais recentes;
 - pendências reais que ainda condicionam a próxima sessão;
 - particularidades temporárias de ambiente ainda necessárias;
-- evidência curta de validação ou falha que ainda não foi consolidada em outro artefato SDD.
+- evidência curta de validação ou falha que ainda não foi consolidada em outro artefato MDD.
 
 Não mantenha transcrições extensas, cronologias completas, diffs narrados, credenciais, comandos já documentados ou regras estáveis repetidas em várias tarefas.
 

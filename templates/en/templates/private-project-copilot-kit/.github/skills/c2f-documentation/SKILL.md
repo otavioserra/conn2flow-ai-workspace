@@ -8,7 +8,7 @@ user-invocable: true
 
 # ⚡ MANDATORY TRIGGER
 - **TRIGGER**: Request to document, correct or migrate documentation (library, module, API, CLI, hook, guide); run the periodic doc routine; publish docs on the `/docs/` site; create or change `docs.config.json` of a project.
-- **SKIP ONLY IF**: Edit SDD (`sdd/`) artifacts, repository README or code docblocks unrelated to `ai-workspace/<idioma>/docs/`.
+- **SKIP ONLY IF**: Edit MDD (`memory/`) artifacts, repository README or code docblocks unrelated to `ai-workspace/<idioma>/docs/`.
 - **CONSEQUENCE OF IGNORING**: Delayed or hallucinated documentation (written from the old text), docs without `verified_at` invisible to ranking, divergent translation, and pages edited in the panel overwritten in the next build.
 
 Complements `c2f-documentation-governance` (code authority principle). This skill is **procedure**.
@@ -63,7 +63,7 @@ verified_at: 5b4348ab       # git rev-parse --short HEAD do Core no momento da c
    - `php cli/c2f.php docs:build --project=conn2flow-site-local`, then `php cli/c2f.php project:deploy conn2flow-site-local`;
    - Check the pages (HTTP 200, `c2f page:inspect ... --screenshot`).
    - The deploy of **production is of the operator**.
-8. Register on the batch SDD and update the execution memory.
+8. Register in the batch report (`memory/implementation/batch-YYY.md`) and update the execution memory.
 
 ## 4. Writing
 

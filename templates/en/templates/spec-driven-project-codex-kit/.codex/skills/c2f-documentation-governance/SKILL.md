@@ -7,7 +7,7 @@ user-invocable: false
 # Governance and Documentation Verification (`c2f-documentation-governance`)
 
 # ⚡ MANDATORY TRIGGER
-- **TRIGGER**: Create, update or validate any technical document in `docs/`, `sdd/` or architecture guides.
+- **TRIGGER**: Create, update or validate any technical document in `docs/`, `memory/` or architecture guides.
 - **SKIP ONLY IF**: Correction of small typing errors (typos) in files that do not change normative contracts.
 - **CONSEQUENCE OF IGNORING**: Doc drift (out-of-date document), spread of false premises and breach of the Source Code Authority Principle.
 
@@ -33,9 +33,9 @@ Whenever you use documentation to guide an implementation or create a Skill:
 
 ---
 
-## 3. Documentation Maintenance in SDD Tasks
+## 3. Documentation Maintenance in MDD Tasks
 
-- When adding new parameters, central functions, hooks or routes, update the corresponding documentation under `ai-workspace/` or `sdd/`.
+- When adding new parameters, central functions, hooks or routes, update the corresponding documentation under `ai-workspace/` or `memory/`.
 - Register depreciations or contract breaks in the batch log (`batch-XXX.md`) and update the affected technical guides.
 
 ---

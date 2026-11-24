@@ -128,9 +128,32 @@ SELECT * FROM hooks WHERE namespace = 'meu-modulo' ORDER BY prioridade;
 > [!IMPORTANT]
 > Never enter or update records directly into the `hooks` table via SQL. The table is **overwritten in full** at each synchronization. Manual changes will be lost in the next deploy.
 
+---
+
+## 7. Multi-Provider Broadcast Hooks (`plataforma_gateways`)
+
+`plataforma_gateways_disparar_hook()` (`gestor/controladores/plataforma-gateways/plataforma-gateways.php`) reads `hooks.plataforma_gateways` from each active module's JSON, includes the referenced file and calls `<module_id_with_underscores>_plataforma_gateways()` with `['gateway' => ..., 'action' => ..., 'data' => ...]`. On the legacy route (`/_gateways/{gateway}/{endpoint}`) there is no target module: the event is **broadcast to every module**, in sequence, until one of them returns `processed => true`.
+
+- **Guard at the top**: the listener checks whether the gateway and action belong to its module and returns immediately otherwise.
+- **Never end the request for someone else's event**: no `echo`, `header()`, `http_response_code()`, `exit` or `die` when the gateway is not yours. Doing so breaks the loop and blocks every other module in the queue. The HTTP response is emitted by the `plataforma-gateways` controller.
+- **Return `processed => true` only when you handled the event**. That return ends the broadcast and is used to acknowledge the webhook. When no module returns `processed`, the Core answers `503` so the provider redelivers (`401` when the reason is an invalid signature).
+
+```php
+function meu_modulo_plataforma_gateways(array $params) {
+    $gateway = $params['gateway'] ?? '';
+    if ($gateway !== 'mercadopago') return null; // another gateway's event: let the queue continue
+
+    if (($params['action'] ?? '') === 'webhook') {
+        // ... handle the event already validated by the Core ...
+        return ['processed' => true];
+    }
+    return null;
+}
+```
+
 ## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
 
-- Project: `./c2f project:deploy <id>` is the default (95% of cases). Core: `./c2f manager:update-all`. `./c2f project:update-all <id>` is prohibited in the routine of project; allowed exclusively in batch altering Core and project simultaneously.
+- For project-only changes, use `./c2f project:deploy <id>`; in that routine `project:update-all` is forbidden. To sync and validate Core changes in a project Lab (`local: true`), use `./c2f project:update-all <id>` both in mixed batches and in Core-only batches. To update the isolated system/manager, use `./c2f manager:update-all`. In Category A, add `--skip-css` to the update-all commands; `project:deploy` does not accept that flag.
 - Before deploy, check `git branch --show-current` and `git status --short` at the origin; do not publish other/unfinished work. Check your destination and your clearance. Category B (skills/documentation/tests/memory): only local checks, without deploy. Sequence execution, foreground, logs and locks remain mandatory.
 - Worktrees for convenience are forbidden. Only create with concurrency multi-agent proven in the same repository; in doubt consult the human before. Register original root, temporary path and concurrency on request and batch. When completing/homologing, audit unique work, integration into main and junctions, then `git worktree remove <caminho>` and `git worktree prune`. Never use force to destroy unintegrated work; preserve and report impediments.
 - DEC-136: maintain by default; nothing is removed (file, `status='D'`, `DELETE`) without explicit confirmation from the human operator. Withdrawal turns clash pending; `--confirmar-retirada` only when requested by the operator. Source incomplete does not authorize withdrawal.

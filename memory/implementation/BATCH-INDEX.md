@@ -57,6 +57,8 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 [REQ-080](../human-requests/req-080.md) / [BATCH-082](archive/compacted/batch-082-4a26865308ed.md) está concluído e arquivado com o original íntegro. O [BATCH-083](archive/compacted/batch-083-95aade2d8707.md) homologado também foi arquivado.
 
+REQ-087 / BATCH-089 (`ready-for-review`): Fase 0 do ARCH-018 executada só na matriz. Quinze skills PT-BR/EN, saneamento SDD→MDD e MDD explicitado como evolução do SDD. Auditoria PASS e pytest 119/119. [Relatório](batch-089.md).
+
 REQ-083 / BATCH-085 (`ready-for-review`) aplicou os ajustes do REP-005 e a paridade PHP, com sete satélites publicados e dois sem `origin`. As worktrees foram removidas. [Relatório](batch-085.md).
 
 REQ-082 / BATCH-084 (`ready-for-review`): As três fases foram validadas em Categoria B, com 102 cópias verificadas na segunda propagação. O lote aguarda homologação final e integração na main. [Relatório](batch-084.md).

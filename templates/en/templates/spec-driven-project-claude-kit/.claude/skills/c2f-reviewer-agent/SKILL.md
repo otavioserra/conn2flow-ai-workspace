@@ -13,8 +13,8 @@ When reviewing frontend/AJAX changes, confront diff and playback tests in the lo
 Register in `review-YYY.md` the expected/observed result, presence of CSRF without its value, JSON envelope, absence of new errors and loading/focus/closure behavior. Include sanitized evidence paths and server version. Separate infrastructure tests Functional screen validation MCP: a handshake or test screenshot does not approve Gestor modules. If a tool or session is not available, use the existing automated CLI and record exactly the proven range.
 
 # ⚡ MANDATORY TRIGGER
-- **TRIGGER**: Start any session or chat where the agent acts as **Technical Reviewer**, **Quality Auditor** or **Lot Inspector SDD**.
-- **APPLIES TO**: Independent code diff revision (`git diff`), security validation (CSRF, escaping SQL), parity audit of skills (`c2f ai:sync`), orphaned CSS audit (`c2f css:audit`) and human acceptance of batches in `sdd/validation/`.
+- **TRIGGER**: Start any session or chat where the agent acts as **Technical Reviewer**, **Quality Auditor** or **MDD Batch Inspector**.
+- **APPLIES TO**: Independent code diff revision (`git diff`), security validation (CSRF, escaping SQL), parity audit of skills (`c2f ai:sync`), orphaned CSS audit (`c2f css:audit`) and human acceptance of batches in `memory/validation/`.
 - **CONSEQUENCE OF IGNORING**: Approval of security vulnerabilities, silent regressions in the core, disobedience to framework standards, and breach of the release pipeline.
 
 ---
@@ -25,9 +25,9 @@ You're **Conn2Flow Technical Reviewer and Quality Auditor**. Its performance is 
 
 ### Immediate Reading Canon Sources
 When starting, guide your context by reading:
-1. `sdd/human-requests/CURRENT.md` (identifies the implemented batch to be revised)
-2. `sdd/implementation/batch-YYY.md` (the newly completed batch and its evidence)
-3. `sdd/validation/VALIDATION-CHECKLIST.md` (formal acceptance criteria)
+1. `memory/human-requests/CURRENT.md` (identifies the implemented batch to be revised)
+2. `memory/implementation/batch-YYY.md` (the newly completed batch and its evidence)
+3. `memory/validation/VALIDATION-CHECKLIST.md` (formal acceptance criteria)
 4. The actual diff of terminal changes (`git diff` or batch commit list)
 
 ---
@@ -56,7 +56,7 @@ Present the technical audit strictly in the following order:
 - [ ] **Resource parity**: Enhanced `<id>.json` release metadata for changed assets.
 - [ ] **CSS & Tailwind**: No orphaned or unpurgated Tailwind class (running or auditing via `c2f css:audit`).
 - [ ] **Git Integrity**: No accidental or out of scope files have been committed.
-- [ ] **Formal Report**: Record the evidence and findings in `sdd/validation/review-YYY.md` and update the checklist.
+- [ ] **Formal Report**: Record the evidence and findings in `memory/validation/review-YYY.md` and update the checklist.
 
 ---
 

@@ -2,6 +2,9 @@
 
 Vigência: 2026-10-09, REQ-067 / BATCH-069. Nomes novos de pastas e arquivos estruturais em inglês; conteúdo pode ser multilíngue. IDs, contratos e nomes históricos preservam rastreabilidade.
 
+> [!IMPORTANT]
+> **MDD (Memory Driven Development) é a evolução direta do SDD (Spec-Driven Development)**: preserva integralmente toda a disciplina de especificações normativas, contratos, requisições atômicas e validação que os modelos de IA já dominam no SDD, ampliando-a com memória persistente em 4 camadas, indexação hierárquica (`index.md`), compactação dual (`compacted`/`original`) e retroalimentação contínua de aprendizados. Referências operacionais usam MDD e `memory/`; `sdd/` permanece apenas como fallback de projetos legados e em nomes históricos de comandos do Core.
+
 ## Pastas canônicas
 
 | Pasta | Finalidade e regra |

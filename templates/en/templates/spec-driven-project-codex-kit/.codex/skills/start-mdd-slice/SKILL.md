@@ -18,7 +18,7 @@ Treat `$ARGUMENTS` as the new demand to be sorted and executed.
 ## Before you act
 
 1. Load `mdd-workflow`.
-2. Identify the most concrete anchor of the task: sdd, batch, review, validation, decision, code file or `memory/human-requests/`.
+2. Identify the most concrete anchor of the task: spec (`memory/SPEC.md`), batch, review, validation, decision, code file or `memory/human-requests/`.
 3. Read the initial minimum context: `memory/README.md`, `memory/process/00-START-HERE.md`, `memory/process/01-WORKFLOW.md`, `memory/implementation/BATCH-INDEX.md`, the current batch, `memory/validation/VALIDATION-CHECKLIST.md` and `memory/decisions/DECISION-LOG.md`.
 4. If the entry comes from `memory/human-requests/`, first read this entry.
 

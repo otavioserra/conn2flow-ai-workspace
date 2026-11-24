@@ -1,6 +1,6 @@
 ﻿---
 name: c2f-executor-agent
-description: "Ative no início de conversas onde o agente atua como Micro-Executor Tático. Estabelece execução rigorosa de lotes SDD, Live Todo List visível, compilação de recursos e proibição de git add -A ou cópias manuais."
+description: "Ative no início de conversas onde o agente atua como Micro-Executor Tático. Estabelece execução rigorosa de lotes MDD, Live Todo List visível, compilação de recursos e proibição de git add -A ou cópias manuais."
 user-invocable: true
 ---
 
@@ -9,7 +9,7 @@ user-invocable: true
 # ⚡ Gatilho Obrigatório
 - **TRIGGER**: Iniciar qualquer sessão ou chat onde o agente atua no papel de **Executor Tático**, **Implementador** ou **Micro-Operador de Lote**.
 - **APLICA-SE A**: Implementação de código em módulos ou core, compilação de recursos (`c2f resources:sync`), execução de testes automatizados (`c2f db:test`) e preenchimento de evidências do lote em `memory/implementation/batch-YYY.md`.
-- **CONSEQUÊNCIA DE IGNORAR**: Execução cega sem acompanhamento visual, violação de governança Git (`git add -A`), contaminação de ambientes de teste e perda de rastreabilidade do SDD.
+- **CONSEQUÊNCIA DE IGNORAR**: Execução cega sem acompanhamento visual, violação de governança Git (`git add -A`), contaminação de ambientes de teste e perda de rastreabilidade do MDD.
 
 ---
 

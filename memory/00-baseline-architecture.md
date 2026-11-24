@@ -3,6 +3,9 @@
 Projeto: conn2flow-ai-workspace. Raiz: C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace.
 Fundação MDD aprovada pela REQ-067 / BATCH-069, 2026-10-09.
 
+> [!IMPORTANT]
+> **MDD (Memory Driven Development) é a evolução direta do SDD (Spec-Driven Development)**: preserva integralmente toda a disciplina de especificações normativas, contratos, requisições atômicas e validação que os modelos de IA já dominam no SDD, ampliando-a com memória persistente em 4 camadas, indexação hierárquica (`index.md`), compactação dual (`compacted`/`original`) e retroalimentação contínua de aprendizados.
+
 ## Entrada econômica
 
 1. Leia este router, [mecânica](01-general-memory.md) e [política](02-policy.md).

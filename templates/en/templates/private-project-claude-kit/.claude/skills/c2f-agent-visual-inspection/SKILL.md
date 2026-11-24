@@ -124,7 +124,7 @@ In human acceptance/Lab environments where the agent has log and HTTP reading cr
 
 ## ⛔ Inviolable Inspection Rules:
 1. **EXCLUSIVE FOR LOCAL ENVIRONMENT OF TESTS**: NEVER perform automated inspection, auth or scraping on production URLs.
-2. **SDD Log**: Evidence of inspection (JSON of `page:inspect` and screenshots) MUST be registered directly in the `VALIDATION-CHECKLIST.md` of the repository instead of marking "operator pendant".
+2. **MDD Log**: Evidence of inspection (JSON of `page:inspect` and screenshots) MUST be registered directly in the `VALIDATION-CHECKLIST.md` of the repository instead of marking "operator pendant".
 3. **Required Tear Down**: Always finish restoring the environment with `c2f env:set production --project=<projectID>`.
 
 ## Active Inspection with Chrome DevTools MCP
@@ -171,7 +171,7 @@ Deploy of another agent in progress produces 500/503 passengers. See `c2f-projec
 
 ### Save scripts
 
-Validation script written during batch goes to `sdd/validation/` of repository, with the result JSON. Script that is only in the temporary session folder cannot be repeated by anyone.
+Validation script written during batch goes to `memory/validation/` of repository, with the result JSON. Script that is only in the temporary session folder cannot be repeated by anyone.
 
 ## REQ-077 — Pipeline, worktrees and preservation (DEC-136)
 

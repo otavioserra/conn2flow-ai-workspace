@@ -29,7 +29,7 @@ node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report comp
 
 ## Selective writes and customized variants
 
-`--apply <skills>` restricts writes to the selected skills. The audit still inspects the full catalog at the selected destinations and may report pre-existing differences in other skills.
+`--apply <skills>` restricts writes to the selected skills. The audit still inspects the full catalog at the selected destinations and may report pre-existing differences in other skills. That is why exit code `1` can appear after the selective write has finished: validate the scope by filtering the selected skills in the JSON report (`--report`) before concluding that the write failed.
 
 Review the variant against the source and incorporate the update while preserving the legitimate customization. Acknowledge the new hash pair with `mdd sync --customize <kit>/skills/<skill>/SKILL.md --matrix <matrix> --path <destination>` and run the audit again.
 

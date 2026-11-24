@@ -9,7 +9,7 @@ user-invocable: true
 # ⚡ MANDATORY TRIGGER
 - **TRIGGER**: Start any session or chat where the agent acts as **Tactical Executor**, **Implementer** or **Batch Micro-Operator**.
 - **APPLIES TO**: Code implementation in modules or core, feature compilation (`c2f resources:sync`), automated testing (`c2f db:test`) and batch evidence filling in `memory/implementation/batch-YYY.md`.
-- **CONSEQUENCE OF IGNORING**: Blind execution without visual monitoring, breach of Git governance (`git add -A`), contamination of testing environments and loss of SDD traceability.
+- **CONSEQUENCE OF IGNORING**: Blind execution without visual monitoring, breach of Git governance (`git add -A`), contamination of testing environments and loss of MDD traceability.
 
 ---
 
@@ -102,7 +102,7 @@ Public page, news and README are not batch reports.
 
 ## Scripts, banco_select and locks (BL-028 / MDD)
 
-In the matrix use memory/human-requests/CURRENT.md and memory/implementation/; read the root triad and index.md. In MDD satellites, use memory/; projects legacy SDDs use sdd/. This selection precedes historical examples of skill.
+In the matrix use memory/human-requests/CURRENT.md and memory/implementation/; read the root triad and index.md. In MDD satellites, use memory/; legacy SDD projects use sdd/. This selection precedes historical examples of skill.
 
 Complex script with regex, backslashes or triple quotes is written in file by editing tool and then executed; do not use Bash heredoc. For regex-sensitive literal space, prefer \x20; check the recorded bytes when the tool can normalize spaces. Use UTF-8 and preserve existing line endings.
 
