@@ -1,11 +1,11 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-086.md](req-086.md) / `BATCH-088`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-088` ([batch-088.md](../implementation/batch-088.md), `HOMOLOGATED` em 2026-11-23)
+* **Ponteiro Ativo**: [req-087.md](req-087.md) (`REQ-087`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-089` ([batch-089.md](../implementation/batch-089.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-11-23
+* **Data de Entrada**: 2026-11-24
 * **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
   - [req-079.md](req-079.md) / [BATCH-081](../implementation/batch-081.md): Motor de Banco de Dados MDD (`SQLite3 + FTS5` Local e Multi-Driver SQL) no `mdd-client` (`ready-for-review`).
   - [req-078.md](req-078.md) / [BATCH-080](../implementation/batch-080.md): Internacionalização das 46 skills e detecção de drift por SHA-256; [REV-080](../human-reviews/rev-080.md) `RECOMMEND-APPROVAL`.
@@ -29,16 +29,14 @@
 
 ---
 
-## Objetivo operacional — REQ-086 / BATCH-088
+## Objetivo operacional — REQ-087 / BATCH-089 (Fase 0 do ARCH-018)
 
-1. **Fase 1 — Melhorias em 7 Skills na Matriz (`conn2flow-ai-workspace`, PT-BR + EN)**:
-   - `c2f-javascript-ajax` e `c2f-module-crud-scaffolding`: listar opções AJAX reservadas pelo núcleo `interface` (`listar`, `verificar-campo`, `backup-campos-mudou`, `historico-mais-resultados`) e corrigir o exemplo da linha 48 de `c2f-javascript-ajax`.
-   - `c2f-project-pipeline-and-tasks` + alinhamento em `c2f-executor-agent`: clarificar que lote de Core indo ao Lab de projeto (`local: true`) usa `./c2f project:update-all <id>` (com `--skip-css` na Categoria A), mantendo a proibição na rotina pura de projeto (`project:deploy <id>`).
-   - `c2f-environment-configuration`: inspecionar `APP_ENV` no código do Core (somente leitura) e documentar o comportamento real na comunicação.
-   - `c2f-database-testing`: documentar isolamento/reset do `HookManager` via `Reflection` + executor SQL e relógio injetáveis.
-   - `c2f-shell-and-windows-traps`: adicionar micro-nota sobre Python `glob(recursive=True)` ignorar pastas com ponto (usar `os.walk`/`rglob`) e uso de `.\.venv-mdd\Scripts\pytest.exe` na matriz.
-   - Sincronizar 5 kits/templates na matriz, atualizar os 7 hashes EN, validar auditoria (`PASS`, `0` divergências, `0` drift) e `pytest` (`100% PASS`).
-2. **Fase 2 — Propagação & Integração Isolada via Worktree das 11 Skills do Ciclo (`REQ-084`/`085`/`086`) nos Satélites**:
-   - Criar worktree temporária a partir de `origin/main` para cada satélite com `origin`, aplicar as 11 skills atualizadas (preservando a customização reconhecida do Core em `c2f-multilingual-skills-governance` via `mdd sync --customize`), fazer commit seletivo, respeitar a regra de avanço concorrente da `main`, integrar e dar `git push origin main` sem tocar nas árvores principais.
-   - `conn2flow-home` e `conn2flow-mkt` (sem `origin`): manter sem alteração na árvore principal e reportar para os chefes locais.
-   - Remover e podar todas as worktrees temporárias (`git worktree remove` + `git worktree prune`), entregar `batch-088.md` + `FEAT-017` + `VALIDATION-CHECKLIST.md` + índices MDD em `ready-for-review` (sem commit/push na matriz).
+1. **4 Melhorias Operacionais + Micro-ajustes `REP-008` (Somente Matriz, PT-BR + EN)**:
+   - `c2f-hooks-system`: regra de broadcast de `plataforma_gateways` (nunca encerrar requisição quando o gateway não for do módulo) + alinhamento da nota `REQ-077`.
+   - `c2f-payment-gateways`: roteiro de reenvio de webhook assinado (HMAC-SHA256) do Mercado Pago, conferido em modo somente leitura no código do Core.
+   - `c2f-architect-master` e `memory/process/STARTER-PROMPTS.md`: proibir prescrever `--skip-css` com `project:deploy` (+ alinhamento `REQ-077` em `STARTER-PROMPTS.md`).
+   - `c2f-shell-and-windows-traps`: complementar armadilha 21 (`git diff` do deploy deixando `index.lock` no OneDrive) + verificação `git ls-files --eol` na restauração por blob (`REP-008`).
+   - `c2f-multilingual-skills-governance`: esclarecer exit code 1 da auditoria global após escrita seletiva (`REP-008`).
+2. **Saneamento `SDD` → `MDD` nas 13 Skills Canônicas**: atualizar referências operacionais obsoletas a `SDD`/`sdd/` em PT-BR e EN (preservando contexto histórico, fallback legado e comandos CLI literais do Core).
+3. **Explicitação "MDD como Evolução do SDD"**: registrar com clareza em `memory/00-baseline-architecture.md`, `memory/02-policy.md` e nos boilerplates MDD PT-BR/EN em `templates/`.
+4. **Sync, Hashes & Validação Local (Categoria B)**: sincronizar 5 kits/templates na matriz (`--repos conn2flow-ai-workspace`), atualizar hashes EN das skills alteradas, validar auditoria (`PASS`, `0` divergências, `0` drift) e `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests` (`100% PASS`), entregando `batch-089.md` + `FEAT-017` + `VALIDATION-CHECKLIST.md` + `mdd index` em `ready-for-review` (sem commit/push e sem propagar aos satélites).
