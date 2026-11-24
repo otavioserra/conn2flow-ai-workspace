@@ -1,0 +1,13 @@
+{
+  "id": "EVAL-001-ajax-opcao-reservada",
+  "skill": "c2f-javascript-ajax",
+  "title": "Opções AJAX reservadas pelo núcleo não são reutilizadas como ajaxOpcao do módulo",
+  "trap": "Reutilizar listar/verificar-campo como ajaxOpcao customizada colide com o dispatcher de interface (HTTP 500).",
+  "must_include": [
+    "Opções AJAX reservadas pelo núcleo",
+    "`verificar-campo`",
+    "`backup-campos-mudou`",
+    "`historico-mais-resultados`",
+    "HTTP 500"
+  ]
+}

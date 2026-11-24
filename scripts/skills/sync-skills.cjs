@@ -289,6 +289,37 @@ for (const alvo of alvos) {
     }
   }
 }
+// REQ-091 (REP-011): registered translations are edited by hand in every template kit, so their copies
+// must stay identical to each other. Non-blocking: reported as DRIFT_WARNING, never overwritten.
+const translationCopies = new Map();
+for (const alvo of alvos) {
+  if (!alvo.template) continue;
+  for (const nome of canonical.keys()) {
+    if (!translations.registered(traduzidas, alvo.idioma, nome)) continue;
+    const files = [['SKILL.md', path.join(alvo.skills, nome, 'SKILL.md')],
+      ...[...(subskills.get(nome) || new Map()).keys()].map((rel) => [rel, path.join(alvo.skills, nome, ...rel.split('/'))])];
+    for (const [rel, file] of files) {
+      const atual = ler(file);
+      if (!atual) continue;
+      const key = `${alvo.idioma}\0${nome}\0${rel}`;
+      if (!translationCopies.has(key)) translationCopies.set(key, new Map());
+      const hash = sha256(normalize(atual));
+      const group = translationCopies.get(key);
+      if (!group.has(hash)) group.set(hash, []);
+      group.get(hash).push(alvo.onde);
+    }
+  }
+}
+const translationCopyDivergence = [...translationCopies].filter(([, group]) => group.size > 1).map(([key, group]) => {
+  const [language, skill, file] = key.split('\0');
+  const variants = [...group].map(([hash, onde]) => ({ sha256: hash, copies: onde.length, onde: onde.sort() }))
+    .sort((a, b) => b.copies - a.copies || (a.sha256 < b.sha256 ? -1 : 1));
+  return { language, skill, file, variants };
+});
+for (const item of translationCopyDivergence) {
+  const minority = item.variants.slice(1).flatMap((v) => v.onde).join(', ');
+  console.error(`[TRANSLATION-COPY-DIVERGENCE] '${item.skill}' (${item.file}) em '${item.language}': ${item.variants.length} versões entre os kits; divergem da maioria: ${minority}`);
+}
 const locaisAlteradas = [...locais].filter(([arquivo, hash]) => !fs.existsSync(arquivo) || md5(fs.readFileSync(arquivo)) !== hash).map(([arquivo]) => arquivo);
 const rulesDivergent = [];
 if (target) for (const kit of kits) for (const name of canonicalRules) {
@@ -307,8 +338,9 @@ const relatorio = {
   renamed_skills: migrations, legacy_skills: remainingLegacySkills,
   customizations_migrated: [...customizationStates.values()].flatMap(state => state.migrations),
   rules_written: rulesWritten, rules_divergent: rulesDivergent,
-  translation_drift: translationDrift,
-  status: divergentes.length || locaisAlteradas.length || rulesDivergent.length || remainingLegacySkills.length ? 'FAIL' : translationDrift.length ? 'DRIFT_WARNING' : 'PASS',
+  translation_drift: translationDrift, translation_copy_divergence: translationCopyDivergence,
+  status: divergentes.length || locaisAlteradas.length || rulesDivergent.length || remainingLegacySkills.length ? 'FAIL'
+    : translationDrift.length || translationCopyDivergence.length ? 'DRIFT_WARNING' : 'PASS',
 };
 if (valor('--report')) fs.writeFileSync(path.resolve(valor('--report')), `${JSON.stringify(relatorio, null, 2)}\n`);
 console.log(JSON.stringify({ status: relatorio.status, alvos: alvos.length, iguais, traduzidas: traducoes, divergentes: divergentes.length,

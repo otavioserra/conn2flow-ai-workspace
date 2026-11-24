@@ -10,9 +10,9 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 
 | Skill | Lines | Bytes | Budget | State | Invocable | Subskills | Translations |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
-| [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 9971 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 10282 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-curator`](c2f-persona-curator/SKILL.md) | 69 | 6127 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 153 | 16038 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 155 | 16936 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-optimizer`](c2f-persona-optimizer/SKILL.md) | 52 | 4249 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-reviewer`](c2f-persona-reviewer/SKILL.md) | 96 | 7524 | 200 | OK | yes | — | en 2026-11-24 |
 
@@ -48,7 +48,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-project-pipeline-and-tasks`](c2f-project-pipeline-and-tasks/SKILL.md) | 254 | 17855 | 300 | NEAR | no | — | en 2026-11-23 |
 | [`c2f-projects-system`](c2f-projects-system/SKILL.md) | 95 | 4381 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-resources-system`](c2f-resources-system/SKILL.md) | 156 | 10289 | 300 | OK | no | — | en 2026-11-05 |
-| [`c2f-shell-and-windows-traps`](c2f-shell-and-windows-traps/SKILL.md) | 487 | 27350 | 300 | OVER | no | — | en 2026-11-24 |
+| [`c2f-shell-and-windows-traps`](c2f-shell-and-windows-traps/SKILL.md) | 488 | 27777 | 300 | OVER | no | — | en 2026-11-24 |
 | [`c2f-system-tasks`](c2f-system-tasks/SKILL.md) | 45 | 2888 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-tailwind-css-architecture`](c2f-tailwind-css-architecture/SKILL.md) | 133 | 8854 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-tailwind-module-migration`](c2f-tailwind-module-migration/SKILL.md) | 56 | 8194 | 300 | OK | no | — | en 2026-11-24 |
@@ -62,7 +62,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-mdd-indexing-and-handoffs`](c2f-mdd-indexing-and-handoffs/SKILL.md) | 98 | 7640 | 200 | OK | no | — | en 2026-11-23 |
 | [`c2f-multilingual-skills-governance`](c2f-multilingual-skills-governance/SKILL.md) | 64 | 6926 | 200 | OK | no | — | en 2026-11-24 |
 | [`continue-mdd-batch`](continue-mdd-batch/SKILL.md) | 27 | 1281 | 200 | OK | yes | — | en 2026-11-24 |
-| [`mdd-memory-gardening`](mdd-memory-gardening/SKILL.md) | 70 | 6681 | 200 | OK | no | — | en 2026-11-23 |
+| [`mdd-memory-gardening`](mdd-memory-gardening/SKILL.md) | 81 | 7632 | 200 | OK | no | — | en 2026-11-24 |
 | [`mdd-workflow`](mdd-workflow/SKILL.md) | 182 | 14000 | 200 | NEAR | no | — | en 2026-11-05 |
 | [`project-validation`](project-validation/SKILL.md) | 51 | 4085 | 200 | OK | no | — | en 2026-11-24 |
 | [`raise-spec-change`](raise-spec-change/SKILL.md) | 27 | 1157 | 200 | OK | yes | — | en 2026-11-24 |
@@ -75,5 +75,5 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 - `c2f-module-crud-scaffolding`: 437/300 lines (OVER)
 - `c2f-payment-gateways`: 313/300 lines (OVER)
 - `c2f-project-pipeline-and-tasks`: 254/300 lines (NEAR)
-- `c2f-shell-and-windows-traps`: 487/300 lines (OVER)
+- `c2f-shell-and-windows-traps`: 488/300 lines (OVER)
 - `mdd-workflow`: 182/200 lines (NEAR)

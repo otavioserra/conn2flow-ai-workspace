@@ -2,6 +2,17 @@
 
 Este documento concentra os checklists de aceitação e os registros de testes empíricos de validação dos lotes ativos (Regra dos 10: lotes pendentes de homologação permanecem aqui).
 
+## BATCH-093 — REQ-091 (2026-11-24)
+
+- [x] Quarentena por recorrência em `mdd feedback`: `high` nasce `READY`; `medium`/`low` nascem em `QUARANTINE` até a 2ª origem `(repo, batch)` distinta, que promove os irmãos auto-quarentenados; `recurrence` no `submit`/`list --json`; `--force-ready` na CLI, no `mdd mcp` e no `conn2flow-hub` (`npm test` 7/7, `dist/` recompilado). Curador nunca sobrescrito.
+- [x] `generate-skills-index.cjs --budget-report [--text]` somente leitura (4 OVER, 2 NEAR) e `[TRANSLATION-COPY-DIVERGENCE]` não bloqueante no `sync-skills.cjs` (0 hoje), ambos com teste.
+- [x] `mdd eval` com provider plugável (`deterministic` offline) e 13 cenários em `tools/mdd-client/evals/skills/`; `test_eval.py` 7/7 com casos negativos; **EVAL-PASS 13/13** na matriz.
+- [x] FB-001..003 triados `ACCEPT` pela CLI e aplicados em PT-BR + 24 cópias EN; sync da matriz (40 gravações); 4 hashes EN; índice regravado. Gate: auditoria **PASS** (0 divergências, 0 drift, 0 legados), `--check` **PASS**, pytest **153/153**, `mdd eval` **PASS**.
+- [x] Rollout via worktrees `_wt-req091-*` de `origin/main`: 48 skills em 28 kits existentes de 7 satélites, aliases migrados por rename (0 legados), customização do Core reaplicada e reconhecida (5× `mdd sync --customize`), duplicata legada `sdd-memory-gardening` removida em app/nexus com autorização humana (DEC-136) e sucessores rastreados em kits `.claude` com whitelist. Fast-forward em `origin/main`: conn2flow `230262177a27`, site `12a83fc5f239`, lumix `60faf3875813`, transformamp `7f891df71d63`, website `84943eaffa1e`, app `e8f6b9497b04`, nexus `9534c3207ab5`.
+- [x] Limpeza: 0 junctions (PowerShell), 7 worktrees removidas sem `--force`, branches apagadas com `-d`, `git worktree prune`; árvores principais, `conn2flow-home` e `conn2flow-mkt` intocadas.
+- [x] Regra dos 10 com `ai:archive-memory --status=HOMOLOGATED,REVIEWED` (CLI de `origin/main` `6e146f7aa8b6` via `git archive`): `req-084`, `batch-088` e `REP-008` arquivados; 10 ativos em cada raiz; 0 links quebrados novos; `04-memory-engineering-execution.md` intacta. Poda deste checklist (DEC-136, autorizada): seção BATCH-089 → [validation-089.md](archive/validation-089.md), original em `archive/original/` (SHA-256 `4ebc09f7…`); 10 seções; `mdd status` healthy. Lote e FEAT-017 ([REP-013](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)) em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-093.md).
+- [ ] Homologação humana, `ARCH-018` → `COMPLETED` e commit/push seletivos da matriz pelo Arquiteto; triagem de FB-004..007.
+
 ## BATCH-092 — REQ-090 (2026-11-24)
 
 - [x] Extensão: aba **MDD Hub & Skills Control** (`conn2flow-mdd-hub`) com status `RUNNING`/`STOPPED` + PID/porta e Iniciar/Parar/Reiniciar de `mdd-client` e `conn2flow-hub`, listagem `mdd feedback list --json` por veredito e triagem via `mdd feedback triage`; rótulos SDD→MDD com fallback `sdd/` preservado. `npm test` **154/154** (inclui `mddHubPolicy.test.cjs`); smoke real de Start/Stop do daemon SSE (porta em 777 ms, `taskkill /T` encerrou 4 processos).
@@ -33,16 +44,6 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] Auditoria PASS (19 alvos, 0 divergências, 0 drift), governança PASS e pytest 130/130 depois dos 7 hashes EN. Lote, FEAT-017 ([REP-010](../reports/REP-010-batch090-personas-subskills-learnings.md)) e índices em `ready-for-review`; FEAT-015 fora do stage. [Lote](../implementation/batch-090.md).
 - [ ] Decisão do Arquiteto sobre a Regra dos 10 em `memory/reports/` (11 relatórios) e a poda deste checklist (321 linhas).
 - [ ] Homologação humana e commit/push seletivos da matriz; propagação aos satélites em requisição própria.
-
-## BATCH-089 — REQ-087 (2026-11-24)
-
-- [x] Quatro melhorias operacionais e micro-ajustes do REP-008 em PT-BR/EN: `c2f-hooks-system`, `c2f-payment-gateways` (Core conferido em modo somente leitura, na branch REQ-305), `c2f-architect-master` + `STARTER-PROMPTS.md`, `c2f-shell-and-windows-traps` e `c2f-multilingual-skills-governance`.
-- [x] Saneamento SDD→MDD nas 13 skills: de 43 para 7 linhas em PT-BR e de 43 para 8 em EN. Restam apenas o fallback legado e o comando `ai:archive-sdd`.
-- [x] MDD como evolução do SDD em `00-baseline-architecture.md`, `02-policy.md` e nos boilerplates MDD PT-BR/EN.
-- [x] Sync da matriz e 15 hashes EN. Auditoria PASS em 19 alvos, com 0 divergências e 0 drift. Pytest 119/119 depois dos hashes.
-- [x] Lote e FEAT-017 em `ready-for-review`, índices MDD atualizados e FEAT-015 fora do stage. [Lote](../implementation/batch-089.md) · [Relatório](../reports/REP-009-batch089-phase0-skills-and-sdd-cleanup.md).
-- [ ] Decisão do Arquiteto sobre o arquivamento da Regra dos 10 (11 lotes ativos).
-- [ ] Homologação humana e commit/push seletivos da matriz.
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
@@ -132,6 +133,8 @@ Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md
 - [validation-004-050.md](archive/validation-004-050.md) (BATCH-004 a BATCH-050)
 - [validation-051-057.md](archive/validation-051-057.md) (BATCH-051 a BATCH-057)
 - [validation-069-088.md](archive/validation-069-088.md) (BATCH-069 a BATCH-075 e BATCH-082 a BATCH-088; poda da REQ-090)
+- [validation-089.md](archive/validation-089.md) (BATCH-089; poda da REQ-091)
 - [Histórico compactado 5f08f316abcf](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
 - [Histórico compactado c2ec2bf167a3](<archive/compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
 - [Original integral antes da poda da REQ-090](<archive/original/VALIDATION-CHECKLIST-b3b8b81070b3.md>)
+- [Original integral antes da poda da REQ-091](<archive/original/VALIDATION-CHECKLIST-4ebc09f79d5b.md>)

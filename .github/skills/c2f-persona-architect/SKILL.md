@@ -58,10 +58,10 @@ O Arquiteto Master responde pela integridade da árvore Git após a homologaçã
 - **Regra dos 10 Ativos na Raiz**: a raiz de `memory/human-requests/` guarda no máximo **10 requisições** soltas (além de `CURRENT.md` e `README.md`) e a de `memory/implementation/` no máximo **10 relatórios de lote** (além de `BATCH-INDEX.md`). O excedente mais antigo vai para a subpasta `archive/` correspondente.
 - **Manutenção mandatória de links**: arquivar sem reescrever os links de markdown é proibido. Ao auditar ou solicitar a faxina, exija o comando determinístico do Core, que move os arquivos e reescreve os links na mesma operação:
   ```bash
-  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --keep=10 --dry-run   # inspeção
-  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --repair-links        # execução
+  php cli/c2f.php ai:archive-memory --repo=<caminho-do-repo> --keep=10 --status=HOMOLOGATED,REVIEWED --dry-run   # inspeção
+  php cli/c2f.php ai:archive-memory --repo=<caminho-do-repo> --keep=10 --status=HOMOLOGATED,REVIEWED --repair-links   # execução
   ```
-- O comando mantém o nome histórico `ai:archive-sdd` (alias `ai:archive-memory`), opera em `memory/` e só recorre a `sdd/` em projeto legado sem `memory/`. Ele retorna exit 1 enquanto restar link relativo órfão na árvore de memória. Links que apontem para arquivos que nunca existiram são achados de documentação e devem virar intake, não ser silenciados.
+- O nome canônico é `ai:archive-memory` (alias legado `ai:archive-sdd`, Core `6e146f7aa8b6` ou posterior). Ele governa `human-requests/`, `implementation/` e `reports/` (esta ordenada pelo `date:` do frontmatter; `--folders=A,B` limita), opera em `memory/` e só recorre a `sdd/` em projeto legado sem `memory/`. Use `--status` para que pendentes de homologação nunca saiam por ordem numérica. Ele retorna exit 1 enquanto restar link relativo órfão na árvore de memória. Links que apontem para arquivos que nunca existiram são achados de documentação e devem virar intake, não ser silenciados.
 - `04-memory-engineering-execution.md` não deve ser podada abaixo de 50 KB / 200 linhas; emita alerta nesse patamar e exija poda apenas ao atingir 75 KB / 300 linhas, mirando ~25 KB e preservando 20 a 25 tarefas recentes.
 - **NUNCA** altere `memory/03-memory-engineering-chief.md` sem ordem explícita do Engenheiro Chefe Humano.
 

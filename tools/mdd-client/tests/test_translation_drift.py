@@ -134,3 +134,25 @@ def test_bad_hash_is_rejected_before_writing_clients(tmp_path, translated_matrix
     with pytest.raises(ValueError, match="Invalid translation"):
         sync(target, translated_matrix)
     assert not (target / ".claude").exists()
+
+
+def test_divergent_en_template_copies_raise_nonblocking_warning(translated_matrix):
+    """REQ-091 (REP-011): hand-edited EN copies of one skill must match across template kits."""
+    copies = []
+    for kit in ("private-project-claude-kit/.claude", "private-project-claude-kit/.gemini", "private-project-copilot-kit/.github"):
+        skill = translated_matrix / "templates/en/templates" / kit / "skills" / NAME / "SKILL.md"
+        skill.parent.mkdir(parents=True)
+        skill.write_bytes(b"english translation\r\n")
+        copies.append(skill)
+    result, data = run_node(translated_matrix, "--repos", "none")
+    assert data["translation_copy_divergence"] == [] and "[TRANSLATION-COPY-DIVERGENCE]" not in result.stderr
+    copies[2].write_bytes(b"english translation, stale copy\n")
+    before = copies[2].read_bytes()
+    result, data = run_node(translated_matrix, "--repos", "none")
+    assert result.returncode == 0  # Warning only: other kits stay FAIL-free.
+    assert "[TRANSLATION-COPY-DIVERGENCE]" in result.stderr and "private-project-copilot-kit" in result.stderr
+    assert data["status"] == "DRIFT_WARNING"
+    [item] = data["translation_copy_divergence"]
+    assert (item["language"], item["skill"], item["file"]) == ("en", NAME, "SKILL.md")
+    assert [v["copies"] for v in item["variants"]] == [2, 1]
+    assert copies[2].read_bytes() == before  # Never overwritten.

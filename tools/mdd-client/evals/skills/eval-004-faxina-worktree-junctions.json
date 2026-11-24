@@ -1,0 +1,12 @@
+{
+  "id": "EVAL-004-faxina-worktree-junctions",
+  "skill": "mdd-memory-gardening",
+  "title": "Faxina de worktrees desfaz junctions sem /S e só apaga branch integrada",
+  "trap": "Remover worktree com junction ativa ou branch não integrada destrói trabalho.",
+  "must_include": [
+    "cmd /c \"dir /AL <pasta>\"",
+    "cmd /c \"rmdir <pasta>\\<atalho>\" sem /S",
+    "git branch -d (nunca -D)",
+    "não use --force"
+  ]
+}

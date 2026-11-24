@@ -22,6 +22,7 @@ export interface SubmitSkillFeedbackArgs {
   repo_path?: string;
   github?: boolean;
   github_repo?: string;
+  force_ready?: boolean;
 }
 
 export interface ListSkillFeedbackArgs {
@@ -130,6 +131,9 @@ export async function submitSkillFeedback(args: SubmitSkillFeedbackArgs, options
   option(argv, '--github-repo', args.github_repo);
   if (args.github === true) {
     argv.push('--github');
+  }
+  if (args.force_ready === true) {
+    argv.push('--force-ready');
   }
   return runMdd(argv, options);
 }

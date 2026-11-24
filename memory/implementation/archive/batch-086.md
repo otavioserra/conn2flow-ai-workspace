@@ -14,7 +14,7 @@ summary_medium: "Sincronização e hashes das traduções com auditoria PASS e 1
 
 # BATCH-086 — Governança operacional das skills e Regra dos 10 Ativos
 
-[REQ-084](../../human-requests/req-084.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-084](../../human-requests/archive/req-084.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 

@@ -9,7 +9,7 @@ Seções movidas de `../VALIDATION-CHECKLIST.md` em 2026-11-24 pela poda autoriz
 - [x] Onze skills e 308 cópias publicadas nos sete satélites elegíveis. Cinco variantes Core reconhecidas via `mdd sync --customize`.
 - [x] Sete SHAs remotos confirmados. Worktrees e branches da requisição removidas após a inspeção de junctions.
 - [x] `conn2flow-home` e `conn2flow-mkt` sem `origin`, documentados para os chefes locais.
-- [x] Lote e FEAT-017 em revisão, índices MDD atualizados e FEAT-015 fora do stage. [Lote](../../implementation/batch-088.md) · [Relatório](../../reports/REP-008-batch088-skills-rollout.md).
+- [x] Lote e FEAT-017 em revisão, índices MDD atualizados e FEAT-015 fora do stage. [Lote](../../implementation/archive/batch-088.md) · [Relatório](../../reports/archive/REP-008-batch088-skills-rollout.md).
 - [ ] Homologação humana e consolidação da matriz.
 
 ## BATCH-087 — REQ-085 (2026-11-23)

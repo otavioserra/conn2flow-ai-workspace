@@ -1,0 +1,19 @@
+{
+  "id": "EVAL-013-crlf-deteccao-por-bytes",
+  "skill": "c2f-shell-and-windows-traps",
+  "title": "FB-002: detectar CRLF pelos bytes, não por grep -c (PT-BR/EN)",
+  "trap": "grep -c $'\\r' devolve 0 em arquivo CRLF e o patch com \\n casa 0 vezes.",
+  "must_include": [
+    "readFileSync(process.argv[1],'latin1')",
+    "saída zero de grep não prova LF",
+    "casa 0 vezes"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "readFileSync(process.argv[1],'latin1')",
+        "matches 0 times"
+      ]
+    }
+  }
+}

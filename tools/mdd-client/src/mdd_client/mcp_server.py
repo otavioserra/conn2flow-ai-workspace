@@ -99,12 +99,13 @@ def create_server(root: Path, port: int = 8765) -> FastMCP:
     def submit_skill_feedback(persona: str, skill: str, kind: str, severity: str, summary: str, evidence: str,
                               proposal: str = "", repo: str = "", req: str = "", batch: str = "",
                               scope: str = "global", matrix: str | None = None, path: str = ".",
-                              github: bool = False, github_repo: str | None = None) -> dict[str, Any]:
+                              github: bool = False, github_repo: str | None = None,
+                              force_ready: bool = False) -> dict[str, Any]:
         """Record one FB-XXX skill feedback in memory/inbox/feedback/ (parity with conn2flow-hub)."""
         data = dict(persona=persona, skill=skill, kind=kind, severity=severity, summary=summary, evidence=evidence,
                     proposal=proposal, repo=repo or project(path).name, request=req, batch=batch, scope=scope)
         root = feedback_root(path, matrix, scope, github)
-        return feedback.submit(root, data, github=github, github_repo=github_repo)
+        return feedback.submit(root, data, github=github, github_repo=github_repo, force_ready=force_ready)
 
     @server.tool()
     def list_skill_feedback(status: str | None = None, verdict: str | None = None, skill: str | None = None,

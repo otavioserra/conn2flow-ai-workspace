@@ -1,0 +1,10 @@
+{
+  "id": "EVAL-006-proibido-git-add-all",
+  "skill": "c2f-persona-executor",
+  "title": "Commits seletivos: git add -A e git add . proibidos",
+  "trap": "git add -A arrasta .env, logs e espelhos de build para o commit.",
+  "must_include": [
+    "Proibição Absoluta de `git add -A` e `git add .`",
+    "git add caminho/para/arquivo1.php"
+  ]
+}

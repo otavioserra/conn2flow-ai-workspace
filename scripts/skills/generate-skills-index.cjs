@@ -2,6 +2,7 @@
 //
 //   node scripts/skills/generate-skills-index.cjs           writes the index
 //   node scripts/skills/generate-skills-index.cjs --check   exit 1 when the index is stale; writes nothing
+//   node scripts/skills/generate-skills-index.cjs --budget-report [--text]   OVER/NEAR Skill Budget report; writes nothing
 //
 // Output depends only on the files in .gemini/skills and on scripts/skills/translated.json:
 // no timestamps, LF line endings, sorted entries. Line counts ignore CRLF/LF differences.
@@ -97,7 +98,23 @@ if (attention.length) for (const s of attention) out.push(`- \`${s.name}\`: ${s.
 else out.push('- None.');
 const rendered = `${out.join('\n')}\n`;
 
-if (process.argv.includes('--check')) {
+if (process.argv.includes('--budget-report')) {
+  // REQ-091 (ARCH-018 Phase 4): read-only Skill Budget report for the Anti-Bloat Tribunal. Writes nothing.
+  const pick = (state) => skills.filter((s) => s.state === state)
+    .map((s) => ({ skill: s.name, kind: s.kind, lines: s.lines, budget: s.budget, ratio: Math.round((s.lines / s.budget) * 100) / 100 }))
+    .sort((a, b) => b.ratio - a.ratio || (a.skill < b.skill ? -1 : 1));
+  const report = { status: 'REPORT', skills: skills.length, budget: BUDGET, near_threshold: 0.8,
+    counts: { OVER: pick('OVER').length, NEAR: pick('NEAR').length, OK: skills.filter((s) => s.state === 'OK').length },
+    over: pick('OVER'), near: pick('NEAR') };
+  if (process.argv.includes('--text')) {
+    console.log(`Skill Budget — ${skills.length} skills: ${report.counts.OVER} OVER, ${report.counts.NEAR} NEAR, ${report.counts.OK} OK`);
+    for (const [state, list] of [['OVER', report.over], ['NEAR', report.near]]) {
+      for (const s of list) console.log(`  ${state.padEnd(4)} ${s.skill} ${s.lines}/${s.budget} (${s.kind})`);
+    }
+  } else {
+    console.log(JSON.stringify(report));
+  }
+} else if (process.argv.includes('--check')) {
   const current = fs.existsSync(indexFile) ? text(indexFile) : '';
   const fresh = current === rendered;
   console.log(JSON.stringify({ status: fresh ? 'PASS' : 'STALE', skills: skills.length, index: path.relative(root, indexFile).replace(/\\/g, '/') }));

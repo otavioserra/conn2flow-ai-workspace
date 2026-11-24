@@ -1,0 +1,27 @@
+{
+  "id": "EVAL-009-ai-archive-memory-gardening",
+  "skill": "mdd-memory-gardening",
+  "title": "FB-001: Regra dos 10 usa ai:archive-memory com --status (PT-BR/EN)",
+  "trap": "Script ad hoc ou seleção por ordem numérica arquiva pendentes e quebra links de reports/.",
+  "must_include": [
+    "ai:archive-memory",
+    "--status=HOMOLOGATED,REVIEWED",
+    "memory/reports/",
+    "alias legado `ai:archive-sdd`"
+  ],
+  "must_not_include": [
+    "nem passe memory ao arquivador legado"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "ai:archive-memory",
+        "--status=HOMOLOGATED,REVIEWED",
+        "memory/reports/"
+      ],
+      "must_not_include": [
+        "Do not assume ai:archive-sdd supports memory/."
+      ]
+    }
+  }
+}

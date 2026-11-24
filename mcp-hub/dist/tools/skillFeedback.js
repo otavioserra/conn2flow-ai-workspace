@@ -128,6 +128,9 @@ async function submitSkillFeedback(args, options = {}) {
     if (args.github === true) {
         argv.push('--github');
     }
+    if (args.force_ready === true) {
+        argv.push('--force-ready');
+    }
     return runMdd(argv, options);
 }
 async function listSkillFeedback(args = {}, options = {}) {

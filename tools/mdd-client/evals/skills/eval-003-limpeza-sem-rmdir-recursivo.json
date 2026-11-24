@@ -1,0 +1,13 @@
+{
+  "id": "EVAL-003-limpeza-sem-rmdir-recursivo",
+  "skill": "c2f-shell-and-windows-traps",
+  "title": "Limpeza de worktree no Windows proíbe rmdir /S e exclusão recursiva",
+  "trap": "rmdir /S atravessa a junction e apaga vendor/node_modules da árvore principal.",
+  "must_include": [
+    "**Comandos proibidos nesta limpeza:** `rmdir /S`",
+    "Nunca use `git worktree remove --force`"
+  ],
+  "must_not_match": [
+    "(?m)^\\s*(?:cmd /c \\\")?rmdir\\s+/S\\b"
+  ]
+}

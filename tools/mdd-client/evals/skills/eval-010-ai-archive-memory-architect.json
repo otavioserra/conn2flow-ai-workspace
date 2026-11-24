@@ -1,0 +1,25 @@
+{
+  "id": "EVAL-010-ai-archive-memory-architect",
+  "skill": "c2f-persona-architect",
+  "title": "FB-001: Arquiteto cita ai:archive-memory como nome canônico (PT-BR/EN)",
+  "trap": "Citar ai:archive-sdd como nome principal perpetua o vocabulário SDD e omite --status.",
+  "must_include": [
+    "ai:archive-memory --repo=",
+    "alias legado `ai:archive-sdd`",
+    "--status"
+  ],
+  "must_not_include": [
+    "mantém o nome histórico `ai:archive-sdd`"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "ai:archive-memory --repo=",
+        "legacy alias `ai:archive-sdd`"
+      ],
+      "must_not_include": [
+        "keeps the historical name `ai:archive-sdd`"
+      ]
+    }
+  }
+}

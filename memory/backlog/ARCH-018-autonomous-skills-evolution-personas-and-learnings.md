@@ -1,7 +1,7 @@
 ---
 id: "ARCH-018"
 title: "Motor de Retroalimentação e Auto-Evolução de Skills, Personas Canônicas, Subskills e Memória de Aprendizados (MDD)"
-status: "PROMOTED"
+status: "COMPLETED"
 date: "2026-11-24"
 author: "architect"
 target_repo: "conn2flow-ai-workspace"
@@ -16,7 +16,7 @@ summary_medium: "Substitui o repasse manual de relatórios FEAT-017 por um barra
 
 # ARCH-018 — Motor de Retroalimentação e Auto-Evolução de Skills, Personas Canônicas, Subskills e Memória de Aprendizados
 
-* **Status**: `PROMOTED` (Fase 0 iniciada em `REQ-087` / `BATCH-089`)
+* **Status**: `PROMOTED` — Fases 0–3 homologadas; Fase 4 entregue em `REQ-091` / `BATCH-093` (`ready-for-review`). A marcação final `COMPLETED` fica para a homologação do Macro-Arquiteto (ver §7).
 * **Origem**: Sessão arquitetural com o Engenheiro Chefe Humano em 2026-11-24
 * **Relacionados**: [ARCH-011](ARCH-011-mdd-hub-and-documentation-watcher.md), [ARCH-016](ARCH-016-mcp-hub-dual-dispatch-channels-headless.md), [ARCH-017](ARCH-017-mdd-database-engine-sqlite-fts5-and-sql-driver.md), [FEAT-017](FEAT-017-executor-ai-workspace-friction-report.md)
 
@@ -97,3 +97,17 @@ Toda proposta de alteração em skill passa por 4 filtros antes de ser apresenta
 | **Fase 2** | `REQ-089` | Barramento `mdd feedback submit / list / triage` no `mdd-client` + tool MCP no `conn2flow-hub` + integração com GitHub Issues (`skill-feedback`) + conexão das 3 personas operacionais. |
 | **Fase 3** | `REQ-090` | Nova aba na Extensão VS Code (controle de status/ativação de `mdd-client` e `conn2flow-hub` + painel de feedbacks/curadoria) + limpeza de rótulos `SDD` na extensão (mantendo fallback silencioso) + modernização `SDD` → `MDD` no Core CLI (`conn2flow/cli/src/`). |
 | **Fase 4** | `REQ-091` | *Skill Budget* automático no auditor, quarentena por recorrência, Advogado do Diabo e runner `mdd eval` com cenários de regressão de skills. |
+
+## 7. Situação das 5 fases (registro do Executor, 2026-11-24)
+
+| Fase | Lote | Situação | Entrega verificada |
+| --- | --- | --- | --- |
+| 0 | [BATCH-089](../implementation/batch-089.md) | `HOMOLOGATED` | 4 melhorias operacionais, saneamento SDD→MDD nas 13 skills, MDD como evolução do SDD |
+| 1 | [BATCH-090](../implementation/batch-090.md) | `HOMOLOGATED` | 5 personas `c2f-persona-*` com aliases, 48 skills, `index.md`, `subskills/`, `memory/learnings/` |
+| 2 | [BATCH-091](../implementation/batch-091.md) | `HOMOLOGATED` | `mdd feedback submit/list/triage`, inbox `FB-XXX`, GitHub Issues, tools MCP no `conn2flow-hub` |
+| 3 | [BATCH-092](../implementation/batch-092.md) | `HOMOLOGATED` | Aba MDD Hub & Skills Control, paridade MCP Python, `ai:archive-memory` no Core |
+| 4 | [BATCH-093](../implementation/batch-093.md) | `ready-for-review` | Filtro 2 (quarentena por recorrência por origem `(repo, batch)`), filtro 3 (`--budget-report`), aviso de divergência entre cópias EN, filtro 5 (`mdd eval` determinístico, 13 cenários, provider plugável), primeira curadoria real (FB-001..003 `ACCEPT`) e rollout das Fases 0–4 em 7 satélites |
+
+- **Filtro 4 (Advogado do Diabo)**: segue como revisão cética da persona `c2f-persona-curator`, sem automação. A Fase 4 não o implementou em código.
+- **Filtro 5**: o provider `deterministic` checa termos, regex e anti-padrões nas skills e nas cópias traduzidas. A comparação "antes e depois contra modelo rápido" aguarda um provider LLM registrado via `register_provider`.
+- **Fora do rollout**: `conn2flow-home` e `conn2flow-mkt` (sem `origin`) ficam a cargo dos chefes locais.

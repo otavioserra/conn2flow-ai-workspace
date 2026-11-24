@@ -464,7 +464,8 @@ iconv('UTF-8', 'ASCII//TRANSLIT', $texto) can replace accents with different cha
 - Never run `cat > arquivo;` without delimited input: wait stdin until timeout. Prefer editing tool; complex scripts should be written in file and executed later.
 - Replacements require explicit path and assertion from count expected before recording. Zero or multiple unexpected abort without writing; validate all targets before batch change.
 - CRLF files require safe editing tool or script that read bytes and consciously preserve/normalize line ends; do not apply multiline regex assuming LF.
-- `grep -c $'\r'` can produce false negative on Windows/Git Bash. Check bytes (`Path(...).read_bytes().count(b'\r\n')` or PHP `bin2hex`); zero grep output does not prove LF.
+- `grep -c $'\r'` can produce false negative on Windows/Git Bash (measured: 0 on a CRLF file). Before building a patch, detect the EOL from the bytes: `node -e "const s=require('fs').readFileSync(process.argv[1],'latin1');console.log((s.match(/\r\n/g)||[]).length,'CRLF')" <file>` (or `Path(...).read_bytes().count(b'\r\n')`, PHP `bin2hex`); zero grep output does not prove LF.
+- In a CRLF file, a replacement pattern with an embedded `\n` matches 0 times. Build the old snippet without the trailing line break, or use the detected EOL (`\r\n`) between lines, and require the expected count before writing.
 - When restoring a specific path on Windows, checkout may convert LF to CRLF. Check with `git ls-files --eol -- <caminho>` (`i/` index, `w/` working tree) and compare the bytes against the reference blob (`git show HEAD:<caminho>`) before declaring parity.
 - In Windows removal, use a single shell from end to end; check absolute paths and reparse points before deleting. Do not enumerate in PowerShell to pass deletion to CMD. Never cross junctions in cleaning.
 

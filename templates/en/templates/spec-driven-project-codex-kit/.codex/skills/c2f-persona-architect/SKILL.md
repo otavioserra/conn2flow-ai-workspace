@@ -58,10 +58,10 @@ The Master Architect is responsible for the integrity of the Git working tree af
 - **10 Root Assets Rule**: the root of `memory/human-requests/` holds at most **10 requests** loose (beyond `CURRENT.md` and `README.md`) and `memory/implementation/` at most **10 batch reports** (beyond `BATCH-INDEX.md`). The oldest surplus goes to the corresponding `archive/` subfolder.
 - **Mandatory maintenance of links**: archive without rewriting markdown links is prohibited. When auditing or requesting cleaning, require the Core deterministic command, which moves the files and rewrites the links in the same operation:
   ```bash
-  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --keep=10 --dry-run   # inspeção
-  php cli/c2f.php ai:archive-sdd --repo=<caminho-do-repo> --repair-links        # execução
+  php cli/c2f.php ai:archive-memory --repo=<repo-path> --keep=10 --status=HOMOLOGATED,REVIEWED --dry-run   # inspection
+  php cli/c2f.php ai:archive-memory --repo=<repo-path> --keep=10 --status=HOMOLOGATED,REVIEWED --repair-links   # execution
   ```
-- The command keeps the historical name `ai:archive-sdd` (alias `ai:archive-memory`), operates on `memory/` and only falls back to `sdd/` in a legacy project without `memory/`. It returns exit 1 while an orphaned relative link remains in the memory tree. Links that point to files that never existed are found in documentation and should become intake, not be silenced.
+- The canonical name is `ai:archive-memory` (legacy alias `ai:archive-sdd`, Core `6e146f7aa8b6` or later). It governs `human-requests/`, `implementation/` and `reports/` (the latter ordered by the frontmatter `date:`; `--folders=A,B` narrows it), operates on `memory/` and only falls back to `sdd/` in a legacy project without `memory/`. Use `--status` so items pending sign-off never leave by numeric order. It returns exit 1 while an orphaned relative link remains in the memory tree. Links that point to files that never existed are found in documentation and should become intake, not be silenced.
 - `04-memory-engineering-execution.md` should not be pruned below 50 KB / 200 lines; issue alert at this level and require pruning only when reaching 75 KB / 300 lines, targeting ~25 KB and preserving 20 to 25 recent tasks.
 - **NEVER** alter `memory/03-memory-engineering-chief.md` without explicit order from the Chief Human Engineer.
 

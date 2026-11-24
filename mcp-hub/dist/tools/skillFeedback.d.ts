@@ -18,6 +18,7 @@ export interface SubmitSkillFeedbackArgs {
     repo_path?: string;
     github?: boolean;
     github_repo?: string;
+    force_ready?: boolean;
 }
 export interface ListSkillFeedbackArgs {
     status?: string;

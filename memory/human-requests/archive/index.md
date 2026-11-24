@@ -81,6 +81,7 @@
 | REQ-081 | Caixa Copiável Obrigatória no Arquiteto Master e Relatório Obrigatório de Dificuldades do Executor para o AI Workspace | Atualizar c2f-architect-master (caixa copiar-e-colar obrigatória) e c2f-executor-agent (relatório de dificuldades ao AI Workspace) com sync PT/EN e kits. | [source](<req-081.md>) | HOMOLOGATED |
 | REQ-082 | Propagação Global das Skills da REQ-081 aos Projetos Satélites + Melhorias do REP-004 (FEAT-018 e FEAT-019) com Segunda Publicação Condicionada | Propaga REQ-081 (FEAT-016/017) a todos os projetos, implementa melhorias do REP-004 (FEAT-018) na matriz e pausa para validação antes da 2ª propagação. | [source](<req-082.md>) | HOMOLOGATED |
 | REQ-083 | Ajustes do REP-005 (skills + paridade PHP) e integração isolada via Worktree (commit, merge na main, push e limpeza) nos repositórios satélites | Aplica melhorias do REP-005 na matriz/Core e integra via worktree isolada (commit, merge na main, push e limpeza) as skills nos 9 satélites. | [source](<req-083.md>) | HOMOLOGATED |
+| REQ-084 | Melhorias de governança operacional em 3 skills canônicas na matriz + faxina dos 10 Ativos | Atualiza c2f-shell-and-windows-traps, c2f-json-resources-sync e c2f-executor-agent na matriz (PT-BR/EN + hashes) e aplica a Regra dos 10 Ativos em memory/. | [source](<req-084.md>) | HOMOLOGATED |
 
 ## Directories
 

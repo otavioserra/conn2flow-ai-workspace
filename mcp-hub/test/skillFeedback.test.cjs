@@ -31,6 +31,11 @@ test('submit maps arguments to explicit argv and keeps flags safe', async t => {
   assert.equal(argv[argv.indexOf('--summary') + 1], 'texto; rm -rf /');
   assert.equal(argv[argv.indexOf('--req') + 1], 'REQ-089');
   assert.ok(argv.includes('--github'));
+  assert.ok(!argv.includes('--force-ready'));
+  const forced = await submitSkillFeedback({
+    persona: 'executor', skill: 'mdd-workflow', kind: 'gap', severity: 'low', summary: 'x', evidence: 'y', force_ready: true
+  }, { workspaceRoot: dir, command });
+  assert.ok(forced.argv.includes('--force-ready'));
   await assert.rejects(submitSkillFeedback({ persona: 'executor', skill: 's', kind: 'rant', severity: 'low', summary: 'x', evidence: 'y' },
     { workspaceRoot: dir, command }), /Invalid kind/);
   await assert.rejects(submitSkillFeedback({ persona: 'executor', skill: 's', kind: 'gap', severity: 'low', summary: ' ', evidence: 'y' },

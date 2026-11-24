@@ -36,7 +36,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Lote atual
 
-[REQ-086](../human-requests/req-086.md) / [BATCH-088](batch-088.md) (`ready-for-review`). Sete skills na matriz, onze em sete satélites e worktrees da requisição removidas. [Índice MDD](index.md).
+[REQ-086](../human-requests/req-086.md) / [BATCH-088](archive/batch-088.md) (`ready-for-review`). Sete skills na matriz, onze em sete satélites e worktrees da requisição removidas. [Índice MDD](index.md).
 
 ## Histórico de lotes arquivados — BATCH-068 a BATCH-075
 
@@ -53,13 +53,15 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entregas anteriores
 
+REQ-091 / BATCH-093 (`ready-for-review`): Fase 4 (final) do ARCH-018. Quarentena por recorrência em `mdd feedback` (origem `(repo, batch)`, `--force-ready` nos dois MCP), `--budget-report`, aviso de divergência entre cópias EN, `mdd eval` determinístico com 13 cenários, FB-001..003 aceitos e aplicados em PT-BR/EN (gate: pytest 153/153, EVAL-PASS 13/13). Rollout das 48 skills em 7 satélites via worktrees isoladas já removidas; `conn2flow-home` e `conn2flow-mkt` intocados. [Relatório](batch-093.md).
+
 REQ-090 / BATCH-092 (`ready-for-review`): Fase 3 do ARCH-018. Aba MDD Hub & Skills Control na extensão (servidores + triagem de feedbacks), fila serial no stdio do hub, tools de feedback no MCP Python, `docs/` em 48 skills, poda do checklist e, no Core via worktree isolada já removida, `ai:archive-memory` com `reports/` e `--status` publicado em `origin/main` (`6e146f7aa8b6`). [Relatório](batch-092.md).
 
 REQ-089 / BATCH-091 (`ready-for-review`): Fase 2 do ARCH-018 só na matriz. `mdd feedback submit/list/triage` com inbox `memory/inbox/feedback/`, tools MCP `submit_skill_feedback`/`list_skill_feedback` no `conn2flow-hub`, 4 personas conectadas e notas do REP-010. Auditoria PASS e pytest 141/141. [Relatório](batch-091.md).
 
 REQ-088 / BATCH-090 (`ready-for-review`): Fase 1 do ARCH-018 só na matriz. Cinco personas `c2f-persona-*` com aliases no sync, 48 skills, índice de skills, `subskills/` com piloto Mercado Pago e `memory/learnings/`. Auditoria PASS e pytest 130/130. [Relatório](batch-090.md).
 
-[REQ-084](../human-requests/req-084.md) / [BATCH-086](archive/batch-086.md) atualizou três skills PT-BR/EN e aplicou a regra dos dez ativos.
+[REQ-084](../human-requests/archive/req-084.md) / [BATCH-086](archive/batch-086.md) atualizou três skills PT-BR/EN e aplicou a regra dos dez ativos.
 
 [REQ-080](../human-requests/archive/req-080.md) / [BATCH-082](archive/compacted/batch-082-4a26865308ed.md) está concluído e arquivado com o original íntegro. O [BATCH-083](archive/compacted/batch-083-95aade2d8707.md) homologado também foi arquivado.
 

@@ -1,8 +1,8 @@
 ---
 id: "FB-001"
 title: "FB-001 — Trocar scripts ad hoc de arquivamento por ai:archive-memory --status=HOMOLOGATED,REVIEWED (cobre reports/ e links <...>)"
-status: "PENDING"
-verdict: "PENDING"
+status: "TRIAGED"
+verdict: "ACCEPT"
 date: "2026-11-24"
 author: "executor"
 target_repo: "conn2flow-ai-workspace"
@@ -17,6 +17,9 @@ scope: "global"
 evidence: "Core 6e146f7aa8b6 (cli/src/Commands/AiArchiveMemoryCommand.php, tests/Unit/PHP/MemoryArchiveReq090Test.php 13/13); BATCH-092: 3 arquivados, 18 links reescritos, 0 links alheios alterados"
 summary_short: "Trocar scripts ad hoc de arquivamento por ai:archive-memory --status=HOMOLOGATED,REVIEWED (cobre reports/ e links <...>)"
 github_issue: ""
+triage_reason: "Evidência verificada no Core origin/main 6e146f7aa8b6 (AiArchiveMemoryCommand: nome canônico, aliases, --status, --folders, reports/ por date:). Aplicado em mdd-memory-gardening e c2f-persona-architect PT-BR/EN (REQ-091/BATCH-093)."
+triage_reviewer: "curator"
+triage_date: "2026-11-24"
 ---
 
 # FB-001 — Trocar scripts ad hoc de arquivamento por ai:archive-memory --status=HOMOLOGATED,REVIEWED (cobre reports/ e links <...>)

@@ -15,7 +15,7 @@ summary_medium: "Categoria B, matriz em revisão e sem stage.\nSete worktrees fo
 
 # BATCH-088 — Sete skills bilíngues na matriz e publicação isolada de onze skills
 
-[REQ-086](../human-requests/req-086.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-086](../../human-requests/req-086.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 
@@ -32,8 +32,8 @@ summary_medium: "Categoria B, matriz em revisão e sem stage.\nSete worktrees fo
 | --- | --- |
 | Edição PT-BR/EN | Sete fontes PT-BR e 47 cópias EN atualizadas. A cópia local de `.cursor` passou na auditoria e está sob o ignore existente da matriz. |
 | Sync oficial `--apply --all --repos conn2flow-ai-workspace` | 75 gravações em kits/templates. Os sete avisos transitórios de drift antecederam o reconhecimento dos hashes. |
-| `--update-translation-hash <skill> en --translator mdd-agent` | Sete entradas atualizadas em [translated.json](../../scripts/skills/translated.json). |
-| Auditoria da matriz | **PASS** em 19 alvos, com 542 cópias iguais, 312 traduções, zero divergências e zero drift. [JSON](../../completions/skills-audit.json). |
+| `--update-translation-hash <skill> en --translator mdd-agent` | Sete entradas atualizadas em [translated.json](../../../scripts/skills/translated.json). |
+| Auditoria da matriz | **PASS** em 19 alvos, com 542 cópias iguais, 312 traduções, zero divergências e zero drift. [JSON](../../../completions/skills-audit.json). |
 | `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests` | **119/119 aprovados em 55,06 s**, após o registro dos sete hashes. |
 
 - AJAX e CRUD documentam as quatro opções reservadas por `interface`. O exemplo usa `listar-itens`. Conferência no Core em `gestor/bibliotecas/interface.php`, no dispatcher `interface_ajax_finalizar`.
@@ -83,7 +83,7 @@ Antes da remoção, `cmd /c dir /AL /S` confirmou ausência de junctions nas set
 
 ## FEAT-017 e entrega
 
-O [REP-008](../reports/REP-008-batch088-skills-rollout.md) registra a auditoria global em lotes seletivos, a restauração de aliases e a checagem de EOL. O [checklist](../validation/VALIDATION-CHECKLIST.md) e os índices foram atualizados. A pasta de implementação tinha onze lotes antes desta requisição. Para aplicar o limite de dez sem arquivar lotes em revisão, foram arquivados os dois encerrados mais antigos, [BATCH-082](archive/compacted/batch-082-4a26865308ed.md) e [BATCH-083](archive/compacted/batch-083-95aade2d8707.md). As sínteses contêm os links e hashes dos originais preservados byte a byte. Links históricos dentro dos snapshots continuam relativos à localização original.
+O [REP-008](../../reports/archive/REP-008-batch088-skills-rollout.md) registra a auditoria global em lotes seletivos, a restauração de aliases e a checagem de EOL. O [checklist](../../validation/VALIDATION-CHECKLIST.md) e os índices foram atualizados. A pasta de implementação tinha onze lotes antes desta requisição. Para aplicar o limite de dez sem arquivar lotes em revisão, foram arquivados os dois encerrados mais antigos, [BATCH-082](compacted/batch-082-4a26865308ed.md) e [BATCH-083](compacted/batch-083-95aade2d8707.md). As sínteses contêm os links e hashes dos originais preservados byte a byte. Links históricos dentro dos snapshots continuam relativos à localização original.
 
 A memória de execução ficou intacta. A matriz segue em `ready-for-review`, sem commit, push ou stage. `FEAT-015` permanece fora do stage.
 

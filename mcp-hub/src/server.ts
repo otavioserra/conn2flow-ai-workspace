@@ -173,7 +173,8 @@ export class McpServer {
           matrix: { type: 'string', description: 'Optional matrix root; defaults to MDD_MATRIX or this workspace' },
           repo_path: { type: 'string', description: 'Repository root for scope=local' },
           github: { type: 'boolean', description: 'Also create a GitHub Issue (label skill-feedback) via gh CLI' },
-          github_repo: { type: 'string', description: 'Optional owner/name for the GitHub Issue' }
+          github_repo: { type: 'string', description: 'Optional owner/name for the GitHub Issue' },
+          force_ready: { type: 'boolean', description: 'Skip the anti-bloat first-occurrence QUARANTINE for medium/low severity' }
         },
         required: ['persona', 'skill', 'kind', 'severity', 'summary', 'evidence']
       }
@@ -185,7 +186,7 @@ export class McpServer {
       inputSchema: {
         type: 'object',
         properties: {
-          status: { type: 'string', description: 'e.g. PENDING or TRIAGED' },
+          status: { type: 'string', description: 'e.g. READY, QUARANTINE or TRIAGED (legacy PENDING)' },
           verdict: { type: 'string', enum: ['PENDING', 'ACCEPT', 'NEEDS_EVIDENCE', 'QUARANTINE', 'REJECT', 'LOCAL_ONLY'] },
           skill: { type: 'string' },
           repo: { type: 'string' },

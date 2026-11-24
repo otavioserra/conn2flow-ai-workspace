@@ -1,0 +1,11 @@
+{
+  "id": "EVAL-007-app-env-producao",
+  "skill": "c2f-environment-configuration",
+  "title": "APP_ENV: só production/prod/producao contam como produção",
+  "trap": "Valor de APP_ENV fora da lista exata desliga a trava de e-mail de produção sem aviso.",
+  "must_include": [
+    "`production`, `prod` e `producao`",
+    "APP_ENV=development",
+    "APP_ENV=staging"
+  ]
+}

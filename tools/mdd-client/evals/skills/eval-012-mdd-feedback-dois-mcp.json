@@ -1,0 +1,23 @@
+{
+  "id": "EVAL-012-mdd-feedback-dois-mcp",
+  "skill": "c2f-persona-executor",
+  "title": "FB-003: mdd feedback, quarentena e paridade dos dois servidores MCP (PT-BR/EN)",
+  "trap": "Mudar a tool só num servidor MCP quebra a paridade; feedback sem evidência é descartado.",
+  "must_include": [
+    "mdd feedback submit --persona executor",
+    "--evidence",
+    "`QUARANTINE`",
+    "Dois servidores MCP, mesmo contrato",
+    "mcp-hub/src/tools/skillFeedback.ts",
+    "rode o mesmo filtro no `origin/main` intacto"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "mdd feedback submit --persona executor",
+        "Two MCP servers, one contract",
+        "untouched `origin/main`"
+      ]
+    }
+  }
+}

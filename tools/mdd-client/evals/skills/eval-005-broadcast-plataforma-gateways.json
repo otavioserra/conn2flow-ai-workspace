@@ -1,0 +1,12 @@
+{
+  "id": "EVAL-005-broadcast-plataforma-gateways",
+  "skill": "c2f-hooks-system",
+  "title": "Broadcast de plataforma_gateways para no primeiro processed => true",
+  "trap": "Devolver processed => true sem tratar o evento engole o webhook dos outros módulos.",
+  "must_include": [
+    "transmitido a todos os módulos",
+    "`processed => true`",
+    "Retorne `processed => true` somente quando tratou o evento",
+    "`503`"
+  ]
+}

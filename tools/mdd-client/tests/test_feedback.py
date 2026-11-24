@@ -24,8 +24,8 @@ def matrix(tmp_path):
     return tmp_path
 
 
-def submit(root, **extra):
-    return feedback.submit(root, {**BASE, **extra}, today="2026-11-24")
+def submit(root, force_ready=False, **extra):
+    return feedback.submit(root, {**BASE, **extra}, today="2026-11-24", force_ready=force_ready)
 
 
 def test_submit_allocates_sequential_ids_and_indexes(matrix):
@@ -35,7 +35,8 @@ def test_submit_allocates_sequential_ids_and_indexes(matrix):
     assert first["path"] == "memory/inbox/feedback/FB-001-falta-exemplo-de-lock.md"
     assert second["path"].endswith("FB-002-acao-duplicar-nao.md")
     meta = indexer.get(matrix, "FB-002")
-    assert meta["status"] == meta["verdict"] == "PENDING"
+    assert (meta["status"], meta["verdict"], meta["recurrence"]) == ("READY", "PENDING", "1")  # high: born eligible
+    assert indexer.get(matrix, "FB-001")["status"] == "QUARANTINE"  # medium, first (skill, kind)
     assert (meta["persona"], meta["skill"], meta["scope"], meta["github_issue"]) == ("executor", "c2f-persona-executor", "global", "")
     index = (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8")
     assert "FB-001" in index and "FB-002" in index and "README" not in index
@@ -268,3 +269,53 @@ def test_python_mcp_feedback_tools_match_cli(matrix, monkeypatch):
             await call("list_skill_feedback", scope="local", path="../fora")
 
     asyncio.run(check())
+
+
+def test_recurrence_quarantine_promotes_on_second_occurrence(matrix):
+    """REQ-091: medium/low first (skill, kind) occurrence waits in QUARANTINE; the 2nd promotes both."""
+    first = submit(matrix, severity="low")
+    assert (first["status"], first["recurrence"], first["promoted"]) == ("QUARANTINE", 1, [])
+    meta = indexer.get(matrix, "FB-001")
+    assert (meta["status"], meta["verdict"]) == ("QUARANTINE", "QUARANTINE")
+    other = submit(matrix, kind="bug")  # different kind: independent counter
+    assert other["status"] == "QUARANTINE" and other["recurrence"] == 1
+    # ARCH-018 §4: a repeat inside the same (repo, batch) is the same occurrence.
+    same_batch = submit(matrix, summary="Repetido no mesmo lote", severity="low", repo="CONN2FLOW-SITE", batch="batch-091")
+    assert (same_batch["status"], same_batch["recurrence"], same_batch["promoted"]) == ("QUARANTINE", 1, [])
+    second = submit(matrix, summary="Mesmo problema de lock", batch="BATCH-092")
+    assert (second["status"], second["recurrence"], second["promoted"]) == ("READY", 2, ["FB-001", "FB-003"])
+    promoted = indexer.get(matrix, "FB-001")
+    assert (promoted["status"], promoted["verdict"], promoted["promoted_by"]) == ("READY", "PENDING", "FB-004")
+    assert indexer.get(matrix, "FB-002")["status"] == "QUARANTINE"
+    rows = {r["id"]: r for r in feedback.list_feedback(matrix)}
+    assert [rows[f"FB-00{n}"]["recurrence"] for n in (1, 2, 3, 4)] == [2, 1, 2, 2]
+    assert [r["id"] for r in feedback.list_feedback(matrix, {"status": "QUARANTINE"})] == ["FB-002"]
+    index = (matrix / "memory/inbox/feedback/index.md").read_text(encoding="utf-8")
+    assert "FB-004" in index and not (matrix / "memory/.mdd.lock").exists()
+
+
+def test_force_ready_archive_counts_and_curator_verdicts_are_kept(matrix):
+    assert submit(matrix, severity="medium", force_ready=True)["status"] == "READY"
+    feedback.triage(matrix, "FB-001", "QUARANTINE", reason="curator hold", today="2026-11-24")
+    archive = matrix / "memory/inbox/feedback/archive"
+    archive.mkdir()
+    old = submit(matrix, skill="mdd-workflow", severity="low")
+    (matrix / old["path"]).rename(archive / Path(old["path"]).name)
+    # Archived occurrence still counts for recurrence; it is never rewritten.
+    again = submit(matrix, skill="mdd-workflow", severity="low", batch="BATCH-092")
+    assert (again["status"], again["recurrence"], again["promoted"]) == ("READY", 2, [])
+    # Manual curator QUARANTINE (status TRIAGED) is not auto-promoted.
+    third = submit(matrix, severity="low", batch="BATCH-093")
+    assert third["status"] == "READY" and third["promoted"] == []
+    assert indexer.get(matrix, "FB-001")["status"] == "TRIAGED"
+
+
+def test_cli_force_ready_and_recurrence_json(matrix):
+    runner = CliRunner()
+    args = ["feedback", "submit", "--matrix", str(matrix), "--persona", "executor", "--skill", "mdd-workflow",
+            "--kind", "gap", "--severity", "low", "--summary", "x", "--evidence", "y", "--json"]
+    assert json.loads(runner.invoke(app, args).stdout)["status"] == "QUARANTINE"
+    forced = runner.invoke(app, [*args[:-1], "--force-ready", "--json"])
+    assert forced.exit_code == 0 and json.loads(forced.stdout)["status"] == "READY"
+    rows = json.loads(runner.invoke(app, ["feedback", "list", "--matrix", str(matrix), "--json"]).stdout)
+    assert [r["recurrence"] for r in rows] == [2, 2]

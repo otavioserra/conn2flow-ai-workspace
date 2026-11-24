@@ -1,0 +1,11 @@
+{
+  "id": "EVAL-008-index-lock-orfao",
+  "skill": "c2f-shell-and-windows-traps",
+  "title": "index.lock órfão só é removido sem git.exe ativo",
+  "trap": "Apagar um index.lock ativo corrompe o índice do repositório.",
+  "must_include": [
+    "nunca apague `index.lock` sem verificar se há `git.exe` ativo",
+    "Name='git.exe'",
+    "Remove-Item -LiteralPath .git/index.lock"
+  ]
+}

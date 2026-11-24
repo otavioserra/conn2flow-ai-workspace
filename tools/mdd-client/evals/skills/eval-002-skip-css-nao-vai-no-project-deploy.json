@@ -1,0 +1,13 @@
+{
+  "id": "EVAL-002-skip-css-nao-vai-no-project-deploy",
+  "skill": "c2f-persona-executor",
+  "title": "--skip-css só vale para update-all; project:deploy não recebe a flag",
+  "trap": "ProjectDeployCommand.php repassa só projeto e --contents; prescrever --skip-css a project:deploy é falso.",
+  "must_include": [
+    "não prescreva essa flag a `project:deploy`",
+    "`./c2f manager:update-all --skip-css`"
+  ],
+  "must_not_match": [
+    "project:deploy\\s+<id>\\s+--skip-css"
+  ]
+}

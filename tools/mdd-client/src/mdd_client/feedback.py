@@ -27,9 +27,12 @@ SEVERITIES = ("high", "medium", "low")
 SCOPES = ("global", "local")
 VERDICTS = ("ACCEPT", "NEEDS_EVIDENCE", "QUARANTINE", "REJECT", "LOCAL_ONLY")
 PENDING = "PENDING"
+READY = "READY"
+QUARANTINE = "QUARANTINE"
+AUTO_REVIEWER = "auto-recurrence"
 GITHUB_LABEL = "skill-feedback"
 FIELDS = ("id", "title", "status", "verdict", "date", "author", "target_repo", "repo", "request", "batch",
-          "persona", "skill", "kind", "severity", "scope", "evidence", "summary_short", "github_issue")
+          "persona", "skill", "kind", "severity", "scope", "recurrence", "evidence", "summary_short", "github_issue")
 FILTERS = ("status", "verdict", "skill", "repo", "severity")
 ID = re.compile(r"^FB-(\d{3,})-.*\.md$", re.I)
 
@@ -85,6 +88,40 @@ def _next_id(inbox: Path) -> str:
     return f"FB-{max(numbers, default=0) + 1:03d}"
 
 
+def _occurrences(inbox: Path, skill: str, kind: str) -> list[tuple[Path, dict[str, str]]]:
+    """Every FB record (inbox and archive) sharing ``(skill, kind)``; archived records still count."""
+    found = []
+    for path in sorted(inbox.rglob("FB-*.md")):
+        if ID.match(path.name):
+            fm, _, _, _ = parse(path.read_bytes().decode("utf-8-sig"))
+            if fm.get("skill") == skill and fm.get("kind") == kind:
+                found.append((path, fm))
+    return found
+
+
+def _origin(fm: dict[str, str], path: Path) -> tuple[str, ...]:
+    """ARCH-018 §4: repeats inside one batch are one occurrence; records without a batch count alone."""
+    batch = str(fm.get("batch", "")).strip().upper()
+    return ("batch", str(fm.get("repo", "")).strip().casefold(), batch) if batch else ("record", path.name)
+
+
+def _promote(root: Path, path: Path, promoted_by: str) -> None:
+    """Rewrite an auto-quarantined record as READY; caller already owns the MDD lock."""
+    content = path.read_bytes().decode("utf-8-sig")
+    newline = "\r\n" if "\r\n" in content else "\n"
+    head, sep, rest = content.partition(newline + "---" + newline)
+    lines = head.split(newline)
+    for key, value in (("status", READY), ("verdict", PENDING), ("promoted_by", promoted_by)):
+        entry = f"{key}: {_quote(value)}"
+        for number, line in enumerate(lines):
+            if line.startswith(f"{key}:"):
+                lines[number] = entry
+                break
+        else:
+            lines.append(entry)
+    write(root, path, newline.join(lines) + sep + rest)
+
+
 def _ensure_inbox(root: Path) -> Path:
     inbox = _inbox(root)
     inbox.mkdir(parents=True, exist_ok=True)
@@ -133,8 +170,16 @@ def _index_db(root: Path, path: Path, text: str) -> bool:
 
 
 def submit(root: Path | None, data: dict, *, github: bool = False, github_repo: str | None = None,
-           runner: Runner | None = None, today: str | None = None) -> dict:
-    """Validate, allocate the next FB ID under the MDD lock, write, index and optionally open an Issue."""
+           runner: Runner | None = None, today: str | None = None, force_ready: bool = False) -> dict:
+    """Validate, allocate the next FB ID under the MDD lock, write, index and optionally open an Issue.
+
+    Anti-bloat quarantine (ARCH-018 Phase 4): ``high`` severity is born ``READY``; ``medium``/``low``
+    are born in ``QUARANTINE`` on the first ``(skill, kind)`` occurrence. An occurrence is one
+    ``(repo, batch)`` origin (a record without a batch counts alone), so repeats inside one batch do
+    not self-promote. From the second distinct origin (or with ``force_ready``) the record is
+    ``READY`` and auto-quarantined siblings in the inbox are promoted. Curator verdicts
+    (``status: TRIAGED``) are never touched.
+    """
     scope = _choice("scope", data.get("scope") or "global", SCOPES)
     summary = " ".join(str(data.get("summary") or "").split())
     evidence = str(data.get("evidence") or "").strip()
@@ -155,20 +200,38 @@ def submit(root: Path | None, data: dict, *, github: bool = False, github_repo: 
     proposal = str(data.get("proposal") or "").strip()
     if root is None and not github:
         raise ValueError("No matrix inbox available: pass --matrix, set MDD_MATRIX or use --github")
-    result: dict = {"id": None, "path": None, "index": None, "database": False, "github_issue": None}
+    result: dict = {"id": None, "path": None, "index": None, "database": False, "github_issue": None,
+                    "status": PENDING, "recurrence": None, "promoted": []}
     if root is not None:
         root = root.resolve()
+        promoted: list[Path] = []
         with lock(root):
             inbox = _ensure_inbox(root)
+            previous = _occurrences(inbox, skill, meta["kind"])
             meta["id"] = _next_id(inbox)
+            path = contained(root, inbox / f"{meta['id']}-{_slug(summary)}.md")
+            recurrence = len({_origin(fm, p) for p, fm in previous} | {_origin(meta, path)})
+            ready = force_ready or meta["severity"] == "high" or recurrence >= 2
             meta["title"] = f"{meta['id']} — {summary}"[:200]
             meta["target_repo"] = root.name
-            path = contained(root, inbox / f"{meta['id']}-{_slug(summary)}.md")
+            meta["status"], meta["verdict"] = (READY, PENDING) if ready else (QUARANTINE, QUARANTINE)
+            meta["recurrence"] = str(recurrence)
             text = _document(meta, proposal)
             write(root, path, text)
+            if ready:
+                for sibling, fm in previous:
+                    if sibling.parent == inbox and fm.get("status") == QUARANTINE:
+                        _promote(root, sibling, meta["id"])
+                        promoted.append(sibling)
             _write_indexes(root, inbox)
         result.update(id=meta["id"], path=path.relative_to(root).as_posix(), index=(INBOX / "index.md").as_posix(),
-                      database=_index_db(root, path, text))
+                      database=_index_db(root, path, text), status=meta["status"], recurrence=recurrence,
+                      promoted=[re.match(r"FB-\d+", p.name, re.I)[0] for p in promoted])
+        for sibling in promoted:
+            _index_db(root, sibling, sibling.read_text(encoding="utf-8"))
+    else:
+        meta["status"] = READY if (force_ready or meta["severity"] == "high") else QUARANTINE
+        result["status"] = meta["status"]
     if github:
         title = f"[skill-feedback] {skill}: {summary}"[:240]
         command = ["gh", "issue", "create", "--title", title, "--body", _issue_body(meta, proposal), "--label", GITHUB_LABEL]
@@ -191,12 +254,19 @@ def _records(root: Path) -> list[dict]:
     inbox = root / INBOX
     if not inbox.is_dir():
         return []
-    records = []
-    for path in sorted(_inbox(root).glob("FB-*.md")):
+    records, origins = [], {}
+    top = _inbox(root)
+    for path in sorted(top.rglob("FB-*.md")):
+        if not ID.match(path.name):
+            continue
         contained(root, path)
         fm, _, _, _ = parse(path.read_bytes().decode("utf-8-sig"))
-        records.append({**{k: fm.get(k, "") for k in FIELDS}, **fm, "source": "inbox",
-                        "path": path.relative_to(root).as_posix()})
+        origins.setdefault((fm.get("skill", ""), fm.get("kind", "")), set()).add(_origin(fm, path))
+        if path.parent == top:
+            records.append({**{k: fm.get(k, "") for k in FIELDS}, **fm, "source": "inbox",
+                            "path": path.relative_to(root).as_posix()})
+    for record in records:  # Recurrence is computed live (inbox + archive), never trusted from disk.
+        record["recurrence"] = len(origins[(record.get("skill", ""), record.get("kind", ""))])
     return records
 
 

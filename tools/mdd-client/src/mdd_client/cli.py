@@ -255,6 +255,7 @@ def feedback_submit(
     req: str = typer.Option("", "--req"), batch: str = "", scope: str = typer.Option("global", help="global|local"),
     matrix: Path | None = typer.Option(None), path: Path = typer.Option(Path("."), "--path"),
     github: bool = typer.Option(False, "--github"), github_repo: str | None = typer.Option(None, "--github-repo"),
+    force_ready: bool = typer.Option(False, "--force-ready", help="Skip the first-occurrence QUARANTINE (medium/low)"),
     as_json: bool = typer.Option(False, "--json"),
 ):
     """Record one structured FB-XXX feedback (inbox + optional GitHub Issue)."""
@@ -263,9 +264,9 @@ def feedback_submit(
     root = _feedback_root(path, matrix, scope, github)
     data = dict(persona=persona, skill=skill, kind=kind, severity=severity, summary=summary, evidence=evidence,
                 proposal=proposal, repo=repo or path.resolve().name, request=req, batch=batch, scope=scope)
-    result = feedback.submit(root, data, github=github, github_repo=github_repo)
+    result = feedback.submit(root, data, github=github, github_repo=github_repo, force_ready=force_ready)
     typer.echo(json.dumps(result, ensure_ascii=False) if as_json else
-               f"{result['id'] or 'GitHub-only'}: {result['path'] or ''} {result['github_issue'] or ''}".strip())
+               f"{result['id'] or 'GitHub-only'}: {result['status']} {result['path'] or ''} {result['github_issue'] or ''}".strip())
     if result.get("github_error"):
         typer.echo(f"[GITHUB-ERROR] {result['github_error']}", err=True)
         raise typer.Exit(1)
@@ -290,10 +291,10 @@ def feedback_list(
         typer.echo(json.dumps(rows, ensure_ascii=False))
         return
     table = Table(title=f"Skill feedback ({len(rows)})")
-    for column in ("ID", "Status", "Verdict", "Skill", "Kind", "Severity", "Repo", "Summary"):
+    for column in ("ID", "Status", "Verdict", "Skill", "Kind", "Severity", "Recurrence", "Repo", "Summary"):
         table.add_column(column)
     for row in rows:
-        table.add_row(*(str(row.get(k, "")) for k in ("id", "status", "verdict", "skill", "kind", "severity", "repo", "summary_short")))
+        table.add_row(*(str(row.get(k, "")) for k in ("id", "status", "verdict", "skill", "kind", "severity", "recurrence", "repo", "summary_short")))
     console.print(table)
 
 
@@ -311,6 +312,35 @@ def feedback_triage(
     result = feedback.triage(feedback.resolve_root(path, matrix, scope), feedback_id, verdict,
                              reason=reason, reviewer=reviewer, today=date)
     typer.echo(json.dumps(result, ensure_ascii=False) if as_json else f"{result['id']}: {result['verdict']} ({result['path']})")
+
+
+@app.command("eval")
+@guarded
+def skill_eval(
+    matrix: Path | None = typer.Option(None, help="Matrix root (default: MDD_MATRIX or this workspace)"),
+    skill: str | None = typer.Option(None, "--skill", help="Only the scenarios of one skill"),
+    provider: str = typer.Option("deterministic", "--provider", help="Evaluation provider (offline default: deterministic)"),
+    scenarios: Path | None = typer.Option(None, "--scenarios", help="Scenario directory (default: tools/mdd-client/evals/skills)"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """Run skill regression evals; exit 1 on EVAL-FAIL."""
+    from . import skill_eval as evals
+
+    data = evals.run(find_matrix(matrix), skill=skill, provider=provider, scenarios_dir=scenarios)
+    if as_json:
+        typer.echo(json.dumps(data, ensure_ascii=False))
+    else:
+        table = Table(title=f"mdd eval — {data['status']} ({data['passed']}/{data['scenarios']}, provider {data['provider']})")
+        for column in ("ID", "Skill", "Status", "Lines/Budget", "Failures"):
+            table.add_column(column)
+        for row in data["results"]:
+            metrics = row["metrics"]
+            table.add_row(row["id"], row["skill"], row["status"], f"{metrics['lines']}/{metrics['budget']} {metrics['budget_state']}",
+                          "; ".join(row["failures"]) or "—")
+        console.print(table)
+        typer.echo(data["status"])
+    if data["status"] != "EVAL-PASS":
+        raise typer.Exit(1)
 
 
 def main():

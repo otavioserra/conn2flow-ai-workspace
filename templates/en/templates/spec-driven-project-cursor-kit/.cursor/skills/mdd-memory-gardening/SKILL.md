@@ -30,7 +30,18 @@ mdd compact --path ABSOLUTE_ROOT          # audit, no writes
 mdd compact --path ABSOLUTE_ROOT --apply  # authorized maintenance only
 ```
 
-Preserve the full original and a traceable summary in memory/raw/archive/original/ and memory/raw/archive/compacted/ before pruning memory/04-memory-engineering-execution.md. Rebuild indexes with mdd index and check links. mdd compact produces structural extracts and partitions; it does not replace authorized semantic summaries. Never assume the legacy archiver supports the migrated tree.
+For the Rule of 10 in the roots, use the Core archiver `ai:archive-memory` (legacy alias `ai:archive-sdd`), never an ad hoc script: it moves the files and rewrites only the affected links in the same operation.
+
+```sh
+php cli/c2f.php ai:archive-memory --repo=ABSOLUTE_ROOT --keep=10 --status=HOMOLOGATED,REVIEWED --dry-run   # plan
+php cli/c2f.php ai:archive-memory --repo=ABSOLUTE_ROOT --keep=10 --status=HOMOLOGATED,REVIEWED            # execution
+```
+
+- It governs `memory/human-requests/`, `memory/implementation/` and `memory/reports/` (`--folders=A,B` narrows it). In `reports/` the order follows the frontmatter `date:`, because `REP-`/`BL-` prefixes are mixed.
+- `--status` only lets the listed statuses be archived. The rest stay in the root and fill the active window, so a pending item never leaves by numeric order. The active pointers in `CURRENT.md` are protected; `--protect=A,B` protects others.
+- Requires Core `6e146f7aa8b6` or later; earlier versions do not handle `reports/` or `--status`. Do not invent `ai:archive-mdd`.
+
+Preserve the full original and a traceable summary in memory/raw/archive/original/ and memory/raw/archive/compacted/ before pruning memory/04-memory-engineering-execution.md. Rebuild indexes with mdd index and check links. mdd compact produces structural extracts and partitions; it does not replace authorized semantic summaries. In the migrated tree the archiver is the `ai:archive-memory` above; do not assume an earlier Core is compatible.
 
 ---
 
@@ -53,7 +64,7 @@ Record the orphan-link baseline **before** the move. Afterwards, report separate
 
 ## MDD: safe worktree maintenance
 
-Worktree maintenance is independent of memory pruning. Never prune healthy memory at session end. The matrix uses memory/ and a 50 KB active-document ceiling; satellites still use memory/. Do not assume ai:archive-sdd supports memory/.
+Worktree maintenance is independent of memory pruning. Never prune healthy memory at session end. The matrix uses memory/ and a 50 KB active-document ceiling; satellites still use memory/. For the Rule of 10, use `ai:archive-memory` as described above.
 
 1. Inventory worktrees and absolute roots; protect the main tree and environment/pipeline source trees.
 2. Fetch refs and verify no commits outside origin/main, no real staged or unstaged changes (ignore CR at EOL), and no untracked files. Report pending work; never force removal.
