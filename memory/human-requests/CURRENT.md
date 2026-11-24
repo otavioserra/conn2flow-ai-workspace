@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-091.md](req-091.md) / `BATCH-093` — programa `ARCH-018` **100% COMPLETED**)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-093` ([batch-093.md](../implementation/batch-093.md), `HOMOLOGATED` em 2026-11-24; relatório [REP-013](../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md))
+* **Ponteiro Ativo**: [req-092.md](req-092.md) (`REQ-092`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-094` ([batch-094.md](../implementation/batch-094.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24
@@ -34,12 +34,8 @@
 
 ---
 
-## Objetivo operacional — REQ-091 / BATCH-093 (Fase 4 Final do ARCH-018 + Rollout Global)
+## Objetivo operacional — REQ-092 / BATCH-094
 
-1. **Fase 4A — Tribunal Anti-Bloat, `mdd eval` e Curadoria Real (`FB-001`..`FB-003`) na Matriz**:
-   - Quarentena por recorrência em `mdd feedback`, `--budget-report` e alerta de divergência EN no auditor de skills.
-   - Runner `mdd eval` offline determinístico com ≥ 10 cenários de regressão de skills (`tools/mdd-client/evals/skills/`) e interface `--provider` plugável.
-   - Triar (`ACCEPT`) e aplicar `FB-001`, `FB-002` e `FB-003` em PT-BR/EN, regenerar índice, sincronizar matriz, atualizar hashes e passar auditoria + `--check` + `pytest` + `mdd eval`.
-2. **Fase 4B — Rollout Global Consolidado via Worktree nos 7 Satélites com `origin`**:
-   - Propagar todo o catálogo consolidado do `ARCH-018` (48 skills, 5 `c2f-persona-*` migradas via aliases, `subskills/` Mercado Pago, customização do Core preservada via `mdd sync --customize`), commitar seletivamente, publicar em `origin/main` respeitando avanço concorrente e remover/podar 100% das worktrees temporárias (`conn2flow-home` e `conn2flow-mkt` reportados sem alterar árvores principais).
-3. **Regra dos 10 Ativos & Entrega**: aplicar `ai:archive-memory` mantendo ≤ 10 ativos, entregar `batch-093.md` + `FEAT-017` + checklist + índices em `ready-for-review` (sem commit/push na matriz).
+1. **Extensão VS Code `v1.2.0`**: bump `1.1.7` → `1.2.0`, atualizar `CHANGELOG.md`, validar testes (`154/154`) e empacotar `vscode-extension/conn2flow-tools-1.2.0.vsix` pronto para instalação local.
+2. **Saneamento Cirúrgico de Sobras de Skills (`REQ-082`)**: limpar exclusivamente os caminhos sujos sob `*/skills/` em `website-conn2flow` (+ fast-forward em `main` se limpo), `conn2flow` e `conn2flow-home` sem tocar em nenhum arquivo de feature, e reportar status somente leitura dos demais satélites.
+3. **Documentação Viva & Curadoria (`DEC-136`)**: atualizar `README.md`, `README-PT-BR.md`, `CHANGELOG.md` e guias principais em `docs/` para o estado pós-`ARCH-018`, gerar tabela de curadoria de candidatos à remoção/otimização (sem deletar nada sem aprovação) e entregar `batch-094.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
