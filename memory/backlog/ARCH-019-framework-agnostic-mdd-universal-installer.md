@@ -1,7 +1,7 @@
 ---
 id: "ARCH-019"
 title: "MDD Agnóstico de Framework & Instalador Universal de Projetos (CLI + Extensão + App Visual)"
-status: "ICEBOX"
+status: "PROMOTED"
 date: "2026-11-24"
 author: "architect"
 target_repo: "conn2flow-ai-workspace"
