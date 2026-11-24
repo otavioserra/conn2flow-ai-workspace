@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-093.md](req-093.md) / `BATCH-095` — Fase 1 do `ARCH-019`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-095` ([batch-095.md](../implementation/batch-095.md), `HOMOLOGATED` em 2026-11-24; relatório [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md))
+* **Ponteiro Ativo**: [req-094.md](req-094.md) (`REQ-094`)
+* **Status**: `READY_FOR_EXECUTION` — aguardando início pelo Executor Tático
+* **Lote Relacionado**: `BATCH-096` ([batch-096.md](../implementation/batch-096.md), a criar/preencher pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-24
@@ -36,9 +36,8 @@
 
 ---
 
-## Objetivo operacional — REQ-093 / BATCH-095 (+ Fase 1 do ARCH-019)
+## Objetivo operacional — REQ-094 / BATCH-096
 
-1. **Extensão VS Code `v1.2.1` (pós-homologação visual)**: corrigir charset UTF-8 nos feedbacks (`PYTHONUTF8=1`/`PYTHONIOENCODING=utf-8`), adicionar triagem no botão direito, feedback visual/loading em Refresh e Toggle GitHub, detectar `conn2flow-hub` externo, limpar duplicidade em `.vscode/mcp.json` e empacotar `conn2flow-tools-1.2.1.vsix`.
-2. **Feedback `--github` & Limpeza `FB-008`**: garantir criação automática da label `skill-feedback` no `feedback.py` (com teste `pytest`) e remover o teste sintético `FB-008`.
-3. **1ª Rodada Real do Curator (`FB-004`/`FB-007`) + Optimizer (4 skills `OVER` → `0 OVER`)**: aplicar `FB-004` e `FB-007`, extrair receitas longas das 4 skills `OVER` para `subskills/` em PT-BR/EN, adicionar 2 cenários em `mdd eval` (**15/15 `EVAL-PASS`**).
-4. **Fase 1 do `ARCH-019` (Catálogo Plugável `domains/` + MDD Agnóstico)**: criar `domains/` (`README.md`, `generic/domain.json`, `conn2flow/domain.json`) pronto para novos domínios via PR (ex.: Laravel, Next.js), implementar `mdd bootstrap` com descoberta dinâmica (`--list-domains`, `--domain auto|<id>`, detecção de stack, `memory/` + skill local inicial, sem sobrescrever existentes) e integrar `conn2flow.projectDomain` aberto (`string`, padrão `auto`) + QuickPick dinâmico "Inicializar MDD neste Projeto" na extensão `v1.2.1`, aplicando Regra dos 10 Ativos e entregando `batch-095.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
+1. **CI GitHub Actions Verde (`>= 95%`)**: adicionar testes em `test_bootstrap.py` (e ramos descobertos) para o comando exato do CI (`pytest ... --cov-fail-under=95`) passar com folga.
+2. **Extensão VS Code `v1.2.2` (i18n da aba MDD Hub)**: disparar `mddHubTreeProvider.refresh()` imediatamente ao trocar `extensionLanguage`, corrigir todas as chaves PT-BR/EN misturadas em `localizationCatalog.ts`/`package.nls*.json` com teste unitário, e empacotar `conn2flow-tools-1.2.2.vsix`.
+3. **Saúde MDD (`healthy: true`)**: podar `VALIDATION-CHECKLIST.md` para ≤ 10 seções ativas (e manter ≤ 10 nas demais pastas), confirmar `mdd status --json` com `healthy: true` e entregar `batch-096.md` + `FEAT-017` em `ready-for-review` (sem commit/push na matriz).
