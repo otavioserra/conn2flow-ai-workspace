@@ -1,7 +1,7 @@
 ---
 id: "FB-006"
 title: "FB-006 — Sync parcial criou mdd-memory-gardening ao lado do legado sdd-memory-gardening e o sync seguinte recusa rodar"
-status: "QUARANTINE"
+status: "TRIAGED"
 verdict: "QUARANTINE"
 date: "2026-11-24"
 author: "executor"
@@ -18,6 +18,9 @@ recurrence: "1"
 evidence: "conn2flow-app 9f2e461 e conn2flow-nexus 32e75ee (BATCH-088) criaram mdd-memory-gardening sem migrar o legado; BATCH-093: Error 'Skills antiga e nova coexistem'; legado = matriz 78c9327 com EOL normalizado; removido com autorização DEC-136"
 summary_short: "Sync parcial criou mdd-memory-gardening ao lado do legado sdd-memory-gardening e o sync seguinte recusa rodar"
 github_issue: ""
+triage_reason: "Commits 9f2e461 e 32e75ee criaram o canônico no BATCH-088, e BATCH-093 detectou a mesma coexistência. O sync atual já migra o alias selecionado e barra a coexistência. Uma ocorrência independente documentada. Eventual orientação diagnóstica deve preservar os dois diretórios até autorização de retirada conforme DEC-136."
+triage_reviewer: "curator"
+triage_date: "2026-11-24"
 ---
 
 # FB-006 — Sync parcial criou mdd-memory-gardening ao lado do legado sdd-memory-gardening e o sync seguinte recusa rodar

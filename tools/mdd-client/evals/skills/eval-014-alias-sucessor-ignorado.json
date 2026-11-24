@@ -1,0 +1,24 @@
+{
+  "id": "EVAL-014-alias-sucessor-ignorado",
+  "skill": "c2f-multilingual-skills-governance",
+  "title": "FB-004: rename de alias para pasta ignorada exige conferir o sucessor no commit (PT-BR/EN)",
+  "trap": "O rename move o legado rastreado para uma pasta coberta por .gitignore e o commit grava só a deleção.",
+  "must_include": [
+    "Sucessor ignorado pelo Git (FB-004)",
+    "git check-ignore --no-index -v <kit>/skills/<sucessor>/SKILL.md",
+    "git add -f <kit>/skills/<sucessor>/",
+    "não altere o `.gitignore`",
+    "git ls-tree -r --name-only origin/main -- <kit>/skills",
+    "Deleção sem sucessor no commit bloqueia o push"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "Successor ignored by Git (FB-004)",
+        "git check-ignore --no-index -v <kit>/skills/<successor>/SKILL.md",
+        "git add -f <kit>/skills/<successor>/",
+        "A deletion without a successor in the commit blocks the push"
+      ]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { canTriage, describeFeedback, describeServerStatus, FeedbackRecord, groupFeedback, MddServerId } from '../mddHubPolicy';
+import { canTriage, describeFeedback, describeServerStatus, FeedbackRecord, groupFeedback, MddServerId, serverContextValue } from '../mddHubPolicy';
 import { LocalizationManager } from './localizationManager';
 import { MDD_SERVER_IDS, MddHubManager } from './mddHubManager';
 
@@ -59,13 +59,16 @@ export class MddHubTreeProvider implements vscode.TreeDataProvider<MddHubTreeIte
     const busy = MddHubManager.isBusy(id);
     const item = new MddHubTreeItem(MddHubManager.serverLabel(id), 'server', vscode.TreeItemCollapsibleState.None, [], id);
     item.id = `mddHub.server.${id}`;
-    item.description = busy ? LocalizationManager.t('mddHub.busy') : describeServerStatus(status);
-    item.contextValue = status.state === 'RUNNING' ? 'mddHubServer.running' : 'mddHubServer.stopped';
+    item.description = busy ? LocalizationManager.t('mddHub.busy') : describeServerStatus(status, LocalizationManager.t('mddHub.external'));
+    item.contextValue = serverContextValue(status);
     item.iconPath = busy
       ? new vscode.ThemeIcon('loading~spin')
       : new vscode.ThemeIcon(status.state === 'RUNNING' ? 'pass-filled' : 'circle-slash',
         new vscode.ThemeColor(status.state === 'RUNNING' ? 'testing.iconPassed' : 'disabledForeground'));
-    item.tooltip = LocalizationManager.t(id === 'mdd-client' ? 'tooltip.mddHub.mddClient' : 'tooltip.mddHub.hub');
+    item.tooltip = LocalizationManager.t(id === 'mdd-client' ? 'tooltip.mddHub.mddClient' : 'tooltip.mddHub.hub')
+      + (status.external ? `
+
+${LocalizationManager.t('mddHub.externalTooltip', { pid: String(status.pid ?? '?') })}` : '');
     return item;
   }
 

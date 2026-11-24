@@ -36,161 +36,33 @@ At the core of the framework (`gestor.php`), the AJAX mode is only activated whe
 
 ---
 
+## 📚 Subskills (read on demand)
+
+| Subskill | Read when |
+| --- | --- |
+| [`subskills/fetch-e-formdata.md`](subskills/fetch-e-formdata.md) | writing `gestorAjax`/`gestorUpload` in Vanilla JS |
+| [`subskills/dispatcher-php.md`](subskills/dispatcher-php.md) | creating or changing a controller's AJAX dispatcher |
+| [`subskills/jquery-legado.md`](subskills/jquery-legado.md) | maintaining a legacy jQuery module (`ajaxDefault`) |
+
+---
+
 ## 🏆 2. Frontend Canon Standard in JavaScript Vanilla (Gold Standard)
 
-In modern modules with pure JavaScript (Vanilla JS), always use the canonical standard with `URLSearchParams` or `FormData`:
+In modern (Vanilla JS) modules use the canonical functions `gestorAjax(state, ajaxOpcao, extraData)` (`URLSearchParams`, `application/x-www-form-urlencoded`) and `gestorUpload(state, ajaxOpcao, extraData, file)` (`FormData`). Full code: **`subskills/fetch-e-formdata.md`**.
 
-### A) Structured Data Requests (`application/x-www-form-urlencoded`):
-```javascript
-/**
- * Padrão Canônico de Requisição AJAX no Gestor (Vanilla JS)
- * @param {Object} state - Estado do módulo (deve conter opcao e moduleBaseUrl)
- * @param {string} ajaxOpcao - Backend action (e.g. 'salvar-dados', 'listar-itens')
- * @param {Object} [extraData] - Parâmetros adicionais (objetos/arrays são serializados em JSON)
- * @returns {Promise<Object>} Resposta JSON do backend
- */
-function gestorAjax(state, ajaxOpcao, extraData) {
-    var params = new URLSearchParams({
-        opcao: state.opcao || 'dashboard',
-        ajax: 'sim',
-        ajaxOpcao: ajaxOpcao
-    });
-
-    if (extraData) {
-        Object.keys(extraData).forEach(function (key) {
-            var val = extraData[key];
-            params.set(key, typeof val === 'object' && val !== null ? JSON.stringify(val) : val);
-        });
-    }
-
-    return fetch(state.moduleBaseUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params
-    })
-    .then(function (response) {
-        if (response.status === 401) {
-            window.location.href = (window.gestor && window.gestor.raiz ? window.gestor.raiz : '/') + 'signin/';
-            throw new Error('Sessão expirada. Redirecionando...');
-        }
-        if (!response.ok) {
-            throw new Error('HTTP ' + response.status);
-        }
-        return response.json();
-    })
-    .then(function (json) {
-        if (!json || json.status !== 'Ok') {
-            throw new Error((json && json.message) || 'Erro na resposta do servidor.');
-        }
-        return json;
-    });
-}
-```
-
-### B) Multipart File Uploads (`FormData`):
-```javascript
-/**
- * Padrão Canônico para Uploads de Arquivo Multipart (Vanilla JS)
- */
-function gestorUpload(state, ajaxOpcao, extraData, file) {
-    var form = new FormData();
-    form.append('opcao', state.opcao || 'dashboard');
-    form.append('ajax', 'sim');
-    form.append('ajaxOpcao', ajaxOpcao);
-
-    if (extraData) {
-        Object.keys(extraData).forEach(function (key) {
-            var val = extraData[key];
-            form.append(key, typeof val === 'object' && val !== null ? JSON.stringify(val) : val);
-        });
-    }
-    if (file) {
-        form.append('file', file);
-    }
-
-    return fetch(state.moduleBaseUrl, {
-        method: 'POST',
-        body: form
-    })
-    .then(function (response) {
-        if (response.status === 401) {
-            window.location.href = (window.gestor && window.gestor.raiz ? window.gestor.raiz : '/') + 'signin/';
-            throw new Error('Sessão expirada. Redirecionando...');
-        }
-        if (!response.ok) {
-            throw new Error('HTTP ' + response.status);
-        }
-        return response.json();
-    })
-    .then(function (json) {
-        if (!json || json.status !== 'Ok') {
-            throw new Error((json && json.message) || 'Erro no upload.');
-        }
-        return json;
-    });
-}
-```
+- The body always carries `opcao`, `ajax: 'sim'` and `ajaxOpcao`; extra objects and arrays are serialized with `JSON.stringify`.
+- `POST` to `state.moduleBaseUrl`. With `FormData`, never set `Content-Type`: the browser generates the boundary.
+- A `401` response redirects to `signin/` and throws; `!response.ok` throws `HTTP <status>`; an envelope with `json.status !== 'Ok'` throws `json.message`.
 
 ---
 
 ## 🏛️ 3. PHP Backend Canon Pattern (`modulo.php`)
 
-In the module PHP controller, the entire AJAX route should be intercepted at the beginning of the cycle with `interface_ajax_iniciar()` and completed with `interface_ajax_finalizar()`:
+In the module's PHP controller, every AJAX route MUST be intercepted at the start of the cycle with `interface_ajax_iniciar()` and closed with `interface_ajax_finalizar()`, followed by `return`. Full example: **`subskills/dispatcher-php.md`**.
 
-```php
-function modulo_start() {
-    global $_GESTOR;
-
-    gestor_incluir_bibliotecas();
-
-    // 1. Interceptador de Chamadas AJAX
-    if (!empty($_GESTOR['ajax'])) {
-        interface_ajax_iniciar();
-
-        switch ($_GESTOR['ajax-opcao']) {
-            case 'minha-acao':
-                modulo_ajax_minha_acao();
-                break;
-            default:
-                $_GESTOR['ajax-json'] = array(
-                    'status' => 'Erro',
-                    'message' => 'Ação AJAX desconhecida: ' . ($_GESTOR['ajax-opcao'] ?? '')
-                );
-                break;
-        }
-
-        interface_ajax_finalizar();
-        return;
-    }
-
-    // 2. Roteamento de Páginas Síncronas Normais
-    switch ($_GESTOR['opcao']) {
-        case 'dashboard':
-        default:
-            modulo_dashboard();
-            break;
-    }
-}
-
-function modulo_ajax_minha_acao() {
-    global $_GESTOR;
-
-    // Recupera dados enviados
-    $param1 = $_REQUEST['param1'] ?? '';
-
-    // Lógica de negócio / banco
-    // ...
-
-    // Retorno de Sucesso padronizado
-    $_GESTOR['ajax-json'] = array(
-        'status' => 'Ok',
-        'data' => array(
-            'id' => 123,
-            'resultado' => 'Processado com sucesso'
-        )
-    );
-}
-```
+- `if (!empty($_GESTOR['ajax']))` opens the block; `switch ($_GESTOR['ajax-opcao'])` routes to `modulo_ajax_<action>()`.
+- `default` answers `$_GESTOR['ajax-json'] = array('status' => 'Erro', 'message' => 'Ação AJAX desconhecida: ...')`; never leave an unknown action without an envelope.
+- Success: `$_GESTOR['ajax-json'] = array('status' => 'Ok', 'data' => ...)`. Read parameters from `$_REQUEST` with a default value.
 
 ---
 
@@ -207,55 +79,7 @@ The `interface` dispatcher handles these values. Reusing them as a custom module
 
 ## 📦 4. Legacy pattern with jQuery (`ajaxDefault`)
 
-For legacy modules and interfaces using jQuery and Semantic UI:
-
-```javascript
-var ajaxDefault = {
-    type: 'POST',
-    url: gestor.raiz + gestor.moduloCaminho + '/',
-    ajaxOpcao: 'ajaxOpcao',
-    data: {
-        opcao: gestor.moduloOpcao,
-        ajax: 'sim'
-    },
-    dataType: 'json',
-    beforeSend: function () {
-        loadDimmer(true);
-        msg_erro_resetar();
-    },
-    success: function (dados) {
-        if (dados.status === 'Ok') {
-            this.successCallback(dados);
-        } else {
-            this.successNotOkCallback(dados);
-            console.log('ERROR - ' + this.ajaxOpcao + ' - ' + dados.status);
-        }
-        loadDimmer(false);
-    },
-    error: function (txt) {
-        if (txt.status === 401) {
-            window.open(gestor.raiz + (txt.responseJSON.redirect ? txt.responseJSON.redirect : "signin/"), "_self");
-        } else {
-            console.log('ERROR AJAX - ' + this.ajaxOpcao + ' - Dados:', txt);
-            loadDimmer(false);
-        }
-    },
-    successCallback: function (response) { },
-    successNotOkCallback: function (response) { }
-};
-
-// Uso:
-var ajax = Object.assign({}, ajaxDefault);
-ajax.ajaxOpcao = 'minha-acao';
-ajax.data = Object.assign({}, ajaxDefault.data, {
-    ajaxOpcao: ajax.ajaxOpcao,
-    param1: 'valor1'
-});
-ajax.successCallback = function (response) {
-    // response.data ...
-};
-$.ajax(ajax);
-```
+Legacy modules (jQuery + Semantic UI) clone `ajaxDefault` with `Object.assign`, also set `ajaxOpcao` inside `data` and implement `successCallback`/`successNotOkCallback`. `beforeSend` turns on `loadDimmer(true)` and calls `msg_erro_resetar()`; success and error turn the dimmer off; `401` opens `gestor.raiz + (responseJSON.redirect || "signin/")`. Full object and usage example: **`subskills/jquery-legado.md`**.
 
 ---
 

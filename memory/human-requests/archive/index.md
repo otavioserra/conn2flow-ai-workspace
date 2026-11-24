@@ -82,6 +82,8 @@
 | REQ-082 | Propagação Global das Skills da REQ-081 aos Projetos Satélites + Melhorias do REP-004 (FEAT-018 e FEAT-019) com Segunda Publicação Condicionada | Propaga REQ-081 (FEAT-016/017) a todos os projetos, implementa melhorias do REP-004 (FEAT-018) na matriz e pausa para validação antes da 2ª propagação. | [source](<req-082.md>) | HOMOLOGATED |
 | REQ-083 | Ajustes do REP-005 (skills + paridade PHP) e integração isolada via Worktree (commit, merge na main, push e limpeza) nos repositórios satélites | Aplica melhorias do REP-005 na matriz/Core e integra via worktree isolada (commit, merge na main, push e limpeza) as skills nos 9 satélites. | [source](<req-083.md>) | HOMOLOGATED |
 | REQ-084 | Melhorias de governança operacional em 3 skills canônicas na matriz + faxina dos 10 Ativos | Atualiza c2f-shell-and-windows-traps, c2f-json-resources-sync e c2f-executor-agent na matriz (PT-BR/EN + hashes) e aplica a Regra dos 10 Ativos em memory/. | [source](<req-084.md>) | HOMOLOGATED |
+| REQ-085 | Melhorias de governança operacional em 4 skills canônicas + ajustes do REP-007 (somente matriz) | Atualiza c2f-documentation, c2f-json-resources-sync, c2f-project-pipeline-and-tasks e c2f-shell-and-windows-traps (+ notas REP-007 em c2f-multilingual-skills-governance e mdd-memory-gardening) somente na matriz. | [source](<req-085.md>) | HOMOLOGATED |
+| REQ-086 | Melhorias em 7 skills canônicas na matriz + propagação global isolada via Worktree das 11 skills do ciclo (REQ-084/085/086) nos satélites | Fase 1 atualiza 7 skills na matriz (AJAX reservadas, Core→Lab, APP_ENV, HookManager Reflection e nota glob); Fase 2 propaga via worktree isolada todas as 11 skills de REQ-084/085/086 nos satélites. | [source](<req-086.md>) | HOMOLOGATED |
 
 ## Directories
 

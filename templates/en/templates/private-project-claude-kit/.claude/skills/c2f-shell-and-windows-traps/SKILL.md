@@ -21,6 +21,18 @@ user-invocable: false
 
 ---
 
+## 📚 Subskills (read on demand)
+
+| Subskill | Read when | Traps |
+| --- | --- | --- |
+| [`subskills/cli-e-ssh.md`](subskills/cli-e-ssh.md) | rsync/SSH from Windows, colored CLI output, `sudo -u` on a tenant, `npx` in a build | 7, 8, 9, 17 |
+| [`subskills/scripts-e-caminhos-msys.md`](subskills/scripts-e-caminhos-msys.md) | generating files by script, heredocs with backslashes, recursive search, rewriting module JSON | 3, 4, 10, 11, 12 |
+| [`subskills/worktrees-e-junctions.md`](subskills/worktrees-e-junctions.md) | removing a worktree that has junctions (`vendor`, `node_modules`) | 18 |
+
+The rules below are the mandatory minimum; the full recipe is in the subskill named next to each one.
+
+---
+
 ## ⛔ Critical Shell and Windows Traps
 
 ### 1. Automatic Conversion of Paths into Git Bash (MSYS Path Conversion)
@@ -53,8 +65,6 @@ MSYS_NO_PATHCONV=1 rsync -avu "/c/Users/.../origem/" "usuario@host:/destino/"
 > [!WARNING]
 > This trap is **silent** — the command runs without visible error, but the path inside the container is wrong. PHP simply does not find the file and returns a generic error.
 
----
-
 ### 2. `curl` with `<` Character in Form Values
 
 **Problem**: The cURL `-F "campo=<valor"` flag interprets the `<` character as the local file read operator. The value is not sent as string — the cURL tries to open a file called `valor`.
@@ -68,49 +78,13 @@ curl -F "html=<div>teste</div>" http://localhost/api
 curl --form-string "html=<div>teste</div>" http://localhost/api
 ```
 
----
-
 ### 3. Python Heredocs and Escape Sequences
 
-**Problem**: When generating files with HTML/CSS/JS content using heredocs in Python, sequences such as `\b` (word union in regex) and `\s` (whitespace) are interpreted as bytes of control (backspace `0x08` and escaping sequences).
-
-**Mandatory solution**: Use raw strings (`r"""..."""`) or build characters with `chr(92)` (backslash):
-```python
-# ❌ ERRADO — \b e \s viram bytes de controle
-content = """
-  border: 1px solid #ccc;
-  .selector { color: red; }
-"""
-
-# ✅ CORRETO — raw string preserva literais
-content = r"""
-  border: 1px solid #ccc;
-  .selector { color: red; }
-"""
-```
-
----
+`\b` and `\s` inside a regular Python string become control bytes (backspace `0x08`). Use raw strings (`r"""..."""`) or `chr(92)`. Recipe: `subskills/scripts-e-caminhos-msys.md`.
 
 ### 4. Silent Failure Asserts in Intermediate Scripts
 
-**Problem**: Asserts in transformation scripts (Python, Node) that fail silently leave output files corrupted in half. The script continues to run after the assert fails, generating partial data.
-
-**Mandatory solution**:
-1. Use `set -e` in Bash scripts (exit on first error).
-2. In Python, use `assert` with descriptive messages and check the result BEFORE saving to disk.
-3. Validate output file after generation (size > 0, valid JSON/HTML structure).
-
-```python
-# ✅ Validar ANTES de gravar
-result = transform(input_data)
-assert result is not None, f"Transform failed for {input_file}"
-assert len(result) > 100, f"Result suspiciously small: {len(result)} bytes"
-
-with open(output_file, 'w') as f:
-    f.write(result)
-```
-
----
+A transformation script validates its result **before** writing (`set -e` in Bash; `assert` with a message in Python; size and structure of the generated file). Never write partial output. Recipe: `subskills/scripts-e-caminhos-msys.md`.
 
 ### 5. Gestor forms: `multipart/form-data` with Hidden Triggers
 
@@ -132,8 +106,6 @@ curl --form-string "_gestor-atualizar=1" \
 |`_gestor-registro-id`|Numeric ID|Identifies target record in database|
 |`ajax`|`sim`| (If AJAX) Prevent redirection and return JSON|
 
----
-
 ### 6. Parallelism Contestant in Batch Compilation Commands (PHP Warning Suppression)
 
 **Problem**: Run multiple heavy build, sync or database commands simultaneously (`css:rebuild`, `resources:sync`, `project:update-all`, `manager:update-all`, `db:migrate`) in the same Windows/Docker environment generates I/O disputes, freezes the container and masks critical runtime errors. When run in background or with deleted buffers, warnings and PHP news do not reach the terminal.
@@ -145,190 +117,32 @@ curl --form-string "_gestor-atualizar=1" \
 2. **Required Foreground**: Keep the commands running in foreground with direct output in the terminal.
 3. **No Buffer / Expo Warnings**: Do not use blind redirects (`> /dev/null 2>&1`). If a PHP warning is fired (e.g. `Undefined variable`, `ArgumentCountError`), it MUST appear in the terminal for immediate resolution.
 
----
+### 7. `rsync: dup() in/out/err failed` — cwRsync/SSH Runtime Pairing
 
-### 7. `rsync: dup() in/out/err failed` — CwRsync/SSH Runtime Pairing
+cwRsync's `rsync` (Cygwin) with Git Bash's `ssh.exe` (MSYS2) dies with `rsync: dup() in/out/err failed` (code 14/12). Use the `ssh.exe` shipped with cwRsync with `-T`, `MSYS_NO_PATHCONV=1` and `/cygdrive/c/...` paths. Recipe: `subskills/cli-e-ssh.md`.
 
-**Problem**: The `rsync` 3.4.x from the cwRsync (runtime Cygwin) package uses native Win32 pipes. When the `ssh.exe` invoked comes from Git Bash (runtime MSYS2), the descriptors are not compatible and the process dies with:
-```
-rsync: dup() in/out/err failed
-rsync error: error in IPC code (code 14) at pipe.c(...)
-```
-Exit code 12 does not produce a readable message without `-v`.
+### 8. ANSI Sequences in CLI Output (Colors Break Parsers)
 
-**Mandatory solution**:
-1. **Mandatory matching of runtimes**: Use the `ssh.exe` of the cwRsync (`C:\cwrsync\bin\ssh.exe`) package itself, never Git Bash.
-2. **`-e` with explicit SSH flags**: `-e "C:/cwrsync/bin/ssh.exe -T -i <chave>"`. The `-T` flag blocks pseudo-TTY (the binary rsync protocol does not work with PTY).
-3. **`MSYS_NO_PATHCONV=1`** remains mandatory (the same reason as Trap 1).
-4. **Local Paths**: Convert to `/cygdrive/c/...` (Cygwin format), never `/c/...` (MSYS2).
+Tailwind CLI, Vite and ESBuild emit ANSI colors even when captured (`tailwindcss \x1b[34mv4.3.3\x1b[39m`). Set `NO_COLOR=1`/`FORCE_COLOR=0` and strip `\x1b\[[0-9;]*[a-zA-Z]` before comparing versions or asserting. Recipe: `subskills/cli-e-ssh.md`.
 
-```bash
-MSYS_NO_PATHCONV=1 rsync -avz \
-  -e "C:/cwrsync/bin/ssh.exe -T -i $HOME/.ssh/id_ed25519" \
-  "/cygdrive/c/Users/otavi/projeto/src/" \
-  "usuario@host:/opt/projeto/src/"
-```
+### 9. `cd` Before `sudo -u` on Restricted SSH Tenants (HestiaCP and Similar)
 
-> [!WARNING]
-> The `dup()` error appears ONLY with the wrong `ssh.exe`. The message does not mention SSH — the natural diagnosis is to blame rsync or permissions.
+With a `750`/`700` home, `cd` runs as the SSH user and fails with `Permission denied`. Wrap everything in the elevated shell: `sudo -u tenant sh -c 'cd /home/tenant/web/dominio.com && php artisan migrate'`. Recipe: `subskills/cli-e-ssh.md`.
 
----
+### 10. Backslash Collapse in Git Bash (MSYS2) Heredocs
 
-### 8. ANSI sequences in CLI Utilities Outputs
+A Git Bash heredoc collapses `\\` into `\` without an error, corrupting Windows paths, regexes and PHP code. Use `DIRECTORY_SEPARATOR`, `printf` or a placeholder plus `sed`. Recipe: `subskills/scripts-e-caminhos-msys.md`.
 
-**Problem**: Multiplatform utilities (Tailwind CLI, Vite, ESBuild) emit ANSI color sequences even when captured by `proc_open()`, `exec()` or backtics. Version output:
-```
-tailwindcss \x1b[34mv4.3.3\x1b[39m
-```
-version comparators break (`version_compare()`, `semver.satisfies()`) and assertions in tests.
-
-**Mandatory solution**:
-1. **Environment variables**: Set `NO_COLOR=1` and/or `FORCE_COLOR=0` before invoking the process.
-2. **Mandatory hygiene** before any parsing or version comparison:
-```php
-$limpo = preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $saida_bruta);
-```
-```javascript
-const limpo = saidaBruta.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '');
-```
-3. **Asserts/tests**: Always sanitize BEFORE you compare, never trust that the output is pure text.
-
-> [!WARNING]
-> The contamination is **invisible** in the terminal (which renders the colors) but **breaker** in captured strings. `"v4.3.3" !== "\x1b[34mv4.3.3\x1b[39m"` fails without explanatory message.
-
----
-
-### 9. `cd` Before `sudo -u` in Limited SSH Tenants (HestiaCP and Similar)
-
-**Problem**: On multi-tenant servers (HestiaCP, cPanel, Plesk) with home directories in `750` or `700` mode, the deploy SSH user is not allowed to enter the tenant directory before the privilege elevation:
-```bash
-# ❌ FALHA — cd executa como o usuário SSH, que não tem acesso a /home/tenant/
-cd /home/tenant/web/dominio.com && sudo -u tenant php artisan migrate
-```
-
-**Mandatory solution**: Encapsulate directory exchange and command in the same high shell:
-```bash
-# ✅ CORRETO — cd e php executam ambos como `tenant`
-sudo -u tenant sh -c 'cd /home/tenant/web/dominio.com && php artisan migrate'
-```
-
-> [!WARNING]
-> The error is `Permission denied` in `cd`, not `sudo`. The natural diagnosis is to blame the sudo configuration, but the problem is in order of operations.
-
----
-
-### 10. Inverted Bar Collapse in Heredoc in Git Bash (MSYS2)
-
-**Problem**: In Git Bash (MSYS2), heredocs in scripts Bash or inline invocations collapse double reverse bars (`\\`) in plain (`\`). This silently corrupts Windows paths, regular and constant PHP expressions like `DIRECTORY_SEPARATOR`.
-
-Example of the problem:
-```bash
-# ❌ No Git Bash, o heredoc colapsa \\ para \
-cat <<'EOF' > script.php
-$sep = DIRECTORY_SEPARATOR;  // OK
-$caminho = "C:\\Users\\otavi";  // Vira "C:\Users\otavi" (errado)
-EOF
-```
-
-**Mandatory solution**:
-1. **For PHP paths**: Use `DIRECTORY_SEPARATOR` instead of literal backslashes:
-```php
-// ✅ CORRETO — portável e imune ao heredoc
-$caminho = 'C:' . DIRECTORY_SEPARATOR . 'Users' . DIRECTORY_SEPARATOR . 'otavi';
-```
-
-2. **For generated scripts**: Use `printf` or `echo` with explicit escaping instead of heredoc:
-```bash
-# ✅ CORRETO — printf preserva as barras
-printf '%s\n' '$caminho = "C:\\\\Users\\\\otavi";' > script.php
-```
-
-3. **For inevitable heredocs**: Use post-generation `sed` replacement:
-```bash
-cat <<'EOF' > temp.php
-$caminho = "C:__SEP__Users__SEP__otavi";
-EOF
-sed -i 's/__SEP__/\\\\/g' temp.php
-```
-
-> [!WARNING]
-> The collapse is **silent** — the file is generated without error, but the content is corrupted. Paths like `C:\Users` work on Windows but differ from expected `C:\\Users` in PHP source code.
-
----
-
-### 11. Timeout and Lock of `grep -rn` on Repositories Root on Windows
-
-**Problem**: Running `grep -rn` (recursive search) from the root of a repository in Windows/Git Bash can cause:
-- **Timeout** by `node_modules/`, `.git/`, `vendor/` and other heavy directories.
-- Terminal **Lock complete** when file volume exceeds MSYS2 I/O limits.
-- **Excessive memory consumption** with undrained output buffers.
-
-**Mandatory solution**:
-1. **Always delete heavy directories** with `--exclude-dir`:
-```bash
-# ✅ CORRETO — exclui diretórios que causam timeout
-grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor,dist,build} .
-```
-
-2. **Limit depth and scope**:
-```bash
-# ✅ CORRETO — buscar em diretório específico
-grep -rn 'padrão' src/
-grep -rn 'padrão' modulos/meu-modulo/
-```
-
-3. **Use optimized alternatives** when available:
-```bash
-# ✅ ripgrep (rg) respeita .gitignore automaticamente
-rg 'padrão' .
-
-# ✅ findstr no PowerShell (nativo Windows)
-Get-ChildItem -Recurse -Include *.php | Select-String 'padrão'
-```
-
-4. **Defensive Timeout** for automated scripts:
-```bash
-# ✅ Limitar tempo de execução
-timeout 30 grep -rn 'padrão' --exclude-dir={node_modules,.git,vendor} .
-```
+### 11. `grep -rn` Timeouts and Hangs at the Repository Root on Windows
 
 > [!CAUTION]
-> NEVER run `grep -rn` at the root of repositories with large `node_modules` or `.git`. On Windows, MSYS2 does not have auto kill per timeout — the process can stop indefinitely.
+> NEVER run `grep -rn` at the root of repositories with large `node_modules` or `.git`. On Windows, MSYS2 has no automatic kill on timeout — the process can hang indefinitely.
 
----
+Narrow the folder, use `--exclude-dir={node_modules,.git,vendor,dist,build}`, `rg` or `timeout 30`. Recipe: `subskills/scripts-e-caminhos-msys.md`.
 
-### 12. Python `json.dumps()` Remove Toolbar (`\/`) from JSON PHP Modules
+### 12. Python `json.dumps()` Drops the `\/` Escapes of PHP Module JSON
 
-**Problem**: PHP serializes JSON modules with escaping by default (`"products\/add\/"`). The `json.dumps()` of Python **does not produce** escaping bar (`"products/add/"`), causing massive noises in Git diff — all lines with paths appear as changed, even without semantic modification.
-
-**Mandatory solution**:
-1. **Detect** if the original file contains `\/` before rewrite.
-2. **Restore** or escaping after `json.dumps()`:
-```python
-import json
-
-with open(json_path, 'r', encoding='utf-8') as f:
-    original = f.read()
-    data = json.loads(original)
-
-# Após modificações...
-output = json.dumps(data, indent=4, ensure_ascii=False)
-
-# Restaurar escape de barra nativo do PHP
-if '\\/' in original:
-    output = output.replace('/', '\\/')
-
-with open(json_path, 'w', encoding='utf-8', newline='') as f:
-    f.write(output)
-```
-
-3. **Always use `ensure_ascii=False`** to preserve accents and UTF-8 characters.
-4. **Preserve native line endings** (LF vs CRLF) from the original file.
-
-> [!WARNING]
-> The impact is **aesthetic but destructive for the workflow**: hundreds of lines changed in diff make it difficult to review the Quality Auditor and hide real changes in noise.
-
----
+PHP writes `"products\/add\/"`; `json.dumps()` writes `"products/add/"` and the diff marks the whole file. Detect `\/` in the original and restore it after serializing, with `ensure_ascii=False` and the original line endings. Recipe: `subskills/scripts-e-caminhos-msys.md`.
 
 ### 13. Heredoc with apostrophe, crash or reverse bar: write the file, not heredoc
 
@@ -337,8 +151,6 @@ with open(json_path, 'w', encoding='utf-8', newline='') as f:
 A Python or JavaScript script with apostrophes (`What's new`), crashes or `\r\n` inside a Git Bash heredoc breaks in different ways to each case, even with the quote delimiter.
 
 **Rule**: script with more than ten lines, or with any of these characters, is saved as file by the writing tool and then executed. Heredoc only for short cuts and no quotes.
-
----
 
 ### 14. Argument that starts with `/` past `node` or `curl`
 
@@ -351,16 +163,12 @@ MSYS_NO_PATHCONV=1 curl -sk "https://host$rota"
 
 `curl ... -o /dev/null` on Windows can exit with code 23 even with the correct answer: check `%{http_code}`, not the output code.
 
----
-
 ### 15. Repository inside synchronized folder (OneDrive)
 
 Large file rerecorded frequently (a `*Data.json` of dozens of MB) is blocked for moments by the syncer. Symptoms: `OSError: [Errno 22]` in Python, `file_put_contents` returning `false` in PHP.
 
 - All generated file writing checks the result and tries again; never ignore the return.
 - An isolated writing flaw that disappears on the second attempt is this, not a defect in your code. Register and follow.
-
----
 
 ### 16. PHP Suite: Run on Linux environment
 
@@ -372,88 +180,21 @@ ssh usuario@lab 'cd /mnt/c/caminho/do/repo && php vendor/bin/phpunit --configura
 
 End of line checkout CRLF read by Linux fails tests that run scripts `.sh` (`syntax error near unexpected token`). It is a failure of the environment: register as pre-existing, not as regression. Shebang copied script for a worktree needs to be in LF.
 
----
-
-### 17. Disappearance of `npx` and NPM Volatile Cache on Windows
-
-**Problem**: In Windows/Git Bash, invoking `npx tailwindcss` or `npx terser` may fail intermittently or disappear during continuous compilations, triggering errors such as `npx: command not found`, `npm ERR! code ENOENT` or resolution lockings and downloading packages in `%LOCALAPPDATA%\npm-cache` volatile cache.
-
-**Root Cause**:
-1. The `npx` command tries to verify and consult remote or temporary records when invoked generically, subjecting build to network timeouts or file locks by antivirus/OneDrive.
-2. Path resolution problems in Windows PATH make global `npx` executables diverge from the versions set in the repository.
-
-**Mandatory solution**:
-1. **Strict Use of Local Binarys**: Always directly invoke the binaries installed in the `node_modules/.bin/` repository:
-```cmd
-# No Windows / PowerShell / CMD:
-.\node_modules\.bin\tailwindcss.cmd -i input.css -o output.css --minify
-.\node_modules\.bin\terser.cmd script.js -o script.min.js
-```
-```bash
-# No Git Bash / sh:
-./node_modules/.bin/tailwindcss -i input.css -o output.css --minify
-./node_modules/.bin/terser script.js -o script.min.js
-```
-2. **In PHP/CLI scripts and pipelines**: The framework and tools should directly reference the relative path to `node_modules/.bin/tailwindcss.cmd` (on Windows) or `node_modules/.bin/tailwindcss` (on Linux/Docker), without intermediating calls via `npx`.
+### 17. `npx` Disappearing and the Volatile npm Cache on Windows
 
 > [!CAUTION]
-> NEVER use `npx tailwindcss` or `npx terser` in automated build scripts or build repetitive routines. It depends strictly on local dependencies in `node_modules/.bin/`.
+> NEVER use `npx tailwindcss` or `npx terser` in automated build scripts or repeated build routines. Depend strictly on the local dependencies in `node_modules/.bin/`.
+
+Windows/CMD: `.\node_modules\.bin\tailwindcss.cmd`; Git Bash/Linux/Docker: `./node_modules/.bin/tailwindcss`. Causes and examples: `subskills/cli-e-ssh.md`.
 
 ### 18. Remove a worktree with junctions
 
-On Windows, inspect and remove the worktree in a single Command Prompt (CMD) session. Run each block in order, replacing the example paths with verified absolute paths.
+On Windows, do the whole inspection and removal in **a single Command Prompt (CMD) session**, with verified absolute paths. Step by step (integration check, link inventory one level at a time, one-by-one removal, `git worktree remove`/`prune` and final check): **`subskills/worktrees-e-junctions.md`**.
 
-1. From the main checkout, confirm the registered worktree and protect the main checkout and pipeline source trees. Confirm that the path and its ancestors are real directories, that all worktree commits are integrated into `main`, and that there is no pending work, including ignored files that need to be preserved.
+- Remove each `<JUNCTION>` by its literal path with `rmdir "<folder>\<link>"`, one at a time and without `/S`; enumerate with `dir /AL`, one level at a time, never with `/S`.
+- **A query error is not zero links (FB-007)**: zero only counts when the path was validated and `dir /AL` answered `File Not Found`/`Arquivo não encontrado`. A syntax, path or access error stops the cleanup. Do not run the inventory through `cmd //c` in Git Bash.
 
-   ```bat
-   cd /d "C:\Projetos\repo"
-   git worktree list --porcelain
-   git -C "C:\Projetos\repo-lote" status --short --untracked-files=all --ignored=matching
-   git -C "C:\Projetos\repo-lote" merge-base --is-ancestor HEAD main
-   echo %ERRORLEVEL%
-   ```
-
-   The last command must return 0. Stop if there is unique work, an uncertain target, or a protected path.
-
-2. Inventory links and real directories one level at a time. Repeat the commands in each real directory, including project subdirectories and real `vendor` and `node_modules` installations. Inspect these names from the parent before entering. Check the other worktrees and the targets reported by `dir /AL`. If another checkout depends on the target worktree, suspend removal until the reference has been resolved and the targets checked.
-
-   ```bat
-   dir /AL "C:\Projetos\repo-lote"
-   dir /A:D-L "C:\Projetos\repo-lote"
-   dir /AL "C:\Projetos\repo-lote\projeto"
-   dir /AL "C:\Projetos\repo"
-   ```
-
-   Never use `/S` for enumeration. Record the contents and targets of `vendor` and `node_modules` in the checkouts that will remain for comparison after removal.
-
-3. Remove each verified `<JUNCTION>` entry individually by its literal path, without `/S`. If you find another kind of reparse point or removal fails, stop and preserve the worktree.
-
-   ```bat
-   rmdir "C:\Projetos\repo-lote\vendor"
-   rmdir "C:\Projetos\repo-lote\projeto\node_modules"
-   ```
-
-4. Repeat `dir /AL` in every real directory inventoried. Proceed only after confirming that no links remain. Distinguish an empty listing from a path or access error.
-
-5. Run `git worktree remove` with the verified path. If Git refuses, preserve the worktree and investigate. After successful removal, check `git worktree prune --dry-run --verbose` and run `git worktree prune` if the preview lists only disposable metadata.
-
-   ```bat
-   git worktree remove "C:\Projetos\repo-lote"
-   git worktree prune --dry-run --verbose
-   git worktree prune
-   ```
-
-6. Confirm the target is absent from `git worktree list --porcelain`. In every remaining checkout, compare the contents of `vendor` and `node_modules` against the earlier inventory and confirm that retained junctions resolve to the expected targets.
-
-   ```bat
-   git worktree list --porcelain
-   dir "C:\Projetos\repo\vendor"
-   dir "C:\Projetos\repo\node_modules"
-   ```
-
-**Commands prohibited during this cleanup:** `rmdir /S`, `Remove-Item -Recurse`, `rm -rf`, and enumeration in PowerShell followed by deletion in CMD. Never use `git worktree remove --force` to discard unintegrated work.
-
-When a junction is needed for shared dependencies, target the main checkout. See `mdd-memory-gardening` for the maintenance routine.
+**Commands forbidden in this cleanup:** `rmdir /S`, `Remove-Item -Recurse`, `rm -rf`, and enumerating in PowerShell followed by deleting in CMD. Never use `git worktree remove --force` to override unintegrated work.
 
 ### 19. iconv //TRANSLIT not portable in PHP Windows
 

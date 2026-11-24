@@ -1,0 +1,30 @@
+{
+  "id": "EVAL-015-inventario-junctions-erro-nao-e-zero",
+  "skill": "c2f-shell-and-windows-traps",
+  "title": "FB-007: no inventário de junctions, erro de consulta não é zero links (PT-BR/EN)",
+  "trap": "cmd //c \"dir /AL /S /B ...\" pelo Git Bash devolve erro de sintaxe, que parece 0 junctions e libera a remoção da worktree.",
+  "subskills": [
+    "subskills/worktrees-e-junctions.md"
+  ],
+  "must_include": [
+    "subskills/worktrees-e-junctions.md",
+    "Erro de consulta não é zero links (FB-007)",
+    "`Arquivo não encontrado`",
+    "Nunca conte as linhas de uma saída de erro como zero links",
+    "cmd //c",
+    "uma única sessão do Prompt de Comando (CMD)"
+  ],
+  "must_not_match": [
+    "(?m)^\\s*(?:cmd /c \\\")?rmdir\\s+/S\\b"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "subskills/worktrees-e-junctions.md",
+        "A query error is not zero links (FB-007)",
+        "`File Not Found`",
+        "Never count the lines of an error output as zero links"
+      ]
+    }
+  }
+}

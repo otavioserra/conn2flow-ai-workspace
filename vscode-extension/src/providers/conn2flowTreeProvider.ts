@@ -12,6 +12,7 @@ import { HubTaskWatcher } from './hubTaskWatcher';
 import { TranslationKey } from '../localizationCatalog';
 import { nextTreeExpansionVersion, normalizeTreeExpansionVersion, treeSectionId } from '../treeExpansionPolicy';
 import { treeTooltipKey } from '../treeTooltipPolicy';
+import { isConn2FlowDomain } from '../domainPolicy';
 
 export class Conn2FlowTreeItem extends vscode.TreeItem {
   constructor(
@@ -147,6 +148,7 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     ];
 
     const sdd = [
+      this.leaf('mdd.initProject', 'conn2flow.mdd.initProject', 'rocket'),
       this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
       this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
       this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),
@@ -236,12 +238,16 @@ export class Conn2FlowTreeProvider implements vscode.TreeDataProvider<Conn2FlowT
     ];
 
 
+    // Non-Conn2Flow domains (conn2flow.projectDomain, ARCH-019) keep only the universal MDD infrastructure.
+    const conn2flow = isConn2FlowDomain(vscode.workspace.getConfiguration('conn2flow').get<string>('projectDomain'));
     const result = [
       this.section('section.overview', 'overview', 'dashboard', overview, true),
       this.section('section.sdd', 'sdd', 'shield', sdd),
-      this.section('section.core', 'core', 'tools', core),
-      this.section('section.projects', 'projects', 'folder-library', projects),
-      this.section('section.diagnostics', 'diagnostics', 'server', diagnostics),
+      ...(conn2flow ? [
+        this.section('section.core', 'core', 'tools', core),
+        this.section('section.projects', 'projects', 'folder-library', projects),
+        this.section('section.diagnostics', 'diagnostics', 'server', diagnostics)
+      ] : []),
       this.section('section.agents', 'agents', 'organization', docsConfig)
     ];
 

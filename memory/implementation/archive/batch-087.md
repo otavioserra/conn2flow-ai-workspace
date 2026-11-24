@@ -14,7 +14,7 @@ summary_medium: "Categoria B, somente matriz. Sem commit, push, deploy ou propag
 
 # BATCH-087 — Governança operacional de quatro skills e micro-ajustes do REP-007
 
-[REQ-085](../../human-requests/req-085.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-085](../../human-requests/archive/req-085.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 

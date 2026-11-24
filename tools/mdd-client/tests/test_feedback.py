@@ -125,7 +125,9 @@ def test_github_backend_uses_injected_runner(matrix):
 
     result = feedback.submit(matrix, BASE, github=True, github_repo="acme/ws", runner=runner)
     assert result["github_issue"] == "https://github.com/acme/ws/issues/7"
-    create = calls[0]
+    label, create = calls[0], calls[1]
+    assert label[:4] == ["gh", "label", "create", "skill-feedback"] and "--force" in label
+    assert label[label.index("--color") + 1] == "0E8A16" and label[label.index("--repo") + 1] == "acme/ws"
     assert create[create.index("--label") + 1] == "skill-feedback" and create[create.index("--repo") + 1] == "acme/ws"
     assert "FB-001" in create[create.index("--body") + 1]
     assert indexer.get(matrix, "FB-001", "github_issue") == "https://github.com/acme/ws/issues/7"
@@ -140,6 +142,22 @@ def test_github_backend_uses_injected_runner(matrix):
 
     failed = feedback.submit(matrix, BASE, github=True, runner=broken)
     assert failed["id"] == "FB-002" and failed["github_error"] == "gh failed: auth" and failed["github_issue"] is None
+
+
+def test_github_label_is_created_before_issue_and_never_blocks_it(matrix):
+    calls = []
+
+    def runner(command):
+        calls.append(list(command))
+        if command[:3] == ["gh", "label", "create"]:
+            raise ValueError("gh failed: label exists without --force support")
+        return "https://github.com/acme/ws/issues/9\n"
+
+    result = feedback.submit(matrix, BASE, github=True, runner=runner)
+    assert [c[:3] for c in calls] == [["gh", "label", "create"], ["gh", "issue", "create"]]
+    assert "--repo" not in calls[0]
+    assert result["github_issue"].endswith("/9") and "label" in result["github_label_error"]
+    assert feedback.ensure_github_label(lambda c: "", "acme/ws") is None
 
 
 def test_scope_resolution(matrix, monkeypatch):

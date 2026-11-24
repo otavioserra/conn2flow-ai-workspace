@@ -1,0 +1,17 @@
+{
+  "id": "conn2flow",
+  "name": "Conn2Flow (PHP CMS + Gestor)",
+  "description": "Conn2Flow Core, satellite sites and plugins: the 48 canonical skills (5 personas, 34 c2f-* core skills, 9 governance) plus the PT-BR/EN memory templates.",
+  "priority": 100,
+  "detectors": {
+    "files": ["c2f", "gestor/config.php"],
+    "dirs": ["gestor"],
+    "markers": [
+      { "file": "composer.json", "contains": "conn2flow" },
+      { "file": "environment.json", "contains": "conn2flow" }
+    ]
+  },
+  "skills_mode": "all-canonical",
+  "extra_skills_dir": null,
+  "generate_local_project_skill": false
+}

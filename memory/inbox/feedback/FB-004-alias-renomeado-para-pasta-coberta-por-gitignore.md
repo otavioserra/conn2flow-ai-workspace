@@ -1,8 +1,8 @@
 ---
 id: "FB-004"
 title: "FB-004 — Alias renomeado para pasta coberta por .gitignore sai do repositório: o commit grava só a deleção"
-status: "READY"
-verdict: "PENDING"
+status: "TRIAGED"
+verdict: "ACCEPT"
 date: "2026-11-24"
 author: "executor"
 target_repo: "conn2flow-ai-workspace"
@@ -18,6 +18,9 @@ recurrence: "1"
 evidence: "BATCH-093: conn2flow e lumix ignoram .claude/skills/* com whitelist; c2f-architect-master e c2f-executor-agent rastreados viraram c2f-persona-* ignorados; verify_commits.py acusou e git add -f dos sucessores corrigiu (commits 230262177 e 60faf38)"
 summary_short: "Alias renomeado para pasta coberta por .gitignore sai do repositório: o commit grava só a deleção"
 github_issue: ""
+triage_reason: "BATCH-093 e commits 230262177/60faf38 comprovam perda silenciosa do sucessor rastreado antes da correção. O rename do sync não valida o ignore do Git. Cabe na seção de aliases (64/200 linhas): verificar o destino com git check-ignore --no-index e confirmar que cada legado removido tem sucessor no commit antes do push. Stage forçado apenas para o caminho do sucessor deliberadamente versionado."
+triage_reviewer: "curator"
+triage_date: "2026-11-24"
 ---
 
 # FB-004 — Alias renomeado para pasta coberta por .gitignore sai do repositório: o commit grava só a deleção

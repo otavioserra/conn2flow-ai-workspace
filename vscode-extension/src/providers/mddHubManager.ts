@@ -9,6 +9,8 @@ import {
   buildHubHandshake,
   buildHubSpec,
   buildMddClientSpec,
+  buildMddEnv,
+  buildProcessListCommand,
   buildStopCommand,
   buildTriageArgs,
   FeedbackRecord,
@@ -21,6 +23,8 @@ import {
   MddServerStatus,
   normalizePort,
   parseFeedbackList,
+  parseHubProcesses,
+  resolveExternalHubStatus,
   resolveServerStatus
 } from '../mddHubPolicy';
 import { TranslationKey } from '../localizationCatalog';
@@ -109,7 +113,14 @@ export class MddHubManager {
     const record = this.records()[id];
     const child = this.children.get(id);
     if (!record && !child) {
-      if (!quiet) vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.notRunning', { server: this.serverLabel(id) }), 3000);
+      const cached = this.statuses.get(id);
+      if (!quiet && cached?.external) {
+        vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.externalNotManaged', {
+          server: this.serverLabel(id), pid: String(cached.pid ?? '?')
+        }), 6000);
+      } else if (!quiet) {
+        vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.notRunning', { server: this.serverLabel(id) }), 3000);
+      }
       return;
     }
     if (!quiet) this.busy.add(id);
@@ -164,7 +175,7 @@ export class MddHubManager {
     const logFile = this.logFile(spec.id);
     const fd = logFile ? fs.openSync(logFile, 'a') : 'ignore';
     const child = spawn(spec.command, spec.args, {
-      cwd: spec.cwd, detached: true, windowsHide: true, shell: false, stdio: ['ignore', fd, fd]
+      cwd: spec.cwd, detached: true, windowsHide: true, shell: false, stdio: ['ignore', fd, fd], env: buildMddEnv()
     });
     if (typeof fd === 'number') fs.closeSync(fd);
     const pid = await this.spawned(child);
@@ -221,9 +232,32 @@ export class MddHubManager {
     if (id === 'conn2flow-hub') {
       // A stdio hub only runs while this window holds its stdin.
       const child = this.children.get(id);
-      return resolveServerStatus(id, record, alive && !!child && child.exitCode === null);
+      const own = resolveServerStatus(id, record, alive && !!child && child.exitCode === null);
+      if (own.state === 'RUNNING') return own;
+      // Hubs started by another client (VS Code MCP, Claude Code…) are shown, never stopped.
+      return resolveExternalHubStatus(own, await this.externalHubPids(child?.pid));
     }
     return resolveServerStatus(id, record, alive, record?.port ? await this.portOpen(record.port) : undefined);
+  }
+
+  private static externalHubPids(ownPid?: number): Promise<number[]> {
+    const listing = buildProcessListCommand();
+    return new Promise(resolve => execFile(listing.command, listing.args, {
+      windowsHide: true, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024, timeout: 8000
+    }, (error, stdout) => {
+      if (error) {
+        // A failed listing is "unknown", not "zero processes": log it instead of hiding it.
+        this.log(`[conn2flow-hub] process listing failed: ${this.message(error)}`);
+        resolve([]);
+        return;
+      }
+      try {
+        resolve(parseHubProcesses(stdout, process.platform, ownPid ? [ownPid] : []));
+      } catch (parseError) {
+        this.log(`[conn2flow-hub] process listing unreadable: ${this.message(parseError)}`);
+        resolve([]);
+      }
+    }));
   }
 
   // ── Feedback ─────────────────────────────────────────────────────────────
@@ -301,11 +335,12 @@ export class MddHubManager {
 
   // ── Helpers ──────────────────────────────────────────────────────────────
 
-  private static runMdd(args: string[], cwd: string): Promise<string> {
+  /** Runs `mdd` with explicit argv in UTF-8 mode (no shell). Shared with the bootstrap command. */
+  public static runMdd(args: string[], cwd: string, timeout = 120000): Promise<string> {
     const command = resolveMddExecutable(WorkspaceLocator.getAiWorkspaceRoot(),
       vscode.workspace.getConfiguration('conn2flow').get<string>('mddExecutable'));
     return new Promise((resolve, reject) => execFile(command, args, {
-      cwd, windowsHide: true, encoding: 'utf8', maxBuffer: 8 * 1024 * 1024, timeout: 120000
+      cwd, windowsHide: true, encoding: 'utf8', maxBuffer: 8 * 1024 * 1024, timeout, env: buildMddEnv()
     }, (error, stdout, stderr) => {
       if (error) {
         reject(new Error(stderr.trim() || stdout.trim() || error.message));

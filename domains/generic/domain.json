@@ -1,0 +1,14 @@
+{
+  "id": "generic",
+  "name": "Generic MDD (universal)",
+  "description": "Universal MDD core for any stack: 4-layer memory/, memory/learnings/, the 5 c2f-persona-* personas, MDD governance skills and a generated local project skill.",
+  "priority": 0,
+  "detectors": {
+    "files": [],
+    "dirs": [],
+    "markers": []
+  },
+  "skills_mode": "core-mdd-only",
+  "extra_skills_dir": null,
+  "generate_local_project_skill": true
+}

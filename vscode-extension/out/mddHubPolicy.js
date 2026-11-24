@@ -1,12 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_MDD_PORT = exports.FEEDBACK_GROUP_ORDER = exports.FEEDBACK_VERDICTS = void 0;
+exports.buildMddEnv = buildMddEnv;
+exports.isHubCommandLine = isHubCommandLine;
+exports.buildProcessListCommand = buildProcessListCommand;
+exports.parseHubProcesses = parseHubProcesses;
+exports.resolveExternalHubStatus = resolveExternalHubStatus;
 exports.normalizePort = normalizePort;
 exports.buildMddClientSpec = buildMddClientSpec;
 exports.buildHubSpec = buildHubSpec;
 exports.buildStopCommand = buildStopCommand;
 exports.resolveServerStatus = resolveServerStatus;
 exports.describeServerStatus = describeServerStatus;
+exports.serverContextValue = serverContextValue;
 exports.buildHubHandshake = buildHubHandshake;
 exports.isHubHandshakeReply = isHubHandshakeReply;
 exports.buildFeedbackListArgs = buildFeedbackListArgs;
@@ -21,6 +27,62 @@ exports.FEEDBACK_VERDICTS = ['ACCEPT', 'NEEDS_EVIDENCE', 'QUARANTINE', 'REJECT',
 exports.FEEDBACK_GROUP_ORDER = ['PENDING', ...exports.FEEDBACK_VERDICTS];
 const SEVERITY_ORDER = { high: 0, medium: 1, low: 2 };
 exports.DEFAULT_MDD_PORT = 8765;
+/**
+ * Environment for every `mdd` call. Python on Windows writes piped stdout in the ANSI code page
+ * (cp1252), so accents in FB-XXX titles arrived corrupted; UTF-8 mode fixes both ends.
+ */
+function buildMddEnv(base = process.env) {
+    return { ...base, PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8' };
+}
+const HUB_ENTRY = /mcp-hub[\\/]+dist[\\/]+index\.js/i;
+const NODE_BINARY = /(^|[\\/"'\s])node(\.exe)?["'\s]/i;
+/** A conn2flow-hub process is `node … mcp-hub/dist/index.js` (any client may have started it). */
+function isHubCommandLine(commandLine) {
+    if (!commandLine)
+        return false;
+    return HUB_ENTRY.test(commandLine) && NODE_BINARY.test(` ${commandLine} `);
+}
+/** Read-only process listing, explicit argv, no shell. */
+function buildProcessListCommand(platform = process.platform) {
+    if (platform === 'win32') {
+        return {
+            command: 'powershell.exe',
+            args: ['-NoProfile', '-NonInteractive', '-Command',
+                "Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Select-Object ProcessId,CommandLine | ConvertTo-Json -Compress"]
+        };
+    }
+    return { command: 'ps', args: ['-eo', 'pid=,args='] };
+}
+/** PIDs of hub processes in a process listing, minus the ones this window owns. */
+function parseHubProcesses(output, platform = process.platform, ownPids = []) {
+    const rows = [];
+    if (platform === 'win32') {
+        const text = output.trim();
+        if (!text)
+            return [];
+        const parsed = JSON.parse(text);
+        for (const item of Array.isArray(parsed) ? parsed : [parsed]) {
+            if (item && typeof item === 'object')
+                rows.push({ pid: Number(item.ProcessId), commandLine: String(item.CommandLine ?? '') });
+        }
+    }
+    else {
+        for (const line of output.split(/\r?\n/)) {
+            const match = /^\s*(\d+)\s+(.*)$/.exec(line);
+            if (match)
+                rows.push({ pid: Number(match[1]), commandLine: match[2] });
+        }
+    }
+    const own = new Set(ownPids);
+    return rows.filter(row => Number.isInteger(row.pid) && row.pid > 0 && !own.has(row.pid) && isHubCommandLine(row.commandLine))
+        .map(row => row.pid).sort((a, b) => a - b);
+}
+/** Status for a hub that this window does not own but is running elsewhere. */
+function resolveExternalHubStatus(own, externalPids) {
+    if (own.state === 'RUNNING' || !externalPids.length)
+        return own;
+    return { id: own.id, state: 'RUNNING', pid: externalPids[0], external: true };
+}
 function normalizePort(value) {
     const port = typeof value === 'number' ? value : Number(value);
     return Number.isInteger(port) && port >= 1 && port <= 65535 ? port : exports.DEFAULT_MDD_PORT;
@@ -61,13 +123,19 @@ function resolveServerStatus(id, record, pidAlive, portOpen) {
     }
     return { id, state: 'STOPPED', port: record?.port };
 }
-function describeServerStatus(status) {
+function describeServerStatus(status, externalLabel = 'external') {
     if (status.state !== 'RUNNING')
         return 'STOPPED';
     const parts = [`PID ${status.pid}`];
     if (status.port)
         parts.push(`127.0.0.1:${status.port}`);
-    return `RUNNING · ${parts.join(' · ')}`;
+    return `${status.external ? `RUNNING (${externalLabel})` : 'RUNNING'} · ${parts.join(' · ')}`;
+}
+/** Tree context value: external processes expose no Start/Stop/Restart. */
+function serverContextValue(status) {
+    if (status.external)
+        return 'mddHubServer.external';
+    return status.state === 'RUNNING' ? 'mddHubServer.running' : 'mddHubServer.stopped';
 }
 /** JSON-RPC initialize line used to confirm the hub answers before reporting RUNNING. */
 function buildHubHandshake(id = 1) {

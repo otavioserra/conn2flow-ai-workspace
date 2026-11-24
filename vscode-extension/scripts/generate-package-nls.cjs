@@ -39,7 +39,7 @@ const english = {
   'conn2flow.docs.openPanelGuide': 'Dev Tools Panel Manual (Legacy)', 'conn2flow.docs.openMarketplaceGuide': 'Marketplace Publication Guide', 'conn2flow.docs.openArchitectureGuide': 'Dual-Agent and Triad Architecture',
   'conn2flow.docs.openDockerGuide': 'Docker Environment Guide', 'conn2flow.docs.openResourcesGuide': 'Resources and SQL Runtime', 'conn2flow.settings.selectLanguage': 'Select Extension Language',
   'conn2flow.release.verifyPermission': 'Verify Release Permission', 'conn2flow.release.manager': 'Prepare Gestor Release', 'conn2flow.release.installer': 'Prepare Gestor Installer Release',
-  'conn2flow.release.executeManager': 'Execute Gestor Release', 'conn2flow.release.executeInstaller': 'Execute Gestor Installer Release', 'conn2flow.release.openActions': 'Open GitHub Actions', 'conn2flow.mdd.syncConflicts': 'MDD Skill Conflicts',
+  'conn2flow.release.executeManager': 'Execute Gestor Release', 'conn2flow.release.executeInstaller': 'Execute Gestor Installer Release', 'conn2flow.release.openActions': 'Open GitHub Actions', 'conn2flow.mdd.syncConflicts': 'MDD Skill Conflicts', 'conn2flow.mdd.initProject': 'Initialize MDD in this Project',
   'conn2flow.mddHub.refresh': 'Refresh MDD Hub Status', 'conn2flow.mddHub.start': 'Start MDD Server', 'conn2flow.mddHub.stop': 'Stop MDD Server',
   'conn2flow.mddHub.restart': 'Restart MDD Server', 'conn2flow.mddHub.triageFeedback': 'Triage Skill Feedback', 'conn2flow.mddHub.openFeedback': 'Open Skill Feedback',
   'conn2flow.mddHub.toggleGithub': 'Toggle GitHub Issues in Feedback List'

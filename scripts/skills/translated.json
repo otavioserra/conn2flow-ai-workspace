@@ -76,8 +76,8 @@
       "translator": "mdd-agent"
     },
     "c2f-javascript-ajax": {
-      "source_sha256": "063046a609ce58f3f5fff1c2861cc80d7376a692403116ace165abf5075b33ea",
-      "translated_at": "2026-11-23",
+      "source_sha256": "590efae86815a0e725b1ee5783ca948b61fd18c20aad013d71e1ca86c6901bd5",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-json-resources-sync": {
@@ -96,8 +96,8 @@
       "translator": "mdd-agent"
     },
     "c2f-module-crud-scaffolding": {
-      "source_sha256": "05d5b3dcac2f573e18cf38948cff4b9641cbc9d2576ebc2ffbd61b4ab2d05226",
-      "translated_at": "2026-11-23",
+      "source_sha256": "570d77b8bca10ede19ffc46ccf4f2ff95604f29ee1e5f07433f7e6a245559ad4",
+      "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
     "c2f-module-visual-assets": {
@@ -106,7 +106,7 @@
       "translator": "mdd-agent"
     },
     "c2f-multilingual-skills-governance": {
-      "source_sha256": "1062387d43054eeb2ec07ac131465a7b89644f7218fb5d652271f2e30070a1fe",
+      "source_sha256": "297616f3d3eb106584f3eb5f5f68d6b185558802ae33018de805f300321e907f",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
@@ -121,7 +121,7 @@
       "translator": "mdd-agent"
     },
     "c2f-payment-gateways": {
-      "source_sha256": "3307ef1b08a372ea315748e3bb4d547412cf2a27ed8cb7830d2d68b1b8e60be7",
+      "source_sha256": "1e772923087e774dd6ee4683faa8cd64e85ebece256cda39620c6b8efbe67fd6",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },
@@ -176,7 +176,7 @@
       "translator": "mdd-agent"
     },
     "c2f-shell-and-windows-traps": {
-      "source_sha256": "45812fce452c5d43d9a4e2c76569bc570308733bb68d56554a59143981995343",
+      "source_sha256": "e25ea96840ff167ec7bcb3526b7d0e45f2c4430787bed1e6fda319500d0a0219",
       "translated_at": "2026-11-24",
       "translator": "mdd-agent"
     },

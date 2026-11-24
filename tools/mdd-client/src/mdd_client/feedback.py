@@ -31,6 +31,8 @@ READY = "READY"
 QUARANTINE = "QUARANTINE"
 AUTO_REVIEWER = "auto-recurrence"
 GITHUB_LABEL = "skill-feedback"
+GITHUB_LABEL_COLOR = "0E8A16"
+GITHUB_LABEL_DESCRIPTION = "Automated skill feedback from MDD agents"
 FIELDS = ("id", "title", "status", "verdict", "date", "author", "target_repo", "repo", "request", "batch",
           "persona", "skill", "kind", "severity", "scope", "recurrence", "evidence", "summary_short", "github_issue")
 FILTERS = ("status", "verdict", "skill", "repo", "severity")
@@ -45,6 +47,21 @@ def run_gh(command: Sequence[str]) -> str:
     if result.returncode:
         raise ValueError(f"gh failed: {(result.stderr or result.stdout).strip()}")
     return result.stdout
+
+
+def ensure_github_label(runner: Runner, github_repo: str | None = None) -> str | None:
+    """Create (or refresh) the ``skill-feedback`` label so ``gh issue create --label`` cannot fail on a
+    fresh repository. ``--force`` makes it idempotent; a failure is returned, never raised, so the
+    issue attempt still reports its own error."""
+    command = ["gh", "label", "create", GITHUB_LABEL, "--color", GITHUB_LABEL_COLOR,
+               "--description", GITHUB_LABEL_DESCRIPTION, "--force"]
+    if github_repo:
+        command += ["--repo", github_repo]
+    try:
+        runner(command)
+    except (ValueError, OSError, subprocess.SubprocessError) as exc:
+        return str(exc)
+    return None
 
 
 def resolve_root(path: Path | None = None, matrix: Path | None = None, scope: str = "global") -> Path:
@@ -237,8 +254,12 @@ def submit(root: Path | None, data: dict, *, github: bool = False, github_repo: 
         command = ["gh", "issue", "create", "--title", title, "--body", _issue_body(meta, proposal), "--label", GITHUB_LABEL]
         if github_repo:
             command += ["--repo", github_repo]
+        gh = runner or run_gh
+        label_error = ensure_github_label(gh, github_repo)
+        if label_error:
+            result["github_label_error"] = label_error
         try:
-            output = (runner or run_gh)(command)
+            output = gh(command)
         except (ValueError, OSError, subprocess.SubprocessError) as exc:
             result["github_error"] = str(exc)
         else:

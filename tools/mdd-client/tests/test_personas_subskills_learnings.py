@@ -69,10 +69,18 @@ def test_subskills_propagate_with_parent_and_are_audited(tmp_path):
     seed = (MATRIX / ".gemini/skills" / SUBSKILL).read_bytes()
     result = sync(tmp_path, MATRIX)
     assert result["status"] == "PASS"
-    assert result["subskills"] == {"c2f-payment-gateways": ["subskills/mercadopago-webhook-hmac.md"]}
+    # REQ-093 / BATCH-095: 1st Optimizer round moved recipes of the 4 OVER skills into subskills/.
+    assert result["subskills"] == {
+        "c2f-javascript-ajax": ["subskills/dispatcher-php.md", "subskills/fetch-e-formdata.md", "subskills/jquery-legado.md"],
+        "c2f-module-crud-scaffolding": ["subskills/controller-escrita-e-historico.md", "subskills/schema-declarativo.md"],
+        "c2f-payment-gateways": ["subskills/mercadopago-webhook-hmac.md", "subskills/paypal-autorizacao-e-captura.md",
+                                 "subskills/testes-de-gateways.md"],
+        "c2f-shell-and-windows-traps": ["subskills/cli-e-ssh.md", "subskills/scripts-e-caminhos-msys.md",
+                                        "subskills/worktrees-e-junctions.md"],
+    }
     for kit in (".gemini", ".claude", ".cursor", ".codex", ".github"):
         assert (tmp_path / kit / "skills" / SUBSKILL).read_bytes() == seed
-    assert sync(tmp_path, MATRIX, True)["subskills_iguais"] == 5
+    assert sync(tmp_path, MATRIX, True)["subskills_iguais"] == 5 * 11
 
     changed = tmp_path / ".claude/skills" / SUBSKILL
     changed.write_bytes(b"local edit")
@@ -121,7 +129,8 @@ def test_skills_index_is_current_and_detects_staleness(tmp_path):
     check = node(MATRIX / "scripts/skills/generate-skills-index.cjs", "--check")
     assert check.returncode == 0, check.stdout + check.stderr
     index = (MATRIX / ".gemini/skills/index.md").read_text(encoding="utf-8")
-    assert "**48 skills** — 5 persona, 34 core, 9 governance; 1 subskill file(s)" in index
+    assert "**48 skills** — 5 persona, 34 core, 9 governance; 11 subskill file(s)" in index
+    assert "OVER" not in index.split("## Budget attention", 1)[1]  # REQ-093: 0 skills over budget.
     assert f"]({SUBSKILL})" in index
 
     copy = tmp_path / "matrix"

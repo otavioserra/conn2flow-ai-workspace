@@ -14,6 +14,7 @@ const releaseManager_1 = require("./releaseManager");
 const hubTaskWatcher_1 = require("./hubTaskWatcher");
 const treeExpansionPolicy_1 = require("../treeExpansionPolicy");
 const treeTooltipPolicy_1 = require("../treeTooltipPolicy");
+const domainPolicy_1 = require("../domainPolicy");
 class Conn2FlowTreeItem extends vscode.TreeItem {
     children;
     constructor(label, collapsibleState, commandId, iconName, tooltipText, children, commandArgs, itemDescription, itemId) {
@@ -102,6 +103,7 @@ class Conn2FlowTreeProvider {
             this.leaf(watcherKey, 'conn2flow.hub.toggleWatcher', watcherIcon)
         ];
         const sdd = [
+            this.leaf('mdd.initProject', 'conn2flow.mdd.initProject', 'rocket'),
             this.leaf('agents.launchClaude', 'conn2flow.bridge.launchClaudeGoal', 'play-circle'),
             this.leaf('agents.copyPrompt', 'conn2flow.bridge.copyPrompt', 'clippy'),
             this.leaf('agents.recordHandoff', 'conn2flow.bridge.recordHandoff', 'repo-pull'),
@@ -175,12 +177,16 @@ class Conn2FlowTreeProvider {
             this.leaf('docs.skills', 'conn2flow.ai.openCatalog', 'list-unordered'),
             this.leaf('docs.roadmap', 'conn2flow.docs.openRoadmap', 'milestone')
         ];
+        // Non-Conn2Flow domains (conn2flow.projectDomain, ARCH-019) keep only the universal MDD infrastructure.
+        const conn2flow = (0, domainPolicy_1.isConn2FlowDomain)(vscode.workspace.getConfiguration('conn2flow').get('projectDomain'));
         const result = [
             this.section('section.overview', 'overview', 'dashboard', overview, true),
             this.section('section.sdd', 'sdd', 'shield', sdd),
-            this.section('section.core', 'core', 'tools', core),
-            this.section('section.projects', 'projects', 'folder-library', projects),
-            this.section('section.diagnostics', 'diagnostics', 'server', diagnostics),
+            ...(conn2flow ? [
+                this.section('section.core', 'core', 'tools', core),
+                this.section('section.projects', 'projects', 'folder-library', projects),
+                this.section('section.diagnostics', 'diagnostics', 'server', diagnostics)
+            ] : []),
             this.section('section.agents', 'agents', 'organization', docsConfig)
         ];
         const custom = customActionsManager_1.CustomActionsManager.getActionsManifest();

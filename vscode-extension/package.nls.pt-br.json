@@ -121,5 +121,7 @@
   "command.conn2flow.mddHub.openFeedback": "Abrir Feedback de Skill",
   "command.conn2flow.mddHub.toggleGithub": "Alternar GitHub Issues na Lista de Feedbacks",
   "view.mddHub": "MDD Hub & Controle de Skills",
-  "config.mddHubPort.description": "Porta local (127.0.0.1) usada pelo servidor SSE do MDD Client iniciado pela aba MDD Hub."
+  "config.mddHubPort.description": "Porta local (127.0.0.1) usada pelo servidor SSE do MDD Client iniciado pela aba MDD Hub.",
+  "command.conn2flow.mdd.initProject": "Inicializar MDD neste Projeto",
+  "config.projectDomain.description": "Domínio MDD deste projeto: auto (detecta com mdd bootstrap) ou qualquer id do catálogo domains/ da matriz, como generic ou conn2flow. Domínios fora do Conn2Flow exibem só os painéis universais do MDD."
 }

@@ -121,5 +121,7 @@
   "command.conn2flow.mddHub.openFeedback": "Open Skill Feedback",
   "command.conn2flow.mddHub.toggleGithub": "Toggle GitHub Issues in Feedback List",
   "view.mddHub": "MDD Hub & Skills Control",
-  "config.mddHubPort.description": "Local port (127.0.0.1) used by the MDD Client SSE server started from the MDD Hub view."
+  "config.mddHubPort.description": "Local port (127.0.0.1) used by the MDD Client SSE server started from the MDD Hub view.",
+  "command.conn2flow.mdd.initProject": "Initialize MDD in this Project",
+  "config.projectDomain.description": "MDD domain of this project: auto (detect with mdd bootstrap) or any domain id from the matrix domains/ catalog, such as generic or conn2flow. Non-Conn2Flow domains show only the universal MDD panels."
 }

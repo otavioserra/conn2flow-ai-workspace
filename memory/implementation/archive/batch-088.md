@@ -15,7 +15,7 @@ summary_medium: "Categoria B, matriz em revisão e sem stage.\nSete worktrees fo
 
 # BATCH-088 — Sete skills bilíngues na matriz e publicação isolada de onze skills
 
-[REQ-086](../../human-requests/req-086.md) · Categoria B · Topologia dupla · Autonomia supervisionada
+[REQ-086](../../human-requests/archive/req-086.md) · Categoria B · Topologia dupla · Autonomia supervisionada
 
 ## Live Todo List
 

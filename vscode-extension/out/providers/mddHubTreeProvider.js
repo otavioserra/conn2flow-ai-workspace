@@ -54,12 +54,15 @@ class MddHubTreeProvider {
         const busy = mddHubManager_1.MddHubManager.isBusy(id);
         const item = new MddHubTreeItem(mddHubManager_1.MddHubManager.serverLabel(id), 'server', vscode.TreeItemCollapsibleState.None, [], id);
         item.id = `mddHub.server.${id}`;
-        item.description = busy ? localizationManager_1.LocalizationManager.t('mddHub.busy') : (0, mddHubPolicy_1.describeServerStatus)(status);
-        item.contextValue = status.state === 'RUNNING' ? 'mddHubServer.running' : 'mddHubServer.stopped';
+        item.description = busy ? localizationManager_1.LocalizationManager.t('mddHub.busy') : (0, mddHubPolicy_1.describeServerStatus)(status, localizationManager_1.LocalizationManager.t('mddHub.external'));
+        item.contextValue = (0, mddHubPolicy_1.serverContextValue)(status);
         item.iconPath = busy
             ? new vscode.ThemeIcon('loading~spin')
             : new vscode.ThemeIcon(status.state === 'RUNNING' ? 'pass-filled' : 'circle-slash', new vscode.ThemeColor(status.state === 'RUNNING' ? 'testing.iconPassed' : 'disabledForeground'));
-        item.tooltip = localizationManager_1.LocalizationManager.t(id === 'mdd-client' ? 'tooltip.mddHub.mddClient' : 'tooltip.mddHub.hub');
+        item.tooltip = localizationManager_1.LocalizationManager.t(id === 'mdd-client' ? 'tooltip.mddHub.mddClient' : 'tooltip.mddHub.hub')
+            + (status.external ? `
+
+${localizationManager_1.LocalizationManager.t('mddHub.externalTooltip', { pid: String(status.pid ?? '?') })}` : '');
         return item;
     }
     feedbackSection() {

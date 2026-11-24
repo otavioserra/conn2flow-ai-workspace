@@ -39,6 +39,64 @@ export interface MddServerStatus {
   state: MddServerState;
   pid?: number;
   port?: number;
+  /** Running process not started by this window (e.g. the VS Code MCP client). Never stopped by the view. */
+  external?: boolean;
+}
+
+/**
+ * Environment for every `mdd` call. Python on Windows writes piped stdout in the ANSI code page
+ * (cp1252), so accents in FB-XXX titles arrived corrupted; UTF-8 mode fixes both ends.
+ */
+export function buildMddEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
+  return { ...base, PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8' };
+}
+
+const HUB_ENTRY = /mcp-hub[\\/]+dist[\\/]+index\.js/i;
+const NODE_BINARY = /(^|[\\/"'\s])node(\.exe)?["'\s]/i;
+
+/** A conn2flow-hub process is `node … mcp-hub/dist/index.js` (any client may have started it). */
+export function isHubCommandLine(commandLine: string | null | undefined): boolean {
+  if (!commandLine) return false;
+  return HUB_ENTRY.test(commandLine) && NODE_BINARY.test(` ${commandLine} `);
+}
+
+/** Read-only process listing, explicit argv, no shell. */
+export function buildProcessListCommand(platform = process.platform): { command: string; args: string[] } {
+  if (platform === 'win32') {
+    return {
+      command: 'powershell.exe',
+      args: ['-NoProfile', '-NonInteractive', '-Command',
+        "Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Select-Object ProcessId,CommandLine | ConvertTo-Json -Compress"]
+    };
+  }
+  return { command: 'ps', args: ['-eo', 'pid=,args='] };
+}
+
+/** PIDs of hub processes in a process listing, minus the ones this window owns. */
+export function parseHubProcesses(output: string, platform = process.platform, ownPids: readonly number[] = []): number[] {
+  const rows: Array<{ pid: number; commandLine: string }> = [];
+  if (platform === 'win32') {
+    const text = output.trim();
+    if (!text) return [];
+    const parsed = JSON.parse(text);
+    for (const item of Array.isArray(parsed) ? parsed : [parsed]) {
+      if (item && typeof item === 'object') rows.push({ pid: Number(item.ProcessId), commandLine: String(item.CommandLine ?? '') });
+    }
+  } else {
+    for (const line of output.split(/\r?\n/)) {
+      const match = /^\s*(\d+)\s+(.*)$/.exec(line);
+      if (match) rows.push({ pid: Number(match[1]), commandLine: match[2] });
+    }
+  }
+  const own = new Set(ownPids);
+  return rows.filter(row => Number.isInteger(row.pid) && row.pid > 0 && !own.has(row.pid) && isHubCommandLine(row.commandLine))
+    .map(row => row.pid).sort((a, b) => a - b);
+}
+
+/** Status for a hub that this window does not own but is running elsewhere. */
+export function resolveExternalHubStatus(own: MddServerStatus, externalPids: readonly number[]): MddServerStatus {
+  if (own.state === 'RUNNING' || !externalPids.length) return own;
+  return { id: own.id, state: 'RUNNING', pid: externalPids[0], external: true };
 }
 
 export interface FeedbackRecord {
@@ -109,11 +167,17 @@ export function resolveServerStatus(
   return { id, state: 'STOPPED', port: record?.port };
 }
 
-export function describeServerStatus(status: MddServerStatus): string {
+export function describeServerStatus(status: MddServerStatus, externalLabel = 'external'): string {
   if (status.state !== 'RUNNING') return 'STOPPED';
   const parts = [`PID ${status.pid}`];
   if (status.port) parts.push(`127.0.0.1:${status.port}`);
-  return `RUNNING · ${parts.join(' · ')}`;
+  return `${status.external ? `RUNNING (${externalLabel})` : 'RUNNING'} · ${parts.join(' · ')}`;
+}
+
+/** Tree context value: external processes expose no Start/Stop/Restart. */
+export function serverContextValue(status: MddServerStatus): string {
+  if (status.external) return 'mddHubServer.external';
+  return status.state === 'RUNNING' ? 'mddHubServer.running' : 'mddHubServer.stopped';
 }
 
 /** JSON-RPC initialize line used to confirm the hub answers before reporting RUNNING. */

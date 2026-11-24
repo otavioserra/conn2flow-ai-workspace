@@ -23,6 +23,7 @@ import { MddConflictsManager } from './providers/mddConflictsManager';
 import { MddHubManager } from './providers/mddHubManager';
 import { MddHubTreeItem, MddHubTreeProvider } from './providers/mddHubTreeProvider';
 import { MddServerId } from './mddHubPolicy';
+import { MddBootstrapManager } from './providers/mddBootstrapManager';
 import {
   getPreviewCloseReason,
   isTargetMpePreview,
@@ -64,9 +65,17 @@ export function activate(context: vscode.ExtensionContext) {
     await running;
     await mddHubProvider.refresh();
   };
+  // Visible progress on the view (and in the status bar) so Refresh/Toggle never look frozen.
+  const withHubProgress = (title: string) => vscode.window.withProgress(
+    { location: { viewId: 'conn2flow-mdd-hub' }, title },
+    () => vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title }, () => mddHubProvider.refresh())
+  );
   context.subscriptions.push(
     vscode.window.registerTreeDataProvider('conn2flow-mdd-hub', mddHubProvider),
-    vscode.commands.registerCommand('conn2flow.mddHub.refresh', () => mddHubProvider.refresh()),
+    vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
+      await withHubProgress(LocalizationManager.t('mddHub.refreshing'));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.refreshed', { count: String(MddHubManager.getFeedback().length) }), 4000);
+    }),
     vscode.commands.registerCommand('conn2flow.mddHub.start', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.start(id))),
     vscode.commands.registerCommand('conn2flow.mddHub.stop', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.stop(id))),
     vscode.commands.registerCommand('conn2flow.mddHub.restart', (item?: MddHubTreeItem) => runServerAction(item, id => MddHubManager.restart(id))),
@@ -78,7 +87,19 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand('conn2flow.mddHub.toggleGithub', async () => {
       await MddHubManager.toggleGithub();
-      await mddHubProvider.refresh();
+      const state = LocalizationManager.t(MddHubManager.includeGithub() ? 'mddHub.githubStateOn' : 'mddHub.githubStateOff');
+      vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.githubToggling', { state }), 4000);
+      mddHubProvider.repaint();
+      await withHubProgress(LocalizationManager.t('mddHub.githubToggling', { state }));
+      vscode.window.setStatusBarMessage(LocalizationManager.t('mddHub.githubToggled', {
+        state, count: String(MddHubManager.getFeedback().length)
+      }), 5000);
+    }),
+    vscode.commands.registerCommand('conn2flow.mdd.initProject', async () => {
+      if (await MddBootstrapManager.initializeProject()) {
+        refreshAll();
+        await mddHubProvider.refresh();
+      }
     })
   );
   void mddHubProvider.refresh();
@@ -107,6 +128,7 @@ export function activate(context: vscode.ExtensionContext) {
     ProjectsManager.onTargetProjectChanged(() => updateStatusBar()),
     vscode.workspace.onDidChangeConfiguration(event => {
       if (event.affectsConfiguration('conn2flow.projects.activeId')) updateStatusBar();
+      if (event.affectsConfiguration('conn2flow.projectDomain')) refreshAll();
     })
   );
 

@@ -343,6 +343,53 @@ def skill_eval(
         raise typer.Exit(1)
 
 
+@app.command("bootstrap")
+@guarded
+def bootstrap_command(
+    path: Path = typer.Option(Path("."), "--path", help="Project folder to initialize"),
+    domain: str = typer.Option("auto", "--domain", help="auto or any <id> discovered in domains/"),
+    list_domains: bool = typer.Option(False, "--list-domains", help="List the discovered domains and exit"),
+    kits: str | None = typer.Option(None, "--kits", help="Comma list: gemini,claude,codex,cursor,copilot (default: all)"),
+    matrix: Path | None = typer.Option(None, help="Matrix root with domains/ and .gemini/skills/"),
+    domains_dir: Path | None = typer.Option(None, "--domains-dir", help="Alternative domains/ catalog"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Detect and plan without writing"),
+    as_json: bool = typer.Option(False, "--json"),
+):
+    """Install MDD (memory/, domain skills, local project guide) in any project without overwriting files."""
+    from . import bootstrap as boot
+
+    if list_domains:
+        data = boot.list_domains(boot.find_domains_dir(matrix, domains_dir), path)
+        if as_json:
+            typer.echo(json.dumps(data, ensure_ascii=False))
+            return
+        table = Table(title=f"MDD domains — {data['domains_dir']}")
+        for column in ("ID", "Name", "Skills", "Local guide"):
+            table.add_column(column)
+        for item in data["domains"]:
+            table.add_row(item["id"], item["name"], item["skills_mode"], "yes" if item["generate_local_project_skill"] else "no")
+        console.print(table)
+        if data.get("detected"):
+            detected = data["detected"]
+            typer.echo(f"auto -> {detected['id']} ({', '.join(detected['evidence']) or 'fallback'})")
+        for error in data["errors"]:
+            typer.echo(f"invalid domain {error['domain']}: {error['error']}", err=True)
+        return
+    data = boot.bootstrap(path, domain, kits=boot.parse_kits(kits), matrix=matrix, domains_dir=domains_dir, dry_run=dry_run)
+    if as_json:
+        typer.echo(json.dumps(data, ensure_ascii=False))
+        return
+    stacks = ", ".join(s["label"] for s in data["stack"]["stacks"]) or "none"
+    typer.echo(f"Domain: {data['domain']} (requested {data['requested_domain']}) · stack: {stacks}")
+    if dry_run:
+        typer.echo(f"Planned skills: {len(data['skills']['planned'])} per kit · kits: {','.join(data['kits'])}")
+        return
+    typer.echo(f"memory/: {len(data['memory']['created'])} new item(s){' (existing memory preserved)' if data['memory']['preserved'] else ''}")
+    typer.echo(f"Skills: {len(data['skills']['installed'])} installed, {len(data['skills']['preserved'])} preserved")
+    for guide in data["local_skill"]["created"]:
+        typer.echo(f"Local project skill: {guide}")
+
+
 def main():
     app()
 

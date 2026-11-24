@@ -26,6 +26,7 @@ const projectConflictsManager_1 = require("./providers/projectConflictsManager")
 const mddConflictsManager_1 = require("./providers/mddConflictsManager");
 const mddHubManager_1 = require("./providers/mddHubManager");
 const mddHubTreeProvider_1 = require("./providers/mddHubTreeProvider");
+const mddBootstrapManager_1 = require("./providers/mddBootstrapManager");
 const markdownPreviewPolicy_1 = require("./markdownPreviewPolicy");
 const documentationSearchPolicy_1 = require("./documentationSearchPolicy");
 const vmDiagnosticsPolicy_1 = require("./vmDiagnosticsPolicy");
@@ -57,7 +58,12 @@ function activate(context) {
         await running;
         await mddHubProvider.refresh();
     };
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('conn2flow-mdd-hub', mddHubProvider), vscode.commands.registerCommand('conn2flow.mddHub.refresh', () => mddHubProvider.refresh()), vscode.commands.registerCommand('conn2flow.mddHub.start', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.start(id))), vscode.commands.registerCommand('conn2flow.mddHub.stop', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.stop(id))), vscode.commands.registerCommand('conn2flow.mddHub.restart', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.restart(id))), vscode.commands.registerCommand('conn2flow.mddHub.triageFeedback', async (item) => {
+    // Visible progress on the view (and in the status bar) so Refresh/Toggle never look frozen.
+    const withHubProgress = (title) => vscode.window.withProgress({ location: { viewId: 'conn2flow-mdd-hub' }, title }, () => vscode.window.withProgress({ location: vscode.ProgressLocation.Window, title }, () => mddHubProvider.refresh()));
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('conn2flow-mdd-hub', mddHubProvider), vscode.commands.registerCommand('conn2flow.mddHub.refresh', async () => {
+        await withHubProgress(localizationManager_1.LocalizationManager.t('mddHub.refreshing'));
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.refreshed', { count: String(mddHubManager_1.MddHubManager.getFeedback().length) }), 4000);
+    }), vscode.commands.registerCommand('conn2flow.mddHub.start', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.start(id))), vscode.commands.registerCommand('conn2flow.mddHub.stop', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.stop(id))), vscode.commands.registerCommand('conn2flow.mddHub.restart', (item) => runServerAction(item, id => mddHubManager_1.MddHubManager.restart(id))), vscode.commands.registerCommand('conn2flow.mddHub.triageFeedback', async (item) => {
         if (await mddHubManager_1.MddHubManager.triage(item?.feedback))
             await mddHubProvider.refresh();
     }), vscode.commands.registerCommand('conn2flow.mddHub.openFeedback', async (item) => {
@@ -65,7 +71,18 @@ function activate(context) {
             await mddHubManager_1.MddHubManager.open(item.feedback);
     }), vscode.commands.registerCommand('conn2flow.mddHub.toggleGithub', async () => {
         await mddHubManager_1.MddHubManager.toggleGithub();
-        await mddHubProvider.refresh();
+        const state = localizationManager_1.LocalizationManager.t(mddHubManager_1.MddHubManager.includeGithub() ? 'mddHub.githubStateOn' : 'mddHub.githubStateOff');
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.githubToggling', { state }), 4000);
+        mddHubProvider.repaint();
+        await withHubProgress(localizationManager_1.LocalizationManager.t('mddHub.githubToggling', { state }));
+        vscode.window.setStatusBarMessage(localizationManager_1.LocalizationManager.t('mddHub.githubToggled', {
+            state, count: String(mddHubManager_1.MddHubManager.getFeedback().length)
+        }), 5000);
+    }), vscode.commands.registerCommand('conn2flow.mdd.initProject', async () => {
+        if (await mddBootstrapManager_1.MddBootstrapManager.initializeProject()) {
+            refreshAll();
+            await mddHubProvider.refresh();
+        }
     }));
     void mddHubProvider.refresh();
     // Status Bar Items
@@ -87,6 +104,8 @@ function activate(context) {
     context.subscriptions.push(projectsManager_1.ProjectsManager.onTargetProjectChanged(() => updateStatusBar()), vscode.workspace.onDidChangeConfiguration(event => {
         if (event.affectsConfiguration('conn2flow.projects.activeId'))
             updateStatusBar();
+        if (event.affectsConfiguration('conn2flow.projectDomain'))
+            refreshAll();
     }));
     const managedPreviewStateKey = 'conn2flow.sdd.managedMpePreviewPath';
     let managedMpePreviewPath = context.workspaceState.get(managedPreviewStateKey);

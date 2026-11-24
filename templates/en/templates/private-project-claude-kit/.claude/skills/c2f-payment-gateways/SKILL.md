@@ -13,6 +13,14 @@ user-invocable: true
 
 ---
 
+## 📚 Subskills (read on demand)
+
+| Subskill | Read when |
+| --- | --- |
+| [`subskills/mercadopago-webhook-hmac.md`](subskills/mercadopago-webhook-hmac.md) | resending or simulating a signed Mercado Pago webhook |
+| [`subskills/paypal-autorizacao-e-captura.md`](subskills/paypal-autorizacao-e-captura.md) | integrating PayPal or another authorize + capture gateway |
+| [`subskills/testes-de-gateways.md`](subskills/testes-de-gateways.md) | writing checkout tests or simulating webhooks |
+
 ## 1. Strict Server Authority
 
 The unit price, currency, discounts and fees are defined and validated **only in the backend**. The frontend client traffics only **identifiers and quantities**.
@@ -111,36 +119,9 @@ function verificar_pagamento_gateway($payment_intent_id, $pedido) {
 
 For two-phase gateways (authorization + capture), such as PayPal, **effective financial catch** must occur exclusively on the server.
 
-### 4.1 PayPal Standard: Authorize to Client, Capture to Server
+### 4.1 PayPal Standard: Authorize on the Client, Capture on the Server
 
-```javascript
-// Frontend — PayPal SDK (apenas AUTORIZA)
-paypal.Buttons({
-    createOrder: (data, actions) => {
-        return fetch('/api/paypal/create-order', { method: 'POST' })
-            .then(res => res.json())
-            .then(data => data.order_id);
-    },
-    onApprove: (data, actions) => {
-        // ❌ ERRADO: actions.order.capture() captura no frontend
-        // ✅ CORRETO: enviar para backend capturar
-        return fetch('/api/paypal/capture-order', {
-            method: 'POST',
-            body: JSON.stringify({ order_id: data.orderID })
-        });
-    }
-}).render('#paypal-button-container');
-```
-
-```php
-// Backend — captura com prova de posse
-function capturar_ordem_paypal($order_id, $pedido) {
-    $response = $paypal->captureOrder($order_id);
-    // Validar prova de posse (§3) antes de atualizar o pedido
-    validar_prova_de_posse($response, $pedido);
-    atualizar_status_pedido($pedido['id'], 'pago');
-}
-```
+The PayPal SDK in the browser only **authorizes**: `createOrder` asks the backend for the `order_id` and `onApprove` sends `data.orderID` to `/api/paypal/capture-order`. Never call `actions.order.capture()` on the frontend. The backend captures, validates the proof of possession (§3) and only then marks the order as paid. Full code: **`subskills/paypal-autorizacao-e-captura.md`**.
 
 ---
 
@@ -255,59 +236,12 @@ if (!in_array($gateway, $gateways_ativos)) {
 
 ---
 
-## 8. Unitary Tests Without Credentials
+## 8. Unit Tests Without Credentials
 
-The checkout test strategy is based on **test doubles/mocks** of the gateway library functions.
+Checkout tests rely on **test doubles/mocks** of the gateway library functions, with the SDK client injected in the constructor. Test double, test cards and webhook simulation: **`subskills/testes-de-gateways.md`**.
 
-### 8.1 Test double (Test Double) Pattern
-
-```php
-// Biblioteca do gateway com injeção de dependência
-class GatewayStripe {
-    private $client;
-
-    public function __construct($client = null) {
-        $this->client = $client ?? new \Stripe\StripeClient(STRIPE_SECRET_KEY);
-    }
-
-    public function criarIntencao($valor, $moeda, $metadata) {
-        return $this->client->paymentIntents->create([
-            'amount' => $valor,
-            'currency' => $moeda,
-            'metadata' => $metadata
-        ]);
-    }
-}
-
-// No teste — sem credenciais reais
-class GatewayStripeTest extends TestCase {
-    public function testCriarIntencao() {
-        $mock = $this->createMock(\Stripe\StripeClient::class);
-        // Configurar mock para retornar resposta simulada
-        $gateway = new GatewayStripe($mock);
-        $resultado = $gateway->criarIntencao(1000, 'brl', ['order_id' => '123']);
-        $this->assertNotNull($resultado);
-    }
-}
-```
-
-### 8.2 E2E Tests with Test Cards
-
-- Stripe: use test cards (`4242 4242 4242 4242`) in test mode.
-- PayPal: use PayPal Developer Sandbox accounts.
-- **Absolute Prohibition**: Production credentials **NEVER** must appear in test files, IC environment variables, or execution logs.
-
-### 8.3 Webhooks Simulation
-
-```bash
-# Stripe CLI — enviar webhook de teste localmente
-stripe trigger payment_intent.succeeded --override payment_intent:metadata.order_id=pedido-123
-
-# Teste manual — POST direto no endpoint
-curl -X POST https://meusite.com/ecommerce/ecommerce.ajax.public.php \
-  -H "Content-Type: application/json" \
-  -d '{"type":"payment_intent.succeeded","data":{"object":{"id":"pi_test","metadata":{"order_id":"123"}}}}'
-```
+- E2E only with test cards (Stripe `4242 4242 4242 4242`) and sandbox accounts (PayPal Developer).
+- **Absolute Prohibition**: production credentials must **NEVER** appear in test files, CI environment variables or execution logs.
 
 > [!CAUTION]
-> In production environments, **always validate the webhook signature** (`Stripe-Signature` header). Tests with direct `curl` should be restricted to development/staging environments.
+> In production environments, **always validate the webhook signature** (`Stripe-Signature` header). Direct `curl` tests must be restricted to development/staging environments.

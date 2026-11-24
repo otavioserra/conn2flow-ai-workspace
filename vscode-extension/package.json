@@ -2,7 +2,7 @@
   "name": "conn2flow-tools",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "conn2flow",
   "icon": "resources/icon.png",
   "license": "MIT",
@@ -615,6 +615,12 @@
         "icon": "$(diff)"
       },
       {
+        "command": "conn2flow.mdd.initProject",
+        "title": "%command.conn2flow.mdd.initProject%",
+        "category": "Conn2Flow MDD",
+        "icon": "$(rocket)"
+      },
+      {
         "command": "conn2flow.mddHub.refresh",
         "title": "%command.conn2flow.mddHub.refresh%",
         "category": "Conn2Flow MDD Hub",
@@ -722,6 +728,13 @@
           "maximum": 65535,
           "scope": "window",
           "description": "%config.mddHubPort.description%"
+        },
+        "conn2flow.projectDomain": {
+          "type": "string",
+          "default": "auto",
+          "pattern": "^(auto|[a-z0-9][a-z0-9-]{0,63})$",
+          "scope": "resource",
+          "description": "%config.projectDomain.description%"
         }
       }
     },
@@ -751,6 +764,11 @@
           "command": "conn2flow.mddHub.refresh",
           "when": "view == conn2flow-mdd-hub",
           "group": "navigation@2"
+        },
+        {
+          "command": "conn2flow.mdd.initProject",
+          "when": "view == conn2flow-mdd-hub",
+          "group": "navigation@3"
         }
       ],
       "view/item/context": [
@@ -778,6 +796,11 @@
           "command": "conn2flow.mddHub.openFeedback",
           "when": "view == conn2flow-mdd-hub && viewItem =~ /^mddHubFeedback\\./",
           "group": "navigation@1"
+        },
+        {
+          "command": "conn2flow.mddHub.triageFeedback",
+          "when": "view == conn2flow-mdd-hub && viewItem == mddHubFeedback.triage",
+          "group": "navigation@2"
         }
       ],
       "commandPalette": [

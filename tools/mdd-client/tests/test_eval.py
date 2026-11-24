@@ -23,7 +23,8 @@ def test_real_matrix_suite_passes_offline_with_ten_or_more_scenarios():
     assert len(ids) == len(set(ids)) and ids == sorted(ids)
     executor = next(r for r in data["results"] if r["id"].startswith("EVAL-012"))
     assert executor["metrics"]["budget"] == 200 and executor["metrics"]["translation_copies"]["en"] >= 5
-    assert {"skill": "c2f-shell-and-windows-traps", "state": "OVER"} in data["budget_attention"]
+    # REQ-093 / BATCH-095: the 1st Optimizer round left no skill OVER budget; the 2 new FB scenarios make 15.
+    assert data["scenarios"] >= 15 and not [item for item in data["budget_attention"] if item["state"] == "OVER"]
     assert skill_eval.run(MATRIX) == data  # Deterministic: same input, same report.
 
 
