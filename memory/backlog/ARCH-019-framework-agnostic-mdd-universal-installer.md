@@ -20,9 +20,9 @@ summary_medium: "Evolui a infraestrutura validada no ARCH-018 para um motor agn�
 
 ## Pilares Planejados
 
-1. **Separação de Pacotes**:
-   - **Core MDD Universal**: `memory/`, personas genéricas (`persona-architect`, `persona-executor`, `persona-reviewer`, `persona-curator`, `persona-optimizer`), `mdd-client`, `mdd feedback`, `mdd eval`.
-   - **Skill Packs de Domínio (plugáveis)**: `conn2flow-pack` (as 34 skills PHP/Gestor), packs futuros de outras stacks e **skills locais do projeto** geradas pelo Curador Local.
+1. **Catálogo Plugável de Domínios (`domains/<id>/domain.json`)**:
+   - **Core MDD Universal (`domains/generic/domain.json`)**: `memory/`, 5 personas (`c2f-persona-*`), governança MDD, `mdd-client`, `mdd feedback`, `mdd eval` e geração de skill local do projeto.
+   - **Domínios de Stack / Framework (`domains/<id>/domain.json`)**: `domains/conn2flow/` entregue de fábrica; novos domínios (ex.: `laravel`, `nextjs`, `python-fastapi`, `content-ops`) entram via **Pull Request** apenas adicionando sua pasta em `domains/<id>/` com manifesto declarativo (`id`, `name`, `detectors`, `skills`, `subskills`, `templates`), descobertos dinamicamente pelo `mdd bootstrap` e pela extensão VS Code sem alterar código.
 2. **Bootstrap Inteligente por Pasta**:
    - Usuário aponta a pasta do projeto (via extensão VS Code ou futuro app web/desktop `mdd ui`).
    - O instalador detecta stack, linguagem, gerenciador de pacotes, testes e estrutura Git; gera `memory/`, configura kits de IA selecionados e cria um esqueleto de skills locais do projeto.
