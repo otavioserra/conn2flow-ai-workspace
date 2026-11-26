@@ -1,11 +1,11 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (últimas requisições concluídas e homologadas: [req-095.md](req-095.md) / `BATCH-097` e [req-096.md](req-096.md) / `BATCH-098`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-098` ([batch-098.md](../implementation/batch-098.md), `HOMOLOGATED` em 2026-11-24; relatórios [REP-017](../reports/REP-017-batch097-marketplace-and-rollout.md) e [REP-018](../reports/REP-018-batch098-remote-skill-sync.md))
+* **Ponteiro Ativo**: [req-097.md](req-097.md) (`REQ-097` / `BATCH-099`)
+* **Status**: `READY` — aguardando execução pelo `c2f-persona-executor`
+* **Lote Relacionado**: `BATCH-099` (`memory/implementation/batch-099.md`; últimas entregas homologadas: [req-095.md](req-095.md) / `BATCH-097` e [req-096.md](req-096.md) / `BATCH-098`)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-11-24
+* **Data de Entrada**: 2026-11-26
 * **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
   - [req-079.md](req-079.md) / [BATCH-081](../implementation/batch-081.md): Motor de Banco de Dados MDD (`SQLite3 + FTS5` Local e Multi-Driver SQL) no `mdd-client` (`ready-for-review`).
   - [req-078.md](req-078.md) / [BATCH-080](../implementation/batch-080.md): Internacionalização das 46 skills e detecção de drift por SHA-256; [REV-080](../human-reviews/rev-080.md) `RECOMMEND-APPROVAL`.
@@ -39,8 +39,8 @@
 
 ---
 
-## Objetivo operacional — REQ-096 / BATCH-098
+## Objetivo operacional — REQ-097 / BATCH-099
 
-1. Entregar mdd sync --remote e mdd update com cache global, modo de consulta e proteção das variantes locais.
-2. Integrar Auto-Sync e sincronização manual ao Hub do VS Code e empacotar a extensão 1.2.4.
-3. Adicionar o workflow semanal opcional via mdd bootstrap --with-ci-sync e validar os gates da matriz.
+1. Atualizar `c2f-project-pipeline-and-tasks` e `c2f-persona-executor` (PT-BR + EN) diferenciando `dist/`, `css:rebuild` e `assets:publish` em Lab/SSH vs HTTP-only (`project:deploy`), eliminando falsos bloqueios por `404` em `dist/.manifest.json` e refletindo a `REQ-306` do Core.
+2. Validar sync, hash pairing EN, skill budget (`OVER: 0`), `EVAL-017` (`17/17 EVAL-PASS`), `pytest` (`>= 95%`) e Regra dos 10 Ativos (`healthy: true`).
+3. Propagar as duas skills nos satélites com `origin` via `scripts/skills/rollout-satellites.cjs` e entregar `BATCH-099` em `ready-for-review`.
