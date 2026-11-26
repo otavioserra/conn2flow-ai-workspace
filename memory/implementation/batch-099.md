@@ -15,7 +15,7 @@ summary_medium: "Inserida a subseção de dist/ na skill de pipeline e o bloco c
 
 # BATCH-099 — REQ-097
 
-[Requisição](../human-requests/req-097.md) · [BATCH-098](batch-098.md) · [Checklist](../validation/VALIDATION-CHECKLIST.md#batch-099--req-097-2026-11-26)
+[Requisição](../human-requests/req-097.md) · [BATCH-098](batch-098.md) · [Checklist](../validation/archive/validation-099.md#batch-099--req-097-2026-11-26)
 
 Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`. Topologia dupla, autonomia supervisionada, Categoria B (sem deploy no Lab).
 

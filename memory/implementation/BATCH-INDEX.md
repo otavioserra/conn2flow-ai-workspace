@@ -36,6 +36,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Lote atual
 
+[REQ-098](../human-requests/req-098.md) / [BATCH-100](batch-100.md) (complete, homologado em 2026-11-26). Saneamento de links em `validation/archive/` e EVAL-018 (18/18).
 [REQ-097](../human-requests/req-097.md) / [BATCH-099](batch-099.md) (complete, homologado em 2026-11-26). Regra de dist/ por modo de deploy (Lab/SSH vs HTTP-only) e REQ-306 em duas skills, EVAL-017 e rollout em 7 satélites.
 [REQ-096](../human-requests/req-096.md) / [BATCH-098](batch-098.md) (ready-for-review). Sincronização remota de skills, VSIX 1.2.4 e workflow semanal opcional.
 
@@ -54,6 +55,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entrega atual
 
+[REQ-098](../human-requests/req-098.md) / [BATCH-100](batch-100.md) (complete, homologado em 2026-11-26). 0 links quebrados, EVAL-018 (18/18), 222 testes Python com 96,21% e OVER: 0.
 [REQ-097](../human-requests/req-097.md) / [BATCH-099](batch-099.md) (complete, homologado em 2026-11-26). Gate local PASS, 222 testes Python com 96,21%, EVAL-017 (17/17) e OVER: 0.
 [REQ-096](../human-requests/req-096.md) / [BATCH-098](batch-098.md) (ready-for-review). Gate local PASS, 222 testes Python com 96,21% e extensão 172/172. [Relatório FEAT-017](../reports/REP-018-batch098-remote-skill-sync.md).
 
@@ -63,7 +65,7 @@ Este arquivo gerencia os lotes operacionais ativos e recentes do `conn2flow-ai-w
 
 ## Entregas anteriores
 
-[REQ-093](../human-requests/req-093.md) / [BATCH-095](batch-095.md) (`ready-for-review`) entrega a extensão v1.2.1 (UTF-8, triagem no menu, progresso, hub externo, domínio do projeto), `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), FB-004/FB-007 e a 1ª rodada do Optimizer (0 skills OVER, eval 15/15). [Relatório FEAT-017](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md).
+[REQ-093](../human-requests/req-093.md) / [BATCH-095](archive/batch-095.md) (`ready-for-review`) entrega a extensão v1.2.1 (UTF-8, triagem no menu, progresso, hub externo, domínio do projeto), `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), FB-004/FB-007 e a 1ª rodada do Optimizer (0 skills OVER, eval 15/15). [Relatório FEAT-017](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md).
 
 [REQ-092](../human-requests/req-092.md) / [BATCH-094](archive/batch-094.md) (`HOMOLOGATED`) entregou VSIX v1.2.0 validado, saneamento cirúrgico de 57 sobras de skills, documentação bilíngue e inventário DEC-136. [Relatório FEAT-017](../reports/REP-014-batch094-vsix-skills-and-curation.md).
 

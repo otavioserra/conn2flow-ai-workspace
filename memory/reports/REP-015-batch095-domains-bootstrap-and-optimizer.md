@@ -13,7 +13,7 @@ summary_medium: "BATCH-095 em Categoria B, topologia dupla e autonomia supervisi
 
 # REP-015 — Dificuldades e aprendizados (FEAT-017)
 
-1. **Contexto da rodada.** REQ-093 / BATCH-095 na matriz `conn2flow-ai-workspace`: extensão v1.2.1, `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), label do `--github`, FB-004/FB-007 e 1ª rodada do Optimizer (4 skills OVER → 0, 11 subskills PT-BR/EN). [Lote e evidências](../implementation/batch-095.md).
+1. **Contexto da rodada.** REQ-093 / BATCH-095 na matriz `conn2flow-ai-workspace`: extensão v1.2.1, `domains/` + `mdd bootstrap` (ARCH-019 Fase 1), label do `--github`, FB-004/FB-007 e 1ª rodada do Optimizer (4 skills OVER → 0, 11 subskills PT-BR/EN). [Lote e evidências](../implementation/archive/batch-095.md).
 
 2. **Dificuldades e atritos.**
    - **EOL em edições por script.** O `sed -i` do Git Bash (GNU sed 4.9) reescreveu arquivos CRLF inteiros em LF (`printf 'a\r\nb\r\nc\r\n'` + `sed -i '2s/b/B/'` → `od -c` mostra `a\n B\n c\n`). No sentido inverso, `Path.read_text`/`write_text` do Python 3.14 no Windows gravou CRLF em arquivos LF (`os.linesep`). Com `core.autocrlf` o diff do Git ficou limpo, mas os bytes da árvore mudaram. Corrigi com conversão explícita e passei a gravar bytes com o EOL detectado.

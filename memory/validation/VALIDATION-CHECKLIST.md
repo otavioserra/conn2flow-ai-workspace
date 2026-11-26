@@ -2,6 +2,15 @@
 
 Este documento concentra os checklists de aceitação e os registros de testes empíricos de validação dos lotes ativos (Regra dos 10: lotes pendentes de homologação permanecem aqui).
 
+## BATCH-100 — REQ-098 (2026-11-26)
+
+- [x] 4 links de `validation-095.md` e 20 de `archive/original/` saneados; `ai:archive-memory --dry-run` exit 0.
+- [x] `EVAL-018` para `c2f-persona-executor` criado, `mdd eval` 18/18 EVAL-PASS.
+- [x] Gates: `sync-skills` PASS, índice PASS, `OVER: 0`, `pytest` 222 PASS com 96,21%, `04-memory-engineering-execution.md` intacta.
+- [x] Revisão pelo Macro-Arquiteto e homologação humana aprovada em 2026-11-26.
+
+[BATCH-100](../implementation/batch-100.md).
+
 ## BATCH-098 — REQ-096 (2026-11-24)
 
 - [x] mdd sync --remote e mdd update preservam skills locais, variantes e choques. Cache raso, domínio e check-only validados.
@@ -11,17 +20,6 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [ ] Revisão pelo Macro-Arquiteto e homologação visual humana.
 
 [BATCH-098](../implementation/batch-098.md) e [FEAT-017](../reports/REP-018-batch098-remote-skill-sync.md).
-
-## BATCH-099 — REQ-097 (2026-11-26)
-
-- [x] Skills `c2f-project-pipeline-and-tasks` e `c2f-persona-executor` atualizadas em PT-BR e EN (6 kits), com regra de `dist/.manifest.json` e REQ-306.
-- [x] Sync/hash PASS, `generate-skills-index --check` PASS e `--budget-report` com `OVER: 0`.
-- [x] `EVAL-017` criado, `mdd eval` EVAL-PASS e `pytest` 222 PASS com 96,21%.
-- [x] Higiene MDD: `req-090.md` e `batch-094.md` arquivados, `04-memory-engineering-execution.md` preservada, `mdd status` `healthy: true`.
-- [x] Rollout em 7 satélites com origin (SHAs no lote); `conn2flow-home` e `conn2flow-mkt` preservados.
-- [x] Homologação humana aprovada em 2026-11-26. Pendências não bloqueantes (4 links relativos em `validation-095.md`, 20 links históricos em `archive/original/` e `EVAL-018` para `c2f-persona-executor`) encaminhadas para `REQ-098`.
-
-[BATCH-099](../implementation/batch-099.md).
 
 ## BATCH-097 — REQ-095 (2026-11-24)
 
@@ -125,6 +123,7 @@ Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md
 
 ## Validações Arquivadas
 
+- [validation-099.md](archive/validation-099.md) (BATCH-099; poda da REQ-098)
 - [validation-095.md](archive/validation-095.md) (BATCH-095; poda da REQ-097)
 - [validation-094.md](archive/validation-094.md) (BATCH-094)
 

@@ -39,7 +39,7 @@ Matriz conn2flow-ai-workspace em C:/Users/otavi/OneDrive/Documentos/GIT/conn2flo
 
 Os 18 casos adicionais cobrem diagnósticos de manifestos inválidos, precedência do catálogo, fallback, erros de pré-requisitos, detecção de stack, saída textual da CLI e instalação parcial de skills. O pytest emitiu um aviso de depreciação do alias `BlockingPortal` em Starlette. O GitHub Actions ainda aguarda execução com as alterações da matriz.
 
-A mudança de `conn2flow.language` atualiza o título e redesenha a árvore a partir do cache antes da sondagem assíncrona. Grupos, estados, severidades e metadados reconhecidos usam o idioma selecionado. Textos dos registros e nomes técnicos conservam a grafia original. Os menus declarados no manifesto seguem o idioma de exibição do VS Code. O [VSIX](../../vscode-extension/conn2flow-tools-1.2.2.vsix) é um artefato local ignorado pelo Git.
+A mudança de `conn2flow.language` atualiza o título e redesenha a árvore a partir do cache antes da sondagem assíncrona. Grupos, estados, severidades e metadados reconhecidos usam o idioma selecionado. Textos dos registros e nomes técnicos conservam a grafia original. Os menus declarados no manifesto seguem o idioma de exibição do VS Code. O VSIX (`vscode-extension/conn2flow-tools-1.2.2.vsix`) é um artefato local ignorado pelo Git.
 
 ## Regra dos 10 Ativos
 

@@ -1,0 +1,34 @@
+{
+  "id": "EVAL-018-executor-dist-http-only",
+  "skill": "c2f-persona-executor",
+  "title": "REQ-097/REQ-098: executor must not run css:rebuild/assets:publish against HTTP-only remotes and must treat dist/.manifest.json 404 as arquivo-estatico fallback",
+  "trap": "Executor runs c2f css:rebuild or c2f assets:publish against an HTTP-only remote (local: false, no SSH), ignores installation.dist (REQ-306), or treats HTTP 404 on dist/.manifest.json as a blocker instead of the arquivo-estatico fallback over gestor/.",
+  "must_include": [
+    "Deploy HTTP-only (`local: false`, sem SSH)",
+    "**nunca** rode `c2f css:rebuild --project=<id>` nem `c2f assets:publish --project=<id>`",
+    "`installation.dist`",
+    "`REQ-306`",
+    "`dist/.manifest.json`",
+    "`HTTP 404`",
+    "`arquivo-estatico`",
+    "`gestor/`",
+    "**não é bloqueio**",
+    "`HTTP 200`"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "HTTP-only deploy (`local: false`, no SSH)",
+        "**never** run `c2f css:rebuild --project=<id>` or `c2f assets:publish --project=<id>`",
+        "`installation.dist`",
+        "`REQ-306`",
+        "`dist/.manifest.json`",
+        "`HTTP 404`",
+        "`arquivo-estatico`",
+        "`gestor/`",
+        "**not a blocker**",
+        "`HTTP 200`"
+      ]
+    }
+  }
+}

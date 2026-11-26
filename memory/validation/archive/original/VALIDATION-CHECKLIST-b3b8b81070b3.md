@@ -330,9 +330,9 @@ REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histó
 
 Evidências e limites: [lote](../../../implementation/archive/batch-075.md), [resumo](../../../../completions/BATCH-075-test-summary.json), [recibo](../../../../completions/BATCH-075-receipt.json), [REV-075](../../../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.
 
-[Archived history](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
+[Archived history](<../compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
 
-[Archived history](<archive/compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
+[Archived history](<../compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
 
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05

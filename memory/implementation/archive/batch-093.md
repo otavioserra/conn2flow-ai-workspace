@@ -15,7 +15,7 @@ summary_medium: "Categoria B, sem deploy; matriz sem stage/commit/push.\nGate 4A
 
 # BATCH-093 — Fase 4 (final) do ARCH-018
 
-[REQ-091](../../human-requests/req-091.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-013)](../../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)
+[REQ-091](../../human-requests/archive/req-091.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-013)](../../reports/REP-013-batch093-anti-bloat-evals-and-global-rollout.md)
 
 ## Live Todo List
 

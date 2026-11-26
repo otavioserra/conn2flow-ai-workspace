@@ -14,7 +14,7 @@ summary_medium: "Polimento pós-homologação visual da aba MDD Hub, catálogo d
 
 # BATCH-095 — v1.2.1, MDD agnóstico (Fase 1) e 1ª rodada do Optimizer
 
-[REQ-093](../human-requests/req-093.md) · [ARCH-019](../backlog/ARCH-019-framework-agnostic-mdd-universal-installer.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
+[REQ-093](../../human-requests/req-093.md) · [ARCH-019](../../backlog/ARCH-019-framework-agnostic-mdd-universal-installer.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
 
 Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`, branch `main`, base local `9ad498b`. Sem deploy, sem satélites, sem stage, commit ou push.
 
@@ -62,9 +62,9 @@ O arquivo sintético `FB-008-resumo-curto-do-problema.md` (`REQ-999`/`BATCH-999`
 
 ## 3. ARCH-019 Fase 1 — `domains/` e `mdd bootstrap`
 
-- [`domains/README.md`](../../domains/README.md): uso, contrato do `domain.json` e passo a passo de PR (exemplo Laravel).
-- [`domains/generic/domain.json`](../../domains/generic/domain.json): `core-mdd-only` (5 personas + 9 de governança), guia local `true`, prioridade 0, fallback.
-- [`domains/conn2flow/domain.json`](../../domains/conn2flow/domain.json): `all-canonical` (48 skills), detectores `c2f`, `gestor/config.php`, `gestor/` e marcadores em `composer.json`/`environment.json`.
+- [`domains/README.md`](../../../domains/README.md): uso, contrato do `domain.json` e passo a passo de PR (exemplo Laravel).
+- [`domains/generic/domain.json`](../../../domains/generic/domain.json): `core-mdd-only` (5 personas + 9 de governança), guia local `true`, prioridade 0, fallback.
+- [`domains/conn2flow/domain.json`](../../../domains/conn2flow/domain.json): `all-canonical` (48 skills), detectores `c2f`, `gestor/config.php`, `gestor/` e marcadores em `composer.json`/`environment.json`.
 - `tools/mdd-client/src/mdd_client/bootstrap.py` + comando `mdd bootstrap [--path] [--domain auto|<id>] [--list-domains] [--kits gemini,claude,codex,cursor,copilot] [--matrix] [--domains-dir] [--dry-run] [--json]`.
   - Descoberta: todo `domains/*/domain.json` válido; manifesto inválido é reportado em `errors` e ignorado. Nenhum id fixo no código.
   - Detecção: mais acertos de `files`/`dirs`/`markers` vence, `priority` desempata, sem acerto cai em `generic`. Stack rasa na raiz (Node, TypeScript, Python, PHP, Go, Rust, Docker, testes, gerenciador de pacotes, Git) e comandos de validação deduzidos.
@@ -116,7 +116,7 @@ Arquivador oficial do Core, sem worktree e sem tocar na árvore do Core: `git ar
 
 ## 7. FEAT-017, feedback e handoff
 
-O [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) traz o relatório completo. FB emitido nesta rodada: **FB-008** (`c2f-shell-and-windows-traps`, `learning`, `low`, `READY` por recorrência 3): o `sed -i` do Git Bash converte o arquivo CRLF inteiro para LF, medido com `od -c`.
+O [REP-015](../../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) traz o relatório completo. FB emitido nesta rodada: **FB-008** (`c2f-shell-and-windows-traps`, `learning`, `low`, `READY` por recorrência 3): o `sed -i` do Git Bash converte o arquivo CRLF inteiro para LF, medido com `od -c`.
 
 `FEAT-015` continua não rastreada e fora de qualquer stage. `04-memory-engineering-execution.md` não foi tocada.
 

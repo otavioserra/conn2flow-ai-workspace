@@ -32,7 +32,7 @@ Evidências no [BATCH-096](../../../implementation/batch-096.md) e no [relatóri
 - [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../../../implementation/batch-096.md).
 - [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
 
-Evidências no [BATCH-095](../../../implementation/batch-095.md), no [REP-015](../../../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../../../completions/skills-audit.json). Categoria B, sem deploy.
+Evidências no [BATCH-095](../../../implementation/archive/batch-095.md), no [REP-015](../../../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../../../completions/skills-audit.json). Categoria B, sem deploy.
 
 ## BATCH-094 — REQ-092 (2026-11-24)
 
@@ -137,7 +137,7 @@ Evidências preservadas em [batch-076.md](../../../implementation/archive/batch-
 - [validation-051-057.md](../validation-051-057.md) (BATCH-051 a BATCH-057)
 - [validation-069-088.md](../validation-069-088.md) (BATCH-069 a BATCH-075 e BATCH-082 a BATCH-088; poda da REQ-090)
 - [validation-089.md](../validation-089.md) (BATCH-089; poda da REQ-091)
-- [Histórico compactado 5f08f316abcf](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
-- [Histórico compactado c2ec2bf167a3](<archive/compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
-- [Original integral antes da poda da REQ-090](<archive/original/VALIDATION-CHECKLIST-b3b8b81070b3.md>)
-- [Original integral antes da poda da REQ-091](<archive/original/VALIDATION-CHECKLIST-4ebc09f79d5b.md>)
+- [Histórico compactado 5f08f316abcf](<../compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
+- [Histórico compactado c2ec2bf167a3](<../compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
+- [Original integral antes da poda da REQ-090](<./VALIDATION-CHECKLIST-b3b8b81070b3.md>)
+- [Original integral antes da poda da REQ-091](<./VALIDATION-CHECKLIST-4ebc09f79d5b.md>)

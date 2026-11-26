@@ -13,6 +13,7 @@
 | VALIDATION-093 | Validation Checklist — BATCH-093 | Seção homologada arquivada no BATCH-097. Os links foram reancorados. &#91;Original integral&#93;(original/VALIDATION-CHECKLIS... | [source](<validation-093.md>) | archived |
 | VALIDATION-094 | Validation Checklist — BATCH-094 | Seção homologada arquivada no BATCH-098. &#91;Original integral&#93;(original/VALIDATION-CHECKLIST-54faf9797fe8.md), SHA-256 ... | [source](<validation-094.md>) | archived |
 | VALIDATION-095 | Validation Checklist â€” BATCH-095 | SeÃ§Ã£o homologada arquivada no BATCH-099 (poda da REQ-097), movida integralmente sem alteraÃ§Ãµes. | [source](<validation-095.md>) | archived |
+| VALIDATION-099 | Validation Checklist — BATCH-099 | Seção homologada arquivada no BATCH-100 (poda da REQ-098), movida sem alterações de conteúdo. | [source](<validation-099.md>) | archived |
 
 ## Directories
 
