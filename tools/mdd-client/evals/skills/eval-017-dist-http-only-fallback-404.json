@@ -1,0 +1,32 @@
+{
+  "id": "EVAL-017-dist-http-only-fallback-404",
+  "skill": "c2f-project-pipeline-and-tasks",
+  "title": "REQ-097: dist/, css:rebuild and assets:publish by deploy mode (Lab/SSH vs HTTP-only) and dist/.manifest.json 404 fallback",
+  "trap": "Treating HTTP 404 on dist/.manifest.json as a blocker (or running css:rebuild/assets:publish against an HTTP-only remote) instead of the arquivo-estatico fallback over gestor/. The sibling skill c2f-persona-executor carries the short rule and is checked by the same text in review.",
+  "must_include": [
+    "Lab/SSH vs HTTP-Only",
+    "**Proibido** exigir ou rodar `c2f css:rebuild --project=<id>` ou `c2f assets:publish --project=<id>`",
+    "`/_api/project/update`",
+    "`dist/.manifest.json`",
+    "**`HTTP 404`**",
+    "`arquivo-estatico`",
+    "`gestor/`",
+    "`installation.dist`",
+    "`REQ-306`"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "Lab/SSH vs HTTP-Only",
+        "**Forbidden** to require or run `c2f css:rebuild --project=<id>` or `c2f assets:publish --project=<id>`",
+        "`/_api/project/update`",
+        "`dist/.manifest.json`",
+        "**`HTTP 404`**",
+        "`arquivo-estatico`",
+        "`gestor/`",
+        "`installation.dist`",
+        "`REQ-306`"
+      ]
+    }
+  }
+}

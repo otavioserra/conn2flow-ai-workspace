@@ -11,4 +11,4 @@ Seção homologada arquivada no BATCH-098. [Original integral](original/VALIDATI
 - [x] Auditoria de skills PASS, índice de skills PASS, mdd eval 13/13 e pytest 153/153. Índices MDD regenerados, lote e FEAT-017 prontos para revisão.
 - [ ] Revisão do Macro-Arquiteto e homologação visual pelo operador.
 
-Evidências no [BATCH-094](../../implementation/batch-094.md), no [REP-014](../../reports/REP-014-batch094-vsix-skills-and-curation.md) e na [auditoria de skills](../../../completions/skills-audit.json). Categoria B, sem deploy. A janela de retenção está registrada no lote para decisão DEC-136.
+Evidências no [BATCH-094](../../implementation/archive/batch-094.md), no [REP-014](../../reports/REP-014-batch094-vsix-skills-and-curation.md) e na [auditoria de skills](../../../completions/skills-audit.json). Categoria B, sem deploy. A janela de retenção está registrada no lote para decisão DEC-136.

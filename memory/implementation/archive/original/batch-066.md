@@ -2,7 +2,7 @@
 
 - Projeto: `conn2flow-ai-workspace`
 - Raiz: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- Requisição: [REQ-064](../human-requests/req-064.md)
+- Requisição: [REQ-064](../../../human-requests/archive/original/req-064.md)
 - Status: `ready-for-review`
 - Executor: Claude Code
 - Data: 2026-10-01

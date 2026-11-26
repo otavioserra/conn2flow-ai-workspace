@@ -2,7 +2,7 @@
 
 - Projeto: `conn2flow-ai-workspace`
 - Caminho Raiz: `C:\Users\otavi\OneDrive\Documentos\GIT\conn2flow-ai-workspace`
-- Requisição: [REQ-065](../human-requests/req-065.md)
+- Requisição: [REQ-065](../../../human-requests/archive/original/req-065.md)
 - Status: `ready-for-review`
 - Executor: Antigravity (`c2f-executor-agent`)
 - Data: 2026-10-04

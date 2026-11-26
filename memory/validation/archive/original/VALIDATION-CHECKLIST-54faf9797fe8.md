@@ -8,7 +8,7 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] FB-008 aceito e aplicado em PT-BR e EN. EVAL-PASS 16/16, sync e índice PASS, OVER 0.
 - [x] Gate Python exato do CI. 211 testes, 96,32% de cobertura.
 - [x] Rollout conferido em origin/main, variantes do Core preservadas e zero worktrees temporárias.
-- [x] Janela de dez ativos restabelecida. Evidências no [BATCH-097](../implementation/batch-097.md) e no [FEAT-017](../reports/REP-017-batch097-marketplace-and-rollout.md).
+- [x] Janela de dez ativos restabelecida. Evidências no [BATCH-097](../../../implementation/batch-097.md) e no [FEAT-017](../../../reports/REP-017-batch097-marketplace-and-rollout.md).
 - [ ] Revisão técnica e homologação visual humana.
 
 ## BATCH-096 — REQ-094 (2026-11-24)
@@ -20,7 +20,7 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] `mdd eval` retornou `EVAL-PASS` 15/15. `mdd status --json` retornou `healthy: true` após `mdd index`.
 - [ ] Revisão supervisionada e homologação visual humana do VSIX.
 
-Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
+Evidências no [BATCH-096](../../../implementation/batch-096.md) e no [relatório FEAT-017](../../../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
 
 ## BATCH-095 — REQ-093 (2026-11-24)
 
@@ -29,10 +29,10 @@ Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT
 - [x] FB-004 e FB-007 aplicados; 4 skills OVER extraídas para 11 subskills novas em PT-BR/EN. `--budget-report` com `OVER: 0`, índice PASS, auditoria PASS (0 divergências, 0 drift, 0 divergência entre cópias EN), `pytest` 162/162 e `mdd eval` EVAL-PASS 15/15.
 - [x] ARCH-019 Fase 1: `domains/` (`README.md`, `generic`, `conn2flow`), `mdd bootstrap` (`--list-domains`, `--domain auto|<id>`, detecção de stack, memória e guia local sem sobrescrever) com domínio `laravel` de fixture e idempotência; `conn2flow.projectDomain` aberto (padrão `auto`) e QuickPick dinâmico "Inicializar MDD neste Projeto".
 - [x] Regra dos 10 com `ai:archive-memory` (Core `230262177a27` via `git archive`): req-085/086, batch-089/090 e REP-009/010 arquivados; janelas em 10/10/10. Lote, REP-015 (FEAT-017) e índices em `ready-for-review`; FEAT-015 fora do stage.
-- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../implementation/batch-096.md).
+- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../../../implementation/batch-096.md).
 - [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
 
-Evidências no [BATCH-095](../implementation/batch-095.md), no [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy.
+Evidências no [BATCH-095](../../../implementation/batch-095.md), no [REP-015](../../../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../../../completions/skills-audit.json). Categoria B, sem deploy.
 
 ## BATCH-094 — REQ-092 (2026-11-24)
 
@@ -43,11 +43,11 @@ Evidências no [BATCH-095](../implementation/batch-095.md), no [REP-015](../repo
 - [x] Auditoria de skills PASS, índice de skills PASS, mdd eval 13/13 e pytest 153/153. Índices MDD regenerados, lote e FEAT-017 prontos para revisão.
 - [ ] Revisão do Macro-Arquiteto e homologação visual pelo operador.
 
-Evidências no [BATCH-094](../implementation/batch-094.md), no [REP-014](../reports/REP-014-batch094-vsix-skills-and-curation.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy. A janela de retenção está registrada no lote para decisão DEC-136.
+Evidências no [BATCH-094](../../../implementation/archive/batch-094.md), no [REP-014](../../../reports/REP-014-batch094-vsix-skills-and-curation.md) e na [auditoria de skills](../../../../completions/skills-audit.json). Categoria B, sem deploy. A janela de retenção está registrada no lote para decisão DEC-136.
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
-- [x] Implementação e verificações locais registradas em [lote](../implementation/batch-081.md).
+- [x] Implementação e verificações locais registradas em [lote](../../../implementation/batch-081.md).
 - [x] Evidências e limites explicitados; sem git commit/push.
 - [ ] Revisão e homologação humana.
 
@@ -61,10 +61,10 @@ Evidências no [BATCH-094](../implementation/batch-094.md), no [REP-014](../repo
 - [x] Metadados e código preservados; traduções novas validadas antes da publicação; correções editoriais da amostra independente aplicadas.
 - [x] Python 138/138 (131 anteriores + sete casos de drift) e extensão 133/133; sintaxe CJS e diff check PASS.
 - [x] Forward-test independente em fixture: baseline PASS → mutação → warning sem sobrescrita → reconhecimento explícito → PASS.
-- [x] [REV-080](../human-reviews/rev-080.md): RECOMMEND-APPROVAL, com amostragem editorial explícita e correções aplicadas.
+- [x] [REV-080](../../../human-reviews/rev-080.md): RECOMMEND-APPROVAL, com amostragem editorial explícita e correções aplicadas.
 - [ ] Homologação humana. Revisão editorial humana integral não atribuída.
 
-Evidências e limites: [BATCH-080](../implementation/batch-080.md), [JUnit](../../completions/BATCH-080-pytest.xml), [skills](../../completions/BATCH-080-skills-audit.json), [traduções](../../completions/BATCH-080-translation-audit.json).
+Evidências e limites: [BATCH-080](../../../implementation/batch-080.md), [JUnit](../../../../completions/BATCH-080-pytest.xml), [skills](../../../../completions/BATCH-080-skills-audit.json), [traduções](../../../../completions/BATCH-080-translation-audit.json).
 
 ## BATCH-079 — REQ-077 (2026-11-05)
 
@@ -72,13 +72,13 @@ Evidências e limites: [BATCH-080](../implementation/batch-080.md), [JUnit](../.
 
 - [x] Pipeline padrão project:deploy, exceção mista update-all e regra restritiva de worktrees.
 - [x] DEC-136 e lições REP-002 incorporadas; 45 skills/44 alvos PASS, zero divergências.
-- [x] Python 131/131 e extensão 133/133; evidências em [batch-079.md](../implementation/batch-079.md).
+- [x] Python 131/131 e extensão 133/133; evidências em [batch-079.md](../../../implementation/batch-079.md).
 - [x] Revisão independente acionada.
 
 ### Rodada 2 — limpeza
 
 - [x] 17 alvos inventariados sem atravessar junctions.
-- [x] Rodada 3: humano determinou preservar trabalho único; duas árvores comprovadamente integradas removidas sem força, 15 preservadas, ignorados arquivados/verificados, junctions desvinculadas e prune Core executado. [Evidência](../../completions/BATCH-079-cleanup-result.json).
+- [x] Rodada 3: humano determinou preservar trabalho único; duas árvores comprovadamente integradas removidas sem força, 15 preservadas, ignorados arquivados/verificados, junctions desvinculadas e prune Core executado. [Evidência](../../../../completions/BATCH-079-cleanup-result.json).
 - [ ] Homologação humana.
 
 ## BATCH-078 — REQ-076 (2026-10-15)
@@ -94,10 +94,10 @@ Evidências e limites: [BATCH-080](../implementation/batch-080.md), [JUnit](../.
 - [x] Skills PASS: 45 canônicas, 44 alvos, zero divergências, 60 locais preservadas.
 - [x] Python 131/131 PASS (um aviso Starlette/AnyIO); extensão 133/133 PASS.
 - [x] Índices regenerados com mdd index; diff --check nas três raízes; sem deploy.
-- [x] Parecer independente [REV-078](../human-reviews/rev-078.md): RECOMMEND-APPROVAL, sem finding bloqueante.
+- [x] Parecer independente [REV-078](../../../human-reviews/rev-078.md): RECOMMEND-APPROVAL, sem finding bloqueante.
 - [ ] Homologação humana identificada.
 
-Evidências, comandos, métricas e exceções: [BATCH-078](../implementation/batch-078.md), [validação](../../completions/BATCH-078-validation.json), [JUnit](../../completions/BATCH-078-pytest.xml), [skills](../../completions/BATCH-078-skills-audit.json).
+Evidências, comandos, métricas e exceções: [BATCH-078](../../../implementation/batch-078.md), [validação](../../../../completions/BATCH-078-validation.json), [JUnit](../../../../completions/BATCH-078-pytest.xml), [skills](../../../../completions/BATCH-078-skills-audit.json).
 
 ## BATCH-077 — REQ-075 (2026-10-14)
 
@@ -109,11 +109,11 @@ Evidências, comandos, métricas e exceções: [BATCH-078](../implementation/bat
 - [x] Python 131/131 PASS, sem skips, cobertura 97,17%; extensão 133/133 PASS, compilação limpa.
 - [x] VSIX1.1.4 com prompts atualizados, pacote/hash conferidos.
 - [x] Fila humana em03-memory-engineering-chief.md atualizada com instruções específicas, sem assinatura simulada.
-- [x] Parecer independente [REV-077](../human-reviews/rev-077.md): RECOMMEND-APPROVAL; P1/P2 corrigidos e verificados.
-- [x] Commits específicos e cinco pushes confirmados; home commit local sem remote. Whitespace herdado dos imports home comprovado sem alegar check tradicional limpo: [prova](../../completions/BATCH-077-home-whitespace.json).
+- [x] Parecer independente [REV-077](../../../human-reviews/rev-077.md): RECOMMEND-APPROVAL; P1/P2 corrigidos e verificados.
+- [x] Commits específicos e cinco pushes confirmados; home commit local sem remote. Whitespace herdado dos imports home comprovado sem alegar check tradicional limpo: [prova](../../../../completions/BATCH-077-home-whitespace.json).
 - [ ] Homologação humana diferida; seguir fila do Engenheiro Chefe.
 
-Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/BATCH-077-pytest.xml), [resumo](../../completions/BATCH-077-test-summary.json), [auditoria](../../completions/BATCH-077-skills-audit.json), [contratos](../../completions/BATCH-077-governance-audit.json). Benchmark da flag: Core [BATCH-278](../../../conn2flow/memory/implementation/BATCH-278.md) mediu36s contra40s/cachequente; evidência anterior conferida, não repetida neste lote de CategoriaB. Sem deploy, banco ou buildTailwind. Limites Windows/CI e avisos de depreciação registrados no lote.
+Evidências: [lote](../../../implementation/batch-077.md), [JUnit](../../../../completions/BATCH-077-pytest.xml), [resumo](../../../../completions/BATCH-077-test-summary.json), [auditoria](../../../../completions/BATCH-077-skills-audit.json), [contratos](../../../../completions/BATCH-077-governance-audit.json). Benchmark da flag: Core [BATCH-278](../../../../../conn2flow/memory/implementation/BATCH-278.md) mediu36s contra40s/cachequente; evidência anterior conferida, não repetida neste lote de CategoriaB. Sem deploy, banco ou buildTailwind. Limites Windows/CI e avisos de depreciação registrados no lote.
 
 ## BATCH-076 — REQ-074 (reposição do registro operacional)
 
@@ -123,20 +123,20 @@ Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/B
 - [x] Home SPEC e67arquivos preservados byte a byte na working tree; commit f5a7ea4.
 - [ ] Homologação visual de Otávio Serra, adiada explicitamente para o fim.
 
-Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
+Evidências preservadas em [batch-076.md](../../../implementation/archive/batch-076.md), [REV-076](../../../human-reviews/rev-076.md), [resumo](../../../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
 
 ## Validações Arquivadas
 
-- [validation-093.md](archive/validation-093.md) (BATCH-093)
+- [validation-093.md](../validation-093.md) (BATCH-093)
 
-- [validation-090-092.md](archive/validation-090-092.md) (BATCH-090 a BATCH-092; poda da REQ-094)
-- [validation-001-003.md](archive/validation-001-003.md) (BATCH-001 a BATCH-003)
-- [validation-006-007-014.md](archive/validation-006-007-014.md) (BATCH-006, BATCH-007 e BATCH-014)
-- [validation-015.md](archive/validation-015.md) (BATCH-015)
-- [validation-004-050.md](archive/validation-004-050.md) (BATCH-004 a BATCH-050)
-- [validation-051-057.md](archive/validation-051-057.md) (BATCH-051 a BATCH-057)
-- [validation-069-088.md](archive/validation-069-088.md) (BATCH-069 a BATCH-075 e BATCH-082 a BATCH-088; poda da REQ-090)
-- [validation-089.md](archive/validation-089.md) (BATCH-089; poda da REQ-091)
+- [validation-090-092.md](../validation-090-092.md) (BATCH-090 a BATCH-092; poda da REQ-094)
+- [validation-001-003.md](../validation-001-003.md) (BATCH-001 a BATCH-003)
+- [validation-006-007-014.md](../validation-006-007-014.md) (BATCH-006, BATCH-007 e BATCH-014)
+- [validation-015.md](../validation-015.md) (BATCH-015)
+- [validation-004-050.md](../validation-004-050.md) (BATCH-004 a BATCH-050)
+- [validation-051-057.md](../validation-051-057.md) (BATCH-051 a BATCH-057)
+- [validation-069-088.md](../validation-069-088.md) (BATCH-069 a BATCH-075 e BATCH-082 a BATCH-088; poda da REQ-090)
+- [validation-089.md](../validation-089.md) (BATCH-089; poda da REQ-091)
 - [Histórico compactado 5f08f316abcf](<archive/compacted/VALIDATION-CHECKLIST-5f08f316abcf.md>)
 - [Histórico compactado c2ec2bf167a3](<archive/compacted/VALIDATION-CHECKLIST-c2ec2bf167a3.md>)
 - [Original integral antes da poda da REQ-090](<archive/original/VALIDATION-CHECKLIST-b3b8b81070b3.md>)

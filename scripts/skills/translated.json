@@ -136,8 +136,8 @@
       "translator": "mdd-agent"
     },
     "c2f-persona-executor": {
-      "source_sha256": "fcbe33c75d26c484d6c4b5d75176982a29c77a5a57a562b7e6f5f1234058d6ef",
-      "translated_at": "2026-11-24",
+      "source_sha256": "27ec3368e00f5be1b6311f78080e931d6b9b6363b174752f3181f83a5b3f31f6",
+      "translated_at": "2026-11-26",
       "translator": "mdd-agent"
     },
     "c2f-persona-optimizer": {
@@ -161,8 +161,8 @@
       "translator": "mdd-agent"
     },
     "c2f-project-pipeline-and-tasks": {
-      "source_sha256": "d953c02b4d79d443e8020623891be85f3f50ab53bd9cb17dcc6e4c2ab68614ca",
-      "translated_at": "2026-11-23",
+      "source_sha256": "b2df74f0d353f9454a4ad43fd7704f7cbbf0261d10d4a37d747d335e8e5eb688",
+      "translated_at": "2026-11-26",
       "translator": "mdd-agent"
     },
     "c2f-projects-system": {

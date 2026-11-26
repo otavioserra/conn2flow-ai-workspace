@@ -12,6 +12,7 @@
 | VALIDATION-090-092 | Validation Checklist — Histórico Arquivado (BATCH-090 a BATCH-092) | Seções homologadas movidas na REQ-094 / BATCH-096. Os links relativos foram reancorados para esta pasta. &#91;Original in... | [source](<validation-090-092.md>) | archived |
 | VALIDATION-093 | Validation Checklist — BATCH-093 | Seção homologada arquivada no BATCH-097. Os links foram reancorados. &#91;Original integral&#93;(original/VALIDATION-CHECKLIS... | [source](<validation-093.md>) | archived |
 | VALIDATION-094 | Validation Checklist — BATCH-094 | Seção homologada arquivada no BATCH-098. &#91;Original integral&#93;(original/VALIDATION-CHECKLIST-54faf9797fe8.md), SHA-256 ... | [source](<validation-094.md>) | archived |
+| VALIDATION-095 | Validation Checklist â€” BATCH-095 | SeÃ§Ã£o homologada arquivada no BATCH-099 (poda da REQ-097), movida integralmente sem alteraÃ§Ãµes. | [source](<validation-095.md>) | archived |
 
 ## Directories
 

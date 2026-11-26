@@ -5,7 +5,7 @@
 * **Autor**: Humano-no-Loop & Macro-Arquiteto
 * **Data de Criação**: 2026-09-25
 * **Repositórios Alvo**: `conn2flow` (Core), `conn2flow-site`, `conn2flow-ai-workspace` (Matriz Central — skill e propagação)
-* **Relacionados**: [FEAT-007](FEAT-007-integrate-core-ai-workspace-documentation.md) (curadoria anterior, escopo menor), [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) (atualização automática dos kits — segundo momento)
+* **Relacionados**: [FEAT-007](../../FEAT-007-integrate-core-ai-workspace-documentation.md) (curadoria anterior, escopo menor), [ARCH-007](ARCH-007-atualizacao-automatica-kits-ia-nas-instalacoes.md) (atualização automática dos kits — segundo momento)
 
 ---
 

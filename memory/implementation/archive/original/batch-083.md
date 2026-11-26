@@ -14,7 +14,7 @@ autonomy: "supervisionado"
 
 # BATCH-083 — Caixa copiável do Arquiteto Master e relatório de dificuldades do Executor
 
-[REQ-081](../human-requests/req-081.md) · Categoria B · Topologia `dupla` · Autonomia `supervisionado` · `ready-for-review`
+[REQ-081](../../../human-requests/archive/req-081.md) · Categoria B · Topologia `dupla` · Autonomia `supervisionado` · `ready-for-review`
 
 ## Live Todo List e critérios de aceite
 
@@ -22,7 +22,7 @@ autonomy: "supervisionado"
 - [x] FEAT-017. Exigir o relatório estruturado na resposta final, vinculado ao lote e publicado como REP na matriz quando aplicável.
 - [x] Revisar os dez arquivos EN, atualizar os dois hashes SHA-256 pelo sincronizador e conferir a nota em `STARTER-PROMPTS.md`.
 - [x] Propagar os cinco kits da matriz e os templates PT-BR. Validar paridade e ausência de drift.
-- [x] Registrar este lote, o [checklist técnico](../validation/VALIDATION-CHECKLIST.md) e o [REP-004](../reports/REP-004-batch083-skills-learnings.md).
+- [x] Registrar este lote, o [checklist técnico](../../../validation/VALIDATION-CHECKLIST.md) e o [REP-004](../../../reports/archive/REP-004-batch083-skills-learnings.md).
 - [x] Regenerar os índices MDD das áreas afetadas e conferir as entradas geradas.
 
 ## Evidências locais
@@ -31,7 +31,7 @@ autonomy: "supervisionado"
 | --- | --- |
 | `node scripts/skills/sync-skills.cjs --apply --all --repos conn2flow-ai-workspace` | 18 gravações. Os dois alertas provisórios de drift desapareceram após o reconhecimento dos hashes. |
 | `node scripts/skills/sync-skills.cjs --update-translation-hash <skill> en --translator mdd-agent` | PASS para `c2f-architect-master` e `c2f-executor-agent`. |
-| `node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json` | [PASS](../../completions/skills-audit.json) em 19 alvos, sem divergências nem drift. |
+| `node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json` | [PASS](../../../../completions/skills-audit.json) em 19 alvos, sem divergências nem drift. |
 | Comparação de arquivos e hashes | Duas fontes PT-BR idênticas às respectivas cópias nos cinco kits. Cinco cópias EN idênticas por skill. Hashes conferidos contra o registro e a auditoria. |
 | Pytest local em `test_translation_drift.py`, `test_skill_migration.py` e `test_indexer.py` | 61 testes passaram. |
 | `mdd index` nas áreas afetadas e `git diff --check` | Índices regenerados e diff sem erros de whitespace. |

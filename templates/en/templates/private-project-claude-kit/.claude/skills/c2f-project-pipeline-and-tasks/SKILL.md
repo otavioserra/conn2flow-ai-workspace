@@ -48,6 +48,17 @@ user-invocable: false
 ```
 Deploy publishes project via `deploy-project-v2.sh`. Do not assign to it the eight steps of `project:update-all` or the `--skip-css` flag, which the deploy wrapper does not pass on. Rule #8 covers batches with Core changes that need validation in a project Lab.
 
+### Rule for `dist/`, `css:rebuild` and `assets:publish` by Deploy Mode (Lab/SSH vs HTTP-Only)
+
+- **Lab (`local: true`) or remote with SSH (`deploy_mode="ssh"` + `ssh_public_path`):** `c2f css:rebuild --project=<id>` and `c2f assets:publish --project=<id>` apply normally when needed (or via `project:update-all` when the Core changed).
+- **Remote HTTP-only (`local: false`, no SSH — `project:deploy <id>` via `/_api/project/update`):**
+  - **Forbidden** to require or run `c2f css:rebuild --project=<id>` or `c2f assets:publish --project=<id>` against the remote server (they need a local `.env` or `ssh_public_path` and fail on HTTP-only).
+  - Derivatives (`*.precompiled.css`, `*.min.js`) are compiled/minified locally beforehand (Category C or JS) and packaged in the `project:deploy` ZIP.
+  - On the target, `public_html/dist/` is resynchronized inside `/_api/project/update` itself (no online CLI or SSH), with a summary in `installation.dist` (`criado`, `verificados`, `publicados`, `atualizados`, `inalterados`, `falhas`), per Core `REQ-306` (base PHP library that creates and updates `dist/`).
+- **`dist/.manifest.json`:**
+  - **`HTTP 404`** (server predating `REQ-306`, `dist/` not initialized): **NEVER classify as a blocker or old-JS risk.** The runtime falls back to the `arquivo-estatico` controller, serving the new `gestor/` files delivered by `project:deploy`.
+  - **`HTTP 200`** (Labs, SSH or `REQ-306` server): `dist/` delivery is active; verify the changed asset's hash (`sha1`)/version was updated and check `installation.dist`.
+
 > [!IMPORTANT]
 > **Prevention of the Post-Deploy Hybrid State**:
 > In Category C, `css:rebuild` recalculates derivative CSS (`css_precompiled` and `css_compiled`) from real HTML in database. In Category A, without changing CSS sources, `--skip-css` does not require this step; do not force a separate build. This preserves correspondence between HTML and CSS without unnecessary build.

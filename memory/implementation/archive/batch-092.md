@@ -15,7 +15,7 @@ summary_medium: "Categoria B, sem deploy; matriz sem stage/commit/push.\nExtens�
 
 # BATCH-092 — Fase 3 do ARCH-018
 
-[REQ-090](../../human-requests/req-090.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-012)](../../reports/REP-012-batch092-hub-control-and-core-cli.md)
+[REQ-090](../../human-requests/archive/req-090.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada · [Relatório FEAT-017 (REP-012)](../../reports/REP-012-batch092-hub-control-and-core-cli.md)
 
 ## Live Todo List
 

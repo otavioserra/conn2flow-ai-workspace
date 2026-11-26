@@ -14,7 +14,7 @@ summary_medium: "Empacotamento local com 154 testes da extensão e 153 do Client
 
 # BATCH-094 — Entrega local pós-ARCH-018
 
-[REQ-092](../human-requests/req-092.md) · [ARCH-018](../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
+[REQ-092](../../human-requests/req-092.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
 
 Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`. Base local `fb46fe73c600`.
 
@@ -39,7 +39,7 @@ O VSIX está em `vscode-extension/conn2flow-tools-1.2.0.vsix`, sob o ignore exis
 code.cmd --install-extension vscode-extension\conn2flow-tools-1.2.0.vsix --force
 ```
 
-Os [READMEs](../../README.md), o [changelog da matriz](../../CHANGELOG.md), o [changelog da extensão](../../vscode-extension/CHANGELOG.md) e os [guias bilíngues](../../docs/README.md) cobrem o Client disponível no checkout, as quatro camadas MDD, as 48 skills e cinco personas, `subskills/`, Skill Budget, `learnings/`, a inbox e o barramento de feedback nos dois MCPs, os evals e a aba v1.2.0. O validador de documentação passou após alinhar a expectativa de 44 para 48 skills. As instruções de empacotamento do README da extensão usam a versão já escolhida, pois `npm run package` faria outro bump.
+Os [READMEs](../../../README.md), o [changelog da matriz](../../../CHANGELOG.md), o [changelog da extensão](../../../vscode-extension/CHANGELOG.md) e os [guias bilíngues](../../../docs/README.md) cobrem o Client disponível no checkout, as quatro camadas MDD, as 48 skills e cinco personas, `subskills/`, Skill Budget, `learnings/`, a inbox e o barramento de feedback nos dois MCPs, os evals e a aba v1.2.0. O validador de documentação passou após alinhar a expectativa de 44 para 48 skills. As instruções de empacotamento do README da extensão usam a versão já escolhida, pois `npm run package` faria outro bump.
 
 ## Satélites
 
@@ -119,7 +119,7 @@ Proposta para aprovação humana: deixar v1.2.0 como instalação corrente e arq
 | --- | --- |
 | `npm.cmd run compile` e `npm.cmd test`, em `vscode-extension/` | PASS, 154/154 |
 | VSCE + CRC, metadados e conteúdo do VSIX | PASS, 94 entradas. SHA-256 acima. |
-| `node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json` | PASS, 19 alvos, 0 divergências, 0 escritas de skills. [Auditoria](../../completions/skills-audit.json). |
+| `node scripts/skills/sync-skills.cjs --repos conn2flow-ai-workspace --report completions/skills-audit.json` | PASS, 19 alvos, 0 divergências, 0 escritas de skills. [Auditoria](../../../completions/skills-audit.json). |
 | `node scripts/skills/generate-skills-index.cjs --check` | PASS, 48 skills |
 | `.\.venv-mdd\Scripts\pytest.exe -q tools/mdd-client/tests` | 153/153 PASS (74,07 s) |
 | `mdd eval --matrix .` | EVAL-PASS, 13/13, determinístico |
@@ -129,7 +129,7 @@ Proposta para aprovação humana: deixar v1.2.0 como instalação corrente e arq
 
 ## FEAT-017 e handoff
 
-O [REP-014](../reports/REP-014-batch094-vsix-skills-and-curation.md) registra o contexto, os atritos da rodada, as lacunas nas skills, as soluções verificadas e as propostas de melhoria.
+O [REP-014](../../reports/REP-014-batch094-vsix-skills-and-curation.md) registra o contexto, os atritos da rodada, as lacunas nas skills, as soluções verificadas e as propostas de melhoria.
 
 O `mdd status --json` retorna `healthy: false` pela janela de retenção. A base já tinha 11 requisições ativas. Implementação, checklist e relatórios passaram de 10 para 11 entradas com esta entrega. As fichas históricas foram preservadas sob DEC-136, com a decisão de arquivamento em revisão. A matriz segue sem stage, commit ou push desta rodada. Categoria B sem deploy no Lab. A instalação do VSIX e a homologação visual permanecem com o operador.
 

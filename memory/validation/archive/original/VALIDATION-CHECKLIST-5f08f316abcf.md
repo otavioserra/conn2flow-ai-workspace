@@ -10,11 +10,11 @@
 - [x] Python 131/131 PASS, sem skips, cobertura 97,17%; extensão 133/133 PASS, compilação limpa.
 - [x] VSIX1.1.4 com prompts atualizados, pacote/hash conferidos.
 - [x] Fila humana em03-memory-engineering-chief.md atualizada com instruções específicas, sem assinatura simulada.
-- [x] Parecer independente [REV-077](../human-reviews/rev-077.md): RECOMMEND-APPROVAL; P1/P2 corrigidos e verificados.
-- [x] Commits específicos e cinco pushes confirmados; home commit local sem remote. Whitespace herdado dos imports home comprovado sem alegar check tradicional limpo: [prova](../../completions/BATCH-077-home-whitespace.json).
+- [x] Parecer independente [REV-077](../../../human-reviews/rev-077.md): RECOMMEND-APPROVAL; P1/P2 corrigidos e verificados.
+- [x] Commits específicos e cinco pushes confirmados; home commit local sem remote. Whitespace herdado dos imports home comprovado sem alegar check tradicional limpo: [prova](../../../../completions/BATCH-077-home-whitespace.json).
 - [ ] Homologação humana diferida; seguir fila do Engenheiro Chefe.
 
-Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/BATCH-077-pytest.xml), [resumo](../../completions/BATCH-077-test-summary.json), [auditoria](../../completions/BATCH-077-skills-audit.json), [contratos](../../completions/BATCH-077-governance-audit.json). Benchmark da flag: Core [BATCH-278](../../../conn2flow/memory/implementation/BATCH-278.md) mediu36s contra40s/cachequente; evidência anterior conferida, não repetida neste lote de CategoriaB. Sem deploy, banco ou buildTailwind. Limites Windows/CI e avisos de depreciação registrados no lote.
+Evidências: [lote](../../../implementation/batch-077.md), [JUnit](../../../../completions/BATCH-077-pytest.xml), [resumo](../../../../completions/BATCH-077-test-summary.json), [auditoria](../../../../completions/BATCH-077-skills-audit.json), [contratos](../../../../completions/BATCH-077-governance-audit.json). Benchmark da flag: Core [BATCH-278](../../../../../conn2flow/memory/implementation/BATCH-278.md) mediu36s contra40s/cachequente; evidência anterior conferida, não repetida neste lote de CategoriaB. Sem deploy, banco ou buildTailwind. Limites Windows/CI e avisos de depreciação registrados no lote.
 
 ## BATCH-076 — REQ-074 (reposição do registro operacional)
 
@@ -24,17 +24,17 @@ Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/B
 - [x] Home SPEC e67arquivos preservados byte a byte na working tree; commit f5a7ea4.
 - [ ] Homologação visual de Otávio Serra, adiada explicitamente para o fim.
 
-Evidências preservadas em [batch-076.md](../implementation/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
+Evidências preservadas em [batch-076.md](../../../implementation/archive/batch-076.md), [REV-076](../../../human-reviews/rev-076.md), [resumo](../../../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
 
 Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de testes empÃ­ricos de validaÃ§Ã£o para os lotes funcionais ativos.
 
 ## ValidaÃ§Ãµes Arquivadas
 
-- [validation-001-003.md](archive/validation-001-003.md) (BATCH-001 a BATCH-003)
-- [validation-006-007-014.md](archive/validation-006-007-014.md) (BATCH-006, BATCH-007 e BATCH-014)
-- [validation-015.md](archive/validation-015.md) (BATCH-015)
-- [validation-004-050.md](archive/validation-004-050.md) (BATCH-004 a BATCH-050)
-- [validation-051-057.md](archive/validation-051-057.md) (BATCH-051 a BATCH-057)
+- [validation-001-003.md](../validation-001-003.md) (BATCH-001 a BATCH-003)
+- [validation-006-007-014.md](../validation-006-007-014.md) (BATCH-006, BATCH-007 e BATCH-014)
+- [validation-015.md](../validation-015.md) (BATCH-015)
+- [validation-004-050.md](../validation-004-050.md) (BATCH-004 a BATCH-050)
+- [validation-051-057.md](../validation-051-057.md) (BATCH-051 a BATCH-057)
 
 ---
 
@@ -63,11 +63,11 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 2. Testes unitários: `npm test` em `vscode-extension/`, **114/114 testes aprovados** (180ms).
 3. Preservação: 35 skills privadas/locais intactas nos 4 satélites.
 4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos; `batch-048.md` arquivado.
-5. Detalhamento operacional: [batch-058.md](../implementation/batch-058.md).
+5. Detalhamento operacional: [batch-058.md](../../../implementation/archive/batch-058.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-058.md](review-058.md) emitido com parecer **APPROVED** em 2026-09-18.
+- [x] Auditoria do Revisor Técnico: [review-058.md](../../review-058.md) emitido com parecer **APPROVED** em 2026-09-18.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-058-executor-receipt.json`.
 
@@ -91,11 +91,11 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 2. Configuração nos 5 repositórios: `.gemini/config.json` presente e válido em todos os 5 repositórios.
 3. Testes unitários: `npm test` em `vscode-extension/`, **114/114 testes aprovados** (180ms).
 4. Gate SDD final: 10 requisições, 10 batches ativos e zero links relativos órfãos; `batch-049.md` arquivado.
-5. Detalhamento operacional: [batch-059.md](../implementation/batch-059.md).
+5. Detalhamento operacional: [batch-059.md](../../../implementation/archive/batch-059.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: [review-059.md](review-059.md) emitido com parecer **APPROVED** em 2026-09-24.
+- [x] Auditoria do Revisor Técnico: [review-059.md](../../review-059.md) emitido com parecer **APPROVED** em 2026-09-24.
 - [x] Homologação executiva concluída pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-059-executor-receipt.json`.
 
@@ -128,7 +128,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 1. Auditoria de tamanhos: 10/10 arquivos abaixo de 50 KB confirmados via script de medição.
 2. Auditoria MD5: 1.000/1.000 correspondências de hash canônico em todos os 25 kits dos 5 repositórios.
 3. Testes da extensão: `npm test` em `vscode-extension/`, 114/114 testes aprovados (187ms).
-4. Detalhamento operacional: [batch-061.md](../implementation/batch-061.md).
+4. Detalhamento operacional: [batch-061.md](../../../implementation/archive/batch-061.md).
 
 ---
 
@@ -172,12 +172,12 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
    - Execução de `npm test` no diretório `vscode-extension/`:
    - 114 subtestes executados, 114 aprovados, 0 falhas, duração 184ms.
 4. **Detalhamento Operacional**:
-   - Registro de lote completo em [batch-062.md](../implementation/batch-062.md).
+   - Registro de lote completo em [batch-062.md](../../../implementation/archive/batch-062.md).
    - Recibo emitido em `completions/BATCH-062-executor-receipt.json`.
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-062.md](review-062.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-062.md](../../review-062.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-062-executor-receipt.json`.
 
@@ -201,11 +201,11 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 1. `npm test` em `vscode-extension/`: compilação TypeScript limpa e **124/124 testes aprovados** (0 falhas, 0 skips, 190ms).
 2. Validação ponta a ponta com o CLI compilado contra o tenant `project-test` (lista ➔ detalhe ➔ resolução `manter` ➔ bloqueio idempotente de nova resolução).
 3. Testes focados de política, cobertura de comando, NLS e tooltips: **22/22 aprovados**.
-4. Detalhamento operacional: [batch-063.md](../implementation/batch-063.md).
+4. Detalhamento operacional: [batch-063.md](../../../implementation/archive/batch-063.md).
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-063.md](review-063.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-063.md](../../review-063.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-063-executor-receipt.json`.
 
@@ -236,20 +236,20 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [x] Propagação consistente para os 25 kits dos 5 repositórios e 14 templates PT-BR/EN.
 - [x] Auditoria MD5: **1.025/1.025**, zero divergências; **44 arquivos locais** preservados por SHA-256.
 - [x] `npm test` da extensão: **124/124**, zero falhas/skips, compilação TypeScript limpa, exit 0.
-- [x] [Relatório operacional](../implementation/batch-065.md), checklist e [recibo](../../completions/BATCH-065-executor-receipt.json) emitidos.
+- [x] [Relatório operacional](../../../implementation/archive/batch-065.md), checklist e [recibo](../../../../completions/BATCH-065-executor-receipt.json) emitidos.
 
 ### 2. Evidências e alcance
 
-- [Auditoria MD5](../../completions/BATCH-065-md5-audit.json): 41 skills × 25 kits, 14 templates; segunda execução em modo auditoria sem mudanças planejadas.
-- [Lançador](../../completions/BATCH-065-launcher-smoke.json): Chrome 154, CDP loopback, perfil TEMP, guardas porta/perfil ocupados, modo headless real e flags visíveis por interceptação de Start-Process; teardown liberou 9222.
-- [Smoke MCP](../../completions/BATCH-065-mcp-smoke.json): handshake com Node 22.23.3/MCP 1.10.1, 30 ferramentas, navegação, modal, DOM, [screenshot](../../completions/BATCH-065-sandbox-smoke.png), console com trace e rede AJAX HTTP 200 com header CSRF de fixture. Teste sintético local, sem homologação de telas específicas do Gestor.
+- [Auditoria MD5](../../../../completions/BATCH-065-md5-audit.json): 41 skills × 25 kits, 14 templates; segunda execução em modo auditoria sem mudanças planejadas.
+- [Lançador](../../../../completions/BATCH-065-launcher-smoke.json): Chrome 154, CDP loopback, perfil TEMP, guardas porta/perfil ocupados, modo headless real e flags visíveis por interceptação de Start-Process; teardown liberou 9222.
+- [Smoke MCP](../../../../completions/BATCH-065-mcp-smoke.json): handshake com Node 22.23.3/MCP 1.10.1, 30 ferramentas, navegação, modal, DOM, [screenshot](../../../../completions/BATCH-065-sandbox-smoke.png), console com trace e rede AJAX HTTP 200 com header CSRF de fixture. Teste sintético local, sem homologação de telas específicas do Gestor.
 - Comando reproduzível: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/mcp/verify-devtools.ps1`. Sintaxe CJS/PowerShell e diff sem erros.
 - **Pré-requisito de ativação:** Node do host é 20.14.0 e o pacote requer `^20.19.0 || ^22.12.0 || >=23`. A configuração exata foi preservada; validação feita com Node 22 temporário via npm exec. Uso normal no cliente exige Node compatível no PATH e reload do servidor MCP; isso não foi simulado como concluído.
 - Status: `ready-for-review`; revisão independente e aceite permanecem no fluxo SDD.
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-065.md](review-065.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-065.md](../../review-065.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-065-executor-receipt.json`.
 
@@ -263,7 +263,7 @@ Este documento concentra os checklists de aceitaÃ§Ã£o e os registros de test
 - [ ] Aceite humano.
 - [ ] Commit das cópias em `lumix` e `transformamp` (do operador).
 
-Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-skills-audit.json](../../completions/BATCH-066-skills-audit.json).
+Detalhes: [batch-066](../../../implementation/archive/original/batch-066.md); auditoria: [BATCH-066-skills-audit.json](../../../../completions/BATCH-066-skills-audit.json).
 
 ---
 
@@ -293,11 +293,11 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
    - 60 skills locais dos repositórios satélites (`lumix`, `conn2flow-site`, `transformamp`) 100% preservadas sem alterações.
 2. **Suíte de Testes da Extensão VS Code**: Execução de `npm test` em `vscode-extension/`:
    - 124 testes executados e aprovados (0 falhas, 0 skips, duração 200ms).
-3. **Detalhamento Operacional**: Registro em [batch-067.md](../implementation/batch-067.md) e recibo em `completions/BATCH-067-executor-receipt.json`.
+3. **Detalhamento Operacional**: Registro em [batch-067.md](../../../implementation/archive/original/batch-067.md) e recibo em `completions/BATCH-067-executor-receipt.json`.
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-067.md](review-067.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-067.md](../../review-067.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-067-executor-receipt.json`.
 
@@ -324,11 +324,11 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 1. **Auditoria de Teto de 50 KB**: Todos os documentos de governança nos 3 repositórios estão rigorosamente abaixo de 50 KB. O maior documento ativo é `conn2flow/sdd/decisions/DECISION-LOG.md` com 37,83 KB.
 2. **Expurgo de Sobras Físicas**: Dumps de 344 KB e 224 KB arquivados no Core. Worktrees `conn2flow-req240` e `conn2flow-site-req106` desvinculadas e podadas. Zero arquivos `.bak-*` em `conn2flow-site`.
 3. **Suíte da Extensão do VS Code**: 124 testes executados e aprovados com 100% de sucesso (0 falhas).
-4. **Detalhamento Operacional**: Registro em [batch-068.md](../implementation/batch-068.md) e recibo em `completions/BATCH-068-executor-receipt.json`.
+4. **Detalhamento Operacional**: Registro em [batch-068.md](../../../implementation/archive/original/batch-068.md) e recibo em `completions/BATCH-068-executor-receipt.json`.
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-068.md](review-068.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-068.md](../../review-068.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-068-executor-receipt.json`.
 
@@ -360,16 +360,16 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 
 ### 2.1 Evidências executadas pelo Executor
 
-- Estrutura: 219 renames Git e preservação dos 231 arquivos físicos anteriores; tríade de 2.789 / 2.550 / 3.932 bytes; 50 índices, zero links de índice quebrados. [Auditoria](../../completions/BATCH-069-structure-audit.json).
-- Skills: 44 canônicas, 39 alvos com PASS individual, 1.653 cópias idênticas, 21 traduções preservadas, zero divergências. [Auditoria](../../completions/BATCH-069-skills-audit.json).
-- Preservação: 60 skills locais no sincronizador (36 nos satélites + 24 nos templates); SHA-256 independente para todos os arquivos das 36 skills dos satélites. [Evidência](../../completions/BATCH-069-preservation-audit.json).
-- Extensão: compilação npm.cmd run compile, exit 0; 124/124 testes, zero falhas/skips; descoberta memory/ da matriz e sdd/ do core exercitada no JS compilado. [Testes](../../completions/BATCH-069-extension-tests.json) / [smoke](../../completions/BATCH-069-extension-scope-smoke.json).
+- Estrutura: 219 renames Git e preservação dos 231 arquivos físicos anteriores; tríade de 2.789 / 2.550 / 3.932 bytes; 50 índices, zero links de índice quebrados. [Auditoria](../../../../completions/BATCH-069-structure-audit.json).
+- Skills: 44 canônicas, 39 alvos com PASS individual, 1.653 cópias idênticas, 21 traduções preservadas, zero divergências. [Auditoria](../../../../completions/BATCH-069-skills-audit.json).
+- Preservação: 60 skills locais no sincronizador (36 nos satélites + 24 nos templates); SHA-256 independente para todos os arquivos das 36 skills dos satélites. [Evidência](../../../../completions/BATCH-069-preservation-audit.json).
+- Extensão: compilação npm.cmd run compile, exit 0; 124/124 testes, zero falhas/skips; descoberta memory/ da matriz e sdd/ do core exercitada no JS compilado. [Testes](../../../../completions/BATCH-069-extension-tests.json) / [smoke](../../../../completions/BATCH-069-extension-scope-smoke.json).
 - Nova skill validada com quick_validate.py; scripts com node --check e diffs stage/working tree sem erros. Sem execução real de IA, exclusão de worktrees ou deploy.
-- Entrega técnica ready-for-review: [lote](../implementation/batch-069.md) e [recibo](../../completions/BATCH-069-executor-receipt.json). Parecer independente e homologação continuam pendentes abaixo.
+- Entrega técnica ready-for-review: [lote](../../../implementation/archive/batch-069.md) e [recibo](../../../../completions/BATCH-069-executor-receipt.json). Parecer independente e homologação continuam pendentes abaixo.
 
 ### 3. Revisão Técnica
 
-- [x] Auditoria do Revisor Técnico: parecer emitido em [review-069.md](review-069.md) (APPROVED).
+- [x] Auditoria do Revisor Técnico: parecer emitido em [review-069.md](../../review-069.md) (APPROVED).
 - [x] Homologação executiva pelo Macro-Arquiteto.
 - Recibo: `completions/BATCH-069-executor-receipt.json`.
 
@@ -382,7 +382,7 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Sincronização das 44 skills canônicas nos kits existentes, preservando integralmente 100% das 36 skills locais.
 - [x] Commits atômicos sem `git add .` e push executado nos 6 repositórios com remote (`conn2flow-mkt` mantido local).
 - [x] Suíte de testes da extensão do VS Code verde (124/124 testes aprovados).
-- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-070.md](review-070.md) (APPROVED).
+- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-070.md](../../review-070.md) (APPROVED).
 
 ---
 
@@ -394,8 +394,8 @@ Detalhes: [batch-066](../implementation/batch-066.md); auditoria: [BATCH-066-ski
 - [x] Auditoria executada: 23 documentos, 11 pares estruturais, 252 links relativos, 80 fontes existentes, catálogos 44/44 e READMEs de 5.089/5.394 bytes.
 - [x] Verificador falsificável: 5/5 mutações detectadas em fixture temporária, incluindo o README antigo do HEAD.
 - [x] Paridade temática revisada; sintaxe CJS e diff sem erros.
-- [x] [Relatório](../implementation/batch-072.md), [auditoria](../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../completions/BATCH-072-executor-receipt.json) registrados.
-- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-072.md](review-072.md) (APPROVED).
+- [x] [Relatório](../../../implementation/archive/batch-072.md), [auditoria](../../../../completions/BATCH-072-docs-audit.json), [checagens negativas](../../../../completions/BATCH-072-validator-negative-checks.json) e [recibo](../../../../completions/BATCH-072-executor-receipt.json) registrados.
+- [x] Revisão técnica independente e homologação executiva do Macro-Arquiteto: [review-072.md](../../review-072.md) (APPROVED).
 
 Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejada. Não executados renderização Mermaid, testes do produto, publicação ou deploy. Divergência .agents/ do helper MCP registrada sem alterar sua implementação. Entrega homologada.
 
@@ -414,7 +414,7 @@ Limites: Python ainda ausente; extensão 1.1.1 com alvo 1.1.2; ARCH-014 planejad
 - [x] Manual, guias bilíngues, lote e recibo versionados com stage de caminhos explícitos.
 - [ ] Parecer técnico independente e homologação executiva.
 
-Evidências: [lote](../implementation/batch-071.md), [JUnit](../../completions/BATCH-071-pytest.xml), [resumo](../../completions/BATCH-071-test-summary.json), [smoke](../../completions/BATCH-071-smoke.json), [recibo](../../completions/BATCH-071-executor-receipt.json).
+Evidências: [lote](../../../implementation/archive/batch-071.md), [JUnit](../../../../completions/BATCH-071-pytest.xml), [resumo](../../../../completions/BATCH-071-test-summary.json), [smoke](../../../../completions/BATCH-071-smoke.json), [recibo](../../../../completions/BATCH-071-executor-receipt.json).
 Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. Aviso de depreciação Starlette/AnyIO. Extração heurística, resumos estruturais e PR preparada em manifesto; sem PyPI, merge, deploy ou ARCH-014.
 
 
@@ -431,7 +431,7 @@ Limites: Python 3.12.4/Windows executado localmente; CI remota não conferida. A
 - [x] Commits com staging explícito; seis satélites com push confirmado, conn2flow-mkt sem remote e commit local.
 - [x] Relatório, recibo e índices atualizados para ready-for-review; homologação independente não atribuída.
 
-Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073.md).
+Evidências, comandos, hashes e limites: [BATCH-073](../../../implementation/archive/batch-073.md).
 
 ## BATCH-074 — Trava Tripla MDD (REQ-072, 2026-10-09)
 
@@ -443,9 +443,9 @@ Evidências, comandos, hashes e limites: [BATCH-073](../implementation/batch-073
 - [x] Inbox matriz, skeletons EN/PT, três fichas-modelo, políticas e handoffs solo/dupla/triade × três autonomias.
 - [x] Auditoria independente dos defeitos reproduzidos; regressões corrigidas e probes/48 testes reexecutados pelo Revisor.
 - [x] Commits com caminhos específicos e recibo persistente.
-- [x] Homologação humana identificada: Otávio, 2026-10-09, [REV-074](../human-reviews/rev-074.md).
+- [x] Homologação humana identificada: Otávio, 2026-10-09, [REV-074](../../../human-reviews/rev-074.md).
 
-Evidências: [lote](../implementation/batch-074.md), [JUnit](../../completions/BATCH-074-pytest.xml), [resumo](../../completions/BATCH-074-test-summary.json), [artefatos](../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../completions/BATCH-074-skills-audit.json), [recibo](../../completions/BATCH-074-receipt.json), [revisão](../human-reviews/rev-074.md).
+Evidências: [lote](../../../implementation/archive/batch-074.md), [JUnit](../../../../completions/BATCH-074-pytest.xml), [resumo](../../../../completions/BATCH-074-test-summary.json), [artefatos](../../../../completions/BATCH-074-artifact-audit.json), [auditoria global de skills](../../../../completions/BATCH-074-skills-audit.json), [recibo](../../../../completions/BATCH-074-receipt.json), [revisão](../../../human-reviews/rev-074.md).
 
 Limites: auditoria global FAIL/52 divergências nas três skills alheias preservadas; nova skill PASS. Sem MCP Hub remoto, Linux, banco/UI/deploy/CI remoto ou suíte PHP integral do produto. YAML escalar documentado; crash entre arquivos requer indexação. Starlette/AnyIO emite aviso de depreciação. Gerador legado de init/compact mantido; pendências humanas não auto-arquivadas.
 
@@ -463,6 +463,6 @@ REQ-073 registra BATCH-073 e BATCH-074 como frentes homologadas; o estado histó
 - [x] Main matriz/Core integrada por fast-forward, push origin main confirmado.
 - [x] Nove worktrees removidas sem força e dependências principais preservadas.
 - [x] Relatório e recibo persistentes, staging por caminhos específicos.
-- [x] Homologação humana identificada do BATCH-075 (Otávio, 2026-10-09, [REV-075](../human-reviews/rev-075.md)).
+- [x] Homologação humana identificada do BATCH-075 (Otávio, 2026-10-09, [REV-075](../../../human-reviews/rev-075.md)).
 
-Evidências e limites: [lote](../implementation/batch-075.md), [resumo](../../completions/BATCH-075-test-summary.json), [recibo](../../completions/BATCH-075-receipt.json), [REV-075](../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.
+Evidências e limites: [lote](../../../implementation/archive/batch-075.md), [resumo](../../../../completions/BATCH-075-test-summary.json), [recibo](../../../../completions/BATCH-075-receipt.json), [REV-075](../../../human-reviews/rev-075.md). Sem deploy, banco/UI, Linux, CI remota ou suíte PHP integral; aviso Starlette/AnyIO; alterações locais alheias preservadas.

@@ -9,7 +9,7 @@ title: "Saneamento de Choques por Projeto, Editor Isolado de Dados do Projeto e 
 
 # BATCH-082: Saneamento de Choques por Projeto, Editor Isolado de Dados do Projeto e Instalação Local do VSIX
 
-- **Requisição Vinculada**: [req-080.md](../human-requests/req-080.md)
+- **Requisição Vinculada**: [req-080.md](../../../human-requests/archive/req-080.md)
 - **Topologia / Autonomia**: `dupla` / `supervisionado` (ciclo iterativo com o Operador Humano)
 - **Status**: `complete` — homologado na prática pelo Operador Humano em 2026-11-18; release `1.1.7` pronto para publicação manual no Marketplace
 - **Data de Abertura**: 2026-11-18

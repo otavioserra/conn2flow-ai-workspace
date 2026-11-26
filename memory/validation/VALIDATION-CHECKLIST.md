@@ -12,6 +12,17 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 
 [BATCH-098](../implementation/batch-098.md) e [FEAT-017](../reports/REP-018-batch098-remote-skill-sync.md).
 
+## BATCH-099 — REQ-097 (2026-11-26)
+
+- [x] Skills `c2f-project-pipeline-and-tasks` e `c2f-persona-executor` atualizadas em PT-BR e EN (6 kits), com regra de `dist/.manifest.json` e REQ-306.
+- [x] Sync/hash PASS, `generate-skills-index --check` PASS e `--budget-report` com `OVER: 0`.
+- [x] `EVAL-017` criado, `mdd eval` EVAL-PASS e `pytest` 222 PASS com 96,21%.
+- [x] Higiene MDD: `req-090.md` e `batch-094.md` arquivados, `04-memory-engineering-execution.md` preservada, `mdd status` `healthy: true`.
+- [x] Rollout em 7 satélites com origin (SHAs no lote); `conn2flow-home` e `conn2flow-mkt` preservados.
+- [x] Homologação humana aprovada em 2026-11-26. Pendências não bloqueantes (4 links relativos em `validation-095.md`, 20 links históricos em `archive/original/` e `EVAL-018` para `c2f-persona-executor`) encaminhadas para `REQ-098`.
+
+[BATCH-099](../implementation/batch-099.md).
+
 ## BATCH-097 — REQ-095 (2026-11-24)
 
 - [x] Overview em inglês, subtítulos PT-BR/EN, keywords e changelogs atualizados. VSIX 1.2.3 íntegro, com 169/169 testes, e inventário fechado com 1.2.3 e 1.1.7 antes do BATCH-098.
@@ -31,18 +42,6 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [ ] Revisão supervisionada e homologação visual humana do VSIX.
 
 Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
-
-## BATCH-095 — REQ-093 (2026-11-24)
-
-- [x] Extensão v1.2.1: UTF-8 (`PYTHONUTF8`/`PYTHONIOENCODING`) em toda chamada `mdd`, triagem também no botão direito, progresso em Refresh/Toggle GitHub, `conn2flow-hub` externo como `RUNNING (externo)` sem controles, `.vscode/mcp.json` só com `servers`. Compile PASS, 166/166 testes, VSIX `conn2flow-tools-1.2.1.vsix` com 98 arquivos e `unzip -t` limpo.
-- [x] `mdd feedback --github` cria a label `skill-feedback` (`gh label create … --force`) antes da Issue, com 2 testes `pytest`. FB-008 sintético removido e índice da inbox regenerado (o id foi reaproveitado por um FB real deste lote).
-- [x] FB-004 e FB-007 aplicados; 4 skills OVER extraídas para 11 subskills novas em PT-BR/EN. `--budget-report` com `OVER: 0`, índice PASS, auditoria PASS (0 divergências, 0 drift, 0 divergência entre cópias EN), `pytest` 162/162 e `mdd eval` EVAL-PASS 15/15.
-- [x] ARCH-019 Fase 1: `domains/` (`README.md`, `generic`, `conn2flow`), `mdd bootstrap` (`--list-domains`, `--domain auto|<id>`, detecção de stack, memória e guia local sem sobrescrever) com domínio `laravel` de fixture e idempotência; `conn2flow.projectDomain` aberto (padrão `auto`) e QuickPick dinâmico "Inicializar MDD neste Projeto".
-- [x] Regra dos 10 com `ai:archive-memory` (Core `230262177a27` via `git archive`): req-085/086, batch-089/090 e REP-009/010 arquivados; janelas em 10/10/10. Lote, REP-015 (FEAT-017) e índices em `ready-for-review`; FEAT-015 fora do stage.
-- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../implementation/batch-096.md).
-- [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
-
-Evidências no [BATCH-095](../implementation/batch-095.md), no [REP-015](../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../completions/skills-audit.json). Categoria B, sem deploy.
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
@@ -126,6 +125,7 @@ Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md
 
 ## Validações Arquivadas
 
+- [validation-095.md](archive/validation-095.md) (BATCH-095; poda da REQ-097)
 - [validation-094.md](archive/validation-094.md) (BATCH-094)
 
 - [validation-093.md](archive/validation-093.md) (BATCH-093)

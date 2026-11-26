@@ -12,7 +12,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
 | [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 10282 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-curator`](c2f-persona-curator/SKILL.md) | 69 | 6127 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 155 | 16936 | 200 | OK | yes | — | en 2026-11-24 |
+| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 157 | 17521 | 200 | OK | yes | — | en 2026-11-26 |
 | [`c2f-persona-optimizer`](c2f-persona-optimizer/SKILL.md) | 52 | 4249 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-reviewer`](c2f-persona-reviewer/SKILL.md) | 96 | 7524 | 200 | OK | yes | — | en 2026-11-24 |
 
@@ -45,7 +45,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-payment-gateways`](c2f-payment-gateways/SKILL.md) | 248 | 10910 | 300 | NEAR | yes | [mercadopago-webhook-hmac.md](c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md) (27)<br>[paypal-autorizacao-e-captura.md](c2f-payment-gateways/subskills/paypal-autorizacao-e-captura.md) (34)<br>[testes-de-gateways.md](c2f-payment-gateways/subskills/testes-de-gateways.md) (60) | en 2026-11-24 |
 | [`c2f-plugin-architecture`](c2f-plugin-architecture/SKILL.md) | 60 | 2219 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-preview-modals-system`](c2f-preview-modals-system/SKILL.md) | 47 | 2583 | 300 | OK | no | — | en 2026-11-05 |
-| [`c2f-project-pipeline-and-tasks`](c2f-project-pipeline-and-tasks/SKILL.md) | 254 | 17855 | 300 | NEAR | no | — | en 2026-11-23 |
+| [`c2f-project-pipeline-and-tasks`](c2f-project-pipeline-and-tasks/SKILL.md) | 265 | 19476 | 300 | NEAR | no | — | en 2026-11-26 |
 | [`c2f-projects-system`](c2f-projects-system/SKILL.md) | 95 | 4381 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-resources-system`](c2f-resources-system/SKILL.md) | 156 | 10289 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-shell-and-windows-traps`](c2f-shell-and-windows-traps/SKILL.md) | 202 | 16988 | 300 | OK | no | [cli-e-ssh.md](c2f-shell-and-windows-traps/subskills/cli-e-ssh.md) (92)<br>[scripts-e-caminhos-msys.md](c2f-shell-and-windows-traps/subskills/scripts-e-caminhos-msys.md) (148)<br>[worktrees-e-junctions.md](c2f-shell-and-windows-traps/subskills/worktrees-e-junctions.md) (71) | en 2026-11-24 |
@@ -72,5 +72,5 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 ## Budget attention
 
 - `c2f-payment-gateways`: 248/300 lines (NEAR)
-- `c2f-project-pipeline-and-tasks`: 254/300 lines (NEAR)
+- `c2f-project-pipeline-and-tasks`: 265/300 lines (NEAR)
 - `mdd-workflow`: 182/200 lines (NEAR)

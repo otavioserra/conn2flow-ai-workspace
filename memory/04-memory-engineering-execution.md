@@ -2,9 +2,9 @@
 
 > **Propósito**: contexto operacional recente do workspace. Regras estáveis vivem em skills sob demanda.
 >
-> **Último lote concluído:** [BATCH-062 — Criação da skill c2f-payment-gateways](implementation/batch-062.md)
+> **Último lote concluído:** [BATCH-062 — Criação da skill c2f-payment-gateways](implementation/archive/batch-062.md)
 >
-> **Lote atual:** [BATCH-063](implementation/batch-063.md) `in-progress`; aguarda validação interativa E2E e publicação autorizada da branch.
+> **Lote atual:** [BATCH-063](implementation/archive/batch-063.md) `in-progress`; aguarda validação interativa E2E e publicação autorizada da branch.
 
 >
 > **Política**: manter somente fatos recentes e acionáveis; é proibido podar abaixo de 50 KB / 200 linhas. Emitir alerta preventivo nesse patamar, podar obrigatoriamente apenas ao atingir 75 KB / 300 linhas e mirar ~25 KB, preservando 20 a 25 tarefas e aprendizados recentes. Detalhes históricos permanecem recuperáveis nos lotes, validações e Git.

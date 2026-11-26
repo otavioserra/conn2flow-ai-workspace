@@ -1,0 +1,203 @@
+{
+  "mode": "apply",
+  "skills": [
+    "c2f-persona-executor",
+    "c2f-project-pipeline-and-tasks"
+  ],
+  "satellites": [
+    {
+      "repo": "conn2flow",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow",
+      "cleaned": true,
+      "base": "ce1fb868ed510459bda0279a5b657c4d86cf3d1a",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-DT4DEO\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-DT4DEO",
+      "kits": 5,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".codex/skills/c2f-persona-executor/SKILL.md",
+        ".codex/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".cursor/skills/c2f-persona-executor/SKILL.md",
+        ".cursor/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".gemini/skills/c2f-persona-executor/SKILL.md",
+        ".gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "282d231a19d31d185e3e3e296e752beba01e5cbb",
+      "remote": "282d231a19d31d185e3e3e296e752beba01e5cbb",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "conn2flow-site",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-site",
+      "cleaned": true,
+      "base": "6e79f821e0b3f0696d2b2efda41604a6e81b824f",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-tI06eE\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-tI06eE",
+      "kits": 5,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".codex/skills/c2f-persona-executor/SKILL.md",
+        ".codex/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".cursor/skills/c2f-persona-executor/SKILL.md",
+        ".cursor/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".gemini/skills/c2f-persona-executor/SKILL.md",
+        ".gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "22aa0c0ed1347e7451fa238d257b55acec115dec",
+      "remote": "22aa0c0ed1347e7451fa238d257b55acec115dec",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "lumix",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\lumix",
+      "cleaned": true,
+      "base": "fce082f346c4ba37765dd65423d7bb09afe9e5ed",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-O2RVTb\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-O2RVTb",
+      "kits": 5,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".codex/skills/c2f-persona-executor/SKILL.md",
+        ".codex/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".cursor/skills/c2f-persona-executor/SKILL.md",
+        ".cursor/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".gemini/skills/c2f-persona-executor/SKILL.md",
+        ".gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "7c642d784aa874daa45bcb30161644e0ca9316f8",
+      "remote": "7c642d784aa874daa45bcb30161644e0ca9316f8",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "transformamp",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\transformamp",
+      "cleaned": true,
+      "base": "171e37c7d9990b8979a4caadc844d14b6af0acef",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-BojNby\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-BojNby",
+      "kits": 5,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".codex/skills/c2f-persona-executor/SKILL.md",
+        ".codex/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".cursor/skills/c2f-persona-executor/SKILL.md",
+        ".cursor/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".gemini/skills/c2f-persona-executor/SKILL.md",
+        ".gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "61d3d865fd36b504af02dee504d89b3a4ff8fab8",
+      "remote": "61d3d865fd36b504af02dee504d89b3a4ff8fab8",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "conn2flow-home",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-home",
+      "cleaned": true,
+      "status": "SKIPPED_NO_ORIGIN"
+    },
+    {
+      "repo": "website-conn2flow",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\website-conn2flow",
+      "cleaned": true,
+      "base": "58d2a23cd65e87b3e8f9af190e695b7cdeafc752",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-70leqs\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-70leqs",
+      "kits": 5,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".codex/skills/c2f-persona-executor/SKILL.md",
+        ".codex/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".cursor/skills/c2f-persona-executor/SKILL.md",
+        ".cursor/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".gemini/skills/c2f-persona-executor/SKILL.md",
+        ".gemini/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "1e2c68d1e4b4d1a50ec8874c841ee645b9f3062a",
+      "remote": "1e2c68d1e4b4d1a50ec8874c841ee645b9f3062a",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "conn2flow-app",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-app",
+      "cleaned": true,
+      "base": "4d87ff3622c9914ad50b6c13f03e97b6186bf0cd",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-Duf637\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-Duf637",
+      "kits": 1,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "5c02ac14229e0df06864afa35ffe836bbb578365",
+      "remote": "5c02ac14229e0df06864afa35ffe836bbb578365",
+      "status": "PUBLISHED"
+    },
+    {
+      "repo": "conn2flow-mkt",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-mkt",
+      "cleaned": true,
+      "status": "SKIPPED_NO_ORIGIN"
+    },
+    {
+      "repo": "conn2flow-nexus",
+      "root": "C:\\Users\\otavi\\OneDrive\\Documentos\\GIT\\conn2flow-nexus",
+      "cleaned": true,
+      "base": "404305cd039475352192c8f496e55bdd3c43e663",
+      "worktree": "C:\\Users\\otavi\\AppData\\Local\\Temp\\c2f-rollout-9EBXP2\\checkout",
+      "branch": "c2f-rollout/c2f-rollout-9EBXP2",
+      "kits": 2,
+      "customizations": [],
+      "forced": [],
+      "omitted": [],
+      "successors": {},
+      "files": [
+        ".claude/skills/c2f-persona-executor/SKILL.md",
+        ".claude/skills/c2f-project-pipeline-and-tasks/SKILL.md",
+        ".github/skills/c2f-persona-executor/SKILL.md",
+        ".github/skills/c2f-project-pipeline-and-tasks/SKILL.md"
+      ],
+      "commit": "aa99602049a6e2cec4ae42c5e3c4c23dfbac437d",
+      "remote": "aa99602049a6e2cec4ae42c5e3c4c23dfbac437d",
+      "status": "PUBLISHED"
+    }
+  ]
+}
