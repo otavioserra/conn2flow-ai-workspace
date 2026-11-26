@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-097.md](req-097.md) / `BATCH-099`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-099` ([batch-099.md](../implementation/batch-099.md), `HOMOLOGATED` em 2026-11-26)
+* **Ponteiro Ativo**: [req-098.md](req-098.md) (`REQ-098` / `BATCH-100`)
+* **Status**: `READY` — aguardando execução pelo `c2f-persona-executor`
+* **Lote Relacionado**: `BATCH-100` (`memory/implementation/batch-100.md`; última entrega homologada: [req-097.md](req-097.md) / `BATCH-099`)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-26
@@ -40,8 +40,8 @@
 
 ---
 
-## Objetivo operacional — REQ-097 / BATCH-099
+## Objetivo operacional — REQ-098 / BATCH-100
 
-1. Atualizar `c2f-project-pipeline-and-tasks` e `c2f-persona-executor` (PT-BR + EN) diferenciando `dist/`, `css:rebuild` e `assets:publish` em Lab/SSH vs HTTP-only (`project:deploy`), eliminando falsos bloqueios por `404` em `dist/.manifest.json` e refletindo a `REQ-306` do Core.
-2. Validar sync, hash pairing EN, skill budget (`OVER: 0`), `EVAL-017` (`17/17 EVAL-PASS`), `pytest` (`>= 95%`) e Regra dos 10 Ativos (`healthy: true`).
-3. Propagar as duas skills nos satélites com `origin` via `scripts/skills/rollout-satellites.cjs` e entregar `BATCH-099` em `ready-for-review`.
+1. Corrigir os 4 links relativos em `memory/validation/archive/validation-095.md` e sanear os 20 links relativos quebrados em `memory/validation/archive/original/VALIDATION-CHECKLIST-*.md` para que `ai:archive-memory` feche com 0 links quebrados.
+2. Criar `EVAL-018` cobrindo `c2f-persona-executor` (PT-BR + EN) atingindo `18/18 EVAL-PASS`.
+3. Validar todos os gates locais da matriz (`pytest >= 95%`, `sync-skills`, `OVER: 0`, `mdd status` `healthy: true`) e entregar `BATCH-100` em `ready-for-review` (sem rollout em satélites).
