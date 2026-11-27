@@ -67,6 +67,12 @@ Forbidden to Run Tailwind Full Build in Category A or deploy pipelines in Catego
 - Every text, alert message, label or error MUST be registered in the variable system (`resources/<lang>/variables.json` or `<modulo>.json`) and consumed via `gestor_variaveis()`. Hardcoded strings prohibited in controllers.
 - All static HTML/CSS of pages and components must reside in `resources/` and be synchronized via `./c2f resources:sync`. Runtime consumes SQL data, not disk data.
 
+#### New Language Activation (E2E Through the Actual UI)
+
+- When translating or activating a language (`es`, `de`, `fr`), check `LANGUAGES` in `.env` and flag the manual Dev/Staging/Production update in the batch report. Check `resources.map.php` and `language-label-<codigo>` for every active language. Replace hardcoded lists such as `['pt-br', 'en']` with reads from `$_GESTOR['languages']`.
+- In an authenticated browser, check that `#language_default` lists `<lang>` in the Language tab of `/admin-environment/`. Use the actual admin panel language selector to switch `pt-br → <lang> → pt-br` and verify the translated interface displays no raw keys. The batch requires both checks in addition to any direct URL/cookie tests.
+- Consult `c2f-multilingual-system` and `c2f-environment-configuration`.
+
 ### 4. Sequential and Debuffered Execution
 - Batch compilation CLI commands (`manager:update-all`, `project:update-all`, `css:rebuild`, `resources:sync`) must run one at a time in foreground with debuffered logs, without suppressing PHP warns.
 

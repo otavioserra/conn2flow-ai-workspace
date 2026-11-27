@@ -4,6 +4,8 @@ One JSON file per scenario pins a critical Conn2Flow trap to the canonical skill
 
 Fields: `id` (`EVAL-NNN-slug`, unique), `title`, `skill`, `trap`, and at least one of `must_include`, `must_match` (regex), `must_not_include`, `must_not_match` (regex). Optional: `subskills` (required files), `max_lines`, `translations` (`{"en": {assertions}}`).
 
+Optional `related_skills` lists additional skill checks, each with its own `skill`, assertions and optional `subskills`, `max_lines` and `translations`. The checks share a verdict and count as one scenario. `--skill` selects any scenario that covers the named skill and runs all of its checks.
+
 ```sh
 mdd eval --matrix . --json                      # all scenarios, offline deterministic provider
 mdd eval --matrix . --skill c2f-persona-executor   # one skill

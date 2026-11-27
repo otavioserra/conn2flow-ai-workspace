@@ -15,7 +15,7 @@ summary_medium: "Relatório FEAT-017 com evidências do gate de CI, das duas fon
 
 ## Contexto da rodada
 
-[REQ-094](../human-requests/req-094.md) e [BATCH-096](../implementation/batch-096.md) na matriz conn2flow-ai-workspace, Categoria B. Entrega ao Macro-Arquiteto em topologia dupla e autonomia supervisionada.
+[REQ-094](../human-requests/req-094.md) e [BATCH-096](../implementation/archive/batch-096.md) na matriz conn2flow-ai-workspace, Categoria B. Entrega ao Macro-Arquiteto em topologia dupla e autonomia supervisionada.
 
 ## Dificuldades e atritos enfrentados
 

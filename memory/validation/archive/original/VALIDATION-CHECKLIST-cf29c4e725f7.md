@@ -11,7 +11,7 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] `mdd eval` retornou `EVAL-PASS` 15/15. `mdd status --json` retornou `healthy: true` após `mdd index`.
 - [ ] Revisão supervisionada e homologação visual humana do VSIX.
 
-Evidências no [BATCH-096](../../../implementation/batch-096.md) e no [relatório FEAT-017](../../../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
+Evidências no [BATCH-096](../../../implementation/archive/batch-096.md) e no [relatório FEAT-017](../../../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
 
 ## BATCH-095 — REQ-093 (2026-11-24)
 
@@ -20,7 +20,7 @@ Evidências no [BATCH-096](../../../implementation/batch-096.md) e no [relatóri
 - [x] FB-004 e FB-007 aplicados; 4 skills OVER extraídas para 11 subskills novas em PT-BR/EN. `--budget-report` com `OVER: 0`, índice PASS, auditoria PASS (0 divergências, 0 drift, 0 divergência entre cópias EN), `pytest` 162/162 e `mdd eval` EVAL-PASS 15/15.
 - [x] ARCH-019 Fase 1: `domains/` (`README.md`, `generic`, `conn2flow`), `mdd bootstrap` (`--list-domains`, `--domain auto|<id>`, detecção de stack, memória e guia local sem sobrescrever) com domínio `laravel` de fixture e idempotência; `conn2flow.projectDomain` aberto (padrão `auto`) e QuickPick dinâmico "Inicializar MDD neste Projeto".
 - [x] Regra dos 10 com `ai:archive-memory` (Core `230262177a27` via `git archive`): req-085/086, batch-089/090 e REP-009/010 arquivados; janelas em 10/10/10. Lote, REP-015 (FEAT-017) e índices em `ready-for-review`; FEAT-015 fora do stage.
-- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../../../implementation/batch-096.md).
+- [x] Poda autorizada na REQ-094 e executada no [BATCH-096](../../../implementation/archive/batch-096.md).
 - [ ] Revisão do Macro-Arquiteto e homologação visual da v1.2.1 pelo operador.
 
 Evidências no [BATCH-095](../../../implementation/archive/batch-095.md), no [REP-015](../../../reports/REP-015-batch095-domains-bootstrap-and-optimizer.md) e na [auditoria de skills](../../../../completions/skills-audit.json). Categoria B, sem deploy.

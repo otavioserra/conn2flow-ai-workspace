@@ -12,7 +12,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
 | [`c2f-persona-architect`](c2f-persona-architect/SKILL.md) | 99 | 10282 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-curator`](c2f-persona-curator/SKILL.md) | 69 | 6127 | 200 | OK | yes | — | en 2026-11-24 |
-| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 157 | 17521 | 200 | OK | yes | — | en 2026-11-26 |
+| [`c2f-persona-executor`](c2f-persona-executor/SKILL.md) | 163 | 18342 | 200 | NEAR | yes | — | en 2026-11-27 |
 | [`c2f-persona-optimizer`](c2f-persona-optimizer/SKILL.md) | 52 | 4249 | 200 | OK | yes | — | en 2026-11-24 |
 | [`c2f-persona-reviewer`](c2f-persona-reviewer/SKILL.md) | 96 | 7524 | 200 | OK | yes | — | en 2026-11-24 |
 
@@ -28,7 +28,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-docker-environment`](c2f-docker-environment/SKILL.md) | 51 | 1792 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-documentation`](c2f-documentation/SKILL.md) | 119 | 9501 | 300 | OK | yes | — | en 2026-11-24 |
 | [`c2f-documentation-governance`](c2f-documentation-governance/SKILL.md) | 77 | 4108 | 300 | OK | no | — | en 2026-11-24 |
-| [`c2f-environment-configuration`](c2f-environment-configuration/SKILL.md) | 108 | 5674 | 300 | OK | no | — | en 2026-11-23 |
+| [`c2f-environment-configuration`](c2f-environment-configuration/SKILL.md) | 121 | 6877 | 300 | OK | no | — | en 2026-11-27 |
 | [`c2f-gd-image-safety`](c2f-gd-image-safety/SKILL.md) | 21 | 1415 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-gestor-functions`](c2f-gestor-functions/SKILL.md) | 138 | 7426 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-global-variables`](c2f-global-variables/SKILL.md) | 79 | 4392 | 300 | OK | no | — | en 2026-11-05 |
@@ -40,7 +40,7 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 | [`c2f-modelo-templates`](c2f-modelo-templates/SKILL.md) | 104 | 5637 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-module-crud-scaffolding`](c2f-module-crud-scaffolding/SKILL.md) | 174 | 11118 | 300 | OK | no | [controller-escrita-e-historico.md](c2f-module-crud-scaffolding/subskills/controller-escrita-e-historico.md) (209)<br>[schema-declarativo.md](c2f-module-crud-scaffolding/subskills/schema-declarativo.md) (84) | en 2026-11-24 |
 | [`c2f-module-visual-assets`](c2f-module-visual-assets/SKILL.md) | 75 | 4643 | 300 | OK | yes | — | en 2026-11-05 |
-| [`c2f-multilingual-system`](c2f-multilingual-system/SKILL.md) | 37 | 1717 | 300 | OK | no | — | en 2026-11-05 |
+| [`c2f-multilingual-system`](c2f-multilingual-system/SKILL.md) | 47 | 3616 | 300 | OK | no | — | en 2026-11-27 |
 | [`c2f-mysql-utf8-emoji-encoding`](c2f-mysql-utf8-emoji-encoding/SKILL.md) | 21 | 1478 | 300 | OK | no | — | en 2026-11-05 |
 | [`c2f-payment-gateways`](c2f-payment-gateways/SKILL.md) | 248 | 10910 | 300 | NEAR | yes | [mercadopago-webhook-hmac.md](c2f-payment-gateways/subskills/mercadopago-webhook-hmac.md) (27)<br>[paypal-autorizacao-e-captura.md](c2f-payment-gateways/subskills/paypal-autorizacao-e-captura.md) (34)<br>[testes-de-gateways.md](c2f-payment-gateways/subskills/testes-de-gateways.md) (60) | en 2026-11-24 |
 | [`c2f-plugin-architecture`](c2f-plugin-architecture/SKILL.md) | 60 | 2219 | 300 | OK | no | — | en 2026-11-05 |
@@ -72,5 +72,6 @@ Skill Budget (suggested review ceiling in lines): persona 200, core 300, governa
 ## Budget attention
 
 - `c2f-payment-gateways`: 248/300 lines (NEAR)
+- `c2f-persona-executor`: 163/200 lines (NEAR)
 - `c2f-project-pipeline-and-tasks`: 265/300 lines (NEAR)
 - `mdd-workflow`: 182/200 lines (NEAR)

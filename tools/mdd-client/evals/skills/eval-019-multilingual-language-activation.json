@@ -1,0 +1,130 @@
+{
+  "id": "EVAL-019-multilingual-language-activation",
+  "title": "REQ-099: activate a new language in the installation and verify the actual admin workflow",
+  "trap": "Translation and SQL synchronization alone leave the new language unavailable in the admin panel when the installation list, resource map, shared labels, or actual language selector are skipped.",
+  "skill": "c2f-multilingual-system",
+  "must_not_include": [
+    "**Idiomas Suportados**: `pt-br` (padrão), `en`, `es`."
+  ],
+  "must_include": [
+    "`LANGUAGES`",
+    "`.env`",
+    "`$_GESTOR['languages']`",
+    "`resources.map.php`",
+    "`language-label-<codigo>`",
+    "todos os idiomas ativos",
+    "Dev/Staging/Produção",
+    "listas hardcoded",
+    "`['pt-br', 'en']`",
+    "`/admin-environment/`",
+    "`#language_default`",
+    "`pt-br → <lang> → pt-br`",
+    "navegador autenticado",
+    "seletor de idiomas do painel",
+    "sem chaves cruas",
+    "`variables.json`"
+  ],
+  "translations": {
+    "en": {
+      "must_include": [
+        "`LANGUAGES`",
+        "`.env`",
+        "`$_GESTOR['languages']`",
+        "`resources.map.php`",
+        "`language-label-<codigo>`",
+        "every active language",
+        "Dev/Staging/Production",
+        "hardcoded lists",
+        "`['pt-br', 'en']`",
+        "`/admin-environment/`",
+        "`#language_default`",
+        "`pt-br → <lang> → pt-br`",
+        "authenticated browser",
+        "language selector",
+        "no raw keys",
+        "`variables.json`"
+      ]
+    }
+  },
+  "related_skills": [
+    {
+      "skill": "c2f-environment-configuration",
+      "must_include": [
+        "`LANGUAGES`",
+        "`.env`",
+        "`$_GESTOR['languages']`",
+        "`resources.map.php`",
+        "`language-label-<codigo>`",
+        "todos os idiomas ativos",
+        "Dev/Staging/Produção",
+        "`LANGUAGE_DEFAULT`",
+        "`LANGUAGE_COOKIE`",
+        "`LANGUAGE_WIDGET_ACTIVE`",
+        "`LANGUAGE_AUTO_DETECT`",
+        "`/admin-environment/`",
+        "roteamento do Core"
+      ],
+      "translations": {
+        "en": {
+          "must_include": [
+            "`LANGUAGES`",
+            "`.env`",
+            "`$_GESTOR['languages']`",
+            "`resources.map.php`",
+            "`language-label-<codigo>`",
+            "every active language",
+            "Dev/Staging/Production",
+            "`LANGUAGE_DEFAULT`",
+            "`LANGUAGE_COOKIE`",
+            "`LANGUAGE_WIDGET_ACTIVE`",
+            "`LANGUAGE_AUTO_DETECT`",
+            "`/admin-environment/`",
+            "Core routing"
+          ]
+        }
+      }
+    },
+    {
+      "skill": "c2f-persona-executor",
+      "max_lines": 168,
+      "must_include": [
+        "`LANGUAGES`",
+        "`.env`",
+        "`$_GESTOR['languages']`",
+        "`resources.map.php`",
+        "`language-label-<codigo>`",
+        "todos os idiomas ativos",
+        "Dev/Staging/Produção",
+        "listas hardcoded",
+        "`['pt-br', 'en']`",
+        "`/admin-environment/`",
+        "`#language_default`",
+        "`pt-br → <lang> → pt-br`",
+        "navegador autenticado",
+        "seletor real de idiomas do painel",
+        "sem chaves cruas"
+      ],
+      "translations": {
+        "en": {
+          "must_include": [
+            "`LANGUAGES`",
+            "`.env`",
+            "`$_GESTOR['languages']`",
+            "`resources.map.php`",
+            "`language-label-<codigo>`",
+            "every active language",
+            "Dev/Staging/Production",
+            "hardcoded lists",
+            "`['pt-br', 'en']`",
+            "`/admin-environment/`",
+            "`#language_default`",
+            "`pt-br → <lang> → pt-br`",
+            "authenticated browser",
+            "language selector",
+            "no raw keys"
+          ]
+        }
+      }
+    }
+  ]
+}

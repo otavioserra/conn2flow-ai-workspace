@@ -100,6 +100,36 @@ def test_skill_filter_and_scenario_validation(matrix):
         skill_eval.run(matrix)
 
 
+def test_related_skills_share_one_verdict_and_check_each_translation(matrix):
+    directory = matrix / "tools/mdd-client/evals/skills"
+    related = {"skill": "c2f-related", "must_include": ["ativar"],
+               "translations": {"en": {"must_include": ["activate"]}}}
+    write(directory, "EVAL-002-related", must_include=["ai:archive-memory"], related_skills=[related])
+    source = matrix / ".gemini/skills/c2f-related/SKILL.md"
+    template = matrix / "templates/en/templates/kit-a/.claude/skills/c2f-related/SKILL.md"
+    for path, content in ((source, "ativar"), (template, "activate")):
+        path.parent.mkdir(parents=True)
+        path.write_text(content, encoding="utf-8")
+
+    data = skill_eval.run(matrix, skill="c2f-related")
+    assert (data["status"], data["scenarios"], data["skills"]) == ("EVAL-PASS", 1, ["c2f-demo", "c2f-related"])
+    assert data["results"][0]["related_skills"]["c2f-related"]["translation_copies"] == {"en": 1}
+
+    source.write_text("traduzir", encoding="utf-8")
+    template.write_text("translate", encoding="utf-8")
+    data = skill_eval.run(matrix, skill="c2f-related")
+    assert (data["status"], data["scenarios"], data["failed"]) == ("EVAL-FAIL", 1, 1)
+    failures = data["results"][0]["failures"]
+    assert any("c2f-related (pt-br)" in failure for failure in failures)
+    assert any("c2f-related/SKILL.md (en)" in failure for failure in failures)
+
+    for checks, message in (({}, "list of skill checks"), ([related, related], "duplicate skill"),
+                           ([{**related, "must_have": ["activate"]}], "unknown assertion keys")):
+        write(directory, "EVAL-002-related", must_include=["ai:archive-memory"], related_skills=checks)
+        with pytest.raises(ValueError, match=message):
+            skill_eval.run(matrix)
+
+
 def test_pluggable_provider_interface(matrix, monkeypatch):
     with pytest.raises(ValueError, match="Unknown provider: llm"):
         skill_eval.run(matrix, provider="llm")

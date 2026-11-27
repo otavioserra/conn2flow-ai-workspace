@@ -1,8 +1,8 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: [req-099.md](req-099.md) (`REQ-099` / `BATCH-101`)
-* **Status**: `READY` — aguardando execução do `BATCH-101`
-* **Lote Relacionado**: `BATCH-101` (`memory/implementation/batch-101.md`, a criar pelo Executor)
+* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-099.md](req-099.md) / `BATCH-101`)
+* **Status**: `IDLE` — pronto para abertura da próxima requisição
+* **Lote Relacionado**: `BATCH-101` ([batch-101.md](../implementation/batch-101.md), `HOMOLOGATED` em 2026-11-27)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
 * **Data de Entrada**: 2026-11-27
@@ -14,13 +14,14 @@
   - [BATCH-077](../implementation/batch-077.md), revisão [REV-077](../human-reviews/rev-077.md) (`RECOMMEND-APPROVAL`).
   - [BATCH-076](../implementation/archive/batch-076.md), revisão [REV-076](../human-reviews/rev-076.md) (`RECOMMEND-APPROVAL`).
 * **Frentes Homologadas no Ciclo**:
+  - [req-099.md](req-099.md) (`BATCH-101`, Checklist inviolável de ativação de novos idiomas em `c2f-multilingual-system` [47/300], `c2f-environment-configuration` [121/300] e `c2f-persona-executor` [163/200] PT-BR/EN com SHA-256 e `OVER: 0`, `EVAL-019` [`19/19 EVAL-PASS`], `pytest` 223/223 [96,22%], Regra dos 10 Ativos com 0 links órfãos, `healthy: true` e rollout em 7/7 satélites com `origin`, `HOMOLOGATED` em 2026-11-27)
   - [req-098.md](req-098.md) (`BATCH-100`, Saneamento dos 26 links relativos quebrados em `memory/validation/archive/` e `memory/implementation/` [`ai:archive-memory` exit 0, 0 links órfãos], `EVAL-018` para `c2f-persona-executor` [`18/18 EVAL-PASS`], `pytest` 222/222 [96,21%], `OVER: 0` e `healthy: true`, `HOMOLOGATED` em 2026-11-26)
   - [req-097.md](req-097.md) (`BATCH-099`, Ajuste nas skills `c2f-project-pipeline-and-tasks` [265/300] e `c2f-persona-executor` [157/200] PT-BR/EN diferenciando `dist/` Lab/SSH vs HTTP-only + fallback `404` `arquivo-estatico` + `REQ-306`, `EVAL-017` 17/17, `pytest` 222/222 [96,21%], `OVER: 0`, `healthy: true` e rollout em 7/7 satélites com `origin`, `HOMOLOGATED` em 2026-11-26)
   - [req-096.md](req-096.md) (`BATCH-098`, Fase 2 do `ARCH-019`: `mdd sync --remote` / `mdd update` com cache global `~/.mdd/cache/`, Auto-Sync periódico na extensão VS Code `v1.2.4` [172/172], template GitHub Action `--with-ci-sync`, Python 222 testes [96,21% cov], `EVAL-PASS` 16/16, `OVER: 0` e `healthy: true`, `HOMOLOGATED` em 2026-11-24)
   - [req-095.md](req-095.md) (`BATCH-097`, Overview moderno do Marketplace `v1.2.3`, `FB-008` PT-BR/EN + `EVAL-016`, `rollout-satellites.cjs` e rollout das 11 novas `subskills/` nos 7 satélites com `origin` + 0 worktrees, `HOMOLOGATED` em 2026-11-24)
   - [req-094.md](req-094.md) (`BATCH-096`, CI Python 211/211 com 96,32% de cobertura [>=95%], correção i18n instantânea da aba MDD Hub + VSIX `v1.2.2` [169/169], poda do checklist e `mdd status` `healthy: true`, `HOMOLOGATED` em 2026-11-24)
   - [req-093.md](req-093.md) (`BATCH-095`, Fase 1 do `ARCH-019`: catálogo plugável `domains/` + `mdd bootstrap`, VSIX `v1.2.1` [166/166, UTF-8, triagem botão direito, hub externo, domínio dinâmico], label `skill-feedback` no `--github`, `FB-004`/`FB-007`, 1ª rodada Optimizer [11 novas subskills, `OVER: 0`], `pytest` 162/162 e `mdd eval` 15/15, `HOMOLOGATED` em 2026-11-24)
-  - [req-092.md](req-092.md) (`BATCH-094`, Release VSIX `v1.2.0` [154/154, pronto para instalação local], saneamento cirúrgico de 57 sobras de skills da `REQ-082` em website/Core/Home, atualização completa da documentação viva [READMEs, CHANGELOGs, 11 pares em `docs/`, 284 links PASS] e inventário de curadoria `DEC-136`, `HOMOLOGATED` em 2026-11-24)
+  - [req-092.md](archive/req-092.md) (`BATCH-094`, Release VSIX `v1.2.0` [154/154, pronto para instalação local], saneamento cirúrgico de 57 sobras de skills da `REQ-082` em website/Core/Home, atualização completa da documentação viva [READMEs, CHANGELOGs, 11 pares em `docs/`, 284 links PASS] e inventário de curadoria `DEC-136`, `HOMOLOGATED` em 2026-11-24)
   - [req-091.md](archive/req-091.md) (`BATCH-093`, Fase 4 Final do `ARCH-018`: quarentena por recorrência, `--budget-report` + divergência EN, `mdd eval` 13/13, curadoria real `FB-001..003`, `pytest` 153/153, rollout global consolidado em 7/9 satélites via worktree com 100% de limpeza e `ARCH-018` `COMPLETED`; `conn2flow-home` e `conn2flow-mkt` sem `origin` a cargo dos chefes locais, `HOMOLOGATED` em 2026-11-24)
   - [req-090.md](archive/req-090.md) (`BATCH-092`, Fase 3 do `ARCH-018`: aba MDD Hub & Skills Control na extensão VS Code [154/154, homologação visual pendente], fila serial `mcp-hub` [7/7], paridade MCP Python [142/142], docs 48 skills, poda do checklist, e Core CLI `ai:archive-memory` publicado em `origin/main` `6e146f7aa8b6` via worktree limpa, `HOMOLOGATED` em 2026-11-24)
   - [req-089.md](archive/req-089.md) (`BATCH-091`, Fase 2 do `ARCH-018`: barramento `mdd feedback` + inbox `FB-XXX` + GitHub Issues + tools MCP no `conn2flow-hub` + conexão das 4 personas + notas `REP-010` + READMEs 48 skills + Regra dos 10, `HOMOLOGATED` em 2026-11-24)

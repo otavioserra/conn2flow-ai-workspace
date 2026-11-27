@@ -15,7 +15,7 @@ summary_medium: "Testes do bootstrap e da extensão VS Code 1.2.2. Arquivamento 
 
 # BATCH-096 — REQ-094
 
-[Requisição](../human-requests/req-094.md) · [Checklist](../validation/VALIDATION-CHECKLIST.md#batch-096--req-094-2026-11-24) · [Relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md)
+[Requisição](../../human-requests/req-094.md) · [Checklist](../../validation/VALIDATION-CHECKLIST.md#batch-096--req-094-2026-11-24) · [Relatório FEAT-017](../../reports/REP-016-batch096-ci-hub-i18n-and-memory.md)
 
 Matriz conn2flow-ai-workspace em C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace. Base local 184b142. Categoria B, topologia dupla, autonomia supervisionada.
 
@@ -43,8 +43,8 @@ A mudança de `conn2flow.language` atualiza o título e redesenha a árvore a pa
 
 ## Regra dos 10 Ativos
 
-- As seções homologadas de BATCH-090, BATCH-091 e BATCH-092 estão no [histórico reancorado](../validation/archive/validation-090-092.md). O [original integral](../validation/archive/original/VALIDATION-CHECKLIST-3bdd0b7f0cfa.md) foi preservado byte a byte.
-- O arquivador oficial do Core (CLI de `230262177a27`, extraído para diretório temporário) confirmou a seleção em dry-run e moveu [REQ-087](../human-requests/archive/req-087.md), [BATCH-091](archive/batch-091.md) e [REP-002](../reports/archive/REP-002-req285-atualizador-choques-learnings.md). A execução reescreveu 21 links em 15 documentos e sinalizou referências históricas órfãs no levantamento global. A comparação com HEAD confirmou zero novos links relativos órfãos nos documentos alterados, excetuando as cópias originais integrais, cujos links são relativos à localização original.
+- As seções homologadas de BATCH-090, BATCH-091 e BATCH-092 estão no [histórico reancorado](../../validation/archive/validation-090-092.md). O [original integral](../../validation/archive/original/VALIDATION-CHECKLIST-3bdd0b7f0cfa.md) foi preservado byte a byte.
+- O arquivador oficial do Core (CLI de `230262177a27`, extraído para diretório temporário) confirmou a seleção em dry-run e moveu [REQ-087](../../human-requests/archive/req-087.md), [BATCH-091](batch-091.md) e [REP-002](../../reports/archive/REP-002-req285-atualizador-choques-learnings.md). A execução reescreveu 21 links em 15 documentos e sinalizou referências históricas órfãs no levantamento global. A comparação com HEAD confirmou zero novos links relativos órfãos nos documentos alterados, excetuando as cópias originais integrais, cujos links são relativos à localização original.
 - `04-memory-engineering-execution.md` preservada com SHA-256 `686e049542f8a8cd3c6465fa75a173228290b74387cc34f8ed437f19cee438da`.
 
 ## Handoff supervisionado

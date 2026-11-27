@@ -41,8 +41,8 @@
       "translator": "mdd-agent"
     },
     "c2f-environment-configuration": {
-      "source_sha256": "5870f16d4ea24783dd82d35d757cdbc23958e1695077b4873076833e95d68eb9",
-      "translated_at": "2026-11-23",
+      "source_sha256": "dc8c24363ee71f981c656796ea4dd8ce7f7aee31e4e51ece90addd02c7aeacc7",
+      "translated_at": "2026-11-27",
       "translator": "mdd-agent"
     },
     "c2f-gd-image-safety": {
@@ -111,8 +111,8 @@
       "translator": "executor"
     },
     "c2f-multilingual-system": {
-      "source_sha256": "63fe772e98899efa3a5a99580b566e7e6ca3e4553f72f16c41d1ab86266f4099",
-      "translated_at": "2026-11-05",
+      "source_sha256": "41ee826ddeaa861db49b847abbd76087603eae84d77c7775f68d51bb9c448ff3",
+      "translated_at": "2026-11-27",
       "translator": "mdd-agent"
     },
     "c2f-mysql-utf8-emoji-encoding": {
@@ -136,8 +136,8 @@
       "translator": "mdd-agent"
     },
     "c2f-persona-executor": {
-      "source_sha256": "27ec3368e00f5be1b6311f78080e931d6b9b6363b174752f3181f83a5b3f31f6",
-      "translated_at": "2026-11-26",
+      "source_sha256": "628fad655123421760f1b38ef955330a0643a8a481441edb0301d2720e22edeb",
+      "translated_at": "2026-11-27",
       "translator": "mdd-agent"
     },
     "c2f-persona-optimizer": {

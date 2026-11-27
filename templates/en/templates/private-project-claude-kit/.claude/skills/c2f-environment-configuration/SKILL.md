@@ -82,6 +82,7 @@ HTML_SANITIZE=true
 | **HTML Performance** | `html_sanitize` | `.env` |
 | **OAuth** | `oauth_google_client_id`, `oauth_google_secret` | `.env` |
 | **Email/SMTP** | `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass` | `.env` |
+| **Internationalization / Languages** | `LANGUAGES` (`$_GESTOR['languages']`), `LANGUAGE_DEFAULT`, `LANGUAGE_COOKIE`, `LANGUAGE_WIDGET_ACTIVE`, `LANGUAGE_AUTO_DETECT` | `.env` → `config.php` |
 | **Payments** | `paypal_client_id`, `stripe_key` | `.env` |
 | **External APIs** | `openai_api_key`, `anthropic_api_key` | `.env` |
 
@@ -106,3 +107,15 @@ gestor/
 - In `gestor/bibliotecas/comunicacao-fila.php`, `comunicacao_config()` reads that email setting first, then tries `$_ENV['APP_ENV']` and falls back to `$_GESTOR['development-env']`.
 - The redirect guard in `gestor/bibliotecas/comunicacao.php` treats exactly `production`, `prod`, and `producao` as production. All other nonempty values are treated as non-production. Set `APP_ENV=development` explicitly for local development and `APP_ENV=staging` for staging.
 - A valid `MAIL_REDIRECT_TO` replaces TO/CC/BCC with a single test mailbox and the message carries a test subject prefix and the `X-Original-To` header. In production, the guard blocks a valid redirect and the send path logs a warning once per request unless `MAIL_REDIRECT_ALLOW_PRODUCTION=true`. The template defaults that override to `false`.
+
+## 6. Internationalization / Languages
+
+- `LANGUAGES` is the CSV list of active language codes, for example `pt-br,en,es`. The `gestor/config.php` file loads the list from `.env` into `$_GESTOR['languages']`.
+- `LANGUAGE_DEFAULT` sets the installation's default language, for example `pt-br`.
+- `LANGUAGE_COOKIE` sets the name prefix for the language preference cookie. Core appends the host suffix.
+- `LANGUAGE_WIDGET_ACTIVE` enables or disables the language selector widget.
+- `LANGUAGE_AUTO_DETECT` enables automatic language detection from the browser.
+
+**Activation is required** — pages, modules and variables for a language missing from `LANGUAGES` remain unavailable in the admin panel's language selector, in `/admin-environment/` and in Core routing even after SQL synchronization.
+
+Follow `c2f-multilingual-system` for the full checklist, including `resources.map.php`, `language-label-<codigo>` for every active language, and the batch receipt reminder to update `.env` manually in Dev/Staging/Production.

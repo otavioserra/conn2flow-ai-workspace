@@ -14,7 +14,7 @@ summary_medium: "Empacotamento local com 154 testes da extensão e 153 do Client
 
 # BATCH-094 — Entrega local pós-ARCH-018
 
-[REQ-092](../../human-requests/req-092.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
+[REQ-092](../../human-requests/archive/req-092.md) · [ARCH-018](../../backlog/ARCH-018-autonomous-skills-evolution-personas-and-learnings.md) · Categoria B · Topologia dupla · Autonomia supervisionada.
 
 Matriz `conn2flow-ai-workspace` em `C:/Users/otavi/OneDrive/Documentos/GIT/conn2flow-ai-workspace`. Base local `fb46fe73c600`.
 

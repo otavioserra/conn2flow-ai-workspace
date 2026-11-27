@@ -3,7 +3,8 @@
 A scenario is a JSON file in ``tools/mdd-client/evals/skills/`` that pins one critical
 Conn2Flow trap to the canonical skill text (``.gemini/skills/<skill>/SKILL.md`` plus its
 ``subskills/``) and, optionally, to every registered translation copy in
-``templates/<lang>/templates/*/*/skills/<skill>/``.
+``templates/<lang>/templates/*/*/skills/<skill>/``. Related skill checks can share
+one scenario and contribute to the same verdict.
 
 Providers are pluggable. ``deterministic`` (default) is offline, needs no API key and is
 fully reproducible in pytest/CI: it checks required terms/regexes and forbidden
@@ -27,6 +28,7 @@ BUDGET = {"persona": 200, "core": 300, "governance": 200}
 GOVERNANCE_C2F = {"c2f-mdd-indexing-and-handoffs", "c2f-multilingual-skills-governance"}
 ASSERTIONS = ("must_include", "must_match", "must_not_include", "must_not_match")
 FIELDS = {"id", "title", "skill", "trap", "subskills", "translations", "max_lines"}
+RELATED_FIELDS = FIELDS - {"id", "title", "trap"}
 ID = re.compile(r"^EVAL-\d{3}-[a-z0-9-]+$")
 
 
@@ -55,6 +57,7 @@ class Scenario:
     subskills: list[str] = field(default_factory=list)
     translations: dict[str, dict[str, list[str]]] = field(default_factory=dict)
     max_lines: int | None = None
+    related_skills: list[Scenario] = field(default_factory=list)
 
 
 @dataclass
@@ -143,6 +146,21 @@ def _assertions(raw: dict, label: str) -> dict[str, list[str]]:
     return result
 
 
+def _skill_check(raw: dict, label: str, *, scenario_id: str, title: str, trap: str, path: str) -> Scenario:
+    if not isinstance(raw.get("skill"), str) or not raw["skill"].strip():
+        raise ValueError(f"{label}: field 'skill' is required")
+    max_lines = raw.get("max_lines")
+    if max_lines is not None and (not isinstance(max_lines, int) or max_lines < 1):
+        raise ValueError(f"{label}: max_lines must be a positive integer")
+    assertions = _assertions({k: raw[k] for k in ASSERTIONS if k in raw}, label)
+    if not any(assertions.values()):
+        raise ValueError(f"{label}: at least one assertion is required")
+    translations = {lang: _assertions(value, f"{label}.translations.{lang}")
+                    for lang, value in (raw.get("translations") or {}).items()}
+    subskills = _strings(raw["subskills"], f"{label}.subskills") if raw.get("subskills") else []
+    return Scenario(scenario_id, title, raw["skill"], trap, path, assertions, subskills, translations, max_lines)
+
+
 def load_scenarios(directory: Path) -> list[Scenario]:
     if not directory.is_dir():
         raise ValueError(f"Scenario directory not found: {directory}")
@@ -150,26 +168,32 @@ def load_scenarios(directory: Path) -> list[Scenario]:
     for path in sorted(directory.glob("*.json")):
         raw = json.loads(path.read_text(encoding="utf-8"))
         label = path.name
-        for key in ("id", "title", "skill", "trap"):
+        for key in ("id", "title", "trap"):
             if not isinstance(raw.get(key), str) or not raw[key].strip():
                 raise ValueError(f"{label}: field {key!r} is required")
         if not ID.match(raw["id"]) or raw["id"] in seen:
             raise ValueError(f"{label}: invalid or duplicated id {raw['id']!r}")
         seen.add(raw["id"])
-        unknown = set(raw) - FIELDS - set(ASSERTIONS)
+        unknown = set(raw) - FIELDS - set(ASSERTIONS) - {"related_skills"}
         if unknown:  # A typo (e.g. must_have) must never silently weaken a scenario.
             raise ValueError(f"{label}: unknown assertion keys {sorted(unknown)}")
-        if raw.get("max_lines") is not None and (not isinstance(raw["max_lines"], int) or raw["max_lines"] < 1):
-            raise ValueError(f"{label}: max_lines must be a positive integer")
-        assertions = _assertions({k: raw[k] for k in ASSERTIONS if k in raw}, label)
-        if not any(assertions.values()):
-            raise ValueError(f"{label}: at least one assertion is required")
-        translations = {lang: _assertions(value, f"{label}.translations.{lang}")
-                        for lang, value in (raw.get("translations") or {}).items()}
-        scenarios.append(Scenario(id=raw["id"], title=raw["title"], skill=raw["skill"], trap=raw["trap"],
-                                  path=path.as_posix(), assertions=assertions,
-                                  subskills=_strings(raw["subskills"], f"{label}.subskills") if raw.get("subskills") else [],
-                                  translations=translations, max_lines=raw.get("max_lines")))
+        metadata = dict(scenario_id=raw["id"], title=raw["title"], trap=raw["trap"], path=path.as_posix())
+        scenario = _skill_check(raw, label, **metadata)
+        related = raw.get("related_skills", [])
+        if not isinstance(related, list) or not all(isinstance(check, dict) for check in related):
+            raise ValueError(f"{label}: related_skills must be a list of skill checks")
+        skills = {scenario.skill}
+        for index, check in enumerate(related):
+            location = f"{label}.related_skills[{index}]"
+            unknown = set(check) - RELATED_FIELDS - set(ASSERTIONS)
+            if unknown:
+                raise ValueError(f"{location}: unknown assertion keys {sorted(unknown)}")
+            parsed = _skill_check(check, location, **metadata)
+            if parsed.skill in skills:
+                raise ValueError(f"{location}: duplicate skill {parsed.skill!r}")
+            skills.add(parsed.skill)
+            scenario.related_skills.append(parsed)
+        scenarios.append(scenario)
     return scenarios
 
 
@@ -210,31 +234,39 @@ def run(matrix: Path, *, skill: str | None = None, provider: str = "deterministi
     directory = scenarios_dir.resolve() if scenarios_dir else matrix / SCENARIOS
     scenarios = load_scenarios(directory)
     if skill:
-        scenarios = [s for s in scenarios if s.skill == skill]
+        scenarios = [s for s in scenarios if any(check.skill == skill for check in (s, *s.related_skills))]
         if not scenarios:
             raise ValueError(f"No eval scenario covers skill: {skill}")
     if not scenarios:
         raise ValueError(f"No eval scenarios in {directory}")
-    corpora: dict[str, Corpus] = {}
+    corpora: dict[tuple[str, frozenset[str]], Corpus] = {}
+    coverage = {}
     results = []
     for scenario in scenarios:
-        languages = set(scenario.translations)
-        key = scenario.skill + "|" + ",".join(sorted(languages))
-        corpus = corpora.get(key) or corpora.setdefault(key, load_corpus(matrix, scenario.skill, languages))
-        failures = engine.evaluate(scenario, corpus)
-        kind = category(scenario.skill)
-        budget = BUDGET[kind]
-        state = "OVER" if corpus.lines > budget else "NEAR" if corpus.lines >= -(-budget * 8 // 10) else "OK"
-        results.append({"id": scenario.id, "title": scenario.title, "skill": scenario.skill, "trap": scenario.trap,
-                        "status": "PASS" if not failures else "FAIL", "failures": failures,
-                        "metrics": {"lines": corpus.lines, "budget": budget, "budget_state": state,
+        failures, metrics = [], {}
+        for check in (scenario, *scenario.related_skills):
+            languages = set(check.translations)
+            key = (check.skill, frozenset(languages))
+            if key not in corpora:
+                corpora[key] = load_corpus(matrix, check.skill, languages)
+            corpus = corpora[key]
+            failures.extend(engine.evaluate(check, corpus))
+            budget = BUDGET[category(check.skill)]
+            state = "OVER" if corpus.lines > budget else "NEAR" if corpus.lines >= -(-budget * 8 // 10) else "OK"
+            coverage[check.skill] = state
+            metrics[check.skill] = {"lines": corpus.lines, "budget": budget, "budget_state": state,
                                     "subskills": len(corpus.subskills),
-                                    "translation_copies": {k: len(v) for k, v in sorted(corpus.translations.items())}}})
+                                    "translation_copies": {k: len(v) for k, v in sorted(corpus.translations.items())}}
+        result = {"id": scenario.id, "title": scenario.title, "skill": scenario.skill, "trap": scenario.trap,
+                  "status": "PASS" if not failures else "FAIL", "failures": failures,
+                  "metrics": metrics.pop(scenario.skill)}
+        if metrics:
+            result["related_skills"] = metrics
+        results.append(result)
     failed = [r for r in results if r["status"] == "FAIL"]
     return {"status": "EVAL-FAIL" if failed else "EVAL-PASS", "provider": provider,
             "scenarios": len(results), "passed": len(results) - len(failed), "failed": len(failed),
-            "skills": sorted({r["skill"] for r in results}),
-            "budget_attention": [{"skill": name, "state": state} for name, state in
-                                 sorted({(r["skill"], r["metrics"]["budget_state"]) for r in results
-                                         if r["metrics"]["budget_state"] != "OK"})],
+            "skills": sorted(coverage),
+            "budget_attention": [{"skill": name, "state": state} for name, state in sorted(coverage.items())
+                                 if state != "OK"],
             "results": results}

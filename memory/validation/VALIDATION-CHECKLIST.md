@@ -2,6 +2,17 @@
 
 Este documento concentra os checklists de aceitação e os registros de testes empíricos de validação dos lotes ativos (Regra dos 10: lotes pendentes de homologação permanecem aqui).
 
+## BATCH-101 — REQ-099 (2026-11-27)
+
+- [x] Três skills atualizadas em PT-BR e EN com o checklist de ativação de idiomas.
+- [x] SHA-256 e sync PASS, zero drift, índice PASS e `OVER: 0`.
+- [x] EVAL-019 e EVAL-PASS 19/19. Pytest com 223 PASS e 96,22% de cobertura.
+- [x] Regra dos 10 Ativos, zero links órfãos e `mdd status` com `healthy: true`.
+- [x] Rollout confirmado em `origin/main` nos sete satélites com `origin`, com zero worktrees temporárias remanescentes.
+- [x] Revisão pelo Macro-Arquiteto e homologação humana aprovada em 2026-11-27.
+
+Lote `HOMOLOGATED` em 2026-11-27. [BATCH-101](../implementation/batch-101.md).
+
 ## BATCH-100 — REQ-098 (2026-11-26)
 
 - [x] 4 links de `validation-095.md` e 20 de `archive/original/` saneados; `ai:archive-memory --dry-run` exit 0.
@@ -29,17 +40,6 @@ Este documento concentra os checklists de aceitação e os registros de testes e
 - [x] Rollout conferido em origin/main, variantes do Core preservadas e zero worktrees temporárias.
 - [x] Janela de dez ativos restabelecida. Evidências no [BATCH-097](../implementation/batch-097.md) e no [FEAT-017](../reports/REP-017-batch097-marketplace-and-rollout.md).
 - [ ] Revisão técnica e homologação visual humana.
-
-## BATCH-096 — REQ-094 (2026-11-24)
-
-- [x] Comando exato do CI passou localmente com 211 testes e cobertura de 96,32%.
-- [x] O idioma atualiza o título e a árvore do MDD Hub. Catálogos PT-BR/EN validados e extensão 169/169.
-- [x] VSIX 1.2.2 empacotado e verificado (98 entradas, CRC válido).
-- [x] Poda de BATCH-090 a BATCH-092 com original integral. Checklist e janelas governadas com 10 ativos.
-- [x] `mdd eval` retornou `EVAL-PASS` 15/15. `mdd status --json` retornou `healthy: true` após `mdd index`.
-- [ ] Revisão supervisionada e homologação visual humana do VSIX.
-
-Evidências no [BATCH-096](../implementation/batch-096.md) e no [relatório FEAT-017](../reports/REP-016-batch096-ci-hub-i18n-and-memory.md).
 
 ## BATCH-081 / REQ-079 — entrega integrada em 2026-11-05
 
@@ -122,6 +122,8 @@ Evidências: [lote](../implementation/batch-077.md), [JUnit](../../completions/B
 Evidências preservadas em [batch-076.md](../implementation/archive/batch-076.md), [REV-076](../human-reviews/rev-076.md), [resumo](../../completions/BATCH-076-test-summary.json). VSIX1.1.3 permanece como evidência histórica; avaliação consolidada pode usar o1.1.4 da REQ-075.
 
 ## Validações Arquivadas
+
+- [validation-096.md](archive/validation-096.md) (BATCH-096, homologado em 2026-11-24)
 
 - [validation-099.md](archive/validation-099.md) (BATCH-099; poda da REQ-098)
 - [validation-095.md](archive/validation-095.md) (BATCH-095; poda da REQ-097)
