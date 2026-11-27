@@ -1,11 +1,11 @@
 # CURRENT ACTIVE REQUEST
 
-* **Ponteiro Ativo**: Nenhum (última requisição concluída e homologada: [req-098.md](req-098.md) / `BATCH-100`)
-* **Status**: `IDLE` — pronto para abertura da próxima requisição
-* **Lote Relacionado**: `BATCH-100` ([batch-100.md](../implementation/batch-100.md), `HOMOLOGATED` em 2026-11-26)
+* **Ponteiro Ativo**: [req-099.md](req-099.md) (`REQ-099` / `BATCH-101`)
+* **Status**: `READY` — aguardando execução do `BATCH-101`
+* **Lote Relacionado**: `BATCH-101` (`memory/implementation/batch-101.md`, a criar pelo Executor)
 * **Topologia de Agentes**: `dupla`
 * **Nível de Autonomia**: `supervisionado`
-* **Data de Entrada**: 2026-11-26
+* **Data de Entrada**: 2026-11-27
 * **Frentes Anteriores Concluídas Aguardando Homologação Final Unificada**:
   - [req-079.md](req-079.md) / [BATCH-081](../implementation/batch-081.md): Motor de Banco de Dados MDD (`SQLite3 + FTS5` Local e Multi-Driver SQL) no `mdd-client` (`ready-for-review`).
   - [req-078.md](req-078.md) / [BATCH-080](../implementation/batch-080.md): Internacionalização das 46 skills e detecção de drift por SHA-256; [REV-080](../human-reviews/rev-080.md) `RECOMMEND-APPROVAL`.
@@ -41,8 +41,8 @@
 
 ---
 
-## Objetivo operacional — REQ-098 / BATCH-100
+## Objetivo operacional — REQ-099 / BATCH-101
 
-1. Corrigir os 4 links relativos em `memory/validation/archive/validation-095.md` e sanear os 20 links relativos quebrados em `memory/validation/archive/original/VALIDATION-CHECKLIST-*.md` para que `ai:archive-memory` feche com 0 links quebrados.
-2. Criar `EVAL-018` cobrindo `c2f-persona-executor` (PT-BR + EN) atingindo `18/18 EVAL-PASS`.
-3. Validar todos os gates locais da matriz (`pytest >= 95%`, `sync-skills`, `OVER: 0`, `mdd status` `healthy: true`) e entregar `BATCH-100` em `ready-for-review` (sem rollout em satélites).
+1. Atualizar as skills `c2f-multilingual-system`, `c2f-environment-configuration` e `c2f-persona-executor` (PT-BR + EN com hash pairing SHA-256) incorporando o checklist inviolável de ativação de novos idiomas (`LANGUAGES` no `.env`, `resources.map.php`, `language-label-<codigo>` em todos os idiomas ativos, varredura de listas hardcoded, flags `LANGUAGE_*` e validação E2E real no seletor do painel e `/admin-environment/` `#language_default`).
+2. Criar `EVAL-019` cobrindo as 3 skills (`19/19 EVAL-PASS`), validar todos os gates locais da matriz (`pytest >= 95%`, `sync-skills`, `OVER: 0`, Regra dos 10 Ativos via `ai:archive-memory` com 0 links quebrados, `mdd status` `healthy: true`).
+3. Propagar as 3 skills atualizadas para todos os satélites com `origin` via `rollout-satellites.cjs` (0 worktrees remanescentes) e entregar `BATCH-101` em `ready-for-review`.
