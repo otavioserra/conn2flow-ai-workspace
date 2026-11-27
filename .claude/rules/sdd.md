@@ -1,13 +1,14 @@
 ---
 paths:
-  - "sdd/**/*.md"
+  - "memory/**/*.md"
 ---
 
-# Regras de artefatos SDD
+# Regras de artefatos MDD (`memory/`)
 
-- Os sdd numerados são a fonte normativa.
-- Trate `sdd/human-requests/` apenas como intake humano não normativo; qualquer consolidação deve ir para `change-requests/`, `reviews/`, `implementation/`, `validation/`, `decisions/` ou sdd numerados quando aprovado.
-- Use `sdd/change-requests/` para mudança de requisito, `sdd/reviews/` para feedback de round, `sdd/implementation/` para batches, `sdd/validation/` para evidências e `sdd/decisions/` para racional.
-- Não reescreva os sdd numerados para comentários de review que não mudam o requisito.
-- No início de cada sessão, leia `sdd/03-memory-engineering-chief.md` e `sdd/04-memory-engineering-execution.md` para alinhar contexto.
-- Ao término de cada tarefa, atualize `sdd/04-memory-engineering-execution.md` com aprendizados, bugs resolvidos e particularidades do ambiente. Nunca modifique `sdd/03-memory-engineering-chief.md` sem instrução explícita do usuário humano.
+> Regra complementar ao `CLAUDE.md`, que é a fonte única do protocolo (leitura inicial, skills por marco, autonomia, DEC-136). Este arquivo não repete aquele conteúdo; só vale ao tocar `memory/`.
+
+- `memory/README.md` e os artefatos numerados são normativos; edite-os apenas quando requisito, contrato, critério de aceite ou decisão aprovada mudar.
+- `memory/human-requests/` é intake humano não normativo; consolide em `change-requests/`, `reviews/`, `implementation/`, `validation/` ou `decisions/`.
+- `memory/backlog/` não é executável sem promoção humana para `req-XXX.md`, `CURRENT.md` e batch.
+- Memórias de engenharia: leia `memory/03-memory-engineering-chief.md` e `memory/04-memory-engineering-execution.md`; atualize só a 04 ao fim da tarefa; a 03 só com instrução explícita do humano.
+- Skills de fluxo: `start-mdd-slice`, `continue-mdd-batch`, `mdd-workflow`, `mdd-memory-gardening` e `c2f-mdd-indexing-and-handoffs` (nomes legados `*-sdd-*` e `MEMORIA-ENGENHARIA-*` estão aposentados).

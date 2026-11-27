@@ -53,6 +53,7 @@ function Get-KitPlan {
                 @{ Source = 'CLAUDE.md'; Destination = 'CLAUDE.md' },
                 @{ Source = '.claude\settings.json'; Destination = '.claude\settings.json' },
                 @{ Source = '.claude\rules'; Destination = '.claude\rules' },
+                @{ Source = '.claude\output-styles'; Destination = '.claude\output-styles' },
                 @{ Source = '.claude\agents'; Destination = '.claude\agents' },
                 @{ Source = '.claude\skills'; Destination = '.claude\skills' },
                 @{ Source = 'docs'; Destination = 'docs' }
@@ -75,6 +76,7 @@ function Get-KitPlan {
                 @{ Source = 'CLAUDE.md'; Destination = 'CLAUDE.md' },
                 @{ Source = '.claude\settings.json'; Destination = '.claude\settings.json' },
                 @{ Source = '.claude\rules'; Destination = '.claude\rules' },
+                @{ Source = '.claude\output-styles'; Destination = '.claude\output-styles' },
                 @{ Source = '.claude\agents'; Destination = '.claude\agents' },
                 @{ Source = '.claude\skills'; Destination = '.claude\skills' }
             )

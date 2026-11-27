@@ -314,6 +314,7 @@ case "$resolved_kit" in
             "CLAUDE.md|CLAUDE.md"
             ".claude/settings.json|.claude/settings.json"
             ".claude/rules|.claude/rules"
+            ".claude/output-styles|.claude/output-styles"
             ".claude/agents|.claude/agents"
             ".claude/skills|.claude/skills"
             "docs|docs"
@@ -336,6 +337,7 @@ case "$resolved_kit" in
             "CLAUDE.md|CLAUDE.md"
             ".claude/settings.json|.claude/settings.json"
             ".claude/rules|.claude/rules"
+            ".claude/output-styles|.claude/output-styles"
             ".claude/agents|.claude/agents"
             ".claude/skills|.claude/skills"
         )

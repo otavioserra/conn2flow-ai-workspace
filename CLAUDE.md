@@ -1,8 +1,15 @@
-# Projeto Spec-Driven Development
+# Projeto Memory Driven Development (MDD)
+
+## 📋 Checklist Vivo (Live Todo List) — prioridade de saída
+
+- Toda tarefa com 2+ passos mostra a checklist `- [ ]` antes da primeira edição e a re-exibe após cada etapa relevante com `[x]` e `⏳ [EM ANDAMENTO]`; nunca marque `[x]` no que não foi feito.
+- Formato e regras completas: output style `conn2flow-checklist` (`.claude/output-styles/`), ativado em `.claude/settings.json` e reforçado pelo hook `UserPromptSubmit`; os kits Claude em `templates/` distribuem os três.
+
+## Fonte normativa e leitura inicial
 
 - Trate `memory/README.md` e os sdd numerados como fonte normativa.
 - Antes de editar código ou sdd, leia `memory/README.md`, `memory/process/00-START-HERE.md`, `memory/process/01-WORKFLOW.md`, `memory/implementation/BATCH-INDEX.md`, o batch atual, `memory/validation/VALIDATION-CHECKLIST.md` e `memory/decisions/DECISION-LOG.md`.
-- Use `memory/human-requests/` apenas como intake humano não normativo. Se a demanda vier como caminho de arquivo Markdown ou como a própria pasta, leia esse material primeiro e depois classifique a demanda no artefato SDD correto.
+- Use `memory/human-requests/` apenas como intake humano não normativo. Se a demanda vier como caminho de arquivo Markdown ou como a própria pasta, leia esse material primeiro e depois classifique a demanda no artefato MDD correto.
 - **Memórias de Engenharia**: No início de cada sessão, leia obrigatoriamente `memory/03-memory-engineering-chief.md` e `memory/04-memory-engineering-execution.md` para alinhar contexto antes de qualquer alteração.
 - **Manutenção da Memória de Execução**: Ao término de cada tarefa, atualize `memory/04-memory-engineering-execution.md` com novos aprendizados, bugs resolvidos e particularidades do ambiente. Nunca modifique `memory/03-memory-engineering-chief.md` sem instrução explícita do usuário humano.
 - Classifique a demanda cedo: change request, implementação de batch, review ou validação.
@@ -43,12 +50,6 @@ Quando o usuário abrir um chat e enviar comandos curtos (ex: `"começa aí"`, `
    - **No Antigravity (Arquiteto Master)**: Ativa `c2f-persona-architect`, lê `memory/03-memory-engineering-chief.md` e propõe o próximo plano.
    - **No Revisor**: Ativa `c2f-persona-reviewer`, audita diffs e valida contratos de segurança/skills.
 4. **Integração MCP Automática**: Utiliza o MCP Hub (`conn2flow-hub`) para operações de CLI (`c2f_run_command`), despacho (`dispatch_task`) e recibos de conclusão (`report_completion`).
-
-## 📋 Protocolo de Transparência & Checklist Vivo (Live Todo List)
-
-- Ao iniciar qualquer requisição ou lote, renderize imediatamente a lista completa de tarefas (Todo List) com caixas de seleção [ ].
-- A cada término de etapa/comando relevante, atualize e re-exiba a lista marcando [x] nas etapas concluídas e destacando a etapa atual (⏳ [EM ANDAMENTO]).
-- Nunca execute sequências longas de comandos sem atualizar o status visual para o usuário.
 
 ## 🛡️ Espectro de 3 Níveis de Autonomia de IA
 
